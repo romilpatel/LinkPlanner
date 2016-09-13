@@ -4,7 +4,7 @@
 # include <vector>	     // vector container
 # include <math.h>       // log2 
 
-# include "netplus.h"
+# include "netxpto.h"
 
 using namespace std;
 

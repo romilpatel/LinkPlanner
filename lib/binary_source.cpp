@@ -9,7 +9,7 @@
 # include <algorithm> 
 # include <random>
 
-# include "netplus.h"
+# include "netxpto.h"
 # include "binary_source.h"
 
 using namespace std;

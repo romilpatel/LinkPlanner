@@ -1,7 +1,7 @@
 # ifndef M_QAM_TRANSMITTER_H_
 # define M_QAM_TRANSMITTER_H_
 
-# include "netplus.h"
+# include "netxpto.h"
 # include "binary_source.h"
 # include "m_qam_mapper.h"
 # include "discrete_to_continuous_time.h"
@@ -54,7 +54,6 @@ class MQamTransmitter : public SuperBlock {
 	PulseShaper B6{ vector<Signal*> { &S5 }, vector<Signal*> { &S7 } };
 
 	IqModulator B7{ vector<Signal*> { &S6, &S7 }, vector<Signal*> { &S8 } };
-
 
 
 	/* Input Parameters */

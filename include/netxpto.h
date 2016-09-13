@@ -1,5 +1,5 @@
-# ifndef PROGRAM_INCLUDE_NETPLUS_H_
-# define PROGRAM_INCLUDE_NETPLUS_H_
+# ifndef PROGRAM_INCLUDE_netxpto_H_
+# define PROGRAM_INCLUDE_netxpto_H_
 
 # include <iostream>
 # include <fstream>
@@ -14,9 +14,10 @@ using namespace std;
 typedef unsigned int t_binary;
 typedef int t_integer;
 typedef double t_real;
-typedef complex<double> t_complex;
+typedef complex<t_real> t_complex;
+typedef struct { t_complex x; t_complex y; } t_xy_complex;
 
-enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue};
+enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, XYComplexValue};
 
 const int MAX_NAME_SIZE = 256;  // Maximum size of names
 const long int MAX_Sink_LENGTH = 100000;  // Maximum Sink Block number of values
@@ -291,6 +292,16 @@ public:
 
 };
 
+
+class OpticalSignalXY : BandpassSignal {
+public:
+	OpticalSignalXY(string fName) { setType("OpticalSignalXY", XYComplexValue); setFileName(fName); if (buffer == nullptr) buffer = new t_xy_complex[bufferLength]; }
+	OpticalSignalXY(string fName, int bLength) { setType("OpticalSignalXY", XYComplexValue); setFileName(fName); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_xy_complex[bLength]; }
+	OpticalSignalXY(int bLength) { setType("OpticalSignalXY", XYComplexValue); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_xy_complex[bLength]; }
+	OpticalSignalXY() { setType("OpticalSignalXY", XYComplexValue); if (buffer == nullptr) buffer = new t_xy_complex[bufferLength]; }
+};
+
+
 class MultiModeBandpassSignal : BandpassSignal {
 public:
 	MultiModeBandpassSignal(int nBandpassSignals) {
@@ -449,6 +460,6 @@ class System {
   vector<Block *> SystemBlocks;  // Pointer to an array of pointers to Block objects
 };
 
-# endif // PROGRAM_INCLUDE_NETPLUS_H_
+# endif // PROGRAM_INCLUDE_netxpto_H_
 
 

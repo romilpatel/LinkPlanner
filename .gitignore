@@ -9,6 +9,11 @@
 *.pdb
 *.tlog
 
+######################
+# Matlab
+######################
+
+*.mat
 
 # Windows image file caches
 Thumbs.db
@@ -60,3 +65,5 @@ Temporary Items
 *.obj
 *.obj
 *.exe
+*.mat
+*.mat

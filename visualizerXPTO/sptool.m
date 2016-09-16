@@ -2888,19 +2888,34 @@ for k = 1:N
     data_y = real(data_y)' + imag(data_y)'.*1i;
     
     obj1 = findobj('Tag', sprintf('DisplayLine%u', k));
-    obj2 = findobj('Tag', sprintf('DisplayLine%u_Imag',k));
+    
     % Real part X mode
+    obj1.XData = obj1.XData(1:length(data_x));
+    obj1.YData = real(data_x);
+
     subplot(4, 1, 1); hold(gca, 'on');
-    plot(real(data_x));
-%    plot(get(obj1, 'XData'), get(obj1, 'YData'), 'Color', get(obj1, 'Color'), 'Linewidth', lw, 'Tag', 'pr1'); 
+    plot(get(obj1, 'XData'), get(obj1, 'YData'), 'Color', get(obj1, 'Color'),'Linewidth', lw, 'Tag', 'pr1');
+     
     % Imaginary part Y mode
+    obj1.YData = imag(data_x);
+    
     subplot(4, 1, 2); hold(gca, 'on');
-     plot( imag(data_x));
- %   plot(get(obj2, 'XData'), get(obj2, 'YData'), 'Color', get(obj2, 'Color'), 'Linewidth', lw, 'Tag', 'pi1');  
+    plot(get(obj1, 'XData'), get(obj1, 'YData'), 'Color', get(obj1, 'Color'),'Linewidth', lw, 'Tag', 'pr1');
+   
+    % Real part Y mode
+    obj1.YData = real(data_y);
+      
     subplot(4, 1, 3); hold(gca, 'on');
-    plot(real(data_y));
+    plot(get(obj1, 'XData'), get(obj1, 'YData'), 'Color', get(obj1, 'Color'),'Linewidth', lw, 'Tag', 'pr1');
+
+    % Imag part Y mode
+    obj1.YData = imag(data_y);
+      
     subplot(4, 1, 4); hold(gca, 'on');
-    plot(real(data_y));
+    plot(get(obj1, 'XData'), get(obj1, 'YData'), 'Color', get(obj1, 'Color'),'Linewidth', lw, 'Tag', 'pr1');
+
+    
+    
 end 
 
 %% Axes

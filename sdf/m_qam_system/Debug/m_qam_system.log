@@ -1,12 +1,14 @@
-﻿  m_qam_system_sdf.cpp
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'c:\universidade\investigacao\netxpto\github_netxpto_anp\linkplanner\sdf\m_qam_system\debug\m_qam_system.ilk' because it is being used by another process.
+  m_qam_system_sdf.cpp
   sink.cpp
   pulse_shaper.cpp
-  netplus.cpp
+  netxpto.cpp
   m_qam_transmitter.cpp
   m_qam_mapper.cpp
   iq_modulator.cpp
   discrete_to_continuous_time.cpp
   binary_source.cpp
   Generating Code...
-  m_qam_system.vcxproj -> C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO\LinkPlanner\sdf\m_qam_system\Debug\m_qam_system.exe
-  m_qam_system.vcxproj -> C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO\LinkPlanner\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)
+  LINK : C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO_anp\LinkPlanner\sdf\m_qam_system\Debug\m_qam_system.exe not found or not built by the last incremental link; performing full link
+  m_qam_system.vcxproj -> C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO_anp\LinkPlanner\sdf\m_qam_system\Debug\m_qam_system.exe
+  m_qam_system.vcxproj -> C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO_anp\LinkPlanner\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)

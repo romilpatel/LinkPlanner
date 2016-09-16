@@ -71,8 +71,10 @@ function varargout = sptool(varargin)
 
 %   Authors: T. Krauss and B. Jones
 %   Copyright 1988-2013 The MathWorks, Inc.
+%
+%   Modified by
 %   Carlos Ferreira Ribeiro
-%   Prof. Armando Nolasco Pinto
+%   Armando Nolasco Pinto
 %   January, 2016
 %   IT, Aveiro.
 
@@ -88,7 +90,7 @@ if nargin == 0
     end
     
     %% Load "sptool" to MATLAB workspace
-    set(0, 'ShowHiddenHandles', 'on')
+    %set(0, 'ShowHiddenHandles', 'on')
     
     %% Declare/initialize global variables
     initializeGlobalVariables;
@@ -4192,6 +4194,7 @@ td1 = 'TimeDiscreteAmplitudeDiscreteReal';
 td2 = 'TimeDiscreteAmplitudeDiscreteComplex';
 td3 = 'TimeDiscreteAmplitudeContinuousReal';
 td4 = 'TimeDiscreteAmplitudeContinuousComplex';
+
 
 %% Load
 struct = sptool('create', 'Signal', data, samplingFrequency, name);

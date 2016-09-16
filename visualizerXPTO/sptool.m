@@ -114,6 +114,7 @@ else
     end
 end
 
+
 switch action    
     case 'init'                % initialization        
         % Initialize SPTool userdata (ud)
@@ -1489,10 +1490,15 @@ switch action
             tc1 = 'TimeContinuousAmplitudeDiscreteComplex';
             tc2 = 'TimeContinuousAmplitudeContinuousComplex';
             tc5 = 'BandpassSignal';
+            toxy = 'OpticalSignalXY';
             signalBrowser = findobj('Tag', 'SignalBrowser');
             if isempty(signalBrowser)
-                if strcmp(signals(activeSignals(1)).type, tc1) || strcmp(signals(activeSignals(1)).type, tc2) || strcmp(signals(activeSignals(1)).type, tc5)
-                    viewComplex;
+                if strcmp(signals(activeSignals(1)).type, tc1) || strcmp(signals(activeSignals(1)).type, tc2) || strcmp(signals(activeSignals(1)).type, tc5) || strcmp(signals(activeSignals(1)).type, toxy)
+                    if strcmp(signals(activeSignals(1)).type, toxy)
+                       viewComplexXY; 
+                    else
+                       viewComplex;
+                    end
                 else
                     defaultVerb(varargin{2}, varargin{3});
                     changeLinewidth;
@@ -2598,6 +2604,7 @@ set(findobj('Tag', 'sigbrowser.sigbrowseAdapter:view'), 'Enable', 'on');
 tc1 = 'TimeContinuousAmplitudeDiscreteComplex';
 tc2 = 'TimeContinuousAmplitudeContinuousComplex'; 
 tc5 = 'BandpassSignal';
+toxy = 'OpticalSignalXY';
 activeSignals = get(findobj('Tag', 'list1'), 'Value');
 N = length(activeSignals);
 signals = sptool('Signals');  
@@ -2833,6 +2840,111 @@ set(signalBrowser, 'Visible', 'off');
 %% Set global variable "choice"
 setGlobalchoice(0);
 %%
+
+function [ ] = viewComplexXY( varargin )
+%VIEWCOMPLEX represents the real and imaginary parts of the current
+%selected signals.
+%   VIEWCOMPLEX just represents the real and imaginary parts.
+
+%% Close complex figures
+closeComplexFigures;
+
+%% Open "Signal Browser"
+signalBrowser = findobj('Tag', 'SignalBrowser');
+flag = 0;
+if ~isempty(varargin)
+    if varargin{1} == 1
+        flag = 1;
+    end
+end
+if isempty(signalBrowser)
+    defaultVerb(1, 1);
+    changeTimeWindow;
+    signalBrowser = findobj('Tag', 'SignalBrowser');
+else
+    xlim = get(findobj('Tag', 'DisplayAxes1_RealMag'), 'XLim');
+    if xlim(1) < 0 || flag == 1
+        defaultVerb(1, 1);
+        changeTimeWindow;
+    end
+end
+
+%% Plots
+signals = sptool('Signals');
+activeSignals = get(findobj('Tag', 'list1'), 'Value');
+N = length(activeSignals);
+currentAxes = findobj('Tag', 'DisplayAxes1_RealMag');
+yli = get(currentAxes, 'YLabel');
+f = figure;
+set(f, 'Tag', 'figCompRI', 'numbertitle', 'off', 'Name', 'Signal Browser');
+h = pan(findobj('Tag', 'figCompRI'));
+set(h, 'ActionPostCallback', @updatePan);
+lw = 1.5;
+for k = 1:N 
+    data = signals(activeSignals(k)).data;
+    data_x = data(1:4:end) + 1i.*data(2:4:end);
+    data_y = data(3:4:end) + 1i.*data(4:4:end);
+    data_x = real(data_x)' + imag(data_x)'.*1i;
+    data_y = real(data_y)' + imag(data_y)'.*1i;
+    
+    obj1 = findobj('Tag', sprintf('DisplayLine%u', k));
+    obj2 = findobj('Tag', sprintf('DisplayLine%u_Imag',k));
+    % Real part X mode
+    subplot(4, 1, 1); hold(gca, 'on');
+    plot(real(data_x));
+%    plot(get(obj1, 'XData'), get(obj1, 'YData'), 'Color', get(obj1, 'Color'), 'Linewidth', lw, 'Tag', 'pr1'); 
+    % Imaginary part Y mode
+    subplot(4, 1, 2); hold(gca, 'on');
+     plot( imag(data_x));
+ %   plot(get(obj2, 'XData'), get(obj2, 'YData'), 'Color', get(obj2, 'Color'), 'Linewidth', lw, 'Tag', 'pi1');  
+    subplot(4, 1, 3); hold(gca, 'on');
+    plot(real(data_y));
+    subplot(4, 1, 4); hold(gca, 'on');
+    plot(real(data_y));
+end 
+
+%% Axes
+% axesReal = subplot(4, 1, 1); set(axesReal, 'Tag', 'axesReal');
+% set(axesReal, 'XLim', get(currentAxes, 'XLim'), 'box', 'on');
+% set(axesReal, 'YLim', get(currentAxes, 'YLim'), 'YTick', get(currentAxes,'YTick'), 'YTickLabel', get(currentAxes, 'YTickLabel'));
+% xl = get(axesReal, 'XLabel'); set(xl, 'String', 'Time (s)');
+% yl = get(axesReal, 'YLabel'); set(yl, 'String', get(yli,'String'));
+% t = title('Real part'); set(t, 'Fontweight', 'bold', 'fontsize', 12);
+% grid(axesReal, 'on');
+% axesImag = subplot(4, 1, 2); set(axesImag, 'Tag', 'axesImag');
+% set(axesImag, 'XLim', get(currentAxes, 'XLim'), 'box', 'on');
+% set(axesImag, 'YLim', get(currentAxes, 'YLim'), 'YTick', get(currentAxes, 'YTick'), 'YTickLabel', get(currentAxes, 'YTickLabel'));
+% xl = get(axesImag, 'XLabel'); set(xl, 'String', 'Time (s)');
+% yl = get(axesImag, 'YLabel'); set(yl, 'String', get(yli,'String'));
+% t = title('Imaginary part'); set(t, 'Fontweight', 'bold', 'fontsize', 12);
+% grid(axesImag, 'on');
+
+%% Legends
+% subplot(4, 1, 1);
+% str = cell(1, N);
+% for k = 1:N
+%     arg = {'real (' , signals(activeSignals(k)).label, ')'};
+%     str(k) = {strjoin(arg, '')};
+% end
+% str = str';
+% legend(str);
+% subplot(4, 1, 2);
+% str2 = cell(1, N);
+% for k = 1:N
+%     arg = {'imag (' , signals(activeSignals(k)).label, ')'};
+%     str2(k) = {strjoin(arg, '')};
+% end
+% str2 = str2';
+% legend(str2);
+
+%% Omit native "Signal Browser"
+set(signalBrowser, 'Visible', 'off');
+
+%% Set global variable "choice"
+setGlobalchoice(0);
+%%
+
+
 
 function viewEyeDiagram( hObject, callbackdata )
 %VIEWEYEDIAGRAM represents eye diagrams of the current
@@ -3650,43 +3762,6 @@ if N == 1
 end
 %%
 
-function [ ] = initializeGlobalVariables( ~ )
-%INITIALIZEGLOBALVARIABLES Initializes global variables from "visualizer".
-%   INITIALIZEGLOBALVARIABLES just initializes all used global variables.
-
-%% Set global variable "choice"
-setGlobalchoice(0);
-
-%% Set global variable "choice2"
-setGlobalchoice2(0);
-
-%% Set global variable "choice3"
-setGlobalchoice3(0);
-
-%% Set global variable "t_binary"
-setGlobalt_binary('int');
-
-%% Set global variable "t_real"
-setGlobalt_real('double');
-
-%% Set global variable "t_complex"
-setGlobalt_complex('double');
-
-%% Set global variable "nRead"
-setGlobalnRead(256);
-
-%% Set global variable "nSymbols"
-setGlobalnSymbols(32);
-
-%% Set global variable "previousPath"
-setGlobalpreviousPath(pwd);
-
-%% Set global variable "start"
-setGlobalstart(0);
-
-%% Set global variable "phaseOption"
-setGlobalphaseOption(0);
-%%
 
 function [ ] = createNewPushbuttons( ~ )
 %CREATENEWPUSHBUTTONS Creates additional pushbuttons from "visualizer".
@@ -3757,12 +3832,7 @@ set(findobj('Tag', 'exportmenu'), 'callback', @reload);
 set(findobj('Tag', 'savemenu'), 'callback', @setConfigurations, 'Enable', 'on');  
 %%
 
-function [ ] = setGlobalstart( val )
-%SETGLOBALSTART Sets global variable "start".
-%   SETGLOBALSTART(val) just sets the value of "start" global variable to "val".
 
-global start;
-start = val;
 
 function [ startr ] = getGlobalstart( ~ )
 %GETGLOBALSTART Gets global variable "start".
@@ -3771,27 +3841,7 @@ function [ startr ] = getGlobalstart( ~ )
 global start;
 startr = start;
 
-function [ ] = setGlobalnRead( val )
-%SETGLOBALNREAD Sets global variable "nRead".
-%   SETGLOBALNREAD(val) just sets and save the value of "nRead" global variable to "val".
 
-global nRead;
-nRead = val;
-save nRead.mat;
-
-function [ nReadr ] = getGlobalnRead( ~ )
-%GETGLOBALNREAD Gets global variable "nRead".
-%   nReadr = GETGLOBALNREAD just returns the value of "nRead" global variable ("nReadr").
-
-global nRead;
-nReadr = nRead;
-
-function [ ] = setGlobalnSymbols( val )
-%SETGLOBALNSYMBOLS Sets global variable "nSymbols".
-%   SETGLOBALNSYMBOLS(val) just sets the value of "nSymbols" global variable to "val".
-
-global nSymbols;
-nSymbols = val;
 
 function [ nSymbolsr ] = getGlobalnSymbols( ~ )
 %GETGLOBALNSYMBOLS Gets global variable "nSymbols".
@@ -3800,13 +3850,6 @@ function [ nSymbolsr ] = getGlobalnSymbols( ~ )
 global nSymbols;
 nSymbolsr = nSymbols;
 
-function [ ] = setGlobalpreviousPath ( val )
-%SETGLOBALPREVIOUSPATH Sets global variable "previousPath".
-%   SETGLOBALPREVIOUSPATH(val) just sets and save the value of "previousPath" global variable to "val".
-
-global previousPath;
-previousPath = val;
-save previousPath.mat;
 
 function [ previousPathr ] = getGlobalpreviousPath( ~ )
 %GETGLOBALPREVIOUSPATH Gets global variable "previousPath".
@@ -3815,12 +3858,7 @@ function [ previousPathr ] = getGlobalpreviousPath( ~ )
 global previousPath;
 previousPathr = previousPath;
 
-function [ ] = setGlobalchoice( val )
-%SETGLOBALCHOICE Sets global variable "choice".
-%   SETGLOBALCHOICE(val) just sets the value of "choice" global variable to "val".
 
-global choice;
-choice = val;
 
 function [ choicer ] = getGlobalchoice( ~ )
 %GETGLOBALCHOICE Gets global variable "choice".
@@ -3829,26 +3867,7 @@ function [ choicer ] = getGlobalchoice( ~ )
 global choice;
 choicer = choice;
 
-function [ ] = setGlobalchoice2( val )
-%SETGLOBALCHOICE2 Sets global variable "choice2".
-%   SETGLOBALCHOICE2(val) just sets the value of "choice2" global variable to "val".
 
-global choice2;
-choice2 = val;
-
-function [ choice2r ] = getGlobalchoice2( ~ )
-%GETGLOBALCHOICE2 Gets global variable "choice2".
-%   choice2r = GETGLOBALCHOICE2 just returns the value of "choice2" global variable ("choice2r").
-
-global choice2;
-choice2r = choice2;
-
-function [ ] = setGlobalchoice3( val )
-%SETGLOBALCHOICE3 Sets global variable "choice3".
-%   SETGLOBALCHOICE3(val) just sets the value of "choice3" global variable to "val".
-
-global choice3;
-choice3 = val;
 
 function [ choice3r ] = getGlobalchoice3( ~ )
 %GETGLOBALCHOICE3 Gets global variable "choice3".
@@ -3857,57 +3876,10 @@ function [ choice3r ] = getGlobalchoice3( ~ )
 global choice3;
 choice3r = choice3;
 
-function [ ] = setGlobalt_binary( val )
-%SETGLOBALT_BINARY Sets global variable "t_binary".
-%   SETGLOBALT_BINARY(val) just sets the value of "t_binary" global variable to "val".
 
-global t_binary;
-t_binary = val;
-save t_binary.mat;
 
-function [ t_binaryr ] = getGlobalt_binary( ~ )
-%GETGLOBALT_BINARY Gets global variable "t_binary".
-%   t_binaryr = GETGLOBALT_BINARY just returns the value of "t_binary" global variable ("t_binaryr").
 
-global t_binary;
-t_binaryr = t_binary;
 
-function [ ] = setGlobalt_real( val )
-%SETGLOBALT_REAL Sets global variable "t_real".
-%   SETGLOBALT_REAL(val) just sets the value of "t_real" global variable to "val".
-
-global t_real;
-t_real = val;
-save t_real.mat;
-
-function [ t_realr ] = getGlobalt_real( ~ )
-%GETGLOBALT_REAL Gets global variable "t_real".
-%   t_realr = GETGLOBALT_REAL just returns the value of "t_real" global variable ("t_realr").
-
-global t_real;
-t_realr = t_real;
-
-function [ ] = setGlobalt_complex ( val )
-%SETGLOBALT_COMPLEX Sets global variable "t_complex".
-%   SETGLOBALT_COMPLEX(val) just sets the value of "t_complex" global variable to "val".
-
-global t_complex;
-t_complex = val;
-save t_complex.mat;
-
-function [ t_complexr ] = getGlobalt_complex( ~ )
-%GETGLOBALT_COMPLEX Gets global variable "t_complex".
-%   t_complexr = GETGLOBALT_COMPLEX just returns the value of "t_complex" global variable ("t_complexr").
-
-global t_complex;
-t_complexr = t_complex;
-
-function [ ] = setGlobalphaseOption ( val )
-%SETGLOBALPHASEOPTION Sets global variable "phaseOption".
-%   SETGLOBALPHASEOPTION(val) just sets the value of "phaseOption" global variable to "val".
-
-global phaseOption;
-phaseOption = val;
 
 function [ phaseOptionr ] = getGlobalphaseOption( ~ )
 %GETGLOBALPHASEOPTION Gets global variable "phaseOption".
@@ -4125,71 +4097,6 @@ while ~strcmp(str, terminator)
 end
 %%
    
-function [ data, samplingFrequency ] = readSignalData( fid, type, symbolPeriod, samplingPeriod )
-%READSIGNALDATA Reads signal data to "visualizer".
-%   [ data, samplingFrequency ] = READSIGNALDATA(fid, type, symbolPeriod, samplingPeriod)
-%   just reads data ("data") from a file ("fid")
-%   knowing the data parameters ("type", "symbolPeriod" and "samplingPeriod") and 
-%   returning the new sampling simulation frequency ("samplingFrequency").
-
-%% Some Standard types
-tb = 'Binary';
-tc1 = 'TimeDiscreteAmplitudeDiscreteComplex';
-tc2 = 'TimeDiscreteAmplitudeContinuousComplex';
-tc3 = 'TimeContinuousAmplitudeDiscreteComplex';
-tc4 = 'TimeContinuousAmplitudeContinuousComplex';
-tc5 = 'BandpassSignal';
-toxy = 'OpticalSignalXY';
-
-%% Get global variable "nRead"
-nReadr = getGlobalnRead;
-
-%% Get global variable "t_binary"
-t_binaryr = getGlobalt_binary;
-
-%% Get global variable "t_real"
-t_realr = getGlobalt_real;
-
-%% Get global variable "t_complex"
-t_complexr = getGlobalt_complex;
-
-%% Sampling frequency    
-samplingFrequency = 1/samplingPeriod;
-
-%% Number of samples per period
-samplesPerSymbol = int64(symbolPeriod/samplingPeriod);
-
-%% Read data
-if strcmp(type, tb) % Binary signals
-    data = fread(fid, nReadr, t_binaryr);
-    data = data';
-    % Change simulation sampling frequency 
-    factor = 200; % Upsampling factor
-    samplingFrequency = factor*samplingFrequency;
-    vect = zeros(1, factor*length(data));
-    for k = 1:length(data)
-        vect((k-1)*factor + 1:k*factor)= ones(1, factor).*data(k);
-    end 
-    data = vect;
-    return;
-end
-
- 
-if strcmp(type, tc1) || strcmp(type, tc2) || strcmp(type, tc3) || strcmp(type, tc4) || strcmp(type, tc5)% Complex signals
-   data = fread(fid, 2*double(samplesPerSymbol)*nReadr, t_complexr);
-   data = data(1:2:end) + 1i.*data(2:2:end);
-   data = real(data)' + imag(data)'.*1i;
-   return;
-end
-
-if strcmp(type, toxy)
-    return;
-end
-
-% Other signals
-data = fread(fid, double(samplesPerSymbol)*nReadr, t_realr);
-data = data';
-
 %%
 
 function [ ] = loadSignal( data, samplingFrequency, type, samplesPerSymbol, name )

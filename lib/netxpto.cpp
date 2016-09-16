@@ -161,6 +161,14 @@ void Signal::bufferGet(t_complex *valueAddr) {
 	return;
 };
 
+void Signal::bufferGet(t_complex_xy *valueAddr) {
+	*valueAddr = static_cast<t_complex_xy *>(buffer)[outPosition];
+	if (bufferFull) bufferFull = false;
+	outPosition++;
+	if (outPosition == bufferLength) outPosition = 0;
+	if (outPosition == inPosition) bufferEmpty = true;
+	return;
+};
 
 //########################################################################################################################################################
 //###################################################### GENERAL BLOCKS FUNCTIONS IMPLEMENTATION #########################################################
@@ -239,11 +247,26 @@ bool SuperBlock::runBlock() {
 			int space = outputSignals[i]->space();
 			int length = (ready <= space) ? ready : space;
 
+			signal_value_type sType = moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->getValueType();
+
 			t_complex signalValue;
-			for (int j = 0; j < length; j++) {
-				moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->bufferGet(&signalValue);
-				outputSignals[i]->bufferPut(signalValue);
+			t_complex_xy signalValueXY;
+			switch (sType) {
+				case ComplexValue:
+					for (int j = 0; j < length; j++) {
+						moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->bufferGet(&signalValue);
+						outputSignals[i]->bufferPut(signalValue);
+					}
+					break;
+				case ComplexValueXY:
+					for (int j = 0; j < length; j++) {
+						moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->bufferGet(&signalValueXY);
+						outputSignals[i]->bufferPut(signalValueXY);
+					}
+					break;
 			}
+
+			
 		}
 
 	} while (proceed);

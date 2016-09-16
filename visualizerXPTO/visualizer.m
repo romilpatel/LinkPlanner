@@ -12,6 +12,11 @@ function [ ] = visualizer( ~ )
 warning('off');
 clc;
 
+s1 = [ pwd '\set'];
+s2 = [ pwd '\get'];
+s3 = [ pwd '\fd'];
+addpath(s1, s2, s3);
+
 sptool;
 
 %% List of "sptool" modifications

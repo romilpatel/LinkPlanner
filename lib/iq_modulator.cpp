@@ -72,19 +72,19 @@ bool IqModulator::runBlock(void) {
 		inputSignals[0]->bufferGet(&re);
 		inputSignals[1]->bufferGet(&im);
 
-		t_complex xValue(re, im);
-		xValue = .5*sqrt(outputOpticalPower)*xValue;
+		t_complex valueX(re, im);
+		valueX = .5*sqrt(outputOpticalPower)*valueX;
 
 		signal_value_type sType = outputSignals[0]->getValueType();
 
 		switch (sType) {
 			case ComplexValue:
-				outputSignals[0]->bufferPut(xValue);
+				outputSignals[0]->bufferPut(valueX);
 				break;
-			case XYComplexValue:
-				t_complex yValue(0, 0);
-				t_xy_complex xyValue = {xValue, yValue};
-				outputSignals[0]->bufferPut(xyValue);
+			case ComplexValueXY:
+				t_complex valueY(0, 0);
+				t_complex_xy valueXY = {valueX, valueY};
+				outputSignals[0]->bufferPut(valueXY);
 				break;
 		}
 

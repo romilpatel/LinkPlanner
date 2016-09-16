@@ -33,7 +33,7 @@ class MQamTransmitter : public SuperBlock {
 
 	TimeContinuousAmplitudeContinuousReal S7{ "MQAM7.sgn" };
 
-	BandpassSignal S8{ "MQAM8.sgn" };
+	OpticalSignalXY S8{ "MQAM8.sgn" };
 
 
 	// #####################################################################################################

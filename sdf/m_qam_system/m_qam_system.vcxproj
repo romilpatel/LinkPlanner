@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO\LinkPlanner\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO_anp\LinkPlanner\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -71,7 +71,7 @@
     <ClCompile Include="..\..\lib\iq_modulator.cpp" />
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
     <ClCompile Include="..\..\lib\m_qam_transmitter.cpp" />
-    <ClCompile Include="..\..\lib\netplus.cpp" />
+    <ClCompile Include="..\..\lib\netxpto.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="m_qam_system_sdf.cpp" />
@@ -82,7 +82,7 @@
     <ClInclude Include="..\..\include\iq_modulator.h" />
     <ClInclude Include="..\..\include\m_qam_mapper.h" />
     <ClInclude Include="..\..\include\m_qam_transmitter.h" />
-    <ClInclude Include="..\..\include\netplus.h" />
+    <ClInclude Include="..\..\include\netxpto.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sink.h" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 # define BINARY_SOURCE_H_
 
 # include <vector>
-# include "netplus.h"
+# include "netxpto.h"
 
 enum BinarySourceMode { Random, PseudoRandom, DeterministicCyclic, DeterministicAppendZeros };
 

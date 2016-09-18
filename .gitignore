@@ -1,3 +1,20 @@
+######################
+# Visual C++
+######################
+*.obj
+*.suo
+*.log
+*.exe
+*.ilk
+*.pdb
+*.tlog
+
+######################
+# Matlab
+######################
+
+*.mat
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -45,3 +62,8 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.obj
+*.obj
+*.exe
+*.mat
+*.mat

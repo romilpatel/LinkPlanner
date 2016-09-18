@@ -2,7 +2,7 @@
 # define PULSE_SHAPER_H_
 
 # include <vector>
-# include "netplus.h"
+# include "netxpto.h"
 
 using namespace std;
 

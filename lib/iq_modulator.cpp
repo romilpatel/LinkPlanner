@@ -1,6 +1,6 @@
 # include <algorithm>	// std::min
 
-# include "netplus.h"
+# include "netxpto.h"
 # include "iq_modulator.h"
 
 
@@ -72,11 +72,23 @@ bool IqModulator::runBlock(void) {
 		inputSignals[0]->bufferGet(&re);
 		inputSignals[1]->bufferGet(&im);
 
-		complex<t_real> myComplex( re, im);
+		t_complex valueX(re, im);
+		valueX = .5*sqrt(outputOpticalPower)*valueX;
 
-		myComplex = .5*sqrt(outputOpticalPower)*myComplex;
+		signal_value_type sType = outputSignals[0]->getValueType();
 
-		outputSignals[0]->bufferPut(myComplex);
+		switch (sType) {
+			case ComplexValue:
+				outputSignals[0]->bufferPut(valueX);
+				break;
+			case ComplexValueXY:
+				t_complex valueY(0, 0);
+				t_complex_xy valueXY = {valueX, valueY};
+				outputSignals[0]->bufferPut(valueXY);
+				break;
+		}
+
+		
 	}
 
 	return true;

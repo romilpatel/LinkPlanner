@@ -2,7 +2,7 @@
 # define PROGRAM_INCLUDE_IQ_MODULATOR_H_
 
 # include <math.h>       /* pow */
-# include "netplus.h"
+# include "netxpto.h"
 
 
 // Implements a IQ modulator.
@@ -34,6 +34,6 @@ class IqModulator : public Block {
 	 void setOutputOpticalFrequency(double outOpticalFrequency) { outputOpticalFrequency = outOpticalFrequency; outputOpticalWavelength = outOpticalFrequency / outputOpticalFrequency; }
 };
 
-# endif // PROGRAM_INCLUDE_NETPLUS_H_
+# endif // PROGRAM_INCLUDE_netxpto_H_
 
 

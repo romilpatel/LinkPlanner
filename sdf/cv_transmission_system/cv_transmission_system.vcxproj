@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DAFD9CC4-62DF-4A41-A4B5-1898FA3561BC}</ProjectGuid>
+    <RootNamespace>m_qam_system</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\dany\Documents\GitHub\LinkPlanner\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\dany\Documents\GitHub\LinkPlanner\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\lib\BalancedBeamsplitter.cpp" />
+    <ClCompile Include="..\..\lib\binary_source.cpp" />
+    <ClCompile Include="..\..\lib\bit_decider.cpp" />
+    <ClCompile Include="..\..\lib\bit_error_rate.cpp" />
+    <ClCompile Include="..\..\lib\delayer.cpp" />
+    <ClCompile Include="..\..\lib\discarder.cpp" />
+    <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
+    <ClCompile Include="..\..\lib\discretizer.cpp" />
+    <ClCompile Include="..\..\lib\BPSKMODULATOR.cpp" />
+    <ClCompile Include="..\..\lib\bpsk_mapper.cpp" />
+    <ClCompile Include="..\..\lib\iq_modulator.cpp" />
+    <ClCompile Include="..\..\lib\local_oscillator.cpp" />
+    <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
+    <ClCompile Include="..\..\lib\m_qam_transmitter.cpp" />
+    <ClCompile Include="..\..\lib\netxpto.cpp" />
+    <ClCompile Include="..\..\lib\photodiodeminus.cpp" />
+    <ClCompile Include="..\..\lib\photodiodeplus.cpp" />
+    <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
+    <ClCompile Include="..\..\lib\sink.cpp" />
+    <ClCompile Include="..\..\lib\subtractor.cpp" />
+    <ClCompile Include="..\..\lib\testblock.cpp" />
+    <ClCompile Include="..\..\lib\TIamplifier.cpp" />
+    <ClCompile Include="cv_transmission_system_sdf.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\amplifier.h" />
+    <ClInclude Include="..\..\include\BalancedBeamsplitter.h" />
+    <ClInclude Include="..\..\include\binary_source.h" />
+    <ClInclude Include="..\..\include\bit_decider.h" />
+    <ClInclude Include="..\..\include\bit_error_rate.h" />
+    <ClInclude Include="..\..\include\delayer.h" />
+    <ClInclude Include="..\..\include\discarder.h" />
+    <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
+    <ClInclude Include="..\..\include\discretizer.h" />
+    <ClInclude Include="..\..\include\BPSKMODULATOR.h" />
+    <ClInclude Include="..\..\include\bpsk_mapper.h" />
+    <ClInclude Include="..\..\include\iq_modulator.h" />
+    <ClInclude Include="..\..\include\local_oscillator.h" />
+    <ClInclude Include="..\..\include\m_qam_mapper.h" />
+    <ClInclude Include="..\..\include\m_qam_transmitter.h" />
+    <ClInclude Include="..\..\include\netxpto.h" />
+    <ClInclude Include="..\..\include\photodiodeminus.h" />
+    <ClInclude Include="..\..\include\photodiodeplus.h" />
+    <ClInclude Include="..\..\include\pulse_shaper.h" />
+    <ClInclude Include="..\..\include\sink.h" />
+    <ClInclude Include="..\..\include\subtractor.h" />
+    <ClInclude Include="..\..\include\testblock.h" />
+    <ClInclude Include="..\..\include\TIamplifier.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

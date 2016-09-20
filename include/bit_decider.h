@@ -4,25 +4,20 @@
 # include "netxpto.h"
 # include <vector>
 
-// Adjusts the starting point of the discretized signal
+// Evaluates the input signal and outputs a binary key in accordance to the input values
 class bit_decider : public Block {
+
+	bool firstTime{ true };
+
 public:
-	bit_decider(vector<Signal *> &InputSig, vector<Signal *> &OutputSig);
+
+	bit_decider(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	
+	void initialize(void);
 	bool runBlock(void);
 
-	//int index = 0;
-
-//	int setindex(int index);
-
-
-
 private:
-
-
-
-
-
 };
 
 
-#endif // !PROGRAM_INCLUDE_DISCRETIZER_H_
+#endif // !PROGRAM_INCLUDE_BIT_DECIDER_H_

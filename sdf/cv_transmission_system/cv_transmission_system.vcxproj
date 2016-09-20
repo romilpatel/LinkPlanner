@@ -75,15 +75,12 @@
     <ClCompile Include="..\..\lib\discarder.cpp" />
     <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
     <ClCompile Include="..\..\lib\discretizer.cpp" />
-    <ClCompile Include="..\..\lib\BPSKMODULATOR.cpp" />
-    <ClCompile Include="..\..\lib\bpsk_mapper.cpp" />
     <ClCompile Include="..\..\lib\iq_modulator.cpp" />
     <ClCompile Include="..\..\lib\local_oscillator.cpp" />
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
     <ClCompile Include="..\..\lib\m_qam_transmitter.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
-    <ClCompile Include="..\..\lib\photodiodeminus.cpp" />
-    <ClCompile Include="..\..\lib\photodiodeplus.cpp" />
+    <ClCompile Include="..\..\lib\photodiode.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\subtractor.cpp" />
@@ -92,7 +89,6 @@
     <ClCompile Include="cv_transmission_system_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\amplifier.h" />
     <ClInclude Include="..\..\include\BalancedBeamsplitter.h" />
     <ClInclude Include="..\..\include\binary_source.h" />
     <ClInclude Include="..\..\include\bit_decider.h" />
@@ -101,15 +97,12 @@
     <ClInclude Include="..\..\include\discarder.h" />
     <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
     <ClInclude Include="..\..\include\discretizer.h" />
-    <ClInclude Include="..\..\include\BPSKMODULATOR.h" />
-    <ClInclude Include="..\..\include\bpsk_mapper.h" />
     <ClInclude Include="..\..\include\iq_modulator.h" />
     <ClInclude Include="..\..\include\local_oscillator.h" />
     <ClInclude Include="..\..\include\m_qam_mapper.h" />
     <ClInclude Include="..\..\include\m_qam_transmitter.h" />
     <ClInclude Include="..\..\include\netxpto.h" />
-    <ClInclude Include="..\..\include\photodiodeminus.h" />
-    <ClInclude Include="..\..\include\photodiodeplus.h" />
+    <ClInclude Include="..\..\include\photodiode.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sink.h" />
     <ClInclude Include="..\..\include\subtractor.h" />

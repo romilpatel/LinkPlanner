@@ -1,137 +1,42 @@
-# include "local_oscillator.h"
+#include <algorithm>
+#include <complex>
+#include <iostream>
+#include <fstream>
 
-local_oscillator::local_oscillator(vector<Signal *> &InputSig, vector<Signal *> &OutputSig){
+#include "netxpto.h"
+#include "local_oscillator.h"
 
-	inputSignals = InputSig;
-	outputSignals = OutputSig;
+using namespace std;
 
-	outputSignals[0]->symbolPeriod = B5.outputSignals[0]->symbolPeriod;
-	outputSignals[0]->samplingPeriod = B5.outputSignals[0]->samplingPeriod;
-
-	ModuleBlocks = { &B1, &B2, &B3, &B4, &B5 };
-
-}
-
-local_oscillator::~local_oscillator(void) {
-
-	for (int unsigned i = 0; i < ModuleBlocks.size(); i++) {
-		ModuleBlocks[i]->terminateBlock();
-	}
-
-	for (int unsigned j = 0; j<(ModuleBlocks[ModuleBlocks.size() - 1]->outputSignals).size(); j++)
-		ModuleBlocks[ModuleBlocks.size()-1]->outputSignals[0]->close();
-}
-
-bool local_oscillator::runBlock() {
-
-	if (firstTime) {
-
-		for (int unsigned i = 0; i < ModuleBlocks.size(); i++) {
-			for (int unsigned j = 0; j<(ModuleBlocks[i]->inputSignals).size(); j++) {
-				(ModuleBlocks[i]->inputSignals[j])->writeHeader();
-			}
-		}
-
-		for (int unsigned j = 0; j<(ModuleBlocks[ModuleBlocks.size() - 1]->outputSignals).size(); j++)
-			ModuleBlocks[ModuleBlocks.size() - 1]->outputSignals[j]->writeHeader();
-	}
-
-	bool Alive{ false };
-
-	bool Continue{ true };
-	do {
-
-		Continue = false;
-
-		for (unsigned int i = 0; i < ModuleBlocks.size(); i++) {
-			bool aux = ModuleBlocks[i]->runBlock();
-			Continue = (Continue || aux);
-			Alive = (Alive || Continue);
-		}
-
-		if (firstTime) {
-
-			firstTime = false;
-
-			outputSignals[0]->setSymbolPeriod(ModuleBlocks[ModuleBlocks.size() - 1]->outputSignals[0]->getSymbolPeriod());
-			outputSignals[0]->setSamplingPeriod(ModuleBlocks[ModuleBlocks.size() - 1]->outputSignals[0]->getSamplingPeriod());
-			outputSignals[0]->setFirstValueToBeSaved(ModuleBlocks[ModuleBlocks.size() - 1]->outputSignals[0]->getFirstValueToBeSaved());
-
-		}
-
-		int ready = ModuleBlocks[ModuleBlocks.size() - 1]->outputSignals[0]->ready();
-		int space = outputSignals[0]->space();
-		int length = (ready <= space) ? ready : space;
-
-		t_complex signalValue;
-		for (int i = 0; i < length; i++) {
-				ModuleBlocks[ModuleBlocks.size() - 1]->outputSignals[0]->bufferGet(&signalValue);
-				outputSignals[0]->bufferPut(signalValue);
-		}
-		
-
-	} while (Continue);
-
-	return Alive;
-}
-
-
-void local_oscillator::setBitPeriod(double bPeriod) {
-
-	B1.setBitPeriod(bPeriod);
-
-	S1.setSymbolPeriod(bPeriod); 
-	S1.setSamplingPeriod(bPeriod);
-
-	S2.setSymbolPeriod(2*bPeriod);
-	S2.setSamplingPeriod(bPeriod);
-
-
-
-	S4.setSymbolPeriod(S3.getSymbolPeriod());
-	S4.setSamplingPeriod(S3.getSamplingPeriod());
+void local_oscillator::initialize(void){
 	
-	S5.setSymbolPeriod(S4.getSymbolPeriod());
-	S5.setSamplingPeriod(S4.getSamplingPeriod());
+	firstTime = false;
 
-	outputSignals[0]->setSymbolPeriod(S5.getSymbolPeriod());
-	outputSignals[0]->setSamplingPeriod(S5.getSamplingPeriod());
+	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
-};
-
-void local_oscillator::setNumberOfSamplesPerSymbol(int n) {
-
-//	B3.numberOfSamplesPerSymbol = n;  
-
-//	S3.setSymbolPeriod(S2.getSymbolPeriod());
-//	S3.setSamplingPeriod(S2.getSamplingPeriod() / B3.numberOfSamplesPerSymbol);
-
-	outputSignals[0]->setSymbolPeriod(S5.getSymbolPeriod());
-	outputSignals[0]->setSamplingPeriod(S5.getSamplingPeriod());
-
-};
-
-void local_oscillator::setBuffersLength(int bLength) {
-	S1.bufferLength = bLength;
-	S2.bufferLength = bLength;
-	S3.bufferLength = bLength;
-	S4.bufferLength = bLength;
-	S5.bufferLength = bLength;
-};
-
-void local_oscillator::setSaveInternalSignals(bool sSignals) {
-	
-	if (sSignals) {
-		
-		saveInternalSignals = true;
-
-		S1.setFileName("MQAM1.sgn");
-		S2.setFileName("MQAM2.sgn");
-		S3.setFileName("MQAM3.sgn");
-		S4.setFileName("MQAM4.sgn");
-		S5.setFileName("MQAM5.sgn");
-	}
-
-	return;
+	outputSignals[0]->centralWavelength = outputOpticalWavelength;
+	outputSignals[0]->centralFrequency = outputOpticalFrequency;
 }
 
+
+bool local_oscillator::runBlock(void){
+	int ready = inputSignals[0]->ready();
+	int space = outputSignals[0]->space();
+
+	int process = min(ready, space);
+
+	if (process == 0) return false;
+
+	for (int i = 0; i < process; i++) {
+
+		t_complex_xy signalValue;
+		inputSignals[0]->bufferGet(&signalValue);
+		t_complex lo( 0, 1);
+		lo = .5*sqrt(1e-3)*lo;
+		t_complex_xy output = { signalValue.x, lo };
+		outputSignals[0]->bufferPut(output);
+	}
+	return true;
+}

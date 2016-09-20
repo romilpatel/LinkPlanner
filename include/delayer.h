@@ -6,23 +6,18 @@
 
 // Adjusts the starting point of the discretized signal
 class delayer : public Block {
+
+	bool firstTime{ true };
+
 public:
-	delayer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig);
+
+	delayer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	int auxint = 0;
+	
+
+	void initialize(void);
 	bool runBlock(void);
-
-	//int index = 0;
-
-//	int setindex(int index);
-
-
-
 private:
-
-
-
-
-
 };
 
 

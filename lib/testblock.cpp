@@ -27,37 +27,18 @@ bool testblock::runBlock(void){
 
 	int process = min(ready, space);
 
-	float NumberOfBits = recievedbits;
-	float Coincidences = coincidences;
-
-	float BER;
-	BER = (NumberOfBits - Coincidences) / NumberOfBits * 100;
-
-	if (process == 0)
-	{
-		ofstream myfile;
-		myfile.open("BER.txt");
-		myfile << "BER=" << BER<<"\%";
-		myfile.close();
-		return false;
-	}
-
-
+	if (process == 0) return false;
 
 	for (int i = 0; i < process; i++) {
 
-		t_binary signalValue;
+		t_complex_xy signalValue;
 		inputSignals[0]->bufferGet(&signalValue);
-		t_binary SignalValue;
-		inputSignals[1]->bufferGet(&SignalValue);
 
-		recievedbits++;
 
-		if (signalValue==SignalValue)
-		{
-			coincidences++;
-		}
 
+		
+		cout << "XVALUE is " << signalValue.x << "\n";
+		cout << "YValue is " << signalValue.y << "\n";
 
 
 		outputSignals[0]->bufferPut(&signalValue);

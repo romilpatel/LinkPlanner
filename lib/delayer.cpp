@@ -5,31 +5,25 @@
 #include "delayer.h"
 
 
-delayer::delayer(vector <Signal *> &InputSig, vector <Signal *> &OutputSig){
+void delayer::initialize(void){
 
-	numberOfInputSignals = InputSig.size();
-	numberOfOutputSignals = OutputSig.size();
+	firstTime = false;
 
-	inputSignals = InputSig;
-	outputSignals = OutputSig;
-
-	outputSignals[0]->symbolPeriod = inputSignals[0]->symbolPeriod;;
-	outputSignals[0]->samplingPeriod = inputSignals[0]->samplingPeriod;
-
-
+	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 }
 
 
 bool delayer::runBlock(void){
 	int ready = inputSignals[0]->ready();
-	int delay = 9;
-
-	int space0 = outputSignals[0]->space();
+	int space = outputSignals[0]->space();
 
 
-	int process = min(ready, space0);
+	int process = min(ready, space);
 
 	t_real out;
+	int delay = 9;
 
 	if (process == 0) return false;
 
@@ -50,23 +44,3 @@ bool delayer::runBlock(void){
 
 	return true;
 }
-
-/*
-void bit_decider::setBitPeriod(double bPeriod){
-bitPeriod = bPeriod;
-outputSignals[0]->symbolPeriod = bitPeriod;
-outputSignals[0]->samplingPeriod = outputSignals[0]->symbolPeriod;
-};
-
-
-class ContinuousToDiscreteTime : public Block {
-public:
-ContinuousToDiscreteTime(vector<Signal *> &InputSig, vector<Signal *> &OutputSig);
-bool runBlock(void);
-
-int numberOfSamplesPerSymbol{ 8 };
-int index{ 0 };
-
-void setNumberOfSamplesPerSymbol(int nSamplesPerSymbol){ numberOfSamplesPerSymbol = nSamplesPerSymbol; outputSignals[0]->samplingPeriod = (inputSignals[0]->samplingPeriod) / numberOfSamplesPerSymbol; };
-};
-*/

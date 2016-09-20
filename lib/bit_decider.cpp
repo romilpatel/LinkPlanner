@@ -5,26 +5,21 @@
 #include "bit_decider.h"
 
 
-bit_decider::bit_decider(vector <Signal *> &InputSig, vector <Signal *> &OutputSig){
+void bit_decider::initialize(void){
 
-	numberOfInputSignals = InputSig.size();
-	numberOfOutputSignals = OutputSig.size();
+	firstTime = false;
 
-	inputSignals = InputSig;
-	outputSignals = OutputSig;
-
-	outputSignals[0]->symbolPeriod = 0.5*inputSignals[0]->symbolPeriod;;
-	outputSignals[0]->samplingPeriod = 0.5*inputSignals[0]->samplingPeriod;
+	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 }
 
 
 bool bit_decider::runBlock(void){
 	int ready = inputSignals[0]->ready();
+	int space = outputSignals[0]->space();
 
-	int space0 = outputSignals[0]->space();
-
-
-	int process = min(ready, space0);
+	int process = min(ready, space);
 
 	if (process == 0) return false;
 
@@ -34,11 +29,11 @@ bool bit_decider::runBlock(void){
 		inputSignals[0]->bufferGet(&signalValue);
 		if (signalValue>0)
 		{
-			outputSignals[0]->bufferPut((t_binary) 1);
+			outputSignals[0]->bufferPut((t_binary) 0);
 		}
 		else if (signalValue<0)
 		{
-			outputSignals[0]->bufferPut((t_binary) 0);
+			outputSignals[0]->bufferPut((t_binary) 1);
 		}
 		else if (signalValue==0)
 		{

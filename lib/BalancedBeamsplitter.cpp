@@ -1,59 +1,50 @@
 #include <algorithm>
 #include <complex>
+#include <iostream>
+#include <fstream>
 
 #include "netxpto.h"
 #include "BalancedBeamsplitter.h"
 
 
-BalancedBeamsplitter::BalancedBeamsplitter(vector <Signal *> &InputSig, vector <Signal *> &OutputSig){
+void BalancedBeamsplitter::initialize(void){
 
-	numberOfInputSignals = InputSig.size();
-	numberOfOutputSignals = OutputSig.size();
+	firstTime = false;
 
-	inputSignals = InputSig;
-	outputSignals = OutputSig;
-
-	outputSignals[0]->symbolPeriod = inputSignals[0]->symbolPeriod;
-	outputSignals[0]->samplingPeriod = inputSignals[0]->samplingPeriod;
-
-	outputSignals[1]->symbolPeriod = inputSignals[0]->symbolPeriod;
-	outputSignals[1]->samplingPeriod = inputSignals[0]->samplingPeriod;
+	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
+	 
+	outputSignals[0]->centralWavelength = outputOpticalWavelength;
+	outputSignals[0]->centralFrequency = outputOpticalFrequency;
 }
 
 
 bool BalancedBeamsplitter::runBlock(void){
-	int ready0 = inputSignals[0]->ready();
-	int ready1 = inputSignals[1]->ready();
-	int ready = min(ready0, ready1);
+	int ready = inputSignals[0]->ready();
+	int space = outputSignals[0]->space();
 
-	int space0 = outputSignals[0]->space();
-	int space1 = outputSignals[1]->space();
-
-	int process = min(ready, space0);
+	int process = min(ready, space);
 
 	if (process == 0) return false;
+
+	complex<t_real> imaginary(0, 1);
 	
 	for (int i = 0; i < process; i++) {
 
-		t_complex x1;
-		inputSignals[0]->bufferGet(&x1);
-		t_complex x2;
-		inputSignals[1]->bufferGet(&x2);
+		t_complex_xy input;
+		inputSignals[0]->bufferGet(&input);
 
+		t_complex x = input.x;
+		t_complex y = input.y;
 		
-		t_real t = 1;
-		complex<t_real> imaginary(0,t);
 
-		t_complex x4 = div*(x1 + x2);
-		t_complex x3 = div*(x1 - x2);
+		t_complex outa = div*(x + y);
+		t_complex outb = div*(x - y);
 
-		
-		/*
-		t_complex x4 = div*(x1-x2*imaginary);
-		t_complex x3 = div*(-x1*imaginary + x2);
-		*/
-		outputSignals[0]->bufferPut(x3);
-		outputSignals[1]->bufferPut(x4);
+		t_complex_xy output = { outa, outb };
+		outputSignals[0]->bufferPut(output);
+
 	}
 	return true;
 }

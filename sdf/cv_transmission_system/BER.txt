@@ -1,1 +1,2 @@
-BER=97.561%
+BER=0% 
+Number of recieved bits =92

@@ -6,21 +6,17 @@
 
 // Simulates a Transimpedance Amplifier
 class TIamplifier : public Block {
+
+	bool firsTime{ true };
+
 public:
-	TIamplifier(vector<Signal *> &InputSig, vector<Signal *> &OutputSig);
+
+	TIamplifier(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	
+	void initialize(void);
 	bool runBlock(void);
-
-	//int index = 0;
-
-//	int setindex(int index);
-
 private:
-	//double gain = {1000, 10000, 100000, 1000000, 10000000};
-
-
-
-
 };
 
 
-#endif // !PROGRAM_INCLUDE_ITAMPLIFIER_H_
+#endif // !PROGRAM_INCLUDE_TIAMPLIFIER_H_

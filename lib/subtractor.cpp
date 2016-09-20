@@ -5,22 +5,20 @@
 #include "..\include\subtractor.h"
 
 
-subtractor::subtractor(vector <Signal *> &InputSig, vector <Signal *> &OutputSig){
+void subtractor::initialize(void){
 
-	numberOfInputSignals = InputSig.size();
-	numberOfOutputSignals = OutputSig.size();
+	firstTime = false;
 
-	inputSignals = InputSig;
-	outputSignals = OutputSig;
-
-	outputSignals[0]->symbolPeriod = inputSignals[0]->symbolPeriod;
-	outputSignals[0]->samplingPeriod = inputSignals[0]->samplingPeriod;
+	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 }
 
 
 bool subtractor::runBlock(void){
-	int ready0 = inputSignals[0]->ready();
-	int ready = ready0;
+	int ready1 = inputSignals[0]->ready();
+	int ready2 = inputSignals[1]->ready();
+	int ready = min(ready1, ready2);
 
 	int space0 = outputSignals[0]->space();
 
@@ -30,12 +28,12 @@ bool subtractor::runBlock(void){
 	
 	for (int i = 0; i < process; i++) {
 
-		t_real x1;
-		inputSignals[0]->bufferGet(&x1);
-		t_real x2;
-		inputSignals[1]->bufferGet(&x2);
+		t_real in1;
+		inputSignals[0]->bufferGet(&in1);
+		t_real in2;
+		inputSignals[1]->bufferGet(&in2);
 
-		t_real out = x1 + x2;
+		t_real out = in1 - in2;
 
 		outputSignals[0]->bufferPut(out);
 	}

@@ -6,8 +6,14 @@
 
 // Calculates the BER between two binary signals
 class bit_error_rate : public Block {
+
+	bool firstTime{ true };
+	
 public:
-	bit_error_rate(vector<Signal *> &InputSig, vector<Signal *> &OutputSig);
+
+	bit_error_rate(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig,OutputSig){};
+	
+	void initialize(void);
 	bool runBlock(void);
 
 	int coincidences = 0;

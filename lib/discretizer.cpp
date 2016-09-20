@@ -5,45 +5,41 @@
 #include "discretizer.h"
 
 
-discretizer::discretizer(vector <Signal *> &InputSig, vector <Signal *> &OutputSig){
+void discretizer::initialize(void){
 
-	numberOfInputSignals = InputSig.size();
-	numberOfOutputSignals = OutputSig.size();
+	firstTime = false;
 
-	inputSignals = InputSig;
-	outputSignals = OutputSig;
-
-	outputSignals[0]->symbolPeriod = inputSignals[0]->symbolPeriod;;
-	outputSignals[0]->samplingPeriod = 16*inputSignals[0]->samplingPeriod;
+	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 }
 
 
 bool discretizer::runBlock(void){
 	int ready = inputSignals[0]->ready();
-	int delay = 100;
+	
+
+	int space = outputSignals[0]->space();
+	int process = min(ready, space);
 	int period = 16;
+	int auxint = 15;
 
-	int space0 = outputSignals[0]->space();
-
-
-	int process = min(ready, space0);
-
+	t_real in;
 	t_real out;
 
 	if (process == 0) return false;
 
-	int auxint = 15;
+	
 
 	for (int i = 0; i < ready; i++) {
 
-		t_real signalValue;
-		inputSignals[0]->bufferGet(&signalValue);
+		
+		inputSignals[0]->bufferGet(&in);
 		auxint = auxint + 1;
 
 		if (auxint == period)
 		{
 			auxint = 0;
-			out = signalValue;
+			out = in;
 			outputSignals[0]->bufferPut(out);
 		}
 
@@ -51,23 +47,3 @@ bool discretizer::runBlock(void){
 
 	return true;
 }
-
-/*
-void bit_decider::setBitPeriod(double bPeriod){
-bitPeriod = bPeriod;
-outputSignals[0]->symbolPeriod = bitPeriod;
-outputSignals[0]->samplingPeriod = outputSignals[0]->symbolPeriod;
-};
-
-
-class ContinuousToDiscreteTime : public Block {
-public:
-ContinuousToDiscreteTime(vector<Signal *> &InputSig, vector<Signal *> &OutputSig);
-bool runBlock(void);
-
-int numberOfSamplesPerSymbol{ 8 };
-int index{ 0 };
-
-void setNumberOfSamplesPerSymbol(int nSamplesPerSymbol){ numberOfSamplesPerSymbol = nSamplesPerSymbol; outputSignals[0]->samplingPeriod = (inputSignals[0]->samplingPeriod) / numberOfSamplesPerSymbol; };
-};
-*/

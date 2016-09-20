@@ -4,24 +4,17 @@
 #include "netxpto.h"
 #include "bit_error_rate.h"
 
+void bit_error_rate::initialize(void){
+	firstTime = false;
 
-bit_error_rate::bit_error_rate(vector <Signal *> &InputSig, vector <Signal *> &OutputSig){
-
-	numberOfInputSignals = InputSig.size();
-	numberOfOutputSignals = OutputSig.size();
-
-	inputSignals = InputSig;
-	outputSignals = OutputSig;
-
-	outputSignals[0]->symbolPeriod = inputSignals[0]->symbolPeriod;
-	outputSignals[0]->samplingPeriod = inputSignals[0]->samplingPeriod;
-
+	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 }
 
 
 bool bit_error_rate::runBlock(void){
 	int ready = inputSignals[0]->ready();
-
 	int space = outputSignals[0]->space();
 
 	int process = min(ready, space);
@@ -36,7 +29,8 @@ bool bit_error_rate::runBlock(void){
 	{
 		ofstream myfile;
 		myfile.open("BER.txt");
-		myfile << "BER=" << BER << "\%";
+		myfile << "BER=" << BER << "\% \n";
+		myfile << "Number of recieved bits =" << NumberOfBits << "\n";
 		myfile.close();
 		return false;
 	}
@@ -55,11 +49,15 @@ bool bit_error_rate::runBlock(void){
 		if (signalValue == SignalValue)
 		{
 			coincidences++;
+			outputSignals[0]->bufferPut(1);
+		}
+		else
+		{
+			outputSignals[0]->bufferPut(0);
 		}
 
 
 
-		outputSignals[0]->bufferPut(&signalValue);
 
 	}
 	return true;

@@ -6,11 +6,15 @@
 
 // Takes a sampling of the input electrical signal
 class discretizer : public Block {
+
+	bool firstTime{ true };
+
 public:
-	discretizer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig);
+	discretizer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+
+	void initialize(void);
 	bool runBlock(void);
 
-	//int index = 0;
 
 //	int setindex(int index);
 

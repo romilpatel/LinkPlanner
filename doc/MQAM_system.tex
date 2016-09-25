@@ -1,0 +1,215 @@
+\documentclass[a4paper]{article}
+\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{graphicx}
+\RequirePackage{ltxcmds}[2010/12/07]
+%opening
+\title{MQAM system}
+\author{Ana Luisa Carvalho}
+
+\begin{document}
+
+\maketitle
+
+\section{Binary Source}
+
+\subsection*{Functional Descripton}
+
+This block generates a sequence of binary values (1 or 0) and it can work in four different modes: random, pseudorandom, deterministic cyclic or deterministc append zeros.
+
+\textbf{Random Mode}:
+generates a 0 with probability \textit{probabilityOfZero} and a 1 with probability 1-\textit{probabilityOfZero}.
+
+\textbf{Pseudorandom Mode}:
+generates a pseudorandom sequence with period $2^\textit{patternLength}-1$.
+
+Example using \textit{patternLength}=3:
+\begin{multicols}{3}
+	\begin{itemize}
+		\item[] \underline{101}001110
+		\item[] 1\underline{010}01110
+		\item[] 10\underline{100}1110
+		\item[] 101\underline{001}110
+		\item[] 1010\underline{011}10
+		\item[] 10100\underline{111}0
+		\item[] 101001\underline{110}
+	\end{itemize}
+\end{multicols}
+
+\textbf{Deterministic Cyclic Mode}:
+generates the sequence of 0's and 1's specified by \textit{bitStream} and then repeats it.
+
+\textbf{Deterministic Append Zeros Mode}:
+generates the sequence of 0's and 1's specified by \textit{bitStream} and then it fills the rest of the buffer space with zeros.
+
+\subsection*{Parameters}
+
+\begin{multicols}{2}
+	\begin{itemize}
+		\item mode
+		\item probabilityOfZero 
+		\item patternLength 
+		\item bitStream 
+		\item numberOfBits 
+		\item bitPeriod 
+	\end{itemize}
+\end{multicols}
+
+\subsection*{Input Signals}
+
+\textbf{Number}: 0 or 1 (which would work as a trigger)
+
+\textbf{Type}: Binary (DiscreteTimeDiscreteAmplitude)
+
+\subsection*{Output Signals}
+
+\textbf{Number}: 1 or more
+
+\textbf{Type}: Binary (DiscreteTimeDiscreteAmplitude)
+
+\textbf{Example}:
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{MQAM1}
+\end{figure}
+
+
+\pagebreak
+
+\section{M-QAM mapper}
+
+\subsection*{Functional Descripton}
+
+This block does the mapping of the binary signal using a \textit{m}-QAM modulation. It atributes to each pair of bits a point in the I-Q space. The constellation is defined by the \textit{iqAmplitudes} vector.
+
+\subsection*{Parameters}
+
+\begin{itemize}
+	\item m 
+	\item iqAmplitudes 
+\end{itemize}
+
+
+\subsection*{Input Signals}
+
+\textbf{Number}: 1
+
+\textbf{Type}: Binary (DiscreteTimeDiscreteAmplitude)
+
+\subsection*{Output Signals}
+
+\textbf{Number}: 2
+
+\textbf{Type}: Sequence of 1's and -1's (DiscreteTimeDiscreteAmplitude)
+
+\textbf{Example}:
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{MQAM2}
+\end{figure}
+
+\pagebreak
+
+\section{Discrete to Continuous Time}
+
+\subsection*{Functional Descripton}
+
+This block converts a signal from a discrete time signal to a continuous time signal. To do so it reads the input signal buffer value, puts it in the output signal buffer and it fills the rest of the space available for thar symbol with zeros.
+
+\subsection*{Parameters}
+
+\begin{itemize}
+	\item numberOfSamplesPerSymbol 
+\end{itemize}
+
+
+\subsection*{Input Signals}
+
+\textbf{Number}: 1
+
+\textbf{Type}: Sequence of 1's and -1's. (DiscreteTimeDiscreteAmplitude)
+
+\subsection*{Output Signals}
+
+\textbf{Number}: 2
+
+\textbf{Type}: Sequence of Dirac Delta functions (ContinuousTimeDiscreteAmplitude)
+
+\textbf{Example}:
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{MQAM4}
+\end{figure}
+
+\pagebreak
+
+\section{Pulse Shapper}
+
+\subsection*{Functional Descripton}
+
+This blocks applies a raised-cosine filter to the signal. The filter's transfer function is defined by the vector \textit{impulseResponse}.
+
+\subsection*{Parameters}
+
+\begin{itemize}
+	\item filterType
+	\item impulseResponseTimeLength
+	\item rollOfFactor
+\end{itemize}
+
+
+\subsection*{Input Signals}
+
+\textbf{Number}: 1
+
+\textbf{Type}: Sequence of Dirac Delta functions (ContinuousTimeDiscreteAmplitude)
+
+\subsection*{Output Signals}
+
+\textbf{Number}: 1
+
+\textbf{Type}: Sequence of impulses modulated by the filter (ContinuousTimeContiousAmplitude)
+
+\textbf{Example}:
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{MQAM6}
+\end{figure}
+
+\pagebreak
+
+\section{IQ Modulator}
+
+\subsection*{Functional Descripton}
+
+This blocks takes the two input signals that correspond to the part of the signal in phase and in quadrature and produces a complex signal, that contains information about the amplitude and phase. The complex signal is multiplied by $\frac{1}{2}\sqrt{\textit{outputOpticalPower}}$ in order to reintroduce the information about the energy (or power) of the signal. This information was omitted ...
+
+\subsection*{Parameters}
+
+\begin{itemize}
+	\item outputOpticalPower
+	\item outputOpticalWavelength
+	\item outputOpticalFrequency
+\end{itemize}
+
+
+\subsection*{Input Signals}
+
+\textbf{Number}: 2
+
+\textbf{Type}: Sequence of impulses modulated by the filter (ContinuousTimeContiousAmplitude))
+
+\subsection*{Output Signals}
+
+\textbf{Number}: 1
+
+\textbf{Type}: Complex signal (ContinuousTimeContiousAmplitude)
+
+\textbf{Example}:
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{MQAM8}
+\end{figure}
+
+\end{document}

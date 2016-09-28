@@ -1,5 +1,5 @@
-# ifndef PROGRAM_INCLUDE_netxpto_H_
-# define PROGRAM_INCLUDE_netxpto_H_
+# ifndef PROGRAM_INCLUDE_NETXPTO_H_
+# define PROGRAM_INCLUDE_NETXPTO_H_
 
 # include <iostream>
 # include <fstream>
@@ -9,15 +9,6 @@
 # include <algorithm>	// bind1st
 # include <functional>	// bind1st
 
-using namespace std;
-
-typedef unsigned int t_binary;
-typedef int t_integer;
-typedef double t_real;
-typedef complex<t_real> t_complex;
-typedef struct { t_complex x; t_complex y; } t_complex_xy;
-
-enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY};
 
 const int MAX_NAME_SIZE = 256;  // Maximum size of names
 const long int MAX_Sink_LENGTH = 100000;  // Maximum Sink Block number of values
@@ -26,6 +17,19 @@ const int MAX_TOPOLOGY_SIZE = 100;  // Maximum System topology size
 const int MAX_TAPS = 1000;  // Maximum Taps Number
 const double PI = 3.1415926535897932384;
 const double SPEED_OF_LIGHT = 299792458;
+const int MAX_NUMBER_OF_PATHS = 2;
+
+using namespace std;
+
+typedef unsigned int t_binary;
+typedef int t_integer;
+typedef double t_real;
+typedef complex<t_real> t_complex;
+typedef struct { t_complex x; t_complex y; } t_complex_xy;
+typedef struct { t_real probabilityAmplitude;  t_real polarization; } t_photon;
+typedef struct { t_photon path[MAX_NUMBER_OF_PATHS]; } t_photon_mp;
+
+enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP};
 
 
 //########################################################################################################################################################
@@ -86,6 +90,8 @@ public:
 	void writeHeader();								// Opens the signal file in the default signals directory, \signals, and writes the signal header
 	void writeHeader(string signalPath);			// Opens the signal file in the signalPath directory, and writes the signal header
 
+
+
 	template<typename T>							// Puts a value in the buffer
 	void bufferPut(T value) {
 		(static_cast<T *>(buffer))[inPosition] = value;
@@ -117,6 +123,8 @@ public:
 	void virtual bufferGet(t_real *valueAddr);
 	void virtual bufferGet(t_complex *valueAddr);
 	void virtual bufferGet(t_complex_xy *valueAddr);
+	void virtual bufferGet(t_photon *valueAddr);
+	void virtual bufferGet(t_photon_mp *valueAddr);
 	
 	void setSaveSignal(bool sSignal){ saveSignal = sSignal; };
 	bool const getSaveSignal(){ return saveSignal; };
@@ -232,6 +240,22 @@ public:
 class TimeContinuous : public Signal {
 public:
 	TimeContinuous(){}
+};
+
+class PhotonStream : public Signal {
+
+public:
+	PhotonStream(int bLength) { setType("PhotonStream", PhotonValue); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_photon[bLength]; }
+	PhotonStream() { setType("PhotonStream", PhotonValue); if (buffer == nullptr) buffer = new t_photon[bufferLength]; }
+
+};
+
+class PhotonStreamMP : public Signal {
+
+public:
+	PhotonStreamMP(int bLength) { setType("PhotonStreamMP", PhotonValueMP); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_photon_mp[bLength]; }
+	PhotonStreamMP() { setType("PhotonStreamMP", PhotonValueMP); if (buffer == nullptr) buffer = new t_photon_mp[bufferLength]; }
+
 };
 
 

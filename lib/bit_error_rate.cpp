@@ -27,9 +27,22 @@ bool bit_error_rate::runBlock(void){
 
 	if (process == 0)
 	{
+		t_real z = 1.96;
+		t_real UpperBound = BER + 1 / sqrt(NumberOfBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * NumberOfBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
+		t_real LowerBound = BER - 1 / sqrt(NumberOfBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * NumberOfBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
+
+
+
+
+
+
+		/* Outputting a .txt report*/
 		ofstream myfile;
 		myfile.open("BER.txt");
 		myfile << "BER=" << BER << "\% \n";
+		myfile << "Upper and Lower bounds for 95\% confidence interval \n";
+		myfile << "Upper Bound=" << UpperBound << "\% \n";
+		myfile << "Lower Bound=" << LowerBound << "\% \n";
 		myfile << "Number of recieved bits =" << NumberOfBits << "\n";
 		myfile.close();
 		return false;

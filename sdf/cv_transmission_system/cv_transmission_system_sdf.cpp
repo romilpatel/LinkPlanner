@@ -23,62 +23,38 @@ int main(){
 	// ########################### Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
 
-
-	Binary MQAM1{ "MQAM1.sgn" };
-
 	Binary MQAM0{ "MQAM0.sgn" };
 
-	OpticalSignalXY S1("S1.sgn");
+	OpticalSignalXY S01("S01.sgn");
 
-	OpticalSignalXY S2("S2.sgn");
+	OpticalSignalXY S02("S02.sgn");
 
-	OpticalSignalXY S3("S3.sgn");
+	BandpassSignal S03("S03.sgn");
 
-	TimeContinuousAmplitudeContinuousReal S4{ "S4.sgn" };
+	BandpassSignal S04("S04.sgn");
 
-	TimeContinuousAmplitudeContinuousReal S5{ "S5.sgn" };
+	TimeContinuousAmplitudeContinuousReal S05{ "S05.sgn" };
 
-	TimeContinuousAmplitudeContinuousReal S6{ "S6.sgn" };
+	TimeContinuousAmplitudeContinuousReal S06{ "S06.sgn" };
 
-	TimeContinuousAmplitudeContinuousReal S7{ "S7.sgn" };
+	TimeContinuousAmplitudeContinuousReal S07{ "S07.sgn" };
 
-	TimeDiscreteAmplitudeContinuousReal S8{ "S8.sgn" };
+	TimeContinuousAmplitudeContinuousReal S08{ "S08.sgn" };
 
-	TimeDiscreteAmplitudeContinuousReal S9{ "S9.sgn" };
+	TimeDiscreteAmplitudeContinuousReal S09{ "S09.sgn" };
 
-	Binary S10{ "S10.sgn" };
-
-	Binary S11{ "S11.sgn" };
-
-	/*
-	BandpassSignal S2("S2.sgn");
-
-	BandpassSignal S3{ "S3.sgn" };
-
-	BandpassSignal S4{ "S4.sgn" };
-
-	TimeContinuousAmplitudeContinuousReal S5{ "S5.sgn" };
-
-	TimeContinuousAmplitudeContinuousReal S6{ "S6.sgn" };
-
-	TimeContinuousAmplitudeContinuousReal S7{ "S7.sgn" };
-
-	TimeContinuousAmplitudeContinuousReal S8{ "S8.sgn" };
-
-	TimeDiscreteAmplitudeContinuousReal S9{ "S9.sgn" };
-	
 	TimeDiscreteAmplitudeContinuousReal S10{ "S10.sgn" };
 
 	Binary S11{ "S11.sgn" };
 
 	Binary S12{ "S12.sgn" };
-	*/
+
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	int NumberOfBits(100);
+	int NumberOfBits(1e3);
 
 	BinarySource B00{ vector<Signal*> {}, vector<Signal*> { &MQAM0 } };
 	B00.setMode(PseudoRandom);
@@ -88,7 +64,7 @@ int main(){
 
 	//discarder B000{ vector<Signal*> { &MQAM0 }, vector<Signal*> { &MQAM00 } };
 
-	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S1 } };
+	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S01 } };
 	B1.setOutputOpticalPower_dBm(0);
 	B1.setMode(PseudoRandom);
 	B1.setBitPeriod(1.0 / 50e9);
@@ -99,33 +75,33 @@ int main(){
 	B1.setRollOffFactor(0.3);
 	B1.setSaveInternalSignals(false);
 
-	local_oscillator B2{ vector<Signal*> { &S1 }, vector<Signal*> { &S2 } };
+	local_oscillator B2{ vector<Signal*> { &S01 }, vector<Signal*> { &S02 } };
 
-	BalancedBeamsplitter B3{ vector<Signal*> { &S2 }, vector<Signal*> { &S3 } };
+	BalancedBeamsplitter B3{ vector<Signal*> { &S02 }, vector<Signal*> { &S03,&S04 } };
 
-	photodiode B4{ vector<Signal*> { &S3 }, vector<Signal*> { &S4, &S5 } };
+	photodiode B4{ vector<Signal*> { &S03,&S04 }, vector<Signal*> { &S05, &S06 } };
 
-	subtractor B5{ vector<Signal*> { &S4, &S5 }, vector<Signal*> { &S6 } };
+	subtractor B5{ vector<Signal*> { &S05, &S06 }, vector<Signal*> { &S07 } };
 
-	TIamplifier B6{ vector<Signal*> { &S6 }, vector<Signal*> { &S7 } };
+	TIamplifier B6{ vector<Signal*> { &S07 }, vector<Signal*> { &S08 } };
 
-	discretizer B7 {vector<Signal*> { &S7 }, vector<Signal*> { &S8 } };
+	discretizer B7 {vector<Signal*> { &S08 }, vector<Signal*> { &S09 } };
 
-	delayer B8{ vector<Signal*> { &S8 }, vector<Signal*> { &S9 } };
+	delayer B8{ vector<Signal*> { &S09 }, vector<Signal*> { &S10 } };
 
-	bit_decider B9{ vector<Signal*> { &S9 }, vector<Signal*> { &S10 } };
+	bit_decider B9{ vector<Signal*> { &S10 }, vector<Signal*> { &S11 } };
 
-	bit_error_rate B10{ vector<Signal*> { &S10, &MQAM0 }, vector<Signal*> { &S11 } };
+	bit_error_rate B10{ vector<Signal*> { &S11, &MQAM0 }, vector<Signal*> { &S12 } };
 
-	Sink B11{ vector<Signal*> { &S11 }, vector<Signal*> {} };
-	B11.setNumberOfSamples(5000);
+	Sink B11{ vector<Signal*> { &S12 }, vector<Signal*> {} };
+	B11.setNumberOfSamples(50000);
 	B11.setDisplayNumberOfSamples(true);
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B00, &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11} }; //&B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12 } };
+	System MainSystem{ vector<Block*> { &B00, &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11} };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

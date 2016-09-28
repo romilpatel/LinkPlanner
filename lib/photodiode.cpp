@@ -41,14 +41,14 @@ bool photodiode::runBlock(void){
 	
 	for (int i = 0; i < process; i++) {
 
-		t_complex_xy input;
-		inputSignals[0]->bufferGet(&input);
-		t_complex in1 = input.x;
-		t_real in1r = real(in1);
-		t_real in1i = imag(in1);
-		t_complex in2 = input.y ;
-		t_real in2r = real(in2);
-		t_real in2i = imag(in2);
+		t_complex input1;
+		inputSignals[0]->bufferGet(&input1);
+		t_complex input2;
+		inputSignals[1]->bufferGet(&input2);
+		t_real in1r = real(input1);
+		t_real in1i = imag(input1);
+		t_real in2r = real(input2);
+		t_real in2i = imag(input2);
 
 
 		t_real power1 = 2 * SPEED_OF_LIGHT * PI * radius*radius * E0 * ( in1r * in1r + in1i * in1i ) * 0.25;

@@ -2,27 +2,28 @@
 #include <complex>
 #include <iostream>
 #include <fstream>
+#include <random>
 
 #include "netxpto.h"
 #include "testblock.h"
 
 
-testblock::testblock(vector <Signal *> &InputSig, vector <Signal *> &OutputSig){
+void testblock::initialize(void){
 
-	numberOfInputSignals = InputSig.size();
-	numberOfOutputSignals = OutputSig.size();
+	firstTime = false;
 
-	inputSignals = InputSig;
-	outputSignals = OutputSig;
-
-	outputSignals[0]->symbolPeriod = inputSignals[0]->symbolPeriod;;
-	outputSignals[0]->samplingPeriod = inputSignals[0]->samplingPeriod;
+	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 }
 
 
 bool testblock::runBlock(void){
-	int ready = inputSignals[0]->ready();
 
+	default_random_engine generator;
+	normal_distribution<t_real> distribution(0, 1e-7);
+
+	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
 
 	int process = min(ready, space);
@@ -30,18 +31,22 @@ bool testblock::runBlock(void){
 	if (process == 0) return false;
 
 	for (int i = 0; i < process; i++) {
-
-		t_complex_xy signalValue;
+		t_real signalValue;
 		inputSignals[0]->bufferGet(&signalValue);
 
-
-
 		
-		cout << "XVALUE is " << signalValue.x << "\n";
-		cout << "YValue is " << signalValue.y << "\n";
 
+		t_real noise = distribution(generator);
 
-		outputSignals[0]->bufferPut(&signalValue);
+		t_real SignalValue = signalValue * 1000000+noise;
+		
+		/*
+		cout << "noise is " << noise << "\n";
+		cout << "value is " << signalValue << "\n";
+		cout << "out is " <<  SignalValue << "\n";
+		*/
+
+		outputSignals[0]->bufferPut(SignalValue);
 
 	}
 	return true;

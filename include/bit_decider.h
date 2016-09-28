@@ -11,10 +11,16 @@ class bit_decider : public Block {
 
 public:
 
+	double bitPeriod{ 1.0 / 50e9 };
+
 	bit_decider(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	
 	void initialize(void);
 	bool runBlock(void);
+
+	void setBitPeriod(double bPeriod);
+	double const getBitPeriod(void) { return bitPeriod; }
+
 
 private:
 };

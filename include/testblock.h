@@ -5,27 +5,19 @@
 # include <vector>
 
 // this is a test block for the purpose of beta testing new code
-// current code: BER
+// current code: TIAMP with electrical noise
 class testblock : public Block {
+
+	bool firstTime{ true };
+
 public:
-	testblock(vector<Signal *> &InputSig, vector<Signal *> &OutputSig);
+
+	testblock(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig,OutputSig){};
+	
+	void initialize(void);
 	bool runBlock(void);
 
-	int coincidences = 0;
-	int recievedbits = 0;
-
-
-	//int index = 0;
-
-//	int setindex(int index);
-
-
-
 private:
-
-
-
-
 
 };
 

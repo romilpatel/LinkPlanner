@@ -34,16 +34,15 @@ bool BalancedBeamsplitter::runBlock(void){
 
 		t_complex_xy input;
 		inputSignals[0]->bufferGet(&input);
-
-		t_complex x = input.x;
-		t_complex y = input.y;
 		
+		t_complex ina = input.x;
+		t_complex inb = input.y;
 
-		t_complex outa = div*(x + y);
-		t_complex outb = div*(x - y);
+		t_complex outa = div*(ina + inb);
+		t_complex outb = div*(ina - inb);
 
-		t_complex_xy output = { outa, outb };
-		outputSignals[0]->bufferPut(output);
+		outputSignals[0]->bufferPut(outa);
+		outputSignals[1]->bufferPut(outb);
 
 	}
 	return true;

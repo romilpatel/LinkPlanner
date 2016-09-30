@@ -67,7 +67,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\lib\BalancedBeamsplitter.cpp" />
+    <ClCompile Include="..\..\lib\BalancedBeamSplitter.cpp" />
     <ClCompile Include="..\..\lib\binary_source.cpp" />
     <ClCompile Include="..\..\lib\bit_decider.cpp" />
     <ClCompile Include="..\..\lib\bit_error_rate.cpp" />
@@ -89,7 +89,7 @@
     <ClCompile Include="cv_transmission_system_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\BalancedBeamsplitter.h" />
+    <ClInclude Include="..\..\include\BalancedBeamSplitter.h" />
     <ClInclude Include="..\..\include\binary_source.h" />
     <ClInclude Include="..\..\include\bit_decider.h" />
     <ClInclude Include="..\..\include\bit_error_rate.h" />

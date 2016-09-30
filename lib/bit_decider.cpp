@@ -5,7 +5,7 @@
 #include "bit_decider.h"
 
 
-void bit_decider::initialize(void){
+void BitDecider::initialize(void){
 
 	firstTime = false;
 
@@ -15,7 +15,7 @@ void bit_decider::initialize(void){
 }
 
 
-bool bit_decider::runBlock(void){
+bool BitDecider::runBlock(void){
 	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
 

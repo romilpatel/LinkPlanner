@@ -6,7 +6,7 @@
 
 // this is a test block for the purpose of beta testing new code
 // current code: BER
-class local_oscillator : public Block {
+class LocalOscillator : public Block {
 	bool firstTime{ true };
 
 public:
@@ -16,7 +16,7 @@ public:
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
 
 
-	local_oscillator(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	LocalOscillator(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	
 	void initialize(void);
 	bool runBlock(void);

@@ -1,11 +1,12 @@
 #include <algorithm>
 #include <complex>
+#include <random>
 
 #include "netxpto.h"
 #include "TIamplifier.h"
 
 
-void TIamplifier::initialize(void){
+void TIAmplifier::initialize(void){
 
 	firsTime = false;
 
@@ -15,7 +16,11 @@ void TIamplifier::initialize(void){
 }
 
 
-bool TIamplifier::runBlock(void){
+bool TIAmplifier::runBlock(void){
+
+	default_random_engine generator;
+	normal_distribution<t_real> distribution(0, 1.1e1);
+
 	int ready = inputSignals[0]->ready();
 
 	int space = outputSignals[0]->space();
@@ -28,7 +33,10 @@ bool TIamplifier::runBlock(void){
 
 		t_real input;
 		inputSignals[0]->bufferGet(&input);
-		t_real output = input*10000000; // assuming current in amps
+		
+		t_real noise = distribution(generator);
+		
+		t_real output = input*1e6 + noise; // assuming current in amps
 
 		outputSignals[0]->bufferPut(output);
 	}

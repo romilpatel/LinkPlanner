@@ -5,12 +5,12 @@
 # include <vector>
 
 // Takes a sampling of the input electrical signal
-class discretizer : public Block {
+class Discretizer : public Block {
 
 	bool firstTime{ true };
 
 public:
-	discretizer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	Discretizer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 
 	void initialize(void);
 	bool runBlock(void);

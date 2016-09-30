@@ -5,7 +5,7 @@
 #include "delayer.h"
 
 
-void delayer::initialize(void){
+void Delayer::initialize(void){
 
 	firstTime = false;
 
@@ -15,7 +15,7 @@ void delayer::initialize(void){
 }
 
 
-bool delayer::runBlock(void){
+bool Delayer::runBlock(void){
 	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
 

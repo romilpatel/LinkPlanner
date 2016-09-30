@@ -5,7 +5,7 @@
 # include <vector>
 
 // Evaluates the input signal and outputs a binary key in accordance to the input values
-class bit_decider : public Block {
+class BitDecider : public Block {
 
 	bool firstTime{ true };
 
@@ -13,7 +13,7 @@ public:
 
 	double bitPeriod{ 1.0 / 50e9 };
 
-	bit_decider(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	BitDecider(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	
 	void initialize(void);
 	bool runBlock(void);

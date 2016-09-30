@@ -4,7 +4,7 @@
 # include "netxpto.h"
 
 // Implements a Balanced BeamSplitter
-class BalancedBeamsplitter : public Block {
+class BalancedBeamSplitter : public Block {
 
 	bool firstTime{ true };
 
@@ -14,7 +14,7 @@ public:
 	double outputOpticalWavelength{ 1550e-9 };
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
 
-	BalancedBeamsplitter(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	BalancedBeamSplitter(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 
 	void initialize(void);
 	bool runBlock(void);

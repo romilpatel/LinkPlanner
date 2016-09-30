@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void local_oscillator::initialize(void){
+void LocalOscillator::initialize(void){
 	
 	firstTime = false;
 
@@ -21,7 +21,7 @@ void local_oscillator::initialize(void){
 }
 
 
-bool local_oscillator::runBlock(void){
+bool LocalOscillator::runBlock(void){
 	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
 
@@ -33,8 +33,8 @@ bool local_oscillator::runBlock(void){
 
 		t_complex_xy signalValue;
 		inputSignals[0]->bufferGet(&signalValue);
-		t_complex lo( 0, 1);
-		lo = .5*sqrt(1e-3)*lo;
+		t_complex lo( 1, 0);
+		lo = .5*sqrt(1e-3*pow(10,-25/10))*lo*.9;
 		t_complex_xy output = { signalValue.x, lo };
 		outputSignals[0]->bufferPut(output);
 	}

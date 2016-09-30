@@ -1,5 +1,5 @@
 # include "sink.h"
-# include "BalancedBeamsplitter.h"
+# include "BalancedBeamSplitter.h"
 # include "subtractor.h"
 # include "photodiode.h"
 # include "TIamplifier.h"
@@ -65,33 +65,33 @@ int main(){
 	//discarder B000{ vector<Signal*> { &MQAM0 }, vector<Signal*> { &MQAM00 } };
 
 	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S01 } };
-	B1.setOutputOpticalPower_dBm(0);
+	B1.setOutputOpticalPower_dBm(-40);
 	B1.setMode(PseudoRandom);
 	B1.setBitPeriod(1.0 / 50e9);
 	B1.setPatternLength(5);
 	B1.setNumberOfBits(NumberOfBits);
-	B1.setIqAmplitudes({ { 1, 1 }, { -1, -1 } });
+	B1.setIqAmplitudes({ { 1, 0 }, { -1, 0 } });
 	B1.setNumberOfSamplesPerSymbol(16);
 	B1.setRollOffFactor(0.3);
 	B1.setSaveInternalSignals(false);
 
-	local_oscillator B2{ vector<Signal*> { &S01 }, vector<Signal*> { &S02 } };
+	LocalOscillator B2{ vector<Signal*> { &S01 }, vector<Signal*> { &S02 } };
 
-	BalancedBeamsplitter B3{ vector<Signal*> { &S02 }, vector<Signal*> { &S03,&S04 } };
+	BalancedBeamSplitter B3{ vector<Signal*> { &S02 }, vector<Signal*> { &S03,&S04 } };
 
-	photodiode B4{ vector<Signal*> { &S03,&S04 }, vector<Signal*> { &S05, &S06 } };
+	Photodiode B4{ vector<Signal*> { &S03,&S04 }, vector<Signal*> { &S05, &S06 } };
 
-	subtractor B5{ vector<Signal*> { &S05, &S06 }, vector<Signal*> { &S07 } };
+	Subtractor B5{ vector<Signal*> { &S05, &S06 }, vector<Signal*> { &S07 } };
 
-	TIamplifier B6{ vector<Signal*> { &S07 }, vector<Signal*> { &S08 } };
+	TIAmplifier B6{ vector<Signal*> { &S07 }, vector<Signal*> { &S08 } };
 
-	discretizer B7 {vector<Signal*> { &S08 }, vector<Signal*> { &S09 } };
+	Discretizer B7 {vector<Signal*> { &S08 }, vector<Signal*> { &S09 } };
 
-	delayer B8{ vector<Signal*> { &S09 }, vector<Signal*> { &S10 } };
+	Delayer B8{ vector<Signal*> { &S09 }, vector<Signal*> { &S10 } };
 
-	bit_decider B9{ vector<Signal*> { &S10 }, vector<Signal*> { &S11 } };
+	BitDecider B9{ vector<Signal*> { &S10 }, vector<Signal*> { &S11 } };
 
-	bit_error_rate B10{ vector<Signal*> { &S11, &MQAM0 }, vector<Signal*> { &S12 } };
+	BitErrorRate B10{ vector<Signal*> { &S11, &MQAM0 }, vector<Signal*> { &S12 } };
 
 	Sink B11{ vector<Signal*> { &S12 }, vector<Signal*> {} };
 	B11.setNumberOfSamples(50000);

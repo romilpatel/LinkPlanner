@@ -5,13 +5,13 @@
 # include <vector>
 
 // Adjusts the starting point of the discretized signal
-class delayer : public Block {
+class Delayer : public Block {
 
 	bool firstTime{ true };
 
 public:
 
-	delayer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	Delayer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	int auxint = 0;
 	
 

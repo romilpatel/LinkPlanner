@@ -5,7 +5,7 @@
 #include "..\include\subtractor.h"
 
 
-void subtractor::initialize(void){
+void Subtractor::initialize(void){
 
 	firstTime = false;
 
@@ -15,7 +15,7 @@ void subtractor::initialize(void){
 }
 
 
-bool subtractor::runBlock(void){
+bool Subtractor::runBlock(void){
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
 	int ready = min(ready1, ready2);

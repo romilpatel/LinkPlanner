@@ -5,13 +5,13 @@
 # include <vector>
 
 // Simulates a Transimpedance Amplifier
-class TIamplifier : public Block {
+class TIAmplifier : public Block {
 
 	bool firsTime{ true };
 
 public:
 
-	TIamplifier(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	TIAmplifier(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	
 	void initialize(void);
 	bool runBlock(void);

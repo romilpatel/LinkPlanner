@@ -21,7 +21,7 @@ void testblock::initialize(void){
 bool testblock::runBlock(void){
 
 	default_random_engine generator;
-	normal_distribution<t_real> distribution(0, 1e-7);
+	normal_distribution<t_real> distribution(0, 1.1e-3);
 
 	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
@@ -38,7 +38,7 @@ bool testblock::runBlock(void){
 
 		t_real noise = distribution(generator);
 
-		t_real SignalValue = signalValue * 1000000+noise;
+		t_real SignalValue = signalValue * 1e6 +noise;
 		
 		/*
 		cout << "noise is " << noise << "\n";

@@ -4,7 +4,7 @@
 #include "netxpto.h"
 #include "bit_error_rate.h"
 
-void bit_error_rate::initialize(void){
+void BitErrorRate::initialize(void){
 	firstTime = false;
 
 	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
@@ -13,7 +13,7 @@ void bit_error_rate::initialize(void){
 }
 
 
-bool bit_error_rate::runBlock(void){
+bool BitErrorRate::runBlock(void){
 	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
 
@@ -23,7 +23,7 @@ bool bit_error_rate::runBlock(void){
 	float Coincidences = coincidences;
 
 	float BER;
-	BER = (NumberOfBits - Coincidences) / NumberOfBits * 100;
+	BER = (NumberOfBits - Coincidences) / NumberOfBits;
 
 	if (process == 0)
 	{
@@ -31,18 +31,13 @@ bool bit_error_rate::runBlock(void){
 		t_real UpperBound = BER + 1 / sqrt(NumberOfBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * NumberOfBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
 		t_real LowerBound = BER - 1 / sqrt(NumberOfBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * NumberOfBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
 
-
-
-
-
-
 		/* Outputting a .txt report*/
 		ofstream myfile;
 		myfile.open("BER.txt");
-		myfile << "BER=" << BER << "\% \n";
+		myfile << "BER=" << BER << "\n";
 		myfile << "Upper and Lower bounds for 95\% confidence interval \n";
-		myfile << "Upper Bound=" << UpperBound << "\% \n";
-		myfile << "Lower Bound=" << LowerBound << "\% \n";
+		myfile << "Upper Bound=" << UpperBound << "\n";
+		myfile << "Lower Bound=" << LowerBound << "\n";
 		myfile << "Number of recieved bits =" << NumberOfBits << "\n";
 		myfile.close();
 		return false;

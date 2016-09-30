@@ -5,7 +5,7 @@
 #include "discretizer.h"
 
 
-void discretizer::initialize(void){
+void Discretizer::initialize(void){
 
 	firstTime = false;
 
@@ -14,7 +14,7 @@ void discretizer::initialize(void){
 }
 
 
-bool discretizer::runBlock(void){
+bool Discretizer::runBlock(void){
 	int ready = inputSignals[0]->ready();
 	
 

@@ -4,10 +4,10 @@
 #include <fstream>
 
 #include "netxpto.h"
-#include "BalancedBeamsplitter.h"
+#include "BalancedBeamSplitter.h"
 
 
-void BalancedBeamsplitter::initialize(void){
+void BalancedBeamSplitter::initialize(void){
 
 	firstTime = false;
 
@@ -17,10 +17,17 @@ void BalancedBeamsplitter::initialize(void){
 	 
 	outputSignals[0]->centralWavelength = outputOpticalWavelength;
 	outputSignals[0]->centralFrequency = outputOpticalFrequency;
+
+	outputSignals[1]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[1]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
+
+	outputSignals[1]->centralWavelength = outputOpticalWavelength;
+	outputSignals[1]->centralFrequency = outputOpticalFrequency;
 }
 
 
-bool BalancedBeamsplitter::runBlock(void){
+bool BalancedBeamSplitter::runBlock(void){
 	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
 

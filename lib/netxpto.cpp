@@ -170,6 +170,24 @@ void Signal::bufferGet(t_complex_xy *valueAddr) {
 	return;
 };
 
+void Signal::bufferGet(t_photon *valueAddr) {
+	*valueAddr = static_cast<t_photon *>(buffer)[outPosition];
+	if (bufferFull) bufferFull = false;
+	outPosition++;
+	if (outPosition == bufferLength) outPosition = 0;
+	if (outPosition == inPosition) bufferEmpty = true;
+	return;
+};
+
+void Signal::bufferGet(t_photon_mp *valueAddr) {
+	*valueAddr = static_cast<t_photon_mp *>(buffer)[outPosition];
+	if (bufferFull) bufferFull = false;
+	outPosition++;
+	if (outPosition == bufferLength) outPosition = 0;
+	if (outPosition == inPosition) bufferEmpty = true;
+	return;
+};
+
 //########################################################################################################################################################
 //###################################################### GENERAL BLOCKS FUNCTIONS IMPLEMENTATION #########################################################
 //########################################################################################################################################################

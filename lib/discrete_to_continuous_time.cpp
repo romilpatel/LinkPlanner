@@ -18,6 +18,7 @@ bool DiscreteToContinuousTime::runBlock(void) {
 
 	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
+	
 
 	if (index != 0) {
 		for (int i = index; (i < numberOfSamplesPerSymbol) & (space>0); i++) {
@@ -33,20 +34,46 @@ bool DiscreteToContinuousTime::runBlock(void) {
 
 	if (length <= 0) return alive;
 
-	for (int i = 0; i < length; i++) {
-		t_real value;
-		(inputSignals[0])->bufferGet(&value);
-		outputSignals[0]->bufferPut(value);
-		space--;
-		index++;
-		for (int k = 1; (k<numberOfSamplesPerSymbol) & (space>0); k++) {
-			outputSignals[0]->bufferPut((t_real) 0.0);
-			space--;
-			index++;
-		}
-		if (index == numberOfSamplesPerSymbol) index = 0;
-	}
-
-	return true;
+	signal_value_type inSignalType = inputSignals[0]->getValueType();
+	switch (inSignalType) {
+		case RealValue:
+			for (int i = 0; i < length; i++) {
+				t_real value;
+				(inputSignals[0])->bufferGet(&value);
+				outputSignals[0]->bufferPut(value);
+				space--;
+				index++;
+				for (int k = 1; (k<numberOfSamplesPerSymbol) & (space>0); k++) {
+					outputSignals[0]->bufferPut((t_real) 0.0);
+					space--;
+					index++;
+				}
+				if (index == numberOfSamplesPerSymbol) index = 0;
+			}
+			return true;
+		case BinaryValue:
+			for (int i = 0; i < length; i++) {
+				t_binary value;
+				(inputSignals[0])->bufferGet(&value);
+				if (value == 0) {
+					outputSignals[0]->bufferPut((t_real) 0.0);
+				}
+				else {
+					outputSignals[0]->bufferPut((t_real) 1.0);
+				}
+				space--;
+				index++;
+				for (int k = 1; (k<numberOfSamplesPerSymbol) & (space>0); k++) {
+					outputSignals[0]->bufferPut((t_real) 0.0);
+					space--;
+					index++;
+				}
+				if (index == numberOfSamplesPerSymbol) index = 0;
+			}
+			return true;
+		default:
+			cout << "ERRO: discrete_to_continuous_time.cpp" << "\n";
+			return false;
+	};
 
 };

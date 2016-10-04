@@ -2,6 +2,12 @@
 # define PROGRAM_INCLUDE_BEAM_SPLITTER_H_
 
 # include "netxpto.h"
+# include <iostream>
+# include <complex>
+# include <fstream>
+# include <algorithm>
+# include <array>
+
 
 // Implements a Balanced BeamSplitter
 class BalancedBeamSplitter : public Block {
@@ -10,22 +16,22 @@ class BalancedBeamSplitter : public Block {
 
 public:
 
-	double outputOpticalPower{ 1e-3 };
 	double outputOpticalWavelength{ 1550e-9 };
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
+	t_real div = 1 / sqrt(2);
+	t_complex unit = 1;
+	array <t_complex, 4> matrix = { { div*unit, div*unit, div*unit, -unit*div } };
+	
 
 	BalancedBeamSplitter(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 
 	void initialize(void);
 	bool runBlock(void);
 
-	void setOutputOpticalPower(double outOpticalPower) { outputOpticalPower = outOpticalPower; }
-	void setOutputOpticalPower_dBm(double outOpticalPower_dBm) { outputOpticalPower = 1e-3*pow(10, outOpticalPower_dBm / 10); }
+	void setTransferMatrix(array<t_complex, 4> TransferMatrix) { matrix = TransferMatrix; }
+	
 
-	void setOutputOpticalWavelength(double outOpticalWavelength) { outputOpticalWavelength = outOpticalWavelength; outputOpticalFrequency = SPEED_OF_LIGHT / outOpticalWavelength; }
-	void setOutputOpticalFrequency(double outOpticalFrequency) { outputOpticalFrequency = outOpticalFrequency; outputOpticalWavelength = outOpticalFrequency / outputOpticalFrequency; }
-
-	t_real div = 1 / sqrt(2);
+	
 
 
 private:

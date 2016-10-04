@@ -28,8 +28,13 @@ void BalancedBeamSplitter::initialize(void){
 
 
 bool BalancedBeamSplitter::runBlock(void){
-	int ready = inputSignals[0]->ready();
-	int space = outputSignals[0]->space();
+	int ready1 = inputSignals[0]->ready();
+	int ready2 = inputSignals[1]->ready();
+	int ready = min(ready1, ready2);
+
+	int space1 = outputSignals[0]->space();
+	int space2 = outputSignals[1]->space();
+	int space = min(space1, space2);
 
 	int process = min(ready, space);
 
@@ -39,14 +44,15 @@ bool BalancedBeamSplitter::runBlock(void){
 	
 	for (int i = 0; i < process; i++) {
 
-		t_complex_xy input;
-		inputSignals[0]->bufferGet(&input);
+		t_complex ina;
+		t_complex inb;
+		inputSignals[0]->bufferGet(&ina);
+		inputSignals[1]->bufferGet(&inb);
 		
-		t_complex ina = input.x;
-		t_complex inb = input.y;
 
-		t_complex outa = div*(ina + inb);
-		t_complex outb = div*(ina - inb);
+
+		t_complex outa = matrix[0]*ina + matrix[1]*inb;
+		t_complex outb = matrix[2]*ina + matrix[3]*inb;
 
 		outputSignals[0]->bufferPut(outa);
 		outputSignals[1]->bufferPut(outb);

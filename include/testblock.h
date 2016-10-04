@@ -12,6 +12,10 @@ class testblock : public Block {
 
 public:
 
+	double outputOpticalPower{ 1e-3 };
+	double outputOpticalWavelength{ 1550e-9 };
+	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
+
 	testblock(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig,OutputSig){};
 	
 	void initialize(void);

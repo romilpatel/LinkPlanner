@@ -11,12 +11,17 @@ class Delayer : public Block {
 
 public:
 
+	int delay = 9;
+
 	Delayer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	int auxint = 0;
 	
 
 	void initialize(void);
 	bool runBlock(void);
+
+	void setDelay(int Delay) { delay = Delay; }
+
 private:
 };
 

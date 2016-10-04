@@ -11,6 +11,8 @@ class BitErrorRate : public Block {
 	
 public:
 
+	t_real z = 1.96;
+
 	BitErrorRate(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig,OutputSig){};
 	
 	void initialize(void);
@@ -18,6 +20,8 @@ public:
 
 	int coincidences = 0;
 	int recievedbits = 0;
+
+	void setZ(t_real Z) { z = Z; }
 
 private:
 

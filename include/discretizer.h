@@ -10,15 +10,15 @@ class Discretizer : public Block {
 	bool firstTime{ true };
 
 public:
+
+	int sampling = 16;
+
 	Discretizer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 
 	void initialize(void);
 	bool runBlock(void);
 
-
-//	int setindex(int index);
-
-
+	void setSamplingRate(int Sampling) { sampling = Sampling; }
 
 private:
 

@@ -19,7 +19,7 @@ void TIAmplifier::initialize(void){
 bool TIAmplifier::runBlock(void){
 
 	default_random_engine generator;
-	normal_distribution<t_real> distribution(0, 1.1e1);
+	normal_distribution<t_real> distribution(0, 1.1e-4);
 
 	int ready = inputSignals[0]->ready();
 

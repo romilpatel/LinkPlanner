@@ -23,7 +23,6 @@ bool Delayer::runBlock(void){
 	int process = min(ready, space);
 
 	t_real out;
-	int delay = 9;
 
 	if (process == 0) return false;
 

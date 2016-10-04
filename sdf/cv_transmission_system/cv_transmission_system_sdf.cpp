@@ -1,3 +1,5 @@
+# include "netxpto.h"
+
 # include "sink.h"
 # include "BalancedBeamSplitter.h"
 # include "subtractor.h"
@@ -14,6 +16,7 @@
 
 # include "binary_source.h"
 
+
 #define _USE_MATH_DEFINES // for C
 #include <math.h>
 
@@ -25,9 +28,11 @@ int main(){
 
 	Binary MQAM0{ "MQAM0.sgn" };
 
-	OpticalSignalXY S01("S01.sgn");
+	OpticalSignalXY S00("S00.sgn");
 
-	OpticalSignalXY S02("S02.sgn");
+	BandpassSignal S01("S01.sgn");
+
+	BandpassSignal S02("S02.sgn");
 
 	BandpassSignal S03("S03.sgn");
 
@@ -55,6 +60,7 @@ int main(){
 	// #####################################################################################################
 
 	int NumberOfBits(1e3);
+	int SamplesPerSymbol(16);
 
 	BinarySource B00{ vector<Signal*> {}, vector<Signal*> { &MQAM0 } };
 	B00.setMode(PseudoRandom);
@@ -64,34 +70,46 @@ int main(){
 
 	//discarder B000{ vector<Signal*> { &MQAM0 }, vector<Signal*> { &MQAM00 } };
 
-	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S01 } };
-	B1.setOutputOpticalPower_dBm(-40);
+	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S00 } };
+	B1.setOutputOpticalPower_dBm(-20);
 	B1.setMode(PseudoRandom);
 	B1.setBitPeriod(1.0 / 50e9);
 	B1.setPatternLength(5);
 	B1.setNumberOfBits(NumberOfBits);
 	B1.setIqAmplitudes({ { 1, 0 }, { -1, 0 } });
-	B1.setNumberOfSamplesPerSymbol(16);
+	B1.setNumberOfSamplesPerSymbol(SamplesPerSymbol);
 	B1.setRollOffFactor(0.3);
 	B1.setSaveInternalSignals(false);
 
-	LocalOscillator B2{ vector<Signal*> { &S01 }, vector<Signal*> { &S02 } };
+	LocalOscillator B2{ vector<Signal*> { &S00 }, vector<Signal*> { &S01, &S02 } };
+	B2.setLocalOscillatorOpticalPower_dBm(-10);
+	B2.setLocalOscillatorPhase( 0.0 );
 
-	BalancedBeamSplitter B3{ vector<Signal*> { &S02 }, vector<Signal*> { &S03,&S04 } };
+	BalancedBeamSplitter B3{ vector<Signal*> { &S01, &S02 }, vector<Signal*> { &S03,&S04 } };
+	t_complex unit = 1;
+	unit = 1 / sqrt(2) * unit;
+	B3.setTransferMatrix({ { unit, unit, unit, -unit } });
 
 	Photodiode B4{ vector<Signal*> { &S03,&S04 }, vector<Signal*> { &S05, &S06 } };
+	B4.setResponsivity(1);
 
 	Subtractor B5{ vector<Signal*> { &S05, &S06 }, vector<Signal*> { &S07 } };
 
 	TIAmplifier B6{ vector<Signal*> { &S07 }, vector<Signal*> { &S08 } };
+	B6.setAmplification(1e6);
+	B6.setNoiseAmplitude(1e-4);
 
 	Discretizer B7 {vector<Signal*> { &S08 }, vector<Signal*> { &S09 } };
+	B7.setSamplingRate(SamplesPerSymbol);
 
 	Delayer B8{ vector<Signal*> { &S09 }, vector<Signal*> { &S10 } };
+	B8.setDelay(9);
 
 	BitDecider B9{ vector<Signal*> { &S10 }, vector<Signal*> { &S11 } };
+	B9.setReferenceValue(0);
 
 	BitErrorRate B10{ vector<Signal*> { &S11, &MQAM0 }, vector<Signal*> { &S12 } };
+	B10.setZ(1.96);
 
 	Sink B11{ vector<Signal*> { &S12 }, vector<Signal*> {} };
 	B11.setNumberOfSamples(50000);

@@ -11,6 +11,8 @@ class BitDecider : public Block {
 
 public:
 
+	t_real referencevalue = 1e-1;
+
 	double bitPeriod{ 1.0 / 50e9 };
 
 	BitDecider(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
@@ -21,6 +23,7 @@ public:
 	void setBitPeriod(double bPeriod);
 	double const getBitPeriod(void) { return bitPeriod; }
 
+	void setReferenceValue(int ReferenceValue) { referencevalue = ReferenceValue; }
 
 private:
 };

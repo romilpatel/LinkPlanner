@@ -20,8 +20,7 @@ bool Discretizer::runBlock(void){
 
 	int space = outputSignals[0]->space();
 	int process = min(ready, space);
-	int period = 16;
-	int auxint = 15;
+	int auxint = sampling-1;
 
 	t_real in;
 	t_real out;
@@ -36,7 +35,7 @@ bool Discretizer::runBlock(void){
 		inputSignals[0]->bufferGet(&in);
 		auxint = auxint + 1;
 
-		if (auxint == period)
+		if (auxint == sampling)
 		{
 			auxint = 0;
 			out = in;

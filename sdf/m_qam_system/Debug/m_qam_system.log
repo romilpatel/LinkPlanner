@@ -1,5 +1,4 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'c:\universidade\investigacao\netxpto\github_netxpto_anp\linkplanner\sdf\m_qam_system\debug\m_qam_system.pdb' because it is being used by another process.
-  m_qam_system_sdf.cpp
+﻿  m_qam_system_sdf.cpp
   super_block_interface.cpp
   sink.cpp
   pulse_shaper.cpp

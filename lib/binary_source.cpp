@@ -40,11 +40,16 @@ void BinarySource::initialize(void){
 
 bool BinarySource::runBlock(void) {
 
-	int space = outputSignals[0]->space();
-
-	int process;
+	long int space = outputSignals[0]->space();
+	
+	for (auto l = 1; l < numberOfOutputSignals; ++l) {
+		long int aux = outputSignals[1]->space();
+		space = std::min(space, aux);
+	}
+	
+	long int process;
 	if (numberOfBits >= 0) {
-		process = std::min((long int) space, numberOfBits);
+		process = std::min( space, numberOfBits);
 	}
 	else {
 		process = space;

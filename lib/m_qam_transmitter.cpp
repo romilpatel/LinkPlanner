@@ -17,9 +17,11 @@ switch (numberOfOutputSignals) {
 		B5.initializeBlock(vector<Signal*> { &S4 }, vector<Signal*> { &S6 });
 		B6.initializeBlock(vector<Signal*> { &S5 }, vector<Signal*> { &S7 });
 		if (sType == ComplexValue) {
+			S8.setBufferLength(512);
 			B7.initializeBlock(vector<Signal*> { &S6, &S7 }, vector<Signal*> { &S8 });
 		} 
 		else {
+			S8_xy.setBufferLength(512);
 			B7.initializeBlock(vector<Signal*> { &S6, &S7 }, vector<Signal*> { &S8_xy });
 		}
 		setModuleBlocks({ &B1, &B2, &B3, &B4, &B5, &B6, &B7 });
@@ -32,10 +34,14 @@ switch (numberOfOutputSignals) {
 		B5.initializeBlock(vector<Signal*> { &S4 }, vector<Signal*> { &S6 });
 		B6.initializeBlock(vector<Signal*> { &S5 }, vector<Signal*> { &S7 });
 		if (sType == ComplexValue) {
+			S8.setBufferLength(512);
+			S10.setBufferLength(512);
 			B7.initializeBlock(vector<Signal*> { &S6, &S7 }, vector<Signal*> { &S8 });
 			B8.initializeBlock(vector<Signal*> {&S8, &S9}, vector<Signal*> {&S10, &S11});
 		}
 		else {
+			S8_xy.setBufferLength(512);
+			S10_xy.setBufferLength(512);
 			B7.initializeBlock(vector<Signal*> { &S6, &S7 }, vector<Signal*> { &S8_xy });
 			B8.initializeBlock(vector<Signal*> {&S8_xy, &S9}, vector<Signal*> {&S10_xy, &S11});
 		}

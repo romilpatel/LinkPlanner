@@ -34,13 +34,13 @@ class MQamTransmitter : public SuperBlock {
 
 	TimeContinuousAmplitudeContinuousReal S7{ "MQAM7.sgn" };
 
-	OpticalSignal S8{ "MQAM8.sgn" };
-	OpticalSignalXY S8_xy{ "MQAM8_xy.sgn" };
+	OpticalSignal S8{ "MQAM8.sgn", 0 };
+	OpticalSignalXY S8_xy{ "MQAM8_xy.sgn", 0 };
 
 	Binary S9{ "MQAM9.sgn" };
 
-	OpticalSignal S10{ "MQAM10.sgn" };
-	OpticalSignalXY S10_xy{ "MQAM10_xy.sgn" };
+	OpticalSignal S10{ "MQAM10.sgn", 0 };
+	OpticalSignalXY S10_xy{ "MQAM10_xy.sgn", 0 };
 
 	Binary S11{ "MQAM11.sgn" };
 

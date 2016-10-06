@@ -22,7 +22,7 @@ class PulseShaper : public FIR_Filter{
 public:
 
 	/* Methods */
-
+	PulseShaper() :FIR_Filter(){};
 	PulseShaper(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :FIR_Filter(InputSig, OutputSig){};
 
 	void initialize(void);

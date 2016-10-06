@@ -317,6 +317,16 @@ public:
 
 };
 
+// the setType is BandpassSignal to garantee the compatibility with the Visualizer
+class OpticalSignal : public TimeContinuousAmplitudeContinuousComplex {
+public:
+	OpticalSignal(string fName) { setType("BandpassSignal", ComplexValue); setFileName(fName); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
+	OpticalSignal(string fName, int bLength) { setType("BandpassSignal", ComplexValue); setFileName(fName); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_complex[bLength]; }
+	OpticalSignal(int bLength) { setType("BandpassSignal", ComplexValue); setBufferLength(bLength); if (buffer == nullptr)buffer = new t_complex[bLength]; }
+	OpticalSignal() { setType("BandpassSignal", ComplexValue); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
+
+};
+
 
 class OpticalSignalXY : public Signal {
 public:
@@ -359,6 +369,7 @@ class Block {
 	Block(){};
 	Block(vector<Signal*> &InputSig, vector<Signal*> &OutputSig);
 
+	void initializeBlock(vector<Signal*> &InputSig, vector<Signal*> &OutputSig);
 	void initializeBlock();
 	virtual void initialize(void){};
 
@@ -423,7 +434,7 @@ public:
 
 
 	/* Methods */
-
+	FIR_Filter() {};
 	FIR_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig){};
 
 	void initializeFIR_Filter(void);

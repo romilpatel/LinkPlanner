@@ -202,6 +202,13 @@ Block::Block(vector<Signal*> &InputSig, vector<Signal*> &OutputSig) {
 
 }
 
+void Block::initializeBlock(vector<Signal*> &InputSig, vector<Signal*> &OutputSig) {
+	numberOfInputSignals = InputSig.size();
+	numberOfOutputSignals = OutputSig.size();
+
+	inputSignals = InputSig;
+	outputSignals = OutputSig;
+}
 
 void Block::initializeBlock(void) {
 
@@ -266,22 +273,32 @@ bool SuperBlock::runBlock() {
 			int length = (ready <= space) ? ready : space;
 
 			signal_value_type sType = moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->getValueType();
-
-			t_complex signalValue;
-			t_complex_xy signalValueXY;
 			switch (sType) {
+				case BinaryValue:
+					for (int j = 0; j < length; j++) {
+						t_binary signalValue;
+						moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->bufferGet(&signalValue);
+						outputSignals[i]->bufferPut(signalValue);
+					}
+					break;
 				case ComplexValue:
 					for (int j = 0; j < length; j++) {
+						t_complex signalValue;
 						moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->bufferGet(&signalValue);
 						outputSignals[i]->bufferPut(signalValue);
 					}
 					break;
 				case ComplexValueXY:
 					for (int j = 0; j < length; j++) {
+						t_complex_xy signalValueXY;
 						moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->bufferGet(&signalValueXY);
 						outputSignals[i]->bufferPut(signalValueXY);
 					}
 					break;
+				default:
+					cout << "ERRO: netxpto.cpp (SuperBlock)" << "\n";
+					return false;
+
 			}
 
 			
@@ -301,7 +318,7 @@ void SuperBlock::terminate() {
 
 
 	for (int unsigned j = 0; j<(moduleBlocks[moduleBlocks.size() - 1]->outputSignals).size(); j++)
-		moduleBlocks[moduleBlocks.size() - 1]->outputSignals[0]->close();
+		moduleBlocks[moduleBlocks.size() - 1]->outputSignals[j]->close();
 
 }
 

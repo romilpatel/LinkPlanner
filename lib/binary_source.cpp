@@ -76,7 +76,9 @@ bool BinarySource::runBlock(void) {
 
 		for (int k = 0; k < process; k++) {
 			t_binary aux = (t_binary)ac[len];
-			outputSignals[0]->bufferPut((t_binary) aux);
+			for (auto l = 0; l < numberOfOutputSignals; ++l) {
+				outputSignals[l]->bufferPut((t_binary)aux);
+			}
 			numberOfBits--;
 
 			for (int i = len; i > 0; --i) ac[i] = ac[i - 1];

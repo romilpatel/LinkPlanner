@@ -21,7 +21,7 @@ class IqModulator : public Block {
 	 double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
 
 	 /* Methods */
-
+	 IqModulator() {};
 	 IqModulator(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 
 	 void initialize(void);

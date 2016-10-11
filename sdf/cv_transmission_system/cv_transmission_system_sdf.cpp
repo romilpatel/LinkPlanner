@@ -28,7 +28,7 @@ int main(){
 
 	Binary MQAM0{ "MQAM0.sgn" };
 
-	OpticalSignalXY S00("S00.sgn");
+	BandpassSignal S00("S00.sgn");
 
 	BandpassSignal S01("S01.sgn");
 
@@ -59,7 +59,8 @@ int main(){
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	int NumberOfBits(1e3);
+	int NumberOfBits(10000);
+	NumberOfBits = NumberOfBits + 512 + 8;
 	int SamplesPerSymbol(16);
 
 	BinarySource B00{ vector<Signal*> {}, vector<Signal*> { &MQAM0 } };
@@ -97,7 +98,7 @@ int main(){
 
 	TIAmplifier B6{ vector<Signal*> { &S07 }, vector<Signal*> { &S08 } };
 	B6.setAmplification(1e6);
-	B6.setNoiseAmplitude(1e-4);
+	B6.setNoiseAmplitude(13.593313775018258);
 
 	Discretizer B7 {vector<Signal*> { &S08 }, vector<Signal*> { &S09 } };
 	B7.setSamplingRate(SamplesPerSymbol);
@@ -109,11 +110,11 @@ int main(){
 	B9.setReferenceValue(0);
 
 	BitErrorRate B10{ vector<Signal*> { &S11, &MQAM0 }, vector<Signal*> { &S12 } };
-	B10.setZ(1.96);
+	//B10.setZ(1.96);
 
 	Sink B11{ vector<Signal*> { &S12 }, vector<Signal*> {} };
 	B11.setNumberOfSamples(50000);
-	B11.setDisplayNumberOfSamples(true);
+	B11.setDisplayNumberOfSamples(false);
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################

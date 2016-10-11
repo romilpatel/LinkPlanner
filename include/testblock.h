@@ -5,7 +5,7 @@
 # include <vector>
 
 // this is a test block for the purpose of beta testing new code
-// current code: TIAMP with electrical noise
+// current code: bit key reader to study the 480bit limit.
 class testblock : public Block {
 
 	bool firstTime{ true };
@@ -20,6 +20,8 @@ public:
 	
 	void initialize(void);
 	bool runBlock(void);
+
+	long int NOBITS=1;
 
 private:
 

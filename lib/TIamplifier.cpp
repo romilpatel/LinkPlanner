@@ -19,7 +19,7 @@ void TIAmplifier::initialize(void){
 bool TIAmplifier::runBlock(void){
 
 	default_random_engine generator;
-	normal_distribution<t_real> distribution(0, 1.1e-4);
+	normal_distribution<t_real> distribution(0, noiseamp);
 
 	int ready = inputSignals[0]->ready();
 
@@ -36,7 +36,7 @@ bool TIAmplifier::runBlock(void){
 		
 		t_real noise = distribution(generator);
 		
-		t_real output = input*1e6 + noise; // assuming current in amps
+		t_real output = input*amplification +noise; // assuming current in amps
 
 		outputSignals[0]->bufferPut(output);
 	}

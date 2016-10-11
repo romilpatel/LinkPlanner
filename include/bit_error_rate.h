@@ -18,8 +18,8 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	int coincidences = 0;
-	int recievedbits = 0;
+	long int coincidences = 0;
+	long int recievedbits = 0;
 
 	void setZ(t_real Z) { z = Z; }
 

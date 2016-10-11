@@ -113,9 +113,6 @@
     <ClInclude Include="..\..\include\photodiode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\binary_source.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\m_qam_mapper.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -132,6 +129,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\bit_decider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\binary_source.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

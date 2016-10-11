@@ -14,19 +14,24 @@ void BitErrorRate::initialize(void){
 
 
 bool BitErrorRate::runBlock(void){
-	int ready = inputSignals[0]->ready();
+	int ready1 = inputSignals[0]->ready();
+	int ready2 = inputSignals[1]->ready();
+	int ready = min(ready1, ready2);
 	int space = outputSignals[0]->space();
 
 	int process = min(ready, space);
 
-	float NumberOfBits = recievedbits;
-	float Coincidences = coincidences;
 
-	float BER;
-	BER = (NumberOfBits - Coincidences) / NumberOfBits;
 
 	if (process == 0)
 	{
+
+		t_real NumberOfBits = recievedbits;
+		t_real Coincidences = coincidences;
+
+		t_real BER;
+		BER = (NumberOfBits - Coincidences) / NumberOfBits;
+
 		t_real UpperBound = BER + 1 / sqrt(NumberOfBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * NumberOfBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
 		t_real LowerBound = BER - 1 / sqrt(NumberOfBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * NumberOfBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
 
@@ -44,7 +49,7 @@ bool BitErrorRate::runBlock(void){
 
 
 
-	for (int i = 0; i < process; i++) {
+	for (long int i = 0; i < process; i++) {
 
 		t_binary signalValue;
 		inputSignals[0]->bufferGet(&signalValue);

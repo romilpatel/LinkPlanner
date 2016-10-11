@@ -40,8 +40,8 @@ bool LocalOscillator::runBlock(void){
 
 	if (process == 0) return false;
 
-	t_complex_xy signalValue;
-	t_complex signalValuex;
+	t_complex signalValue;
+	//t_complex signalValuex;
 	t_real real = cos(LocalOscillatorPhase);
 	t_real imag = sin(LocalOscillatorPhase);
 	t_complex lo(real, imag);
@@ -51,9 +51,9 @@ bool LocalOscillator::runBlock(void){
 	for (int i = 0; i < process; i++) {
 
 		inputSignals[0]->bufferGet(&signalValue);
-		signalValuex = signalValue.x;
+		//signalValuex = signalValue.x;
 
-		outputSignals[0]->bufferPut(signalValuex);
+		outputSignals[0]->bufferPut(signalValue);
 		outputSignals[1]->bufferPut(lo);
 
 	}

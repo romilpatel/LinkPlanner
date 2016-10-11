@@ -43,7 +43,7 @@ int main(){
 	B2.setNumberOfSamplesPerSymbol(4);
 
 	SinglePhotonSource B3{ vector<Signal*> { &S2 }, vector<Signal*> { &S3} };
-	B3.setPolarization(45);
+	B3.setPolarization(10);
 
 	PolarizationBeamSplitter B4{ vector<Signal*> { &S3 }, vector<Signal*> { &S4} };
 

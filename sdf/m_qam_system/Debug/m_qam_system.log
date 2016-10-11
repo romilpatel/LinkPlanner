@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 18/09/2016 21:04:07.
      1>Project "C:\Users\dany\Documents\GitHub\LinkPlanner\sdf\m_qam_system\m_qam_system.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -28,3 +29,18 @@
 Build succeeded.
 
 Time Elapsed 00:00:08.54
+=======
+﻿  m_qam_system_sdf.cpp
+  super_block_interface.cpp
+  sink.cpp
+  pulse_shaper.cpp
+  netxpto.cpp
+  m_qam_transmitter.cpp
+  m_qam_mapper.cpp
+  iq_modulator.cpp
+  discrete_to_continuous_time.cpp
+  binary_source.cpp
+  Generating Code...
+  m_qam_system.vcxproj -> C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO_anp\LinkPlanner\sdf\m_qam_system\Debug\m_qam_system.exe
+  m_qam_system.vcxproj -> C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO_anp\LinkPlanner\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)
+>>>>>>> refs/remotes/netxpto/master

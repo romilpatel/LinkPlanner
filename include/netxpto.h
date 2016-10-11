@@ -176,30 +176,32 @@ public:
 };
 
 
-class TimeDiscreteAmplitudeDiscrete : public TimeDiscrete {
+class TimeDiscreteAmplitudeDiscrete : public Signal {
 public:
 	TimeDiscreteAmplitudeDiscrete(string fName) { setFileName(fName); }
 	TimeDiscreteAmplitudeDiscrete(){}
 };
 
 
-class TimeDiscreteAmplitudeContinuous : public TimeDiscrete {
+class TimeDiscreteAmplitudeContinuous : public Signal {
 public:
 	TimeDiscreteAmplitudeContinuous(string fName) { setFileName(fName); }
 	TimeDiscreteAmplitudeContinuous(){}
 };
 
 
-class TimeDiscreteAmplitudeDiscreteReal : public TimeDiscreteAmplitudeDiscrete {
+class TimeDiscreteAmplitudeDiscreteReal : public Signal {
 public:
 	TimeDiscreteAmplitudeDiscreteReal(string fName) { setType("TimeDiscreteAmplitudeDiscreteReal", RealValue); setFileName(fName); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
-	TimeDiscreteAmplitudeDiscreteReal(string fName, int bLength) { setType("TimeDiscreteAmplitudeDiscreteReal", RealValue); setFileName(fName); setBufferLength(bLength);  if (buffer == nullptr) buffer = new t_real[bLength]; }
-	TimeDiscreteAmplitudeDiscreteReal(int bLength) { setType("TimeDiscreteAmplitudeDiscreteReal", RealValue); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_real[bLength]; }
+	TimeDiscreteAmplitudeDiscreteReal(string fName, int bLength) { setType("TimeDiscreteAmplitudeDiscreteReal", RealValue); setFileName(fName); setBufferLength(bLength); }
+	TimeDiscreteAmplitudeDiscreteReal(int bLength) { setType("TimeDiscreteAmplitudeDiscreteReal", RealValue); setBufferLength(bLength); }
 	TimeDiscreteAmplitudeDiscreteReal(){ setType("TimeDiscreteAmplitudeDiscreteReal", RealValue); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_real[bLength]; };
 };
 
 
-class TimeDiscreteAmplitudeDiscreteComplex : public TimeDiscreteAmplitudeDiscrete {
+class TimeDiscreteAmplitudeDiscreteComplex : public Signal {
 	
 public:
 	TimeDiscreteAmplitudeDiscreteComplex(string fName) { setFileName(fName); }
@@ -207,33 +209,37 @@ public:
 };
 
 
-class Binary : public TimeDiscreteAmplitudeDiscrete {
+class Binary : public Signal {
 	
 public:
 	Binary(string fName) { setType("Binary", BinaryValue);  setFileName(fName); if (buffer == nullptr) buffer = new t_binary[bufferLength]; }
-	Binary(string fName, int bLength) { setType("Binary", BinaryValue);  setFileName(fName); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_binary[bLength]; }
-	Binary(int bLength) { setType("Binary", BinaryValue);  setBufferLength(bLength); if (buffer == nullptr) buffer = new t_binary[bLength]; }
+	Binary(string fName, int bLength) { setType("Binary", BinaryValue);  setFileName(fName); setBufferLength(bLength); }
+	Binary(int bLength) { setType("Binary", BinaryValue);  setBufferLength(bLength); }
 	Binary() { setType("Binary", BinaryValue); if (buffer == nullptr) buffer = new t_binary[bufferLength]; }
 
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_binary[bLength]; };
 };
 
 
-class TimeDiscreteAmplitudeContinuousReal : public TimeDiscreteAmplitudeContinuous {
+class TimeDiscreteAmplitudeContinuousReal : public Signal {
 public:
 	TimeDiscreteAmplitudeContinuousReal(string fName) { setType("TimeDiscreteAmplitudeContinuousReal", RealValue); setFileName(fName); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
-	TimeDiscreteAmplitudeContinuousReal(string fName, int bLength) { setType("TimeDiscreteAmplitudeContinuousReal", RealValue); setFileName(fName); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_real[bLength]; }
-	TimeDiscreteAmplitudeContinuousReal(int bLength) { setType("TimeDiscreteAmplitudeContinuousReal", RealValue); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_real[bLength]; }
+	TimeDiscreteAmplitudeContinuousReal(string fName, int bLength) { setType("TimeDiscreteAmplitudeContinuousReal", RealValue); setFileName(fName); setBufferLength(bLength); }
+	TimeDiscreteAmplitudeContinuousReal(int bLength) { setType("TimeDiscreteAmplitudeContinuousReal", RealValue); setBufferLength(bLength); }
 	TimeDiscreteAmplitudeContinuousReal(){ setType("TimeDiscreteAmplitudeContinuousReal", RealValue); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
 
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_real[bLength]; };
 };
 
 
-class TimeDiscreteAmplitudeContinuousComplex : public TimeDiscreteAmplitudeContinuous {
+class TimeDiscreteAmplitudeContinuousComplex : public Signal {
 public:
 	TimeDiscreteAmplitudeContinuousComplex(string fName) { setType("TimeDiscreteAmplitudeContinuousComplex", ComplexValue); setFileName(fName); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
-	TimeDiscreteAmplitudeContinuousComplex(string fName, int bLength) { setType("TimeDiscreteAmplitudeContinuousComplex", ComplexValue); setFileName(fName); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_complex[bLength]; }
-	TimeDiscreteAmplitudeContinuousComplex(int bLength) { setType("TimeDiscreteAmplitudeContinuousComplex", ComplexValue); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_complex[bLength]; }
+	TimeDiscreteAmplitudeContinuousComplex(string fName, int bLength) { setType("TimeDiscreteAmplitudeContinuousComplex", ComplexValue); setFileName(fName); setBufferLength(bLength); }
+	TimeDiscreteAmplitudeContinuousComplex(int bLength) { setType("TimeDiscreteAmplitudeContinuousComplex", ComplexValue); setBufferLength(bLength); }
 	TimeDiscreteAmplitudeContinuousComplex(){ setType("TimeDiscreteAmplitudeContinuousComplex", ComplexValue); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_complex[bLength]; };
 };
 
 
@@ -245,75 +251,99 @@ public:
 class PhotonStream : public Signal {
 
 public:
-	PhotonStream(int bLength) { setType("PhotonStream", PhotonValue); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_photon[bLength]; }
+	PhotonStream(int bLength) { setType("PhotonStream", PhotonValue); setBufferLength(bLength); }
 	PhotonStream() { setType("PhotonStream", PhotonValue); if (buffer == nullptr) buffer = new t_photon[bufferLength]; }
 
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_photon[bLength]; };
 };
 
 class PhotonStreamMP : public Signal {
 
 public:
-	PhotonStreamMP(int bLength) { setType("PhotonStreamMP", PhotonValueMP); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_photon_mp[bLength]; }
+	PhotonStreamMP(int bLength) { setType("PhotonStreamMP", PhotonValueMP); setBufferLength(bLength); }
 	PhotonStreamMP() { setType("PhotonStreamMP", PhotonValueMP); if (buffer == nullptr) buffer = new t_photon_mp[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_photon_mp[bLength]; };
 
 };
 
 
-class TimeContinuousAmplitudeDiscrete : public TimeContinuous {
+class TimeContinuousAmplitudeDiscrete : public Signal {
 public:
 	TimeContinuousAmplitudeDiscrete(){}
 };
 
 
-class TimeContinuousAmplitudeContinuous : public TimeContinuous {
+class TimeContinuousAmplitudeContinuous : public Signal {
 public:
 	TimeContinuousAmplitudeContinuous(){}
 };
 
 
-class TimeContinuousAmplitudeDiscreteReal : public TimeContinuousAmplitudeDiscrete {
+class TimeContinuousAmplitudeDiscreteReal : public Signal {
 public:
 	TimeContinuousAmplitudeDiscreteReal(string fName) { setType("TimeContinuousAmplitudeDiscreteReal", RealValue);  setFileName(fName); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
-	TimeContinuousAmplitudeDiscreteReal(string fName, int bLength) { setType("TimeContinuousAmplitudeDiscreteReal", RealValue);  setFileName(fName); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_real[bLength]; }
-	TimeContinuousAmplitudeDiscreteReal(int bLength) { setType("TimeContinuousAmplitudeDiscreteReal", RealValue);  setBufferLength(bLength); if (buffer == nullptr) buffer = new t_real[bLength]; }
+	TimeContinuousAmplitudeDiscreteReal(string fName, int bLength) { setType("TimeContinuousAmplitudeDiscreteReal", RealValue);  setFileName(fName); setBufferLength(bLength); }
+	TimeContinuousAmplitudeDiscreteReal(int bLength) { setType("TimeContinuousAmplitudeDiscreteReal", RealValue);  setBufferLength(bLength); }
 	TimeContinuousAmplitudeDiscreteReal(){ setType("TimeContinuousAmplitudeDiscreteReal", RealValue); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
 
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_real[bLength]; };
 };
 
 
-class TimeContinuousAmplitudeDiscreteComplex : public TimeContinuousAmplitudeDiscrete {
+class TimeContinuousAmplitudeDiscreteComplex : public Signal {
 public:
 	TimeContinuousAmplitudeDiscreteComplex(string fName) { setType("TimeContinuousAmplitudeDiscreteComplex", ComplexValue); setFileName(fName); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
-	TimeContinuousAmplitudeDiscreteComplex(string fName, int bLength) { setType("TimeContinuousAmplitudeDiscreteComplex", ComplexValue); setFileName(fName); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_complex[bLength]; }
-	TimeContinuousAmplitudeDiscreteComplex(int bLength) { setType("TimeContinuousAmplitudeDiscreteComplex", ComplexValue); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_complex[bLength]; }
+	TimeContinuousAmplitudeDiscreteComplex(string fName, int bLength) { setType("TimeContinuousAmplitudeDiscreteComplex", ComplexValue); setFileName(fName); setBufferLength(bLength); }
+	TimeContinuousAmplitudeDiscreteComplex(int bLength) { setType("TimeContinuousAmplitudeDiscreteComplex", ComplexValue); setBufferLength(bLength); }
 	TimeContinuousAmplitudeDiscreteComplex(){ setType("TimeContinuousAmplitudeDiscreteComplex", ComplexValue); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_complex[bLength]; };
 };
 
 
-class TimeContinuousAmplitudeContinuousReal : public TimeContinuousAmplitudeContinuous {
+class TimeContinuousAmplitudeContinuousReal : public Signal {
 public:
 	TimeContinuousAmplitudeContinuousReal(string fName) { setType("TimeContinuousAmplitudeContinuousReal", RealValue); setFileName(fName); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
-	TimeContinuousAmplitudeContinuousReal(string fName, int bLength) { setType("TimeContinuousAmplitudeContinuousReal", RealValue); setFileName(fName); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_real[bLength]; }
-	TimeContinuousAmplitudeContinuousReal(int bLength) { setType("TimeContinuousAmplitudeContinuousReal", RealValue); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_real[bLength]; }
+	TimeContinuousAmplitudeContinuousReal(string fName, int bLength) { setType("TimeContinuousAmplitudeContinuousReal", RealValue); setFileName(fName); setBufferLength(bLength); }
+	TimeContinuousAmplitudeContinuousReal(int bLength) { setType("TimeContinuousAmplitudeContinuousReal", RealValue); setBufferLength(bLength); }
 	TimeContinuousAmplitudeContinuousReal(){ setType("TimeContinuousAmplitudeContinuousReal", RealValue); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
 
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_real[bLength]; };
+
 };
 
 
-class TimeContinuousAmplitudeContinuousComplex : public TimeContinuousAmplitudeContinuous {
+class TimeContinuousAmplitudeContinuousComplex : public Signal {
 public:
 	TimeContinuousAmplitudeContinuousComplex(string fName) { setType("TimeContinuousAmplitudeContinuousComplex", ComplexValue); setFileName(fName); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
-	TimeContinuousAmplitudeContinuousComplex(string fName, int bLength) { setType("TimeContinuousAmplitudeContinuousComplex", ComplexValue); setFileName(fName); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_complex[bLength]; }
-	TimeContinuousAmplitudeContinuousComplex(int bLength) { setType("TimeContinuousAmplitudeContinuousComplex", ComplexValue); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_complex[bLength]; }
+	TimeContinuousAmplitudeContinuousComplex(string fName, int bLength) { setType("TimeContinuousAmplitudeContinuousComplex", ComplexValue); setFileName(fName); setBufferLength(bLength); }
+	TimeContinuousAmplitudeContinuousComplex(int bLength) { setType("TimeContinuousAmplitudeContinuousComplex", ComplexValue); setBufferLength(bLength); }
 	TimeContinuousAmplitudeContinuousComplex(){ setType("TimeContinuousAmplitudeContinuousComplex", ComplexValue); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_complex[bLength]; };
 };
 
-class BandpassSignal : public TimeContinuousAmplitudeContinuousComplex {
+class BandpassSignal : public Signal {
 public:
 	BandpassSignal(string fName) { setType("BandpassSignal", ComplexValue); setFileName(fName); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
-	BandpassSignal(string fName, int bLength) { setType("BandpassSignal", ComplexValue); setFileName(fName); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_complex[bLength]; }
-	BandpassSignal(int bLength) { setType("BandpassSignal", ComplexValue); setBufferLength(bLength); if (buffer == nullptr)buffer = new t_complex[bLength]; }
+	BandpassSignal(string fName, int bLength) { setType("BandpassSignal", ComplexValue); setFileName(fName); setBufferLength(bLength); }
+	BandpassSignal(int bLength) { setType("BandpassSignal", ComplexValue); setBufferLength(bLength); }
 	BandpassSignal(){ setType("BandpassSignal", ComplexValue); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_complex[bLength]; };
+
+};
+
+// the setType is BandpassSignal to garantee the compatibility with the Visualizer
+class OpticalSignal : public Signal {
+public:
+	OpticalSignal(string fName) { setType("BandpassSignal", ComplexValue); setFileName(fName); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
+	OpticalSignal(string fName, int bLength) { setType("BandpassSignal", ComplexValue); setFileName(fName); setBufferLength(bLength); }
+	OpticalSignal(int bLength) { setType("BandpassSignal", ComplexValue); setBufferLength(bLength); }
+	OpticalSignal() { setType("BandpassSignal", ComplexValue); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_complex[bLength]; };
 
 };
 
@@ -321,9 +351,11 @@ public:
 class OpticalSignalXY : public Signal {
 public:
 	OpticalSignalXY(string fName) { setType("OpticalSignalXY", ComplexValueXY); setFileName(fName); if (buffer == nullptr) buffer = new t_complex_xy[bufferLength]; }
-	OpticalSignalXY(string fName, int bLength) { setType("OpticalSignalXY", ComplexValueXY); setFileName(fName); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_complex_xy[bLength]; }
-	OpticalSignalXY(int bLength) { setType("OpticalSignalXY", ComplexValueXY); setBufferLength(bLength); if (buffer == nullptr) buffer = new t_complex_xy[bLength]; }
+	OpticalSignalXY(string fName, int bLength) { setType("OpticalSignalXY", ComplexValueXY); setFileName(fName); setBufferLength(bLength); }
+	OpticalSignalXY(int bLength) { setType("OpticalSignalXY", ComplexValueXY); setBufferLength(bLength); }
 	OpticalSignalXY() { setType("OpticalSignalXY", ComplexValueXY); if (buffer == nullptr) buffer = new t_complex_xy[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_complex_xy[bLength]; };
 };
 
 
@@ -359,6 +391,7 @@ class Block {
 	Block(){};
 	Block(vector<Signal*> &InputSig, vector<Signal*> &OutputSig);
 
+	void initializeBlock(vector<Signal*> &InputSig, vector<Signal*> &OutputSig);
 	void initializeBlock();
 	virtual void initialize(void){};
 
@@ -423,7 +456,7 @@ public:
 
 
 	/* Methods */
-
+	FIR_Filter() {};
 	FIR_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig){};
 
 	void initializeFIR_Filter(void);

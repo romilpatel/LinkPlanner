@@ -31,7 +31,7 @@ public:
 
 
 	/* Methods */
-
+	MQamMapper() {};
 	MQamMapper(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};
 
 	void initialize(void);

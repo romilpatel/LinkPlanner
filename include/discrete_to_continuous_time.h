@@ -10,7 +10,7 @@ class DiscreteToContinuousTime : public Block {
 	int index{ 0 };
 
 public:
-
+	DiscreteToContinuousTime() {};
 	DiscreteToContinuousTime(vector<Signal *> &inputSignals, vector<Signal *> &outputSignals) :Block(inputSignals, outputSignals){};
 
 	void initialize(void);

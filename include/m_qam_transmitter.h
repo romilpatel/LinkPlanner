@@ -7,6 +7,7 @@
 # include "discrete_to_continuous_time.h"
 # include "pulse_shaper.h"
 # include "iq_modulator.h"
+# include "super_block_interface.h"
 
 //using namespace std;
 
@@ -33,37 +34,46 @@ class MQamTransmitter : public SuperBlock {
 
 	TimeContinuousAmplitudeContinuousReal S7{ "MQAM7.sgn" };
 
-	OpticalSignalXY S8{ "MQAM8.sgn" };
+	OpticalSignal S8{ "MQAM8.sgn", 0 };
+	OpticalSignalXY S8_xy{ "MQAM8_xy.sgn", 0 };
 
+	Binary S9{ "MQAM9.sgn" };
+
+	OpticalSignal S10{ "MQAM10.sgn", 0 };
+	OpticalSignalXY S10_xy{ "MQAM10_xy.sgn", 0 };
+
+	Binary S11{ "MQAM11.sgn" };
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
 
-	BinarySource B1{ vector<Signal*> {}, vector<Signal*> { &S1 } };
+	BinarySource B1;
 
-	MQamMapper B2{ vector<Signal*> { &S1 }, vector<Signal*> { &S2, &S3 } };
+	MQamMapper B2;
 
-	DiscreteToContinuousTime B3{ vector<Signal*> { &S2 }, vector<Signal*> { &S4 } };
+	DiscreteToContinuousTime B3;
 
-	DiscreteToContinuousTime B4{ vector<Signal*> { &S3 }, vector<Signal*> { &S5 } };
+	DiscreteToContinuousTime B4;
 
-	PulseShaper B5{ vector<Signal*> { &S4 }, vector<Signal*> { &S6 } };
+	PulseShaper B5;
 
-	PulseShaper B6{ vector<Signal*> { &S5 }, vector<Signal*> { &S7 } };
+	PulseShaper B6;
 
-	IqModulator B7{ vector<Signal*> { &S6, &S7 }, vector<Signal*> { &S8 } };
+	IqModulator B7;
 
+	SuperBlockInterface B8;
 
 	/* Input Parameters */
+
 
 
 public:
 
 	/* Methods */
 
-	MQamTransmitter(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal):SuperBlock(inputSignal, outputSignal){ setModuleBlocks({ &B1, &B2, &B3, &B4, &B5, &B6, &B7 }); };
+	MQamTransmitter(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal);
 
 	/* Set Methods */
 

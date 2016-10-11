@@ -28,15 +28,15 @@ int main(){
 
 	Binary MQAM0{ "MQAM0.sgn" };
 
-	BandpassSignal S00("S00.sgn");
+	OpticalSignal S00("S00.sgn");
 
-	BandpassSignal S01("S01.sgn");
+	OpticalSignal S01("S01.sgn");
 
-	BandpassSignal S02("S02.sgn");
+	OpticalSignal S02("S02.sgn");
 
-	BandpassSignal S03("S03.sgn");
+	OpticalSignal S03("S03.sgn");
 
-	BandpassSignal S04("S04.sgn");
+	OpticalSignal S04("S04.sgn");
 
 	TimeContinuousAmplitudeContinuousReal S05{ "S05.sgn" };
 
@@ -59,19 +59,13 @@ int main(){
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	int NumberOfBits(10000);
-	NumberOfBits = NumberOfBits + 512 + 8;
+	int NumberOfBits(100);
+	NumberOfBits = NumberOfBits + 8;
 	int SamplesPerSymbol(16);
-
-	BinarySource B00{ vector<Signal*> {}, vector<Signal*> { &MQAM0 } };
-	B00.setMode(PseudoRandom);
-	B00.setBitPeriod(1.0 / 50e9);
-	B00.setPatternLength(5);
-	B00.setNumberOfBits(NumberOfBits);
 
 	//discarder B000{ vector<Signal*> { &MQAM0 }, vector<Signal*> { &MQAM00 } };
 
-	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S00 } };
+	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S00, &MQAM0 } };
 	B1.setOutputOpticalPower_dBm(-20);
 	B1.setMode(PseudoRandom);
 	B1.setBitPeriod(1.0 / 50e9);
@@ -120,7 +114,7 @@ int main(){
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B00, &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11} };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11} };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

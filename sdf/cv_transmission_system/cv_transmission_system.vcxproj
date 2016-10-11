@@ -84,6 +84,7 @@
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\subtractor.cpp" />
+    <ClCompile Include="..\..\lib\super_block_interface.cpp" />
     <ClCompile Include="..\..\lib\testblock.cpp" />
     <ClCompile Include="..\..\lib\TIamplifier.cpp" />
     <ClCompile Include="cv_transmission_system_sdf.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sink.h" />
     <ClInclude Include="..\..\include\subtractor.h" />
+    <ClInclude Include="..\..\include\super_block_interface.h" />
     <ClInclude Include="..\..\include\testblock.h" />
     <ClInclude Include="..\..\include\TIamplifier.h" />
   </ItemGroup>

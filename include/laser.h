@@ -1,7 +1,7 @@
 # ifndef LASER_H_
 # define LASER_H_
 
-# include "netplus.h"
+# include "netxpto.h"
 
 class Laser : public Block {
 

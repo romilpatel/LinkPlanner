@@ -24,22 +24,59 @@ This block generates a sequence of binary values (1 or 0) and it can work in fou
 \end{enumerate}
 \end{multicols}
 
+This blocks doesn't accept any input signal. It produces a maximum of ??? output binary signals.
+
 \subsection*{Input Parameters}
 
-\begin{multicols}{2}
 	\begin{itemize}
-		\item mode
-		\item probabilityOfZero 
-		\item patternLength 
-		\item bitStream 
-		\item numberOfBits 
-		\item bitPeriod 
+		\item mode\{PseudoRandom\}\linebreak
+		(Random, PseudoRandom, DeterministicCyclic, DeterministicAppendZeros)
+		\item probabilityOfZero\{0.5\}\linebreak
+		(real $\in$ [0,1])
+		\item patternLength\{7\} \linebreak
+		(integer $\in$ [1,32]) 
+		\item bitStream\{"0100011101010101"\} \linebreak
+		(string of 0's and 1's)
+		\item numberOfBits\{-1\} \linebreak
+		(long int)
+		\item bitPeriod\{1.0/100e9\} \linebreak
+		(double)
 	\end{itemize}
-\end{multicols}
+
+\subsection*{Methods}
+
+BinarySource(vector$\langle$Signal *$\rangle$ \&InputSig, vector$\langle$Signal *$\rangle$ \&OutputSig) :Block(InputSig, OutputSig)\{\};
+\bigbreak	 
+void initialize(void);
+\bigbreak	 
+bool runBlock(void);
+\bigbreak	 
+void setMode(BinarySourceMode m) {mode = m;}
+BinarySourceMode const getMode(void) \{ return mode; \};
+\bigbreak	 
+void setProbabilityOfZero(double pZero) \{ probabilityOfZero = pZero; \};
+\bigbreak
+double const getProbabilityOfZero(void) \{ return probabilityOfZero; \};
+\bigbreak	 
+void setBitStream(string bStream) \{ bitStream = bStream; \};
+\bigbreak
+string const getBitStream(void) \{ return bitStream; \};
+\bigbreak	 
+void setNumberOfBits(long int nOfBits) \{ numberOfBits = nOfBits; \};
+\bigbreak
+long int const getNumberOfBits(void) \{ return numberOfBits; \};
+\bigbreak	 
+void setPatternLength(int pLength) \{ patternLength = pLength; \};
+\bigbreak
+int const getPatternLength(void) \{ return patternLength; \}
+\bigbreak	 
+void setBitPeriod(double bPeriod);
+\bigbreak
+double const getBitPeriod(void) \{ return bitPeriod; \}
 
 \subsection*{Functional description}
 
-The \textit{mode} parameter can take integer values from 1 to 4 (that correspond, respectively, to Random, PseudoRandom, DeterministCyclic and DeterministAppendZeros modes) and allows the user to select between one of the four operation modes of the binary source.
+The \textit{mode} parameter allows the user to select between one of the four operation modes of the binary source.
 
 \subparagraph*{Random Mode}
 Generates a 0 with probability \textit{probabilityOfZero} and a 1 with probability 1-\textit{probabilityOfZero}.
@@ -55,9 +92,8 @@ Generates the sequence of 0's and 1's specified by \textit{bitStream} and then i
 
 \subsection*{Input Signals}
 
-(Currently working with no input signal.)
 
-\subparagraph*{Number:} 0 or 1 (which would work as a trigger)
+\subparagraph*{Number:} 0
 
 \subparagraph*{Type:} Binary (DiscreteTimeDiscreteAmplitude)
 

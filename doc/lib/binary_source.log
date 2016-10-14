@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2016.2.15)  6 OCT 2016 11:21
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2016.2.15)  14 OCT 2016 09:07
 entering extended mode
 **binary_source.tex
 ("C:\Users\Ana Luisa\Documents\GitHub\LinkPlanner\doc\lib\binary_source.tex"
@@ -499,33 +499,69 @@ LaTeX Font Info:    ... okay on input line 13.
 
 LaTeX Warning: No \author given.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 31.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 32.
 ("C:\Program Files\MiKTeX\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 32.
 
-<BinarySequenceN3.png, id=1, 404.712pt x 262.0992pt>
+Underfull \hbox (badness 10000) in paragraph at lines 32--34
+[]\OT1/cmr/m/n/10 mode\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 PseudoRandom\OMS/cmsy/m
+/n/10 g
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--36
+[]\OT1/cmr/m/n/10 probabilityOfZero\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 0.5\OMS/cm
+sy/m/n/10 g
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--38
+[]\OT1/cmr/m/n/10 patternLength\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 7\OMS/cmsy/m/n
+/10 g
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--40
+[]\OT1/cmr/m/n/10 bitStream\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 "0100011101010101"
+\OMS/cmsy/m/n/10 g
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--42
+[]\OT1/cmr/m/n/10 numberOfBits\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 -1\OMS/cmsy/m/n
+/10 g
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--44
+[]\OT1/cmr/m/n/10 bitPeriod\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 1.0/100e9\OMS/cmsy
+/m/n/10 g
+ []
+
+[1
+
+{C:/Users/Ana Luisa/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+<BinarySequenceN3.png, id=10, 404.712pt x 262.0992pt>
 File: BinarySequenceN3.png Graphic file (type png)
 
 <use BinarySequenceN3.png>
-Package pdftex.def Info: BinarySequenceN3.png used on input line 78.
+Package pdftex.def Info: BinarySequenceN3.png used on input line 114.
 (pdftex.def)             Requested size: 208.41644pt x 134.97658pt.
- [1
-
-{C:/Users/Ana Luisa/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2 <C:/
-Users/Ana Luisa/Documents/GitHub/LinkPlanner/doc/lib/BinarySequenceN3.png>]
+ [2 <C:/Users/Ana Luisa/Documents/GitHub/LinkPlanner/doc/lib/BinarySequenceN3.p
+ng>]
 ("C:\Users\Ana Luisa\Documents\GitHub\LinkPlanner\doc\lib\binary_source.aux") )
  
 Here is how much of TeX's memory you used:
- 2862 strings out of 493921
- 36358 string characters out of 3148874
+ 2864 strings out of 493921
+ 36393 string characters out of 3148874
  105166 words of memory out of 3000000
- 6125 multiletter control sequences out of 15000+200000
+ 6127 multiletter control sequences out of 15000+200000
  9462 words of font info for 34 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,6n,20p,423b,218s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,6n,20p,423b,195s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
 Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/
@@ -534,7 +570,7 @@ ts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pf
 b><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Progra
 m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmti7.pfb>
-Output written on binary_source.pdf (2 pages, 121222 bytes).
+Output written on binary_source.pdf (2 pages, 126429 bytes).
 PDF statistics:
  47 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

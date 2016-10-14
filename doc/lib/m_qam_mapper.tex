@@ -11,18 +11,32 @@
 	
 \maketitle
 
-This block does the mapping of the binary signal using a \textit{m}-QAM modulation. It atributes to each pair of bits a point in the I-Q space. The constellation is defined by the \textit{iqAmplitudes} vector.
+This block does the mapping of the binary signal using a \textit{m}-QAM modulation. It accepts one input signal of the binary type and it produces two output signals which are a sequence of 1's and -1's.
 
 \subsection*{Input Parameters}
 
 \begin{itemize}
-	\item m 
-	\item iqAmplitudes 
+	\item m\{4\} \linebreak
+	(m should be of the form $2^n$ with n integer)
+	\item iqAmplitudes\{\{ 1.0, 1.0 \}, \{ -1.0, 1.0 \}, \{ -1.0, -1.0 \}, \{ 1.0, -1.0 \}\} \linebreak
+	
 \end{itemize}
+
+\subsection*{Methods}
+
+MQamMapper(vector$<$Signal *$>$ \&InputSig, vector$<$Signal *$>$ \&OutputSig) :Block(InputSig, OutputSig) \{\};
+\bigbreak	
+void initialize(void);
+\bigbreak	
+bool runBlock(void);
+\bigbreak	
+void setM(int mValue);
+\bigbreak	
+void setIqAmplitudes(vector$<$t\_iqValues$>$ iqAmplitudesValues);
 
 \subsection*{Functional Description}
 
-
+In the case of m=4 this block atributes to each pair of bits a point in the I-Q space. The constellation used is defined by the \textit{iqAmplitudes} vector. 
 
 \subsection*{Input Signals}
 
@@ -36,11 +50,11 @@ This block does the mapping of the binary signal using a \textit{m}-QAM modulati
 
 \textbf{Type}: Sequence of 1's and -1's (DiscreteTimeDiscreteAmplitude)
 
-\subsection*{Examples}
+\subsection*{Example}
 
-\begin{figure}[h]
-	\includegraphics[width=\textwidth]{MQAM2}
-\end{figure}
+%\begin{figure}[h]
+%	\includegraphics[width=\textwidth]{MQAM2}
+%\end{figure}
 
 \subsection*{Sugestions for future improvement}
 

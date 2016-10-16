@@ -48,6 +48,8 @@ int main(){
 
 	TimeDiscreteAmplitudeContinuousReal S09{ "S09.sgn" };
 
+	TimeDiscreteAmplitudeContinuousReal STRANS{ "STRANS.sgn" };
+
 	TimeDiscreteAmplitudeContinuousReal S10{ "S10.sgn" };
 
 	Binary S11{ "S11.sgn" };
@@ -59,8 +61,8 @@ int main(){
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	int NumberOfBits(100);
-	NumberOfBits = NumberOfBits + 8;
+	int NumberOfBits(100000);
+	NumberOfBits = NumberOfBits + 512 + 8;
 	int SamplesPerSymbol(16);
 
 	//discarder B000{ vector<Signal*> { &MQAM0 }, vector<Signal*> { &MQAM00 } };
@@ -92,7 +94,7 @@ int main(){
 
 	TIAmplifier B6{ vector<Signal*> { &S07 }, vector<Signal*> { &S08 } };
 	B6.setAmplification(1e6);
-	B6.setNoiseAmplitude(13.593313775018258);
+	B6.setNoiseAmplitude(15.397586549153788);
 
 	Discretizer B7 {vector<Signal*> { &S08 }, vector<Signal*> { &S09 } };
 	B7.setSamplingRate(SamplesPerSymbol);
@@ -100,11 +102,13 @@ int main(){
 	Delayer B8{ vector<Signal*> { &S09 }, vector<Signal*> { &S10 } };
 	B8.setDelay(9);
 
+//	testblock BTRANS{ vector<Signal*> { &S10 }, vector<Signal*> { &STRANS } };
+
 	BitDecider B9{ vector<Signal*> { &S10 }, vector<Signal*> { &S11 } };
 	B9.setReferenceValue(0);
 
 	BitErrorRate B10{ vector<Signal*> { &S11, &MQAM0 }, vector<Signal*> { &S12 } };
-	//B10.setZ(1.96);
+	B10.setZ(1.96);
 
 	Sink B11{ vector<Signal*> { &S12 }, vector<Signal*> {} };
 	B11.setNumberOfSamples(50000);
@@ -114,7 +118,7 @@ int main(){
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11} };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11 } };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

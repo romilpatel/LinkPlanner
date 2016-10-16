@@ -1,6 +1,8 @@
 #include <algorithm>
 #include <complex>
 #include <random>
+#include <fstream>
+#include <iostream>
 
 #include "netxpto.h"
 #include "TIamplifier.h"
@@ -18,8 +20,7 @@ void TIAmplifier::initialize(void){
 
 bool TIAmplifier::runBlock(void){
 
-	default_random_engine generator;
-	normal_distribution<t_real> distribution(0, noiseamp);
+	normal_distribution<double> distribution( 0, noiseamp);
 
 	int ready = inputSignals[0]->ready();
 
@@ -28,13 +29,15 @@ bool TIAmplifier::runBlock(void){
 	int process = min(ready, space);
 
 	if (process == 0) return false;
-	
+
+	double noise = 0;
+
 	for (int i = 0; i < process; i++) {
 
 		t_real input;
 		inputSignals[0]->bufferGet(&input);
 		
-		t_real noise = distribution(generator);
+		noise = distribution(generator);
 		
 		t_real output = input*amplification +noise; // assuming current in amps
 

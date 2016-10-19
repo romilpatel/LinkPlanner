@@ -1,0 +1,43 @@
+\documentclass[a4paper]{article}
+\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\setlength{\parskip}{0.03cm plus4mm minus3mm}
+\RequirePackage{ltxcmds}[2010/12/07]
+%opening
+\title{Local Oscillator}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Input Parameters}
+
+\begin{multicols}{2}
+	\begin{itemize}
+		\item LocalOscillatorPhase
+		\item LocalOscillatorOpticalPower
+		\item \verb|LocalOscillatorOpticalPower_dBm|
+	\end{itemize}
+\end{multicols}
+
+\subsection*{Functional Description}
+
+This blocks accepts a complex signal (either with XY polarization or a simple Band Pass signal) and outputs a phase constant complex signal with the same length as the input signal. The phase and optical power are defined by the values of \textit{LocalOscillatorPhase} and \textit{LocalOscillatorOpticalPower} respectively.
+
+\subsection*{Input Signals}
+
+\textbf{Number}: 1
+
+\textbf{Type}: Complex signal (ContinuousTimeContiousAmplitude)
+
+\subsection*{Output Signals}
+
+\textbf{Number}: 2
+
+\textbf{Type}: Complex signal (ContinuousTimeContiousAmplitude)
+
+\end{document}

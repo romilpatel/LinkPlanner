@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\setlength{\parskip}{0.03cm plus4mm minus3mm}
+\RequirePackage{ltxcmds}[2010/12/07]
+%opening
+\title{Discretizer}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Input Parameters}
+
+\begin{multicols}{2}
+	\begin{itemize}
+		\item setSamplingRate
+	\end{itemize}
+\end{multicols}
+
+\subsection*{Functional Description}
+
+This block accepts one real continuous signal and outputs one real discrete signal built from a sampling of the input signals with a predetermined sampling rate. The sampling rate is defined by the value \textit{SamplingRate}.
+
+\subsection*{Input Signals}
+
+\textbf{Number}: 1
+
+\textbf{Type}: Real signal (ContinuousTimeContiousAmplitude)
+
+\subsection*{Output Signals}
+
+\textbf{Number}: 1
+
+\textbf{Type}: Real signal (DiscreteTimeContiousAmplitude)
+
+\end{document}

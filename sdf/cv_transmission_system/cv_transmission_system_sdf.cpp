@@ -61,7 +61,7 @@ int main(){
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	int NumberOfBits(100000);
+	int NumberOfBits(5000);
 	NumberOfBits = NumberOfBits + 512 + 8;
 	int SamplesPerSymbol(16);
 

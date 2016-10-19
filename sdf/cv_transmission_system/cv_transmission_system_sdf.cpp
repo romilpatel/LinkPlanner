@@ -61,7 +61,11 @@ int main(){
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
+<<<<<<< HEAD
 	int NumberOfBits(5000);
+=======
+	int NumberOfBits(1000);
+>>>>>>> refs/remotes/netxpto/daniel
 	NumberOfBits = NumberOfBits + 512 + 8;
 	int SamplesPerSymbol(16);
 

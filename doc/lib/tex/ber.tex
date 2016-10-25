@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\setlength{\parskip}{0.03cm plus4mm minus3mm}
+\RequirePackage{ltxcmds}[2010/12/07]
+%opening
+\title{BER}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Input Parameters}
+
+\begin{multicols}{2}
+	\begin{itemize}
+		\item setZ
+	\end{itemize}
+\end{multicols}
+
+\subsection*{Functional Description}
+
+This block accepts two binary strings and outputs a binary string, outputting a 1 if the two input samples are equal to each other and 0 if not. This block also outputs a \textit{.txt} file with a report of the calculate BER as well as the estimated Confidence bounds for a given probability $1-\alpha$. The probability for the confidence bounds is determined by the $z_{1-\frac{\alpha}{2}}$ percentile of a standard gaussian distribution, value which has to be fed into the block.
+
+\subsection*{Input Signals}
+
+\textbf{Number}: 1
+
+\textbf{Type}: Binary (DiscreteTimeDiscreteAmplitude)
+
+\subsection*{Output Signals}
+
+\textbf{Number}: 1
+
+\textbf{Type}: Binary (DiscreteTimeDiscreteAmplitude)
+
+\end{document}BBi

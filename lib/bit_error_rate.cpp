@@ -38,10 +38,10 @@ bool BitErrorRate::runBlock(void){
 		/* Outputting a .txt report*/
 		ofstream myfile;
 		myfile.open("BER.txt");
-		myfile << "BER=" << BER << "\n";
+		myfile << "BER= " << BER << "\n";
 		myfile << "Upper and Lower Confidence bounds for stipulated interval \n";
-		myfile << "Upper Bound=" << UpperBound << "\n";
-		myfile << "Lower Bound=" << LowerBound << "\n";
+		myfile << "Upper Bound= " << UpperBound << "\n";
+		myfile << "Lower Bound= " << LowerBound << "\n";
 		myfile << "Number of recieved bits =" << NumberOfBits << "\n";
 		myfile.close();
 		return false;

@@ -17,6 +17,7 @@ int main(){
 
 	MQamTransmitter B1{ vector<Signal*> {}, vector<Signal*> { &S1, &S2 } };
 	B1.set(0);
+	B1.setMode(PseudoRandom);
 	B1.setNumberOfBits(100);
 	B1.setSeeBeginningOfImpulseResponse(false);
 

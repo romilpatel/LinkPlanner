@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include "netxpto.h"
-#include "TIamplifier.h"
+#include "ti_amplifier.h"
 
 
 void TIAmplifier::initialize(void){

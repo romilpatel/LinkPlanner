@@ -4,7 +4,7 @@
 #include <fstream>
 
 #include "netxpto.h"
-#include "BalancedBeamSplitter.h"
+#include "balanced_beam_splitter.h"
 
 
 void BalancedBeamSplitter::initialize(void){

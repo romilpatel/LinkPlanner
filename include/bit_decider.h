@@ -15,6 +15,7 @@ public:
 
 	double bitPeriod{ 1.0 / 50e9 };
 
+	BitDecider() {};
 	BitDecider(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	
 	void initialize(void);

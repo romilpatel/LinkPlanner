@@ -18,7 +18,7 @@ public:
 	default_random_engine generator;
 	
 
-
+	TIAmplifier() {};
 	TIAmplifier(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	
 	void initialize(void);

@@ -22,7 +22,7 @@ public:
 	t_complex unit = 1;
 	array <t_complex, 4> matrix = { { div*unit, div*unit, div*unit, -unit*div } };
 	
-
+	BalancedBeamSplitter() {};
 	BalancedBeamSplitter(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 
 	void initialize(void);

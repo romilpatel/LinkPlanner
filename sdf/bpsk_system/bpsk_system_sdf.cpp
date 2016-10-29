@@ -1,10 +1,10 @@
 # include "netxpto.h"
 
 # include "sink.h"
-# include "BalancedBeamSplitter.h"
+# include "balanced_beam_splitter.h"
 # include "subtractor.h"
 # include "photodiode.h"
-# include "TIamplifier.h"
+# include "ti_amplifier.h"
 # include "local_oscillator.h"
 # include "discretizer.h"
 # include "delayer.h"
@@ -29,7 +29,7 @@ int main(){
 
 	OpticalSignal S00("S00.sgn");
 
-	OpticalSignal S01("S01.sgn");
+/*	OpticalSignal S01("S01.sgn");
 
 	OpticalSignal S02("S02.sgn");
 
@@ -50,10 +50,10 @@ int main(){
 	TimeDiscreteAmplitudeContinuousReal STRANS{ "STRANS.sgn" };
 
 	TimeDiscreteAmplitudeContinuousReal S10{ "S10.sgn" };
+	*/
+	Binary S01{ "S01.sgn" };
 
-	Binary S11{ "S11.sgn" };
-
-	Binary S12{ "S12.sgn" };
+	Binary S02{ "S02.sgn" };
 
 
 	// #####################################################################################################
@@ -83,7 +83,21 @@ int main(){
 	B1.setRollOffFactor(0.3);
 	B1.setSaveInternalSignals(false);
 
-	LocalOscillator B2{ vector<Signal*> { &S00 }, vector<Signal*> { &S01, &S02 } };
+	testblock B2{ vector<Signal*> {&S00}, vector<Signal*> {&S01} };
+	B2.setLocalOscillatorOpticalPower_dBm(-10);
+	B2.setLocalOscillatorPhase(0.0);
+	t_complex unit = 1;
+	unit = 1 / sqrt(2) * unit;
+	B2.setTransferMatrix({ { unit, unit, unit, -unit } });
+	B2.setResponsivity(1);
+	B2.setAmplification(1e6);
+	B2.setNoiseAmplitude(15.397586549153788);
+	B2.setSamplingRate(SamplesPerSymbol);
+	B2.setDelay(9);
+	B2.setReferenceValue(0);
+
+
+/*	LocalOscillator B2{ vector<Signal*> { &S00 }, vector<Signal*> { &S01, &S02 } };
 	B2.setLocalOscillatorOpticalPower_dBm(-10);
 	B2.setLocalOscillatorPhase( 0.0 );
 
@@ -109,11 +123,11 @@ int main(){
 
 	BitDecider B9{ vector<Signal*> { &S10 }, vector<Signal*> { &S11 } };
 	B9.setReferenceValue(0);
-
-	BitErrorRate B10{ vector<Signal*> { &S11, &MQAM0 }, vector<Signal*> { &S12 } };
+	*/
+	BitErrorRate B10{ vector<Signal*> { &S01, &MQAM0 }, vector<Signal*> { &S02 } };
 	B10.setZ(1.96);
 
-	Sink B11{ vector<Signal*> { &S12 }, vector<Signal*> {} };
+	Sink B11{ vector<Signal*> { &S02 }, vector<Signal*> {} };
 	B11.setNumberOfSamples(50000);
 	B11.setDisplayNumberOfSamples(false);
 
@@ -121,7 +135,7 @@ int main(){
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11 } };
+	System MainSystem{ vector<Block*> { &B1, &B2, /*&B3, &B4, &B5, &B6, &B7, &B8, &B9,*/ &B10, &B11 } };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

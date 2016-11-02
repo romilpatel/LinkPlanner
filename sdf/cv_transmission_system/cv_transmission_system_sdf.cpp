@@ -1,10 +1,10 @@
 # include "netxpto.h"
 
 # include "sink.h"
-# include "BalancedBeamSplitter.h"
+# include "balanced_beam_splitter.h"
 # include "subtractor.h"
 # include "photodiode.h"
-# include "TIamplifier.h"
+# include "ti_amplifier.h"
 # include "local_oscillator.h"
 # include "discretizer.h"
 # include "delayer.h"

@@ -36,6 +36,10 @@ int main(){
 		NumberOfBits = NumberOfBits + 8;
 	}
 
+	int SamplesPerSymbol(16);
+
+
+
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
@@ -44,28 +48,6 @@ int main(){
 
 	OpticalSignal S00("S00.sgn");
 
-/*	OpticalSignal S01("S01.sgn");
-
-	OpticalSignal S02("S02.sgn");
-
-	OpticalSignal S03("S03.sgn");
-
-	OpticalSignal S04("S04.sgn");
-
-	TimeContinuousAmplitudeContinuousReal S05{ "S05.sgn" };
-
-	TimeContinuousAmplitudeContinuousReal S06{ "S06.sgn" };
-
-	TimeContinuousAmplitudeContinuousReal S07{ "S07.sgn" };
-
-	TimeContinuousAmplitudeContinuousReal S08{ "S08.sgn" };
-
-	TimeDiscreteAmplitudeContinuousReal S09{ "S09.sgn" };
-
-	TimeDiscreteAmplitudeContinuousReal STRANS{ "STRANS.sgn" };
-
-	TimeDiscreteAmplitudeContinuousReal S10{ "S10.sgn" };
-	*/
 	Binary S01{ "S01.sgn" };
 
 	Binary S02{ "S02.sgn" };
@@ -74,10 +56,6 @@ int main(){
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
-
-	
-
-	int SamplesPerSymbol(16);
 
 	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S00, &MQAM0 } };
 	B1.setOutputOpticalPower_dBm(-20);

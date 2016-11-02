@@ -13,7 +13,6 @@
 # include "testblock.h"
 # include "discarder.h"
 # include "m_qam_transmitter.h"
-
 # include "binary_source.h"
 
 
@@ -61,15 +60,17 @@ int main(){
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-<<<<<<< HEAD
-	int NumberOfBits(5000);
-=======
 	int NumberOfBits(1000);
->>>>>>> refs/remotes/netxpto/daniel
-	NumberOfBits = NumberOfBits + 512 + 8;
-	int SamplesPerSymbol(16);
+	if (NumberOfBits>=512)
+	{
+		NumberOfBits = NumberOfBits + 512 + 8;
+	}
+	else
+	{
+		NumberOfBits = NumberOfBits + 8;
+	}
 
-	//discarder B000{ vector<Signal*> { &MQAM0 }, vector<Signal*> { &MQAM00 } };
+	int SamplesPerSymbol(16);
 
 	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S00, &MQAM0 } };
 	B1.setOutputOpticalPower_dBm(-20);
@@ -105,8 +106,6 @@ int main(){
 
 	Delayer B8{ vector<Signal*> { &S09 }, vector<Signal*> { &S10 } };
 	B8.setDelay(9);
-
-//	testblock BTRANS{ vector<Signal*> { &S10 }, vector<Signal*> { &STRANS } };
 
 	BitDecider B9{ vector<Signal*> { &S10 }, vector<Signal*> { &S11 } };
 	B9.setReferenceValue(0);

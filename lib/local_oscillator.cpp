@@ -51,7 +51,6 @@ bool LocalOscillator::runBlock(void){
 	for (int i = 0; i < process; i++) {
 
 		inputSignals[0]->bufferGet(&signalValue);
-		//signalValuex = signalValue.x;
 
 		outputSignals[0]->bufferPut(signalValue);
 		outputSignals[1]->bufferPut(lo);

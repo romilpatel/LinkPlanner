@@ -13,6 +13,7 @@ public:
 
 	int delay = 9;
 
+	Delayer() {};
 	Delayer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	int auxint = 0;
 	

@@ -13,6 +13,7 @@ public:
 
 	int sampling = 16;
 
+	Discretizer() {};
 	Discretizer(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 
 	void initialize(void);

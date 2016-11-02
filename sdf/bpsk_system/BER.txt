@@ -1,0 +1,5 @@
+BER= -1.#IND
+Upper and Lower Confidence bounds for stipulated interval 
+Upper Bound= -1.#IND
+Lower Bound= -1.#IND
+Number of recieved bits =0

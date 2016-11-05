@@ -111,7 +111,8 @@ int main(){
 	B9.setReferenceValue(0);
 
 	BitErrorRate B10{ vector<Signal*> { &S11, &MQAM0 }, vector<Signal*> { &S12 } };
-	B10.setZ(1.96);
+	B10.setConfidence(0.95);
+	B10.setMidReportSize(100);
 
 	Sink B11{ vector<Signal*> { &S12 }, vector<Signal*> {} };
 	B11.setNumberOfSamples(50000);

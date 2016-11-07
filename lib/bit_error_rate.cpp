@@ -20,34 +20,21 @@ bool BitErrorRate::runBlock(void){
 	int ready = min(ready1, ready2);
 	int space = outputSignals[0]->space();
 
+	//////////////////////////////////////////////////////
+	ofstream translate;
+	translate.open("translate.txt", fstream::app);
+
 	int process = min(ready, space);
 
-	/*if (firstPass)
-	{
-		firstPass = 0;
+	//////////////////////////////////////////////////////
 
-		/* Computing z */ // This code converges in below 10 steps, exactness chosen in order to achieve this rapid convergence
-
-	/*	t_real x1 = -2;
-		t_real x2 = 2;
-		t_real x3 = x2 - (erf(x2 / sqrt(2)) + 1 - alpha)*(x2 - x1) / (erf(x2 / sqrt(2)) - erf(x1 / sqrt(2)));
-		t_real exacteness = 1e-15;
-
-		while (abs(erf(x3 / sqrt(2)) + 1 - alpha)>exacteness)
-		{
-			x3 = x2 - (erf(x2 / sqrt(2)) + 1 - alpha)*(x2 - x1) / (erf(x2 / sqrt(2)) - erf(x1 / sqrt(2)));
-			x1 = x2;
-			x2 = x3;
-		}
-
-		t_real z = -x3;
-	} */
-
+	//int process = min(ready, space);
 
 	/* Outputting final report */
 
 	if (process == 0)
 	{
+		translate.close();
 		/* Computing z */ // This code converges in below 10 steps, exactness chosen in order to achieve this rapid convergence
 
 		t_real x1 = -2;
@@ -158,8 +145,9 @@ bool BitErrorRate::runBlock(void){
 			outputSignals[0]->bufferPut(0);
 		}
 
-
-
+		//////////////////////////////////////////////////////
+		translate << signalValue << "\n";
+		//////////////////////////////////////////////////////
 
 	}
 	return true;

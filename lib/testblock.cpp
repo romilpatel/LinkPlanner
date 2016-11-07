@@ -6,7 +6,7 @@ testblock::testblock(vector<Signal *> &inputSignal, vector<Signal *> &outputSign
 	numberOfInputSignals = inputSignal.size();
 	numberOfOutputSignals = outputSignal.size();
 
-	B1.initializeBlock(vector<Signal*> {}, vector<Signal*> { &HMD00, &HMD01});
+	B1.initializeBlock(vector<Signal*> { inputSignal }, vector<Signal*> { &HMD00, &HMD01});
 	B2.initializeBlock(vector<Signal*> { &HMD00, &HMD01}, vector<Signal*> { &HMD02, &HMD03});
 	B3.initializeBlock(vector<Signal*> { &HMD02, &HMD03}, vector<Signal*> { &HMD04, &HMD05});
 	B4.initializeBlock(vector<Signal*> { &HMD04, &HMD05}, vector<Signal*> { &HMD06});

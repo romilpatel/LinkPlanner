@@ -45,7 +45,7 @@ class testblock : public SuperBlock {
 
 	Binary HMD10{ "HMD10.sgn" }; // Evaluated
 
-	Binary HMD11{ "HMD11.sgn" }; // Output
+	Binary HMD11{ "HMD11.sgn" }; // Output, not sure if needed
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################

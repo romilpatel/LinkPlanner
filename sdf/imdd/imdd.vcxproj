@@ -117,6 +117,7 @@
     <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
     <ClCompile Include="..\..\lib\im_modulator.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
+    <ClCompile Include="..\..\lib\pin.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="imdd_sdf.cpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
     <ClInclude Include="..\..\include\im_modulator.h" />
     <ClInclude Include="..\..\include\netxpto.h" />
+    <ClInclude Include="..\..\include\pin.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sink.h" />
   </ItemGroup>

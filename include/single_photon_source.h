@@ -5,7 +5,8 @@
 class SinglePhotonSource : public Block {
 
 	/* input parameters */
-	t_real polarization{ 0 };
+	vector<t_real> polarization{ 0 };
+	signal_value_type inputSignalValueType;
 
 public:
 
@@ -15,8 +16,8 @@ public:
 
 	bool runBlock(void);
 		
-	void setPolarization(t_real pol){ polarization = pol; };
-	t_real getPolarization() { return polarization; };
+	void setPolarization(vector<t_real> pol){ polarization = pol; };
+	vector<t_real> getPolarization() { return polarization; };
 };
 
 #endif

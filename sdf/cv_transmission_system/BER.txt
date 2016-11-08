@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 BER= 0.028
 Upper and Lower Confidence bounds for stipulated interval 
 Upper Bound= 0.0388107
 Lower Bound= 0.0173605
 Number of recieved bits =1000
+=======
+BER=0.02
+Upper and Lower Confidence bounds for stipulated interval 
+Upper Bound=0.0535278
+Lower Bound=-0.0113522
+Number of recieved bits =100
+>>>>>>> refs/remotes/netxpto/master

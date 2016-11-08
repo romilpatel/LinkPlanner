@@ -20,21 +20,12 @@ bool BitErrorRate::runBlock(void){
 	int ready = min(ready1, ready2);
 	int space = outputSignals[0]->space();
 
-	//////////////////////////////////////////////////////
-	ofstream translate;
-	translate.open("translate.txt", fstream::app);
-
 	int process = min(ready, space);
-
-	//////////////////////////////////////////////////////
-
-	//int process = min(ready, space);
 
 	/* Outputting final report */
 
 	if (process == 0)
 	{
-		translate.close();
 		/* Computing z */ // This code converges in below 10 steps, exactness chosen in order to achieve this rapid convergence
 
 		t_real x1 = -2;
@@ -145,9 +136,7 @@ bool BitErrorRate::runBlock(void){
 			outputSignals[0]->bufferPut(0);
 		}
 
-		//////////////////////////////////////////////////////
-		translate << signalValue << "\n";
-		//////////////////////////////////////////////////////
+
 
 	}
 	return true;

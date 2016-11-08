@@ -40,8 +40,7 @@ bool LocalOscillator::runBlock(void){
 
 	if (process == 0) return false;
 
-	t_complex signalValue;
-	//t_complex signalValuex;
+	t_complex signalValue; 
 	t_real real = cos(LocalOscillatorPhase);
 	t_real imag = sin(LocalOscillatorPhase);
 	t_complex lo(real, imag);

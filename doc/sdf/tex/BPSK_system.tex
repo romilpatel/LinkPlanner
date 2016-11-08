@@ -11,19 +11,23 @@
 \usepackage{multicol}
 \usepackage{graphicx}
 \RequirePackage{ltxcmds}[2010/12/07]
-\graphicspath{{./images/}}
+\graphicspath{{../../images/}}
+%\graphicspath
 \usepackage{float}
 \usepackage{amsfonts}
 
 % Document metadata
 \title{BPSK system}
 \author{ }
+\date{ }
 
 \begin{document}
 \renewcommand{\onlyinsubfile}[1]{}
 \renewcommand{\notinsubfile}[1]{#1}
 
 \maketitle
+
+\section{Introduction}
 
 This document describes the simulation BPSK system in back-to-back configuration. 
 
@@ -33,8 +37,6 @@ A simplified diagram of the system being simulated is presented in the Figure~\r
 \par
 The decoding of the optical signal is accomplished by an homodyne receiver, which combines the signal with a local oscillator with a user-determined phase. The homodyne receiver block output is then fed into a block that compares it with the original binary string and computes the Bit Error Rate (BER) along with it's upper and lower bounds for a certain user defined confidence level.
 
-%In broad terms, our QKD simulation is required to be able to send a random bit sequence (the key) by means of an optical signal, accomplish a full key reconstruction from the optical signal and subsequently perform a key security check through the evaluation of the Bit Error Rate (BER).
-
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{bpskdiagram.png}
@@ -42,26 +44,84 @@ The decoding of the optical signal is accomplished by an homodyne receiver, whic
 \label{fig:physicalsystem}
 \end{figure}
 
-%In the next section we will show that our simulation can currently accomplish all of the proposed objectives.
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c}
+System Blocks    & netxpto Blocks   \\ \hline
+BPSK Transmitter & MQamTransmitter  \\
+BPSK Receiver    & HomodyneReceiver \\
+BER Estimator    & BitErrorRate                      
+\end{tabular}
+\end{table}
+
+\section{System Input Parameters}
+
+This system takes into account the following input parameters:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c}
+System Parameters    			 & netxpto Parameters     \\ \hline
+Length of Binary String 			 & NumberOfBits           \\
+Number of Samples per Bit 		 & SamplesPerSymbol       \\
+Binary String Pattern Length 	 & pLength                \\
+Constellation 					 & iqAmplitudesValues     \\
+Signal Optical Power 			 & outOpticalPower\_dBm   \\
+Local Oscillator Optical Power	 & LOoutOpticalPower\_dBm \\
+Local Oscillator Phase 			 & LocalOscillatorPhase   \\
+Beam Splitter Transfer Matrix 	 & TransferMatrix         \\
+Photodiode Responsivity 			 & Responsivity           \\
+Amplification Factor 			 & Amplification          \\
+Amplitude of Thermal Noise        & NoiseAmplitude         \\
+Number of Samples to be discarded & Delay                  
+\end{tabular}
+\end{table}
+
+\section{Inputs}
+
+This system takes no inputs.
+
+\section{Outputs}
+
+This system outputs the following objects:
+\begin{itemize}
+\item Signals:
+\begin{itemize}
+\item Initial Binary String;
+\item Optical Signal with coded Binary String;
+\item Decoded Binary String;
+\end{itemize}
+\item Other:
+\begin{itemize}
+\item Bit Error Rate report in the form of a .txt file.
+\end{itemize}
+\end{itemize}
 
 \section{Simulation Results}
 
-The following results were obtained from the simulation using the following parameters:
+We consider the following scenarios:
+\begin{itemize}
+\item \ref{subsec:scenario1} Basic BPSK back to back with normally distributed thermal noise.
+\end{itemize}
+
+\subsection{BPSK with thermal noise}\label{subsec:scenario1}
+
+The following results were obtained from the simulation using the following input parameters:
 \begin{table}[H]
 \centering
 \begin{tabular}{rl}
-NumberOfBits=          & 1000                                                \\
-SamplesPerSymbol=      & 16                                                  \\
-pLength=               & 5                                                   \\
-iqAmplitudesValues=    & \{ \{ 1, 0 \}, \{ -1, 0 \} \}                             \\
-outOpticalPower\_dBm=   & -20                                                 \\
-LOoutOpticalPower\_dBm= & -10                                                 \\
-LocalOscillatorPhase=  & 0                                                   \\
-TransferMatrix=        & \{ \{ 1/sqrt(2), 1/sqrt(2), 1/sqrt(2), -1/sqrt(2) \} \} \\
-Responsivity=          & 1                                                   \\
-Amplification=         & 1e6                                                 \\
-NoiseAmplitude=        & 15.397586549153788                                  \\
-Delay=                 & 9                                                   \\
+NumberOfBits=           & 1000                                                     \\
+SamplesPerSymbol=       & 16                                                       \\
+pLength=                & 5                                                        \\
+iqAmplitudesValues=     & \{ \{ 1, 0 \}, \{ -1, 0 \} \}                            \\
+outOpticalPower\_dBm=   & -20                                                      \\
+LOoutOpticalPower\_dBm= & -10                                                      \\
+LocalOscillatorPhase=   & 0                                                        \\
+TransferMatrix=         & \{ \{ 1/sqrt(2), 1/sqrt(2), 1/sqrt(2), -1/sqrt(2) \} \}  \\
+Responsivity=           & 1                                                        \\
+Amplification=          & 1e6                                                      \\
+NoiseAmplitude=         & 15.397586549153788                                       \\
+Delay=                  & 9                                                        \\
 \end{tabular}
 \end{table}
 
@@ -137,7 +197,45 @@ The result of the homodyne detection is the binary string presented in~\ref{fig:
 \subsection{Homodyne Receiver}
 \subfile{../../lib/tex/homodyne_reciever}
 
-\subsection{Bit Error-Rate}
+
+\subsection{Bit Error Rate}
 \subfile{../../lib/tex/ber}
+
+\subsection{Local Oscillator}
+\subfile{../../lib/tex/localoscillator}
+
+\subsection{Beam Splitter}
+\subfile{../../lib/tex/beamsplitter}
+
+\subsection{Photodiode}
+\subfile{../../lib/tex/photodiode}
+
+\subsection{Subtractor}
+\subfile{../../lib/tex/subtractor}
+
+\subsection{Amplifier}
+\subfile{../../lib/tex/amplifier}
+
+\subsection{Discretizer}
+\subfile{../../lib/tex/discretizer}
+
+\subsection{Delayer}
+\subfile{../../lib/tex/delayer}
+
+\subsection{Bit Decider}
+\subfile{../../lib/tex/decider}
+
+\subsection{Bit Error Rate}
+\subfile{../../lib/tex/ber}
+
+\section{Known Problems}
+
+\begin{itemize}
+\item Homodyne Super-Block not functioning (problem in inputting signal into it)
+\item MQAM Transmitter PDF needs to be written
+\item 8 bits being lost of every signal
+\item If the bit string length is larger than 512, this first 512 bits are lost
+\item I don't think it is possible to declare nested subfiles, so I can't put the sub blocks into the homodyne receiver super block manual
+\end{itemize}
 
 \end{document}

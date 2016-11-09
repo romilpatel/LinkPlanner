@@ -49,7 +49,7 @@ int main(){
 	OpticalSignal S00("S00.sgn");
 
 	Binary S01{ "S01.sgn" };
-
+	 
 	Binary S02{ "S02.sgn" };
 
 

@@ -8,8 +8,6 @@
 *.ilk
 *.pdb
 *.tlog
-*.VC.opendb
-*.VC.db
 
 ######################
 # Matlab

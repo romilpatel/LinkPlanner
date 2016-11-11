@@ -60,7 +60,7 @@ void MQamTransmitter::set(int opt) {
 	if (opt==0) {
 		setMode(PseudoRandom);
 		setBitPeriod(1.0 / 50e9);
-		setPatternLength(5);
+		setPatternLength(3);
 		setNumberOfBits(10000);
 		setNumberOfSamplesPerSymbol(32);
 		setRollOffFactor(0.9);

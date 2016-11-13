@@ -33,7 +33,7 @@ This document describes the simulation BPSK system in back-to-back configuration
 
 \section{Functional Description}
 
-A simplified diagram of the system being simulated is presented in the Figure~\ref{fig:physicalsystem}. The system simulated takes a random binary string and encodes it in an optical bandpass signal, signal that afterwards is decoded in order to re-obtain the original binary string.
+A simplified diagram of the system being simulated is presented in the Figure~\ref{fig:homodynesystem}. The system simulated takes a random binary string and encodes it in an optical bandpass signal, signal that afterwards is decoded in order to re-obtain the original binary string.
 \par
 The decoding of the optical signal is accomplished by an homodyne receiver, which combines the signal with a local oscillator with a user-determined phase. The homodyne receiver block output is then fed into a block that compares it with the original binary string and computes the Bit Error Rate (BER) along with it's upper and lower bounds for a certain user defined confidence level.
 
@@ -41,7 +41,7 @@ The decoding of the optical signal is accomplished by an homodyne receiver, whic
 \centering
 \includegraphics[width=\linewidth]{bpskdiagram.png}
 \caption{Overview of the BPSK system being simulated.}
-\label{fig:physicalsystem}
+\label{fig:homodynesystem}
 \end{figure}
 
 \begin{table}[H]

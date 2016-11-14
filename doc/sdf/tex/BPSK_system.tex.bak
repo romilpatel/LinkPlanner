@@ -73,7 +73,7 @@ TransferMatrix         & Sets the transfer matrix of the beam splitter used in t
 Responsivity           & Sets the responsivity of the photodiodes used in the homodyne detector						 \\
 Amplification          & Sets the amplification of the trans-impedance amplifier used in the homodyne detector			 \\
 NoiseAmplitude         & Sets the amplitude of the gaussian thermal noise added in the homodyne detector				 \\
-Delay                  & Sets the delay factor of the homodyne detector
+Delay                  & Sets the delay factor
 \end{tabular}
 \end{table}
 

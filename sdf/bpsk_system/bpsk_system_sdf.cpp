@@ -88,7 +88,8 @@ int main(){
 	B2.setNoiseAmplitude(NoiseAmplitude);
 	B2.setSamplingRate(SamplesPerSymbol);
 	B2.setDelay(Delay);
-	B2.setReferenceValue(0);
+	B2.setPosReferenceValue(0);
+	B2.setNegReferenceValue(0);
 
 	BitErrorRate B3{ vector<Signal*> { &S01, &MQAM0 }, vector<Signal*> { &S02 } };
 	B3.setConfidence(Confidence);

@@ -29,15 +29,15 @@ bool BitDecider::runBlock(void){
 
 		t_real signalValue;
 		inputSignals[0]->bufferGet(&signalValue);
-		if (signalValue>0)
+		if (signalValue>posreferencevalue)
 		{
 			outputSignals[0]->bufferPut((t_binary) 0);
 		}
-		else if (signalValue<0)
+		else if (signalValue<negreferencevalue)
 		{
 			outputSignals[0]->bufferPut((t_binary) 1);
 		}
-		else if (signalValue==0)
+		else
 		{
 			// do nothing
 		}

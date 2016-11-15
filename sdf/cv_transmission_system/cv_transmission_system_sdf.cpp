@@ -115,8 +115,7 @@ int main(){
 	B8.setDelay(9);
 
 	BitDecider B9{ vector<Signal*> { &S10 }, vector<Signal*> { &S11 } };
-	B9.setReferenceValue(0);
-
+	
 	BitErrorRate B10{ vector<Signal*> { &S11, &MQAM0 }, vector<Signal*> { &S12 } };
 	B10.setConfidence(0.95);
 	B10.setMidReportSize(0);

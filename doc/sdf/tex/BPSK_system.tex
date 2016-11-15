@@ -10,6 +10,9 @@
 \usepackage{amsmath}
 \usepackage{multicol}
 \usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{tabulary}
+\usepackage{hhline}
 \RequirePackage{ltxcmds}[2010/12/07]
 \graphicspath{{../../images/}}
 %\graphicspath
@@ -33,7 +36,7 @@ This document describes the simulation BPSK system in back-to-back configuration
 
 \section{Functional Description}
 
-A simplified diagram of the system being simulated is presented in the Figure~\ref{fig:physicalsystem}. The system simulated takes a random binary string and encodes it in an optical bandpass signal, signal that afterwards is decoded in order to re-obtain the original binary string.
+A simplified diagram of the system being simulated is presented in the Figure~\ref{fig:homodynesystem}. The system simulated takes a random binary string and encodes it in an optical bandpass signal, signal that afterwards is decoded in order to re-obtain the original binary string.
 \par
 The decoding of the optical signal is accomplished by an homodyne receiver, which combines the signal with a local oscillator with a user-determined phase. The homodyne receiver block output is then fed into a block that compares it with the original binary string and computes the Bit Error Rate (BER) along with it's upper and lower bounds for a certain user defined confidence level.
 
@@ -41,7 +44,7 @@ The decoding of the optical signal is accomplished by an homodyne receiver, whic
 \centering
 \includegraphics[width=\linewidth]{bpskdiagram.png}
 \caption{Overview of the BPSK system being simulated.}
-\label{fig:physicalsystem}
+\label{fig:homodynesystem}
 \end{figure}
 
 \begin{table}[H]
@@ -60,21 +63,27 @@ This system takes into account the following input parameters:
 
 \begin{table}[H]
 \centering
-\begin{tabular}{c|c}
-System Parameters    			 & netxpto Parameters     \\ \hline
-Length of Binary String 			 & NumberOfBits           \\
-Number of Samples per Bit 		 & SamplesPerSymbol       \\
-Binary String Pattern Length 	 & pLength                \\
-Constellation 					 & iqAmplitudesValues     \\
-Signal Optical Power 			 & outOpticalPower\_dBm   \\
-Local Oscillator Optical Power	 & LOoutOpticalPower\_dBm \\
-Local Oscillator Phase 			 & LocalOscillatorPhase   \\
-Beam Splitter Transfer Matrix 	 & TransferMatrix         \\
-Photodiode Responsivity 			 & Responsivity           \\
-Amplification Factor 			 & Amplification          \\
-Amplitude of Thermal Noise        & NoiseAmplitude         \\
-Number of Samples to be discarded & Delay                  
-\end{tabular}
+\begin{tabulary}{1.0\textwidth}{|C|C|}
+\hline
+netxpto Parameters     & Description 																				 \\ \hline
+NumberOfBits           & Gives the number of bits in the encoded string												 \\ \hline  
+SamplesPerSymbol       & Establishes the number of samples each bit in the string is given							 \\ \hline  
+pLength                & Sets the bit generator pattern length														 \\ \hline  
+iqAmplitudesValues     & Sets the state constellation																	 \\ \hline  
+outOpticalPower\_dBm   & Sets the optical power, in units of dBm, of the sent signal									 \\ \hline  
+LOoutOpticalPower\_dBm & Sets the optical power, in units of dBm, of the local oscillator used in the homodyne detector \\ \hline  
+LocalOscillatorPhase   & Sets the initial phase of the local oscillator used in the homodyne detector					 \\ \hline  
+TransferMatrix         & Sets the transfer matrix of the beam splitter used in the homodyne detector					 \\ \hline  
+Responsivity           & Sets the responsivity of the photodiodes used in the homodyne detector						 \\ \hline  
+Amplification          & Sets the amplification of the trans-impedance amplifier used in the homodyne detector			 \\ \hline  
+NoiseAmplitude         & Sets the amplitude of the gaussian thermal noise added in the homodyne detector				 \\ \hline  
+Delay                  & Sets the delay factor of the homodyne detector												 \\ \hline  
+PosReferenceValue      & \multirow{2}{*}{Set the positive and negative reference values for the bit decision block}     \\ \cline{1-1}
+NegReferenceValue      & \\ \hline
+Confidence             & Sets the confidence interval for the calculated QBER                                           \\ \hline  
+MidReportSize          & Sets the number of bits between generated QBER mid-reports                  \\
+\hline                   
+\end{tabulary}
 \end{table}
 
 \section{Inputs}
@@ -87,13 +96,13 @@ This system outputs the following objects:
 \begin{itemize}
 \item Signals:
 \begin{itemize}
-\item Initial Binary String;
-\item Optical Signal with coded Binary String;
-\item Decoded Binary String;
+\item Initial Binary String; (MQAM$_0$)
+\item Optical Signal with coded Binary String; (S$_{00}$)
+\item Decoded Binary String; (S$_{01}$)
 \end{itemize}
 \item Other:
 \begin{itemize}
-\item Bit Error Rate report in the form of a .txt file.
+\item Bit Error Rate report in the form of a .txt file. (BER.txt)
 \end{itemize}
 \end{itemize}
 

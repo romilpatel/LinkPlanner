@@ -97,7 +97,8 @@ public:
 
 	void setDelay(int Delay) { B7.delay = Delay; };
 
-	void setReferenceValue(int ReferenceValue) { B8.referencevalue = ReferenceValue; };
+	void setPosReferenceValue(int ReferenceValue) { B8.posreferencevalue = ReferenceValue; };
+	void setNegReferenceValue(int ReferenceValue) { B8.negreferencevalue = ReferenceValue; };
 };
 
 #endif

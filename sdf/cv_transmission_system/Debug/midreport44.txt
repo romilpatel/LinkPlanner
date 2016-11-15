@@ -1,0 +1,5 @@
+BER= 0.00363636
+Upper and Lower Confidence bounds for stipulated interval 
+Upper Bound= 0.00556403
+Lower Bound= 0.00177967
+Number of recieved bits =4400

@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <complex>
+#include <iostream>
 
 #include "netxpto.h"
 #include "discretizer.h"
@@ -26,7 +27,6 @@ bool Discretizer::runBlock(void){
 	t_real out;
 
 	if (process == 0) return false;
-
 	
 
 	for (int i = 0; i < ready; i++) {
@@ -34,6 +34,8 @@ bool Discretizer::runBlock(void){
 		
 		inputSignals[0]->bufferGet(&in);
 		auxint = auxint + 1;
+
+		
 
 		if (auxint == sampling)
 		{

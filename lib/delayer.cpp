@@ -1,8 +1,10 @@
 #include <algorithm>
 #include <complex>
+#include <iostream>
 
 #include "netxpto.h"
 #include "delayer.h"
+
 
 
 void Delayer::initialize(void){
@@ -27,12 +29,14 @@ bool Delayer::runBlock(void){
 	if (process == 0) return false;
 
 
-	for (int i = 0; i < ready; i++) {
+
+
+	
+	for (int i = 0; i < process; i++) {
 
 		t_real signalValue;
 		inputSignals[0]->bufferGet(&signalValue);
 		auxint = auxint + 1;
-
 		if (auxint >= delay)
 		{
 			out = signalValue;

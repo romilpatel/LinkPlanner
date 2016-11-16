@@ -8,7 +8,7 @@
 # include "ti_amplifier.h"
 # include "bit_decider.h"
 # include "local_oscillator.h"
-# include "discretizer.h"
+# include "sampler.h"
 # include "delayer.h"
 # include "super_block_interface.h"
 
@@ -31,21 +31,15 @@ class testblock : public SuperBlock {
 
 	OpticalSignal HMD03{ "HMD03.sgn" }; // BS Out 2
 
-	TimeContinuousAmplitudeContinuousReal HMD04{ "HMD04.sgn" }; // PD Out1
+	TimeContinuousAmplitudeContinuousReal HMD04{ "HMD04.sgn" }; // Detected and Subtracted
 
-	TimeContinuousAmplitudeContinuousReal HMD05{ "HMD05.sgn" }; // PD Out2
+	TimeContinuousAmplitudeContinuousReal HMD05{ "HMD05.sgn" }; // Amplified
 
-	TimeContinuousAmplitudeContinuousReal HMD06{ "HMD06.sgn" }; // Subtracted
+	TimeDiscreteAmplitudeContinuousReal HMD06{ "HMD06.sgn" }; // Sampled and Delayed
 
-	TimeContinuousAmplitudeContinuousReal HMD07{ "HMD07.sgn" }; // Amplified
+	Binary HMD07{ "HMD07.sgn" }; // Evaluated
 
-	TimeDiscreteAmplitudeContinuousReal HMD08{ "HMD08.sgn" }; // Sampled
-
-	TimeDiscreteAmplitudeContinuousReal HMD09{ "HMD09.sgn" }; // Delayed
-
-	Binary HMD10{ "HMD10.sgn" }; // Evaluated
-
-	Binary HMD11{ "HMD11.sgn" }; // Output, not sure if needed
+	Binary HMD08{ "HMD08.sgn" }; // Output, not sure if needed
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
@@ -57,17 +51,13 @@ class testblock : public SuperBlock {
 
 	Photodiode B3;
 
-	Subtractor B4;
+	TIAmplifier B4;
 
-	TIAmplifier B5;
+	Sampler B5;
 
-	Discretizer B6;
+	BitDecider B6;
 
-	Delayer B7;
-
-	BitDecider B8;
-
-	SuperBlockInterface B9;
+	SuperBlockInterface B7;
 
 	/* Input Parameters */
 
@@ -90,15 +80,14 @@ public:
 
 	void  setResponsivity(t_real Responsivity) { B3.responsivity = Responsivity; };
 
-	void setAmplification(t_real Amplification) { B5.amplification = Amplification; };
-	void setNoiseAmplitude(t_real NoiseAmplitude) { B5.noiseamp = NoiseAmplitude; };
+	void setAmplification(t_real Amplification) { B4.amplification = Amplification; };
+	void setNoiseAmplitude(t_real NoiseAmplitude) { B4.noiseamp = NoiseAmplitude; };
 
-	void setSamplingRate(int Sampling) { B6.sampling = Sampling; };
+	void setSamplingRate(int Sampling) { B5.sampling = Sampling; };
+	void setDelay(int Delay) { B5.delay = Delay; };
 
-	void setDelay(int Delay) { B7.delay = Delay; };
-
-	void setPosReferenceValue(int ReferenceValue) { B8.posreferencevalue = ReferenceValue; };
-	void setNegReferenceValue(int ReferenceValue) { B8.negreferencevalue = ReferenceValue; };
+	void setPosReferenceValue(int ReferenceValue) { B6.posreferencevalue = ReferenceValue; };
+	void setNegReferenceValue(int ReferenceValue) { B6.negreferencevalue = ReferenceValue; };
 };
 
 #endif

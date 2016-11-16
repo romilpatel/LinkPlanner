@@ -17,12 +17,6 @@ void Photodiode::initialize(void){
 	outputSignals[0]->centralWavelength = outputOpticalWavelength;
 	outputSignals[0]->centralFrequency = outputOpticalFrequency;
 
-	outputSignals[1]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
-	outputSignals[1]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
-	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
-
-	outputSignals[1]->centralWavelength = outputOpticalWavelength;
-	outputSignals[1]->centralFrequency = outputOpticalFrequency;
 }
 
 
@@ -61,12 +55,9 @@ bool Photodiode::runBlock(void){
 		t_real power2 = abs(input2)*abs(input2) * 2;// sqrt(.5)/2*SPEED_OF_LIGHT*n*PI*radius*radius*E0*abs(input2)*abs(input2);
 		t_real current2 = responsivity * (power2 + sqrt(h*SPEED_OF_LIGHT / dt)*r*(sqrt(power2) + 1 / 2)); // assuming power in wats, need to check if this is correct
 
+		t_real out = current1 - current2;
 
-		outputSignals[0]->bufferPut(current1);
-		outputSignals[1]->bufferPut(current2);
-
-		t_real x = sqrt(h*SPEED_OF_LIGHT / dt)*r*(sqrt(power1) + 1 / 2);
-
+		outputSignals[0]->bufferPut(out);
 	}
 	return true;
 }

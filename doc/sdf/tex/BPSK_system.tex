@@ -18,6 +18,9 @@
 %\graphicspath
 \usepackage{float}
 \usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{footnote}
+\makesavenoteenv{tabular}
 
 % Document metadata
 \title{BPSK system}
@@ -61,16 +64,18 @@ BER Estimator    & BitErrorRate
 
 This system takes into account the following input parameters:
 
+\begin{savenotes}
 \begin{table}[H]
 \centering
 \begin{tabulary}{1.0\textwidth}{|C|C|}
 \hline
-netxpto Parameters     & Description 																				 \\ \hline
-NumberOfBits           & Gives the number of bits in the encoded string												 \\ \hline  
-SamplesPerSymbol       & Establishes the number of samples each bit in the string is given							 \\ \hline  
-pLength                & Sets the bit generator pattern length														 \\ \hline  
+\textbf{System Parameters}      & \textbf{Description} 																 \\ \hline
+NumberOfBits           & Gives the number of bits to be simulated		          										 \\ \hline  
+BitPeriod              & Sets the time between adjacent bits                                                           \\ \hline 
+SamplesPerSymbol       & Establishes the number of samples each bit in the string is given \footnotemark[1]	         \\ \hline
+pLength                & PRBS pattern length					                      									 \\ \hline  
 iqAmplitudesValues     & Sets the state constellation																	 \\ \hline  
-outOpticalPower\_dBm   & Sets the optical power, in units of dBm, of the sent signal									 \\ \hline  
+outOpticalPower\_dBm   & Sets the optical power, in units of dBm, at the transmitter output							 \\ \hline  
 LOoutOpticalPower\_dBm & Sets the optical power, in units of dBm, of the local oscillator used in the homodyne detector \\ \hline  
 LocalOscillatorPhase   & Sets the initial phase of the local oscillator used in the homodyne detector					 \\ \hline  
 TransferMatrix         & Sets the transfer matrix of the beam splitter used in the homodyne detector					 \\ \hline  
@@ -79,12 +84,15 @@ Amplification          & Sets the amplification of the trans-impedance amplifier
 NoiseAmplitude         & Sets the amplitude of the gaussian thermal noise added in the homodyne detector				 \\ \hline  
 Delay                  & Sets the delay factor of the homodyne detector												 \\ \hline  
 PosReferenceValue      & \multirow{2}{*}{Set the positive and negative reference values for the bit decision block}     \\ \cline{1-1}
-NegReferenceValue      & \\ \hline
+NegReferenceValue      &                                                                                                \\ \hline
 Confidence             & Sets the confidence interval for the calculated QBER                                           \\ \hline  
-MidReportSize          & Sets the number of bits between generated QBER mid-reports                  \\
+MidReportSize          & Sets the number of bits between generated QBER mid-reports                                     \\
 \hline                   
 \end{tabulary}
-\end{table}
+\end{table}		
+\end{savenotes}	
+
+\footnotetext[1]{Simulation time resolution = $\frac{\text{BitPeriod}}{\text{\text{SamplesPerSymbol}}}$}
 
 \section{Inputs}
 
@@ -240,11 +248,10 @@ The result of the homodyne detection is the binary string presented in~\ref{fig:
 \section{Known Problems}
 
 \begin{itemize}
-\item Homodyne Super-Block not functioning (problem in inputting signal into it)
+\item Homodyne Super-Block not functioning
 \item MQAM Transmitter PDF needs to be written
 \item 8 bits being lost of every signal
 \item If the bit string length is larger than 512, this first 512 bits are lost
-\item I don't think it is possible to declare nested subfiles, so I can't put the sub blocks into the homodyne receiver super block manual
 \end{itemize}
 
 \end{document}

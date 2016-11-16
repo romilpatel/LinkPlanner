@@ -6,12 +6,10 @@
 # include "photodiode.h"
 # include "ti_amplifier.h"
 # include "local_oscillator.h"
-# include "discretizer.h"
-# include "delayer.h"
+# include "sampler.h"
 # include "bit_decider.h"
 # include "bit_error_rate.h"
 # include "testblock.h"
-# include "discarder.h"
 # include "m_qam_transmitter.h"
 # include "binary_source.h"
 
@@ -60,19 +58,11 @@ int main(){
 
 	TimeContinuousAmplitudeContinuousReal S06{ "S06.sgn" };
 
-	TimeContinuousAmplitudeContinuousReal S07{ "S07.sgn" };
+	TimeDiscreteAmplitudeContinuousReal S07{ "S07.sgn" };
 
-	TimeContinuousAmplitudeContinuousReal S08{ "S08.sgn" };
+	Binary S08{ "S08.sgn" };
 
-	TimeDiscreteAmplitudeContinuousReal S09{ "S09.sgn" };
-
-	TimeDiscreteAmplitudeContinuousReal STRANS{ "STRANS.sgn" };
-
-	TimeDiscreteAmplitudeContinuousReal S10{ "S10.sgn" };
-
-	Binary S11{ "S11.sgn" };
-
-	Binary S12{ "S12.sgn" };
+	Binary S09{ "S09.sgn" };
 
 
 	// #####################################################################################################
@@ -80,7 +70,7 @@ int main(){
 	// #####################################################################################################
 
 	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S00, &MQAM0 } };
-	B1.setOutputOpticalPower(0);
+	B1.setOutputOpticalPower_dBm(-20);
 	B1.setMode(PseudoRandom);
 	B1.setBitPeriod(1.0 / 50e9);
 	B1.setPatternLength(5);
@@ -91,7 +81,7 @@ int main(){
 	B1.setSaveInternalSignals(false);
 
 	LocalOscillator B2{ vector<Signal*> { &S00 }, vector<Signal*> { &S01, &S02 } };
-	B2.setLocalOscillatorOpticalPower_dBm(-40);
+	B2.setLocalOscillatorOpticalPower_dBm(-20);
 	B2.setLocalOscillatorPhase(0.0);
 
 	BalancedBeamSplitter B3{ vector<Signal*> { &S01, &S02 }, vector<Signal*> { &S03, &S04 } };
@@ -99,36 +89,32 @@ int main(){
 	unit = 1 / sqrt(2) * unit;
 	B3.setTransferMatrix({ { unit, unit, unit, -unit } });
 
-	Photodiode B4{ vector<Signal*> { &S03, &S04 }, vector<Signal*> { &S05, &S06 } };
+	Photodiode B4{ vector<Signal*> { &S03, &S04 }, vector<Signal*> { &S05 } };
 	B4.setResponsivity(1);
 
-	Subtractor B5{ vector<Signal*> { &S05, &S06 }, vector<Signal*> { &S07 } };
+	TIAmplifier B5{ vector<Signal*> { &S05 }, vector<Signal*> { &S06 } };
+	B5.setAmplification(1e6);
+	B5.setNoiseAmplitude(1e-6);
 
-	TIAmplifier B6{ vector<Signal*> { &S07 }, vector<Signal*> { &S08 } };
-	B6.setAmplification(1e6);
-	B6.setNoiseAmplitude(1e-6);
+	Sampler B6{ vector<Signal*> { &S06 }, vector<Signal*> { &S07 } };
+	B6.setSamplingRate(SamplesPerSymbol);
+	B6.setDelay(9);
 
-	Discretizer B7{ vector<Signal*> { &S08 }, vector<Signal*> { &S09 } };
-	B7.setSamplingRate(SamplesPerSymbol);
-
-	Delayer B8{ vector<Signal*> { &S09 }, vector<Signal*> { &S10 } };
-	B8.setDelay(9);
-
-	BitDecider B9{ vector<Signal*> { &S10 }, vector<Signal*> { &S11 } };
+	BitDecider B7{ vector<Signal*> { &S07 }, vector<Signal*> { &S08 } };
 	
-	BitErrorRate B10{ vector<Signal*> { &S11, &MQAM0 }, vector<Signal*> { &S12 } };
-	B10.setConfidence(0.95);
-	B10.setMidReportSize(0);
+	BitErrorRate B8{ vector<Signal*> { &S08, &MQAM0 }, vector<Signal*> { &S09 } };
+	B8.setConfidence(0.95);
+	B8.setMidReportSize(0);
 
-	Sink B11{ vector<Signal*> { &S12 }, vector<Signal*> {} };
-	B11.setNumberOfSamples(50000);
-	B11.setDisplayNumberOfSamples(false);
+	Sink B9{ vector<Signal*> { &S09 }, vector<Signal*> {} };
+	B9.setNumberOfSamples(50000);
+	B9.setDisplayNumberOfSamples(false);
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11 } };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9 } };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

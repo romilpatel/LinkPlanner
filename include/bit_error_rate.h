@@ -14,6 +14,7 @@ public:
 	int firstPass=1;
 
 	t_real alpha = 0.05;
+	t_real z;
 	int m = 0;
 	int n = 0;
 

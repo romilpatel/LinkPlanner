@@ -4,6 +4,7 @@
 # include "discrete_to_continuous_time.h"
 # include "pulse_shaper.h"
 # include "im_modulator.h"
+# include "fiber.h"
 # include "pin.h"
 # include "sink.h"
 
@@ -21,7 +22,9 @@ int main() {
 
 	OpticalSignal S4{ "S4.sgn" };
 
-	TimeContinuousAmplitudeContinuousReal S5{ "S5.sgn" };
+	OpticalSignal S5{ "S5.sgn" };
+
+	TimeContinuousAmplitudeContinuousReal S6{ "S6.sgn" };
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
@@ -46,17 +49,20 @@ int main() {
 	ImModulator B4{ vector<Signal*> { &S3 }, vector<Signal*> { &S4 } };
 	B4.outputOpticalPower = 1e-3;
 
-	Pin B5{ vector<Signal*> { &S4 }, vector<Signal*> { &S5 } };
+	Fiber B5{ vector<Signal*> { &S4 }, vector<Signal*> { &S5 } };
+	B5.fiberLength = 50e3;
 
-	Sink B6{ vector<Signal*> { &S5 }, vector<Signal*> {} };
-	B6.setNumberOfSamples(5000);
-	B6.setDisplayNumberOfSamples(true);
+	Pin B6{ vector<Signal*> { &S5 }, vector<Signal*> { &S6 } };
+
+	Sink B7{ vector<Signal*> { &S6 }, vector<Signal*> {} };
+	B7.setNumberOfSamples(5000);
+	B7.setDisplayNumberOfSamples(true);
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6 } };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7 } };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

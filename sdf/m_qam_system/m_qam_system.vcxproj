@@ -39,7 +39,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO_anp\LinkPlanner\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO_anp\LinkPlanner\include;$(IncludePath);C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\include</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

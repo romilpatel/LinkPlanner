@@ -58,7 +58,7 @@ void MQamTransmitter::set(int opt) {
 	// Basic Configuration
  
 	if (opt==0) {
-		setMode(PseudoRandom);
+		setMode(Random);
 		setBitPeriod(1.0 / 50e9);
 		setPatternLength(3);
 		setNumberOfBits(10000);

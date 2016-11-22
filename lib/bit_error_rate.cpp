@@ -15,23 +15,10 @@ void BitErrorRate::initialize(void){
 
 bool BitErrorRate::runBlock(void){
 
-	int ready1 = inputSignals[0]->ready();
-	int ready2 = inputSignals[1]->ready();
-	int ready = min(ready1, ready2);
-	int space = outputSignals[0]->space();
-
-	int process = min(ready, space);
-
-	ofstream translate;
-	translate.open("translate.txt", fstream::app);
-
-	/* Outputting final report */
-
-	if (process == 0)
+	/* Computing z */ // This code converges in below 10 steps, exactness chosen in order to achieve this rapid convergence
+	if (firstPass)
 	{
-		translate.close();
-		/* Computing z */ // This code converges in below 10 steps, exactness chosen in order to achieve this rapid convergence
-
+		firstPass = 0;
 		t_real x1 = -2;
 		t_real x2 = 2;
 		t_real x3 = x2 - (erf(x2 / sqrt(2)) + 1 - alpha)*(x2 - x1) / (erf(x2 / sqrt(2)) - erf(x1 / sqrt(2)));
@@ -44,8 +31,25 @@ bool BitErrorRate::runBlock(void){
 			x2 = x3;
 		}
 
-		t_real z = -x3;
-		
+		z = -x3;
+	}
+
+	int ready1 = inputSignals[0]->ready();
+	int ready2 = inputSignals[1]->ready();
+	int ready = min(ready1, ready2);
+	int space = outputSignals[0]->space();
+
+	int process = min(ready, space);
+
+	ofstream translate2;
+	translate2.open("translate2.txt", fstream::app);
+
+	/* Outputting final report */
+
+	if (process == 0)
+	{
+		translate2.close();
+
 		/* Calculating BER and bounds */
 
 		t_real NumberOfBits = recievedbits;
@@ -61,10 +65,10 @@ bool BitErrorRate::runBlock(void){
 		ofstream myfile;
 		myfile.open("BER.txt");
 		myfile << "BER= " << BER << "\n";
-		myfile << "Upper and Lower Confidence bounds for stipulated interval \n";
+		myfile << "Upper and lower confidence bounds for " << (1 - alpha)*100 << "% confidence level \n";
 		myfile << "Upper Bound= " << UpperBound << "\n";
 		myfile << "Lower Bound= " << LowerBound << "\n";
-		myfile << "Number of recieved bits =" << NumberOfBits << "\n";
+		myfile << "Number of received bits =" << NumberOfBits << "\n";
 		myfile.close();
 		return false;
 	}
@@ -81,22 +85,6 @@ bool BitErrorRate::runBlock(void){
 		/* Outputting mid reports */
 		if (m > 0)
 		{
-			/* Computing z */ // This code converges in below 10 steps, exactness chosen in order to achieve this rapid convergence
-
-			t_real x1 = -2;
-			t_real x2 = 2;
-			t_real x3 = x2 - (erf(x2 / sqrt(2)) + 1 - alpha)*(x2 - x1) / (erf(x2 / sqrt(2)) - erf(x1 / sqrt(2)));
-			t_real exacteness = 1e-15;
-
-			while (abs(erf(x3 / sqrt(2)) + 1 - alpha)>exacteness)
-			{
-				x3 = x2 - (erf(x2 / sqrt(2)) + 1 - alpha)*(x2 - x1) / (erf(x2 / sqrt(2)) - erf(x1 / sqrt(2)));
-				x1 = x2;
-				x2 = x3;
-			}
-
-			t_real z = -x3;
-
 			if (remainder(recievedbits, m) == 0 & recievedbits>0)
 			{
 				n++;
@@ -120,10 +108,10 @@ bool BitErrorRate::runBlock(void){
 				ofstream myfile;
 				myfile.open(filename);
 				myfile << "BER= " << BER << "\n";
-				myfile << "Upper and Lower Confidence bounds for stipulated interval \n";
+				myfile << "Upper and lower confidence bounds for" << 1-alpha << "confidence level \n";
 				myfile << "Upper Bound= " << UpperBound << "\n";
 				myfile << "Lower Bound= " << LowerBound << "\n";
-				myfile << "Number of recieved bits =" << NumberOfBits << "\n";
+				myfile << "Number of received bits =" << NumberOfBits << "\n";
 				myfile.close();
 			}
 		}
@@ -134,12 +122,12 @@ bool BitErrorRate::runBlock(void){
 		{
 			coincidences++;
 			outputSignals[0]->bufferPut(1);
-			translate << 1 << "\n";
+			translate2 << 1 << "\n";
 		}
 		else
 		{
 			outputSignals[0]->bufferPut(0);
-			translate << 0 << "\n";
+			translate2 << 0 << "\n";
 		}
 
 

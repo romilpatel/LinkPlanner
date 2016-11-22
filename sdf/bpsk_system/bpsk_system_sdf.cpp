@@ -2,12 +2,10 @@
 
 # include "sink.h"
 # include "balanced_beam_splitter.h"
-# include "subtractor.h"
 # include "photodiode.h"
 # include "ti_amplifier.h"
 # include "local_oscillator.h"
-# include "discretizer.h"
-# include "delayer.h"
+# include "sampler.h"
 # include "bit_decider.h"
 # include "bit_error_rate.h"
 # include "testblock.h"

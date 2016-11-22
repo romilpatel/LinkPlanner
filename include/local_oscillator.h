@@ -2,6 +2,7 @@
 # define PROGRAM_INCLUDE_LOCAL_OSCILLATOR_H_
 
 #include <complex>
+#include <random>
 
 # include "netxpto.h"
 # include <vector>
@@ -22,6 +23,10 @@ public:
 	double outputOpticalWavelength{ 1550e-9 };
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
 	double LocalOscillatorPhase = 0;
+
+	t_real h = 6.62607004e-34;
+	default_random_engine generator1;
+	default_random_engine generator2;
 
 	/* Methods */
 	LocalOscillator() {};

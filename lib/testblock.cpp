@@ -8,14 +8,12 @@ testblock::testblock(vector<Signal *> &inputSignal, vector<Signal *> &outputSign
 
 	B1.initializeBlock(vector<Signal*> { inputSignal }, vector<Signal*> { &HMD00, &HMD01 });
 	B2.initializeBlock(vector<Signal*> { &HMD00, &HMD01 }, vector<Signal*> { &HMD02, &HMD03 });
-	B3.initializeBlock(vector<Signal*> { &HMD02, &HMD03 }, vector<Signal*> { &HMD04, &HMD05 });
-	B4.initializeBlock(vector<Signal*> { &HMD04, &HMD05 }, vector<Signal*> { &HMD06});
-	B5.initializeBlock(vector<Signal*> { &HMD06 }, vector<Signal*> { &HMD07 });
-	B6.initializeBlock(vector<Signal*> { &HMD07 }, vector<Signal*> { &HMD08 });
-	B7.initializeBlock(vector<Signal*> { &HMD08 }, vector<Signal*> { &HMD09 });
-	B8.initializeBlock(vector<Signal*> { &HMD09 }, vector<Signal*> { outputSignal });
+	B3.initializeBlock(vector<Signal*> { &HMD02, &HMD03 }, vector<Signal*> { &HMD04 });
+	B4.initializeBlock(vector<Signal*> { &HMD04 }, vector<Signal*> { &HMD05 });
+	B5.initializeBlock(vector<Signal*> { &HMD05 }, vector<Signal*> { &HMD06 });
+	B6.initializeBlock(vector<Signal*> { &HMD06 }, vector<Signal*> { outputSignal });
 
-	setModuleBlocks({ &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8 });
+	setModuleBlocks({ &B1, &B2, &B3, &B4, &B5, &B6 });
 	
 };
 /*

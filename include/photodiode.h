@@ -16,7 +16,8 @@ public:
 	t_real responsivity = 1;
 	t_real h = 6.62607004e-34;
 
-	default_random_engine generator;
+	default_random_engine generator1;
+	default_random_engine generator2;
 
 	Photodiode() {};
 	Photodiode(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};

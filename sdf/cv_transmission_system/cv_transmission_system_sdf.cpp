@@ -70,7 +70,7 @@ int main(){
 	// #####################################################################################################
 
 	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S00, &MQAM0 } };
-	B1.setOutputOpticalPower_dBm(-20);
+	B1.setOutputOpticalPower(0);
 	B1.setMode(PseudoRandom);
 	B1.setBitPeriod(1.0 / 50e9);
 	B1.setPatternLength(5);
@@ -81,8 +81,8 @@ int main(){
 	B1.setSaveInternalSignals(false);
 
 	LocalOscillator B2{ vector<Signal*> { &S00 }, vector<Signal*> { &S01, &S02 } };
-	B2.setLocalOscillatorOpticalPower_dBm(-20);
-	B2.setLocalOscillatorPhase(0.0);
+	B2.setLocalOscillatorOpticalPower_dBm(-30);
+	B2.setLocalOscillatorPhase(M_PI_4);
 
 	BalancedBeamSplitter B3{ vector<Signal*> { &S01, &S02 }, vector<Signal*> { &S03, &S04 } };
 	t_complex unit = 1;
@@ -94,7 +94,7 @@ int main(){
 
 	TIAmplifier B5{ vector<Signal*> { &S05 }, vector<Signal*> { &S06 } };
 	B5.setAmplification(1e6);
-	B5.setNoiseAmplitude(1e-6);
+	B5.setNoiseAmplitude(3.162277e-5);
 
 	Sampler B6{ vector<Signal*> { &S06 }, vector<Signal*> { &S07 } };
 	B6.setSamplingRate(SamplesPerSymbol);

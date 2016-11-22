@@ -13,12 +13,14 @@
 \begin{multicols}{2}
 	\begin{itemize}
 		\item setResponsivity
+		\item useShotNoise
 	\end{itemize}
 \end{multicols}
 
 \subsection*{Functional Description}
 
-This block accepts two complex signals and outputs two real signals built from an evaluation of the power of the input signals.
+This block accepts two complex signals and outputs two real signals built from an evaluation of the power of the input signals. This block also adds random gaussian distributed shot noise with an amplitude defined by the power of the inputs. The responsivity is defined by the value of \textit{Responsivity} and the shot noise is activated by a boolean check fed into the block by the \textit{useShotNoise} parameters.
+
 
 \subsection*{Input Signals}
 

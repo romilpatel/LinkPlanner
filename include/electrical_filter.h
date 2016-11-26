@@ -4,32 +4,35 @@
 # include "netxpto.h"
 # include <vector>
 
-// Implements an electrical filter
-class ElectricalFilter : public Block {
+using namespace std;
 
-	bool firstTime{ true };
+enum  ElectricalShapeFilter { RaisedCosine1 };
+
+// Implements an electrical filter
+class ElectricalFilter : public FIR_Filter {
+
+	ElectricalShapeFilter filterType{ RaisedCosine1 };
+
+	int impulseResponseTimeLength{ 16 };
+
+	double rollOffFactor{ 0.9 };
+
 
 public:
 
-	int sampling = 16;
-	int delay = 9;
-
-	int AuxInt = 0;
-
-	ElectricalFilter() {};
-	ElectricalFilter(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	ElectricalFilter() :FIR_Filter(){};
+	ElectricalFilter(vector<Signal*> &InputSig, vector<Signal*> OutputSig) :FIR_Filter(InputSig, OutputSig){};
 
 	void initialize(void);
-	bool runBlock(void);
 
-	void setSamplingRate(int Sampling) { sampling = Sampling; }
-	void setDelay(int Delay) { delay = Delay; }
+	void setImpulseResponseTimeLength(int impResponseTimeLength){ impulseResponseTimeLength = impResponseTimeLength; };
+	int const getImpulseResponseTimeLength(void) { return impulseResponseTimeLength; };
 
-private:
+	void setFilterType(ElectricalShapeFilter fType){ filterType = fType; };
+	ElectricalShapeFilter const getFilterType(void){ return filterType; };
 
-
-
-
+	void setRollOffFactor(double rOffFactor){ rollOffFactor = rOffFactor; };
+	double const getRollOffFactor(){ return rollOffFactor; };
 
 };
 

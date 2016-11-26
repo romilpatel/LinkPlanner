@@ -26,14 +26,7 @@ bool Sampler::runBlock(void){
 	t_real in;
 	t_real out;
 
-	ofstream translate;
-	translate.open("translate.txt", fstream::app);
-
-	if (process == 0)
-	{
-		translate.close();
-		return false;
-	}
+	if (process == 0) return false;
 
 	for (int i = 0; i < ready; i++) {
 
@@ -51,8 +44,6 @@ bool Sampler::runBlock(void){
 			{
 				out = in;
 				outputSignals[0]->bufferPut(out);
-				translate << out << "\n";
-
 			}
 		}
 

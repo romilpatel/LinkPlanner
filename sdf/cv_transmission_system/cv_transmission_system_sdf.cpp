@@ -12,7 +12,7 @@
 # include "testblock.h"
 # include "m_qam_transmitter.h"
 # include "binary_source.h"
-
+# include "electrical_filter.h"
 
 #define _USE_MATH_DEFINES // for C
 #include <math.h>
@@ -58,11 +58,13 @@ int main(){
 
 	TimeContinuousAmplitudeContinuousReal S06{ "S06.sgn" };
 
-	TimeDiscreteAmplitudeContinuousReal S07{ "S07.sgn" };
+	TimeContinuousAmplitudeContinuousReal S07{ "S07.sgn" };
 
-	Binary S08{ "S08.sgn" };
+	TimeDiscreteAmplitudeContinuousReal S08{ "S08.sgn" };
 
 	Binary S09{ "S09.sgn" };
+
+	Binary S10{ "S10.sgn" };
 
 
 	// #####################################################################################################
@@ -70,7 +72,7 @@ int main(){
 	// #####################################################################################################
 
 	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S00, &MQAM0 } };
-	B1.setOutputOpticalPower(0);
+	B1.setOutputOpticalPower_dBm(-40);
 	B1.setMode(PseudoRandom);
 	B1.setBitPeriod(1.0 / 50e9);
 	B1.setPatternLength(5);
@@ -81,8 +83,8 @@ int main(){
 	B1.setSaveInternalSignals(false);
 
 	LocalOscillator B2{ vector<Signal*> { &S00 }, vector<Signal*> { &S01, &S02 } };
-	B2.setLocalOscillatorOpticalPower_dBm(-30);
-	B2.setLocalOscillatorPhase(M_PI_4);
+	B2.setLocalOscillatorOpticalPower_dBm(-20);
+	B2.setLocalOscillatorPhase(PI);
 
 	BalancedBeamSplitter B3{ vector<Signal*> { &S01, &S02 }, vector<Signal*> { &S03, &S04 } };
 	t_complex unit = 1;
@@ -94,27 +96,29 @@ int main(){
 
 	TIAmplifier B5{ vector<Signal*> { &S05 }, vector<Signal*> { &S06 } };
 	B5.setAmplification(1e6);
-	B5.setNoiseAmplitude(3.162277e-5);
+	B5.setNoiseAmplitude(3.1937e-5); //noise levels for project's result
 
-	Sampler B6{ vector<Signal*> { &S06 }, vector<Signal*> { &S07 } };
-	B6.setSamplingRate(SamplesPerSymbol);
-	B6.setDelay(9);
+	ElectricalFilter B6{ vector<Signal*> { &S06 }, vector<Signal*> { &S07 } };
 
-	BitDecider B7{ vector<Signal*> { &S07 }, vector<Signal*> { &S08 } };
+	Sampler B7{ vector<Signal*> { &S07 }, vector<Signal*> { &S08 } };
+	B7.setSamplingRate(SamplesPerSymbol);
+	B7.setDelay(17);
+
+	BitDecider B8{ vector<Signal*> { &S08 }, vector<Signal*> { &S09 } };
 	
-	BitErrorRate B8{ vector<Signal*> { &S08, &MQAM0 }, vector<Signal*> { &S09 } };
-	B8.setConfidence(0.95);
-	B8.setMidReportSize(0);
+	BitErrorRate B9{ vector<Signal*> { &S09, &MQAM0 }, vector<Signal*> { &S10 } };
+	B9.setConfidence(0.95);
+	B9.setMidReportSize(0);
 
-	Sink B9{ vector<Signal*> { &S09 }, vector<Signal*> {} };
-	B9.setNumberOfSamples(50000);
-	B9.setDisplayNumberOfSamples(false);
+	Sink B10{ vector<Signal*> { &S10 }, vector<Signal*> {} };
+	B10.setNumberOfSamples(50000);
+	B10.setDisplayNumberOfSamples(false);
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9 } };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10 } };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

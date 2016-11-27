@@ -58,7 +58,7 @@ bool Photodiode::runBlock(void){
 		t_real power2 = abs(input2)*abs(input2) * 4;// sqrt(.5)/2*SPEED_OF_LIGHT*n*PI*radius*radius*E0*abs(input2)*abs(input2);
 		t_real current2 = responsivity * power2; // +sqrt(h*SPEED_OF_LIGHT / dt)*noise2*(sqrt(power2) + 1 / 2)); // assuming power in wats, need to check if this is correct
 
-		t_real out = current2 - current1;
+		t_real out = current1 - current2;
 
 		outputSignals[0]->bufferPut(out);
 	}

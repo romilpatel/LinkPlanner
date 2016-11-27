@@ -60,18 +60,23 @@ bool LocalOscillator::runBlock(void){
 		t_complex signalValue;
 		inputSignals[0]->bufferGet(&signalValue);
 
-		t_real powerlooutsqrted = sqrt(powerlo) + sqrt(h*SPEED_OF_LIGHT / (dt * wvlgth))*noiselo*1/2;
+        if (shotnoise) {
+            t_real powerlooutsqrted = sqrt(powerlo) + sqrt(h*SPEED_OF_LIGHT / (dt * wvlgth))*noiselo*1/2;
+            t_complex loout = .5*powerlooutsqrted*lo;
+            
+            t_real powersignal = 4 * norm(signalValue);
+            t_real phase = arg(signalValue);
+            t_complex signal(cos(phase), sin(phase));
+            t_real powersignaloutsqrted = sqrt(powersignal) + sqrt(h*SPEED_OF_LIGHT / (dt*wvlgth))*noisesignal*1 / 2;
+            t_complex signalout = .5*powersignaloutsqrted*signal;
+        } else
+        {
+            loout=lo;
+            signalout=signalValue;
+        }
+		
 
-		t_complex loout = .5*powerlooutsqrted*lo;
-
-		t_real powersignal = 4 * norm(signalValue);
-		t_real phase = arg(signalValue);
-		t_complex signal(cos(phase), sin(phase));
-
-		t_real powersignaloutsqrted = sqrt(powersignal) + sqrt(h*SPEED_OF_LIGHT / (dt*wvlgth))*noisesignal*1 / 2;
-
-		t_complex signalout = .5*powersignaloutsqrted*signal;
-
+        
 		outputSignals[0]->bufferPut(signalout);
 		outputSignals[1]->bufferPut(loout);
 

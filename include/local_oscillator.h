@@ -23,6 +23,8 @@ public:
 	double outputOpticalWavelength{ 1550e-9 };
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
 	double LocalOscillatorPhase = 0;
+    
+    bool shotnoise{true};
 
 	t_real h = 6.62607004e-34;
 	default_random_engine generator1;
@@ -38,6 +40,7 @@ public:
 	void setLocalOscillatorOpticalPower(double outOpticalPower) { outputOpticalPower = outOpticalPower; }
 	void setLocalOscillatorOpticalPower_dBm(double outOpticalPower_dBm) { outputOpticalPower = 1e-3*pow(10, outOpticalPower_dBm / 10); }
 	void setLocalOscillatorPhase(double LOPhase) { LocalOscillatorPhase= LOPhase; }
+    void useShotNoise(bool ShotNoise) { shotnoise=ShotNoise; }
 
 };
 

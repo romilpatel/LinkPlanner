@@ -33,11 +33,12 @@ void LocalOscillator::initialize(void){
 bool LocalOscillator::runBlock(void){
 	int ready = inputSignals[0]->ready();
 
-/*  normal_distribution<double> distribution(0, 1);
+  normal_distribution<double> distribution(0, 1);
 	t_real dt = inputSignals[0]->getSamplingPeriod();
+	t_real wvlgth = inputSignals[0]->getCentralWavelength();
 	t_real noisesignal;
 	t_real noiselo;
-*/	int space0 = outputSignals[0]->space();
+	int space0 = outputSignals[0]->space();
 	int space1 = outputSignals[1]->space();
 	int space = min(space0, space1);
 
@@ -45,28 +46,42 @@ bool LocalOscillator::runBlock(void){
 
 	if (process == 0) return false;
 
-	t_complex signalValue; 
 	t_real real = cos(LocalOscillatorPhase);
 	t_real imag = sin(LocalOscillatorPhase);
 	t_complex lo(real, imag);
-	lo = .5*sqrt(outputOpticalPower)*lo;
-	//t_real powerlo = abs(lo)*abs(lo) * 2;
+	t_real powerlo = outputOpticalPower;
 
 	for (int i = 0; i < process; i++) {
 
-		//noisesignal = distribution(generator1);
-		//noiselo = distribution(generator2);
 
+		noisesignal = distribution(generator1);
+		noiselo = distribution(generator2);
+
+		t_complex signalValue;
 		inputSignals[0]->bufferGet(&signalValue);
 
-		//t_real powerloout = powerlo + sqrt(h*SPEED_OF_LIGHT / dt)*noiselo*(sqrt(powerlo) + 1 / 2);
-		//t_complex loout = .5*sqrt(powerloout)*lo;
+		t_complex loout;
+		t_complex signalout;
 
-		//t_real powersignal = abs(signalValue)*abs(signalValue) * 2;
-		//t_real powersignalout = powersignal + sqrt(h*SPEED_OF_LIGHT / dt)*noiselo*(sqrt(powersignal) + 1 / 2);
+        if (shotnoise) {
+            t_real powerlooutsqrted = sqrt(powerlo) + sqrt(h*SPEED_OF_LIGHT / (dt * wvlgth))*noiselo*1/2;
+            loout = .5*powerlooutsqrted*lo;
+            
+            t_real powersignal = 4 * norm(signalValue);
+            t_real phase = arg(signalValue);
+            t_complex signal(cos(phase), sin(phase));
+            t_real powersignaloutsqrted = sqrt(powersignal) + sqrt(h*SPEED_OF_LIGHT / (dt*wvlgth))*noisesignal*1 / 2;
+            signalout = .5*powersignaloutsqrted*signal;
+        } else
+        {
+			loout = lo;
+			signalout = signalValue;
+        }
+		
 
-		outputSignals[0]->bufferPut(signalValue);
-		outputSignals[1]->bufferPut(lo);
+        
+		outputSignals[0]->bufferPut(signalout);
+		outputSignals[1]->bufferPut(loout);
 
 	}
 	return true;

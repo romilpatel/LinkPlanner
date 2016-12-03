@@ -7,15 +7,17 @@
 \usepackage[english]{babel}
 \setlength{\parskip}{0.03cm plus4mm minus3mm}
 \RequirePackage{ltxcmds}[2010/12/07]
-
+\usepackage{array}
 \usepackage{hyperref}
+\renewcommand{\arraystretch}{1.5}
+%\setlength{\arrayrulewidth}{1mm}
 %opening
 \title{MQAM transmitter}
 
 \begin{document}
 
 \maketitle
-This block generates one or two optical signals. It can also generate a binary signal. It allows the user to controll the whole system. This block is a big block of code that combines all of the other in order to generate a optical signal. A schematic representation of this block is shown in figure \ref{MQAM_transmitter_block_diagram}.
+This block generates one or two optical signals. A schematic representation of this block is shown in figure \ref{MQAM_transmitter_block_diagram}.
 
 \begin{figure}
 	\centering
@@ -25,24 +27,44 @@ This block generates one or two optical signals. It can also generate a binary s
 
 \subsection*{Input parameters}
 
-This block has a special set of functions that allow the user to change the basic configuration of the transmitter. This functions are listed bellow.
+This block has a special set of functions that allow the user to change the basic configuration of the transmitter. The list of input parameters, functions used to change them and the values that each one can take are summarized in table \ref{table}.
 
-\begin{itemize}
-	\item setMode(PseudoRandom);
-	\item setBitPeriod(1.0/50e9);
-	\linebreak (double)
-	\item setPatternLength(3);
-	\linebreak (int)
-	\item setNumberOfBits(10000);
-	\linebreak (long)
-	\item setNumberOfSamplesPerSymbol(32);
-	\linebreak (int)
-	\item setRollOffFactor(0.9);
-	\linebreak (double $\in$ [0,1])
-	\item setIqAmplitudes(\{ \{ 1, 1 \}, \{ -1, 1 \}, \{ -1, -1 \}, \{ 1, -1 \} \});
-	\item setOutputOpticalPower\_dBm(0);
-	\item setSaveInternalSignals(true);
-\end{itemize}
+\begin{table}
+\begin{center}
+	\begin{tabular}{| m{5cm} | m{5,5cm} | m{5cm} | }
+		\hline 
+		\textbf{Input parameters} & \textbf{Function} & \textbf{Accepted values} \\ \hline
+		Mode & setMode() & PseudoRandom \newline Random \newline DeterministicAppendZeros \newline DeterministicCyclic \\ \hline
+		Bit period & setBitPeriod() & double \\ \hline
+		Pattern length & setPatternLength() & int \\ \hline
+		Number of bits & setNumberOfBits() & long \\ \hline
+		Number of samples per symbol & setNumberOfSamplesPerSymbol() & int \\ \hline
+		Roll of factor & setRollOfFactor() & double $\in$ [0,1] \\ \hline
+		IQ amplitudes & setIqAmplitudes() & Vector of coordinate points in the I-Q plane \newline \textbf{Example} for a 4-qam mapping: \{ \{ 1.0, 1.0 \}, \{ -1.0, 1.0 \}, \{ -1.0, -1.0 \}, \{ 1.0, -1.0 \} \} \\ \hline
+		Output optical power & setOutputOpticalPower() & int \\ \hline
+		Save internal signals & setSaveInternalSignals() & True/False \\
+		\hline
+	\end{tabular}
+	\caption{List of input parameters of the block MQAM transmitter} \label{table} 
+\end{center}
+\end{table}
+
+%\begin{itemize}
+%	\item setMode(PseudoRandom);
+%	\item setBitPeriod(1.0/50e9);
+%	\linebreak (double)
+%	\item setPatternLength(3);
+%	\linebreak (int)
+%	\item setNumberOfBits(10000);
+%	\linebreak (long)
+%	\item setNumberOfSamplesPerSymbol(32);
+%	\linebreak (int)
+%	\item setRollOffFactor(0.9);
+%	\linebreak (double $\in$ [0,1])
+%	\item setIqAmplitudes(\{ \{ 1, 1 \}, \{ -1, 1 \}, \{ -1, -1 \}, \{ 1, -1 \} \});
+%	\item setOutputOpticalPower\_dBm(0);
+%	\item setSaveInternalSignals(true);
+%\end{itemize}
 
 
 \subsection*{Methods}
@@ -104,7 +126,7 @@ double const getSeeBeginningOfImpulseResponse(void)\{ return B5.getSeeBeginningO
 
 \subsection*{Functional description}
 
-This block can generate one or two optical signals. If it generates two they have polarizations along perpendicular axis so that it is possible to combine them to produce a signal with any type of polarization. It also generates a binary signal that should be used to measure the Bit Error Rate (BER). 
+This block generates an optical signal (output signal 1 in figure \ref{MQAM_transmitter_block_diagram}). The binary signal generated in the internal block Binary Source (block B1 in figure \ref{MQAM_transmitter_block_diagram}) can be used to perform a Bit Error Rate (BER) measurement and in that sense it works as an extra output signal (output signal 2 in figure \ref{MQAM_transmitter_block_diagram}). 
 
 \subsection*{Output Signals}
 

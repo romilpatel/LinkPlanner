@@ -83,7 +83,7 @@
     <ClCompile Include="..\..\lib\sampler.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface.cpp" />
-    <ClCompile Include="..\..\lib\testblock.cpp" />
+    <ClCompile Include="..\..\lib\homodyne_receiver.cpp" />
     <ClCompile Include="..\..\lib\ti_amplifier.cpp" />
     <ClCompile Include="bpsk_system_sdf.cpp" />
   </ItemGroup>
@@ -105,7 +105,7 @@
     <ClInclude Include="..\..\include\sampler.h" />
     <ClInclude Include="..\..\include\sink.h" />
     <ClInclude Include="..\..\include\super_block_interface.h" />
-    <ClInclude Include="..\..\include\testblock.h" />
+    <ClInclude Include="..\..\include\homodyne_receiver.h" />
     <ClInclude Include="..\..\include\ti_amplifier.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

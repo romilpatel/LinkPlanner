@@ -1,17 +1,19 @@
 # include "netxpto.h"
 
+# include "m_qam_transmitter.h"
+# include "homodyne_receiver.h"
+# include "bit_error_rate.h"
 # include "sink.h"
-# include "balanced_beam_splitter.h"
+
+
+/*# include "balanced_beam_splitter.h"
 # include "photodiode.h"
 # include "ti_amplifier.h"
 # include "local_oscillator.h"
 # include "sampler.h"
 # include "bit_decider.h"
-# include "bit_error_rate.h"
-# include "testblock.h"
 # include "discarder.h"
-# include "m_qam_transmitter.h"
-# include "binary_source.h"
+# include "binary_source.h"*/
 
 
 #define _USE_MATH_DEFINES // for C
@@ -23,9 +25,9 @@ int main(){
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	int NumberOfBits(9000);
-	int SamplesPerSymbol(16);
-	int pLength = 5;
+	t_integer NumberOfBits(9000);
+	t_integer SamplesPerSymbol(16);
+	t_integer pLength = 5;
 	t_real bitPeriod = 1.0 / 50e9;
 	vector<t_iqValues> iqAmplitudeValues = { { 1, 0 }, { -1, 0 } };
 	t_real SignalOutputPower_dBm = -20;
@@ -35,10 +37,11 @@ int main(){
 	t_real Responsivity = 1;
 	t_real Amplification = 10e6;
 	t_real NoiseAmplitude = 1e-16;
-	int Delay = 9;
+	t_integer Delay = 9;
 	t_real Confidence = 0.95;
-	int midReportSize = 0;
-
+	t_integer midReportSize = 0;
+	
+	/* Isto não faz sentido
 	if (NumberOfBits >= 512)
 	{
 		NumberOfBits = NumberOfBits + 512 + 8;
@@ -47,18 +50,15 @@ int main(){
 	{
 		NumberOfBits = NumberOfBits + 8;
 	}
-
+	*/
 	
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
 
 	Binary MQAM0{ "MQAM0.sgn" };
-
 	OpticalSignal S00("S00.sgn");
-
 	Binary S01{ "S01.sgn" };
-	 
 	Binary S02{ "S02.sgn" };
 
 
@@ -77,7 +77,7 @@ int main(){
 	B1.setRollOffFactor(0.3);
 	B1.setSaveInternalSignals(false);
 
-	testblock B2{ vector<Signal*> {&S00}, vector<Signal*> {&S01} };
+	HomodyneReceiver B2{ vector<Signal*> {&S00}, vector<Signal*> {&S01} };
 	B2.setLocalOscillatorOpticalPower_dBm(LOoutOpticalPower_dBm);
 	B2.setLocalOscillatorPhase(LocalOscillatorPhase);
 	B2.setTransferMatrix(TransferMatrix);

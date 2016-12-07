@@ -18,7 +18,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO_anp\LinkPlanner\include;..\..\LinkPlanner\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\dany\Documents\GitHub\LinkPlanner\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -67,14 +67,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\lib\BalancedBeamSplitter.cpp" />
+    <ClCompile Include="..\..\lib\balanced_beam_splitter.cpp" />
     <ClCompile Include="..\..\lib\binary_source.cpp" />
     <ClCompile Include="..\..\lib\bit_decider.cpp" />
     <ClCompile Include="..\..\lib\bit_error_rate.cpp" />
     <ClCompile Include="..\..\lib\delayer.cpp" />
     <ClCompile Include="..\..\lib\discarder.cpp" />
     <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
-    <ClCompile Include="..\..\lib\discretizer.cpp" />
+    <ClCompile Include="..\..\lib\electrical_filter.cpp" />
     <ClCompile Include="..\..\lib\iq_modulator.cpp" />
     <ClCompile Include="..\..\lib\local_oscillator.cpp" />
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
@@ -82,22 +82,27 @@
     <ClCompile Include="..\..\lib\netxpto.cpp" />
     <ClCompile Include="..\..\lib\photodiode.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
+    <ClCompile Include="..\..\lib\sampler.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\subtractor.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface.cpp" />
     <ClCompile Include="..\..\lib\testblock.cpp" />
-    <ClCompile Include="..\..\lib\TIamplifier.cpp" />
+    <ClCompile Include="..\..\lib\ti_amplifier.cpp" />
     <ClCompile Include="cv_transmission_system_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\BalancedBeamSplitter.h" />
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\balanced_beam_splitter.h" />
     <ClInclude Include="..\..\include\binary_source.h" />
     <ClInclude Include="..\..\include\bit_decider.h" />
     <ClInclude Include="..\..\include\bit_error_rate.h" />
     <ClInclude Include="..\..\include\delayer.h" />
     <ClInclude Include="..\..\include\discarder.h" />
     <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
-    <ClInclude Include="..\..\include\discretizer.h" />
+    <ClInclude Include="..\..\include\electrical_filter.h" />
     <ClInclude Include="..\..\include\iq_modulator.h" />
     <ClInclude Include="..\..\include\local_oscillator.h" />
     <ClInclude Include="..\..\include\m_qam_mapper.h" />
@@ -105,11 +110,12 @@
     <ClInclude Include="..\..\include\netxpto.h" />
     <ClInclude Include="..\..\include\photodiode.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />
+    <ClInclude Include="..\..\include\sampler.h" />
     <ClInclude Include="..\..\include\sink.h" />
     <ClInclude Include="..\..\include\subtractor.h" />
     <ClInclude Include="..\..\include\super_block_interface.h" />
     <ClInclude Include="..\..\include\testblock.h" />
-    <ClInclude Include="..\..\include\TIamplifier.h" />
+    <ClInclude Include="..\..\include\ti_amplifier.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

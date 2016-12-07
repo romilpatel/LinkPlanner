@@ -1,13 +1,22 @@
-#include <algorithm>
-#include <complex>
-#include <iostream>
-#include <fstream>
-#include <random>
-
-#include "netxpto.h"
 #include "testblock.h"
 
 
+testblock::testblock(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal) :SuperBlock(inputSignal, outputSignal) {
+
+	numberOfInputSignals = inputSignal.size();
+	numberOfOutputSignals = outputSignal.size();
+
+	B1.initializeBlock(vector<Signal*> { inputSignal }, vector<Signal*> { &HMD00, &HMD01 });
+	B2.initializeBlock(vector<Signal*> { &HMD00, &HMD01 }, vector<Signal*> { &HMD02, &HMD03 });
+	B3.initializeBlock(vector<Signal*> { &HMD02, &HMD03 }, vector<Signal*> { &HMD04 });
+	B4.initializeBlock(vector<Signal*> { &HMD04 }, vector<Signal*> { &HMD05 });
+	B5.initializeBlock(vector<Signal*> { &HMD05 }, vector<Signal*> { &HMD06 });
+	B6.initializeBlock(vector<Signal*> { &HMD06 }, vector<Signal*> { outputSignal });
+
+	setModuleBlocks({ &B1, &B2, &B3, &B4, &B5, &B6 });
+	
+};
+/*
 void testblock::initialize(void){
 
 	firstTime = false;
@@ -20,6 +29,8 @@ void testblock::initialize(void){
 
 
 bool testblock::runBlock(void){
+	ofstream myfile;
+	myfile.open("translate.txt", fstream::app);
 
 	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
@@ -27,20 +38,36 @@ bool testblock::runBlock(void){
 	int process = min(ready, space);
 
 	if (process == 0) {
-
-		long int number = NOBITS;
-
+		myfile.close();
 		return false;
 	}
-	t_binary input;
-	t_binary output=1;
-
+	
+	t_real input;
+	
 	for (int i = 0; i < process; i++) {
 		inputSignals[0]->bufferGet(&input);
-		
-		outputSignals[0]->bufferPut(output);
-		NOBITS++;
+		//translator[index] = input;
+		//index++;
+		myfile << input << "\n";
+		outputSignals[0]->bufferPut(input);
 	}
 	return true;
 	
-}
+}*/
+
+/* translate block */
+
+//////////////////////////////////////////////////////
+//ofstream translate;
+//translate.open("translate.txt", fstream::app);
+
+//	int process = min(ready, space);
+
+//////////////////////////////////////////////////////
+//if (process == 0)
+//{
+//	translate.close();
+//	return false;
+//}
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////

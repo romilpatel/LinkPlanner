@@ -11,10 +11,12 @@ class BitDecider : public Block {
 
 public:
 
-	t_real referencevalue = 1e-1;
+	t_real posreferencevalue = 1e-8;
+	t_real negreferencevalue = -1e-8;
 
 	double bitPeriod{ 1.0 / 50e9 };
 
+	BitDecider() {};
 	BitDecider(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	
 	void initialize(void);
@@ -23,7 +25,8 @@ public:
 	void setBitPeriod(double bPeriod);
 	double const getBitPeriod(void) { return bitPeriod; }
 
-	void setReferenceValue(int ReferenceValue) { referencevalue = ReferenceValue; }
+	void setPosReferenceValue(int PosReferenceValue) { posreferencevalue = PosReferenceValue; }
+	void setNegReferenceValue(int NegReferenceValue) { negreferencevalue = NegReferenceValue; }
 
 private:
 };

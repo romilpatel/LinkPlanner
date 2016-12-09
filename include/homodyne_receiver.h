@@ -2,6 +2,7 @@
 # define PROGRAM_INCLUDE_HOMODYNE_RECEIVER_H_
 
 # include "netxpto.h"
+
 # include "balanced_beam_splitter.h"
 # include "photodiode.h"
 # include "subtractor.h"

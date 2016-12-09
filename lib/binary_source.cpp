@@ -41,9 +41,8 @@ void BinarySource::initialize(void){
 bool BinarySource::runBlock(void) {
 
 	long int space = outputSignals[0]->space();
-	
-	for (auto l = 1; l < numberOfOutputSignals; ++l) {
-		long int aux = outputSignals[1]->space();
+	for (auto k = 1; k < numberOfOutputSignals; k++) {
+		long int aux = outputSignals[k]->space();
 		space = std::min(space, aux);
 	}
 	
@@ -195,10 +194,12 @@ bool BinarySource::runBlock(void) {
 		std::mt19937 gen(rd());
 		std::uniform_int_distribution<> dis(0, 1);
 
-		t_binary value;
+		t_binary aux;
 		for (int k = 0; k < process; k++) {
-			value = dis(gen);
-			outputSignals[0]->bufferPut((t_binary) value);
+			aux = dis(gen);
+			for (auto k = 0; k < numberOfOutputSignals; k++) {
+				outputSignals[k]->bufferPut((t_binary)aux);
+			}
 			numberOfBits--;
 		}
 	}
@@ -208,7 +209,9 @@ bool BinarySource::runBlock(void) {
 		int valuesSize = values.size();
 		for (int k = 0; k < process; k++) {
 			t_binary aux = (t_binary)(values[posBitStream++] - '0');
-			outputSignals[0]->bufferPut(aux);
+			for (auto k = 0; k < numberOfOutputSignals; k++) {
+				outputSignals[k]->bufferPut((t_binary)aux);
+			}
 			numberOfBits--;
 			posBitStream = posBitStream % valuesSize;
 		}
@@ -226,7 +229,9 @@ bool BinarySource::runBlock(void) {
 			else {
 				aux = (t_binary)(values[posBitStream++] - '0');
 			}
-			outputSignals[0]->bufferPut(aux);
+			for (auto k = 0; k < numberOfOutputSignals; k++) {
+				outputSignals[k]->bufferPut((t_binary)aux);
+			}
 			numberOfBits--;
 		}
 

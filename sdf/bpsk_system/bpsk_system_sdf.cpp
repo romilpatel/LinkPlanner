@@ -12,12 +12,12 @@ int main(){
 	// #####################################################################################################
 
 	t_integer numberOfBitsReceived(-1);
-	t_integer numberOfBitsGenerated(40);
-	t_integer samplesPerSymbol(32);
+	t_integer numberOfBitsGenerated(20);
+	t_integer samplesPerSymbol(16);
 	t_integer pLength = 5;
 	t_real bitPeriod = 1.0 / 50e9;
 	t_real rollOffFactor = 0.3;
-	vector<t_iqValues> iqAmplitudeValues = { { 1, 0 }, { -1, 0 } };
+	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
 	t_real signalOutputPower_dBm = -20;
 	t_real localOscillatorPower_dBm = -10;
 	t_real localOscillatorPhase = 0;
@@ -62,7 +62,7 @@ int main(){
 	B1.setIqAmplitudes(iqAmplitudeValues);
 	B1.setNumberOfSamplesPerSymbol(samplesPerSymbol);
 	B1.setRollOffFactor(rollOffFactor);
-	B1.setSaveInternalSignals(true);
+	B1.setSaveInternalSignals(false);
 	B1.setSeeBeginningOfImpulseResponse(false);
 
 	HomodyneReceiver B2{ vector<Signal*> {&S1}, vector<Signal*> {&S2} };
@@ -76,6 +76,7 @@ int main(){
 	B2.setDelay(delay);
 	B2.setPosReferenceValue(0);
 	B2.setNegReferenceValue(0);
+	B2.setSaveInternalSignals(true);
 
 	BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S2 } };
 	B3.setConfidence(confidence);
@@ -84,6 +85,7 @@ int main(){
 	Sink B4{ vector<Signal*> { &S2 }, vector<Signal*> {} };
 	B4.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
 	B4.setDisplayNumberOfSamples(true);
+
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################

@@ -3,12 +3,11 @@
 
 #include <complex>
 #include <random>
-
-# include "netxpto.h"
 # include <vector>
 
-// this is a test block for the purpose of beta testing new code
-// current code: BER
+# include "netxpto.h"
+
+
 class LocalOscillator : public Block {
 
 	/* State Variables */

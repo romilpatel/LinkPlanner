@@ -1,5 +1,5 @@
-BER= 0.26
+BER= -nan(ind)
 Upper and lower confidence bounds for 95% confidence level 
-Upper Bound= 0.379864
-Lower Bound= 0.116702
-Number of received bits =50
+Upper Bound= -nan(ind)
+Lower Bound= -nan(ind)
+Number of received bits =0

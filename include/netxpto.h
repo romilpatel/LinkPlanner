@@ -444,7 +444,7 @@ class FIR_Filter : public Block {
 	string impulseResponseFilename{ "impulse_response.imp" };
 
 	/* Input Parameters */
-	bool seeBeginningOfImpulseResponse{ false };
+	bool seeBeginningOfImpulseResponse{ true };
 
 public:
 

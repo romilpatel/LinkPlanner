@@ -1,15 +1,21 @@
 clear all
 close all
 clc
-
+%%
+clc
 load translate.txt
-plot(translate,'.')
+%plot(translate,'.')
 
-axis([0 length(translate) min(translate)*(1.1) max(translate)*(1.1)])
+%axis([0 length(translate) min(translate)*(1.1) max(translate)*(1.1)])
 
-figure
+VAR(i)=var(translate);
+i=i+1;
 
-load translate2.txt
-plot(translate2,'.')
 
-axis([0 length(translate2) min(translate2)*(1.1) max(translate2)*(1.1)])
+
+VAR(length(VAR)-3:length(VAR))
+
+delete translate.txt
+
+%%
+x=-70:2:-20;

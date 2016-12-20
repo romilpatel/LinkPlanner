@@ -83,7 +83,7 @@ int main(){
 	B1.setSaveInternalSignals(false);
 
 	LocalOscillator B2{ vector<Signal*> { &S00 }, vector<Signal*> { &S01, &S02 } };
-	B2.setLocalOscillatorOpticalPower_dBm(-20);
+	B2.setLocalOscillatorOpticalPower_dBm(-30);
 	B2.setLocalOscillatorPhase(0);
 	B2.useShotNoise(true);
 
@@ -96,8 +96,8 @@ int main(){
 	B4.setResponsivity(1);
 
 	TIAmplifier B5{ vector<Signal*> { &S05 }, vector<Signal*> { &S06 } };
-	B5.setAmplification(1e6);
-	B5.setNoiseAmplitude(3.1937e-5); //noise levels for project's result
+	B5.setAmplification(1e3);
+	B5.setNoiseAmplitude(0.5e-3*sqrt(2)); //noise level in datasheet
 
 	ElectricalFilter B6{ vector<Signal*> { &S06 }, vector<Signal*> { &S07 } };
 

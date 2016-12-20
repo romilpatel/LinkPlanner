@@ -23,11 +23,12 @@ void Photodiode::initialize(void){
 bool Photodiode::runBlock(void){
 	int ready = inputSignals[0]->ready();
 
-/*	normal_distribution<double> distribution(0, 1);
+  /*normal_distribution<double> distribution(0, 1);
 	t_real dt = inputSignals[0]->getSamplingPeriod();
+	t_real wvlgth = inputSignals[0]->getCentralWavelength();
 	t_real noise1;
-	t_real noise2;
-*/
+	t_real noise2;*/
+
 	int space1 = outputSignals[0]->space();
 	int space2 = outputSignals[0]->space();
 	int space = min(space1, space2);
@@ -42,8 +43,11 @@ bool Photodiode::runBlock(void){
 	
 	for (int i = 0; i < process; i++) {
 
-	/*	noise1 = distribution(generator1);
-		noise2 = distribution(generator2);*/
+	
+
+
+		//t_real noise1 = distribution(generator1);
+		//t_real noise2 = distribution(generator2);
 
 		t_complex input1;
 		inputSignals[0]->bufferGet(&input1);
@@ -53,10 +57,12 @@ bool Photodiode::runBlock(void){
 
 
 		t_real power1 = abs(input1)*abs(input1) * 4;//sqrt(.5)/2*SPEED_OF_LIGHT*n*PI*radius*radius*E0*abs(input1)*abs(input1);
+		//t_real power1withnoise = power1 + noise1*sqrt((power1*h*SPEED_OF_LIGHT) / (dt*wvlgth)) + noise1* noise1 * h*SPEED_OF_LIGHT / (4 * dt*wvlgth);
 		t_real current1 = responsivity * power1; // +sqrt(h*SPEED_OF_LIGHT / dt)*noise1*(sqrt(power1) + 1 / 2)); // assuming power in wats, need to check if this is correct
 
-		t_real power2 = abs(input2)*abs(input2) * 4;// sqrt(.5)/2*SPEED_OF_LIGHT*n*PI*radius*radius*E0*abs(input2)*abs(input2);
-		t_real current2 = responsivity * power2; // +sqrt(h*SPEED_OF_LIGHT / dt)*noise2*(sqrt(power2) + 1 / 2)); // assuming power in wats, need to check if this is correct
+		t_real power2 = abs(input2)*abs(input2) * 4;
+		//t_real power2withnoise = power2 + noise2*sqrt((power1*h*SPEED_OF_LIGHT) / (dt*wvlgth)) + noise2* noise2 * h*SPEED_OF_LIGHT / (4 * dt*wvlgth);
+		t_real current2 = responsivity * power2; 
 
 		t_real out = current1 - current2;
 

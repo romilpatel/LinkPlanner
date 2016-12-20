@@ -41,15 +41,11 @@ bool BitErrorRate::runBlock(void){
 
 	int process = min(ready, space);
 
-	ofstream translate2;
-	translate2.open("translate2.txt", fstream::app);
 
 	/* Outputting final report */
 
 	if (process == 0)
 	{
-		translate2.close();
-
 		/* Calculating BER and bounds */
 
 		t_real NumberOfBits = recievedbits;
@@ -122,12 +118,10 @@ bool BitErrorRate::runBlock(void){
 		{
 			coincidences++;
 			outputSignals[0]->bufferPut(1);
-			translate2 << 1 << "\n";
 		}
 		else
 		{
 			outputSignals[0]->bufferPut(0);
-			translate2 << 0 << "\n";
 		}
 
 

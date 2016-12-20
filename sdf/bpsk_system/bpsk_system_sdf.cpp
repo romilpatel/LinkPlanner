@@ -78,11 +78,11 @@ int main(){
 	B2.setNegReferenceValue(0);
 	B2.setSaveInternalSignals(true);
 
-	BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S2 } };
+	BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S3 } };
 	B3.setConfidence(confidence);
 	B3.setMidReportSize(midReportSize);
 
-	Sink B4{ vector<Signal*> { &S2 }, vector<Signal*> {} };
+	Sink B4{ vector<Signal*> { &S3 }, vector<Signal*> {} };
 	B4.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
 	B4.setDisplayNumberOfSamples(true);
 

@@ -1,9 +1,18 @@
-﻿  mqam_transmission_system.cpp
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\mqam_transmission_system.cpp(102): error C2039: 'setMode': is not a member of 'BalancedBeamSplitter'
-  c:\users\ana luisa\downloads\linkplanner-master\include\balancedbeamsplitter.h(13): note: see declaration of 'BalancedBeamSplitter'
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\mqam_transmission_system.cpp(108): error C2039: 'setMode': is not a member of 'BalancedBeamSplitter'
-  c:\users\ana luisa\downloads\linkplanner-master\include\balancedbeamsplitter.h(13): note: see declaration of 'BalancedBeamSplitter'
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\mqam_transmission_system.cpp(116): error C2039: 'setMode': is not a member of 'BalancedBeamSplitter'
-  c:\users\ana luisa\downloads\linkplanner-master\include\balancedbeamsplitter.h(13): note: see declaration of 'BalancedBeamSplitter'
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\mqam_transmission_system.cpp(122): error C2039: 'setMode': is not a member of 'BalancedBeamSplitter'
-  c:\users\ana luisa\downloads\linkplanner-master\include\balancedbeamsplitter.h(13): note: see declaration of 'BalancedBeamSplitter'
+﻿  subtractor.cpp
+  phase_shifter.cpp
+  mqam_transmission_system.cpp
+  photodiode.cpp
+  balanced_beam_splitter.cpp
+  local_oscillator.cpp
+  super_block_interface.cpp
+  sink.cpp
+  pulse_shaper.cpp
+  netxpto.cpp
+  m_qam_transmitter.cpp
+  m_qam_mapper.cpp
+  iq_modulator.cpp
+  discrete_to_continuous_time.cpp
+  binary_source.cpp
+  Generating Code...
+  m_qam_system.vcxproj -> C:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.exe
+  m_qam_system.vcxproj -> C:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)

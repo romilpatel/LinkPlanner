@@ -83,4 +83,4 @@ bool BalancedBeamSplitter::runBlock(void) {
 
 	}
 	return true;
-}
+};

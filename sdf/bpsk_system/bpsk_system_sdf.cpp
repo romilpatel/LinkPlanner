@@ -11,12 +11,12 @@ int main(){
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	t_integer numberOfBitsReceived(-1);
-	t_integer numberOfBitsGenerated(20);
-	t_integer samplesPerSymbol(16);
-	t_integer pLength = 5;
-	t_real bitPeriod = 1.0 / 50e9;
-	t_real rollOffFactor = 0.3;
+	int numberOfBitsReceived(-1);
+	int numberOfBitsGenerated(20);
+	int samplesPerSymbol(16);
+	int pLength = 5;
+	double bitPeriod = 1.0 / 50e9;
+	double rollOffFactor = 0.3;
 	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
 	t_real signalOutputPower_dBm = -20;
 	t_real localOscillatorPower_dBm = -10;

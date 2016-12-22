@@ -3,10 +3,9 @@
 
 HomodyneReceiver::HomodyneReceiver(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal) :SuperBlock(inputSignal, outputSignal) {
 
-	numberOfInputSignals = inputSignal.size();
-	numberOfOutputSignals = outputSignal.size();
+	setLocalOscillatorSamplingPeriod(inputSignal[0]->getSamplingPeriod());
 
-	B1.initializeBlock(vector<Signal*> { inputSignal }, vector<Signal*> { &HMD00, &HMD01 });
+	B1.initializeBlock(vector<Signal*> { inputSignal }, vector<Signal*> { &HMD01 });
 	B2.initializeBlock(vector<Signal*> { &HMD00, &HMD01 }, vector<Signal*> { &HMD02, &HMD03 });
 	B3.initializeBlock(vector<Signal*> { &HMD02, &HMD03 }, vector<Signal*> { &HMD04 });
 	B4.initializeBlock(vector<Signal*> { &HMD04 }, vector<Signal*> { &HMD05 });
@@ -16,58 +15,3 @@ HomodyneReceiver::HomodyneReceiver(vector<Signal *> &inputSignal, vector<Signal 
 	setModuleBlocks({ &B1, &B2, &B3, &B4, &B5, &B6 });
 	
 };
-/*
-void testblock::initialize(void){
-
-	firstTime = false;
-
-	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
-	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
-	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
-
-}
-
-
-bool testblock::runBlock(void){
-	ofstream myfile;
-	myfile.open("translate.txt", fstream::app);
-
-	int ready = inputSignals[0]->ready();
-	int space = outputSignals[0]->space();
-
-	int process = min(ready, space);
-
-	if (process == 0) {
-		myfile.close();
-		return false;
-	}
-	
-	t_real input;
-	
-	for (int i = 0; i < process; i++) {
-		inputSignals[0]->bufferGet(&input);
-		//translator[index] = input;
-		//index++;
-		myfile << input << "\n";
-		outputSignals[0]->bufferPut(input);
-	}
-	return true;
-	
-}*/
-
-/* translate block */
-
-//////////////////////////////////////////////////////
-//ofstream translate;
-//translate.open("translate.txt", fstream::app);
-
-//	int process = min(ready, space);
-
-//////////////////////////////////////////////////////
-//if (process == 0)
-//{
-//	translate.close();
-//	return false;
-//}
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////

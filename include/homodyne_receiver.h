@@ -18,8 +18,6 @@
 // current code: Building Homodyne superblock.
 class HomodyneReceiver : public SuperBlock {
 
-	/* State Variables */
-
 	// #####################################################################################################
 	// ################## Internal Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
@@ -60,8 +58,20 @@ class HomodyneReceiver : public SuperBlock {
 
 	SuperBlockInterface B7;
 
-	/* Input Parameters */
+	/* State Variables */
 
+	/* Input Parameters */
+	double samplingPeriod{ 0.0 };
+
+	double localOscillatorOpticalPower{ 1e-3 };
+	double localOscillatorPhase{ 0 };
+	double localOscillatorWavelength{ 1550e-9 };
+
+	int samplesToSkip{ 0 };
+
+	double outputOpticalFrequency{ SPEED_OF_LIGHT / localOscillatorWavelength };
+
+	double samplingPeriod{ 0.0 };
 
 public:
 
@@ -71,10 +81,13 @@ public:
 
 	/* Set Methods */
 
-	void setLocalOscillatorOpticalPower(double outOpticalPower) { B1.setLocalOscillatorOpticalPower(outOpticalPower); };
-	void setLocalOscillatorOpticalPower_dBm(double outOpticalPower_dBm) { B1.setLocalOscillatorOpticalPower_dBm(outOpticalPower_dBm); };
-	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setLocalOscillatorPhase(lOscillatorPhase); };
-	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); }
+	void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
+	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
+	void setLocalOscillatorOpticalPower_dBm(double opticalPower_dBm) { B1.setOpticalPower_dBm(opticalPower_dBm); };
+	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setPhase(lOscillatorPhase); };
+	void setLocalOscillatorOpticalWavelength(double lOscillatorWavelength) { B1.setWavelength(lOscillatorWavelength); };
+
+	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
 
 	void setTransferMatrix(array<t_complex, 4> TransferMatrix) { B2.matrix = TransferMatrix; };
 
@@ -87,9 +100,6 @@ public:
 
 	void setPosReferenceValue(int ReferenceValue) { B6.posreferencevalue = ReferenceValue; };
 	void setNegReferenceValue(int ReferenceValue) { B6.negreferencevalue = ReferenceValue; };
-
-private:
-	int samplesToSkip{ 0 };
 
 };
 

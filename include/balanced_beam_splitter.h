@@ -21,7 +21,7 @@ public:
 	t_real F = 1 / sqrt(2);
 	t_complex unit = 1;
 	array <t_complex, 4> matrix = { { F*unit, F*unit, F*unit, -unit*F } };
-	t_real mode = 0;
+	t_real mode = 0 ;
 
 
 	BalancedBeamSplitter(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};

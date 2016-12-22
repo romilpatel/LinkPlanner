@@ -54,10 +54,19 @@
     <ClCompile Include="subtractor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mqam_transmission_system.cpp">
+    <ClCompile Include="phase_shifter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="phase_shifter.cpp">
+    <ClCompile Include="m_qam_system_sdf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\homodyne_receiver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\bit_error_rate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\sampler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,16 +101,22 @@
     <ClInclude Include="local_oscillator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="balanced_beam_splitter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="photodiode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="subtractor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="phase_shifter.h">
+    <ClInclude Include="..\..\include\homodyne_receiver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\bit_error_rate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ti_amplifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sampler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

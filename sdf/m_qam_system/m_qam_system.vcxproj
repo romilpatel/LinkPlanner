@@ -39,7 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO_anp\LinkPlanner\include;$(IncludePath);C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\include</IncludePath>
+    <IncludePath>C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\include; C:\Universidade\Investigacao\netXPTO\GitHub_netXPTO_anp\LinkPlanner\include;..\..\LinkPlanner\include;$(IncludePath); C:\Users\Ana Luisa\Downloads\LinkPlanner-master (1)\LinkPlanner-master\include;C:\Users\Ana Luisa\Downloads\LinkPlanner-master\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86; C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\include</IncludePath>
@@ -78,7 +79,12 @@
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface.cpp" />
-    <ClCompile Include="m_qam_system_sdf.cpp" />
+    <ClCompile Include="local_oscillator.cpp" />
+    <ClCompile Include="balanced_beam_splitter.cpp" />
+    <ClCompile Include="photodiode.cpp" />
+    <ClCompile Include="mqam_transmission_system.cpp" />
+    <ClCompile Include="phase_shifter.cpp" />
+    <ClCompile Include="subtractor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\binary_source.h" />
@@ -90,6 +96,11 @@
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sink.h" />
     <ClInclude Include="..\..\include\super_block_interface.h" />
+    <ClInclude Include="balanced_beam_splitter.h" />
+    <ClInclude Include="phase_shifter.h" />
+    <ClInclude Include="subtractor.h" />
+    <ClInclude Include="photodiode.h" />
+    <ClInclude Include="local_oscillator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

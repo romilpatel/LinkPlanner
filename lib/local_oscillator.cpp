@@ -78,8 +78,6 @@ bool LocalOscillator::runBlock(void){
 			signalout = signalValue;
         }
 		
-
-        
 		outputSignals[0]->bufferPut(signalout);
 		outputSignals[1]->bufferPut(loout);
 

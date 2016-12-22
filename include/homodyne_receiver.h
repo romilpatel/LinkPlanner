@@ -71,9 +71,10 @@ public:
 
 	/* Set Methods */
 
-	void setLocalOscillatorOpticalPower(double outOpticalPower) { B1.outputOpticalPower=outOpticalPower; };
-	void setLocalOscillatorOpticalPower_dBm(double outOpticalPower_dBm) { B1.outputOpticalPower = 1e-3*pow(10, outOpticalPower_dBm / 10); };
-	void setLocalOscillatorPhase(double LOPhase) { B1.LocalOscillatorPhase = LOPhase; };
+	void setLocalOscillatorOpticalPower(double outOpticalPower) { B1.setLocalOscillatorOpticalPower(outOpticalPower); };
+	void setLocalOscillatorOpticalPower_dBm(double outOpticalPower_dBm) { B1.setLocalOscillatorOpticalPower_dBm(outOpticalPower_dBm); };
+	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setLocalOscillatorPhase(lOscillatorPhase); };
+	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); }
 
 	void setTransferMatrix(array<t_complex, 4> TransferMatrix) { B2.matrix = TransferMatrix; };
 
@@ -82,11 +83,14 @@ public:
 	void setAmplification(t_real Amplification) { B4.amplification = Amplification; };
 	void setNoiseAmplitude(t_real NoiseAmplitude) { B4.noiseamp = NoiseAmplitude; };
 
-	void setSamplingRate(int Sampling) { B5.sampling = Sampling; };
-	void setDelay(int Delay) { B5.delay = Delay; };
+	void setSamplesToSkip(int sToSkip) { B5.setSamplesToSkip(sToSkip); };
 
 	void setPosReferenceValue(int ReferenceValue) { B6.posreferencevalue = ReferenceValue; };
 	void setNegReferenceValue(int ReferenceValue) { B6.negreferencevalue = ReferenceValue; };
+
+private:
+	int samplesToSkip{ 0 };
+
 };
 
 #endif

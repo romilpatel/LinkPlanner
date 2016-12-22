@@ -25,7 +25,7 @@ int main(){
 	t_real responsivity = 1;
 	t_real amplification = 10e6;
 	t_real noiseAmplitude = 1e-16;
-	t_integer delay = 9;
+	t_integer samplesToSkip = 8 * samplesPerSymbol + floor(samplesPerSymbol/2);
 	t_real confidence = 0.95;
 	t_integer midReportSize = 0;
 	t_integer bufferLength = 256;
@@ -62,8 +62,8 @@ int main(){
 	B1.setIqAmplitudes(iqAmplitudeValues);
 	B1.setNumberOfSamplesPerSymbol(samplesPerSymbol);
 	B1.setRollOffFactor(rollOffFactor);
-	B1.setSaveInternalSignals(false);
-	B1.setSeeBeginningOfImpulseResponse(false);
+	B1.setSaveInternalSignals(true);
+	B1.setSeeBeginningOfImpulseResponse(true);
 
 	HomodyneReceiver B2{ vector<Signal*> {&S1}, vector<Signal*> {&S2} };
 	B2.setLocalOscillatorOpticalPower_dBm(localOscillatorPower_dBm);
@@ -72,8 +72,7 @@ int main(){
 	B2.setResponsivity(responsivity);
 	B2.setAmplification(amplification);
 	B2.setNoiseAmplitude(noiseAmplitude);
-	B2.setSamplingRate(samplesPerSymbol);
-	B2.setDelay(delay);
+	B2.setSamplesToSkip(samplesToSkip);
 	B2.setPosReferenceValue(0);
 	B2.setNegReferenceValue(0);
 	B2.setSaveInternalSignals(true);

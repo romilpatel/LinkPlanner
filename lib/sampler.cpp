@@ -16,37 +16,37 @@ void Sampler::initialize(void){
 
 
 bool Sampler::runBlock(void){
+
 	int ready = inputSignals[0]->ready();
 	
+	if (samplesToSkip > 0) {
+		int process = min(ready, samplesToSkip);
+
+		for (int k = 0; k < process; k++) {
+			t_real in;
+			inputSignals[0]->bufferGet(&in);
+		}
+
+		samplesToSkip = samplesToSkip - process;
+
+		ready = inputSignals[0]->ready();
+
+	}
 
 	int space = outputSignals[0]->space();
 	int process = min(ready, space);
-	int auxint = sampling-1;
-
-	t_real in;
-	t_real out;
-
+	
+	
 	if (process == 0) return false;
 
-	for (int i = 0; i < ready; i++) {
+	int sPerSymbol = inputSignals[0]->getSamplesPerSymbol();
 
-		
-		inputSignals[0]->bufferGet(&in);
-		auxint = auxint + 1;
-
-		
-
-		if (auxint == sampling)
-		{
-			auxint = 0;
-			AuxInt++;
-			if (AuxInt>=delay)
-			{
-				out = in;
-				outputSignals[0]->bufferPut(out);
-			}
+	for (int k = 0; k < process; k++) {
+		if (k % sPerSymbol == 0) {
+			t_real in;
+			inputSignals[0]->bufferGet(&in);
+			outputSignals[0]->bufferPut((t_real) in);
 		}
-
 	}
 
 	return true;

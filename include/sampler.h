@@ -12,9 +12,8 @@ class Sampler : public Block {
 public:
 
 	int sampling = 16;
-	int delay = 9;
 
-	int AuxInt = 0;
+	int delay = 9;
 
 	Sampler() {};
 	Sampler(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
@@ -24,10 +23,13 @@ public:
 
 	void setSamplingRate(int Sampling) { sampling = Sampling; }
 	void setDelay(int Delay) { delay = Delay; }
+	void setSamplesToSkip(t_integer sToSkip) { samplesToSkip = sToSkip; }
 
 private:
 
+	int AuxInt = 0;
 
+	t_integer samplesToSkip{ 0 };
 
 
 

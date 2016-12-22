@@ -71,8 +71,6 @@ class HomodyneReceiver : public SuperBlock {
 
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / localOscillatorWavelength };
 
-	double samplingPeriod{ 0.0 };
-
 public:
 
 	/* Methods */

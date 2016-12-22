@@ -1,13 +1,14 @@
-#include <algorithm>
-#include <complex>
-#include <iostream>
-#include <fstream>
-#include <random>
+# include <algorithm>
+# include <complex>
+# include <iostream>
+# include <fstream>
+# include <random>
 
-#include "netxpto.h"
-#include "local_oscillator.h"
+# include "netxpto.h"
+# include "local_oscillator.h"
 
 using namespace std;
+
 
 void LocalOscillator::initialize(void){
 	
@@ -36,6 +37,8 @@ bool LocalOscillator::runBlock(void){
 	t_complex lo(real, imag);
 	t_real powerlo = opticalPower;
 
+	t_complex out = lo;
+
 	for (int i = 0; i < process; i++) {
 
 
@@ -45,22 +48,11 @@ bool LocalOscillator::runBlock(void){
 		t_complex loout;
 
         if (shotNoise) {
-            t_real powerlooutsqrted = sqrt(powerlo) + sqrt(h*SPEED_OF_LIGHT / (dt * wvlgth))*noiselo*1/2;
-            loout = .5*powerlooutsqrted*lo;
-            
-            t_real powersignal = 4 * norm(signalValue);
-            t_real phase = arg(signalValue);
-            t_complex signal(cos(phase), sin(phase));
-            t_real powersignaloutsqrted = sqrt(powersignal) + sqrt(h*SPEED_OF_LIGHT / (dt*wvlgth))*noisesignal*1 / 2;
-            signalout = .5*powersignaloutsqrted*signal;
-        } else
-        {
-			loout = lo;
-			signalout = signalValue;
-        }
+            t_real powerlooutsqrted = sqrt(powerlo) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt * wvlgth))*noiselo*1/2;
+            out = .5*powerlooutsqrted*lo;
+        } 
 		
-		outputSignals[0]->bufferPut(signalout);
-		outputSignals[1]->bufferPut(loout);
+		outputSignals[0]->bufferPut((t_complex) out);
 
 	}
 	return true;

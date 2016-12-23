@@ -69,7 +69,7 @@
     <ClCompile Include="..\..\lib\sampler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\homodyne_receiver.cpp">
+    <ClCompile Include="..\..\lib\i_homodyne_receiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,7 +128,7 @@
     <ClInclude Include="..\..\include\sampler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\homodyne_receiver.h">
+    <ClInclude Include="..\..\include\i_homodyne_receiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

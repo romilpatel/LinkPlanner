@@ -1,12 +1,11 @@
 # ifndef PROGRAM_INCLUDE_LOCAL_OSCILLATOR_H_
 # define PROGRAM_INCLUDE_LOCAL_OSCILLATOR_H_
 
+# include "netxpto.h"
+
 # include <complex>
 # include <random>
 # include <vector>
-
-# include "netxpto.h"
-
 
 class LocalOscillator : public Block {
 

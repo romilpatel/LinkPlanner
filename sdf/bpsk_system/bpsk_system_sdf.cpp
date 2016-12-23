@@ -1,7 +1,7 @@
 # include "netxpto.h"
 
 # include "m_qam_transmitter.h"
-# include "homodyne_receiver.h"
+# include "i_homodyne_receiver.h"
 # include "bit_error_rate.h"
 # include "sink.h"
 
@@ -18,19 +18,18 @@ int main(){
 	double bitPeriod = 1.0 / 50e9;
 	double rollOffFactor = 0.3;
 	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
-	t_real signalOutputPower_dBm = -20;
-	t_real localOscillatorPower_dBm = -10;
-	t_real localOscillatorPhase = 0;
+	double signalOutputPower_dBm = -20;
+	double localOscillatorPower_dBm = -10;
+	double localOscillatorPhase = 0;
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
-	t_real responsivity = 1;
-	t_real amplification = 10e6;
-	t_real noiseAmplitude = 1e-16;
-	t_integer samplesToSkip = 8 * samplesPerSymbol + floor(samplesPerSymbol/2);
-	t_real confidence = 0.95;
-	t_integer midReportSize = 0;
-	t_integer bufferLength = 256;
-	
-	
+	double responsivity = 1;
+	double amplification = 10e6;
+	double noiseAmplitude = 1e-16;
+	int samplesToSkip = 8 * samplesPerSymbol + floor(samplesPerSymbol/2);
+	double confidence = 0.95;
+	int midReportSize = 0;
+	int bufferLength = 256;
+		
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
@@ -54,7 +53,6 @@ int main(){
 	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S1, &S0 } };
 	B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
-	//B1.setMode(PseudoRandom);
 	B1.setMode(DeterministicAppendZeros);
 	B1.setBitStream("010");
 	B1.setBitPeriod(bitPeriod);
@@ -65,7 +63,7 @@ int main(){
 	B1.setSaveInternalSignals(true);
 	B1.setSeeBeginningOfImpulseResponse(true);
 
-	HomodyneReceiver B2{ vector<Signal*> {&S1}, vector<Signal*> {&S2} };
+	I_HomodyneReceiver B2{ vector<Signal*> {&S1}, vector<Signal*> {&S2} };
 	B2.setLocalOscillatorOpticalPower_dBm(localOscillatorPower_dBm);
 	B2.setLocalOscillatorPhase(localOscillatorPhase);
 	B2.setTransferMatrix(transferMatrix);

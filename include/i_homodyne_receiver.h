@@ -68,11 +68,11 @@ public:
 	/* Methods */
 
 	I_HomodyneReceiver(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal);
-	void initialize();
 
 	/* Set Methods */
 
 	void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
+	void setLocalOscillatorSymbolPeriod(double sPeriod) { B1.setSymbolPeriod(sPeriod); }
 	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
 	void setLocalOscillatorOpticalPower_dBm(double opticalPower_dBm) { B1.setOpticalPower_dBm(opticalPower_dBm); };
 	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setPhase(lOscillatorPhase); };
@@ -89,8 +89,7 @@ public:
 
 	void setSamplesToSkip(int sToSkip) { B5.setSamplesToSkip(sToSkip); };
 
-	void setPosReferenceValue(int ReferenceValue) { B6.posreferencevalue = ReferenceValue; };
-	void setNegReferenceValue(int ReferenceValue) { B6.negreferencevalue = ReferenceValue; };
+	void setDecionLevel(int dLevel) { B6.setDecisionLevel(dLevel); };
 
 };
 

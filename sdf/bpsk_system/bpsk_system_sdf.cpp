@@ -2,7 +2,6 @@
 
 # include "m_qam_transmitter.h"
 # include "i_homodyne_receiver.h"
-# include "bit_error_rate.h"
 # include "sink.h"
 
 int main(){
@@ -25,10 +24,8 @@ int main(){
 	double responsivity = 1;
 	double amplification = 10e6;
 	double noiseAmplitude = 1e-16;
-	int samplesToSkip = 8 * samplesPerSymbol + floor(samplesPerSymbol/2);
-	double confidence = 0.95;
-	int midReportSize = 0;
-	int bufferLength = 256;
+	int samplesToSkip = 8 * samplesPerSymbol;
+	int bufferLength = 512;
 		
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
@@ -42,9 +39,6 @@ int main(){
 
 	Binary S2{ "S2.sgn" };
 	S2.setBufferLength(bufferLength);
-
-	Binary S3{ "S3.sgn" };
-	S3.setBufferLength(bufferLength);
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
@@ -66,20 +60,20 @@ int main(){
 	I_HomodyneReceiver B2{ vector<Signal*> {&S1}, vector<Signal*> {&S2} };
 	B2.setLocalOscillatorOpticalPower_dBm(localOscillatorPower_dBm);
 	B2.setLocalOscillatorPhase(localOscillatorPhase);
+	B2.setLocalOscillatorSamplingPeriod(bitPeriod / samplesPerSymbol);
+	B2.setLocalOscillatorSymbolPeriod(bitPeriod);
 	B2.setTransferMatrix(transferMatrix);
 	B2.setResponsivity(responsivity);
 	B2.setAmplification(amplification);
 	B2.setNoiseAmplitude(noiseAmplitude);
 	B2.setSamplesToSkip(samplesToSkip);
-	B2.setPosReferenceValue(0);
-	B2.setNegReferenceValue(0);
 	B2.setSaveInternalSignals(true);
 
-	BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S3 } };
-	B3.setConfidence(confidence);
-	B3.setMidReportSize(midReportSize);
+	Sink B3{ vector<Signal*> { &S0 }, vector<Signal*> {} };
+	B3.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
+	B3.setDisplayNumberOfSamples(true);
 
-	Sink B4{ vector<Signal*> { &S3 }, vector<Signal*> {} };
+	Sink B4{ vector<Signal*> { &S2 }, vector<Signal*> {} };
 	B4.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
 	B4.setDisplayNumberOfSamples(true);
 

@@ -5,11 +5,6 @@ I_HomodyneReceiver::I_HomodyneReceiver(vector<Signal *> &inputSignal, vector<Sig
 
 	inputSignals = inputSignal;
 	outputSignals = outputSignal;
-};
-
-void I_HomodyneReceiver::initialize(void) {
-	
-	setLocalOscillatorSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 
 	B1.initializeBlock(vector<Signal*> { }, vector<Signal*> { &I_HMD01 });
 	B2.initializeBlock(vector<Signal*> { inputSignals[0], &I_HMD01 }, vector<Signal*> { &I_HMD02, &I_HMD03 });
@@ -19,5 +14,5 @@ void I_HomodyneReceiver::initialize(void) {
 	B6.initializeBlock(vector<Signal*> { &I_HMD06 }, vector<Signal*> { outputSignals[0] });
 
 	setModuleBlocks({ &B1, &B2, &B3, &B4, &B5, &B6 });
+};
 
-}

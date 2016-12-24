@@ -53,8 +53,8 @@ bool BalancedBeamSplitter::runBlock(void){
 		t_complex outa = matrix[0]*ina + matrix[1]*inb;
 		t_complex outb = matrix[2]*ina + matrix[3]*inb;
 
-		outputSignals[0]->bufferPut(outa);
-		outputSignals[1]->bufferPut(outb);
+		outputSignals[0]->bufferPut((t_complex) outa);
+		outputSignals[1]->bufferPut((t_complex) outb);
 
 	}
 	return true;

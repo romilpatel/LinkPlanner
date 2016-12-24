@@ -11,7 +11,7 @@ void Sampler::initialize(void){
 	firstTime = false;
 
 	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
-	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSymbolPeriod());
 }
 
 
@@ -42,9 +42,9 @@ bool Sampler::runBlock(void){
 	int sPerSymbol = inputSignals[0]->getSamplesPerSymbol();
 
 	for (int k = 0; k < process; k++) {
+		t_real in;
+		inputSignals[0]->bufferGet(&in);
 		if (k % sPerSymbol == 0) {
-			t_real in;
-			inputSignals[0]->bufferGet(&in);
 			outputSignals[0]->bufferPut((t_real) in);
 		}
 	}

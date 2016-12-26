@@ -11,8 +11,8 @@ I_HomodyneReceiver::I_HomodyneReceiver(vector<Signal *> &inputSignal, vector<Sig
 	B3.initializeBlock(vector<Signal*> { &I_HMD02, &I_HMD03 }, vector<Signal*> { &I_HMD04 });
 	B4.initializeBlock(vector<Signal*> { &I_HMD04 }, vector<Signal*> { &I_HMD05 });
 	B5.initializeBlock(vector<Signal*> { &I_HMD05 }, vector<Signal*> { &I_HMD06 });
-	B6.initializeBlock(vector<Signal*> { &I_HMD06 }, vector<Signal*> { outputSignals[0] });
-
+	B6.initializeBlock(vector<Signal*> { &I_HMD06 }, vector<Signal*> { &I_HMD07 });
+	
 	setModuleBlocks({ &B1, &B2, &B3, &B4, &B5, &B6 });
 };
 

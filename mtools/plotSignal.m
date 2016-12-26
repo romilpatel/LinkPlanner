@@ -1,7 +1,7 @@
 function [out, t, xmin, xmax, ymin, ymax] = plotSignal(data, symbolPeriod, samplingPeriod, type, numberOfSymbols)
 
-    if length(data) < numberOfSymbols
-            numberOfSymbols = length(data);
+    if length(data)/(symbolPeriod/samplingPeriod) < numberOfSymbols
+            numberOfSymbols = length(data)/(symbolPeriod/samplingPeriod);
     end    
 
     if strcmp(type,'Binary')

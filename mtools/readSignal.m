@@ -1,4 +1,4 @@
-function [ data, symbolPeriod, samplingPeriod, type ] = readSignal( fname )
+function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname )
 %READSIGNALDATA Reads signal data to "visualizer".
 %   [ data, samplingFrequency ] = READSIGNALDATA(fid, type, symbolPeriod, samplingPeriod)
 %   just reads data ("data") from a file ("fid")
@@ -47,12 +47,15 @@ t_complexr = 'double';
 samplingFrequency = 1/samplingPeriod;
 
 %% Number of samples per period
-samplesPerSymbol = int64(symbolPeriod/samplingPeriod);
+samplesPerSymbol = (symbolPeriod/samplingPeriod);
 
 %% Read data
 if strcmp(type, tb) % Binary signals
     data = fread(fid, nReadr, t_binaryr);
     data = data';
+    
+   numberOfSymbols = (length(data)/samplesPerSymbol);
+    
     return;
 end
 
@@ -61,15 +64,23 @@ if strcmp(type, tc1) || strcmp(type, tc2) || strcmp(type, tc3) || strcmp(type, t
    data = fread(fid, 2*samplesPerSymbol*nReadr, t_complexr);
    data = data(1:2:end) + 1i.*data(2:2:end);
    data = real(data)' + imag(data)'.*1i;
+   
+   numberOfSymbols = (length(data)/samplesPerSymbol);
+   
    return;
 end
 
 if strcmp(type, toxy)
    data = fread(fid, 4*double(samplesPerSymbol)*nReadr, t_complexr);
+   
+   numberOfSymbols = (length(data)/samplesPerSymbol);
+   
    return;
 end
 
 % Other signals
 data = fread(fid, double(samplesPerSymbol)*nReadr, t_realr);
 data = data';
+
+numberOfSymbols = (length(data)/samplesPerSymbol);
 

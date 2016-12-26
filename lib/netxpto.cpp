@@ -266,7 +266,6 @@ bool SuperBlock::runBlock() {
 			alive = (alive || proceed);
 		}
 
-
 		for (unsigned int i = 0; i < outputSignals.size(); i++) {
 			int ready = moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->ready();
 			int space = outputSignals[i]->space();

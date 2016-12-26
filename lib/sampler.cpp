@@ -39,12 +39,12 @@ bool Sampler::runBlock(void){
 	
 	if (process == 0) return false;
 
-	int sPerSymbol = inputSignals[0]->getSamplesPerSymbol();
+	double sPerSymbol = inputSignals[0]->getSamplesPerSymbol();
 
 	for (int k = 0; k < process; k++) {
 		t_real in;
 		inputSignals[0]->bufferGet(&in);
-		if (k % sPerSymbol == 0) {
+		if (k % (int) sPerSymbol == 0) {
 			outputSignals[0]->bufferPut((t_real) in);
 		}
 	}

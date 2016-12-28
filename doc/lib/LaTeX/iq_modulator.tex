@@ -31,13 +31,13 @@ void initialize(void);
 \bigbreak
 bool runBlock(void);
 \bigbreak
-void setOutputOpticalPower(double outOpticalPower) \{ outputOpticalPower = outOpticalPower; \}
+void setOutputOpticalPower(double outOpticalPower) 
 \bigbreak
-void setOutputOpticalPower$\_$dBm(double outOpticalPower$\_$dBm) \{ outputOpticalPower = 1e-3*pow(10, outOpticalPower$\_$dBm / 10); \}
+void setOutputOpticalPower$\_$dBm(double outOpticalPower$\_$dBm) 
 \bigbreak
-void setOutputOpticalWavelength(double outOpticalWavelength) \{ outputOpticalWavelength = outOpticalWavelength; outputOpticalFrequency = SPEED$\_$OF$\_$LIGHT / outOpticalWavelength; \}
+void setOutputOpticalWavelength(double outOpticalWavelength) 
 \bigbreak
-void setOutputOpticalFrequency(double outOpticalFrequency) \{ outputOpticalFrequency = outOpticalFrequency; outputOpticalWavelength = outOpticalFrequency / outputOpticalFrequency; \}
+void setOutputOpticalFrequency(double outOpticalFrequency) 
 
 \subsection*{Functional Description}
 

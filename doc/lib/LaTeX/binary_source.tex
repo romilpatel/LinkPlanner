@@ -53,28 +53,28 @@ void initialize(void);
 \bigbreak	 
 bool runBlock(void);
 \bigbreak	 
-void setMode(BinarySourceMode m) {mode = m;}
-BinarySourceMode const getMode(void) \{ return mode; \};
+void setMode(BinarySourceMode m)
+BinarySourceMode const getMode(void)
 \bigbreak	 
-void setProbabilityOfZero(double pZero) \{ probabilityOfZero = pZero; \};
+void setProbabilityOfZero(double pZero) 
 \bigbreak
-double const getProbabilityOfZero(void) \{ return probabilityOfZero; \};
+double const getProbabilityOfZero(void) 
 \bigbreak	 
-void setBitStream(string bStream) \{ bitStream = bStream; \};
+void setBitStream(string bStream) 
 \bigbreak
-string const getBitStream(void) \{ return bitStream; \};
+string const getBitStream(void) 
 \bigbreak	 
-void setNumberOfBits(long int nOfBits) \{ numberOfBits = nOfBits; \};
+void setNumberOfBits(long int nOfBits)
 \bigbreak
-long int const getNumberOfBits(void) \{ return numberOfBits; \};
+long int const getNumberOfBits(void) 
 \bigbreak	 
-void setPatternLength(int pLength) \{ patternLength = pLength; \};
+void setPatternLength(int pLength) 
 \bigbreak
-int const getPatternLength(void) \{ return patternLength; \}
+int const getPatternLength(void) 
 \bigbreak	 
-void setBitPeriod(double bPeriod);
+void setBitPeriod(double bPeriod)
 \bigbreak
-double const getBitPeriod(void) \{ return bitPeriod; \}
+double const getBitPeriod(void) 
 
 \subsection*{Functional description}
 
@@ -115,7 +115,6 @@ As an example consider a pseudorandom sequence with \textit{patternLength}=3 whi
 \begin{figure}[h]
 	\centering
 \includegraphics[width=0.5\textwidth]{BinarySequenceN3}
-
 \caption{Example of a pseudorandom sequence with a pattern length equal to 3.}\label{BinarySequenceN3}
 \end{figure}
 

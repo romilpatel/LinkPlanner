@@ -4,7 +4,6 @@
 # include "netxpto.h"
 # include "balanced_beam_splitter.h"
 # include "photodiode.h"
-# include "subtractor.h"
 # include "ti_amplifier.h"
 # include "bit_decider.h"
 # include "local_oscillator.h"
@@ -72,10 +71,10 @@ public:
 
 	void set(int opt);
 
-	void setLocalOscillatorOpticalPower(double outOpticalPower) { B1.outputOpticalPower=outOpticalPower; };
+/*	void setLocalOscillatorOpticalPower(double outOpticalPower) { B1.outputOpticalPower=outOpticalPower; };
 	void setLocalOscillatorOpticalPower_dBm(double outOpticalPower_dBm) { B1.outputOpticalPower = 1e-3*pow(10, outOpticalPower_dBm / 10); };
 	void setLocalOscillatorPhase(double LOPhase) { B1.LocalOscillatorPhase = LOPhase; };
-
+	*/
 	void setTransferMatrix(array<t_complex, 4> TransferMatrix) { B2.matrix = TransferMatrix; };
 
 	void  setResponsivity(t_real Responsivity) { B3.responsivity = Responsivity; };
@@ -83,11 +82,11 @@ public:
 	void setAmplification(t_real Amplification) { B4.amplification = Amplification; };
 	void setNoiseAmplitude(t_real NoiseAmplitude) { B4.noiseamp = NoiseAmplitude; };
 
-	void setSamplingRate(int Sampling) { B5.sampling = Sampling; };
-	void setDelay(int Delay) { B5.delay = Delay; };
+//	void setSamplingRate(int Sampling) { B5.sampling = Sampling; };
+//	void setDelay(int Delay) { B5.delay = Delay; };
 
-	void setPosReferenceValue(int ReferenceValue) { B6.posreferencevalue = ReferenceValue; };
-	void setNegReferenceValue(int ReferenceValue) { B6.negreferencevalue = ReferenceValue; };
+//	void setPosReferenceValue(int ReferenceValue) { B6.posreferencevalue = ReferenceValue; };
+//  void setNegReferenceValue(int ReferenceValue) { B6.negreferencevalue = ReferenceValue; };
 };
 
 #endif

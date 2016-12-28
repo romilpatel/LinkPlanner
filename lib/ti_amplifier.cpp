@@ -39,7 +39,13 @@ bool TIAmplifier::runBlock(void){
 		
 		noise = distribution(generator);
 		
-		t_real output = input*amplification +noise; // assuming current in amps
+		t_real output = input*amplification; // assuming current in amps
+
+		if (electricalNoise)
+		{
+			output = output + noise;
+		}
+
 
 		outputSignals[0]->bufferPut(output);
 	}

@@ -1,88 +1,55 @@
-#include <algorithm>
-#include <complex>
-#include <iostream>
-#include <fstream>
-#include <random>
+# include "netxpto.h"
+# include "local_oscillator.h"
 
-#include "netxpto.h"
-#include "local_oscillator.h"
+# include <algorithm>
+# include <complex>
+# include <iostream>
+# include <fstream>
+# include <random>
 
 using namespace std;
 
+
 void LocalOscillator::initialize(void){
-	
-	firstTime = false;
 
-	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
-	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
-	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
-
-	outputSignals[0]->centralWavelength = outputOpticalWavelength;
-	outputSignals[0]->centralFrequency = outputOpticalFrequency;
-
-	outputSignals[1]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
-	outputSignals[1]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
-	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
-
-	outputSignals[1]->centralWavelength = outputOpticalWavelength;
-	outputSignals[1]->centralFrequency = outputOpticalFrequency;
+	outputSignals[0]->setSamplingPeriod(samplingPeriod);
+	outputSignals[0]->setSymbolPeriod(symbolPeriod);
+	outputSignals[0]->setCentralWavelength(wavelength);
+	outputSignals[0]->setCentralFrequency(frequency);
 
 }
 
 
 bool LocalOscillator::runBlock(void){
-	int ready = inputSignals[0]->ready();
 
-    normal_distribution<double> distribution(0, 1);
-	t_real dt = inputSignals[0]->getSamplingPeriod();
-	t_real wvlgth = inputSignals[0]->getCentralWavelength();
-	t_real noisesignal;
-	t_real noiselo;
-	int space0 = outputSignals[0]->space();
-	int space1 = outputSignals[1]->space();
-	int space = min(space0, space1);
-
-	int process = min(ready, space);
-
+	int process = outputSignals[0]->space();
+	
 	if (process == 0) return false;
 
-	t_real real = cos(LocalOscillatorPhase);
-	t_real imag = sin(LocalOscillatorPhase);
-	t_complex lo(real, imag);
-	t_real powerlo = outputOpticalPower;
-	t_complex looutnoshot = 0.5*sqrt(powerlo)*lo;
+	t_complex out(cos(phase), sin(phase));
+	out= .5*sqrt(opticalPower)*out;
 
 	for (int i = 0; i < process; i++) {
 
+        /*if (shotNoise) {
+			t_complex loout;
 
-		noisesignal = distribution(generator1);
-	    noiselo = distribution(generator2);
+			normal_distribution<double> distribution(0, 1);
 
-		t_complex signalValue;
-		inputSignals[0]->bufferGet(&signalValue);
+			t_real dt = outputSignals[0]->getSamplingPeriod();
+			t_real wvlgth = outputSignals[0]->getCentralWavelength();
+			t_real noisesignal;
+			t_real noiselo;
 
-		t_complex loout=looutnoshot;
-		t_complex signalout=signalValue;
+			noisesignal = distribution(generator1);
+			noiselo = distribution(generator2);
 
-        if (shotnoise) {
-			//t_real nlo = powerlo*dt*wvlgth / (h*SPEED_OF_LIGHT);// +sqrt(powerlo*dt*wvlgth / (h*SPEED_OF_LIGHT))*noiselo + noiselo * noiselo / 4;
-			//poisson_distribution<int> distributionlo(nlo);
-			//int nloout = distributionlo(generator2);
-			//t_real powerloout = nloout*h*SPEED_OF_LIGHT / (dt*wvlgth);
-            t_real powerlooutsqrted = sqrt(powerlo) + sqrt(h*SPEED_OF_LIGHT / (dt * wvlgth))*noiselo*1/2;
-            loout = .5*powerlooutsqrted*lo;
-            
-            t_real powersignal = 4 * norm(signalValue);
-            t_real phase = arg(signalValue);
-            t_complex signal(cos(phase), sin(phase));
-            t_real powersignaloutsqrted = sqrt(powersignal) + sqrt(h*SPEED_OF_LIGHT / (dt*wvlgth))*noisesignal*1 / 2;
-            signalout = .5*powersignaloutsqrted*signal;
-        }
-
-        
-		outputSignals[0]->bufferPut(signalout);
-		outputSignals[1]->bufferPut(loout);
-
+            t_real powerlooutsqrted = sqrt(powerlo) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt * wvlgth))*noiselo*1/2;
+            out = .5*powerlooutsqrted*lo;
+        }*/ 
+		
+		outputSignals[0]->bufferPut((t_complex)out);
 	}
+
 	return true;
 }

@@ -21,7 +21,7 @@ int main(){
 	t_real signalOutputPower_dBm = -20;
 	t_real localOscillatorPower_dBm = -10;
 	t_real localOscillatorPhase = 0;
-	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
+	//array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	t_real responsivity = 1;
 	t_real amplification = 10e6;
 	t_real noiseAmplitude = 1e-16;
@@ -68,13 +68,13 @@ int main(){
 	HomodyneReceiver B2{ vector<Signal*> {&S1}, vector<Signal*> {&S2} };
 	B2.setLocalOscillatorOpticalPower_dBm(localOscillatorPower_dBm);
 	B2.setLocalOscillatorPhase(localOscillatorPhase);
-	B2.setTransferMatrix(transferMatrix);
+	//B2.setTransferMatrix(transferMatrix);
 	B2.setResponsivity(responsivity);
 	B2.setAmplification(amplification);
 	B2.setNoiseAmplitude(noiseAmplitude);
 	B2.setSamplesToSkip(samplesToSkip);
-	B2.setPosReferenceValue(0);
-	B2.setNegReferenceValue(0);
+	//B2.setPosReferenceValue(0);
+	//B2.setNegReferenceValue(0);
 	B2.setSaveInternalSignals(true);
 
 	BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S3 } };

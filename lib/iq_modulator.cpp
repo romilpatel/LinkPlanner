@@ -61,7 +61,7 @@ bool IqModulator::runBlock(void) {
 	int ready = min(ready0, ready1);
 
 	int space = outputSignals[0]->space();
-
+	   
 	int process = min(ready, space);
 
 	if (process == 0) return false;

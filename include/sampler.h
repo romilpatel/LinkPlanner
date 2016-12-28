@@ -31,8 +31,6 @@ private:
 
 	t_integer samplesToSkip{ 0 };
 
-
-
 };
 
 

@@ -37,13 +37,15 @@ class HomodyneReceiver : public SuperBlock {
 
 	TimeContinuousAmplitudeContinuousReal HMD07{ "HMD07.sgn" }; // Substracted
 
-	TimeContinuousAmplitudeContinuousReal HMD08{ "HMD07.sgn" }; // Substracted
+	TimeContinuousAmplitudeContinuousReal HMD08{ "HMD08.sgn" }; // Amplified
 
-	TimeContinuousAmplitudeContinuousReal HMD09{ "HMD07.sgn" }; // Substracted
+	TimeContinuousAmplitudeContinuousReal HMD09{ "HMD09.sgn" }; // Amplified
 
-	TimeDiscreteAmplitudeContinuousReal HMD08{ "HMD08.sgn" }; // Sampled 
+	TimeDiscreteAmplitudeContinuousReal HMD10{ "HMD10.sgn" }; // Sampled 
 
-	Binary HMD09{ "HMD09.sgn" }; // recovery Sequence
+	TimeDiscreteAmplitudeContinuousReal HMD11{ "HMD11.sgn" }; // Sampled 
+
+	Binary HMD12{ "HMD12.sgn" }; // recovery Sequence
 
 
 	// #####################################################################################################

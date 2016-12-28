@@ -1,7 +1,8 @@
 # ifndef PROGRAM_INCLUDE_DECODER_H_
 # define PROGRAM_INCLUDE_DECODER_H_
 
-# include <math.h>       /* pow */
+# include <math.h> /* pow */
+# include <vector>
 # include "netxpto.h"
 
 
@@ -19,6 +20,8 @@ public:
 	double outputOpticalPower{ 1e-3 };
 	double outputOpticalWavelength{ 1550e-9 };
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
+	t_integer m{ 4 };
+	vector<int> iqBinaryValues;
 
 	/* Methods */
 	Decoder() {};
@@ -32,6 +35,10 @@ public:
 
 	void setOutputOpticalWavelength(double outOpticalWavelength) { outputOpticalWavelength = outOpticalWavelength; outputOpticalFrequency = SPEED_OF_LIGHT / outOpticalWavelength; }
 	void setOutputOpticalFrequency(double outOpticalFrequency) { outputOpticalFrequency = outOpticalFrequency; outputOpticalWavelength = outOpticalFrequency / outputOpticalFrequency; }
+
+	void setM(int mValue);
+
+
 };
 
 # endif

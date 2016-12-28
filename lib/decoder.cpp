@@ -18,7 +18,18 @@ void Decoder::initialize(void) {
 	outputSignals[0]->centralWavelength = outputOpticalWavelength;
 	outputSignals[0]->centralFrequency = outputOpticalFrequency;
 
+	setM(m);
 }
+
+void Decoder::setM(int mValue) {
+	m = mValue;
+
+	iqBinaryValues.resize(m);
+	switch (m) {
+	case 4:
+		iqBinaryValues = { { 00 },{ 01 },{ 10 },{ 11 } };
+	};
+};
 
 bool Decoder::runBlock(void) {
 
@@ -41,22 +52,22 @@ bool Decoder::runBlock(void) {
 
 		if (input1>0 && input2>0) {
 
-			outputSignals[0]->bufferPut(00);
+			outputSignals[0]->bufferPut(iqBinaryValues[0]);
 		
 		}
 		else if (input1<0 && input2>0) {
 		
-			outputSignals[0]->bufferPut(01);
+			outputSignals[0]->bufferPut(iqBinaryValues[1]);
 		
 		}
 		else if (input1<0 && input2<0) {
 
-			outputSignals[0]->bufferPut(10);
+			outputSignals[0]->bufferPut(iqBinaryValues[2]);
 
 		}
 		else if (input1>0 && input2<0) {
 
-			outputSignals[0]->bufferPut(11);
+			outputSignals[0]->bufferPut(iqBinaryValues[3]);
 
 		}
 	}

@@ -7,11 +7,9 @@
 
 void BitDecider::initialize(void){
 
-	firstTime = false;
+	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 
-	outputSignals[0]->symbolPeriod=bitPeriod;
-	outputSignals[0]->samplingPeriod = outputSignals[0]->symbolPeriod;
-//	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 }
 
 
@@ -19,31 +17,19 @@ bool BitDecider::runBlock(void){
 	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
 
-
-
 	int process = min(ready, space);
 
 	if (process == 0) return false;
 
-	for (int i = 0; i < ready; i++) {
-
-		t_real signalValue;
-		inputSignals[0]->bufferGet(&signalValue);
-		if (signalValue>posreferencevalue)
-		{
-			outputSignals[0]->bufferPut((t_binary) 0);
-		}
-		else if (signalValue<negreferencevalue)
-		{
+	for (int k = 0; k < process; k++) {
+		t_real in;
+		inputSignals[0]->bufferGet(&in);
+		if (in>decisionLevel){
 			outputSignals[0]->bufferPut((t_binary) 1);
 		}
-		else
-		{
-			// do nothing
+		else {
+			outputSignals[0]->bufferPut((t_binary) 0);
 		}
-
-
-
 	}
 	return true;
 	

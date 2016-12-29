@@ -32,7 +32,9 @@ bool BitErrorRate::runBlock(void){
 		}
 
 		z = -x3;
+
 	}
+
 
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
@@ -41,11 +43,12 @@ bool BitErrorRate::runBlock(void){
 
 	int process = min(ready, space);
 
-
+	
 	/* Outputting final report */
 
 	if (process == 0)
 	{
+
 		/* Calculating BER and bounds */
 
 		t_real NumberOfBits = recievedbits;
@@ -117,11 +120,11 @@ bool BitErrorRate::runBlock(void){
 		if (signalValue == SignalValue)
 		{
 			coincidences++;
-			outputSignals[0]->bufferPut(1);
+			outputSignals[0]->bufferPut((t_binary) 1);
 		}
 		else
 		{
-			outputSignals[0]->bufferPut(0);
+			outputSignals[0]->bufferPut((t_binary) 0);
 		}
 
 

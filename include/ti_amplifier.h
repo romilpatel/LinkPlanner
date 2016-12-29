@@ -14,6 +14,7 @@ public:
 
 	t_real amplification = 1e6;
 	t_real noiseamp = 1e-4;
+	bool electricalNoise = false;
 
 	default_random_engine generator;
 	
@@ -26,6 +27,7 @@ public:
 
 	void setAmplification(t_real Amplification) { amplification = Amplification; }
 	void setNoiseAmplitude(t_real NoiseAmplitude) { noiseamp = NoiseAmplitude; }
+	void useNoise(bool eNoise) { electricalNoise = eNoise; }
 
 private:
 };

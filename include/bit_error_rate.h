@@ -11,13 +11,6 @@ class BitErrorRate : public Block {
 	
 public:
 
-	int firstPass=1;
-
-	t_real alpha = 0.05;
-	t_real z;
-	int m = 0;
-	int n = 0;
-
 	BitErrorRate(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig,OutputSig){};
 	
 	void initialize(void);
@@ -30,7 +23,12 @@ public:
 	void setMidReportSize(t_real M) { m = M; }
 
 private:
+	int firstPass = 1;
 
+	t_real alpha = 0.05;
+	t_real z;
+	int m = 0;
+	int n = 0;
 };
 
 

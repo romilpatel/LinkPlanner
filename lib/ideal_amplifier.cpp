@@ -1,8 +1,5 @@
-#include <algorithm>
+#include <algorithm>  // min()
 #include <complex>
-#include <random>
-#include <fstream>
-#include <iostream>
 
 #include "netxpto.h"
 #include "ideal_amplifier.h"
@@ -10,39 +7,47 @@
 
 void IdealAmplifier::initialize(void){
 
-	firsTime = false;
-
 	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
+
 }
 
 
 bool IdealAmplifier::runBlock(void){
 
-	ofstream myfile;
-	myfile.open("translate.txt", fstream::app);
-
 	int ready = inputSignals[0]->ready();
-
 	int space = outputSignals[0]->space();
 
 	int process = min(ready, space);
 
-	if (process == 0) {
-		return false;
-		myfile.close();
-	}
-	for (int i = 0; i < process; i++) {
+	if (process == 0) return false;
+	
+	signal_value_type sType = inputSignals[0]->getValueType();
 
-		t_complex input;
-		inputSignals[0]->bufferGet(&input);
-		
-		myfile << input << "\n";
-
-		t_complex output = input*amplification; 
-
-		outputSignals[0]->bufferPut(output);
+	switch (sType) {
+		case RealValue:
+			t_real inReal;
+			for (int k = 0; k < process; k++) {
+				inputSignals[0]->bufferGet(&inReal);
+				outputSignals[0]->bufferPut((t_real)gain*inReal);
+			}
+			break;
+		case ComplexValue:
+			t_complex inComplexValue;
+			for (int k = 0; k < process; k++) {
+				inputSignals[0]->bufferGet(&inComplexValue);
+				outputSignals[0]->bufferPut((t_complex)gain*inComplexValue);
+			}
+			break;
+		case ComplexValueXY:
+			t_complex_xy inComplexValueXY;
+			for (int k = 0; k < process; k++) {
+				inputSignals[0]->bufferGet(&inComplexValueXY);
+				outputSignals[0]->bufferPut((t_complex_xy) { gain*inComplexValueXY.x, gain*inComplexValueXY.y });
+				break;
+			}
+			break;
 	}
 	return true;
 }

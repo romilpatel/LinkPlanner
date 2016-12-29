@@ -35,12 +35,10 @@ class EDFA : public SuperBlock {
 	/* State Variables */
 
 	/* Input Parameters */
-	double amplification{ 1e4 };
+	double gain{ 1e4 };
 
-	t_real std{ 1e-3 };
-	t_real noiseBias{ 0 };
-	int noiseLength{ 512 };
-
+	double bilateralNoiseSpectralDensity{ 1e-3 }; // W/Hz
+	
 
 public:
 
@@ -50,14 +48,10 @@ public:
 
 	/* Set Methods */
 
-	void setAmplification(double amp) { B1.setAmplification(amp); };
+	void setDiscreteOpticalAmplifierGain(double gain) { B1.setGain(gain); };
+	double getDiscreteOpticalAmplifierGain() { return B1.getGain(); };
 
-	void setOpticalNoiseAmplitude(double std) { B2.setNoiseAmplitude(std); };
-	void setNoiseBias(double nBias) { B2.setNoiseBias(nBias); };
-	void setNoiseSamplingPeriod(double sPeriod) { B2.setSamplingPeriod(sPeriod); };
-	void setNoiseSymbolPeriod(double sPeriod){ B2.setSymbolPeriod(sPeriod); };
-
-	void useOpticalNoise(bool oNoise){ B3.useNoise(oNoise); }
+	void setDiscreteOpticalAmplifierBilateralNoiseSpectralDensity(double bNoiseSpectralDensity) { B2.setBilateralNoiseSpectralDensity(bNoiseSpectralDensity); };
 
 };
 

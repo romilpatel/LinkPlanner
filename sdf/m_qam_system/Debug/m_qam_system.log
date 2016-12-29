@@ -1,18 +1,11 @@
-﻿  subtractor.cpp
-  phase_shifter.cpp
-  mqam_transmission_system.cpp
-  photodiode.cpp
-  balanced_beam_splitter.cpp
-  local_oscillator.cpp
-  super_block_interface.cpp
-  sink.cpp
-  pulse_shaper.cpp
-  netxpto.cpp
-  m_qam_transmitter.cpp
-  m_qam_mapper.cpp
-  iq_modulator.cpp
-  discrete_to_continuous_time.cpp
-  binary_source.cpp
+﻿  optical_hybrid.cpp
+  homodyne_receiver.cpp
+c:\users\ana luisa\documents\github\analuisa\lib\homodyne_receiver.cpp(4): error C2512: 'Photodiode': no appropriate default constructor available
+  c:\users\ana luisa\documents\github\analuisa\include\photodiode.h(7): note: see declaration of 'Photodiode'
+  decoder.cpp
   Generating Code...
-  m_qam_system.vcxproj -> C:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.exe
-  m_qam_system.vcxproj -> C:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)
+  Compiling...
+  m_qam_system_sdf.cpp
+c:\users\ana luisa\documents\github\analuisa\include\bit_error_rate.h(23): warning C4244: '=': conversion from 't_real' to 'int', possible loss of data
+c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\m_qam_system_sdf.cpp(28): warning C4244: 'initializing': conversion from 'double' to 't_integer', possible loss of data
+  Generating Code...

@@ -16,6 +16,8 @@
 	
 	\maketitle
 	
+\section{Functional Description}
+	
 MQAM system is composed of four blocks: a transmitter, a receiver, a communication channel and a block that performs a Bit Error Rate (BER) measurement. The schematic representation of the system is presented in figure \ref{MQAM_system_block_diagram}.
 
 \begin{figure}
@@ -24,17 +26,19 @@ MQAM system is composed of four blocks: a transmitter, a receiver, a communicati
 	\caption{Schematic representation of the MQAM system.}\label{MQAM_system_block_diagram}
 \end{figure}
 
-\subsection*{MQAM transmitter}
+%\subsection*{MQAM transmitter}
+%
+%A complete description of the MQAM transmitter either block by block or as a whole can be found in the \textit{lib} repository. 
+%
+%This block generates one optical signal. It can also output the binary signal that is used to perform a BER measurement.
+%
+%\subsection*{Communication channel}
+%
+%The communication channel has only thermal noise.
+%
+%\subsection*{MQAM receiver}
+%
+%The MQAM receiver is a homodyne receiver. 
 
-A complete description of the MQAM transmitter either block by block or as a whole can be found in the \textit{lib} repository. 
-
-This block generates one or two optical signals. It also generates a binary signal that is used to perform a BER measurement.
-
-\subsection*{Communication channel}
-
-The communication channel has only thermal noise.
-
-\subsection*{MQAM receiver}
-
-\subsection*{BER measurement block}
+%\subsection*{BER measurement block}
 \end{document}

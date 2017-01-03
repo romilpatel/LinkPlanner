@@ -19,10 +19,10 @@ bool BitErrorRate::runBlock(void){
 	if (firstPass)
 	{
 		firstPass = 0;
-		t_real x1 = -2;
-		t_real x2 = 2;
-		t_real x3 = x2 - (erf(x2 / sqrt(2)) + 1 - alpha)*(x2 - x1) / (erf(x2 / sqrt(2)) - erf(x1 / sqrt(2)));
-		t_real exacteness = 1e-15;
+		double x1 = -2;
+		double x2 = 2;
+		double x3 = x2 - (erf(x2 / sqrt(2)) + 1 - alpha)*(x2 - x1) / (erf(x2 / sqrt(2)) - erf(x1 / sqrt(2)));
+		double exacteness = 1e-15;
 
 		while (abs(erf(x3 / sqrt(2)) + 1 - alpha)>exacteness)
 		{
@@ -51,14 +51,10 @@ bool BitErrorRate::runBlock(void){
 
 		/* Calculating BER and bounds */
 
-		t_real NumberOfBits = recievedbits;
-		t_real Coincidences = coincidences;
+		double BER = (recievedBits - coincidences) / recievedBits;
 
-		t_real BER;
-		BER = (NumberOfBits - Coincidences) / NumberOfBits;
-
-		t_real UpperBound = BER + 1 / sqrt(NumberOfBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * NumberOfBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
-		t_real LowerBound = BER - 1 / sqrt(NumberOfBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * NumberOfBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
+		double UpperBound = BER + 1 / sqrt(recievedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * recievedBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
+		double LowerBound = BER - 1 / sqrt(recievedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * recievedBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
 
 		/* Outputting a .txt report*/
 		ofstream myfile;
@@ -67,7 +63,7 @@ bool BitErrorRate::runBlock(void){
 		myfile << "Upper and lower confidence bounds for " << (1 - alpha)*100 << "% confidence level \n";
 		myfile << "Upper Bound= " << UpperBound << "\n";
 		myfile << "Lower Bound= " << LowerBound << "\n";
-		myfile << "Number of received bits =" << NumberOfBits << "\n";
+		myfile << "Number of received bits =" << recievedBits << "\n";
 		myfile.close();
 		return false;
 	}
@@ -84,7 +80,7 @@ bool BitErrorRate::runBlock(void){
 		/* Outputting mid reports */
 		if (m > 0)
 		{
-			if (remainder(recievedbits, m) == 0 & recievedbits>0)
+			if (remainder(recievedBits, m) == 0 & recievedBits>0)
 			{
 				n++;
 
@@ -94,14 +90,12 @@ bool BitErrorRate::runBlock(void){
 
 				/* Calculating BER and bounds */
 
-				t_real NumberOfBits = recievedbits;
-				t_real Coincidences = coincidences;
 
-				t_real BER;
-				BER = (NumberOfBits - Coincidences) / NumberOfBits;
+				double BER;
+				BER = (recievedBits - coincidences) / recievedBits;
 
-				t_real UpperBound = BER + 1 / sqrt(NumberOfBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * NumberOfBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
-				t_real LowerBound = BER - 1 / sqrt(NumberOfBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * NumberOfBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
+				double UpperBound = BER + 1 / sqrt(recievedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * recievedBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
+				double LowerBound = BER - 1 / sqrt(recievedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * recievedBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
 
 				/* Outputting a .txt report*/
 				ofstream myfile;
@@ -110,32 +104,22 @@ bool BitErrorRate::runBlock(void){
 				myfile << "Upper and lower confidence bounds for" << 1-alpha << "confidence level \n";
 				myfile << "Upper Bound= " << UpperBound << "\n";
 				myfile << "Lower Bound= " << LowerBound << "\n";
-				myfile << "Number of received bits =" << NumberOfBits << "\n";
+				myfile << "Number of received bits =" << recievedBits << "\n";
 				myfile.close();
 			}
 		}
 
-		recievedbits++;
+		recievedBits++;
 
 		if (signalValue == SignalValue)
 		{
 			coincidences++;
 			outputSignals[0]->bufferPut((t_binary) 1);
-<<<<<<< HEAD
-=======
-			translate2 << 1 << "\n";
->>>>>>> refs/remotes/netxpto/Alpha
 		}
 		else
 		{
 			outputSignals[0]->bufferPut((t_binary) 0);
-<<<<<<< HEAD
-=======
-			translate2 << 0 << "\n";
->>>>>>> refs/remotes/netxpto/Alpha
 		}
-
-
 
 	}
 	return true;

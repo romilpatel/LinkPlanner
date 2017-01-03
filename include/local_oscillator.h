@@ -40,7 +40,10 @@ public:
 	void setOpticalPower(double oPower) { opticalPower = oPower; }
 	void setOpticalPower_dBm(double oPower_dBm) { opticalPower = 1e-3*pow(10, oPower_dBm / 10); }
 	void setWavelength(double wlength) { wavelength = wlength; }
+	
 	void setPhase(double lOscillatorPhase) { phase= lOscillatorPhase; }
+	double const getPhase(void) { return phase; }
+
     void setShotNoise(bool sNoise) { shotNoise=sNoise; }
 
 

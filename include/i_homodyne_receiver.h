@@ -76,29 +76,28 @@ public:
 	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
 	void setLocalOscillatorOpticalPower_dBm(double opticalPower_dBm) { B1.setOpticalPower_dBm(opticalPower_dBm); };
 	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setPhase(lOscillatorPhase); };
+	double const getLocalOscillatorPhase(void) { B1.getPhase(); }
 	void setLocalOscillatorOpticalWavelength(double lOscillatorWavelength) { B1.setWavelength(lOscillatorWavelength); };
 
 	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
 
 	void setTransferMatrix(array<t_complex, 4> TransferMatrix) { B2.matrix = TransferMatrix; };
+	array<complex<double>, 4> const getBalancedBeamsplitter(void) { B2.getTransferMatrix(); }
 
-<<<<<<< HEAD
-	void setResponsivity(t_real Responsivity) { B3.responsivity = Responsivity; };
-	void useShotNoise(bool sNoise){ B3.useNoise(sNoise); }
+	void setResponsivity(double Responsivity) { B3.setResponsivity(Responsivity); };
+	double const getResponsivity(void) { B3.getResponsivity(); }
+	void useShotNoise(bool uShotNoise){ B3.useNoise(uShotNoise); };
 
-	void setAmplification(t_real Amplification) { B4.amplification = Amplification; };
-	void setElectricalNoiseAmplitude(t_real NoiseAmplitude) { B4.noiseamp = NoiseAmplitude; };
-	void useElectricalNoise(bool eNoise){ B4.useNoise(eNoise); }
-=======
-	void  setResponsivity(t_real Responsivity) { B3.responsivity = Responsivity; };
+	void setGain(double Gain) { B4.setGain(Gain); }
 
-	void setAmplification(t_real Amplification) { B4.amplification = Amplification; };
-	void setNoiseAmplitude(t_real NoiseAmplitude) { B4.noiseamp = NoiseAmplitude; };
->>>>>>> refs/remotes/netxpto/Alpha
+	void setElectricalNoiseSpectralDensity(double eNoiseSpectralDensity) { B4.setNoiseSpectralDensity(eNoiseSpectralDensity); }
+	double const getElectricalNoiseSpectralDensity(void) { B4.getNoiseSpectralDensity(); }
 
 	void setSamplesToSkip(int sToSkip) { B5.setSamplesToSkip(sToSkip); };
+	int const getSamplesToSkip(void) { B5.getSamplesToSkip(); }
 
 	void setDecionLevel(int dLevel) { B6.setDecisionLevel(dLevel); };
+	double const getDecisionLevel(void) { B6.getDecisionLevel(); }
 
 };
 

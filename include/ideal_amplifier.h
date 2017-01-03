@@ -12,7 +12,7 @@ class IdealAmplifier : public Block {
 
 public:
 
-	t_real amplification = 1e4;	
+	double gain = 1e4;	
 
 	IdealAmplifier() {};
 	IdealAmplifier(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
@@ -20,7 +20,7 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	void setAmplification(t_real Amplification) { amplification = Amplification; }
+	void setGain(t_real Gain) { gain = Gain; }
 
 private:
 };

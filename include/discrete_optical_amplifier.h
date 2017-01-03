@@ -1,5 +1,5 @@
-# ifndef PROGRAM_EDFA_H_
-# define PROGRAM_EDFA_H_
+# ifndef PROGRAM_DISCRETE_OPTICAL_AMPLIFIER_H_
+# define PROGRAM_DISCRETE_OPTICAL_AMPLIFIER_H_
 
 # include "netxpto.h"
 
@@ -8,9 +8,8 @@
 # include "white_noise.h"
 
 
-// this is a test block for the purpose of beta testing new code
-// current code: Building Homodyne superblock.
-class EDFA : public SuperBlock {
+// Implements a Discrete Optical Amplifier
+class DiscreteOpticalAmplifier : public SuperBlock {
 
 	// #####################################################################################################
 	// ################## Internal Signals Declaration and Inicialization ##################################
@@ -46,18 +45,14 @@ public:
 
 	/* Methods */
 
-	EDFA(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal);
+	DiscreteOpticalAmplifier(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal);
 
 	/* Set Methods */
 
-	void setAmplification(double amp) { B1.setAmplification(amp); };
+	void setGain(double gain) { B1.setGain(gain); };
 
-	void setOpticalNoiseAmplitude(double std) { B2.setNoiseAmplitude(std); };
-	void setNoiseBias(double nBias) { B2.setNoiseBias(nBias); };
-	void setNoiseSamplingPeriod(double sPeriod) { B2.setSamplingPeriod(sPeriod); };
-	void setNoiseSymbolPeriod(double sPeriod){ B2.setSymbolPeriod(sPeriod); };
-
-	void useOpticalNoise(bool oNoise){ B3.useNoise(oNoise); }
+	void setOpticalNoiseSpectralDensity(double std) { B2.setNoiseSpectralDensity(std); };
+	double const getOpticalNoiseSpectralDensity(void) { B2.getNoiseSpectralDensity(); }
 
 };
 

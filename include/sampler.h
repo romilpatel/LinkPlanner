@@ -19,7 +19,8 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	void setSamplesToSkip(t_integer sToSkip) { samplesToSkip = sToSkip; }
+	void setSamplesToSkip(int sToSkip) { samplesToSkip = sToSkip; }
+	int const getSamplesToSkip(void) { return samplesToSkip; }
 
 };
 

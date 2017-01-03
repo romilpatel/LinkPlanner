@@ -26,22 +26,39 @@ bool Add::runBlock(void){
 
 	if (process == 0) return false;
 	
-	for (int i = 0; i < process; i++) {
+	signal_value_type sType = inputSignals[0]->getValueType();
 
-		t_complex in1;
-		inputSignals[0]->bufferGet(&in1);
-		t_complex in2(0, 0);
-		t_complex noise;
-		inputSignals[1]->bufferGet(&noise);
-		if (opticalNoise)
-		{
-			in2 = in2 + noise;
-		}
+	switch (sType)
+	{
+	case ComplexValue:
+	{
+						 for (int k = 0; k < process; k++) {
 
+							 t_complex in1;
+							 inputSignals[0]->bufferGet(&in1);
+							 t_complex noise;
+							 inputSignals[1]->bufferGet(&noise);
 
-		t_complex out = in1 + in2;
+							 t_complex out = in1 + noise;
 
-		outputSignals[0]->bufferPut(out);
+							 outputSignals[0]->bufferPut(out);
+						 }
+	}
+	case ComplexValueXY:
+	{
+						   for (int k = 0; k < process; k++) {
+
+							   t_complex_xy in;
+							   inputSignals[0]->bufferGet(&in);
+							   t_complex_xy noise;
+							   inputSignals[1]->bufferGet(&noise);
+
+							   t_complex_xy out = { in.x + noise.x, in.y + noise.y };
+
+							   outputSignals[0]->bufferPut(out);
+						   }
+						 break;
+	}
 	}
 	return true;
 }

@@ -18,7 +18,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -71,9 +71,10 @@
     <ClCompile Include="..\..\lib\balanced_beam_splitter.cpp" />
     <ClCompile Include="..\..\lib\binary_source.cpp" />
     <ClCompile Include="..\..\lib\bit_decider.cpp" />
+    <ClCompile Include="..\..\lib\bit_error_rate.cpp" />
     <ClCompile Include="..\..\lib\discarder.cpp" />
+    <ClCompile Include="..\..\lib\discrete_optical_amplifier.cpp" />
     <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
-    <ClCompile Include="..\..\lib\edfa.cpp" />
     <ClCompile Include="..\..\lib\ideal_amplifier.cpp" />
     <ClCompile Include="..\..\lib\iq_modulator.cpp" />
     <ClCompile Include="..\..\lib\i_homodyne_receiver.cpp" />
@@ -95,10 +96,10 @@
     <ClInclude Include="..\..\include\balanced_beam_splitter.h" />
     <ClInclude Include="..\..\include\binary_source.h" />
     <ClInclude Include="..\..\include\bit_decider.h" />
-    <ClInclude Include="..\..\include\delayer.h" />
+    <ClInclude Include="..\..\include\bit_error_rate.h" />
     <ClInclude Include="..\..\include\discarder.h" />
+    <ClInclude Include="..\..\include\discrete_optical_amplifier.h" />
     <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
-    <ClInclude Include="..\..\include\edfa.h" />
     <ClInclude Include="..\..\include\ideal_amplifier.h" />
     <ClInclude Include="..\..\include\iq_modulator.h" />
     <ClInclude Include="..\..\include\i_homodyne_receiver.h" />

@@ -20,7 +20,7 @@ void TIAmplifier::initialize(void){
 
 bool TIAmplifier::runBlock(void){
 
-	normal_distribution<double> distribution( 0, noiseamp);
+	normal_distribution<double> distribution(0, 1);
 
 	int ready = inputSignals[0]->ready();
 
@@ -39,11 +39,11 @@ bool TIAmplifier::runBlock(void){
 		
 		noise = distribution(generator);
 		
-		t_real output = input*amplification; // assuming current in amps
+		t_real output = input*gain; // assuming current in amps
 
-		if (electricalNoise)
+		if (electricalNoiseSpectralDensity!=0)
 		{
-			output = output + noise;
+			output = output + noise*electricalNoiseSpectralDensity;
 		}
 
 

@@ -12,14 +12,12 @@ class WhiteNoise : public Block {
 
 public:
 
-	t_real noisebias = 0;
-	t_real noiseamp = 1e-4;
-	int noiseLength = 0;
-	double samplingPeriod{ 0.0 };
-	double symbolPeriod{ 0.0 };
-
+	double spectralDensity = 1e-4;
+	
 	default_random_engine generator1;
 	default_random_engine generator2;
+	default_random_engine generator3;
+	default_random_engine generator4;
 
 
 	WhiteNoise() {};
@@ -28,11 +26,8 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; }
-	void setSymbolPeriod(double sPeriod) { symbolPeriod = sPeriod; }
-	void setNoiseAmplitude(t_real NoiseAmplitude) { noiseamp = NoiseAmplitude; }
-	void setNoiseBias(t_real nBias) { noisebias = nBias; };
-	void setNoiseLength(int nLength) { noiseLength = noiseLength; };
+	void setNoiseSpectralDensity(double SpectralDensity) { spectralDensity = SpectralDensity; }
+	double const getNoiseSpectralDensity(void){ return spectralDensity; }
 
 private:
 };

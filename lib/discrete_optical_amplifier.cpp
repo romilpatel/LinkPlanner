@@ -1,7 +1,7 @@
-#include "edfa.h"
+#include "discrete_optical_amplifier.h"
 
 
-EDFA::EDFA(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal) :SuperBlock(inputSignal, outputSignal) {
+DiscreteOpticalAmplifier::DiscreteOpticalAmplifier(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal) :SuperBlock(inputSignal, outputSignal) {
 
 	inputSignals = inputSignal;
 	outputSignals = outputSignal;

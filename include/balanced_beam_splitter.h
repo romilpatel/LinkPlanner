@@ -16,11 +16,9 @@ class BalancedBeamSplitter : public Block {
 
 public:
 
-	//double outputOpticalWavelength{ 1550e-9 };
-	//double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
 	t_real div = 1 / sqrt(2);
 	t_complex unit = 1;
-	array <t_complex, 4> matrix = { { div*unit, div*unit, div*unit, -unit*div } };
+	array <complex<double>, 4> matrix = { { div*unit, div*unit, div*unit, -unit*div } };
 	
 	BalancedBeamSplitter() {};
 	BalancedBeamSplitter(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
@@ -28,8 +26,9 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	void setTransferMatrix(array<t_complex, 4> TransferMatrix) { matrix = TransferMatrix; }
-	
+	void setTransferMatrix(array<complex<double>, 4> TransferMatrix) { matrix = TransferMatrix; }
+	array<complex<double>, 4> const getTransferMatrix(void) { return matrix; }
+
 private:
 
 };

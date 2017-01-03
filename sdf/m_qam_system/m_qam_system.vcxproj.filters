@@ -48,7 +48,6 @@
     <ClCompile Include="..\..\lib\homodyne_receiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="..\..\lib\bit_error_rate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -67,11 +66,6 @@
     <ClCompile Include="..\..\lib\decoder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\subtractor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-=======
->>>>>>> dc00d875a4698894f7854fe56be177086bf2b48b
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\m_qam_transmitter.h">
@@ -98,7 +92,6 @@
     <ClInclude Include="..\..\include\netxpto.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="..\..\include\super_block_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -126,10 +119,5 @@
     <ClInclude Include="..\..\include\decoder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\subtractor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-=======
->>>>>>> dc00d875a4698894f7854fe56be177086bf2b48b
   </ItemGroup>
 </Project>

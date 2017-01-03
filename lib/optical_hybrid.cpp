@@ -63,7 +63,7 @@ bool OpticalHybrid::runBlock(void) {
 	t_complex OutputSignal4; //=Signal-i*LO
 
 
-	for (int i = 0; i < process; i++) {
+	for (int k = 0; k < process; k++) {
 
 		inputSignals[0]->bufferGet(&Signal);
 		inputSignals[1]->bufferGet(&LO);

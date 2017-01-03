@@ -30,7 +30,7 @@ void Signal::close() {
 			ptr = ptr + (firstValueToBeSaved - 1)*sizeof(t_binary);
 			fileHandler.write((char *)ptr, (inPosition - (firstValueToBeSaved - 1))*sizeof(t_binary));
 		}
-		else if (type == "TimeContinuousAmplitudeContinuousComplex") {
+		else if (type == "TimeContinuousAmplitudeContinuousComplex" || type == "BandpassSignal") {
 			ptr = ptr + (firstValueToBeSaved - 1)*sizeof(t_complex);
 			fileHandler.write((char *)ptr, (inPosition - (firstValueToBeSaved - 1))*sizeof(t_complex));
 		}
@@ -38,7 +38,7 @@ void Signal::close() {
 			ptr = ptr + (firstValueToBeSaved - 1)*sizeof(t_real);
 			fileHandler.write((char *)ptr, (inPosition - (firstValueToBeSaved - 1))*sizeof(t_real));
 		}
-
+		inPosition = 0;
 		fileHandler.close();
 	}
 };
@@ -265,7 +265,6 @@ bool SuperBlock::runBlock() {
 			proceed = (proceed || aux);
 			alive = (alive || proceed);
 		}
-
 
 		for (unsigned int i = 0; i < outputSignals.size(); i++) {
 			int ready = moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->ready();

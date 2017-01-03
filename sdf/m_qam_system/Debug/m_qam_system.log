@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  optical_hybrid.cpp
   homodyne_receiver.cpp
 c:\users\ana luisa\documents\github\analuisa\lib\homodyne_receiver.cpp(4): error C2512: 'Photodiode': no appropriate default constructor available
@@ -9,3 +10,19 @@ c:\users\ana luisa\documents\github\analuisa\lib\homodyne_receiver.cpp(4): error
 c:\users\ana luisa\documents\github\analuisa\include\bit_error_rate.h(23): warning C4244: '=': conversion from 't_real' to 'int', possible loss of data
 c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\m_qam_system_sdf.cpp(28): warning C4244: 'initializing': conversion from 'double' to 't_integer', possible loss of data
   Generating Code...
+=======
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'c:\netxpto\vlad\sdf\m_qam_system\debug\vc140.pdb' because it is being used by another process.
+  m_qam_system_sdf.cpp
+  sink.cpp
+  pulse_shaper.cpp
+  netxpto.cpp
+  m_qam_transmitter.cpp
+  m_qam_mapper.cpp
+  iq_modulator.cpp
+  discrete_to_continuous_time.cpp
+  binary_source.cpp
+  Generating Code...
+m_qam_transmitter.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall SuperBlockInterface::initialize(void)" (?initialize@SuperBlockInterface@@UAEXXZ)
+m_qam_transmitter.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall SuperBlockInterface::runBlock(void)" (?runBlock@SuperBlockInterface@@UAE_NXZ)
+C:\netxpto\Vlad\sdf\m_qam_system\Debug\m_qam_system.exe : fatal error LNK1120: 2 unresolved externals
+>>>>>>> dc00d875a4698894f7854fe56be177086bf2b48b

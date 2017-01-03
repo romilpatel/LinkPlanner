@@ -82,12 +82,19 @@ public:
 
 	void setTransferMatrix(array<t_complex, 4> TransferMatrix) { B2.matrix = TransferMatrix; };
 
+<<<<<<< HEAD
 	void setResponsivity(t_real Responsivity) { B3.responsivity = Responsivity; };
 	void useShotNoise(bool sNoise){ B3.useNoise(sNoise); }
 
 	void setAmplification(t_real Amplification) { B4.amplification = Amplification; };
 	void setElectricalNoiseAmplitude(t_real NoiseAmplitude) { B4.noiseamp = NoiseAmplitude; };
 	void useElectricalNoise(bool eNoise){ B4.useNoise(eNoise); }
+=======
+	void  setResponsivity(t_real Responsivity) { B3.responsivity = Responsivity; };
+
+	void setAmplification(t_real Amplification) { B4.amplification = Amplification; };
+	void setNoiseAmplitude(t_real NoiseAmplitude) { B4.noiseamp = NoiseAmplitude; };
+>>>>>>> refs/remotes/netxpto/Alpha
 
 	void setSamplesToSkip(int sToSkip) { B5.setSamplesToSkip(sToSkip); };
 

@@ -68,7 +68,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>..\..\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -113,7 +115,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\lib\binary_source.cpp" />
     <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
+    <ClCompile Include="..\..\lib\fiber.cpp" />
+    <ClCompile Include="..\..\lib\im_modulator.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
+    <ClCompile Include="..\..\lib\pin.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="imdd_sdf.cpp" />
@@ -121,7 +126,10 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\binary_source.h" />
     <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
+    <ClInclude Include="..\..\include\fiber.h" />
+    <ClInclude Include="..\..\include\im_modulator.h" />
     <ClInclude Include="..\..\include\netxpto.h" />
+    <ClInclude Include="..\..\include\pin.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sink.h" />
   </ItemGroup>

@@ -121,10 +121,18 @@ bool BitErrorRate::runBlock(void){
 		{
 			coincidences++;
 			outputSignals[0]->bufferPut((t_binary) 1);
+<<<<<<< HEAD
+=======
+			translate2 << 1 << "\n";
+>>>>>>> refs/remotes/netxpto/Alpha
 		}
 		else
 		{
 			outputSignals[0]->bufferPut((t_binary) 0);
+<<<<<<< HEAD
+=======
+			translate2 << 0 << "\n";
+>>>>>>> refs/remotes/netxpto/Alpha
 		}
 
 

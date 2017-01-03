@@ -3,8 +3,11 @@
 # include "m_qam_transmitter.h"
 # include "i_homodyne_receiver.h"
 # include "sink.h"
+<<<<<<< HEAD
 # include "edfa.h"
 # include "bit_error_rate.h"
+=======
+>>>>>>> refs/remotes/netxpto/Alpha
 
 int main(){
 
@@ -22,6 +25,7 @@ int main(){
 	double signalOutputPower_dBm = -20;
 	double localOscillatorPower_dBm = -10;
 	double localOscillatorPhase = 0;
+<<<<<<< HEAD
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2) } };
 	double responsivity = 1;
 	double amplification = 10e6;
@@ -33,12 +37,22 @@ int main(){
 	bool shotNoise = false;
 	bool electricalNoise = false;
 
+=======
+	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
+	double responsivity = 1;
+	double amplification = 10e6;
+	double noiseAmplitude = 1e-16;
+	int samplesToSkip = 8 * samplesPerSymbol;
+	int bufferLength = 512;
+		
+>>>>>>> refs/remotes/netxpto/Alpha
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
 
 	Binary S0{ "S0.sgn" };
 	S0.setBufferLength(bufferLength);
+<<<<<<< HEAD
 
 	OpticalSignal S1("S1.sgn");
 	S1.setBufferLength(bufferLength);
@@ -51,6 +65,14 @@ int main(){
 
 	Binary S4{ "S4.sgn" };
 	S4.setBufferLength(bufferLength);
+=======
+
+	OpticalSignal S1("S1.sgn");
+	S1.setBufferLength(bufferLength);
+
+	Binary S2{ "S2.sgn" };
+	S2.setBufferLength(bufferLength);
+>>>>>>> refs/remotes/netxpto/Alpha
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
@@ -66,6 +88,7 @@ int main(){
 	B1.setIqAmplitudes(iqAmplitudeValues);
 	B1.setNumberOfSamplesPerSymbol(samplesPerSymbol);
 	B1.setRollOffFactor(rollOffFactor);
+<<<<<<< HEAD
 	B1.setSaveInternalSignals(false);
 	B1.setSeeBeginningOfImpulseResponse(true);
 
@@ -96,6 +119,30 @@ int main(){
 	Sink B5{ vector<Signal*> { &S4 }, vector<Signal*> {} };
 	B5.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
 	B5.setDisplayNumberOfSamples(true);
+=======
+	B1.setSaveInternalSignals(true);
+	B1.setSeeBeginningOfImpulseResponse(true);
+
+	I_HomodyneReceiver B2{ vector<Signal*> {&S1}, vector<Signal*> {&S2} };
+	B2.setLocalOscillatorOpticalPower_dBm(localOscillatorPower_dBm);
+	B2.setLocalOscillatorPhase(localOscillatorPhase);
+	B2.setLocalOscillatorSamplingPeriod(bitPeriod / samplesPerSymbol);
+	B2.setLocalOscillatorSymbolPeriod(bitPeriod);
+	B2.setTransferMatrix(transferMatrix);
+	B2.setResponsivity(responsivity);
+	B2.setAmplification(amplification);
+	B2.setNoiseAmplitude(noiseAmplitude);
+	B2.setSamplesToSkip(samplesToSkip);
+	B2.setSaveInternalSignals(true);
+
+	Sink B3{ vector<Signal*> { &S0 }, vector<Signal*> {} };
+	B3.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
+	B3.setDisplayNumberOfSamples(true);
+
+	Sink B4{ vector<Signal*> { &S2 }, vector<Signal*> {} };
+	B4.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
+	B4.setDisplayNumberOfSamples(true);
+>>>>>>> refs/remotes/netxpto/Alpha
 
 
 	// #####################################################################################################

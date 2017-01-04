@@ -1,47 +1,29 @@
-<<<<<<< HEAD
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\vc140.pdb
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\vc140.idb
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\binary_source.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\bit_error_rate.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\decoder.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\discrete_to_continuous_time.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\iq_modulator.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\local_oscillator.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\m_qam_mapper.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\m_qam_transmitter.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\netxpto.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\optical_hybrid.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\photodiode.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\pulse_shaper.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\sampler.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\sink.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\subtractor.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\super_block_interface.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\m_qam_system_sdf.obj
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\m_qam_system.tlog\cl.command.1.tlog
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\m_qam_system.tlog\cl.read.1.tlog
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\debug\m_qam_system.tlog\cl.write.1.tlog
-=======
-c:\netxpto\vlad\sdf\m_qam_system\debug\vc140.pdb
-c:\netxpto\vlad\sdf\m_qam_system\debug\vc140.idb
-c:\netxpto\vlad\sdf\m_qam_system\debug\binary_source.obj
-c:\netxpto\vlad\sdf\m_qam_system\debug\discrete_to_continuous_time.obj
-c:\netxpto\vlad\sdf\m_qam_system\debug\iq_modulator.obj
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_mapper.obj
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_transmitter.obj
-c:\netxpto\vlad\sdf\m_qam_system\debug\netxpto.obj
-c:\netxpto\vlad\sdf\m_qam_system\debug\pulse_shaper.obj
-c:\netxpto\vlad\sdf\m_qam_system\debug\sink.obj
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system_sdf.obj
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system.pdb
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system.tlog\cl.command.1.tlog
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system.tlog\cl.read.1.tlog
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system.tlog\cl.write.1.tlog
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system.tlog\link-cvtres.read.1.tlog
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system.tlog\link-cvtres.write.1.tlog
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system.tlog\link-rc.read.1.tlog
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system.tlog\link-rc.write.1.tlog
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system.tlog\link.command.1.tlog
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system.tlog\link.read.1.tlog
-c:\netxpto\vlad\sdf\m_qam_system\debug\m_qam_system.tlog\link.write.1.tlog
->>>>>>> dc00d875a4698894f7854fe56be177086bf2b48b
+c:\netxpto\analuisa\sdf\m_qam_system\debug\vc140.pdb
+c:\netxpto\analuisa\sdf\m_qam_system\debug\vc140.idb
+c:\netxpto\analuisa\sdf\m_qam_system\debug\binary_source.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\bit_error_rate.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\decoder.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\discrete_to_continuous_time.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\homodyne_receiver.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\iq_modulator.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\local_oscillator.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_mapper.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_transmitter.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\netxpto.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\optical_hybrid.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\photodiode.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\pulse_shaper.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\sampler.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\sink.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\super_block_interface.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\ti_amplifier.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_system_sdf.obj
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_system.ilk
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_system.exe
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_system.pdb
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_system.tlog\cl.command.1.tlog
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_system.tlog\cl.read.1.tlog
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_system.tlog\cl.write.1.tlog
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_system.tlog\link.command.1.tlog
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_system.tlog\link.read.1.tlog
+c:\netxpto\analuisa\sdf\m_qam_system\debug\m_qam_system.tlog\link.write.1.tlog

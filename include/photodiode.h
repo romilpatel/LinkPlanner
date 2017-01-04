@@ -14,7 +14,7 @@ public:
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
 	t_real responsivity = 1;
 
-
+	Photodiode() {};
 	Photodiode(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};
 
 	void initialize(void);

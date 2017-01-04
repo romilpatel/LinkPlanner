@@ -21,6 +21,7 @@ public:
 	double outputOpticalWavelength{ 1550e-9 };
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
 	t_integer m{ 4 };
+	vector<t_complex> iqValues;
 	vector<int> iqBinaryValues;
 
 	/* Methods */

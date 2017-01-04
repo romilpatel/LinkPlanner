@@ -123,20 +123,16 @@ bool BitErrorRate::runBlock(void){
 		if (signalValue == SignalValue)
 		{
 			coincidences++;
-<<<<<<< HEAD
+
 			outputSignals[0]->bufferPut(1);
-=======
-			outputSignals[0]->bufferPut((t_binary) 1);
->>>>>>> dc00d875a4698894f7854fe56be177086bf2b48b
+
 			translate2 << 1 << "\n";
 		}
 		else
 		{
-<<<<<<< HEAD
+
 			outputSignals[0]->bufferPut(0);
-=======
-			outputSignals[0]->bufferPut((t_binary) 0);
->>>>>>> dc00d875a4698894f7854fe56be177086bf2b48b
+
 			translate2 << 0 << "\n";
 		}
 

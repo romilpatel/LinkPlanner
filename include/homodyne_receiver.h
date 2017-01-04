@@ -79,7 +79,7 @@ class HomodyneReceiver : public SuperBlock {
 	double localOscillatorPhase{ 0 };
 	double localOscillatorWavelength{ 1550e-9 };
 
-	int samplesToSkip{ 0 };
+	//int samplesToSkip{ 0 };
 
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / localOscillatorWavelength };
 
@@ -104,7 +104,7 @@ public:
 	void setAmplification(t_real Amplification) { B5.amplification = Amplification; B6.amplification = Amplification; };
 	void setNoiseAmplitude(t_real NoiseAmplitude) { B5.noiseamp = NoiseAmplitude; B6.noiseamp = NoiseAmplitude;};
 
-	void setSamplesToSkip(int sToSkip) { B7.setSamplesToSkip(sToSkip); B8.setSamplesToSkip(sToSkip); };
+	//void setSamplesToSkip(int sToSkip) { B7.setSamplesToSkip(sToSkip); B8.setSamplesToSkip(sToSkip); };
 
 };
 

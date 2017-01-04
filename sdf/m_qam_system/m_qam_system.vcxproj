@@ -40,13 +40,10 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>..\..\include;$(IncludePath)</IncludePath>
-<<<<<<< HEAD
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86; C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\include</IncludePath>
-=======
->>>>>>> dc00d875a4698894f7854fe56be177086bf2b48b
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -88,11 +85,7 @@
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sampler.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="..\..\lib\subtractor.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface.cpp" />
-=======
->>>>>>> dc00d875a4698894f7854fe56be177086bf2b48b
     <ClCompile Include="m_qam_system_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -111,12 +104,8 @@
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sampler.h" />
     <ClInclude Include="..\..\include\sink.h" />
-<<<<<<< HEAD
-    <ClInclude Include="..\..\include\subtractor.h" />
     <ClInclude Include="..\..\include\super_block_interface.h" />
     <ClInclude Include="..\..\include\ti_amplifier.h" />
-=======
->>>>>>> dc00d875a4698894f7854fe56be177086bf2b48b
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

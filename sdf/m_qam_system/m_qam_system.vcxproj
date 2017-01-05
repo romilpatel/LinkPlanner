@@ -86,6 +86,7 @@
     <ClCompile Include="..\..\lib\sampler.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface.cpp" />
+    <ClCompile Include="..\..\lib\ti_amplifier.cpp" />
     <ClCompile Include="m_qam_system_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>

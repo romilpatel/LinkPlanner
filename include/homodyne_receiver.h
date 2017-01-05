@@ -104,7 +104,7 @@ public:
 	void setAmplification(t_real Amplification) { B5.amplification = Amplification; B6.amplification = Amplification; };
 	void setNoiseAmplitude(t_real NoiseAmplitude) { B5.noiseamp = NoiseAmplitude; B6.noiseamp = NoiseAmplitude;};
 
-	//void setSamplesToSkip(int sToSkip) { B7.setSamplesToSkip(sToSkip); B8.setSamplesToSkip(sToSkip); };
+	void setSamplesToSkip(int sToSkip) { B7.setSamplesToSkip(sToSkip); B8.setSamplesToSkip(sToSkip); };
 
 };
 

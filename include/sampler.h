@@ -13,22 +13,22 @@ class Sampler : public Block {
 
 	int delay = 9;
 
-	Sampler() {};
-	Sampler(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
-
-	void initialize(void);
-	bool runBlock(void);
-
-	void setSamplingRate(int Sampling) { sampling = Sampling; }
-	void setDelay(int Delay) { delay = Delay; }
-	void setSamplesToSkip(t_integer sToSkip) { samplesToSkip = sToSkip; }
-
-private:
-
 	int AuxInt = 0;
 
 	t_integer samplesToSkip{ 0 };
 
+
+public:
+
+	void initialize(void);
+	bool runBlock(void);
+
+	Sampler() {};
+	Sampler(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};
+
+	void setSamplingRate(int Sampling) { sampling = Sampling; }
+	void setDelay(int Delay) { delay = Delay; }
+	void setSamplesToSkip(t_integer sToSkip) { samplesToSkip = sToSkip; }
 
 };
 

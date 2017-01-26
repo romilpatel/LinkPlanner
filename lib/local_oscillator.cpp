@@ -26,8 +26,8 @@ bool LocalOscillator::runBlock(void){
 
     normal_distribution<double> distribution(0, 1);
 
-	t_real dt = inputSignals[0]->getSamplingPeriod();
-	t_real wvlgth = inputSignals[0]->getCentralWavelength();
+	t_real dt = samplingPeriod;
+	t_real wvlgth = wavelength;
 	t_real noisesignal;
 	t_real noiselo;
 

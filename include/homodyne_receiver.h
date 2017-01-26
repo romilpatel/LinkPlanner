@@ -21,7 +21,7 @@ class HomodyneReceiver : public SuperBlock {
 	// ################## Internal Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
 
-	OpticalSignal HMD00{ "HMD00.sgn" }; // Input Signal
+	//OpticalSignal HMD00{ "HMD00.sgn" }; // Input Signal
 
 	OpticalSignal HMD01{ "HMD01.sgn" }; // Local Oscillator
 

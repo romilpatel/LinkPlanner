@@ -44,7 +44,7 @@ bool Add::runBlock(void){
 							 outputSignals[0]->bufferPut(out);
 						 }
 	}
-	case ComplexValueXY:
+	/*case ComplexValueXY:
 	{
 						   for (int k = 0; k < process; k++) {
 
@@ -58,7 +58,7 @@ bool Add::runBlock(void){
 							   outputSignals[0]->bufferPut(out);
 						   }
 						 break;
-	}
+	}*/
 	}
 	return true;
 }

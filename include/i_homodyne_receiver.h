@@ -7,12 +7,12 @@
 # include "balanced_beam_splitter.h"
 # include "photodiode.h"
 # include "ti_amplifier.h"
+# include "electrical_filter.h"
 # include "sampler.h"
 # include "bit_decider.h"
 
 
-// this is a test block for the purpose of beta testing new code
-// current code: Building Homodyne superblock.
+// Balanced Homodyne Receiver superblock
 class I_HomodyneReceiver : public SuperBlock {
 
 	// #####################################################################################################
@@ -29,9 +29,11 @@ class I_HomodyneReceiver : public SuperBlock {
 
 	TimeContinuousAmplitudeContinuousReal I_HMD05{ "I_HMD05.sgn" }; // Amplified
 
-	TimeDiscreteAmplitudeContinuousReal I_HMD06{ "I_HMD06.sgn" }; // Sampled
+	TimeContinuousAmplitudeContinuousReal I_HMD06{ "I_HMD06.sgn" }; // Filtered
 
-	Binary I_HMD07{ "I_HMD07.sgn" }; // Binary retrieved information
+	TimeDiscreteAmplitudeContinuousReal I_HMD07{ "I_HMD07.sgn" }; // Sampled
+
+	Binary I_HMD08{ "I_HMD08.sgn" }; // Binary retrieved information
 
 
 	// #####################################################################################################
@@ -46,9 +48,11 @@ class I_HomodyneReceiver : public SuperBlock {
 
 	TIAmplifier B4;
 
-	Sampler B5;
+	ElectricalFilter B5;
 
-	BitDecider B6;
+	Sampler B6;
+
+	BitDecider B7;
 
 	/* State Variables */
 
@@ -93,11 +97,11 @@ public:
 	void setElectricalNoiseSpectralDensity(double eNoiseSpectralDensity) { B4.setNoiseSpectralDensity(eNoiseSpectralDensity); }
 	double const getElectricalNoiseSpectralDensity(void) { B4.getNoiseSpectralDensity(); }
 
-	void setSamplesToSkip(int sToSkip) { B5.setSamplesToSkip(sToSkip); };
-	int const getSamplesToSkip(void) { B5.getSamplesToSkip(); }
+	void setSamplesToSkip(int sToSkip) { B6.setSamplesToSkip(sToSkip); };
+	int const getSamplesToSkip(void) { B6.getSamplesToSkip(); }
 
-	void setDecionLevel(int dLevel) { B6.setDecisionLevel(dLevel); };
-	double const getDecisionLevel(void) { B6.getDecisionLevel(); }
+	void setDecionLevel(int dLevel) { B7.setDecisionLevel(dLevel); };
+	double const getDecisionLevel(void) { B7.getDecisionLevel(); }
 
 };
 

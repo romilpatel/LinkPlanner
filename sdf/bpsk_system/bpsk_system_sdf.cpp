@@ -13,7 +13,7 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated(20);
+	int numberOfBitsGenerated(100);
 	int samplesPerSymbol(16);
 	int pLength = 5;
 	double bitPeriod = 1.0 / 50e9;
@@ -25,7 +25,7 @@ int main(){
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	double responsivity = 1;
 	double amplification = 10e6;
-	double electricalNoiseAmplitude = 1e-3;
+	double electricalNoiseAmplitude = 0;
 	double opticalNoiseAmplitude = 1e-3;
 	int samplesToSkip = 8 * samplesPerSymbol;
 	int bufferLength = 512;
@@ -57,8 +57,7 @@ int main(){
 	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S1, &S0 } };
 	B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
-	B1.setMode(DeterministicAppendZeros);
-	B1.setBitStream("010");
+	B1.setMode(PseudoRandom);
 	B1.setBitPeriod(bitPeriod);
 	B1.setPatternLength(pLength);
 	B1.setIqAmplitudes(iqAmplitudeValues);

@@ -38,7 +38,6 @@ class DiscreteOpticalAmplifier : public SuperBlock {
 
 	t_real std{ 1e-3 };
 	t_real noiseBias{ 0 };
-	int noiseLength{ 512 };
 
 
 public:

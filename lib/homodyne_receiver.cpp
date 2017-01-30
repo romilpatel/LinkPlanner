@@ -5,8 +5,11 @@ HomodyneReceiver::HomodyneReceiver(vector<Signal *> &inputSignal, vector<Signal 
 
 	setLocalOscillatorSamplingPeriod(inputSignal[0]->getSamplingPeriod());
 
+	inputSignals = inputSignal;
+	outputSignals = outputSignal;
+
 	B1.initializeBlock(vector<Signal*> { }, vector<Signal*> { &HMD01 });
-	B2.initializeBlock(vector<Signal*> { &HMD00, &HMD01 }, vector<Signal*> { &HMD02, &HMD03, &HMD04, &HMD05 });
+	B2.initializeBlock(vector<Signal*> { inputSignals[0], &HMD01 }, vector<Signal*> { &HMD02, &HMD03, &HMD04, &HMD05 });
 	B3.initializeBlock(vector<Signal*> { &HMD02, &HMD03 }, vector<Signal*> { &HMD06 });
 	B4.initializeBlock(vector<Signal*> { &HMD04, &HMD05 }, vector<Signal*> { &HMD07 });
 	B5.initializeBlock(vector<Signal*> { &HMD06 }, vector<Signal*> { &HMD08 });

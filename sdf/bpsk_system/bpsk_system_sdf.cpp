@@ -61,7 +61,7 @@ int main(){
 	B2.setLocalOscillatorOpticalPower_dBm(localOscillatorPower_dBm);
 	B2.setLocalOscillatorPhase(localOscillatorPhase);
 	B2.setLocalOscillatorSamplingPeriod(bitPeriod / samplesPerSymbol);
-	B2.setLocalOscillatorSymbolPeriod(bitPeriod);
+	//B2.setLocalOscillatorSymbolPeriod(bitPeriod);
 	B2.setTransferMatrix(transferMatrix);
 	B2.setResponsivity(responsivity);
 	B2.setAmplification(amplification);

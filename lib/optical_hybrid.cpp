@@ -19,23 +19,23 @@ void OpticalHybrid::initialize(void) {
 	outputSignals[0]->centralWavelength = outputOpticalWavelength;
 	outputSignals[0]->centralFrequency = outputOpticalFrequency;
 
-	outputSignals[1]->setSymbolPeriod(inputSignals[1]->getSymbolPeriod());
-	outputSignals[1]->setSamplingPeriod(inputSignals[1]->getSamplingPeriod());
-	outputSignals[1]->setFirstValueToBeSaved(inputSignals[1]->getFirstValueToBeSaved());
+	outputSignals[1]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[1]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
 	outputSignals[1]->centralWavelength = outputOpticalWavelength;
 	outputSignals[1]->centralFrequency = outputOpticalFrequency;
 
-	outputSignals[2]->setSymbolPeriod(inputSignals[2]->getSymbolPeriod());
-	outputSignals[2]->setSamplingPeriod(inputSignals[2]->getSamplingPeriod());
-	outputSignals[2]->setFirstValueToBeSaved(inputSignals[2]->getFirstValueToBeSaved());
+	outputSignals[2]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[2]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[2]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
 	outputSignals[2]->centralWavelength = outputOpticalWavelength;
 	outputSignals[2]->centralFrequency = outputOpticalFrequency;
 
-	outputSignals[3]->setSymbolPeriod(inputSignals[3]->getSymbolPeriod());
-	outputSignals[3]->setSamplingPeriod(inputSignals[3]->getSamplingPeriod());
-	outputSignals[3]->setFirstValueToBeSaved(inputSignals[3]->getFirstValueToBeSaved());
+	outputSignals[3]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[3]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	outputSignals[3]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
 	outputSignals[3]->centralWavelength = outputOpticalWavelength;
 	outputSignals[3]->centralFrequency = outputOpticalFrequency;

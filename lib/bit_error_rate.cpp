@@ -87,7 +87,7 @@ bool BitErrorRate::runBlock(void){
 		/* Outputting mid reports */
 		if (m > 0)
 		{
-			if (remainder(recievedbits, m) == 0 & recievedbits>0)
+			if (remainder(recievedbits, m) == 0 && recievedbits>0)
 			{
 				n++;
 

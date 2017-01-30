@@ -24,7 +24,7 @@ void Decoder::setM(int mValue) {
 	iqValues.resize(m);
 	switch (m) {
 	case 4:
-		iqValues = { { 1.0, 1.0 },{ -1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
+		iqValues = { { -1.0, 1.0 },{ 1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
 	};
 };
 
@@ -42,8 +42,6 @@ bool Decoder::runBlock(void) {
 
 	t_real in1, in2;
 	double d, minimum;
-
-	//Initialize the variable minimum
 	
 	for (int k = 0; k < process; k++) {
 		
@@ -61,9 +59,9 @@ bool Decoder::runBlock(void) {
 			}
 		}
 		for (int n = 0; n < log2(m); n++) {
-			t_binary s_out = mod(aux, 2);
+			t_binary s_out = aux % 2; //resto da divisao
 			outputSignals[0]->bufferPut(s_out);
-			aux = div(aux, 2);
+			aux = aux / 2; //quociente da divisão
 		}
 	}
 

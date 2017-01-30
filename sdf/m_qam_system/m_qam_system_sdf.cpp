@@ -44,8 +44,8 @@ int main(){
 	Binary S2{ "S2.sgn" };
 	S2.setBufferLength(bufferLength);
 
-	//Binary S3{ "S3.sgn" };
-	//S3.setBufferLength(bufferLength);
+	Binary S3{ "S3.sgn" };
+	S3.setBufferLength(bufferLength);
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
@@ -55,7 +55,7 @@ int main(){
 	B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
 	//B1.setMode(PseudoRandom);
-	B1.setMode(Random);
+	B1.setMode(DeterministicCyclic);
 	B1.setBitStream("010");
 	B1.setBitPeriod(bitPeriod);
 	B1.setPatternLength(pLength);
@@ -78,22 +78,22 @@ int main(){
 	B2.setSaveInternalSignals(true);
 
 	//With BER measurement
-	//BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S3 } };
-	//B3.setConfidence(confidence);
-	//B3.setMidReportSize(midReportSize);
+	BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S3 } };
+	B3.setConfidence(confidence);
+	B3.setMidReportSize(midReportSize);
 
-	//Sink B4{ vector<Signal*> { &S3 }, vector<Signal*> {} };
-	//B4.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
-	//B4.setDisplayNumberOfSamples(true);
-
-	//Without BER measurement
-	Sink B3{ vector<Signal*> { &S0 }, vector<Signal*> {} };
-	B3.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
-	B3.setDisplayNumberOfSamples(true);
-
-	Sink B4{ vector<Signal*> { &S2 }, vector<Signal*> {} };
+	Sink B4{ vector<Signal*> { &S3 }, vector<Signal*> {} };
 	B4.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
 	B4.setDisplayNumberOfSamples(true);
+
+	//Without BER measurement
+	//Sink B3{ vector<Signal*> { &S0 }, vector<Signal*> {} };
+	//B3.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
+	//B3.setDisplayNumberOfSamples(true);
+
+	//Sink B4{ vector<Signal*> { &S2 }, vector<Signal*> {} };
+	//B4.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
+	//B4.setDisplayNumberOfSamples(true);
 
 
 	// #####################################################################################################

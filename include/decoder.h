@@ -11,7 +11,7 @@ class Decoder : public Block {
 	/* Input Parameters */
 
 	t_integer m{ 4 };
-	vector<t_complex> iqValues{ { 1.0, 1.0 },{ -1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
+	vector<t_complex> iqValues{ { -1.0, 1.0 },{ 1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
 
 
 	/* State Variables */

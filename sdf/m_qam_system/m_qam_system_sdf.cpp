@@ -12,12 +12,12 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated(20);
+	int numberOfBitsGenerated(1000);
 	int samplesPerSymbol(16);
 	int pLength = 5;
 	double bitPeriod = 1.0 / 50e9;
 	double rollOffFactor = 0.3;
-	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 },{ -1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
+	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 }, { -1.0, 1.0 }, { 1.0, -1.0 }, { -1.0, -1.0 } };
 	t_real signalOutputPower_dBm = -20; 
 	t_real localOscillatorPower_dBm = -10; 
 	t_real localOscillatorPhase = 0;
@@ -25,7 +25,7 @@ int main(){
 	t_real responsivity = 1;
 	t_real amplification = 10e6;
 	t_real noiseAmplitude = 1e-16;
-	//t_integer samplesToSkip = 8 * samplesPerSymbol + floor(samplesPerSymbol/2);
+	t_integer samplesToSkip = 8 * samplesPerSymbol + floor(samplesPerSymbol/2);
 	t_real confidence = 0.95;
 	t_integer midReportSize = 0;
 	t_integer bufferLength = 256;
@@ -55,8 +55,8 @@ int main(){
 	B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
 	//B1.setMode(PseudoRandom);
-	B1.setMode(DeterministicCyclic);
-	B1.setBitStream("010");
+	B1.setMode(DeterministicAppendZeros);
+	B1.setBitStream("01001001");
 	B1.setBitPeriod(bitPeriod);
 	B1.setPatternLength(pLength);
 	B1.setIqAmplitudes(iqAmplitudeValues);
@@ -66,13 +66,14 @@ int main(){
 	B1.setSeeBeginningOfImpulseResponse(true);
 
 	HomodyneReceiver B2{ vector<Signal*> {&S1}, vector<Signal*> {&S2} };
+	B2.setIqAmplitudes(iqAmplitudeValues);
 	B2.setLocalOscillatorOpticalPower_dBm(localOscillatorPower_dBm);
 	B2.setLocalOscillatorPhase(localOscillatorPhase);
 	//B2.setTransferMatrix(transferMatrix);
 	B2.setResponsivity(responsivity);
 	B2.setAmplification(amplification);
 	B2.setNoiseAmplitude(noiseAmplitude);
-	//B2.setSamplesToSkip(samplesToSkip);
+	B2.setSamplesToSkip(samplesToSkip);
 	//B2.setPosReferenceValue(0);
 	//B2.setNegReferenceValue(0);
 	B2.setSaveInternalSignals(true);
@@ -83,7 +84,7 @@ int main(){
 	B3.setMidReportSize(midReportSize);
 
 	Sink B4{ vector<Signal*> { &S3 }, vector<Signal*> {} };
-	B4.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
+	B4.setNumberOfSamples(numberOfBitsReceived);
 	B4.setDisplayNumberOfSamples(true);
 
 	//Without BER measurement

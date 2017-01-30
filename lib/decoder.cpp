@@ -21,11 +21,17 @@ void Decoder::setM(int mValue) {
 
 	m = mValue;
 
-	iqValues.resize(m);
+	iqAmplitudes.resize(m);
 	switch (m) {
 	case 4:
-		iqValues = { { -1.0, 1.0 },{ 1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
+		iqAmplitudes = { { 1.0, 1.0 }, { -1.0, 1.0 }, { 1.0, -1.0 }, { -1.0, -1.0 } };
 	};
+};
+
+void Decoder::setIqAmplitudes(vector<t_iqValues> iqAmplitudesValues) {
+	m = iqAmplitudesValues.size();
+	iqAmplitudes.resize(m);
+	iqAmplitudes = iqAmplitudesValues;
 };
 
 bool Decoder::runBlock(void) {
@@ -49,10 +55,10 @@ bool Decoder::runBlock(void) {
 		inputSignals[1]->bufferGet(&in2);
 
 		complex<double> s_in(in1, in2);
-		minimum = norm(s_in - iqValues[0]);
+		minimum = norm(s_in - iqAmplitudes[0]);
 		int aux{ 0 };
 		for (int l = 1; l < m; l++) {
-			d = norm(s_in - iqValues[l]);
+			d = norm(s_in - iqAmplitudes[l]);
 			if (d < minimum) {
 				minimum = d;
 				aux = l;

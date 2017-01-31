@@ -24,7 +24,7 @@ void Decoder::setM(int mValue) {
 	iqValues.resize(m);
 	switch (m) {
 	case 4:
-		iqValues = { { -1.0, 1.0 },{ 1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
+		iqValues = { { 1.0, 1.0 },{ -1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
 	};
 };
 

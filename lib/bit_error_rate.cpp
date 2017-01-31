@@ -54,7 +54,7 @@ bool BitErrorRate::runBlock(void){
 
 		/* Calculating BER and bounds */
 
-		t_real NumberOfBits = recievedbits;
+		t_real NumberOfBits =receivedBits;
 		t_real Coincidences = coincidences;
 
 		t_real BER;
@@ -87,7 +87,7 @@ bool BitErrorRate::runBlock(void){
 		/* Outputting mid reports */
 		if (m > 0)
 		{
-			if (remainder(recievedbits, m) == 0 && recievedbits>0)
+			if (remainder(receivedBits, m) == 0 && receivedBits>0)
 			{
 				n++;
 
@@ -97,7 +97,7 @@ bool BitErrorRate::runBlock(void){
 
 				/* Calculating BER and bounds */
 
-				t_real NumberOfBits = recievedbits;
+				t_real NumberOfBits = receivedBits;
 				t_real Coincidences = coincidences;
 
 				t_real BER;
@@ -118,7 +118,7 @@ bool BitErrorRate::runBlock(void){
 			}
 		}
 
-		recievedbits++;
+		receivedBits++;
 
 		if (signalValue == SignalValue)
 		{

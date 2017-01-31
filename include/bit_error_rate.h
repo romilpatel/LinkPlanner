@@ -17,12 +17,13 @@ public:
 	bool runBlock(void);
 
 	long int coincidences = 0;
-	long int recievedbits = 0;
+	long int receivedBits = 0;
 
 	void setConfidence(t_real P) { alpha = 1-P; }
-	void setMidReportSize(t_real M) { m = M; }
+	void setMidReportSize(int M) { m = M; }
 
 private:
+
 	int firstPass = 1;
 
 	t_real alpha = 0.05;

@@ -91,6 +91,9 @@ public:
 
 	/* Set Methods */
 
+	void setIqAmplitudes(vector<t_iqValues> iqAmplitudesValues) { B9.setIqAmplitudes(iqAmplitudesValues); };
+	vector<t_iqValues> const getIqAmplitudes(void) { return B9.getIqAmplitudes(); };
+
 	void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
 	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
 	void setLocalOscillatorOpticalPower_dBm(double opticalPower_dBm) { B1.setOpticalPower_dBm(opticalPower_dBm); };

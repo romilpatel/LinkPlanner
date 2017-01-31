@@ -17,14 +17,14 @@ int main(){
 	int pLength = 5;
 	double bitPeriod = 1.0 / 50e9;
 	double rollOffFactor = 0.3;
-	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 }, { -1.0, 1.0 }, { 1.0, -1.0 }, { -1.0, -1.0 } };
+	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 }, { -1.0, 1.0 }, { -1.0, -1.0 }, { 1.0, -1.0 } };
 	t_real signalOutputPower_dBm = -20; 
 	t_real localOscillatorPower_dBm = -10; 
 	t_real localOscillatorPhase = 0;
 	//array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	t_real responsivity = 1;
 	t_real amplification = 10e6;
-	t_real noiseAmplitude = 1e-16;
+	t_real noiseAmplitude = 0; //antes 1e-16
 	t_integer samplesToSkip = 8 * samplesPerSymbol + floor(samplesPerSymbol/2);
 	t_real confidence = 0.95;
 	t_integer midReportSize = 0;
@@ -56,7 +56,7 @@ int main(){
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
 	//B1.setMode(PseudoRandom);
 	B1.setMode(DeterministicAppendZeros);
-	B1.setBitStream("01001001");
+	B1.setBitStream("010");
 	B1.setBitPeriod(bitPeriod);
 	B1.setPatternLength(pLength);
 	B1.setIqAmplitudes(iqAmplitudeValues);

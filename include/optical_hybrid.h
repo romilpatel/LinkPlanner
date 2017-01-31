@@ -15,6 +15,7 @@ class OpticalHybrid : public Block {
 	double outputOpticalPower{ 1e-3 };
 	double outputOpticalWavelength{ 1550e-9 };
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
+	double samplingPeriod{ 0.0 };
 
 
 public:

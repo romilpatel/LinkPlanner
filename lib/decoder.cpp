@@ -24,11 +24,9 @@ void Decoder::setM(int mValue) {
 	iqAmplitudes.resize(m);
 	switch (m) {
 	case 4:
-<<<<<<< HEAD
-		iqValues = { { 1.0, 1.0 },{ -1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
-=======
-		iqAmplitudes = { { 1.0, 1.0 }, { -1.0, 1.0 }, { 1.0, -1.0 }, { -1.0, -1.0 } };
->>>>>>> f2dc156e00a385b8d7748985a96b912d02fc1056
+
+		iqAmplitudes = { { 1.0, 1.0 },{ -1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
+
 	};
 };
 
@@ -69,9 +67,9 @@ bool Decoder::runBlock(void) {
 			}
 		}
 		for (int n = 0; n < log2(m); n++) {
-			t_binary s_out = aux % 2; //resto da divisao
+			t_binary s_out = aux % 2; //returns the remainder of the division
 			outputSignals[0]->bufferPut(s_out);
-			aux = aux / 2; //quociente da divisão
+			aux = aux / 2; //returns the quocient of the division
 		}
 	}
 

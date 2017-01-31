@@ -58,7 +58,7 @@ void MQamTransmitter::set(int opt) {
 	// Basic Configuration
  
 	if (opt==0) {
-		setMode(DeterministicCyclic);
+		setMode(DeterministicAppendZeros);
 		setBitPeriod(1.0 / 50e9);
 		setPatternLength(5);
 		setNumberOfBits(10000);

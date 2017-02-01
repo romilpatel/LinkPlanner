@@ -1,5 +1,5 @@
 ﻿  m_qam_system_sdf.cpp
-c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\m_qam_system_sdf.cpp(28): warning C4244: 'initializing': conversion from 'double' to 't_integer', possible loss of data
+c:\users\ana luisa\documents\github\analuisa\sdf\m_qam_system\m_qam_system_sdf.cpp(29): warning C4244: 'initializing': conversion from 'double' to 't_integer', possible loss of data
   ti_amplifier.cpp
   super_block_interface.cpp
   sink.cpp

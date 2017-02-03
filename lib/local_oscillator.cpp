@@ -54,7 +54,11 @@ bool LocalOscillator::runBlock(void){
             t_real powerlooutsqrted = sqrt(powerlo) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt * wvlgth))*noiselo*1/2;
             out = .5*powerlooutsqrted*lo;
         } 
-		
+		else {
+			t_real powerlooutsqrted = sqrt(powerlo);
+			out = .5*powerlooutsqrted*lo;
+		}
+
 		outputSignals[0]->bufferPut((t_complex) out);
 
 	}

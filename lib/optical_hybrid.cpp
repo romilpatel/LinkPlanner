@@ -16,29 +16,45 @@ void OpticalHybrid::initialize(void) {
 	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
-	outputSignals[0]->centralWavelength = outputOpticalWavelength;
-	outputSignals[0]->centralFrequency = outputOpticalFrequency;
+	/*outputSignals[0]->centralWavelength = outputOpticalWavelength;
+	outputSignals[0]->centralFrequency = outputOpticalFrequency;*/
 
 	outputSignals[1]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[1]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
-	outputSignals[1]->centralWavelength = outputOpticalWavelength;
-	outputSignals[1]->centralFrequency = outputOpticalFrequency;
+	/*outputSignals[1]->centralWavelength = outputOpticalWavelength;
+	outputSignals[1]->centralFrequency = outputOpticalFrequency;*/
 
 	outputSignals[2]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[2]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[2]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
-	outputSignals[2]->centralWavelength = outputOpticalWavelength;
-	outputSignals[2]->centralFrequency = outputOpticalFrequency;
+	/*outputSignals[2]->centralWavelength = outputOpticalWavelength;
+	outputSignals[2]->centralFrequency = outputOpticalFrequency;*/
 
 	outputSignals[3]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[3]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[3]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
-	outputSignals[3]->centralWavelength = outputOpticalWavelength;
-	outputSignals[3]->centralFrequency = outputOpticalFrequency;
+	/*outputSignals[3]->centralWavelength = outputOpticalWavelength;
+	outputSignals[3]->centralFrequency = outputOpticalFrequency;*/
+
+	/*outputSignals[0]->setSamplingPeriod(samplingPeriod);
+	outputSignals[0]->setCentralWavelength(outputOpticalWavelength);
+	outputSignals[0]->setCentralFrequency(outputOpticalFrequency);
+
+	outputSignals[1]->setSamplingPeriod(samplingPeriod);
+	outputSignals[1]->setCentralWavelength(outputOpticalWavelength);
+	outputSignals[1]->setCentralFrequency(outputOpticalFrequency);
+
+	outputSignals[2]->setSamplingPeriod(samplingPeriod);
+	outputSignals[2]->setCentralWavelength(outputOpticalWavelength);
+	outputSignals[2]->setCentralFrequency(outputOpticalFrequency);
+
+	outputSignals[3]->setSamplingPeriod(samplingPeriod);
+	outputSignals[3]->setCentralWavelength(outputOpticalWavelength);
+	outputSignals[3]->setCentralFrequency(outputOpticalFrequency);*/
 }
 
 bool OpticalHybrid::runBlock(void) {
@@ -53,9 +69,9 @@ bool OpticalHybrid::runBlock(void) {
 
 	if (process == 0) return false;
 
-	t_real Signal, LO;
+	t_complex Signal, LO;
 
-	t_complex imaginary = (0, 1);
+	complex<double> imaginary(0, 1);
 
 	t_complex OutputSignal1; //=Signal+LO
 	t_complex OutputSignal2; //=Signal-LO

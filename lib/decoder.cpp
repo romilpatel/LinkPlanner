@@ -24,7 +24,9 @@ void Decoder::setM(int mValue) {
 	iqAmplitudes.resize(m);
 	switch (m) {
 	case 4:
-		iqAmplitudes = { { 1.0, 1.0 }, { -1.0, 1.0 }, { 1.0, -1.0 }, { -1.0, -1.0 } };
+
+		iqAmplitudes = { { 1.0, 1.0 },{ -1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
+
 	};
 };
 
@@ -64,11 +66,25 @@ bool Decoder::runBlock(void) {
 				aux = l;
 			}
 		}
-		for (int n = 0; n < log2(m); n++) {
-			t_binary s_out = aux % 2; //resto da divisao
+		// Makes the bits swtich order: example 01 is writen as 10
+		/*for (int n = 0; n < log2(m); n++) {
+
+			t_binary s_out = aux % 2; //returns the remainder of the division
 			outputSignals[0]->bufferPut(s_out);
-			aux = aux / 2; //quociente da divisão
+			aux = aux / 2; //returns the quocient of the division
+		}*/
+		t_binary s_out;
+
+		for (int n = 0; n < log2(m); n++) {
+
+			if (n > 0) { s_out = aux % 2; }
+			
+			else { s_out = aux / 2; }
+
+			outputSignals[0]->bufferPut(s_out);
+			aux = aux % 2; 
 		}
+
 	}
 
 	return true;

@@ -57,7 +57,7 @@ int main(){
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
 	//B1.setMode(PseudoRandom);
 	B1.setMode(DeterministicAppendZeros);
-	B1.setBitStream("1111");
+	B1.setBitStream("010");
 	B1.setBitPeriod(bitPeriod);
 	B1.setPatternLength(pLength);
 	B1.setIqAmplitudes(iqAmplitudeValues);

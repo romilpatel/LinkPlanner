@@ -45,6 +45,7 @@ bool Sampler::runBlock(void){
 
 	int sPerSymbol = (int)(inputSignals[0]->getSamplesPerSymbol());
 
+
 	for (int k = 0; k < process; k++) {
 		t_real in;
 		inputSignals[0]->bufferGet(&in);

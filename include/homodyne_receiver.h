@@ -12,6 +12,7 @@
 # include "sampler.h"
 # include "super_block_interface.h"
 # include "electrical_filter.h"
+# include "clock.h"
 
 
 // this is a test block for the purpose of beta testing new code
@@ -42,9 +43,11 @@ class HomodyneReceiver : public SuperBlock {
 
 	TimeContinuousAmplitudeContinuousReal HMD09{ "HMD09.sgn" }; // Amplified
 
-	TimeContinuousAmplitudeContinuousReal HMD10{ "HMD10.sgn" }; //Filtered
+	//TimeContinuousAmplitudeContinuousReal HMD10{ "HMD10.sgn" }; //Filtered
 
-	TimeContinuousAmplitudeContinuousReal HMD11{ "HMD11.sgn" }; //Filtered
+	//TimeContinuousAmplitudeContinuousReal HMD11{ "HMD11.sgn" }; //Filtered
+
+	TimeContinuousAmplitudeContinuousReal HMD11{ "HMD11.sgn" }; //Clock
 
 	TimeDiscreteAmplitudeContinuousReal HMD12{ "HMD12.sgn" }; // Sampled 
 
@@ -69,9 +72,11 @@ class HomodyneReceiver : public SuperBlock {
 
 	TIAmplifier B6;
 
-	ElectricalFilter B7;
+	//ElectricalFilter B7;
 
-	ElectricalFilter B8;
+	//ElectricalFilter B8;
+
+	Clock B8;
 
 	Sampler B9;
 
@@ -109,16 +114,18 @@ public:
 	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setPhase(lOscillatorPhase); };
 	void setLocalOscillatorOpticalWavelength(double lOscillatorWavelength) { B1.setWavelength(lOscillatorWavelength); };
 
-	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
+	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); B8.setSamplingPeriod(sPeriod); };
 
 	void  setResponsivity(t_real Responsivity) { B3.responsivity = Responsivity; B4.responsivity = Responsivity; };
 
 	void setAmplification(t_real Amplification) { B5.amplification = Amplification; B6.amplification = Amplification; };
 	void setNoiseAmplitude(t_real NoiseAmplitude) { B5.noiseamp = NoiseAmplitude; B6.noiseamp = NoiseAmplitude;};
 
-	void setImpulseResponseTimeLength(int impResponseTimeLength) { B7.setImpulseResponseTimeLength(impResponseTimeLength); B8.setImpulseResponseTimeLength(impResponseTimeLength); };
+	/*void setImpulseResponseTimeLength(int impResponseTimeLength) { B7.setImpulseResponseTimeLength(impResponseTimeLength); B8.setImpulseResponseTimeLength(impResponseTimeLength); };
 	void setCutoffFrequency(double cOffFrequency) { B7.setCutoffFrequency(cOffFrequency); B8.setCutoffFrequency(cOffFrequency); };
-	void setFilterType(Filter fType) { B7.setFilterType(fType); B8.setFilterType(fType); };
+	void setFilterType(Filter fType) { B7.setFilterType(fType); B8.setFilterType(fType); };*/
+
+	void setClockSamplingPeriod(double sPeriod) { B8.setSamplingPeriod(sPeriod); };
 
 	void setSamplesToSkip(int sToSkip) { B9.setSamplesToSkip(sToSkip); B10.setSamplesToSkip(sToSkip); };
 

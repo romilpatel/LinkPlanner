@@ -13,7 +13,7 @@ class ElectricalFilter : public FIR_Filter {
 
 	int impulseResponseTimeLength{ 16 };
 
-	double cutoffFrequency{ 50 }; //hertz
+	double cutoffFrequency{ 5 }; //hertz
 
 public:
 

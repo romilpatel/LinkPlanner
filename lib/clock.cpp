@@ -1,6 +1,12 @@
 # include "netxpto.h"
 # include "clock.h"
 
+# include <algorithm>
+# include <complex>
+# include <iostream>
+# include <fstream>
+# include <random>
+
 using namespace std;
 
 void Clock::initialize(void) {

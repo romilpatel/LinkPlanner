@@ -11,11 +11,11 @@ class Clock : public Block {
 
 public:
 
-	void initialize(void);
-	bool runBlock(void);
-
 	Clock() {};
 	Clock(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};
+
+	void initialize(void);
+	bool runBlock(void);
 
 	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; }
 

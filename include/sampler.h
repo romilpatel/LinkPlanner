@@ -9,7 +9,8 @@ class Sampler : public Block {
 
 	bool firstTime{ true };
 
-	t_integer samplesToSkip{ 0 };
+	int samplesToSkip{ 0 };
+	int count = 0;
 
 public:
 

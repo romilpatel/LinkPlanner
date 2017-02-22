@@ -14,7 +14,6 @@ public:
 	double outputOpticalWavelength{ 1550e-9 };
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
 	double responsivity = 1;
-	double h = 6.62607004e-34;
 	bool shotNoise = false;
 
 	default_random_engine generator1;

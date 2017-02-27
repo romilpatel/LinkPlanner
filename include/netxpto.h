@@ -519,6 +519,11 @@ class System {
   vector<Block *> SystemBlocks;  // Pointer to an array of pointers to Block objects
 };
 
+//########################################################################################################################################################
+//############################################################### GENERIC DSP FUNCTIONS ##################################################################
+//########################################################################################################################################################
+
+
 class OverlapMethod
 {
 
@@ -528,7 +533,7 @@ public:
 	void overlapSaveSyRealIn(vector<double> &v_in, vector<double> &v_out, vector<double> Hf, int NFFT);
 	void overlapSaveAsym(vector<double> &real_in, vector<double> &imag_in, vector<double> &real_out, vector<double> &imag_out, vector<double> h_real, vector<double> h_imag, int M, int L, int N);
 	void overlapSaveSym(vector<double> &real_in, vector<double> &imag_in, vector<double> &real_out, vector<double> &imag_out, vector<double> h_real, vector<double> h_imag, int NFFT);
-	void CheckSize(vector<double> &real_in, vector<double> &imag_in, int L);
+	void checkSize(vector<double> &real_in, vector<double> &imag_in, int L);
 
 };
 

@@ -7,11 +7,9 @@
 
 void BitDecider::initialize(void){
 
-	firstTime = false;
+	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
+	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 
-	outputSignals[0]->symbolPeriod=bitPeriod;
-	outputSignals[0]->samplingPeriod = outputSignals[0]->symbolPeriod;
-//	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 }
 
 
@@ -23,43 +21,16 @@ bool BitDecider::runBlock(void){
 
 	if (process == 0) return false;
 
-	for (int i = 0; i < ready; i++) {
-
-		t_real signalValue;
-		inputSignals[0]->bufferGet(&signalValue);
-		if (signalValue>0)
-		{
-			outputSignals[0]->bufferPut((t_binary) 0);
-		}
-		else if (signalValue<0)
-		{
+	for (int k = 0; k < process; k++) {
+		t_real in;
+		inputSignals[0]->bufferGet(&in);
+		if (in>decisionLevel){
 			outputSignals[0]->bufferPut((t_binary) 1);
 		}
-		else if (signalValue==0)
-		{
-			// do nothing
+		else {
+			outputSignals[0]->bufferPut((t_binary) 0);
 		}
 	}
 	return true;
 	
 }
-
-/*
-void bit_decider::setBitPeriod(double bPeriod){
-bitPeriod = bPeriod;
-outputSignals[0]->symbolPeriod = bitPeriod;
-outputSignals[0]->samplingPeriod = outputSignals[0]->symbolPeriod;
-};
-
-
-class ContinuousToDiscreteTime : public Block {
-public:
-ContinuousToDiscreteTime(vector<Signal *> &InputSig, vector<Signal *> &OutputSig);
-bool runBlock(void);
-
-int numberOfSamplesPerSymbol{ 8 };
-int index{ 0 };
-
-void setNumberOfSamplesPerSymbol(int nSamplesPerSymbol){ numberOfSamplesPerSymbol = nSamplesPerSymbol; outputSignals[0]->samplingPeriod = (inputSignals[0]->samplingPeriod) / numberOfSamplesPerSymbol; };
-};
-*/

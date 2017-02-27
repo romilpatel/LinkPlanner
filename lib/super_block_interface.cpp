@@ -76,6 +76,8 @@ bool SuperBlockInterface::runBlock(void) {
 			cout << "ERRO: super_block_interface.cpp (2)" << "\n";
 			return false;
 		};
+
+
 	}
 	
 	return alive;

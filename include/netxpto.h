@@ -17,6 +17,7 @@ const int MAX_TOPOLOGY_SIZE = 100;  // Maximum System topology size
 const int MAX_TAPS = 1000;  // Maximum Taps Number
 const double PI = 3.1415926535897932384;
 const double SPEED_OF_LIGHT = 299792458;
+const double PLANCK_CONSTANT = 6.626070040e-34; // NIST
 const int MAX_NUMBER_OF_PATHS = 2;
 
 using namespace std;

@@ -43,7 +43,7 @@ bool Decoder::runBlock(void) {
 	int ready = min(ready0, ready1);
 
 	int space = outputSignals[0]->space();
-	int process = floor(space / log2(m));
+	int process = (int)floor(space / log2(m));
 	process = min(ready, process);
 
 	if (process == 0) return false;

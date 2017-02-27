@@ -84,10 +84,10 @@ bool OpticalHybrid::runBlock(void) {
 		inputSignals[0]->bufferGet(&Signal);
 		inputSignals[1]->bufferGet(&LO);
 
-		OutputSignal1 = Signal + LO;
-		OutputSignal2 = Signal - LO;
-		OutputSignal3 = Signal + imaginary*LO;
-		OutputSignal4 = Signal - imaginary*LO;
+		OutputSignal1 = powerFactor*(Signal + LO);
+		OutputSignal2 = powerFactor*(Signal - LO);
+		OutputSignal3 = powerFactor*(Signal + imaginary*LO);
+		OutputSignal4 = powerFactor*(Signal - imaginary*LO);
 
 		outputSignals[0]->bufferPut(OutputSignal1);
 		outputSignals[1]->bufferPut(OutputSignal2);

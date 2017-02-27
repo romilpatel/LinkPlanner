@@ -17,6 +17,8 @@ int main(){
 	int pLength = 5;
 	double bitPeriod = 1.0 / 50e9;
 	double rollOffFactor = 0.3;
+	double cutoffFrequency = 5; //hertz
+	double samplingPeriod = 16;
 	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 }, { -1.0, 1.0 }, { 1.0, -1.0 }, { -1.0, -1.0 } };
 	t_real signalOutputPower_dBm = 0; 
 	t_real localOscillatorPower_dBm = 0; 
@@ -57,7 +59,7 @@ int main(){
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
 	//B1.setMode(PseudoRandom);
 	B1.setMode(DeterministicAppendZeros);
-	B1.setBitStream("1111");
+	B1.setBitStream("0101110");
 	B1.setBitPeriod(bitPeriod);
 	B1.setPatternLength(pLength);
 	B1.setIqAmplitudes(iqAmplitudeValues);
@@ -78,6 +80,8 @@ int main(){
 	//B2.setPosReferenceValue(0);
 	//B2.setNegReferenceValue(0);
 	B2.setSaveInternalSignals(true);
+	//B2.setCutoffFrequency(cutoffFrequency);
+	B2.setClockSamplingPeriod(samplingPeriod);
 
 	//With BER measurement
 	BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S3 } };

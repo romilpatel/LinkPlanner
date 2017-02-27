@@ -3,7 +3,7 @@
 # include "binary_source.h"
 # include "m_qam_mapper.h"
 # include "discrete_to_continuous_time.h"
-# include "pulse_shaper.h"
+# include "pulse_shaper_freq.h"
 # include "iq_modulator.h"
 # include "sink.h"
 

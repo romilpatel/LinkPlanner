@@ -21,9 +21,6 @@
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\pulse_shaper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="qpsk_transmitter_sdf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,6 +34,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\lib\netxpto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pulse_shaper_freq.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,13 +53,13 @@
     <ClInclude Include="..\..\include\iq_modulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\pulse_shaper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\discrete_to_continuous_time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\netxpto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\pulse_shaper_freq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

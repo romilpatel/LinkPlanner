@@ -519,6 +519,53 @@ class System {
   vector<Block *> SystemBlocks;  // Pointer to an array of pointers to Block objects
 };
 
+class OverlapMethod
+{
+
+public:
+
+	void overlapSaveSymComplexIn(vector<complex <double>> &v_in, vector<complex <double>> &v_out, vector<complex <double>> Hf, int NFFT);
+	void overlapSaveSyRealIn(vector<double> &v_in, vector<double> &v_out, vector<double> Hf, int NFFT);
+	void overlapSaveAsym(vector<double> &real_in, vector<double> &imag_in, vector<double> &real_out, vector<double> &imag_out, vector<double> h_real, vector<double> h_imag, int M, int L, int N);
+	void overlapSaveSym(vector<double> &real_in, vector<double> &imag_in, vector<double> &real_out, vector<double> &imag_out, vector<double> h_real, vector<double> h_imag, int NFFT);
+	void CheckSize(vector<double> &real_in, vector<double> &imag_in, int L);
+
+};
+
+class Fft
+{
+
+public:
+
+	void directTransform(std::vector<double> &real, std::vector<double> &imag);
+
+	void inverseTransform(std::vector<double> &real, std::vector<double> &imag);
+
+	void transformRadix2(std::vector<double> &real, std::vector<double> &imag);
+
+	void transformBluestein(std::vector<double> &real, std::vector<double> &imag);
+
+	void convolve(const std::vector<double> &x, const std::vector<double> &y, std::vector<double> &out);
+
+	void convolve(const std::vector<double> &xreal, const std::vector<double> &ximag, const std::vector<double> &yreal, const std::vector<double> &yimag, std::vector<double> &outreal, std::vector<double> &outimag);
+
+
+};
+
+class ComplexMult
+{
+
+public:
+
+	void CMultVector(vector<double> &v1_real, vector<double> &v1_imag, vector<double> v2_real, vector<double> v2_imag);
+	void CMultVector_Loop(vector<double> &v1_real, vector<double> &v1_imag, vector<double> v2_real, vector<double> v2_imag);
+	void ComplexVect2ReImVect(vector<complex <double>> &v_in, vector<double> &v1_real, vector<double> &v1_imag);
+	void CMultVector_InComplex(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in);
+	void ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &v1_imag, vector<complex <double>> &v_out);
+
+};
+
+
 # endif // PROGRAM_INCLUDE_netxpto_H_
 
 

@@ -12,8 +12,9 @@ using namespace std;
 void Clock::initialize(void) {
 
 	outputSignals[0]->setSamplingPeriod(samplingPeriod);
-	outputSignals[0]->setCentralWavelength(wavelength);
-	outputSignals[0]->setCentralFrequency(frequency);
+	outputSignals[0]->setSamplesPerSymbol((int)period / samplingPeriod);
+	/*outputSignals[0]->setCentralWavelength(wavelength);
+	outputSignals[0]->setCentralFrequency(frequency);*/
 
 };
 
@@ -23,15 +24,26 @@ bool Clock::runBlock(void) {
 
 	if (space == 0) return false;
 
-	int sPerSymbol = 16;
+	int numberOfSamplesPerSymbol = outputSignals[0]->getSamplesPerSymbol();
+
+	if (index != 0) {
+		for (int i = index; (i < numberOfSamplesPerSymbol) & (space>0); i++) {
+			outputSignals[0]->bufferPut(0);
+			space--;
+			index++;
+		};
+		index = index % numberOfSamplesPerSymbol;
+	};
 
 	for (int k = 0; k < space; k++) {
-		if (k % sPerSymbol == 0) {
+		if (index == 0) {
 			outputSignals[0]->bufferPut((t_real) 1.0);
 		}
 		else {
 			outputSignals[0]->bufferPut((t_real) 0.0);
 		}
+		index++;
+		index = index % numberOfSamplesPerSymbol;
 	}
 
 	return true;

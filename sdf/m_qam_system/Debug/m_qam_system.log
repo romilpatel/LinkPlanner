@@ -16,8 +16,9 @@
   discrete_to_continuous_time.cpp
   decoder.cpp
   clock.cpp
+c:\netxpto\analuisa\lib\clock.cpp(27): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   bit_error_rate.cpp
   binary_source.cpp
   Generating Code...
-  m_qam_system.vcxproj -> C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.exe
-  m_qam_system.vcxproj -> C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)
+  m_qam_system.vcxproj -> C:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.exe
+  m_qam_system.vcxproj -> C:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)

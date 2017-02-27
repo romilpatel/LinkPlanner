@@ -5,10 +5,14 @@
 
 class Clock : public Block {
 
-	double wavelength{ 1550e-9 };
-	double frequency{ SPEED_OF_LIGHT / wavelength };
+
+	/* input parameters */
+	double period{ 0.0 };
 	double samplingPeriod{ 0.0 };
 
+	/* state variables */
+	int index{ 0 };
+	
 public:
 
 	Clock() {};
@@ -17,6 +21,7 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
+	void setPeriod(double per) { period = per; }
 	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; }
 
 };

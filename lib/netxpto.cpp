@@ -13,6 +13,10 @@
 
 using namespace std;
 
+#ifndef M_PI
+#define M_PI  3.14159265358979323846
+#endif
+
 //########################################################################################################################################################
 //######################################################### SIGNALS FUNCTIONS IMPLEMENTATION #############################################################
 //########################################################################################################################################################
@@ -695,3 +699,302 @@ void System::run(string signalPath) {
 	}
 }
 
+void OverlapMethod::overlapSaveSyRealIn(vector<double> &v_in, vector<double> &v_out, vector<double> Hf, int NFFT) {
+
+	int Nblocks = 2 * (v_in.size() / NFFT);
+
+	vector<double> var_temp(NFFT, 0);
+	vector<double> real_temp_copy(NFFT, 0);
+	vector<double> imag_temp_copy(NFFT, 0);
+	vector<double> H_real(NFFT, 0);
+	vector<double> H_imag(NFFT, 0);
+
+	Fft fft;
+	ComplexMult CMult;
+
+	H_real = Hf;
+	fft.directTransform(H_real, H_imag);
+
+	for (int k = 0; k < Nblocks; k++) {
+
+		if (k == Nblocks - 1) {
+			copy(v_in.begin(), v_in.begin() + (NFFT / 2), var_temp.begin() + (NFFT / 2));
+			copy(v_in.end() - (NFFT / 2), v_in.end(), var_temp.begin());
+		}
+		else {
+			copy(v_in.begin() + k*(NFFT / 2), v_in.begin() + ((k + 1)*NFFT - k*(NFFT / 2)), var_temp.begin());
+		}
+		real_temp_copy = var_temp;
+
+		// Computation of FFT of each block
+
+		fft.directTransform(real_temp_copy, imag_temp_copy);
+
+		// Multiplication with the transfer function
+		CMult.CMultVector_Loop(real_temp_copy, imag_temp_copy, H_real, H_imag);
+
+		// Computation of IFFT of each block
+		fft.inverseTransform(real_temp_copy, imag_temp_copy);
+
+
+
+		// Removing the samples symetrically and assign to the output
+		if (k == Nblocks - 1) {
+			copy(real_temp_copy.begin() + (NFFT / 4), real_temp_copy.begin() + (NFFT / 2), v_out.end() - (NFFT / 4));
+			copy(real_temp_copy.begin() + (NFFT / 2), real_temp_copy.begin() + 3 * NFFT / 4, v_out.begin());
+		}
+		else {
+			copy(real_temp_copy.begin() + (NFFT / 4), real_temp_copy.end() - (NFFT / 4), v_out.begin() + ((NFFT / 4) + k*(NFFT / 2)));
+		}
+	}
+
+}
+
+// Private function prototypes
+static size_t reverseBits(size_t x, unsigned int n);
+
+
+void Fft::directTransform(vector<double> &real, vector<double> &imag) {
+	if (real.size() != imag.size())
+		throw "Mismatched lengths";
+
+	size_t n = real.size();
+	if (n == 0)
+		return;
+	else if ((n & (n - 1)) == 0)  // Is power of 2
+		transformRadix2(real, imag);
+	else  // More complicated algorithm for arbitrary sizes
+		transformBluestein(real, imag);
+}
+
+
+void Fft::inverseTransform(vector<double> &real, vector<double> &imag) {
+	directTransform(imag, real);
+	for (int x = 0; x != real.size(); ++x)
+	{
+		real[x] = real[x] / real.size();
+		imag[x] = imag[x] / real.size();
+	}
+}
+
+
+void Fft::transformRadix2(vector<double> &real, vector<double> &imag) {
+	// Compute levels = floor(log2(n))
+	if (real.size() != imag.size())
+		throw "Mismatched lengths";
+	size_t n = real.size();
+	unsigned int levels;
+	{
+		size_t temp = n;
+		levels = 0;
+		while (temp > 1) {
+			levels++;
+			temp >>= 1;
+		}
+		if (1u << levels != n)
+			throw "Length is not a power of 2";
+	}
+
+	// Trignometric tables
+	vector<double> cosTable(n / 2);
+	vector<double> sinTable(n / 2);
+	for (size_t i = 0; i < n / 2; i++) {
+		cosTable[i] = cos(2 * M_PI * i / n);
+		sinTable[i] = sin(2 * M_PI * i / n);
+	}
+
+	// Bit-reversed addressing permutation
+	for (size_t i = 0; i < n; i++) {
+		size_t j = reverseBits(i, levels);
+		if (j > i) {
+			double temp = real[i];
+			real[i] = real[j];
+			real[j] = temp;
+			temp = imag[i];
+			imag[i] = imag[j];
+			imag[j] = temp;
+		}
+	}
+
+	// Cooley-Tukey decimation-in-time radix-2 FFT
+	for (size_t size = 2; size <= n; size *= 2) {
+		size_t halfsize = size / 2;
+		size_t tablestep = n / size;
+		for (size_t i = 0; i < n; i += size) {
+			for (size_t j = i, k = 0; j < i + halfsize; j++, k += tablestep) {
+				double tpre = real[j + halfsize] * cosTable[k] + imag[j + halfsize] * sinTable[k];
+				double tpim = -real[j + halfsize] * sinTable[k] + imag[j + halfsize] * cosTable[k];
+				real[j + halfsize] = real[j] - tpre;
+				imag[j + halfsize] = imag[j] - tpim;
+				real[j] += tpre;
+				imag[j] += tpim;
+			}
+		}
+		if (size == n)  // Prevent overflow in 'size *= 2'
+			break;
+	}
+}
+
+
+void Fft::transformBluestein(vector<double> &real, vector<double> &imag) {
+	// Find a power-of-2 convolution length m such that m >= n * 2 + 1
+	if (real.size() != imag.size())
+		throw "Mismatched lengths";
+	size_t n = real.size();
+	size_t m;
+	{
+		size_t target;
+		if (n > (SIZE_MAX - 1) / 2)
+			throw "Vector too large";
+		target = n * 2 + 1;
+		for (m = 1; m < target; m *= 2) {
+			if (SIZE_MAX / 2 < m)
+				throw "Vector too large";
+		}
+	}
+
+	// Trignometric tables
+	vector<double> cosTable(n), sinTable(n);
+	for (size_t i = 0; i < n; i++) {
+		double temp = M_PI * (size_t)((unsigned long long)i * i % ((unsigned long long)n * 2)) / n;
+		// Less accurate version if long long is unavailable: double temp = M_PI * i * i / n;
+		cosTable[i] = cos(temp);
+		sinTable[i] = sin(temp);
+	}
+
+	// Temporary vectors and preprocessing
+	vector<double> areal(m), aimag(m);
+	for (size_t i = 0; i < n; i++) {
+		areal[i] = real[i] * cosTable[i] + imag[i] * sinTable[i];
+		aimag[i] = -real[i] * sinTable[i] + imag[i] * cosTable[i];
+	}
+	vector<double> breal(m), bimag(m);
+	breal[0] = cosTable[0];
+	bimag[0] = sinTable[0];
+	for (size_t i = 1; i < n; i++) {
+		breal[i] = breal[m - i] = cosTable[i];
+		bimag[i] = bimag[m - i] = sinTable[i];
+	}
+
+	// Convolution
+	vector<double> creal(m), cimag(m);
+	convolve(areal, aimag, breal, bimag, creal, cimag);
+
+	// Postprocessing
+	for (size_t i = 0; i < n; i++) {
+		real[i] = creal[i] * cosTable[i] + cimag[i] * sinTable[i];
+		imag[i] = -creal[i] * sinTable[i] + cimag[i] * cosTable[i];
+	}
+}
+
+
+static size_t reverseBits(size_t x, unsigned int n) {
+	size_t result = 0;
+	unsigned int i;
+	for (i = 0; i < n; i++, x >>= 1)
+		result = (result << 1) | (x & 1);
+	return result;
+}
+
+
+void Fft::convolve(const vector<double> &x, const vector<double> &y, vector<double> &out) {
+	if (x.size() != y.size() || x.size() != out.size())
+		throw "Mismatched lengths";
+	size_t n = x.size();
+	vector<double> ximag(n), yimag(n), zimag(n);
+	convolve(x, ximag, y, yimag, out, zimag);
+}
+
+
+void Fft::convolve(const vector<double> &xreal, const vector<double> &ximag, const vector<double> &yreal, const vector<double> &yimag, vector<double> &outreal, vector<double> &outimag) {
+	if (xreal.size() != ximag.size() || xreal.size() != yreal.size() || yreal.size() != yimag.size() || xreal.size() != outreal.size() || outreal.size() != outimag.size())
+		throw "Mismatched lengths";
+
+	size_t n = xreal.size();
+	vector<double> xr(xreal);
+	vector<double> xi(ximag);
+	vector<double> yr(yreal);
+	vector<double> yi(yimag);
+
+	directTransform(xr, xi);
+	directTransform(yr, yi);
+	for (size_t i = 0; i < n; i++) {
+		double temp = xr[i] * yr[i] - xi[i] * yi[i];
+		xi[i] = xi[i] * yr[i] + xr[i] * yi[i];
+		xr[i] = temp;
+	}
+	inverseTransform(xr, xi);
+	for (size_t i = 0; i < n; i++) {  // Scaling (because this FFT implementation omits it)
+		outreal[i] = xr[i] / n;
+		outimag[i] = xi[i] / n;
+	}
+}
+
+void ComplexMult::CMultVector(vector<double> &v1_real, vector<double> &v1_imag, vector<double> v2_real, vector<double> v2_imag) {
+
+
+	vector<double> ac_v(v1_real.size(), 0);
+	vector<double> bd_v(v1_real.size(), 0);
+	vector<double> bc_v(v1_real.size(), 0);
+	vector<double> ad_v(v1_real.size(), 0);
+
+	transform(v1_real.begin(), v1_real.end(), v2_real.begin(), ac_v.begin(), multiplies<double>()); // ac
+
+	transform(v1_imag.begin(), v1_imag.end(), v2_imag.begin(), bd_v.begin(), multiplies<double>()); // bd
+
+	transform(v1_imag.begin(), v1_imag.end(), v2_real.begin(), bc_v.begin(), multiplies<double>()); // bc
+
+	transform(v1_real.begin(), v1_real.end(), v2_imag.begin(), ad_v.begin(), multiplies<double>()); // ad
+
+	transform(ac_v.begin(), ac_v.end(), bd_v.begin(), v1_real.begin(), minus<double>()); // ac - bd
+
+	transform(bc_v.begin(), bc_v.end(), ad_v.begin(), v1_imag.begin(), plus<double>()); // bc + ad
+
+}
+
+void ComplexMult::CMultVector_Loop(vector<double> &v1_real, vector<double> &v1_imag, vector<double> v2_real, vector<double> v2_imag) {
+
+
+	double Real_temp = 0.0;
+	double Imag_temp = 0.0;
+
+	for (int k = 0; k < v1_real.size(); ++k)
+	{
+
+		Real_temp = v1_real.at(k)*v2_real.at(k) - v1_imag.at(k)*v2_imag.at(k);
+		Imag_temp = v1_imag.at(k)*v2_real.at(k) + v1_real.at(k)*v2_imag.at(k);
+
+		v1_real.at(k) = Real_temp;
+		v1_imag.at(k) = Imag_temp;
+	}
+
+}
+
+void ComplexMult::CMultVector_InComplex(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in) {
+
+
+	for (int k = 0; k < v1_in.size(); ++k)
+	{
+		v1_in.at(k) = v1_in.at(k)*v2_in.at(k);
+
+	}
+
+}
+
+void ComplexMult::ComplexVect2ReImVect(vector<complex <double>> &v_in, vector<double> &v1_real, vector<double> &v1_imag) {
+
+	for (int k = 0; k < v_in.size(); k++) {
+		v1_real.at(k) = real(v_in.at(k));
+		v1_imag.at(k) = imag(v_in.at(k));
+	}
+
+}
+
+void ComplexMult::ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &v1_imag, vector<complex <double>> &v_out) {
+
+	for (int i = 0; i < v1_real.size(); ++i) {
+		complex<double> iNum(v1_real[i], v1_imag[i]);
+		v_out.at(i) = iNum;
+	}
+
+}

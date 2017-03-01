@@ -18,7 +18,7 @@ public:
 	bool runBlock(void);
 
 	void setDecisionLevel(double dLevel) { decisionLevel = dLevel; }
-	double getDecisionLevel() { return decisionLevel; }
+	double getDecisionLevel(void) { return decisionLevel; }
 
 };
 

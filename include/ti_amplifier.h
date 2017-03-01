@@ -12,9 +12,8 @@ class TIAmplifier : public Block {
 
 public:
 
-	t_real amplification = 1e6;
-	t_real noiseamp = 1e-4;
-	bool electricalNoise = false;
+	double gain = 1e6;
+	double electricalNoiseSpectralDensity = 1e-4;
 
 	default_random_engine generator;
 	
@@ -25,9 +24,11 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	void setAmplification(t_real Amplification) { amplification = Amplification; }
-	void setNoiseAmplitude(t_real NoiseAmplitude) { noiseamp = NoiseAmplitude; }
-	void useNoise(bool eNoise) { electricalNoise = eNoise; }
+	void setGain(double Gain) { gain = Gain; }
+	double const getGain(void) { return gain; }
+
+	void setNoiseSpectralDensity(double eNoiseSpectralDensity) { electricalNoiseSpectralDensity = eNoiseSpectralDensity; }
+	double const getNoiseSpectralDensity(void) { return electricalNoiseSpectralDensity; }
 
 private:
 };

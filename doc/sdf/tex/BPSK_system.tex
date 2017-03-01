@@ -38,13 +38,15 @@
 
 \section{Introduction}
 
-This document describes the simulation BPSK system in back-to-back configuration. 
+This document describes a model to simulate a BPSK transmission system in a back-to-back configuration.
+The only considered impairments are the thermal noise at the receiver.
 
 \section{Functional Description}
 
-A simplified diagram of the system being simulated is presented in the Figure~\ref{fig:homodynesystem}. The system simulated takes a random binary string and encodes it in an optical bandpass signal, signal that afterwards is decoded in order to re-obtain the original binary string.
-\par
-The decoding of the optical signal is accomplished by an homodyne receiver, which combines the signal with a local oscillator with a user-determined phase. The homodyne receiver block output is then fed into a block that compares it with the original binary string and computes the Bit Error Rate (BER) along with it's upper and lower bounds for a certain user defined confidence level.
+A simplified diagram of the system being simulated is presented in the Figure~\ref{fig:homodynesystem}.
+A random binary string is generated and encoded in an optical signal using BPSK modulation format.
+The decoding of the optical signal is accomplished by an homodyne receiver, which combines the signal with a local oscillator.
+The received binary signal is compared with the transmitted binary signal in order to estimate the BER.
 
 \begin{figure}[h]
 \centering
@@ -59,7 +61,7 @@ The decoding of the optical signal is accomplished by an homodyne receiver, whic
 System Blocks    & netxpto Blocks   \\ \hline
 BPSK Transmitter & MQamTransmitter  \\
 BPSK Receiver    & HomodyneReceiver \\
-BER Estimator    & BitErrorRate                      
+BER Estimator    & BitErrorRate
 \end{tabular}
 \end{table}
 
@@ -71,6 +73,7 @@ Header Files
 \centering
 \begin{tabulary}{1.0\textwidth}{|L|L|}
 \hline
+<<<<<<< HEAD
 \textbf{File}            & \textbf{Description} 				                  \\ \hline
 netxpto.h                & Generic purpose simulator definitions.	              \\ \hline
 m\_qam\_transmitter.h      & Generates the signal with coded constellation.      \\ \hline
@@ -84,16 +87,26 @@ homodyne\_reciever.h      & Performs coherent detection on the input signal.    
 %bit_decider.h            & \\ \hline
 bit\_error\_rate.h         & Calculates the bit error rate of the decoded string. \\ \hline
 sink.h                   & Closes any unused signals.                           \\ \hline
+=======
+\textbf{File}          & \textbf{Description} 																 \\ \hline
+netxpto.h              & Generic purpose simulator definitions.		          										 \\
+\hline
+>>>>>>> refs/remotes/netxpto/Alpha
 \end{tabulary}
 \end{table}		
 \end{savenotes}	
 %
 Source Files
+<<<<<<< HEAD
+=======
+Header Files
+>>>>>>> refs/remotes/netxpto/Alpha
 \begin{savenotes}
 \begin{table}[H]
 \centering
 \begin{tabulary}{1.0\textwidth}{|L|L|}
 \hline
+<<<<<<< HEAD
 \textbf{File}              & \textbf{Description} 					   \\ \hline
 netxpto.cpp                & Generic purpose simulator implementations. \\ \hline
 m\_qam\_transmitter.cpp      &  Generates the signal with coded constellation. \\ \hline
@@ -107,10 +120,19 @@ homodyne\_reciever.cpp      & Performs coherent detection on the input signal.  
 %bit_decider.cpp            & \\ \hline
 bit\_error\_rate.cpp         & Calculates the bit error rate of the decoded string. \\ \hline
 sink.cpp                   & Closes any unused signals. \\ \hline
+=======
+\textbf{File}          & \textbf{Description} 																 \\ \hline
+netxpto.cpp            & Generic purpose simulator implementations.		          										 \\
+\hline
+>>>>>>> refs/remotes/netxpto/Alpha
 \end{tabulary}
 \end{table}		
 \end{savenotes}	
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/netxpto/Alpha
 \section{System Input Parameters}
 
 This system takes into account the following input parameters:
@@ -121,6 +143,7 @@ This system takes into account the following input parameters:
 \begin{tabulary}{1.0\textwidth}{|C|C|}
 \hline
 \textbf{System Parameters}      & \textbf{Description} 																 \\ \hline
+<<<<<<< HEAD
 numberOfBits           & Gives the number of bits to be simulated		          										 \\ \hline  
 bitPeriod              & Sets the time between adjacent bits                                                           \\ \hline 
 samplesPerSymbol       & Establishes the number of samples each bit in the string is given \footnotemark[1]	         \\ \hline
@@ -139,6 +162,26 @@ negReferenceValue      &                                                        
 confidence             & Sets the confidence interval for the calculated QBER                                           \\ \hline  
 midReportSize          & Sets the number of bits between generated QBER mid-reports                                     \\
 \hline                   
+=======
+NumberOfBits           & Gives the number of bits to be simulated		          										 \\ \hline
+BitPeriod              & Sets the time between adjacent bits                                                           \\ \hline
+SamplesPerSymbol       & Establishes the number of samples each bit in the string is given \footnotemark[1]	         \\ \hline
+pLength                & PRBS pattern length					                      									 \\ \hline
+iqAmplitudesValues     & Sets the state constellation																	 \\ \hline
+outOpticalPower\_dBm   & Sets the optical power, in units of dBm, at the transmitter output							 \\ \hline
+LOoutOpticalPower\_dBm & Sets the optical power, in units of dBm, of the local oscillator used in the homodyne detector \\ \hline
+LocalOscillatorPhase   & Sets the initial phase of the local oscillator used in the homodyne detector					 \\ \hline
+TransferMatrix         & Sets the transfer matrix of the beam splitter used in the homodyne detector					 \\ \hline
+Responsivity           & Sets the responsivity of the photodiodes used in the homodyne detector						 \\ \hline
+Amplification          & Sets the amplification of the trans-impedance amplifier used in the homodyne detector			 \\ \hline
+NoiseAmplitude         & Sets the amplitude of the gaussian thermal noise added in the homodyne detector				 \\ \hline
+Delay                  & Sets the delay factor of the homodyne detector												 \\ \hline
+PosReferenceValue      & \multirow{2}{*}{Set the positive and negative reference values for the bit decision block}     \\ \cline{1-1}
+NegReferenceValue      &                                                                                                \\ \hline
+Confidence             & Sets the confidence interval for the calculated QBER                                           \\ \hline
+MidReportSize          & Sets the number of bits between generated QBER mid-reports                                     \\
+\hline
+>>>>>>> refs/remotes/netxpto/Alpha
 \end{tabulary}
 \end{table}		
 \end{savenotes}	
@@ -323,12 +366,13 @@ The result of the homodyne detection is the binary string presented in~\ref{fig:
 \subfile{../../lib/tex/ber}
 
 \section{Known Problems}
+\begin{enumerate}
+    \item{Finish section~\ref{Required files} of this document.}
+    \item{Change figure 1 to increase the lines width and to include the block Sink, and to include the signals names S0, S1, S2, S3.}
+    \item Homodyne Super-Block not functioning
+    \item MQAM Transmitter PDF needs to be written
+    \item 8 bits being lost of every signal
+    \item If the bit string length is larger than 512, this first 512 bits are lost
+\end{enumerate}
 
-\begin{itemize}
-\item Homodyne Super-Block not functioning
-\item MQAM Transmitter PDF needs to be written
-\item 8 bits being lost of every signal
-\item If the bit string length is larger than 512, this first 512 bits are lost
-\end{itemize}
-
-\end{document}
+\end{document} 

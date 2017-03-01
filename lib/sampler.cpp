@@ -19,7 +19,7 @@ bool Sampler::runBlock(void){
 
 	int ready = inputSignals[0]->ready();
 	
-	if (samplesToSkip > 0) {
+	/*if (samplesToSkip > 0) {
 		int process = min(ready, samplesToSkip);
 
 		for (int k = 0; k < process; k++) {
@@ -31,7 +31,7 @@ bool Sampler::runBlock(void){
 
 		ready = inputSignals[0]->ready();
 
-	}
+	}*/
 
 	int space = outputSignals[0]->space();
 	int process = min(ready, space);
@@ -40,11 +40,12 @@ bool Sampler::runBlock(void){
 	if (process == 0) return false;
 
 	double sPerSymbol = inputSignals[0]->getSamplesPerSymbol();
-
+	
 	for (int k = 0; k < process; k++) {
 		t_real in;
 		inputSignals[0]->bufferGet(&in);
-		if (k % (int) sPerSymbol == 0) {
+		count++;
+		if (k % (int) sPerSymbol == 0 && count>samplesToSkip) {
 			outputSignals[0]->bufferPut((t_real) in);
 		}
 	}

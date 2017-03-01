@@ -34,14 +34,7 @@ class DiscreteOpticalAmplifier : public SuperBlock {
 	/* State Variables */
 
 	/* Input Parameters */
-<<<<<<< HEAD:include/edfa.h
 	double gain{ 1e4 };
-=======
-	double amplification{ 1e4 };
-
-	t_real std{ 1e-3 };
-	t_real noiseBias{ 0 };
->>>>>>> 14adca355faa92683b01e2a95152ddb168447487:include/discrete_optical_amplifier.h
 
 	double bilateralNoiseSpectralDensity{ 1e-3 }; // W/Hz
 	
@@ -54,17 +47,10 @@ public:
 
 	/* Set Methods */
 
-<<<<<<< HEAD:include/edfa.h
-	void setDiscreteOpticalAmplifierGain(double gain) { B1.setGain(gain); };
-	double getDiscreteOpticalAmplifierGain() { return B1.getGain(); };
-
-	void setDiscreteOpticalAmplifierBilateralNoiseSpectralDensity(double bNoiseSpectralDensity) { B2.setBilateralNoiseSpectralDensity(bNoiseSpectralDensity); };
-=======
 	void setGain(double gain) { B1.setGain(gain); };
 
 	void setOpticalNoiseSpectralDensity(double std) { B2.setNoiseSpectralDensity(std); };
 	double const getOpticalNoiseSpectralDensity(void) { B2.getNoiseSpectralDensity(); }
->>>>>>> 14adca355faa92683b01e2a95152ddb168447487:include/discrete_optical_amplifier.h
 
 };
 

@@ -34,11 +34,10 @@ class DiscreteOpticalAmplifier : public SuperBlock {
 	/* State Variables */
 
 	/* Input Parameters */
-	double amplification{ 1e4 };
+	double gain{ 1e4 };
 
-	t_real std{ 1e-3 };
-	t_real noiseBias{ 0 };
-
+	double bilateralNoiseSpectralDensity{ 1e-3 }; // W/Hz
+	
 
 public:
 

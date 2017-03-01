@@ -8,11 +8,10 @@
 // Simulates a Transimpedance Amplifier
 class IdealAmplifier : public Block {
 
-	bool firsTime{ true };
+	double gain{ 1e4 };
 
 public:
 
-	double gain = 1e4;	
 
 	IdealAmplifier() {};
 	IdealAmplifier(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
@@ -20,9 +19,9 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	void setGain(t_real Gain) { gain = Gain; }
+	void setGain(double ga) { gain = ga; }
+	double getGain() { return gain; }
 
-private:
 };
 
 

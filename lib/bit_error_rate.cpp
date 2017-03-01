@@ -32,7 +32,9 @@ bool BitErrorRate::runBlock(void){
 		}
 
 		z = -x3;
+
 	}
+
 
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
@@ -41,14 +43,11 @@ bool BitErrorRate::runBlock(void){
 
 	int process = min(ready, space);
 
-	ofstream translate2;
-	translate2.open("translate2.txt", fstream::app);
-
+	
 	/* Outputting final report */
 
 	if (process == 0)
 	{
-		translate2.close();
 
 		/* Calculating BER and bounds */
 
@@ -121,13 +120,11 @@ bool BitErrorRate::runBlock(void){
 		if (signalValue == SignalValue)
 		{
 			coincidences++;
-			outputSignals[0]->bufferPut(1);
-			translate2 << 1 << "\n";
+			outputSignals[0]->bufferPut((t_binary) 1);
 		}
 		else
 		{
-			outputSignals[0]->bufferPut(0);
-			translate2 << 0 << "\n";
+			outputSignals[0]->bufferPut((t_binary) 0);
 		}
 
 

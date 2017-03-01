@@ -1,11 +1,11 @@
 #include <algorithm>
 #include <complex>
 
-#include "..\include\netxpto.h"
-#include "..\include\subtractor.h"
+#include "netxpto.h"
+#include "add.h"
 
 
-void Subtractor::initialize(void){
+void Add::initialize(void){
 
 	firstTime = false;
 
@@ -15,7 +15,7 @@ void Subtractor::initialize(void){
 }
 
 
-bool Subtractor::runBlock(void){
+bool Add::runBlock(void){
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
 	int ready = min(ready1, ready2);
@@ -28,12 +28,18 @@ bool Subtractor::runBlock(void){
 	
 	for (int i = 0; i < process; i++) {
 
-		t_real in1;
+		t_complex in1;
 		inputSignals[0]->bufferGet(&in1);
-		t_real in2;
-		inputSignals[1]->bufferGet(&in2);
+		t_complex in2(0, 0);
+		t_complex noise;
+		inputSignals[1]->bufferGet(&noise);
+		if (opticalNoise)
+		{
+			in2 = in2 + noise;
+		}
 
-		t_real out = in1 - in2;
+
+		t_complex out = in1 + in2;
 
 		outputSignals[0]->bufferPut(out);
 	}

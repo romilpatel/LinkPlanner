@@ -15,19 +15,20 @@ void BalancedBeamSplitter::initialize(void){
 	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 	 
-	outputSignals[0]->centralWavelength = outputOpticalWavelength;
-	outputSignals[0]->centralFrequency = outputOpticalFrequency;
+	outputSignals[0]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
+	outputSignals[0]->setCentralFrequency(inputSignals[0]->getCentralWavelength());
 
 	outputSignals[1]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[1]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
-	outputSignals[1]->centralWavelength = outputOpticalWavelength;
-	outputSignals[1]->centralFrequency = outputOpticalFrequency;
+	outputSignals[1]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
+	outputSignals[1]->setCentralFrequency(inputSignals[0]->getCentralWavelength());
 }
 
 
 bool BalancedBeamSplitter::runBlock(void){
+
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
 	int ready = min(ready1, ready2);
@@ -48,14 +49,12 @@ bool BalancedBeamSplitter::runBlock(void){
 		t_complex inb;
 		inputSignals[0]->bufferGet(&ina);
 		inputSignals[1]->bufferGet(&inb);
-		
-
 
 		t_complex outa = matrix[0]*ina + matrix[1]*inb;
 		t_complex outb = matrix[2]*ina + matrix[3]*inb;
 
-		outputSignals[0]->bufferPut(outa);
-		outputSignals[1]->bufferPut(outb);
+		outputSignals[0]->bufferPut((t_complex) outa);
+		outputSignals[1]->bufferPut((t_complex) outb);
 
 	}
 	return true;

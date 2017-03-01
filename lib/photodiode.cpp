@@ -24,9 +24,11 @@ bool Photodiode::runBlock(void){
 	int ready = inputSignals[0]->ready();
 
 	normal_distribution<double> distribution(0, 1);
-	t_real dt = inputSignals[0]->getSamplingPeriod();
-	t_real noise1;
-	t_real noise2;
+	double dt = 1.28e-8; //inputSignals[0]->getSamplingPeriod();
+	double noise1;
+	double noise2;
+
+	double wavelength = outputOpticalWavelength;
 
 	int space1 = outputSignals[0]->space();
 	int space2 = outputSignals[0]->space();
@@ -52,19 +54,19 @@ bool Photodiode::runBlock(void){
 
 
 
-		t_real power1 = abs(input1)*abs(input1) * 4;//sqrt(.5)/2*SPEED_OF_LIGHT*n*PI*radius*radius*E0*abs(input1)*abs(input1);
-		t_real power2 = abs(input2)*abs(input2) * 4;// sqrt(.5)/2*SPEED_OF_LIGHT*n*PI*radius*radius*E0*abs(input2)*abs(input2);
+		t_real power1 = abs(input1)*abs(input1) * 4;
+		t_real power2 = abs(input2)*abs(input2) * 4;
 		
-		t_real current1 = responsivity * (power1);// +sqrt(h*SPEED_OF_LIGHT / dt)*noise1*(sqrt(power1) + 1 / 2)); // assuming power in wats, need to check if this is correct
-		t_real current2 = responsivity * (power2);// +sqrt(h*SPEED_OF_LIGHT / dt)*noise2*(sqrt(power2) + 1 / 2)); // assuming power in wats, need to check if this is correct
+		t_real current1 = responsivity * (power1);// assuming power in wats, need to check if this is correct
+		t_real current2 = responsivity * (power2);// assuming power in wats, need to check if this is correct
 
 		if (shotNoise)
 		{
-			current1 = current1 + responsivity * (sqrt(h*SPEED_OF_LIGHT / dt)*noise1*(sqrt(power1) + 1 / 2));
-			current2 = current2 + responsivity * (sqrt(h*SPEED_OF_LIGHT / dt)*noise2*(sqrt(power2) + 1 / 2));
+			current1 = current1 + responsivity * (sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noise1*(sqrt(power1) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength)) * noise1 / 4));
+			current2 = current2 + responsivity * (sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noise2*(sqrt(power2) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength)) * noise2 / 4));
 		}
 		
-		t_real out = current1 - current2;
+		t_real out = current1 - current2;	
 
 		outputSignals[0]->bufferPut(out);
 	}

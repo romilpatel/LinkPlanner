@@ -10,15 +10,11 @@ class Add : public Block {
 
 public:
 
-	bool opticalNoise = false;
-
 	Add() {};
 	Add(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	
 	void initialize(void);
 	bool runBlock(void);
-
-	void useNoise(bool oNoise) { opticalNoise = oNoise; }
 	
 private:
 };

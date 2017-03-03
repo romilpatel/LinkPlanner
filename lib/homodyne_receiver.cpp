@@ -4,7 +4,7 @@
 HomodyneReceiver::HomodyneReceiver(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal) :SuperBlock(inputSignal, outputSignal) {
 
 	setLocalOscillatorSamplingPeriod(inputSignal[0]->getSamplingPeriod());
-	setClockSamplingPeriod(inputSignal[0]->getSamplingPeriod());
+	//setClockSamplingPeriod(inputSignal[0]->getSamplingPeriod());
 
 	inputSignals = inputSignal;
 	outputSignals = outputSignal;
@@ -18,8 +18,8 @@ HomodyneReceiver::HomodyneReceiver(vector<Signal *> &inputSignal, vector<Signal 
 	//B7.initializeBlock(vector<Signal*> { &HMD08 }, vector<Signal*> { &HMD10 }); //Filter
 	//B8.initializeBlock(vector<Signal*> { &HMD09 }, vector<Signal*> { &HMD11 }); //Filter
 	B8.initializeBlock(vector<Signal*> { }, vector<Signal*> { &HMD11 }); //Clock
-	B9.initializeBlock(vector<Signal*> { &HMD08 }, vector<Signal*> { &HMD12 }); //Sampler
-	B10.initializeBlock(vector<Signal*> { &HMD09 }, vector<Signal*> { &HMD13 }); //Sampler
+	B9.initializeBlock(vector<Signal*> { &HMD08, &HMD11 }, vector<Signal*> { &HMD12 }); //Sampler
+	B10.initializeBlock(vector<Signal*> { &HMD09, &HMD11 }, vector<Signal*> { &HMD13 }); //Sampler
 	B11.initializeBlock(vector<Signal*> { &HMD12, &HMD13 }, vector<Signal*> { &HMD14 }); //Decoder
 
 	setModuleBlocks({ &B1, &B2, &B3, &B4, &B5, &B6, /*&B7,*/ &B8, &B9, &B10, &B11 });

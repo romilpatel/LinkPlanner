@@ -19,6 +19,7 @@ int main(){
 	double rollOffFactor = 0.3;
 	double cutoffFrequency = 5; //hertz
 	double samplingPeriod = 16;
+	double clockPeriod = 256;
 	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 }, { -1.0, 1.0 }, { 1.0, -1.0 }, { -1.0, -1.0 } };
 	t_real signalOutputPower_dBm = 0; 
 	t_real localOscillatorPower_dBm = 0; 
@@ -81,7 +82,8 @@ int main(){
 	//B2.setNegReferenceValue(0);
 	B2.setSaveInternalSignals(true);
 	//B2.setCutoffFrequency(cutoffFrequency);
-	B2.setClockSamplingPeriod(samplingPeriod);
+	B2.setSamplingPeriod(samplingPeriod);
+	B2.setClockPeriod(clockPeriod);
 
 	//With BER measurement
 	BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S3 } };

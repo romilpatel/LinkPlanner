@@ -125,7 +125,7 @@ public:
 	void setCutoffFrequency(double cOffFrequency) { B7.setCutoffFrequency(cOffFrequency); B8.setCutoffFrequency(cOffFrequency); };
 	void setFilterType(Filter fType) { B7.setFilterType(fType); B8.setFilterType(fType); };*/
 
-	void setClockSamplingPeriod(double sPeriod) { B8.setSamplingPeriod(sPeriod); };
+	void setClockPeriod(double per) { B8.setClockPeriod(per); };
 
 	void setSamplesToSkip(int sToSkip) { B9.setSamplesToSkip(sToSkip); B10.setSamplesToSkip(sToSkip); };
 

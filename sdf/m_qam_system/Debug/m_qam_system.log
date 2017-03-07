@@ -1,6 +1,3 @@
 ﻿  m_qam_system_sdf.cpp
-  sampler.cpp
-  Generating Code...
-c:\users\ana luisa\documents\github\analuisa\lib\sampler.cpp(126): warning C4715: 'Sampler::runBlock': not all control paths return a value
   m_qam_system.vcxproj -> C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.exe
   m_qam_system.vcxproj -> C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)

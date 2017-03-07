@@ -19,40 +19,18 @@ class I_HomodyneReceiver : public SuperBlock {
 	// ################## Internal Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
 
-	OpticalSignal I_HMD01{ "I_HMD01.sgn" }; // Local Oscillator
+	TimeContinuousAmplitudeContinuousReal I_HMD01{ "I_HMD01.sgn" }; // Detected and Subtracted -> 4*S*LO
 
-	OpticalSignal I_HMD02{ "I_HMD02.sgn" }; // BS Out 1 -> S + LO
-
-	OpticalSignal I_HMD03{ "I_HMD03.sgn" }; // BS Out 2 -> S - LO
-
-	TimeContinuousAmplitudeContinuousReal I_HMD04{ "I_HMD04.sgn" }; // Detected and Subtracted -> 4*S*LO
-
-	TimeContinuousAmplitudeContinuousReal I_HMD05{ "I_HMD05.sgn" }; // Amplified
-
-	TimeContinuousAmplitudeContinuousReal I_HMD06{ "I_HMD06.sgn" }; // Filtered
-
-	TimeDiscreteAmplitudeContinuousReal I_HMD07{ "I_HMD07.sgn" }; // Sampled
-
-	Binary I_HMD08{ "I_HMD08.sgn" }; // Binary retrieved information
+	TimeContinuousAmplitudeContinuousReal I_HMD02{ "I_HMD02.sgn" }; // Amplified, Noisy and Filtered
 
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	LocalOscillator B1;
+	Photodiode B1;
 
-	BalancedBeamSplitter B2;
-
-	Photodiode B3;
-
-	TIAmplifier B4;
-
-	ElectricalFilter B5;
-
-	Sampler B6;
-
-	BitDecider B7;
+	TI_Amplifier B2;
 
 	/* State Variables */
 
@@ -75,7 +53,7 @@ public:
 
 	/* Set Methods */
 
-	void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
+	/*void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
 	void setLocalOscillatorSymbolPeriod(double sPeriod) { B1.setSymbolPeriod(sPeriod); }
 	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
 	void setLocalOscillatorOpticalPower_dBm(double opticalPower_dBm) { B1.setOpticalPower_dBm(opticalPower_dBm); };
@@ -87,21 +65,15 @@ public:
 
 	void setTransferMatrix(array<t_complex, 4> TransferMatrix) { B2.matrix = TransferMatrix; };
 	array<complex<double>, 4> const getBalancedBeamsplitter(void) { B2.getTransferMatrix(); }
+*/
+	void setResponsivity(double Responsivity) { B1.setResponsivity(Responsivity); };
+	double const getResponsivity(void) { B1.getResponsivity(); }
+	void useShotNoise(bool uShotNoise){ B1.useNoise(uShotNoise); };
 
-	void setResponsivity(double Responsivity) { B3.setResponsivity(Responsivity); };
-	double const getResponsivity(void) { B3.getResponsivity(); }
-	void useShotNoise(bool uShotNoise){ B3.useNoise(uShotNoise); };
+	void setGain(double Gain) { B2.setGain(Gain); }
 
-	void setGain(double Gain) { B4.setGain(Gain); }
-
-	void setElectricalNoiseSpectralDensity(double eNoiseSpectralDensity) { B4.setNoiseSpectralDensity(eNoiseSpectralDensity); }
-	double const getElectricalNoiseSpectralDensity(void) { B4.getNoiseSpectralDensity(); }
-
-	void setSamplesToSkip(int sToSkip) { B6.setSamplesToSkip(sToSkip); };
-	int const getSamplesToSkip(void) { B6.getSamplesToSkip(); }
-
-	void setDecionLevel(int dLevel) { B7.setDecisionLevel(dLevel); };
-	double const getDecisionLevel(void) { B7.getDecisionLevel(); }
+	void setElectricalNoiseSpectralDensity(double eNoiseSpectralDensity) { B2.setElectricalNoiseSpectralDensity(eNoiseSpectralDensity); }
+	double const getElectricalNoiseSpectralDensity(void) { B2.getElectricalNoiseSpectralDensity(); }
 
 };
 

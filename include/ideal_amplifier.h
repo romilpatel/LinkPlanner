@@ -5,7 +5,7 @@
 # include <vector>
 #include <random>
 
-// Simulates a Transimpedance Amplifier
+// Simulates an ideal Amplifier
 class IdealAmplifier : public Block {
 
 	double gain{ 1e4 };
@@ -25,4 +25,4 @@ public:
 };
 
 
-#endif // !PROGRAM_INCLUDE_TIAMPLIFIER_H_
+#endif // !PROGRAM_INCLUDE_IDEAL_AMPLIFIER_H_

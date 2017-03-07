@@ -26,23 +26,55 @@ bool Add::runBlock(void){
 
 	if (process == 0) return false;
 	
-	signal_value_type sType = inputSignals[0]->getValueType();
+	signal_value_type sType1 = inputSignals[0]->getValueType();
+	signal_value_type sType2 = inputSignals[1]->getValueType();
 
-	switch (sType)
+	if (sType1==sType2)
 	{
+		// Need to output an error message
+	}
+
+	switch (sType1)
+	{
+	case RealValue:
+	{
+					  for (int k = 0; k < process; k++)
+					  {
+						  t_real inRealValue1;
+						  inputSignals[0]->bufferGet(&inRealValue1);
+						  t_real inRealValue2;
+						  inputSignals[1]->bufferGet(&inRealValue2);
+						  t_real outRealValue = inRealValue1 + inRealValue2;
+						  outputSignals[0]->bufferPut(outRealValue);
+					  }
+					  break;
+	}
+
+
 	case ComplexValue:
 	{
 						 for (int k = 0; k < process; k++) {
 
-							 t_complex in1;
-							 inputSignals[0]->bufferGet(&in1);
-							 t_complex noise;
-							 inputSignals[1]->bufferGet(&noise);
-
-							 t_complex out = in1 + noise;
-
-							 outputSignals[0]->bufferPut(out);
+							 t_complex inComplexValue1;
+							 inputSignals[0]->bufferGet(&inComplexValue1);
+							 t_complex inComplexValue2;
+							 inputSignals[1]->bufferGet(&inComplexValue2);
+							 t_complex outComplexValue = inComplexValue1 + inComplexValue2;
+							 outputSignals[0]->bufferPut(outComplexValue);
 						 }
+						 break;
+	}
+	case ComplexValueXY:
+	{
+						   for (int k = 0; k < process; k++) {
+							   t_complex_xy inComplexValueXY1;
+							   inputSignals[0]->bufferGet(&inComplexValueXY1);
+							   t_complex_xy inComplexValueXY2;
+							   inputSignals[1]->bufferGet(&inComplexValueXY2);
+							   t_complex_xy outComplexValueXY = { inComplexValueXY1.x + inComplexValueXY2.x, inComplexValueXY1.y + inComplexValueXY2.y };
+							   outputSignals[0]->bufferPut(outComplexValueXY);
+						   }
+						   break;
 	}
 	/*case ComplexValueXY:
 	{

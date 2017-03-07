@@ -5,6 +5,10 @@
 # include "sink.h"
 # include "discrete_optical_amplifier.h"
 # include "bit_error_rate.h"
+# include "local_oscillator.h"
+# include "balanced_beam_splitter.h"
+# include "photodiode.h"
+# include "ti_amplifier.h"
 
 int main(){
 
@@ -20,8 +24,10 @@ int main(){
 	double rollOffFactor = 0.3;
 	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
 	double signalOutputPower_dBm = -4; // doesn't matter right now
-	double localOscillatorPower_dBm = -15;
-	double localOscillatorPhase = 0;
+	double localOscillatorPower_dBm1 = -15;
+	double localOscillatorPower2 = 0;
+	double localOscillatorPhase1 = 0;
+	double localOscillatorPhase2 = 0;
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	double responsivity = 1;
 	double amplification = 1e6;
@@ -34,60 +40,71 @@ int main(){
 	// ########################### Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
 
-	Binary S0{ "S0.sgn" };
-	S0.setBufferLength(bufferLength);
-
 	OpticalSignal S1("S1.sgn");
 	S1.setBufferLength(bufferLength);
 
-	Binary S2{ "S2.sgn" };
+	OpticalSignal S2("S2.sgn");
 	S2.setBufferLength(bufferLength);
 
-	Binary S3{ "S3.sgn" };
+	OpticalSignal S3("S3.sgn");
 	S3.setBufferLength(bufferLength);
+
+	OpticalSignal S4("S4.sgn");
+	S4.setBufferLength(bufferLength);
+
+	TimeContinuousAmplitudeContinuousReal S5("S5.sgn");
+	S5.setBufferLength(bufferLength);
+
+	TimeContinuousAmplitudeContinuousReal S6("S6.sgn");
+	S6.setBufferLength(bufferLength);
+
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S1, &S0 } };
-	B1.setNumberOfBits(numberOfBitsGenerated);
-	B1.setOutputOpticalPower(0);
-	B1.setMode(PseudoRandom);
-	B1.setBitPeriod(bitPeriod);
-	B1.setPatternLength(pLength);
-	B1.setIqAmplitudes(iqAmplitudeValues);
-	B1.setNumberOfSamplesPerSymbol(samplesPerSymbol);
-	B1.setRollOffFactor(rollOffFactor);
-	B1.setSaveInternalSignals(false);
-	B1.setSeeBeginningOfImpulseResponse(true);
-	
-	I_HomodyneReceiver B2{ vector<Signal*> {&S1}, vector<Signal*> {&S2} };
-	B2.setLocalOscillatorOpticalPower_dBm(localOscillatorPower_dBm);
-	B2.setLocalOscillatorPhase(localOscillatorPhase);
-	B2.setLocalOscillatorSamplingPeriod(bitPeriod / samplesPerSymbol);
-	B2.setLocalOscillatorSymbolPeriod(bitPeriod);
-	B2.setTransferMatrix(transferMatrix);
-	B2.setResponsivity(responsivity);
-	B2.setGain(amplification);
-	B2.setElectricalNoiseSpectralDensity(electricalNoiseAmplitude);
-	B2.setSamplesToSkip(samplesToSkip);
-	B2.setSaveInternalSignals(true);
-	B2.useShotNoise(shotNoise);
+	LocalOscillator B1{ vector<Signal*> { }, vector<Signal*> { &S1 } };
+	B1.setOpticalPower_dBm(localOscillatorPower_dBm1);
+	B1.setPhase(localOscillatorPhase1);
+	B1.setSamplingPeriod(bitPeriod / samplesPerSymbol);
+	B1.setSymbolPeriod(bitPeriod);
 
-	BitErrorRate B3{ vector<Signal*> { &S0, &S2 }, vector<Signal*> { &S3 } };
-	B3.setConfidence(.95);
+	LocalOscillator B2{ vector<Signal*> { }, vector<Signal*> { &S2 } };
+	B2.setOpticalPower(localOscillatorPower2);
+	B2.setPhase(localOscillatorPhase2);
+	B2.setSamplingPeriod(bitPeriod / samplesPerSymbol);
+	B2.setSymbolPeriod(bitPeriod);
 
-	Sink B4{ vector<Signal*> { &S3 }, vector<Signal*> {} };
-	B4.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
-	B4.setDisplayNumberOfSamples(true);
+	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4} };
+	B3.setTransferMatrix(transferMatrix);
+
+	/*I_HomodyneReceiver B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
+	B4.setResponsivity(responsivity);
+	B4.setGain(amplification);
+	B4.setElectricalNoiseSpectralDensity(electricalNoiseAmplitude);
+	B4.setSaveInternalSignals(true);
+	B4.useShotNoise(shotNoise);*/
+
+	Photodiode B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
+	B4.setResponsivity(responsivity);
+	B4.useNoise(shotNoise);
+
+	TI_Amplifier B5{ vector<Signal *> {&S5}, vector<Signal*> {&S6} };
+	B5.setGain(amplification);
+	B5.setElectricalNoiseSpectralDensity(electricalNoiseAmplitude);
+	B5.setSaveInternalSignals(true);
+
+
+	Sink B6{ vector<Signal*> { &S6 }, vector<Signal*> {} };
+	B6.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
+	B6.setDisplayNumberOfSamples(true);
 
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4 } };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6 } };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

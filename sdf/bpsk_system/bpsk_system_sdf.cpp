@@ -13,19 +13,19 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated(20000000);
+	int numberOfBitsGenerated(100);
 	int samplesPerSymbol(100);
 	int pLength = 5;
 	double bitPeriod = 1.0 / 100e3;
 	double rollOffFactor = 0.3;
 	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
 	double signalOutputPower_dBm = -4; // doesn't matter right now
-	double localOscillatorPower_dBm = -19;
+	double localOscillatorPower_dBm = -15;
 	double localOscillatorPhase = 0;
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	double responsivity = 1;
 	double amplification = 1e6;
-	double electricalNoiseAmplitude = 0.0024;
+	double electricalNoiseAmplitude = 0.0022;
 	int samplesToSkip = 16*16;// 8 * samplesPerSymbol;
 	int bufferLength = 512;
 	bool shotNoise(true);

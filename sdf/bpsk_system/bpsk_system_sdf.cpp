@@ -78,14 +78,14 @@ int main(){
 	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4} };
 	B3.setTransferMatrix(transferMatrix);
 
-	/*I_HomodyneReceiver B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
+	I_HomodyneReceiver B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
 	B4.setResponsivity(responsivity);
 	B4.setGain(amplification);
 	B4.setElectricalNoiseSpectralDensity(electricalNoiseAmplitude);
 	B4.setSaveInternalSignals(true);
-	B4.useShotNoise(shotNoise);*/
+	B4.useShotNoise(shotNoise);
 
-	Photodiode B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
+	/*Photodiode B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
 	B4.setResponsivity(responsivity);
 	B4.useNoise(shotNoise);
 
@@ -93,18 +93,18 @@ int main(){
 	B5.setGain(amplification);
 	B5.setElectricalNoiseSpectralDensity(electricalNoiseAmplitude);
 	B5.setSaveInternalSignals(true);
+	*/
 
-
-	Sink B6{ vector<Signal*> { &S6 }, vector<Signal*> {} };
-	B6.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
-	B6.setDisplayNumberOfSamples(true);
+	Sink B5{ vector<Signal*> { &S5 }, vector<Signal*> {} };
+	B5.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
+	B5.setDisplayNumberOfSamples(true);
 
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6 } };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5 } };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

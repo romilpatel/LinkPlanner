@@ -67,6 +67,9 @@
     <ClCompile Include="..\..\lib\white_noise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lib\i_homodyne_receiver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\balanced_beam_splitter.h">
@@ -130,6 +133,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\white_noise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\i_homodyne_receiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

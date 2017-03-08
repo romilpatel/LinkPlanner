@@ -1,60 +1,15 @@
-#include <algorithm>
-#include <complex>
-#include <random>
-#include <fstream>
-#include <iostream>
-
-#include "netxpto.h"
 #include "ti_amplifier.h"
 
 
-void TIAmplifier::initialize(void){
+TI_Amplifier::TI_Amplifier(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal) :SuperBlock(inputSignal, outputSignal)
+{
+	inputSignals = inputSignal;
+	outputSignals = outputSignal;
 
-	firsTime = false;
+	B1.initializeBlock(vector<Signal *> {inputSignals[0]}, vector<Signal *> {&TI_AMP01});
+	B2.initializeBlock(vector<Signal *> { }, vector<Signal *> {&TI_AMP02});
+	B3.initializeBlock(vector<Signal *> {&TI_AMP01, &TI_AMP02}, vector<Signal *> {&TI_AMP03});
+	B4.initializeBlock(vector<Signal *> {&TI_AMP03}, vector<Signal *> {&TI_AMP04});
 
-	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
-	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
-	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
-}
-
-
-bool TIAmplifier::runBlock(void){
-
-	ofstream translate;
-	translate.open("translate.txt", fstream::app);
-
-	normal_distribution<double> distribution(0, 1);
-
-	int ready = inputSignals[0]->ready();
-
-	int space = outputSignals[0]->space();
-
-	int process = min(ready, space);
-
-	if (process == 0) {
-		translate.close();
-		return false;
-	}
-	double noise = 0;
-
-	for (int i = 0; i < process; i++) {
-
-		t_real input;
-		inputSignals[0]->bufferGet(&input);
-		
-		noise = distribution(generator);
-		
-		t_real output = input*gain; // assuming current in amps
-
-		if (electricalNoiseSpectralDensity!=0)
-		{
-			output = output + noise*electricalNoiseSpectralDensity;
-		}
-
-		translate << output << "\n";
-
-
-		outputSignals[0]->bufferPut(output);
-	}
-	return true;
-}
+	setModuleBlocks({ &B1, &B2, &B3, &B4 });
+};

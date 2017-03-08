@@ -85,16 +85,6 @@ int main(){
 	B4.setSaveInternalSignals(true);
 	B4.useShotNoise(shotNoise);
 
-	/*Photodiode B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
-	B4.setResponsivity(responsivity);
-	B4.useNoise(shotNoise);
-
-	TI_Amplifier B5{ vector<Signal *> {&S5}, vector<Signal*> {&S6} };
-	B5.setGain(amplification);
-	B5.setElectricalNoiseSpectralDensity(electricalNoiseAmplitude);
-	B5.setSaveInternalSignals(true);
-	*/
-
 	Sink B5{ vector<Signal*> { &S5 }, vector<Signal*> {} };
 	B5.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
 	B5.setDisplayNumberOfSamples(true);

@@ -47,7 +47,7 @@ class TI_Amplifier : public SuperBlock {
 public:
 
 	/* Methods */
-	
+	TI_Amplifier() {};
 	TI_Amplifier(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal);
 	
 	/* Set Methods */

@@ -391,6 +391,102 @@ bool FIR_Filter::runBlock(void) {
 };
 
 
+void FD_Filter::initializeFD_Filter(void) {
+
+	outputSignals[0]->symbolPeriod = inputSignals[0]->symbolPeriod;
+	outputSignals[0]->samplingPeriod = inputSignals[0]->samplingPeriod;
+	outputSignals[0]->samplesPerSymbol = inputSignals[0]->samplesPerSymbol;
+
+/*	if (!getSeeBeginningOfImpulseResponse()) {
+		int aux = (int)(((double)impulseResponseLength) / 2) + 1;
+		outputSignals[0]->setFirstValueToBeSaved(aux);
+	}*/
+
+/*	delayLine.resize(impulseResponseLength, 0);*/
+
+	inputBufferTimeDomain.resize(transferFunctionLength);
+	outputBufferTimeDomain.resize(transferFunctionLength);
+	inputBufferPointer = transferFunctionLength / 2 ;
+	outputBufferPointer = transferFunctionLength;
+
+	if (saveTransferFunction) {
+		ofstream fileHandler("./signals/" + transferFunctionFilename, ios::out);
+		fileHandler << "// ### HEADER TERMINATOR ###\n";
+
+		double samplingPeriod = inputSignals[0]->samplingPeriod;
+		t_real fWindow = 1/samplingPeriod;
+		t_real df = fWindow / transferFunctionLength;
+
+		t_real f;
+		for (int k = 0; k < transferFunctionLength; k++) {
+			f = -fWindow / 2 + k * df;
+			fileHandler << f << " " << transferFunction[k] << "\n";
+		}
+		fileHandler.close();
+	}
+
+};
+
+bool FD_Filter::runBlock(void) {
+
+	/* Inside Block Input Buffer*/
+
+	int ready = inputSignals[0]->ready();
+	int space = transferFunctionLength - inputBufferPointer;
+
+	int process = min(ready, space);
+
+	for (int k = 0; k < process; k++) {
+		t_real val;
+		(inputSignals[0])->bufferGet(&val);
+
+		inputBufferTimeDomain[inputBufferPointer] = val;
+		inputBufferPointer++;
+	}
+
+	/* Inside Block Output Buffer*/
+
+	int space = outputSignals[0]->space();
+	int ready = 3/4*transferFunctionLength - outputBufferPointer;
+
+
+	int process = min(ready, space);
+
+	for (int k = 0; k < process; k++) {
+		t_real val=outputBufferTimeDomain[outputBufferPointer];
+		(outputSignals[0])->bufferPut(&val);
+
+		outputBufferPointer++;
+	}
+
+	if ((inputBufferPointer != transferFunctionLength) & (outputBufferPointer != 3/4*transferFunctionLength)) return false;
+
+	// celestino
+	outputBufferTimeDomain = ifft(fft(inputBufferTimeDomain)*transferfunction);
+
+	std::rotate(inputBufferTimeDomain.begin(), inputBufferTimeDomain.begin() + transferFunctionLength / 2, inputBufferTimeDomain.end());
+	inputBufferPointer = transferFunctionLength/2;
+	outputBufferPointer = transferFunctionLength/4;
+
+	/* Inside Block Output Buffer*/
+
+	int space = outputSignals[0]->space();
+	int ready = 3/4*transferFunctionLength - outputBufferPointer;
+
+
+	int process = min(ready, space);
+
+	for (int k = 0; k < process; k++) {
+		t_real val = outputBufferTimeDomain[outputBufferPointer];
+		(outputSignals[0])->bufferPut(&val);
+
+		outputBufferPointer++;
+	}
+
+	return true;
+
+};
+
 /*2016-08-03
 DiscreteToContinuousTime::DiscreteToContinuousTime(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) {
 

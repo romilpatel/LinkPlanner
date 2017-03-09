@@ -9,6 +9,10 @@
 # include "balanced_beam_splitter.h"
 # include "photodiode.h"
 # include "ti_amplifier.h"
+# include "ideal_amplifier.h"
+# include "white_noise.h"
+# include "add.h"
+# include "discrete_optical_amplifier.h"
 
 int main(){
 
@@ -17,10 +21,10 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated(100);
-	int samplesPerSymbol(100);
+	int numberOfBitsGenerated(1000);
+	int samplesPerSymbol(16);
 	int pLength = 5;
-	double bitPeriod = 1.0 / 100e3;
+	double bitPeriod = 1.0 / 400e3;
 	double rollOffFactor = 0.3;
 	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
 	double signalOutputPower_dBm = -4; // doesn't matter right now
@@ -45,6 +49,7 @@ int main(){
 
 	OpticalSignal S2("S2.sgn");
 	S2.setBufferLength(bufferLength);
+
 
 	OpticalSignal S3("S3.sgn");
 	S3.setBufferLength(bufferLength);
@@ -78,23 +83,35 @@ int main(){
 	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4} };
 	B3.setTransferMatrix(transferMatrix);
 
-	I_HomodyneReceiver B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
+    /*I_HomodyneReceiver B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
 	B4.setResponsivity(responsivity);
 	B4.setGain(amplification);
 	B4.setElectricalNoiseSpectralDensity(electricalNoiseAmplitude);
 	B4.setSaveInternalSignals(true);
-	B4.useShotNoise(shotNoise);
+	B4.useShotNoise(shotNoise); */
 
-	Sink B5{ vector<Signal*> { &S5 }, vector<Signal*> {} };
-	B5.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
-	B5.setDisplayNumberOfSamples(true);
+	Photodiode B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
+	B4.useNoise(shotNoise);
+	B4.setResponsivity(responsivity);
+
+	TI_Amplifier B5{ vector<Signal*> {&S5}, vector<Signal*> {&S6} };
+	B5.setGain(amplification);
+	B5.setElectricalNoiseSpectralDensity(electricalNoiseAmplitude);
+	B5.setSaveInternalSignals(true);
+	B5.setSeeBeginningOfImpulseResponse(false);
+	B5.setImpulseResponseTimeLength(16);
+	B5.setRollOffFactor(0);
+
+	Sink B6{ vector<Signal*> { &S6 }, vector<Signal*> {} };
+	B6.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B6.setDisplayNumberOfSamples(true);
 
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5 } };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6 } };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

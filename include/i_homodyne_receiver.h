@@ -49,23 +49,11 @@ public:
 
 	/* Methods */
 
+	I_HomodyneReceiver() {};
 	I_HomodyneReceiver(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal);
 
 	/* Set Methods */
 
-	/*void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
-	void setLocalOscillatorSymbolPeriod(double sPeriod) { B1.setSymbolPeriod(sPeriod); }
-	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
-	void setLocalOscillatorOpticalPower_dBm(double opticalPower_dBm) { B1.setOpticalPower_dBm(opticalPower_dBm); };
-	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setPhase(lOscillatorPhase); };
-	double const getLocalOscillatorPhase(void) { B1.getPhase(); }
-	void setLocalOscillatorOpticalWavelength(double lOscillatorWavelength) { B1.setWavelength(lOscillatorWavelength); };
-
-	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
-
-	void setTransferMatrix(array<t_complex, 4> TransferMatrix) { B2.matrix = TransferMatrix; };
-	array<complex<double>, 4> const getBalancedBeamsplitter(void) { B2.getTransferMatrix(); }
-*/
 	void setResponsivity(double Responsivity) { B1.setResponsivity(Responsivity); };
 	double const getResponsivity(void) { B1.getResponsivity(); }
 	void useShotNoise(bool uShotNoise){ B1.useNoise(uShotNoise); };

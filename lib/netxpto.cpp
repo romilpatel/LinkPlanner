@@ -280,6 +280,13 @@ bool SuperBlock::runBlock() {
 						outputSignals[i]->bufferPut(signalValue);
 					}
 					break;
+				case RealValue:
+					for (int j = 0; j < length; j++) {
+						t_real signalValue;
+						moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->bufferGet(&signalValue);
+						outputSignals[i]->bufferPut(signalValue);
+					}
+					break;
 				case ComplexValue:
 					for (int j = 0; j < length; j++) {
 						t_complex signalValue;

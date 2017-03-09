@@ -47,9 +47,11 @@ class TI_Amplifier : public SuperBlock {
 public:
 
 	/* Methods */
-	TI_Amplifier() {};
-	TI_Amplifier(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal);
+
 	
+	TI_Amplifier(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal);
+	TI_Amplifier() {};
+
 	/* Set Methods */
 
 	void setGain(double ga) { B1.setGain(ga); };
@@ -60,11 +62,13 @@ public:
 
 	void setRollOffFactor(double rOffFactor){ B4.setRollOffFactor(rOffFactor); };
 	double const getRollOffFactor(void){ return B4.getRollOffFactor(); };
+	
+	void setImpulseResponseTimeLength(int impResponseLength){ B4.setImpulseResponseTimeLength(impResponseLength); };
+	int const getImpulseResponseLength(void) { return B4.getImpulseResponseLength(); };
 
 	void setSeeBeginningOfImpulseResponse(bool sBegginingOfImpulseResponse){ B4.setSeeBeginningOfImpulseResponse(sBegginingOfImpulseResponse); };
 	double const getSeeBeginningOfImpulseResponse(void){ return B4.getSeeBeginningOfImpulseResponse(); };
 
-private:
 };
 
 

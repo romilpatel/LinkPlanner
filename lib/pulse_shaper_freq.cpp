@@ -21,13 +21,9 @@ void PulseShaper::initialize(void) {
 
 }
 
-void PulseShaper::run(void) {
+void PulseShaper::run(void) {};
 
-	outSigTime = ifft(fft(inSigTime)*transferFunction);
-
-};
-
-void raisedCosineTF(vector<t_real> &impulseResponse, int impulseResponseLength, double rollOffFactor, double samplingPeriod, double symbolPeriod) {
+void raisedCosineTF(vector<t_complex> &transferFunction, int transferFunctionLength, double rollOffFactor, double samplingPeriod, double symbolPeriod) {
 	double sinc;
 	for (int i = 0; i < impulseResponseLength; i++) {
 		t_real t = -impulseResponseLength / 2 * samplingPeriod + i * samplingPeriod;

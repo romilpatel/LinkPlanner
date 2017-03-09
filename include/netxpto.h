@@ -478,6 +478,44 @@ public:
 };
 
 
+class FD_Filter : public Block {
+
+	/* State Variable */
+	vector<t_complex> transferFunction;
+
+	vector<t_real> inputBufferTimeDomain;
+	vector<t_real> outputBufferTimeDomain;
+
+	int inputBufferPointer{ transferFunctionLength / 2 };
+	int outputBufferPointer{ 3/4*transferFunctionLength };
+
+
+	/* Input Parameters */
+	bool saveTransferFunction{ true };
+	string transferFunctionFilename{ "transfer_function.tfn" };
+
+	int transferFunctionLength;							
+
+public:
+
+	/* Methods */
+	FD_Filter() {};
+	FD_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {};
+
+	void initializeFD_Filter(void);
+
+	bool runBlock(void);
+
+	void terminate(void) {};
+
+	void setSaveTransferFunction(bool sTransferFunction) { saveTransferFunction = sTransferFunction; };
+	bool getSaveTransferFunction(void) { return saveTransferFunction; };
+
+	void setTransferFunctionLength(int iTransferFunctionLength) { transferFunctionLength = iTransferFunctionLength; };
+	int const getTransferFunctionLength() { return transferFunctionLength; }
+
+};
+
 
 // Generates a complex signal knowing the real part and the complex part.
 class RealToComplex : public Block {

@@ -11,7 +11,7 @@
 # include "local_oscillator.h"
 # include "sampler.h"
 # include "super_block_interface.h"
-# include "electrical_filter.h"
+# include "pulse_shaper.h"
 # include "clock.h"
 
 
@@ -43,17 +43,17 @@ class HomodyneReceiver : public SuperBlock {
 
 	TimeContinuousAmplitudeContinuousReal HMD09{ "HMD09.sgn" }; // Amplified
 
-	//TimeContinuousAmplitudeContinuousReal HMD10{ "HMD10.sgn" }; //Filtered
+	TimeContinuousAmplitudeContinuousReal HMD10{ "HMD10.sgn" }; //Filtered (pulse shaper)
 
-	//TimeContinuousAmplitudeContinuousReal HMD11{ "HMD11.sgn" }; //Filtered
+	TimeContinuousAmplitudeContinuousReal HMD11{ "HMD11.sgn" }; //Filtered
 
-	TimeContinuousAmplitudeContinuousReal HMD11{ "HMD11.sgn" }; //Clock
-
-	TimeDiscreteAmplitudeContinuousReal HMD12{ "HMD12.sgn" }; // Sampled 
+	TimeContinuousAmplitudeContinuousReal HMD12{ "HMD12.sgn" }; //Clock
 
 	TimeDiscreteAmplitudeContinuousReal HMD13{ "HMD13.sgn" }; // Sampled 
 
-	Binary HMD14{ "HMD14.sgn" }; // recovery Sequence
+	TimeDiscreteAmplitudeContinuousReal HMD14{ "HMD14.sgn" }; // Sampled 
+
+	Binary HMD15{ "HMD15.sgn" }; // recovery Sequence
 
 
 	// #####################################################################################################
@@ -72,17 +72,17 @@ class HomodyneReceiver : public SuperBlock {
 
 	TIAmplifier B6;
 
-	//ElectricalFilter B7;
+	PulseShaper B7;
 
-	//ElectricalFilter B8;
+	PulseShaper B8;
 
-	Clock B8;
-
-	Sampler B9;
+	Clock B9;
 
 	Sampler B10;
+
+	Sampler B11;
 	
-	Decoder B11;
+	Decoder B12;
 
 	/* State Variables */
 
@@ -105,8 +105,8 @@ public:
 
 	/* Set Methods */
 
-	void setIqAmplitudes(vector<t_iqValues> iqAmplitudesValues) { B11.setIqAmplitudes(iqAmplitudesValues); };
-	vector<t_iqValues> const getIqAmplitudes(void) { return B11.getIqAmplitudes(); };
+	void setIqAmplitudes(vector<t_iqValues> iqAmplitudesValues) { B12.setIqAmplitudes(iqAmplitudesValues); };
+	vector<t_iqValues> const getIqAmplitudes(void) { return B12.getIqAmplitudes(); };
 
 	void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
 	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
@@ -114,20 +114,20 @@ public:
 	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setPhase(lOscillatorPhase); };
 	void setLocalOscillatorOpticalWavelength(double lOscillatorWavelength) { B1.setWavelength(lOscillatorWavelength); };
 
-	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); B8.setSamplingPeriod(sPeriod); };
+	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); B9.setSamplingPeriod(sPeriod); };
 
 	void  setResponsivity(t_real Responsivity) { B3.responsivity = Responsivity; B4.responsivity = Responsivity; };
 
 	void setAmplification(t_real Amplification) { B5.amplification = Amplification; B6.amplification = Amplification; };
 	void setNoiseAmplitude(t_real NoiseAmplitude) { B5.noiseamp = NoiseAmplitude; B6.noiseamp = NoiseAmplitude;};
 
-	/*void setImpulseResponseTimeLength(int impResponseTimeLength) { B7.setImpulseResponseTimeLength(impResponseTimeLength); B8.setImpulseResponseTimeLength(impResponseTimeLength); };
-	void setCutoffFrequency(double cOffFrequency) { B7.setCutoffFrequency(cOffFrequency); B8.setCutoffFrequency(cOffFrequency); };
-	void setFilterType(Filter fType) { B7.setFilterType(fType); B8.setFilterType(fType); };*/
+	void setImpulseResponseTimeLength(int impResponseTimeLength) { B7.setImpulseResponseTimeLength(impResponseTimeLength); B8.setImpulseResponseTimeLength(impResponseTimeLength); };
+	void setFilterType(PulseShaperFilter fType) { B7.setFilterType(fType); B8.setFilterType(fType); };
+	void setRollOffFactor(double rOffFactor) { B7.setRollOffFactor(rOffFactor); B8.setRollOffFactor(rOffFactor); };
 
-	void setClockSamplingPeriod(double sPeriod) { B8.setSamplingPeriod(sPeriod); };
+	void setClockPeriod(double per) { B9.setClockPeriod(per); };
 
-	void setSamplesToSkip(int sToSkip) { B9.setSamplesToSkip(sToSkip); B10.setSamplesToSkip(sToSkip); };
+	void setSamplesToSkip(int sToSkip) { B10.setSamplesToSkip(sToSkip); B11.setSamplesToSkip(sToSkip); };
 
 };
 

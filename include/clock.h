@@ -21,7 +21,7 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	void setPeriod(double per) { period = per; }
+	void setClockPeriod(double per) { period = per; }
 	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; }
 
 };

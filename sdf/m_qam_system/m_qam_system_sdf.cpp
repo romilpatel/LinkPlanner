@@ -12,14 +12,18 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated(1000);
-	int samplesPerSymbol(16);
-	int pLength = 5;
+	int numberOfBitsGenerated = 1000;
 	double bitPeriod = 1.0 / 50e9;
+
+	int prbsPatternLength = 5;
+
+	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 },{ -1.0, 1.0 },{ 1.0, -1.0 },{ -1.0, -1.0 } };
+	
 	double rollOffFactor = 0.3;
-	double samplingPeriod = 16;
-	double clockPeriod = 192;
-	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 }, { -1.0, 1.0 }, { 1.0, -1.0 }, { -1.0, -1.0 } };
+
+	int samplesPerSymbol = 16;
+	double symbolPeriod = bitPeriod / samplesPerSymbol;
+
 	t_real signalOutputPower_dBm = 0; 
 	t_real localOscillatorPower_dBm = 0; 
 	t_real localOscillatorPhase = 0;
@@ -33,6 +37,8 @@ int main(){
 	t_integer midReportSize = 0;
 	t_integer bufferLength = 256;
 	
+	//double clockPeriod = symbolPeriod;
+	//double samplingPeriod = 16;
 	
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
@@ -61,7 +67,7 @@ int main(){
 	B1.setMode(DeterministicAppendZeros);
 	B1.setBitStream("01");
 	B1.setBitPeriod(bitPeriod);
-	B1.setPatternLength(pLength);
+	B1.setPatternLength(prbsPatternLength);
 	B1.setIqAmplitudes(iqAmplitudeValues);
 	B1.setNumberOfSamplesPerSymbol(samplesPerSymbol);
 	B1.setRollOffFactor(rollOffFactor);
@@ -81,8 +87,8 @@ int main(){
 	//B2.setNegReferenceValue(0);
 	B2.setSaveInternalSignals(true);
 	//B2.setCutoffFrequency(cutoffFrequency);
-	B2.setSamplingPeriod(samplingPeriod);
-	B2.setClockPeriod(clockPeriod);
+	B2.setSamplingPeriod(symbolPeriod/samplesPerSymbol);
+	B2.setClockPeriod(symbolPeriod);
 
 	//With BER measurement
 	BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S3 } };

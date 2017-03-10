@@ -12,7 +12,8 @@ using namespace std;
 void Clock::initialize(void) {
 
 	outputSignals[0]->setSamplingPeriod(samplingPeriod);
-	outputSignals[0]->setSamplesPerSymbol((int)period / samplingPeriod);
+
+	outputSignals[0]->setSamplesPerSymbol((int)round(period / samplingPeriod));
 
 };
 

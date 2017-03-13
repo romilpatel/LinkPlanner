@@ -404,6 +404,7 @@ void FD_Filter::initializeFD_Filter(void) {
 
 /*	delayLine.resize(impulseResponseLength, 0);*/
 
+	transferFunction.resize(transferFunctionLength);
 	inputBufferTimeDomain.resize(transferFunctionLength);
 	outputBufferTimeDomain.resize(transferFunctionLength);
 	inputBufferPointer = transferFunctionLength / 2 ;

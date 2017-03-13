@@ -5,7 +5,7 @@ using namespace std;
 
 void raisedCosineTF(vector<t_complex> &transferFunction, int transferFunctionLength, double rollOffFactor, double samplingPeriod, double symbolPeriod);
 
-void PulseShaper::initialize(void) {
+void FD_PulseShaper::initialize(void) {
 
 	double samplingPeriod = inputSignals[0]->samplingPeriod;
 	double symbolPeriod = inputSignals[0]->symbolPeriod;
@@ -21,12 +21,13 @@ void PulseShaper::initialize(void) {
 
 }
 
-void PulseShaper::run(void) {};
+void FD_PulseShaper::run(void) {};
 
 void raisedCosineTF(vector<t_complex> &transferFunction, int transferFunctionLength, double rollOffFactor, double samplingPeriod, double symbolPeriod) {
 
 	double cond1_if = (1 - rollOffFactor) / (2 * symbolPeriod);
 	double cond2_if = (1 + rollOffFactor) / (2 * symbolPeriod);
+
 	t_complex transferFunction_normFactor(0);
 
 	for (int i = 0; i < transferFunctionLength; i++) {

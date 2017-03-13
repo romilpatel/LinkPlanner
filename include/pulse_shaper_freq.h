@@ -19,7 +19,7 @@ class PulseShaper : public Block{
 	double rollOffFactor{ 0.9 };					// Roll-off factor (roll) for the raised-cosine filter
 
 	/* State Variable*/
-	vector<t_complex> transferFunction{transferFunctionLength,0.0};
+	vector<t_complex> transferFunction { transferFunctionLength, 0.0 };
 
 	vector<t_real> inSigTime;
 

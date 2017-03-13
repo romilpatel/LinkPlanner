@@ -24,15 +24,27 @@ void PulseShaper::initialize(void) {
 void PulseShaper::run(void) {};
 
 void raisedCosineTF(vector<t_complex> &transferFunction, int transferFunctionLength, double rollOffFactor, double samplingPeriod, double symbolPeriod) {
-	double sinc;
-	for (int i = 0; i < impulseResponseLength; i++) {
-		t_real t = -impulseResponseLength / 2 * samplingPeriod + i * samplingPeriod;
-		if (t != 0) {
-			sinc = sin(PI * t / symbolPeriod) / (PI * t / symbolPeriod);
+
+	double cond1_if = (1 - rollOffFactor) / (2 * symbolPeriod);
+	double cond2_if = (1 + rollOffFactor) / (2 * symbolPeriod);
+	t_complex transferFunction_normFactor(0);
+
+	for (int i = 0; i < transferFunctionLength; i++) {
+		t_real F = -(1 / (samplingPeriod * 2)) + i*(1 / (samplingPeriod * transferFunctionLength));
+		if (abs(F) <= (cond1_if)) {
+			transferFunction[i] = samplingPeriod;
+		}
+		else if ((abs(F)>cond1_if) && (abs(F) <= cond2_if)){
+			transferFunction[i] = (symbolPeriod / 2)*(1 + cos((PI*symbolPeriod / rollOffFactor)*(abs(F) - ((1 - rollOffFactor) / (2 * symbolPeriod)))));
 		}
 		else {
-			sinc = 1;
+			transferFunction[i] = 0;
 		}
-		impulseResponse[i] = sinc*cos(rollOffFactor*PI*t / symbolPeriod) / (1 - (4.0 * rollOffFactor * rollOffFactor * t * t) / (symbolPeriod * symbolPeriod));
+		transferFunction_normFactor +=  (transferFunction[i] * transferFunction[i]);
 	};
+
+	//Normalization to unit energy
+	for (int i = 0; i < transferFunctionLength; i++) {
+		transferFunction[i] = transferFunction[i] / sqrt(transferFunction_normFactor);
+	}
 };

@@ -9,27 +9,19 @@ using namespace std;
 enum PulseShaperFilter { RaisedCosine };
 
 /* Raised-cosine filter frequency implementation. */
-class PulseShaper : public Block{
+class FD_PulseShaper : public FD_Filter{
 
 	/* Input Parameters */
 	PulseShaperFilter filterType{ RaisedCosine };
-
-	int transferFunctionLength{ 16 };				
-
 	double rollOffFactor{ 0.9 };					// Roll-off factor (roll) for the raised-cosine filter
 
 	/* State Variable*/
-	vector<t_complex> transferFunction { transferFunctionLength, 0.0 };
-
-	vector<t_real> inSigTime;
-
-	vector<t_real> OutSigTime;
 
 public:
 
 	/* Methods */
-	PulseShaper() {};
-	PulseShaper(vector<Signal *> &InputSig, vector<Signal *> OutputSig);
+	FD_PulseShaper() : FD_Filter() {};
+	FD_PulseShaper(vector<Signal *> &InputSig, vector<Signal *> OutputSig):FD_Filter(InputSig, OutputSig) {};
 
 	void initialize(void);
 	void run(void);

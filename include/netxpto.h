@@ -480,6 +480,14 @@ public:
 
 class FD_Filter : public Block {
 
+public:
+
+	/* Input Parameters */
+	bool saveTransferFunction{ true };
+	string transferFunctionFilename{ "transfer_function.tfn" };
+	int transferFunctionLength;
+
+
 	/* State Variable */
 	vector<t_complex> transferFunction;
 
@@ -488,15 +496,6 @@ class FD_Filter : public Block {
 
 	int inputBufferPointer{ transferFunctionLength / 2 };
 	int outputBufferPointer{ 3/4*transferFunctionLength };
-
-
-	/* Input Parameters */
-	bool saveTransferFunction{ true };
-	string transferFunctionFilename{ "transfer_function.tfn" };
-
-	int transferFunctionLength;							
-
-public:
 
 	/* Methods */
 	FD_Filter() {};

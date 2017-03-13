@@ -366,7 +366,7 @@ void FIR_Filter::initializeFIR_Filter(void) {
 
 bool FIR_Filter::runBlock(void) {
 
-
+	
 	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
 
@@ -428,8 +428,22 @@ void FD_Filter::initializeFD_Filter(void) {
 };
 
 bool FD_Filter::runBlock(void) {
+	
+	// Celestino declarations Start
+	Fft fft;
+	ComplexMult CMult;
 
-	/* Inside Block Input Buffer*/
+	vector<t_real> real_temp_copy(transferFunctionLength, 0);
+	vector<t_real> imag_temp_copy(transferFunctionLength, 0);
+	vector<t_real> H_real(transferFunctionLength, 0);
+	vector<t_real> H_imag(transferFunctionLength, 0);
+
+	//vector<t_complex> var_temp_out(transferFunctionLength, 0);
+
+	CMult.ComplexVect2ReImVect(transferFunction, H_real, H_imag);
+	// Celestino declarations End
+
+	//Inside Block Input Buffer
 
 	int ready = inputSignals[0]->ready();
 	int space = transferFunctionLength - inputBufferPointer;
@@ -444,13 +458,13 @@ bool FD_Filter::runBlock(void) {
 		inputBufferPointer++;
 	}
 
-	/* Inside Block Output Buffer*/
+	//Inside Block Output Buffer
 
-	int space = outputSignals[0]->space();
-	int ready = 3/4*transferFunctionLength - outputBufferPointer;
+	space = outputSignals[0]->space();
+	ready = 3/4*transferFunctionLength - outputBufferPointer;
 
 
-	int process = min(ready, space);
+	process = min(ready, space);
 
 	for (int k = 0; k < process; k++) {
 		t_real val=outputBufferTimeDomain[outputBufferPointer];
@@ -461,20 +475,37 @@ bool FD_Filter::runBlock(void) {
 
 	if ((inputBufferPointer != transferFunctionLength) & (outputBufferPointer != 3/4*transferFunctionLength)) return false;
 
-	// celestino
-	outputBufferTimeDomain = ifft(fft(inputBufferTimeDomain)*transferfunction);
+	// Start celestino
+	//outputBufferTimeDomain = ifft(fft(inputBufferTimeDomain)*transferfunction);
 
 	std::rotate(inputBufferTimeDomain.begin(), inputBufferTimeDomain.begin() + transferFunctionLength / 2, inputBufferTimeDomain.end());
 	inputBufferPointer = transferFunctionLength/2;
 	outputBufferPointer = transferFunctionLength/4;
 
-	/* Inside Block Output Buffer*/
+	real_temp_copy = inputBufferTimeDomain;
+	// Computation of FFT of each block
+	fft.directTransform(real_temp_copy, imag_temp_copy);
 
-	int space = outputSignals[0]->space();
-	int ready = 3/4*transferFunctionLength - outputBufferPointer;
+	// Convert two vectors (real and imag) in a single complex vector
+	// CMult.ReImVect2ComplexVect(real_temp_copy, imag_temp_copy, var_temp_out);
+
+	// Multiplication with the transfer function
+	CMult.CMultVector_Loop(real_temp_copy, imag_temp_copy, H_real, H_imag);
+
+	// Computation of IFFT of each block
+	fft.inverseTransform(real_temp_copy, imag_temp_copy);
+
+	outputBufferTimeDomain = real_temp_copy;
+
+	// End Celestino
+
+	//Inside Block Output Buffer
+
+	space = outputSignals[0]->space();
+	ready = 3/4*transferFunctionLength - outputBufferPointer;
 
 
-	int process = min(ready, space);
+	process = min(ready, space);
 
 	for (int k = 0; k < process; k++) {
 		t_real val = outputBufferTimeDomain[outputBufferPointer];
@@ -486,6 +517,7 @@ bool FD_Filter::runBlock(void) {
 	return true;
 
 };
+ 
 
 /*2016-08-03
 DiscreteToContinuousTime::DiscreteToContinuousTime(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) {
@@ -1060,7 +1092,7 @@ void ComplexMult::CMultVector_Loop(vector<double> &v1_real, vector<double> &v1_i
 	double Real_temp = 0.0;
 	double Imag_temp = 0.0;
 
-	for (int k = 0; k < v1_real.size(); ++k)
+	for (size_t k = 0; k < v1_real.size(); ++k)
 	{
 
 		Real_temp = v1_real.at(k)*v2_real.at(k) - v1_imag.at(k)*v2_imag.at(k);
@@ -1075,7 +1107,7 @@ void ComplexMult::CMultVector_Loop(vector<double> &v1_real, vector<double> &v1_i
 void ComplexMult::CMultVector_InComplex(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in) {
 
 
-	for (int k = 0; k < v1_in.size(); ++k)
+	for (size_t k = 0; k < v1_in.size(); ++k)
 	{
 		v1_in.at(k) = v1_in.at(k)*v2_in.at(k);
 
@@ -1085,7 +1117,7 @@ void ComplexMult::CMultVector_InComplex(vector<complex <double>> &v1_in, vector<
 
 void ComplexMult::ComplexVect2ReImVect(vector<complex <double>> &v_in, vector<double> &v1_real, vector<double> &v1_imag) {
 
-	for (int k = 0; k < v_in.size(); k++) {
+	for (size_t k = 0; k < v_in.size(); k++) {
 		v1_real.at(k) = real(v_in.at(k));
 		v1_imag.at(k) = imag(v_in.at(k));
 	}
@@ -1094,7 +1126,7 @@ void ComplexMult::ComplexVect2ReImVect(vector<complex <double>> &v_in, vector<do
 
 void ComplexMult::ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &v1_imag, vector<complex <double>> &v_out) {
 
-	for (int i = 0; i < v1_real.size(); ++i) {
+	for (size_t i = 0; i < v1_real.size(); ++i) {
 		complex<double> iNum(v1_real[i], v1_imag[i]);
 		v_out.at(i) = iNum;
 	}

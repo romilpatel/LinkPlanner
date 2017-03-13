@@ -51,13 +51,13 @@ int main(){
 
 	PulseShaper B5{ vector<Signal*> { &S4 }, vector<Signal*> { &S6 } };
 	B5.setRollOffFactor(0.3);
-	B5.setImpulseResponseTimeLength(16);
-	B5.setSeeBeginningOfImpulseResponse(false);
+	B5.setTrasferFunctionLength(16);
+	//B5.setSeeBeginningOfImpulseResponse(false);
 
 	PulseShaper B6{ vector<Signal*> { &S5 }, vector<Signal*> { &S7 } };
 	B6.setRollOffFactor(0.3);
-	B6.setImpulseResponseTimeLength(16);
-	B6.setSeeBeginningOfImpulseResponse(false);
+	B6.setTrasferFunctionLength(16);
+	//B6.setSeeBeginningOfImpulseResponse(false);
 
 	IqModulator B7{ vector<Signal*> { &S6, &S7 }, vector<Signal*> { &S8 } };
 

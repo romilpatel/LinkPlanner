@@ -60,14 +60,19 @@ public:
 	void setElectricalNoiseSpectralDensity(double eNoiseSpectralDensity) { B2.setNoiseSpectralDensity(eNoiseSpectralDensity); }
 	double const getElectricalNoiseSpectralDensity(void) { B2.getNoiseSpectralDensity(); }
 
-	void setRollOffFactor(double rOffFactor){ B4.setRollOffFactor(rOffFactor); };
-	double const getRollOffFactor(void){ return B4.getRollOffFactor(); };
+	void setRollOffFactor(double rOffFactor) { B4.setRollOffFactor(rOffFactor); };
+	double const getRollOffFactor(void) { return B4.getRollOffFactor(); };
 	
-	void setImpulseResponseTimeLength(int impResponseLength){ B4.setImpulseResponseTimeLength(impResponseLength); };
+	void setImpulseResponseTimeLength(int impResponseTimeLength) { B4.setImpulseResponseTimeLength(impResponseTimeLength); };
+	int const getImpulseResponseTimeLength(void) { return B4.getImpulseResponseTimeLength(); };
+
+	void setImpulseResponseLength(int impResponseLength) { B4.setImpulseResponseLength(impResponseLength); };
 	int const getImpulseResponseLength(void) { return B4.getImpulseResponseLength(); };
 
-	void setSeeBeginningOfImpulseResponse(bool sBegginingOfImpulseResponse){ B4.setSeeBeginningOfImpulseResponse(sBegginingOfImpulseResponse); };
-	double const getSeeBeginningOfImpulseResponse(void){ return B4.getSeeBeginningOfImpulseResponse(); };
+	void usePassiveFilterMode(bool pFilterMode){ B4.usePassiveFilterMode(pFilterMode); };
+
+	void setSeeBeginningOfImpulseResponse(bool sBegginingOfImpulseResponse) { B4.setSeeBeginningOfImpulseResponse(sBegginingOfImpulseResponse); };
+	double const getSeeBeginningOfImpulseResponse(void) { return B4.getSeeBeginningOfImpulseResponse(); };
 
 };
 

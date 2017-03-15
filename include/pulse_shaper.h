@@ -17,7 +17,8 @@ class PulseShaper : public FIR_Filter{
 	int impulseResponseTimeLength{ 16 };				// in units of symbol period
 
 	double rollOffFactor{ 0.9 };						// Roll-off factor (roll) for the raised-cosine filter
-	
+
+	bool passiveFilterMode{ false };
 
 public:
 
@@ -36,6 +37,7 @@ public:
 	void setRollOffFactor(double rOffFactor){ rollOffFactor = rOffFactor; };
 	double const getRollOffFactor(){ return rollOffFactor; };
 
+	void usePassiveFilterMode(bool pFilterMode){ passiveFilterMode = pFilterMode; };
 		
 };
 

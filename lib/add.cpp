@@ -31,8 +31,11 @@ bool Add::runBlock(void){
 
 	if (sType1==sType2)
 	{
-		// Need to output an error message
-	}
+        signal_value_type sType = sType1;
+    } else {
+        cout << "ERRO: add.cpp (signal type mismatch!)" << "\n";
+        return false;
+    }
 
 	switch (sType1)
 	{

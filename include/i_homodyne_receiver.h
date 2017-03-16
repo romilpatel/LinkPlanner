@@ -59,9 +59,22 @@ public:
 	void useShotNoise(bool uShotNoise){ B1.useNoise(uShotNoise); };
 
 	void setGain(double Gain) { B2.setGain(Gain); }
-
+    double const getGain(void) { return B2.getGain(); };
+    
 	void setElectricalNoiseSpectralDensity(double eNoiseSpectralDensity) { B2.setElectricalNoiseSpectralDensity(eNoiseSpectralDensity); }
-	double const getElectricalNoiseSpectralDensity(void) { B2.getElectricalNoiseSpectralDensity(); }
+	double const getElectricalNoiseSpectralDensity(void) { return B2.getElectricalNoiseSpectralDensity(); }
+    
+    
+    void setRollOffFactor(double rOffFactor) {B2.setRollOffFactor(rOffFactor); }
+    double const getRollOffFactor(void) { return B2.getRollOffFactor(); }
+    
+    void setImpulseResponseTimeLength(int impResponseTimeLength) {B2.setImpulseResponseTimeLength(impResponseTimeLength); };
+    int const getImpulseResponseTimeLength(void) {return B2.getImpulseResponseTimeLength(); };
+    
+    void setImpulseResponseLength(int impResponseLength) {B2.setImpulseResponseLength(impResponseLength); }
+    int const getImpulseResponseLength(void) { return B2.getImpulseResponseLength();};
+    
+    void usePassiveFilterMode(bool pFilterMode){ B2.usePassiveFilterMode
 
 };
 

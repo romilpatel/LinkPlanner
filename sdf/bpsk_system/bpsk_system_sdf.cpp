@@ -99,7 +99,7 @@ int main(){
 	B5.setSaveInternalSignals(true);
 	B5.setSeeBeginningOfImpulseResponse(false);
 	B5.setImpulseResponseLength(16);
-	B5.setRollOffFactor(0.9);
+	B5.setRollOffFactor(0);
 	B5.usePassiveFilterMode(true);
 
 	Sampler B6{ vector<Signal*> {&S6}, vector<Signal*> {&S7} };

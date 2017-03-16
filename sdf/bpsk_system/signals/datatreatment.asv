@@ -10,10 +10,19 @@ name4='TI_AMP04.sgn';
 [data4,symbolPeriod4,samplingPeriod4,type4,numberOfSymbols4]=readSignal(name4);
 time4=0:samplingPeriod4:samplingPeriod4*(length(data4)-1);
 
-time=0:samplingPeriod:samplingPeriod*(length(databeta1)-1);
+time=0:samplingPeriod3:samplingPeriod3*(length(data4)-1);
+Databefore=fftshift(fft(data3));
+Databeta0=fftshift(fft(data4));
 
-Databeta0=fftshift(fft(databeta0));
+N=length(time);
+dw=2*pi/(N*samplingPeriod3);
+w=-N*dw/2:dw:(N/2-1)*dw;
 
+
+plot(w,abs(Databefore),w,abs(Databeta0))
+
+
+%%
 delay=1;
 time7=time7(1:(length(time7)-delay+1));
 data7=data7(delay:length(data7));

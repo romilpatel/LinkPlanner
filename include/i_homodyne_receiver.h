@@ -66,7 +66,7 @@ public:
     
     
     void setRollOffFactor(double rOffFactor) {B2.setRollOffFactor(rOffFactor); }
-    double const getRollOffFactor(void) { return B2.getRollOffFactor(); }
+	double const getRollOffFactor(void) { return B2.getRollOffFactor(); };
     
     void setImpulseResponseTimeLength(int impResponseTimeLength) {B2.setImpulseResponseTimeLength(impResponseTimeLength); };
     int const getImpulseResponseTimeLength(void) {return B2.getImpulseResponseTimeLength(); };
@@ -74,7 +74,7 @@ public:
     void setImpulseResponseLength(int impResponseLength) {B2.setImpulseResponseLength(impResponseLength); }
     int const getImpulseResponseLength(void) { return B2.getImpulseResponseLength();};
     
-    void usePassiveFilterMode(bool pFilterMode){ B2.usePassiveFilterMode
+	void usePassiveFilterMode(bool pFilterMode){ B2.usePassiveFilterMode(pFilterMode); }
 
 };
 

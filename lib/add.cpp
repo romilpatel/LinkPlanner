@@ -28,11 +28,10 @@ bool Add::runBlock(void){
 	
 	signal_value_type sType1 = inputSignals[0]->getValueType();
 	signal_value_type sType2 = inputSignals[1]->getValueType();
+	signal_value_type sTypeOut = outputSignals[0]->getValueType();
 
-	if (sType1==sType2)
+	if (sType1!=sType2 || sTypeOut!=sType1)
 	{
-        signal_value_type sType = sType1;
-    } else {
         cout << "ERRO: add.cpp (signal type mismatch!)" << "\n";
         return false;
     }

@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2016.12.27)  28 DEC 2016 16:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2017.1.6)  26 MAR 2017 22:45
 entering extended mode
 **./m_qam_transmitter.tex
 (m_qam_transmitter.tex
 LaTeX2e <2016/03/31> patch level 3
-Babel <3.9r> and hyphenation patterns for 72 language(s) loaded.
+Babel <3.9r> and hyphenation patterns for 73 language(s) loaded.
 ("C:\Program Files\MiKTeX\tex\latex\base\article.cls"
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 ("C:\Program Files\MiKTeX\tex\latex\base\size10.clo"
@@ -519,7 +519,6 @@ File: babel.def 2016/04/23 3.9r Babel common definitions
 \babel@savecnt=\count112
 \U@D=\dimen131
 )
-\l@american = a dialect from \language\l@english 
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
@@ -766,8 +765,13 @@ Overfull \hbox (2.88364pt too wide) in paragraph at lines 47--47
  []
 
 
+Overfull \hbox (7.12392pt too wide) in paragraph at lines 48--48
+[]|\OT1/cmr/m/n/10 numberOfBitsGenerated| 
+ []
+
+
 Underfull \hbox (badness 5741) in paragraph at lines 50--50
-[]|\OT1/cmr/m/n/10 Integer num-ber gre-a-ter
+[]|\OT1/cmr/m/n/10 Integer num-ber greater
  []
 
 
@@ -800,9 +804,9 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 transmitter_block_diagram_simple.png> <./MQAM_transmitter_block_diagram.png>]
 Overfull \hbox (27.49092pt too wide) in paragraph at lines 83--84
 \OT1/cmr/m/n/10 MQamTransmitter(vector$\OML/cmm/m/it/10 <$\OT1/cmr/m/n/10 Signa
-l *$\OML/cmm/m/it/10 >$ \OT1/cmr/m/n/10 &in-put-Sig-nal, vector$\OML/cmm/m/it/1
-0 <$\OT1/cmr/m/n/10 Signal *$\OML/cmm/m/it/10 >$ \OT1/cmr/m/n/10 &out-put-Sig-n
-al); (\OT1/cmr/bx/n/10 constructor\OT1/cmr/m/n/10 ) 
+l *$\OML/cmm/m/it/10 >$ \OT1/cmr/m/n/10 &in-putSig-nal, vector$\OML/cmm/m/it/10
+ <$\OT1/cmr/m/n/10 Signal *$\OML/cmm/m/it/10 >$ \OT1/cmr/m/n/10 &out-putSig-nal
+); (\OT1/cmr/bx/n/10 constructor\OT1/cmr/m/n/10 ) 
  []
 
 [2] [3]
@@ -817,12 +821,12 @@ Package rerunfilecheck Info: File `m_qam_transmitter.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 153.
  ) 
 Here is how much of TeX's memory you used:
- 6996 strings out of 493366
- 98860 string characters out of 3141541
- 209916 words of memory out of 3000000
- 10414 multiletter control sequences out of 15000+200000
+ 6993 strings out of 493343
+ 98824 string characters out of 3141189
+ 210020 words of memory out of 3000000
+ 10418 multiletter control sequences out of 15000+200000
  8418 words of font info for 31 fonts, out of 3000000 for 9000
- 1127 hyphenation exceptions out of 8191
+ 1141 hyphenation exceptions out of 8191
  29i,11n,25p,462b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Progra
 m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKT
@@ -831,7 +835,7 @@ e1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr1
 2.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Pro
 gram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on m_qam_transmitter.pdf (4 pages, 138548 bytes).
+Output written on m_qam_transmitter.pdf (4 pages, 138684 bytes).
 PDF statistics:
  78 PDF objects out of 1000 (max. 8388607)
  16 named destinations out of 1000 (max. 500000)

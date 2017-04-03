@@ -26,28 +26,19 @@ bool LocalOscillator::runBlock(void){
 	
 	if (process == 0) return false;
 
-	t_complex out(cos(phase), sin(phase));
+	t_complex outAverage(cos(phase), sin(phase));
+	t_complex out;
+	double outOpticalPower=opticalPower;
 	out= .5*sqrt(opticalPower)*out;
 
+	normal_distribution<double> distributionNoise(0, 1);
 	for (int i = 0; i < process; i++) {
-
-        /*if (shotNoise) {
-			t_complex loout;
-
-			normal_distribution<double> distribution(0, 1);
-
-			t_real dt = outputSignals[0]->getSamplingPeriod();
-			t_real wvlgth = outputSignals[0]->getCentralWavelength();
-			t_real noisesignal;
-			t_real noiselo;
-
-			noisesignal = distribution(generator1);
-			noiselo = distribution(generator2);
-
-            t_real powerlooutsqrted = sqrt(powerlo) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt * wvlgth))*noiselo*1/2;
-            out = .5*powerlooutsqrted*lo;
-        }*/ 
-		
+		if (signaltoNoiseRatio != 0)
+		{
+			t_real noise = distributionNoise(generator);
+			outOpticalPower = opticalPower +sqrt(opticalPower*opticalPower/(signaltoNoiseRatio*signaltoNoiseRatio))*noise;
+		}
+		out = .5*sqrt(outOpticalPower)*outAverage;
 		outputSignals[0]->bufferPut((t_complex)out);
 	}
 

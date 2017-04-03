@@ -24,7 +24,7 @@ bool Photodiode::runBlock(void){
 	int ready = inputSignals[0]->ready();
 
 	normal_distribution<double> distribution(0, 1);
-	double dt = 1.28e-8; //inputSignals[0]->getSamplingPeriod();
+	double dt = inputSignals[0]->getSamplingPeriod();
 	double noise1;
 	double noise2;
 

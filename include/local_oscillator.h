@@ -23,8 +23,9 @@ class LocalOscillator : public Block {
 
 	bool shotNoise{ false };
 
-	default_random_engine generator1;
-	default_random_engine generator2;
+	default_random_engine generator;
+
+	double signaltoNoiseRatio = 0;
 
 public:
 
@@ -44,8 +45,8 @@ public:
 	void setPhase(double lOscillatorPhase) { phase= lOscillatorPhase; }
 	double const getPhase(void) { return phase; }
 
-    void setShotNoise(bool sNoise) { shotNoise=sNoise; }
-
+    void setSignaltoNoiseRatio(double sNoiseRatio) { signaltoNoiseRatio=sNoiseRatio; }
+	double const getSignaltoNoiseRatio(void){ return signaltoNoiseRatio; }
 
 };
 

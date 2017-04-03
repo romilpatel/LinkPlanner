@@ -20,11 +20,11 @@ int main(){
 	int numberOfBitsGenerated(1000);
 	int samplesPerSymbol(16);
 	int pLength = 5;
-	double bitPeriod = 1.0 / 4e3;
+	double bitPeriod = 1.0 / 5e6;
 	double rollOffFactor = 0.3;
 	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
 	double signalOutputPower_dBm = -4; // doesn't matter right now
-	double localOscillatorPower_dBm1 = -15;
+	double localOscillatorPower_dBm1 = -20;
 	double localOscillatorPower2 = 0;
 	double localOscillatorPhase1 = 0;
 	double localOscillatorPhase2 = PI;

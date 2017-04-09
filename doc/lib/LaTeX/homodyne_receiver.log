@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2017.1.6)  26 MAR 2017 22:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2017.1.6)  9 APR 2017 22:49
 entering extended mode
 **./homodyne_receiver.tex
 (homodyne_receiver.tex
@@ -759,14 +759,47 @@ File: MQAM_receiver_block_diagram.png Graphic file (type png)
 Package pdftex.def Info: MQAM_receiver_block_diagram.png used on input line 38.
 
 (pdftex.def)             Requested size: 416.83289pt x 147.82869pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 45.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 51.
 
 ("C:\Program Files\MiKTeX\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 45.
- [1
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 51.
+
+Underfull \hbox (badness 3417) in paragraph at lines 51--51
+[]|\OT1/cmr/bx/n/10 Example \OT1/cmr/m/n/10 for a 4-qam
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
+[]|\OT1/cmr/m/n/10 Responsivity of the
+ []
+
+
+Underfull \hbox (badness 1337) in paragraph at lines 55--55
+[]|\OT1/cmr/m/n/10 Amplification (of the
+ []
+
+
+Underfull \hbox (badness 2538) in paragraph at lines 56--56
+[]|\OT1/cmr/m/n/10 Noise am-pli-tude (in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--60
+[]|\OT1/cmr/m/n/10 Givem by \OT1/cmr/m/it/10 sym-bol-Pe-
+ []
+
+
+Overfull \hbox (82.72069pt too wide) in paragraph at lines 48--62
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[1
 
 {C:/Users/Ana Luisa/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./MQAM_
 receiver_block_diagram_simple.png> <./MQAM_receiver_block_diagram.png
@@ -774,7 +807,7 @@ receiver_block_diagram_simple.png> <./MQAM_receiver_block_diagram.png
 pdfTeX warning: pdflatex.exe (file ./MQAM_receiver_block_diagram.png): large in
 terlaced PNG might cause out of memory (use non-interlaced PNG to fix this)
 >]
-Overfull \hbox (25.78719pt too wide) in paragraph at lines 56--57
+Overfull \hbox (25.78719pt too wide) in paragraph at lines 70--71
 \OT1/cmr/m/n/10 HomodyneReceiver(vector$\OML/cmm/m/it/10 <$\OT1/cmr/m/n/10 Sign
 al *$\OML/cmm/m/it/10 >$ \OT1/cmr/m/n/10 &in-putSig-nal, vector$\OML/cmm/m/it/1
 0 <$\OT1/cmr/m/n/10 Signal *$\OML/cmm/m/it/10 >$ \OT1/cmr/m/n/10 &out-putSig-na
@@ -782,24 +815,24 @@ l) (\OT1/cmr/bx/n/10 constructor\OT1/cmr/m/n/10 )
  []
 
 [2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 123.
  [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 123.
  (homodyne_receiver.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 109.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 109.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 123.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 123.
 Package rerunfilecheck Info: File `homodyne_receiver.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 123.
  ) 
 Here is how much of TeX's memory you used:
- 6996 strings out of 493343
- 98835 string characters out of 3141189
- 203944 words of memory out of 3000000
- 10419 multiletter control sequences out of 15000+200000
+ 7001 strings out of 493343
+ 98881 string characters out of 3141189
+ 210016 words of memory out of 3000000
+ 10423 multiletter control sequences out of 15000+200000
  8764 words of font info for 32 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,6n,25p,386b,334s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,11n,25p,386b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Progra
 m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/typ
@@ -807,9 +840,9 @@ e1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr1
 7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
 ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on homodyne_receiver.pdf (3 pages, 154072 bytes).
+Output written on homodyne_receiver.pdf (3 pages, 158330 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
+ 76 PDF objects out of 1000 (max. 8388607)
+ 18 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

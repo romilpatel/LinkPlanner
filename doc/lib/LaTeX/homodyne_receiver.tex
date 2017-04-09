@@ -41,13 +41,27 @@ In can also be seen from figure \ref{MQAM_receiver_block_diagram} that there's a
 
 \subsection*{Input parameters}
 
-	\begin{itemize}
-		\item samplingPeriod\{0.0\}
-		\item localOscillatorOpticalPower\{ 1e-3 \};
-		\item localOscillatorPhase\{ 0 \};
-		\item localOscillatorWavelength\{ 1550e-9 \};
-		\item outputOpticalFrequency{ SPEED\_OF\_LIGHT / localOscillatorWavelength };
-	\end{itemize}
+This block has some input parameters that can be manipulated by the user in order oto change the basic configuration of the receiver. Each parameter has associated a function that allows for its change. In the following table (table~\ref{table}) the input parameters and corresponding functions are summarized.
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| m{3,5cm} | m{5,8cm} |  m{2,5cm} | m{4cm} | }
+			\hline 
+			\textbf{Input parameters} & \textbf{Function} & Type & \textbf{Accepted values} \\ \hline
+			IQ amplitudes & setIqAmplitudes & Vector of coordinate points in the I-Q plane & \textbf{Example} for a 4-qam mapping: \{ \{ 1.0, 1.0 \}, \{ -1.0, 1.0 \}, \{ -1.0, -1.0 \}, \{ 1.0, -1.0 \} \} \\ \hline
+			Local oscillator power (in dBm) & setLocalOscillatorOpticalPower\_dBm & double(t\_real) & Any double greater than zero\\ \hline
+			Local oscillator phase & setLocalOscillatorPhase & double(t\_real) & Any double greater than zero\\ \hline
+			Responsivity of the photodiodes & setResponsivity & double(t\_real) &$\in$ [0,1] \\ \hline
+			Amplification (of the TI amplifier) & setAmplification & double(t\_real) & Positive real number\\ \hline
+			Noise amplitude (introduced by the TI amplifier) & setNoiseAmplitude & double(t\_real) & Real number greater than zero \\ \hline
+			Samples to skipe & setSamplesToSkip & int(t\_integer) &  \\ \hline
+			Save internal signals & setSaveInternalSignals & bool & True or False\\ \hline
+			Sampling period & setSamplingPeriod & double & Givem by \textit{symbolPeriod}/\textit{samplesPerSymbol}\\
+			\hline
+		\end{tabular}
+		\caption{List of input parameters of the block MQAM receiver} \label{table} 
+	\end{center}
+\end{table}
 
 \pagebreak
 

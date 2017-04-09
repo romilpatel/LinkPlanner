@@ -16,7 +16,7 @@
 
 \maketitle
 
-This block simulates an optical hybrid. It accepts two input signals corresponding to the signal and to the local oscillator. It generates four output signals. Figure ~\ref{opticalhybrid} shows a schematic representation of this block.
+This block simulates an optical hybrid. It accepts two input signals corresponding to the signal and to the local oscillator. It generates four output complex signals separated by $90^\circ$ in the complex plane. Figure ~\ref{opticalhybrid} shows a schematic representation of this block.
 
 \begin{figure}[h]
 	\centering\includegraphics[width=0.6\textwidth]{optical_hybrid.png}
@@ -71,6 +71,12 @@ This block accepts two  input signals corresponding to the signal to be demodula
 \subparagraph*{Type:} Optical (OpticalSignal)
 
 \subsection*{Examples} 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{OpticalHybrid_output}
+	\caption{Example of one of the output signals of this block for a binary sequence 01}\label{OpticalHybrid_output}
+\end{figure}
 
 \subsection*{Sugestions for future improvement}
 

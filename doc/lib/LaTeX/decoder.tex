@@ -45,11 +45,9 @@ vector$<$\texttt{t\_iqValues}$>$getIqAmplitudes()
 
 \subsection*{Functional description}
 
-This block makes the correspondence between a complex electrical signal and pair of binary values.
+This block makes the correspondence between a complex electrical signal and pair of binary values using a predetermined constellation.
 
 To do so it computes the distance in the complex plane between each value of the input signal and each value of the \textit{iqAmplitudes} vector selecting only the shortest one. It then converts the point in the IQ plane to a pair of bits making the correspondence between the input signal and a pair of bits.
-
-NOTE
 
 \pagebreak
 
@@ -68,6 +66,12 @@ NOTE
 \subsection*{Examples}
 
 As an example take an input signal with positive real and imaginary parts. It would correspond to the first point of the \textit{iqAmplitudes} vector and therefore it would be associated to the  pair of bits $00$. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{Decoder_output}
+	\caption{Example of the output signal of the decoder for a binary sequence 01. As expected it reproduces the initial bit stream}\label{Decoder_output}
+\end{figure}
 
 \subsection*{Sugestions for future improvement}
 

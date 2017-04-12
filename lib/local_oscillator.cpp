@@ -36,7 +36,7 @@ bool LocalOscillator::runBlock(void){
 		if (signaltoNoiseRatio != 0)
 		{
 			t_real noise = distributionNoise(generator);
-			outOpticalPower = opticalPower +sqrt(opticalPower*opticalPower/(signaltoNoiseRatio*signaltoNoiseRatio))*noise;
+			outOpticalPower = opticalPower + opticalPower/signaltoNoiseRatio*noise;
 		}
 		out = .5*sqrt(outOpticalPower)*outAverage;
 		outputSignals[0]->bufferPut((t_complex)out);

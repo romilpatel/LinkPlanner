@@ -23,18 +23,19 @@ int main(){
 	double bitPeriod = 1.0 / 5e6;
 	double rollOffFactor = 0.3;
 	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
-	double signalOutputPower_dBm = -4; // doesn't matter right now
-	double localOscillatorPower_dBm1 = -20;
-	double localOscillatorPower2 = 0;
-	double localOscillatorPhase1 = 0;
-	double localOscillatorPhase2 = PI;
+	double localOscillatorPower_dBm1 = 0;
+	double localOscillatorPower2 = 2.2e-11/2;
+	double localOscillatorPhase1 = PI / 4;
+	double localOscillatorPhase2 = PI / 4;
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	double responsivity = 1;
 	double amplification = 1e6;
-	double electricalNoiseAmplitude = 0.0022*0.0022;
+	double electricalNoiseAmplitude = 0;// 0.0022*0.0022;
 	int samplesToSkip = 16*16;// 8 * samplesPerSymbol;
 	int bufferLength = 512;
 	bool shotNoise(true);
+
+	double SNR = 0;// 1.422e3;
 		
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
@@ -68,12 +69,14 @@ int main(){
 	B1.setPhase(localOscillatorPhase1);
 	B1.setSamplingPeriod(bitPeriod / samplesPerSymbol);
 	B1.setSymbolPeriod(bitPeriod);
+	B1.setSignaltoNoiseRatio(SNR);
 
 	LocalOscillator B2{ vector<Signal*> { }, vector<Signal*> { &S2 } };
 	B2.setOpticalPower(localOscillatorPower2);
 	B2.setPhase(localOscillatorPhase2);
 	B2.setSamplingPeriod(bitPeriod / samplesPerSymbol);
 	B2.setSymbolPeriod(bitPeriod);
+	B2.setSignaltoNoiseRatio(SNR);
 
 	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4} };
 	B3.setTransferMatrix(transferMatrix);

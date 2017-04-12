@@ -21,9 +21,10 @@ class LocalOscillator : public Block {
 	double samplingPeriod{ 0.0 };
 	double symbolPeriod{ 0.0 };
 
-	bool shotNoise{ false };
+	bool phaseNoise{ false };
 
-	default_random_engine generator;
+	default_random_engine generatorRIN;
+	default_random_engine generatorPhas;
 
 	double signaltoNoiseRatio = 0;
 
@@ -47,6 +48,8 @@ public:
 
     void setSignaltoNoiseRatio(double sNoiseRatio) { signaltoNoiseRatio=sNoiseRatio; }
 	double const getSignaltoNoiseRatio(void){ return signaltoNoiseRatio; }
+
+	void usePhaseNoise(bool pNoise){ phaseNoise = pNoise; }
 
 };
 

@@ -33,10 +33,8 @@ bool Photodiode::runBlock(void){
 
 	normal_distribution<double> distribution(0, 1);
 	double dt = 2.33e-8;//inputSignals[0]->getSamplingPeriod();
-	double noise1I;
-	double noise1Q;
-	double noise2I;
-	double noise2Q;
+	double noiseAmp1;
+	double noiseAmp2;
 
 	double wavelength = outputOpticalWavelength;
 
@@ -44,42 +42,30 @@ bool Photodiode::runBlock(void){
 	
 	for (int i = 0; i < process; i++) {
 
-		noise1I = distribution(generator1I);
-		noise2I = distribution(generator2I);
-
-		noise1Q = distribution(generator1Q);
-		noise2Q = distribution(generator1Q);
+		noiseAmp1 = distribution(generatorAmp1);
+		noiseAmp2 = distribution(generatorAmp2);
 
 		t_complex input1;
 		inputSignals[0]->bufferGet(&input1);
 		t_complex input2;
 		inputSignals[1]->bufferGet(&input2);
 
-		t_real input1I = real(input1);
-		t_real input1Q = imag(input1);
-		t_real input2I = real(input2);
-		t_real input2Q = imag(input2);
+		t_real power1 = abs(input1)*abs(input1) * 4;
+		t_real power2 = abs(input2)*abs(input2) * 4;
 
-		t_real power1I = input1I*input1I * 4;
-		t_real power1Q = input1Q*input1Q * 4;
-
-		t_real power2I = input2I*input2I * 4;
-		t_real power2Q = input2Q*input2Q * 4;
 
 		t_real current1;
 		t_real current2;
 
 		if (shotNoise)
 		{
-			power1I = power1I + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noise1I*(sqrt(power1I) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noise1I / 4);
-			power1Q = power1Q + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noise1Q*(sqrt(power1Q) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noise1Q / 4);
+			power1 = power1 + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noiseAmp1*(sqrt(power1) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noiseAmp1 / 4);
+			power2 = power2 + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noiseAmp2*(sqrt(power2) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noiseAmp2 / 4);
 			
-			power2I = power2I + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noise2I*(sqrt(power2I) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noise2I / 4);
-			power2Q = power2Q + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noise2Q*(sqrt(power2Q) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noise2Q / 4);
 		}
 
-		current1 = responsivity*(power1I + power1Q);
-		current2 = responsivity*(power2I + power1Q);
+		current1 = responsivity*power1;
+		current2 = responsivity*power2;
 		t_real out = current1 - current2;
 
 		outputSignals[0]->bufferPut(out);

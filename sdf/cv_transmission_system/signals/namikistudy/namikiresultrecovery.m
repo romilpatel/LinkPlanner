@@ -129,6 +129,7 @@ HHHH=Hint2(1:length(XXXX));
 
 % interpolation of PSE to use in BER
 PSEint=interp1(XX,PSE,abs(XXXX));
+PSEint=fliplr(PSEint);
 
 BER=zeros(1,length(PSEint));
 

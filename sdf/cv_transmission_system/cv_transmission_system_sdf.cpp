@@ -25,8 +25,8 @@ int main(){
 	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
 	double localOscillatorPower_dBm1 = 0;
 	double localOscillatorPower2 = 2.2e-11/2;
-	double localOscillatorPhase1 = PI / 4;
-	double localOscillatorPhase2 = PI / 4;
+	double localOscillatorPhase1 = 0;
+	double localOscillatorPhase2 = 0;
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	double responsivity = 1;
 	double amplification = 1e6;
@@ -77,6 +77,7 @@ int main(){
 	B2.setSamplingPeriod(bitPeriod / samplesPerSymbol);
 	B2.setSymbolPeriod(bitPeriod);
 	B2.setSignaltoNoiseRatio(SNR);
+	B2.usePhaseNoise(true);
 
 	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4} };
 	B3.setTransferMatrix(transferMatrix);

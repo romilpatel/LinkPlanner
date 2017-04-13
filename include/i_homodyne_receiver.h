@@ -49,31 +49,32 @@ public:
 
 	/* Methods */
 
+	I_HomodyneReceiver() {};
 	I_HomodyneReceiver(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal);
 
 	/* Set Methods */
 
-	/*void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
-	void setLocalOscillatorSymbolPeriod(double sPeriod) { B1.setSymbolPeriod(sPeriod); }
-	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
-	void setLocalOscillatorOpticalPower_dBm(double opticalPower_dBm) { B1.setOpticalPower_dBm(opticalPower_dBm); };
-	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setPhase(lOscillatorPhase); };
-	double const getLocalOscillatorPhase(void) { B1.getPhase(); }
-	void setLocalOscillatorOpticalWavelength(double lOscillatorWavelength) { B1.setWavelength(lOscillatorWavelength); };
-
-	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
-
-	void setTransferMatrix(array<t_complex, 4> TransferMatrix) { B2.matrix = TransferMatrix; };
-	array<complex<double>, 4> const getBalancedBeamsplitter(void) { B2.getTransferMatrix(); }
-*/
 	void setResponsivity(double Responsivity) { B1.setResponsivity(Responsivity); };
 	double const getResponsivity(void) { B1.getResponsivity(); }
 	void useShotNoise(bool uShotNoise){ B1.useNoise(uShotNoise); };
 
 	void setGain(double Gain) { B2.setGain(Gain); }
-
+    double const getGain(void) { return B2.getGain(); };
+    
 	void setElectricalNoiseSpectralDensity(double eNoiseSpectralDensity) { B2.setElectricalNoiseSpectralDensity(eNoiseSpectralDensity); }
-	double const getElectricalNoiseSpectralDensity(void) { B2.getElectricalNoiseSpectralDensity(); }
+	double const getElectricalNoiseSpectralDensity(void) { return B2.getElectricalNoiseSpectralDensity(); }
+    
+    
+    void setRollOffFactor(double rOffFactor) {B2.setRollOffFactor(rOffFactor); }
+	double const getRollOffFactor(void) { return B2.getRollOffFactor(); };
+    
+    void setImpulseResponseTimeLength(int impResponseTimeLength) {B2.setImpulseResponseTimeLength(impResponseTimeLength); };
+    int const getImpulseResponseTimeLength(void) {return B2.getImpulseResponseTimeLength(); };
+    
+    void setImpulseResponseLength(int impResponseLength) {B2.setImpulseResponseLength(impResponseLength); }
+    int const getImpulseResponseLength(void) { return B2.getImpulseResponseLength();};
+    
+	void usePassiveFilterMode(bool pFilterMode){ B2.usePassiveFilterMode(pFilterMode); }
 
 };
 

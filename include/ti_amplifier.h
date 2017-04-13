@@ -47,9 +47,11 @@ class TI_Amplifier : public SuperBlock {
 public:
 
 	/* Methods */
-	TI_Amplifier() {};
-	TI_Amplifier(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal);
+
 	
+	TI_Amplifier(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal);
+	TI_Amplifier() {};
+
 	/* Set Methods */
 
 	void setGain(double ga) { B1.setGain(ga); };
@@ -58,13 +60,20 @@ public:
 	void setElectricalNoiseSpectralDensity(double eNoiseSpectralDensity) { B2.setNoiseSpectralDensity(eNoiseSpectralDensity); }
 	double const getElectricalNoiseSpectralDensity(void) { B2.getNoiseSpectralDensity(); }
 
-	void setRollOffFactor(double rOffFactor){ B4.setRollOffFactor(rOffFactor); };
-	double const getRollOffFactor(void){ return B4.getRollOffFactor(); };
+	void setRollOffFactor(double rOffFactor) { B4.setRollOffFactor(rOffFactor); };
+	double const getRollOffFactor(void) { return B4.getRollOffFactor(); };
+	
+	void setImpulseResponseTimeLength(int impResponseTimeLength) { B4.setImpulseResponseTimeLength(impResponseTimeLength); };
+	int const getImpulseResponseTimeLength(void) { return B4.getImpulseResponseTimeLength(); };
 
-	void setSeeBeginningOfImpulseResponse(bool sBegginingOfImpulseResponse){ B4.setSeeBeginningOfImpulseResponse(sBegginingOfImpulseResponse); };
-	double const getSeeBeginningOfImpulseResponse(void){ return B4.getSeeBeginningOfImpulseResponse(); };
+	void setImpulseResponseLength(int impResponseLength) { B4.setImpulseResponseLength(impResponseLength); };
+	int const getImpulseResponseLength(void) { return B4.getImpulseResponseLength(); };
 
-private:
+	void usePassiveFilterMode(bool pFilterMode){ B4.usePassiveFilterMode(pFilterMode); };
+
+	void setSeeBeginningOfImpulseResponse(bool sBegginingOfImpulseResponse) { B4.setSeeBeginningOfImpulseResponse(sBegginingOfImpulseResponse); };
+	double const getSeeBeginningOfImpulseResponse(void) { return B4.getSeeBeginningOfImpulseResponse(); };
+
 };
 
 

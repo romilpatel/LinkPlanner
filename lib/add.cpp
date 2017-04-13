@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <complex>
+#include <fstream>
 
 #include "netxpto.h"
 #include "add.h"
@@ -16,6 +17,10 @@ void Add::initialize(void){
 
 
 bool Add::runBlock(void){
+
+	ofstream myfile;
+	myfile.open("data.txt", fstream::app);
+
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
 	int ready = min(ready1, ready2);
@@ -24,15 +29,20 @@ bool Add::runBlock(void){
 
 	int process = min(ready, space0);
 
-	if (process == 0) return false;
-	
+	if (process == 0){
+		myfile.close();
+		return false;
+	}
+
 	signal_value_type sType1 = inputSignals[0]->getValueType();
 	signal_value_type sType2 = inputSignals[1]->getValueType();
+	signal_value_type sTypeOut = outputSignals[0]->getValueType();
 
-	if (sType1==sType2)
+	if (sType1!=sType2 || sTypeOut!=sType1)
 	{
-		// Need to output an error message
-	}
+        cout << "ERRO: add.cpp (signal type mismatch!)" << "\n";
+        return false;
+    }
 
 	switch (sType1)
 	{
@@ -46,6 +56,7 @@ bool Add::runBlock(void){
 						  inputSignals[1]->bufferGet(&inRealValue2);
 						  t_real outRealValue = inRealValue1 + inRealValue2;
 						  outputSignals[0]->bufferPut(outRealValue);
+						  myfile << outRealValue << "\n";
 					  }
 					  break;
 	}

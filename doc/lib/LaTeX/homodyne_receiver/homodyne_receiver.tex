@@ -1,28 +1,12 @@
-\documentclass[a4paper]{article}
-\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
-\usepackage{amsmath}
-\usepackage{multicol}
-\usepackage{graphicx}
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-\setlength{\parskip}{0.03cm plus4mm minus3mm}
-\RequirePackage{ltxcmds}[2010/12/07]
-\usepackage{array}
-\usepackage{hyperref}
-\renewcommand{\arraystretch}{1.5}
-%\setlength{\arrayrulewidth}{1mm}
-%opening
-\title{Homodyne receiver}
+\clearpage
 
-\begin{document}
-
-\maketitle
+\section{Homodyne receiver}
 
 This block of code simulates the reception and demodulation of an optical signal (which is the input signal of the system) outputing a binary signal. A simplified schematic representation of this block is shown in figure \ref{MQAM_receiver_block_diagram_simple}.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{MQAM_receiver_block_diagram_simple}
+	\includegraphics[width=0.8\textwidth]{figures/MQAM_receiver_block_diagram_simple}
 	\caption{Basic configuration of the MQAM receiver}\label{MQAM_receiver_block_diagram_simple}
 \end{figure}
 
@@ -35,7 +19,7 @@ In can also be seen from figure \ref{MQAM_receiver_block_diagram} that there's a
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{MQAM_receiver_block_diagram}
+	\includegraphics[width=\textwidth]{figures/MQAM_receiver_block_diagram}
 	\caption{Schematic representation of the block homodyne receiver.}\label{MQAM_receiver_block_diagram}
 \end{figure}
 
@@ -46,7 +30,7 @@ This block has some input parameters that can be manipulated by the user in orde
 \begin{table}[h]
 	\begin{center}
 		\begin{tabular}{| m{3,5cm} | m{5,8cm} |  m{2,5cm} | m{4cm} | }
-			\hline 
+			\hline
 			\textbf{Input parameters} & \textbf{Function} & Type & \textbf{Accepted values} \\ \hline
 			IQ amplitudes & setIqAmplitudes & Vector of coordinate points in the I-Q plane & \textbf{Example} for a 4-qam mapping: \{ \{ 1.0, 1.0 \}, \{ -1.0, 1.0 \}, \{ -1.0, -1.0 \}, \{ 1.0, -1.0 \} \} \\ \hline
 			Local oscillator power (in dBm) & setLocalOscillatorOpticalPower\_dBm & double(t\_real) & Any double greater than zero\\ \hline
@@ -59,7 +43,7 @@ This block has some input parameters that can be manipulated by the user in orde
 			Sampling period & setSamplingPeriod & double & Givem by \textit{symbolPeriod}/\textit{samplesPerSymbol}\\
 			\hline
 		\end{tabular}
-		\caption{List of input parameters of the block MQAM receiver} \label{table} 
+		\caption{List of input parameters of the block MQAM receiver} \label{table}
 	\end{center}
 \end{table}
 
@@ -71,53 +55,50 @@ HomodyneReceiver(vector$<$Signal *$>$ \&inputSignal, vector$<$Signal *$>$ \&outp
 \bigbreak
 void setIqAmplitudes(vector$<$t\_iqValues$>$ iqAmplitudesValues)
 \bigbreak
-vector$<$t\_iqValues$>$ const getIqAmplitudes(void) 
+vector$<$t\_iqValues$>$ const getIqAmplitudes(void)
 \bigbreak
 void setLocalOscillatorSamplingPeriod(double sPeriod)
 \bigbreak
 void setLocalOscillatorOpticalPower(double opticalPower)
 \bigbreak
-void setLocalOscillatorOpticalPower\_dBm(double opticalPower\_dBm) 
+void setLocalOscillatorOpticalPower\_dBm(double opticalPower\_dBm)
 \bigbreak
 void setLocalOscillatorPhase(double lOscillatorPhase)
 \bigbreak
-void setLocalOscillatorOpticalWavelength(double lOscillatorWavelength) 
+void setLocalOscillatorOpticalWavelength(double lOscillatorWavelength)
 \bigbreak
 void setSamplingPeriod(double sPeriod)
 \bigbreak
 void  setResponsivity(t\_real Responsivity)
-\bigbreak 
-void setAmplification(t\_real Amplification) 
 \bigbreak
-void setNoiseAmplitude(t\_real NoiseAmplitude) 
+void setAmplification(t\_real Amplification)
 \bigbreak
-void setImpulseResponseTimeLength(int impResponseTimeLength) 
+void setNoiseAmplitude(t\_real NoiseAmplitude)
 \bigbreak
-void setFilterType(PulseShaperFilter fType) 
+void setImpulseResponseTimeLength(int impResponseTimeLength)
 \bigbreak
-void setRollOffFactor(double rOffFactor) 
+void setFilterType(PulseShaperFilter fType)
 \bigbreak
-void setClockPeriod(double per) 
+void setRollOffFactor(double rOffFactor)
 \bigbreak
-void setSamplesToSkip(int sToSkip) 
+void setClockPeriod(double per)
+\bigbreak
+void setSamplesToSkip(int sToSkip)
 
 \pagebreak
 
 \subsection*{Input Signals}
 
-\subparagraph*{Number:} 1 
+\subparagraph*{Number:} 1
 
-\subparagraph*{Type:} Optical signal 
+\subparagraph*{Type:} Optical signal
 
 \subsection*{Output Signals}
 
-\subparagraph*{Number:} 1 
+\subparagraph*{Number:} 1
 
-\subparagraph*{Type:} Binary signal 
+\subparagraph*{Type:} Binary signal
 
-\subsection*{Example} 
+\subsection*{Example}
 
 \subsection*{Sugestions for future improvement}
-
-
-\end{document}

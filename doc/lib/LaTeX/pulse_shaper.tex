@@ -11,7 +11,7 @@
 
 \maketitle
 
-This block applies a raised-cosine filter to the signal. It accepts one input signal that is a sequence of Dirac delta functions and it produces one output signal continuous in time and in amplitude.
+This block applies an electrical filter to the signal. It accepts one input signal that is a sequence of Dirac delta functions and it produces one output signal continuous in time and in amplitude.
 
 \subsection*{Input Parameters}
 
@@ -43,7 +43,9 @@ double const getRollOffFactor()
 
 \subsection*{Functional Description}
 
-The filter's transfer function is defined by the vector \textit{impulseResponse}. The parameter \textit{rollOfFactor} is a characterisitic of the filter and is used to define its transfer function.
+The type of filter applied to the signal can be selected trough the input parameter \textit{filterType}. Currently the only available filter is a raised cosine.
+
+The filter's transfer function is defined by the vector \textit{impulseResponse}. The parameter \textit{rollOfFactor} is a characteristic of the filter and is used to define its transfer function.
 
 \subsection*{Input Signals}
 

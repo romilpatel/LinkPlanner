@@ -12,13 +12,13 @@
   local_oscillator.cpp
   iq_modulator.cpp
   homodyne_receiver.cpp
-  electrical_filter.cpp
   discrete_to_continuous_time.cpp
   decoder.cpp
   clock.cpp
-c:\netxpto\analuisa\lib\clock.cpp(27): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\ana luisa\documents\github\analuisa\lib\clock.cpp(26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   bit_error_rate.cpp
   binary_source.cpp
   Generating Code...
-  m_qam_system.vcxproj -> C:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.exe
-  m_qam_system.vcxproj -> C:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)
+c:\users\ana luisa\documents\github\analuisa\lib\sampler.cpp(126): warning C4715: 'Sampler::runBlock': not all control paths return a value
+  m_qam_system.vcxproj -> C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.exe
+  m_qam_system.vcxproj -> C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)

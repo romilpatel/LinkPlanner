@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2016.12.27)  28 DEC 2016 16:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2017.1.6)  24 MAR 2017 22:47
 entering extended mode
 **./m_qam_system.tex
 (m_qam_system.tex
 LaTeX2e <2016/03/31> patch level 3
-Babel <3.9r> and hyphenation patterns for 72 language(s) loaded.
+Babel <3.9r> and hyphenation patterns for 73 language(s) loaded.
 ("C:\Program Files\MiKTeX\tex\latex\base\article.cls"
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 ("C:\Program Files\MiKTeX\tex\latex\base\size10.clo"
@@ -519,7 +519,6 @@ File: babel.def 2016/04/23 3.9r Babel common definitions
 \babel@savecnt=\count112
 \U@D=\dimen131
 )
-\l@american = a dialect from \language\l@english 
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
@@ -758,18 +757,18 @@ Package rerunfilecheck Info: File `m_qam_system.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 44.
  ) 
 Here is how much of TeX's memory you used:
- 6915 strings out of 493366
- 97570 string characters out of 3141541
- 201059 words of memory out of 3000000
- 10352 multiletter control sequences out of 15000+200000
+ 6912 strings out of 493343
+ 97534 string characters out of 3141189
+ 201163 words of memory out of 3000000
+ 10356 multiletter control sequences out of 15000+200000
  7954 words of font info for 29 fonts, out of 3000000 for 9000
- 1127 hyphenation exceptions out of 8191
+ 1141 hyphenation exceptions out of 8191
  29i,6n,28p,300b,340s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Progra
 m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1
 /public/amsfonts/cm/cmr17.pfb>
-Output written on m_qam_system.pdf (1 page, 58376 bytes).
+Output written on m_qam_system.pdf (1 page, 58231 bytes).
 PDF statistics:
  36 PDF objects out of 1000 (max. 8388607)
  4 named destinations out of 1000 (max. 500000)

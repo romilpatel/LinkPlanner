@@ -12,14 +12,18 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated(1000);
-	int samplesPerSymbol(16);
-	int pLength = 5;
+	int numberOfBitsGenerated = 1000;
 	double bitPeriod = 1.0 / 50e9;
+
+	int prbsPatternLength = 5;
+
+	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 },{ -1.0, 1.0 },{ 1.0, -1.0 },{ -1.0, -1.0 } };
+	
 	double rollOffFactor = 0.3;
-	double cutoffFrequency = 5; //hertz
-	double samplingPeriod = 16;
-	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 }, { -1.0, 1.0 }, { 1.0, -1.0 }, { -1.0, -1.0 } };
+
+	int samplesPerSymbol = 16;
+	double symbolPeriod = bitPeriod / samplesPerSymbol;
+
 	t_real signalOutputPower_dBm = 0; 
 	t_real localOscillatorPower_dBm = 0; 
 	t_real localOscillatorPhase = 0;
@@ -28,11 +32,13 @@ int main(){
 	t_real amplification = 10e6;
 	t_real noiseAmplitude = 1e-16;
 	//t_integer samplesToSkip = 0;
-	t_integer samplesToSkip = 8 * samplesPerSymbol; // +floor(samplesPerSymbol / 2);
+	t_integer samplesToSkip = 2 * 8 * samplesPerSymbol; // +floor(samplesPerSymbol / 2);
 	t_real confidence = 0.95;
 	t_integer midReportSize = 0;
 	t_integer bufferLength = 256;
 	
+	//double clockPeriod = symbolPeriod;
+	//double samplingPeriod = 16;
 	
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
@@ -59,9 +65,9 @@ int main(){
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
 	//B1.setMode(PseudoRandom);
 	B1.setMode(DeterministicAppendZeros);
-	B1.setBitStream("0101110");
+	B1.setBitStream("01");
 	B1.setBitPeriod(bitPeriod);
-	B1.setPatternLength(pLength);
+	B1.setPatternLength(prbsPatternLength);
 	B1.setIqAmplitudes(iqAmplitudeValues);
 	B1.setNumberOfSamplesPerSymbol(samplesPerSymbol);
 	B1.setRollOffFactor(rollOffFactor);
@@ -81,7 +87,8 @@ int main(){
 	//B2.setNegReferenceValue(0);
 	B2.setSaveInternalSignals(true);
 	//B2.setCutoffFrequency(cutoffFrequency);
-	B2.setClockSamplingPeriod(samplingPeriod);
+	B2.setSamplingPeriod(symbolPeriod/samplesPerSymbol);
+	B2.setClockPeriod(symbolPeriod);
 
 	//With BER measurement
 	BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S3 } };

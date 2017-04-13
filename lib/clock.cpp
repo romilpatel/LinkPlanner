@@ -12,9 +12,8 @@ using namespace std;
 void Clock::initialize(void) {
 
 	outputSignals[0]->setSamplingPeriod(samplingPeriod);
-	outputSignals[0]->setSamplesPerSymbol((int)period / samplingPeriod);
-	/*outputSignals[0]->setCentralWavelength(wavelength);
-	outputSignals[0]->setCentralFrequency(frequency);*/
+
+	outputSignals[0]->setSamplesPerSymbol((int)round(period / samplingPeriod));
 
 };
 
@@ -32,6 +31,7 @@ bool Clock::runBlock(void) {
 			space--;
 			index++;
 		};
+
 		index = index % numberOfSamplesPerSymbol;
 	};
 

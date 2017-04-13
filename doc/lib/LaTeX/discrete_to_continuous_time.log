@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2016.12.27)  28 DEC 2016 16:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2017.1.6)  12 APR 2017 15:53
 entering extended mode
 **./discrete_to_continuous_time.tex
 (discrete_to_continuous_time.tex
 LaTeX2e <2016/03/31> patch level 3
-Babel <3.9r> and hyphenation patterns for 72 language(s) loaded.
+Babel <3.9r> and hyphenation patterns for 73 language(s) loaded.
 ("C:\Program Files\MiKTeX\tex\latex\base\article.cls"
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 ("C:\Program Files\MiKTeX\tex\latex\base\size10.clo"
@@ -307,13 +307,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--22
 MS/cmsy/m/n/10 g
  []
 
-<MQAM4_DeterministicAppendZeros.png, id=1, 1016.29688pt x 484.05844pt>
-File: MQAM4_DeterministicAppendZeros.png Graphic file (type png)
+<TimeDiscreteToContinuous_output.jpg, id=1, 562.1pt x 419.5675pt>
+File: TimeDiscreteToContinuous_output.jpg Graphic file (type jpg)
 
-<use MQAM4_DeterministicAppendZeros.png>
-Package pdftex.def Info: MQAM4_DeterministicAppendZeros.png used on input line 
-56.
-(pdftex.def)             Requested size: 416.83289pt x 198.53171pt.
+<use TimeDiscreteToContinuous_output.jpg>
+Package pdftex.def Info: TimeDiscreteToContinuous_output.jpg used on input line
+ 56.
+(pdftex.def)             Requested size: 416.83289pt x 311.13449pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -321,25 +321,24 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [1
 
 {C:/Users/Ana Luisa/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-[2 <./MQAM4_DeterministicAppendZeros.png (PNG copy)>]
-(discrete_to_continuous_time.aux) ) 
+[2 <./TimeDiscreteToContinuous_output.jpg>] (discrete_to_continuous_time.aux) )
+ 
 Here is how much of TeX's memory you used:
- 2715 strings out of 493366
- 37122 string characters out of 3141541
- 108888 words of memory out of 3000000
- 6204 multiletter control sequences out of 15000+200000
+ 2716 strings out of 493343
+ 37131 string characters out of 3141189
+ 108992 words of memory out of 3000000
+ 6211 multiletter control sequences out of 15000+200000
  8764 words of font info for 32 fonts, out of 3000000 for 9000
- 1127 hyphenation exceptions out of 8191
+ 1141 hyphenation exceptions out of 8191
  40i,6n,25p,319b,230s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fi
-les/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmti10.pfb>
-Output written on discrete_to_continuous_time.pdf (2 pages, 104574 bytes).
+<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
+Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.
+pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Prog
+ram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on discrete_to_continuous_time.pdf (2 pages, 123640 bytes).
 PDF statistics:
  42 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

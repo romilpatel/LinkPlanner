@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2016.12.27)  28 DEC 2016 16:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2017.1.6)  8 APR 2017 20:09
 entering extended mode
 **./pulse_shaper.tex
 (pulse_shaper.tex
 LaTeX2e <2016/03/31> patch level 3
-Babel <3.9r> and hyphenation patterns for 72 language(s) loaded.
+Babel <3.9r> and hyphenation patterns for 73 language(s) loaded.
 ("C:\Program Files\MiKTeX\tex\latex\base\article.cls"
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 ("C:\Program Files\MiKTeX\tex\latex\base\size10.clo"
@@ -341,18 +341,18 @@ Package pdftex.def Info: MQAM6_DeterministicAppendZeros.png used on input line
 (pdftex.def)             Requested size: 416.83289pt x 198.53171pt.
 
 Underfull \hbox (badness 1389) in paragraph at lines 65--65
-[]\OT1/cmr/m/n/10 Figure 1: Ex-am-ple of a sig-nal ge-ne-ra-ted by this block f
-or the ini-tial bi-nary sig-nal
+[]\OT1/cmr/m/n/10 Figure 1: Ex-am-ple of a sig-nal gen-er-ated by this block fo
+r the ini-tial bi-nary sig-nal
  []
 
 [2 <./MQAM6_DeterministicAppendZeros.png (PNG copy)>] (pulse_shaper.aux) ) 
 Here is how much of TeX's memory you used:
- 2716 strings out of 493366
- 36990 string characters out of 3141541
- 108873 words of memory out of 3000000
- 6205 multiletter control sequences out of 15000+200000
+ 2716 strings out of 493343
+ 36990 string characters out of 3141189
+ 108977 words of memory out of 3000000
+ 6212 multiletter control sequences out of 15000+200000
  8764 words of font info for 32 fonts, out of 3000000 for 9000
- 1127 hyphenation exceptions out of 8191
+ 1141 hyphenation exceptions out of 8191
  40i,6n,25p,262b,230s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/P
 rogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files
@@ -362,7 +362,7 @@ ic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><
 C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program F
 iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on pulse_shaper.pdf (2 pages, 106961 bytes).
+Output written on pulse_shaper.pdf (2 pages, 106735 bytes).
 PDF statistics:
  42 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <complex>
+#include <chrono>
 
 #include "netxpto.h"
 #include "photodiode.h"
@@ -32,14 +33,19 @@ bool Photodiode::runBlock(void){
 	if (process == 0) return false;
 
 	normal_distribution<double> distribution(0, 1);
-	double dt = 2.33e-8;//inputSignals[0]->getSamplingPeriod();
+	double dt = inputSignals[0]->getSamplingPeriod();
 	double noiseAmp1;
 	double noiseAmp2;
 
 	double wavelength = outputOpticalWavelength;
 
+	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+
 
 	
+	generatorAmp1.seed(seed);
+	generatorAmp2.seed(seed);
+
 	for (int i = 0; i < process; i++) {
 
 		noiseAmp1 = distribution(generatorAmp1);

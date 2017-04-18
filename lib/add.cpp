@@ -25,9 +25,9 @@ bool Add::runBlock(void){
 	int ready2 = inputSignals[1]->ready();
 	int ready = min(ready1, ready2);
 
-	int space0 = outputSignals[0]->space();
+	int space = outputSignals[0]->space();
 
-	int process = min(ready, space0);
+	int process = min(ready, space);
 
 	if (process == 0){
 		myfile.close();

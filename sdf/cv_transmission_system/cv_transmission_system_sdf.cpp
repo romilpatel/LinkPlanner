@@ -9,6 +9,7 @@
 # include "photodiode.h"
 # include "ti_amplifier.h"
 # include "sampler.h"
+# include "optical_hybrid.h"
 
 int main(){
 
@@ -17,22 +18,22 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated(1000);
+	int numberOfBitsGenerated(1000*5);
 	int samplesPerSymbol(16);
 	int pLength = 5;
 	double bitPeriod = 1.0 / 5e6;
 	double rollOffFactor = 0.3;
 	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
-	double localOscillatorPower_dBm1 = 0;
-	double localOscillatorPower2 = 2.2e-11/2;
-	double localOscillatorPhase1 = 0;
+	double localOscillatorPower_dBm1 = 10;
+	double localOscillatorPower2 = 0.5*1.0252e-11*1; // 1.0252e-11 is the power of one photon for dt=1.25e-8s
+	double localOscillatorPhase1 = PI/4;
 	double localOscillatorPhase2 = 0;
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	double responsivity = 1;
 	double amplification = 1e6;
 	double electricalNoiseAmplitude = 0;// 0.0022*0.0022;
 	int samplesToSkip = 16*16;// 8 * samplesPerSymbol;
-	int bufferLength = 512;
+	int bufferLength = 512*2;
 	bool shotNoise(true);
 
 	double SNR = 0;// 1.422e3;
@@ -77,9 +78,9 @@ int main(){
 	B2.setSamplingPeriod(bitPeriod / samplesPerSymbol);
 	B2.setSymbolPeriod(bitPeriod);
 	B2.setSignaltoNoiseRatio(SNR);
-	B2.usePhaseNoise(true);
+	B2.useQuantumNoise(false); // phase quantum noise is not necessary, already taken into account by the double random gaussian variables in the photodiode
 
-	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4} };
+	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4 } };
 	B3.setTransferMatrix(transferMatrix);
 
     /*I_HomodyneReceiver B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
@@ -90,7 +91,7 @@ int main(){
 	B4.useShotNoise(shotNoise);*/
 
 	Photodiode B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
-	B4.useNoise(shotNoise);
+	B4.useNoise(true);
 	B4.setResponsivity(responsivity);
 
 	TI_Amplifier B5{ vector<Signal*> {&S5}, vector<Signal*> {&S6} };

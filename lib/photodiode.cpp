@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <complex>
 #include <chrono>
+#include <fstream>
 
 #include "netxpto.h"
 #include "photodiode.h"
@@ -22,6 +23,7 @@ void Photodiode::initialize(void){
 
 
 bool Photodiode::runBlock(void){
+
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
 	int ready = min(ready1, ready2);

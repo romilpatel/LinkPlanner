@@ -19,7 +19,7 @@ void Add::initialize(void){
 bool Add::runBlock(void){
 
 	ofstream myfile;
-	myfile.open("data.txt", fstream::app);
+	myfile.open("x.txt", fstream::app);
 
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();

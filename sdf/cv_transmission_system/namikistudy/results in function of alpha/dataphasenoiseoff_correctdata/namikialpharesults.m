@@ -19,7 +19,7 @@ BERT=BER;
 alpha=[0 .25 .5 .75 1 1.5 2 3 4 5];
 
 figure
-for i=1:length(files)/2;
+for i=5:5%length(files)/2;
     
     dataphas=load(files(i).name);
     dataquad=load(files(i+length(files)/2).name);
@@ -46,7 +46,7 @@ for i=1:length(files)/2;
     h=h/trapz(x,h);
     
     hold on
-    plot(x,h,x,F(x,sqrt(alpha(i))))
+    plot(x1,h1)
     
 
     xint1=min(x1):1e-3:max(x1);

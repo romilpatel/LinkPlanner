@@ -9,6 +9,7 @@ class Photodiode : public Block {
 
 	bool firstTime{ true };
 
+
 public:
 
 	double outputOpticalWavelength{ 1550e-9 };

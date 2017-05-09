@@ -26,6 +26,8 @@ bool LocalOscillator::runBlock(void){
 	
 	if (process == 0) return false;
 
+	t_complex outAverage(cos(phase), sin(phase));
+	t_complex out;
 	double outOpticalPower=opticalPower;
 	double wavelength = outputSignals[0]->getCentralWavelength();
 	double deltaPhase = sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (2 * opticalPower*samplingPeriod*wavelength));
@@ -35,15 +37,15 @@ bool LocalOscillator::runBlock(void){
 	normal_distribution<double> distribution(0, 1);
 	
 	double noiseRIN;
-	double noisePhase;
-	double noiseShot;
 	double outPhase=phase;
 	
+	out= .5*sqrt(opticalPower)*out;
+
 	for (int i = 0; i < process; i++) {
 		if (signaltoNoiseRatio != 0)
 		{
-			noiseRIN = distribution(generatorRIN);
-			outOpticalPower = opticalPower + opticalPower/signaltoNoiseRatio*noiseRIN;
+			t_real noise = distribution(generatorRIN);
+			outOpticalPower = opticalPower + opticalPower/signaltoNoiseRatio*noise;
 		}
 /*		if (quantumNoise != 0)
 		{

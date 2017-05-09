@@ -53,6 +53,7 @@ bool Photodiode::runBlock(void){
 		noiseAmp1 = distribution(generatorAmp1);
 		noiseAmp2 = distribution(generatorAmp2);
 
+
 		t_complex input1;
 		inputSignals[0]->bufferGet(&input1);
 		t_complex input2;
@@ -68,8 +69,8 @@ bool Photodiode::runBlock(void){
 		if (shotNoise)
 		{
 			power1 = power1 + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noiseAmp1*(sqrt(power1) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noiseAmp1 / 4);
-			power2 = power2 + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noiseAmp2*(sqrt(power2) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noiseAmp2 / 4);
 			
+			power2 = power2 + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noiseAmp2*(sqrt(power2) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt*wavelength))*noiseAmp2 / 4);
 		}
 
 		current1 = responsivity*power1;

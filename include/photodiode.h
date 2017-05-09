@@ -17,10 +17,8 @@ public:
 	double responsivity = 1;
 	bool shotNoise = false;
 
-	default_random_engine generator1I;
-	default_random_engine generator1Q;
-	default_random_engine generator2I;
-	default_random_engine generator2Q;
+	default_random_engine generatorAmp1;
+	default_random_engine generatorAmp2;
 
 	Photodiode() {};
 	Photodiode(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};

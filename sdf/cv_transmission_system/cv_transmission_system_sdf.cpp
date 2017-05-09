@@ -19,26 +19,22 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated(100000);
+	int numberOfBitsGenerated(10000);
 	int samplesPerSymbol(1);
-	int pLength = 5;
 	double bitPeriod = 1.0 / 5e6;
-	double rollOffFactor = 0.3;
-	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
 	double localOscillatorPower_dBm1 = 10;
-	double localOscillatorPower2 = 1.0252e-11*1; // 1.0252e-11 is the power of one photon for dt=1.25e-8s
-	double localOscillatorPhase1 = 0;
+	double localOscillatorPower2 = 6.4078e-13 * 5; // 1.0252e-11 is the power of one photon for dt=2e-7s
+	double localOscillatorPhase1 = PI/4;
 	double localOscillatorPhase2 = 0;
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	double responsivity = 1;
 	double amplification = 1e6;
 	double electricalNoiseAmplitude = 0;// 0.0022*0.0022;
-	int samplesToSkip = 16*16;// 8 * samplesPerSymbol;
 	int bufferLength = 512*2;
 	bool shotNoise(true);
 	int aux = 1;
 
-	double SNR = 0;// 1.422e3;
+	double SNR = 0;
 		
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
@@ -75,6 +71,7 @@ int main(){
 	TimeContinuousAmplitudeContinuousReal S10("S10.sgn");
 	S10.setBufferLength(bufferLength);
 
+	
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
@@ -92,31 +89,19 @@ int main(){
 	B2.setSamplingPeriod(bitPeriod / samplesPerSymbol);
 	B2.setSymbolPeriod(bitPeriod);
 	B2.setSignaltoNoiseRatio(SNR);
-	B2.useQuantumNoise(false); // phase quantum noise is not necessary, already taken into account by the double random gaussian variables in the photodiode
 
-	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4 } };
-	B3.setTransferMatrix(transferMatrix);
+/*	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4 } };
+	B3.setTransferMatrix(transferMatrix);*/
 
-
-//	OpticalHybrid B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4, &S5, &S6} };
+	OpticalHybrid B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4, &S5, &S6} };
 
 	Photodiode B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S7} };
 	B4.useNoise(true);
-	
-	//Photodiode B5{ vector<Signal*> {&S5, &S6}, vector<Signal*> {&S8} };
-	//B5.useNoise(true);
-
-
-    /*I_HomodyneReceiver B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
 	B4.setResponsivity(responsivity);
-	B4.setGain(amplification);
-	B4.setElectricalNoiseSpectralDensity(electricalNoiseAmplitude);
-	B4.setSaveInternalSignals(true);
-	B4.useShotNoise(shotNoise);*/
 
-/*	Photodiode B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
-	B4.useNoise(true);
-	B4.setResponsivity(responsivity);*/
+	Photodiode B5{ vector<Signal*> {&S5, &S6}, vector<Signal*> {&S8} };
+	B5.useNoise(true);	
+	B5.setResponsivity(responsivity);
 
 	TI_Amplifier B6{ vector<Signal*> {&S7}, vector<Signal*> {&S9} };
 	B6.setGain(amplification);
@@ -127,21 +112,17 @@ int main(){
 	B6.setRollOffFactor(0);
 	B6.usePassiveFilterMode(true);
 
-	//testblock B7{ vector<Signal*> {&S8}, vector<Signal*> {&S10} };
+	testblock B7{ vector<Signal*> {&S8}, vector<Signal*> {&S10} };
 
-	Sink B8{ vector<Signal*> {&S9}, vector<Signal*> {} };
+	Sink B8{ vector<Signal*> {&S9, &S10}, vector<Signal*> {} };
 	B8.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
 	B8.setDisplayNumberOfSamples(true);
-
-/*	Sink B9{ vector<Signal*> {&S10}, vector<Signal*> {} };
-	B9.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B9.setDisplayNumberOfSamples(true);*/
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B6, &B8 } }; //, &B4, &B5, &B6}};
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8 } };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

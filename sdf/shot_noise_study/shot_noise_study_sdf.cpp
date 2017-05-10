@@ -1,13 +1,11 @@
 # include "netxpto.h"
 
-# include "m_qam_transmitter.h"
 # include "i_homodyne_receiver.h"
 # include "sink.h"
 # include "local_oscillator.h"
 # include "balanced_beam_splitter.h"
 # include "photodiode.h"
 # include "ti_amplifier.h"
-# include "sampler.h"
 # include "optical_hybrid.h"
 
 int main(){

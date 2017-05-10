@@ -1,17 +1,30 @@
 \documentclass[a4paper]{article}
-\usepackage[T1]{fontenc}
+
+% subfile handling packages
+\usepackage{subfiles}
+\newcommand{\onlyinsubfile}[1]{#1}
+\newcommand{\notinsubfile}[1]{}
+
+% document packages
 \usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
 \usepackage{amsmath}
 \usepackage{multicol}
+\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{graphicx}
-\graphicspath{{../../images/}}
-\usepackage{float}
-\usepackage{hyperref}
-\usepackage{braket}
-\usepackage{indentfirst}
-
+\usepackage{multirow}
 \usepackage{tabulary}
+\usepackage{hhline}
+\usepackage{indentfirst}
+\RequirePackage{ltxcmds}[2010/12/07]
+\graphicspath{{../../images/}}
+%\graphicspath
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{footnote}
+\makesavenoteenv{tabular}
+\usepackage{braket}
 %opening
 \title{Safety study}
 \author{}
@@ -255,6 +268,7 @@ The double homodyne system outputs the following objects:
 \end{itemize}
 \end{itemize}		
 
+\section{Simulation Results}
 \subsection{Single homodyne results}\label{subsec:SHresults}
 
 The numerical results presented in Figure~\ref{fig:directber} were obtained with the simulation described by the block diagram in Figure~\ref{fig:singleH}. Theoretical results are a direct trace of~\eqref{eq:biterrorratio}. One can see that the numerical results adhere quite well to the expected curve.
@@ -277,9 +291,34 @@ The numerical results presented in Figure~\ref{fig:adaptedber} were obtained wit
 \label{fig:adaptedber}
 \end{figure}
 
-\section{Conclusion}
+\section{Block Description}
 
-The simulation can predict the results presented in Namiki quite well, an eavesdropping attack is yet to be simulated.
+\subsection{Homodyne Receiver}
+\subfile{../../lib/tex/i_homodyne_reciever}
+
+\subsection{Local Oscillator}
+\subfile{../../lib/tex/localoscillator}
+
+\subsection{Beam Splitter}
+\subfile{../../lib/tex/beamsplitter}
+
+\subsection{90$^\text{o}$ Optical Hybrid}
+
+\subsection{Photodiode}
+\subfile{../../lib/tex/photodiode}
+
+\subsection{Amplifier}
+\subfile{../../lib/tex/ideal_amplifier}
+
+\subsection{Electrical Filter}
+\subfile{../../lib/tex/pulse_shaper}
+
+\section{Known Problems}
+\begin{enumerate}
+    \item Homodyne Super-Block not functioning
+    \item 90$^\text{o}$ Optical Hybrid PDF needs to be written
+\end{enumerate}
+
 
 \bibliographystyle{unsrt}
 \bibliography{bibliography}

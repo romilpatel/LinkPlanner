@@ -18,21 +18,15 @@ void Add::initialize(void){
 
 bool Add::runBlock(void){
 
-	ofstream myfile;
-	myfile.open("data.txt", fstream::app);
-
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
 	int ready = min(ready1, ready2);
 
-	int space0 = outputSignals[0]->space();
+	int space = outputSignals[0]->space();
 
-	int process = min(ready, space0);
+	int process = min(ready, space);
 
-	if (process == 0){
-		myfile.close();
-		return false;
-	}
+	if (process == 0) return false;
 
 	signal_value_type sType1 = inputSignals[0]->getValueType();
 	signal_value_type sType2 = inputSignals[1]->getValueType();
@@ -56,7 +50,6 @@ bool Add::runBlock(void){
 						  inputSignals[1]->bufferGet(&inRealValue2);
 						  t_real outRealValue = inRealValue1 + inRealValue2;
 						  outputSignals[0]->bufferPut(outRealValue);
-						  myfile << outRealValue << "\n";
 					  }
 					  break;
 	}

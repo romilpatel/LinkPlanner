@@ -428,20 +428,67 @@ void FD_Filter::initializeFD_Filter(void) {
 
 };
 
-bool FD_Filter::runBlock(void) {
-	
-	// Celestino declarations Start
+void FD_Filter::OverlapSaveMethod(void) {
+
+	int NFFT = transferFunctionLength;
+	int Nblocks = 2 * (inputBufferTimeDomain.size() / NFFT);
+
+	vector<double> real_temp(NFFT, 0);
+	vector<double> imag_temp(NFFT, 0);
+	vector<double> real_temp_copy(NFFT, 0);
+	vector<double> imag_temp_copy(NFFT, 0);
+	vector<t_real> H_real(NFFT, 0);
+	vector<t_real> H_imag(NFFT, 0);
 	Fft fft;
 	ComplexMult CMult;
-
-	vector<t_real> real_temp_copy(transferFunctionLength, 0);
-	vector<t_real> imag_temp_copy(transferFunctionLength, 0);
-	vector<t_real> H_real(transferFunctionLength, 0);
-	vector<t_real> H_imag(transferFunctionLength, 0);
-
-	//vector<t_complex> var_temp_out(transferFunctionLength, 0);
-
 	CMult.ComplexVect2ReImVect(transferFunction, H_real, H_imag);
+	//fft.directTransform(h_real, h_imag);
+
+	for (int k = 0; k < Nblocks; k++) {
+
+		if (k == Nblocks - 1) {
+			copy(inputBufferTimeDomain.begin(), inputBufferTimeDomain.begin() + (NFFT / 2), real_temp.begin() + (NFFT / 2));
+			//copy(imag_in.begin(), imag_in.begin() + (NFFT / 2), imag_temp.begin() + (NFFT / 2));
+
+			copy(inputBufferTimeDomain.end() - (NFFT / 2), inputBufferTimeDomain.end(), real_temp.begin());
+			//copy(imag_in.end() - (NFFT / 2), imag_in.end(), imag_temp.begin());
+		}
+		else {
+			copy(inputBufferTimeDomain.begin() + k*(NFFT / 2), inputBufferTimeDomain.begin() + ((k + 1)*NFFT - k*(NFFT / 2)), real_temp.begin());
+			//copy(imag_in.begin() + k*(NFFT / 2), imag_in.begin() + ((k + 1)*NFFT - k*(NFFT / 2)), imag_temp.begin());
+		}
+
+		// coping real_temp/imag_temp into real_temp_copy/imag_temp_copy vectors
+		real_temp_copy = real_temp;
+		imag_temp_copy = imag_temp;
+
+		// Computation of FFT of each block
+		fft.directTransform(real_temp_copy, imag_temp_copy);
+
+		// Multiplication with the transfer function
+		CMult.CMultVector_Loop(real_temp_copy, imag_temp_copy, H_real, H_imag);
+
+		// Computation of IFFT of each block
+		fft.inverseTransform(real_temp_copy, imag_temp_copy);
+
+		// Removing the samples symetrically and assign to the output
+		if (k == Nblocks - 1) {
+			copy(real_temp_copy.begin() + (NFFT / 4), real_temp_copy.begin() + (NFFT / 2), outputBufferTimeDomain.end() - (NFFT / 4));
+			//copy(imag_temp_copy.begin() + (NFFT / 4), imag_temp_copy.begin() + (NFFT / 2), imag_out.end() - (NFFT / 4));
+
+			copy(real_temp_copy.begin() + (NFFT / 2), real_temp_copy.begin() + NFFT, outputBufferTimeDomain.begin());
+			//copy(imag_temp_copy.begin() + (NFFT / 2), imag_temp_copy.begin() + NFFT, imag_out.begin());
+		}
+		else {
+			copy(real_temp_copy.begin() + (NFFT / 4), real_temp_copy.end() - (NFFT / 4), outputBufferTimeDomain.begin() + ((NFFT / 4) + k*(NFFT / 2)));
+			//copy(imag_temp_copy.begin() + (NFFT / 4), imag_temp_copy.end() - (NFFT / 4), imag_out.begin() + ((NFFT / 4) + k*(NFFT / 2)));
+		}
+	}
+
+}
+
+bool FD_Filter::runBlock(void) {
+	
 	// Celestino declarations End
 
 	//Inside Block Input Buffer
@@ -451,68 +498,25 @@ bool FD_Filter::runBlock(void) {
 
 	int process = min(ready, space);
 
+	inputBufferTimeDomain.resize(ready);
+	outputBufferTimeDomain.resize(ready);
+	// read all incoming samples to the input buffer
 	for (int k = 0; k < process; k++) {
 		t_real val;
 		(inputSignals[0])->bufferGet(&val);
-
-		inputBufferTimeDomain[inputBufferPointer] = val;
-		inputBufferPointer++;
+	
+		inputBufferTimeDomain[k] = val;
+		//inputBufferPointer++;
 	}
 
-	//Inside Block Output Buffer
+	OverlapSaveMethod();
 
-	space = outputSignals[0]->space();
-	ready = 3/4*transferFunctionLength - outputBufferPointer;
-
-
-	process = min(ready, space);
+	process = outputBufferTimeDomain.size();
 
 	for (int k = 0; k < process; k++) {
-		t_real val=outputBufferTimeDomain[outputBufferPointer];
+		t_real val = outputBufferTimeDomain[k];
 		(outputSignals[0])->bufferPut(&val);
-
-		outputBufferPointer++;
-	}
-
-	if ((inputBufferPointer != transferFunctionLength) & (outputBufferPointer != 3/4*transferFunctionLength)) return false;
-
-	// Start celestino
-	//outputBufferTimeDomain = ifft(fft(inputBufferTimeDomain)*transferfunction);
-
-	std::rotate(inputBufferTimeDomain.begin(), inputBufferTimeDomain.begin() + transferFunctionLength / 2, inputBufferTimeDomain.end());
-	inputBufferPointer = transferFunctionLength/2;
-	outputBufferPointer = transferFunctionLength/4;
-
-	real_temp_copy = inputBufferTimeDomain;
-	// Computation of FFT of each block
-	fft.directTransform(real_temp_copy, imag_temp_copy);
-
-	// Convert two vectors (real and imag) in a single complex vector
-	// CMult.ReImVect2ComplexVect(real_temp_copy, imag_temp_copy, var_temp_out);
-
-	// Multiplication with the transfer function
-	CMult.CMultVector_Loop(real_temp_copy, imag_temp_copy, H_real, H_imag);
-
-	// Computation of IFFT of each block
-	fft.inverseTransform(real_temp_copy, imag_temp_copy);
-
-	outputBufferTimeDomain = real_temp_copy;
-
-	// End Celestino
-
-	//Inside Block Output Buffer
-
-	space = outputSignals[0]->space();
-	ready = 3/4*transferFunctionLength - outputBufferPointer;
-
-
-	process = min(ready, space);
-
-	for (int k = 0; k < process; k++) {
-		t_real val = outputBufferTimeDomain[outputBufferPointer];
-		(outputSignals[0])->bufferPut(&val);
-
-		outputBufferPointer++;
+		//outputBufferPointer++;
 	}
 
 	return true;

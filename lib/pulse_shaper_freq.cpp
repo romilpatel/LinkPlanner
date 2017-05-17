@@ -29,14 +29,15 @@ void raisedCosineTF(vector<t_complex> &transferFunction, int transferFunctionLen
 	double cond2_if = (1 + rollOffFactor) / (2 * symbolPeriod);
 
 	t_complex transferFunction_normFactor(0);
+	vector<t_real> F(transferFunctionLength, 0);
 
 	for (int i = 0; i < transferFunctionLength; i++) {
-		t_real F = -(1 / (samplingPeriod * 2)) + i*(1 / (samplingPeriod * transferFunctionLength));
-		if (abs(F) <= (cond1_if)) {
+		F.at(i) = -(1 / (samplingPeriod * 2)) + i*(1 / (samplingPeriod * transferFunctionLength));
+		if (abs(F.at(i)) <= (cond1_if)) {
 			transferFunction[i] = samplingPeriod;
 		}
-		else if ((abs(F)>cond1_if) && (abs(F) <= cond2_if)){
-			transferFunction[i] = (symbolPeriod / 2)*(1 + cos((PI*symbolPeriod / rollOffFactor)*(abs(F) - ((1 - rollOffFactor) / (2 * symbolPeriod)))));
+		else if ((abs(F.at(i))>cond1_if) && (abs(F.at(i)) <= cond2_if)){
+			transferFunction[i] = (symbolPeriod / 2)*(1 + cos((PI*symbolPeriod / rollOffFactor)*(abs(F.at(i)) - ((1 - rollOffFactor) / (2 * symbolPeriod)))));
 		}
 		else {
 			transferFunction[i] = 0;
@@ -44,7 +45,7 @@ void raisedCosineTF(vector<t_complex> &transferFunction, int transferFunctionLen
 		transferFunction_normFactor +=  (transferFunction[i] * transferFunction[i]);
 	};
 
-	//Normalization to unit energy
+	// Normalization to unit energy
 	for (int i = 0; i < transferFunctionLength; i++) {
 		transferFunction[i] = transferFunction[i] / sqrt(transferFunction_normFactor);
 	}

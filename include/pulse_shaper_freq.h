@@ -24,7 +24,6 @@ public:
 	FD_PulseShaper(vector<Signal *> &InputSig, vector<Signal *> OutputSig):FD_Filter(InputSig, OutputSig) {};
 
 	void initialize(void);
-	void run(void);
 	
 	void setTrasferFunctionLength(int tFLength){ transferFunctionLength = tFLength; };
 	int const getTransferFunctionLength(void) { return transferFunctionLength; };

@@ -21,7 +21,6 @@ void FD_PulseShaper::initialize(void) {
 
 }
 
-void FD_PulseShaper::run(void) {};
 
 void raisedCosineTF(vector<t_complex> &transferFunction, int transferFunctionLength, double rollOffFactor, double samplingPeriod, double symbolPeriod) {
 
@@ -29,15 +28,15 @@ void raisedCosineTF(vector<t_complex> &transferFunction, int transferFunctionLen
 	double cond2_if = (1 + rollOffFactor) / (2 * symbolPeriod);
 
 	t_complex transferFunction_normFactor(0);
-	vector<t_real> F(transferFunctionLength, 0);
+	vector<t_real> freqHz(transferFunctionLength, (t_real) 0.0);
 
 	for (int i = 0; i < transferFunctionLength; i++) {
-		F.at(i) = -(1 / (samplingPeriod * 2)) + i*(1 / (samplingPeriod * transferFunctionLength));
-		if (abs(F.at(i)) <= (cond1_if)) {
+		freqHz.at(i) = -(1 / (samplingPeriod * 2)) + i*(1 / (samplingPeriod * transferFunctionLength));
+		if (abs(freqHz.at(i)) <= (cond1_if)) {
 			transferFunction[i] = samplingPeriod;
 		}
-		else if ((abs(F.at(i))>cond1_if) && (abs(F.at(i)) <= cond2_if)){
-			transferFunction[i] = (symbolPeriod / 2)*(1 + cos((PI*symbolPeriod / rollOffFactor)*(abs(F.at(i)) - ((1 - rollOffFactor) / (2 * symbolPeriod)))));
+		else if ((abs(freqHz.at(i))>cond1_if) && (abs(freqHz.at(i)) <= cond2_if)){
+			transferFunction[i] = (symbolPeriod / 2)*(1 + cos((PI*symbolPeriod / rollOffFactor)*(abs(freqHz.at(i)) - ((1 - rollOffFactor) / (2 * symbolPeriod)))));
 		}
 		else {
 			transferFunction[i] = 0;

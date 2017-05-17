@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2017.1.6)  14 APR 2017 12:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200) (preloaded format=pdflatex 2017.1.6)  17 MAY 2017 23:15
 entering extended mode
 **./homodyne_receiver_main.tex
 (homodyne_receiver_main.tex
@@ -952,7 +952,7 @@ File: ../homodyne_receiver/figures/Clock_output.jpg Graphic file (type jpg)
 
 <use ../homodyne_receiver/figures/Clock_output.jpg>
 Package pdftex.def Info: ../homodyne_receiver/figures/Clock_output.jpg used on 
-input line 46.
+input line 47.
 (pdftex.def)             Requested size: 416.83289pt x 311.13449pt.
 ) (../decoder/decoder.tex
 [18 <../homodyne_receiver/figures/Clock_output.jpg>] [19
@@ -993,7 +993,7 @@ fonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr1
 ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on homodyne_receiver_main.pdf (20 pages, 446380 bytes).
+Output written on homodyne_receiver_main.pdf (20 pages, 446059 bytes).
 PDF statistics:
  326 PDF objects out of 1000 (max. 8388607)
  139 named destinations out of 1000 (max. 500000)

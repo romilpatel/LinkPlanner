@@ -85,7 +85,9 @@
     <ClCompile Include="..\..\lib\netxpto.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper_freq.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
-    <ClCompile Include="qpsk_transmitter_sdf.cpp" />
+    <ClCompile Include="qpsk_transmitter_sdf.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../include</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\binary_source.h" />

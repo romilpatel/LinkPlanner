@@ -480,12 +480,16 @@ public:
 
 class FD_Filter : public Block {
 
+	int transferFunctionLength;
+	int inputBufferTimeDomainLength{ transferFunctionLength };
+	int outputBufferTimeDomainLength{ transferFunctionLength };
+
 public:
 
 	/* Input Parameters */
 	bool saveTransferFunction{ true };
 	string transferFunctionFilename{ "transfer_function.tfn" };
-	int transferFunctionLength;
+	
 
 
 	/* State Variable */
@@ -495,11 +499,14 @@ public:
 	vector<t_real> outputBufferTimeDomain;
 
 	int inputBufferPointer{ transferFunctionLength / 2 };
-	int outputBufferPointer{ 3/4*transferFunctionLength };
+	int outputBufferPointer{ 3/4 * outputBufferTimeDomainLength };
 
 	/* Methods */
 	FD_Filter() {};
-	FD_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {};
+	FD_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {
+		inputBufferTimeDomain.resize(inputBufferTimeDomainLength);
+		outputBufferTimeDomain.resize(outputBufferTimeDomainLength);
+	};
 
 	void initializeFD_Filter(void);
 

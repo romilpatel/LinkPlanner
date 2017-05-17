@@ -489,38 +489,41 @@ void FD_Filter::OverlapSaveMethod(void) {
 
 bool FD_Filter::runBlock(void) {
 	
-	// Celestino declarations End
-
-	//Inside Block Input Buffer
+	bool alive{ false };
 
 	int ready = inputSignals[0]->ready();
-	int space = transferFunctionLength - inputBufferPointer;
+	int space = inputBufferTimeDomainLength - inputBufferPointer;
 
 	int process = min(ready, space);
+	if (process > 0) alive = true;
 
-	inputBufferTimeDomain.resize(ready);
-	outputBufferTimeDomain.resize(ready);
 	// read all incoming samples to the input buffer
 	for (int k = 0; k < process; k++) {
 		t_real val;
 		(inputSignals[0])->bufferGet(&val);
-	
 		inputBufferTimeDomain[k] = val;
-		//inputBufferPointer++;
+		inputBufferPointer++;
 	}
 
-	OverlapSaveMethod();
+	space = outputSignals[0]->space();
+	ready = 3/4 * outputBufferTimeDomainLength - outputBufferPointer;
 
-	process = outputBufferTimeDomain.size();
-
+	int process = min(ready, space);
+	if (process > 0) alive = true;
+	
 	for (int k = 0; k < process; k++) {
 		t_real val = outputBufferTimeDomain[k];
 		(outputSignals[0])->bufferPut(&val);
-		//outputBufferPointer++;
+		outputBufferPointer++;
 	}
 
-	return true;
+	if ((inputBufferPointer==inputBufferTimeDomainLength) && (outputBufferPointer== 3/4 * outputBufferTimeDomainLength)) {
+		OverlapSaveMethod();
+		inputBufferPointer = transferFunctionLength / 2 ;
+		outputBufferPointer = 1/4 * outputBufferTimeDomainLength;
+	};
 
+	return alive;
 };
  
 

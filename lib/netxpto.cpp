@@ -682,7 +682,7 @@ void System::run() {
 void System::run(string signalPath) {
 
 	
-	// The signalPath sub-folder must already exists
+	// The signalPath sub-folder must already exist
 	for (int unsigned i = 0; i < SystemBlocks.size(); i++) {
 		for (int unsigned j = 0; j<(SystemBlocks[i]->inputSignals).size(); j++) {
 			(SystemBlocks[i]->inputSignals[j])->writeHeader(signalPath);

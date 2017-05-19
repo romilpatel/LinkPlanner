@@ -16,28 +16,28 @@ void OpticalHybrid::initialize(void){
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 	 
 	outputSignals[0]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
-	outputSignals[0]->setCentralFrequency(inputSignals[0]->getCentralWavelength());
+	outputSignals[0]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
 
 	outputSignals[1]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[1]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
-	outputSignals[1]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
-	outputSignals[1]->setCentralFrequency(inputSignals[0]->getCentralWavelength());
+	outputSignals[1]->setCentralWavelength(inputSignals[1]->getCentralWavelength());
+	outputSignals[1]->setCentralFrequency(inputSignals[1]->getCentralFrequency());
 
 	outputSignals[2]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[2]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[2]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
 	outputSignals[2]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
-	outputSignals[2]->setCentralFrequency(inputSignals[0]->getCentralWavelength());
+	outputSignals[2]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
 
 	outputSignals[3]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[3]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[3]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
-	outputSignals[3]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
-	outputSignals[3]->setCentralFrequency(inputSignals[0]->getCentralWavelength());
+	outputSignals[3]->setCentralWavelength(inputSignals[1]->getCentralWavelength());
+	outputSignals[3]->setCentralFrequency(inputSignals[1]->getCentralFrequency());
 }
 
 

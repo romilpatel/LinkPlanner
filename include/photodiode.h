@@ -8,7 +8,9 @@
 class Photodiode : public Block {
 
 	bool firstTime{ true };
-	int j = 0;
+	int aux = 0;
+	bool firstPass{ true };
+	double t = 0;
 
 public:
 

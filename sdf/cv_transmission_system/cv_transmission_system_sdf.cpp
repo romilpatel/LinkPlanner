@@ -19,7 +19,7 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsGenerated(100);
-	int samplesPerSymbol(160*2);
+	int samplesPerSymbol(160);
 	double bitPeriod = .5e-9;
 	double localOscillatorPower_dBm = 10;
 	double signalPower = 6.4078e-13 * 5; // 1.0252e-11 is the power of one photon for dt=2e-7s

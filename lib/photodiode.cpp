@@ -105,7 +105,7 @@ bool Photodiode::runBlock(void){
 		t_complex input2;
 		inputSignals[1]->bufferGet(&input2);
 
-		t_real powerSignal1 = gauss[j]; // Assuming Signal input in PIN1
+		t_real powerSignal1 = gauss[aux]; // Assuming Signal input in PIN1
 		t_real powerSignal2 = abs(input1 - input2) / sqrt(2); // Assuming Signal input in PIN2		
 
 		t_real power1 = abs(input1)*abs(input1) * 4;

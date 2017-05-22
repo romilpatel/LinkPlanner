@@ -40,7 +40,7 @@ class TI_Amplifier : public SuperBlock {
 	/* Input Parameters */
 
 
-
+	bool bypassFilter{ true };
 
 	bool firsTime{ true };
 
@@ -68,6 +68,8 @@ public:
 
 	void setImpulseResponseLength(int impResponseLength) { B4.setImpulseResponseLength(impResponseLength); };
 	int const getImpulseResponseLength(void) { return B4.getImpulseResponseLength(); };
+
+	void setBypassFilter(bool bFilter){ bypassFilter = bFilter; };
 
 	void usePassiveFilterMode(bool pFilterMode){ B4.usePassiveFilterMode(pFilterMode); };
 

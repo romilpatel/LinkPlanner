@@ -47,7 +47,7 @@ int main(){
 	B3.setNumberOfSamplesPerSymbol(16);
 	
 	DiscreteToContinuousTime B4{ vector<Signal*> { &S3 }, vector<Signal*> { &S5 } };
-	B4.setNumberOfSamplesPerSymbol(16);
+	B4.setNumberOfSamplesPerSymbol(16); 
 
 	FD_PulseShaper B5{ vector<Signal*> { &S4 }, vector<Signal*> { &S6 } };
 	B5.setRollOffFactor(0.3);

@@ -506,7 +506,7 @@ bool FD_Filter::runBlock(void) {
 	outputBufferPointer = 0;
 	return alive;
 };
- 
+     
 
 /*2016-08-03
 DiscreteToContinuousTime::DiscreteToContinuousTime(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) {

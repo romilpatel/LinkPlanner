@@ -480,18 +480,16 @@ public:
 
 class FD_Filter : public Block {
 	
-	//int inputBufferTimeDomainLength;
-	//int outputBufferTimeDomainLength;
+	int inputBufferTimeDomainLength;
+	int outputBufferTimeDomainLength;
 	
 public:
-	int transferFunctionLength;
-	int inputBufferTimeDomainLength = transferFunctionLength /2;
-	int outputBufferTimeDomainLength = transferFunctionLength /2;
+	
 	
 	/* Input Parameters */
 	bool saveTransferFunction{ true };
 	string transferFunctionFilename{ "transfer_function.tfn" };
-	
+	int transferFunctionLength;
 
 
 	/* State Variable */
@@ -500,16 +498,23 @@ public:
 	vector<t_real> inputBufferTimeDomain;
 	vector<t_real> outputBufferTimeDomain;
 
-	int inputBufferPointer{ 0 };
-	int outputBufferPointer{ 0 };
+	int inputBufferPointer;
+	int outputBufferPointer;
 
 	/* Methods */
 	FD_Filter() {};
 	//FD_Filter(int,int) : inputBufferTimeDomainLength(8), outputBufferTimeDomainLength(8) {};
-	FD_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {};
-		//inputBufferTimeDomain.resize(inputBufferTimeDomainLength);
-		//outputBufferTimeDomain.resize(outputBufferTimeDomainLength);
-	//};
+	FD_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {
+
+		setInputBufferTimeDomainLength(getTransferFunctionLength()/2);
+		setOutputBufferTimeDomainLength(getTransferFunctionLength()/2);
+
+		inputBufferTimeDomain.resize(getInputBufferTimeDomainLength());
+		outputBufferTimeDomain.resize(getOutputBufferTimeDomainLength());
+
+		inputBufferPointer = getInputBufferTimeDomainLength()/2;
+		outputBufferPointer = getOutputBufferTimeDomainLength();
+	};
 
 	void initializeFD_Filter(void);
 
@@ -524,6 +529,12 @@ public:
 
 	void setTransferFunctionLength(int iTransferFunctionLength) { transferFunctionLength = iTransferFunctionLength; };
 	int const getTransferFunctionLength() { return transferFunctionLength; }
+
+	void setInputBufferTimeDomainLength(int iBufferTimeDomainLength) { inputBufferTimeDomainLength = iBufferTimeDomainLength; };
+	int const getInputBufferTimeDomainLength() { return inputBufferTimeDomainLength; }
+
+	void setOutputBufferTimeDomainLength(int oBufferTimeDomainLength) { outputBufferTimeDomainLength = oBufferTimeDomainLength; };
+	int const getOutputBufferTimeDomainLength() { return outputBufferTimeDomainLength; }
 
 };
 

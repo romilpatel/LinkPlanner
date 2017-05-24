@@ -428,52 +428,18 @@ void FD_Filter::initializeFD_Filter(void) {
 
 };
 
-void FD_Filter::overlapSaveZPRealIn(vector<double> &inputSignal, vector<double> &outputSignal, vector<t_complex> HF_complex, int NFFT) {
 
-	//int NFFT = transferFunctionLength;
-
-	vector<double> var_temp(NFFT, 0);
-	vector<double> real_temp_copy(NFFT, 0);
-	vector<double> imag_temp_copy(NFFT, 0);
-	vector<double> H_real(NFFT, 0);
-	vector<double> H_imag(NFFT, 0);
-	//vector<double> v_in_temp(NFFT / 2, 0);
-	//vector<double> v_out_temp(NFFT / 2, 0);
-
-	Fft fft;
-	ComplexMult CMult;
-	CMult.ComplexVect2ReImVect(HF_complex, H_real, H_imag);
-	//fft.directTransform(h_real, h_imag);
-
-	copy(inputSignal.begin(), inputSignal.end(), var_temp.begin() + (NFFT / 2));
-	real_temp_copy = var_temp;
-	rotate(var_temp.begin(), var_temp.begin() + NFFT / 2, var_temp.end());
-	// Computation of FFT of each block
-
-	fft.directTransform(real_temp_copy, imag_temp_copy);
-
-	// Multiplication with the transfer function
-	CMult.CMultVector_Loop(real_temp_copy, imag_temp_copy, H_real, H_imag);
-
-	// Computation of IFFT of each block
-	fft.inverseTransform(real_temp_copy, imag_temp_copy);
-
-	// Removing the samples symetrically and assign to the output
-
-	copy(real_temp_copy.begin() + (NFFT / 2), real_temp_copy.end(), outputSignal.begin());
-
-}
 
 bool FD_Filter::runBlock(void) {
-	inputBufferTimeDomainLength = transferFunctionLength / 2;
+	/*inputBufferTimeDomainLength = transferFunctionLength / 2;
 	outputBufferTimeDomainLength = transferFunctionLength / 2;
 	inputBufferTimeDomain.resize(inputBufferTimeDomainLength);
-	outputBufferTimeDomain.resize(outputBufferTimeDomainLength);
+	outputBufferTimeDomain.resize(outputBufferTimeDomainLength);*/
 
 	bool alive{ false };
 
 	int ready = inputSignals[0]->ready();
-	int space = inputBufferTimeDomainLength - inputBufferPointer;
+	int space = inputBufferTimeDomain.size() - inputBufferPointer;
 
 	int process1 = min(ready, space);
 	if (process1 > 0) alive = true;
@@ -486,14 +452,15 @@ bool FD_Filter::runBlock(void) {
 		inputBufferPointer++;
 	}
 
-	if ((inputBufferPointer == inputBufferTimeDomainLength) && (outputBufferPointer == 0)) {
-		overlapSaveZPRealIn(inputBufferTimeDomain, outputBufferTimeDomain, transferFunction, transferFunctionLength);
-		inputBufferPointer = 0;
-		//outputBufferPointer = 0;
+	if ((inputBufferPointer == getInputBufferTimeDomainLength()) && (outputBufferPointer == getOutputBufferTimeDomainLength())) {
+		outputBufferTimeDomain = fft.inverseTransform(CMult.CMultVector_Loop(fft.directTransform(inputBufferTimeDomain), transferFunction));
+		rotate(inputBufferTimeDomain.begin(), inputBufferTimeDomain.size()/2, inputBufferTimeDomain.size());
+		inputBufferPointer = inputBufferTimeDomain.size()/2;
+		outputBufferPointer = outputBufferTimeDomain.size()/2;
 	};
 
 	space = outputSignals[0]->space();
-	ready = outputBufferTimeDomainLength - outputBufferPointer;
+	ready = outputBufferTimeDomain.size() - outputBufferPointer;
 
 	int process2 = min(ready, space);
 	if (process2 > 0) alive = true;
@@ -503,7 +470,7 @@ bool FD_Filter::runBlock(void) {
 		(outputSignals[0])->bufferPut(&val);
 		outputBufferPointer++;
 	}
-	outputBufferPointer = 0;
+	
 	return alive;
 };
  

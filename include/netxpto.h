@@ -479,13 +479,15 @@ public:
 
 
 class FD_Filter : public Block {
-
-	int transferFunctionLength;
-	int inputBufferTimeDomainLength{ transferFunctionLength };
-	int outputBufferTimeDomainLength{ transferFunctionLength };
-
+	
+	//int inputBufferTimeDomainLength;
+	//int outputBufferTimeDomainLength;
+	
 public:
-
+	int transferFunctionLength;
+	int inputBufferTimeDomainLength = transferFunctionLength /2;
+	int outputBufferTimeDomainLength = transferFunctionLength /2;
+	
 	/* Input Parameters */
 	bool saveTransferFunction{ true };
 	string transferFunctionFilename{ "transfer_function.tfn" };
@@ -498,19 +500,20 @@ public:
 	vector<t_real> inputBufferTimeDomain;
 	vector<t_real> outputBufferTimeDomain;
 
-	int inputBufferPointer{ transferFunctionLength / 2 };
-	int outputBufferPointer{ 3/4 * outputBufferTimeDomainLength };
+	int inputBufferPointer{ 0 };
+	int outputBufferPointer{ 0 };
 
 	/* Methods */
 	FD_Filter() {};
-	FD_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {
-		inputBufferTimeDomain.resize(inputBufferTimeDomainLength);
-		outputBufferTimeDomain.resize(outputBufferTimeDomainLength);
-	};
+	//FD_Filter(int,int) : inputBufferTimeDomainLength(8), outputBufferTimeDomainLength(8) {};
+	FD_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {};
+		//inputBufferTimeDomain.resize(inputBufferTimeDomainLength);
+		//outputBufferTimeDomain.resize(outputBufferTimeDomainLength);
+	//};
 
 	void initializeFD_Filter(void);
 
-	void OverlapSaveMethod(void);
+	void overlapSaveZPRealIn(vector<double> &inputSignal, vector<double> &outputSignal, vector<t_complex> HF_complex, int NFFT);
 
 	bool runBlock(void);
 

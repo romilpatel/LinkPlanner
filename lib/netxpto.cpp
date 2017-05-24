@@ -428,101 +428,82 @@ void FD_Filter::initializeFD_Filter(void) {
 
 };
 
-void FD_Filter::OverlapSaveMethod(void) {
+void FD_Filter::overlapSaveZPRealIn(vector<double> &inputSignal, vector<double> &outputSignal, vector<t_complex> HF_complex, int NFFT) {
 
-	int NFFT = transferFunctionLength;
-	int Nblocks = 2 * (inputBufferTimeDomain.size() / NFFT);
+	//int NFFT = transferFunctionLength;
 
-	vector<double> real_temp(NFFT, 0);
-	vector<double> imag_temp(NFFT, 0);
+	vector<double> var_temp(NFFT, 0);
 	vector<double> real_temp_copy(NFFT, 0);
 	vector<double> imag_temp_copy(NFFT, 0);
-	vector<t_real> H_real(NFFT, 0);
-	vector<t_real> H_imag(NFFT, 0);
+	vector<double> H_real(NFFT, 0);
+	vector<double> H_imag(NFFT, 0);
+	//vector<double> v_in_temp(NFFT / 2, 0);
+	//vector<double> v_out_temp(NFFT / 2, 0);
+
 	Fft fft;
 	ComplexMult CMult;
-	CMult.ComplexVect2ReImVect(transferFunction, H_real, H_imag);
+	CMult.ComplexVect2ReImVect(HF_complex, H_real, H_imag);
 	//fft.directTransform(h_real, h_imag);
 
-	for (int k = 0; k < Nblocks; k++) {
+	copy(inputSignal.begin(), inputSignal.end(), var_temp.begin() + (NFFT / 2));
+	real_temp_copy = var_temp;
+	rotate(var_temp.begin(), var_temp.begin() + NFFT / 2, var_temp.end());
+	// Computation of FFT of each block
 
-		if (k == Nblocks - 1) {
-			copy(inputBufferTimeDomain.begin(), inputBufferTimeDomain.begin() + (NFFT / 2), real_temp.begin() + (NFFT / 2));
-			//copy(imag_in.begin(), imag_in.begin() + (NFFT / 2), imag_temp.begin() + (NFFT / 2));
+	fft.directTransform(real_temp_copy, imag_temp_copy);
 
-			copy(inputBufferTimeDomain.end() - (NFFT / 2), inputBufferTimeDomain.end(), real_temp.begin());
-			//copy(imag_in.end() - (NFFT / 2), imag_in.end(), imag_temp.begin());
-		}
-		else {
-			copy(inputBufferTimeDomain.begin() + k*(NFFT / 2), inputBufferTimeDomain.begin() + ((k + 1)*NFFT - k*(NFFT / 2)), real_temp.begin());
-			//copy(imag_in.begin() + k*(NFFT / 2), imag_in.begin() + ((k + 1)*NFFT - k*(NFFT / 2)), imag_temp.begin());
-		}
+	// Multiplication with the transfer function
+	CMult.CMultVector_Loop(real_temp_copy, imag_temp_copy, H_real, H_imag);
 
-		// coping real_temp/imag_temp into real_temp_copy/imag_temp_copy vectors
-		real_temp_copy = real_temp;
-		imag_temp_copy = imag_temp;
+	// Computation of IFFT of each block
+	fft.inverseTransform(real_temp_copy, imag_temp_copy);
 
-		// Computation of FFT of each block
-		fft.directTransform(real_temp_copy, imag_temp_copy);
+	// Removing the samples symetrically and assign to the output
 
-		// Multiplication with the transfer function
-		CMult.CMultVector_Loop(real_temp_copy, imag_temp_copy, H_real, H_imag);
-
-		// Computation of IFFT of each block
-		fft.inverseTransform(real_temp_copy, imag_temp_copy);
-
-		// Removing the samples symetrically and assign to the output
-		if (k == Nblocks - 1) {
-			copy(real_temp_copy.begin() + (NFFT / 4), real_temp_copy.begin() + (NFFT / 2), outputBufferTimeDomain.end() - (NFFT / 4));
-			//copy(imag_temp_copy.begin() + (NFFT / 4), imag_temp_copy.begin() + (NFFT / 2), imag_out.end() - (NFFT / 4));
-
-			copy(real_temp_copy.begin() + (NFFT / 2), real_temp_copy.begin() + NFFT, outputBufferTimeDomain.begin());
-			//copy(imag_temp_copy.begin() + (NFFT / 2), imag_temp_copy.begin() + NFFT, imag_out.begin());
-		}
-		else {
-			copy(real_temp_copy.begin() + (NFFT / 4), real_temp_copy.end() - (NFFT / 4), outputBufferTimeDomain.begin() + ((NFFT / 4) + k*(NFFT / 2)));
-			//copy(imag_temp_copy.begin() + (NFFT / 4), imag_temp_copy.end() - (NFFT / 4), imag_out.begin() + ((NFFT / 4) + k*(NFFT / 2)));
-		}
-	}
+	copy(real_temp_copy.begin() + (NFFT / 2), real_temp_copy.end(), outputSignal.begin());
 
 }
 
 bool FD_Filter::runBlock(void) {
-	
+	inputBufferTimeDomainLength = transferFunctionLength / 2;
+	outputBufferTimeDomainLength = transferFunctionLength / 2;
+	inputBufferTimeDomain.resize(inputBufferTimeDomainLength);
+	outputBufferTimeDomain.resize(outputBufferTimeDomainLength);
+
 	bool alive{ false };
 
 	int ready = inputSignals[0]->ready();
 	int space = inputBufferTimeDomainLength - inputBufferPointer;
 
-	int process = min(ready, space);
-	if (process > 0) alive = true;
+	int process1 = min(ready, space);
+	if (process1 > 0) alive = true;
 
-	// read all incoming samples to the input buffer
-	for (int k = 0; k < process; k++) {
+	// read incoming samples to the input buffer
+	for (int k = 0; k < process1; k++) {
 		t_real val;
 		(inputSignals[0])->bufferGet(&val);
 		inputBufferTimeDomain[k] = val;
 		inputBufferPointer++;
 	}
 
-	space = outputSignals[0]->space();
-	ready = 3/4 * outputBufferTimeDomainLength - outputBufferPointer;
+	if ((inputBufferPointer == inputBufferTimeDomainLength) && (outputBufferPointer == 0)) {
+		overlapSaveZPRealIn(inputBufferTimeDomain, outputBufferTimeDomain, transferFunction, transferFunctionLength);
+		inputBufferPointer = 0;
+		//outputBufferPointer = 0;
+	};
 
-	int process = min(ready, space);
-	if (process > 0) alive = true;
+	space = outputSignals[0]->space();
+	ready = outputBufferTimeDomainLength - outputBufferPointer;
+
+	int process2 = min(ready, space);
+	if (process2 > 0) alive = true;
 	
-	for (int k = 0; k < process; k++) {
+	for (int k = 0; k < process2; k++) {
 		t_real val = outputBufferTimeDomain[k];
 		(outputSignals[0])->bufferPut(&val);
 		outputBufferPointer++;
 	}
-
-	if ((inputBufferPointer==inputBufferTimeDomainLength) && (outputBufferPointer== 3/4 * outputBufferTimeDomainLength)) {
-		OverlapSaveMethod();
-		inputBufferPointer = transferFunctionLength / 2 ;
-		outputBufferPointer = 1/4 * outputBufferTimeDomainLength;
-	};
-
+	outputBufferPointer = 0;
 	return alive;
 };
  

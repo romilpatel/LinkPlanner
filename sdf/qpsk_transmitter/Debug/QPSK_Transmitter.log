@@ -1,9 +1,7 @@
-﻿Build started 11/05/2017 16:06:29.
+﻿Build started 23/05/2017 21:34:16.
      1>Project "C:\netxpto\Celestino\sdf\qpsk_transmitter\QPSK_Transmitter.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /IC:\Universidade\Investigacao\netXPTO\GitHub\LinkPlanner\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\lib\binary_source.cpp ..\..\lib\discrete_to_continuous_time.cpp ..\..\lib\iq_modulator.cpp ..\..\lib\m_qam_mapper.cpp ..\..\lib\netxpto.cpp ..\..\lib\pulse_shaper.cpp ..\..\lib\sink.cpp qpsk_transmitter_sdf.cpp
-         qpsk_transmitter_sdf.cpp
-     1>c:\netxpto\celestino\sdf\qpsk_transmitter\qpsk_transmitter_sdf.cpp(1): fatal error C1083: Cannot open include file: 'netxpto.h': No such file or directory
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /IC:\Universidade\Investigacao\netXPTO\GitHub\LinkPlanner\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\lib\binary_source.cpp ..\..\lib\discrete_to_continuous_time.cpp ..\..\lib\iq_modulator.cpp ..\..\lib\m_qam_mapper.cpp ..\..\lib\netxpto.cpp ..\..\lib\pulse_shaper.cpp ..\..\lib\sink.cpp
          sink.cpp
      1>c:\netxpto\celestino\lib\sink.cpp(1): fatal error C1083: Cannot open include file: 'netxpto.h': No such file or directory
          pulse_shaper.cpp
@@ -17,10 +15,10 @@
          discrete_to_continuous_time.cpp
      1>c:\netxpto\celestino\lib\discrete_to_continuous_time.cpp(3): fatal error C1083: Cannot open include file: 'netxpto.h': No such file or directory
          binary_source.cpp
-     1>c:\netxpto\celestino\lib\binary_source.cpp(12): fatal error C1083: Cannot open include file: 'netxpto.h': No such file or directory
+     1>c:\netxpto\celestino\lib\binary_source.cpp(11): fatal error C1083: Cannot open include file: 'netxpto.h': No such file or directory
          Generating Code...
      1>Done Building Project "C:\netxpto\Celestino\sdf\qpsk_transmitter\QPSK_Transmitter.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:02.32
+Time Elapsed 00:00:02.35

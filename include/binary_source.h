@@ -41,8 +41,8 @@ class BinarySource : public Block {
 
 
 	// Methods
-	 BinarySource() {};
-	 BinarySource(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	BinarySource() {};
+	BinarySource(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 
 	void initialize(void);
 	

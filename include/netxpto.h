@@ -504,17 +504,7 @@ public:
 	/* Methods */
 	FD_Filter() {};
 	//FD_Filter(int,int) : inputBufferTimeDomainLength(8), outputBufferTimeDomainLength(8) {};
-	FD_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {
-
-		setInputBufferTimeDomainLength(getTransferFunctionLength()/2);
-		setOutputBufferTimeDomainLength(getTransferFunctionLength()/2);
-
-		inputBufferTimeDomain.resize(getInputBufferTimeDomainLength());
-		outputBufferTimeDomain.resize(getOutputBufferTimeDomainLength());
-
-		inputBufferPointer = getInputBufferTimeDomainLength()/2;
-		outputBufferPointer = getOutputBufferTimeDomainLength();
-	};
+	FD_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {};
 
 	void initializeFD_Filter(void);
 

@@ -518,8 +518,6 @@ public:
 
 	void initializeFD_Filter(void);
 
-	void overlapSaveZPRealIn(vector<double> &inputSignal, vector<double> &outputSignal, vector<t_complex> HF_complex, int NFFT);
-
 	bool runBlock(void);
 
 	void terminate(void) {};
@@ -601,6 +599,9 @@ class Fft
 {
 
 public:
+	std::vector<complex <double>> directTransformInReal(std::vector<double> &real);
+
+	std::vector<double> inverseTransformInCP(std::vector<complex <double>> &In);
 
 	void directTransform(std::vector<double> &real, std::vector<double> &imag);
 
@@ -624,6 +625,7 @@ public:
 
 	void CMultVector(vector<double> &v1_real, vector<double> &v1_imag, vector<double> v2_real, vector<double> v2_imag);
 	void CMultVector_Loop(vector<double> &v1_real, vector<double> &v1_imag, vector<double> v2_real, vector<double> v2_imag);
+	vector<complex <double>> CMultVectorInCP(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in);
 	void ComplexVect2ReImVect(vector<complex <double>> &v_in, vector<double> &v1_real, vector<double> &v1_imag);
 	void CMultVector_InComplex(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in);
 	void ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &v1_imag, vector<complex <double>> &v_out);

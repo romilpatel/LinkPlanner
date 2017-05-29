@@ -435,6 +435,8 @@ bool FD_Filter::runBlock(void) {
 	outputBufferTimeDomainLength = transferFunctionLength / 2;
 	inputBufferTimeDomain.resize(inputBufferTimeDomainLength);
 	outputBufferTimeDomain.resize(outputBufferTimeDomainLength);*/
+	Fft fft;
+	ComplexMult CMult;
 
 	bool alive{ false };
 
@@ -453,8 +455,8 @@ bool FD_Filter::runBlock(void) {
 	}
 
 	if ((inputBufferPointer == getInputBufferTimeDomainLength()) && (outputBufferPointer == getOutputBufferTimeDomainLength())) {
-		outputBufferTimeDomain = fft.inverseTransform(CMult.CMultVector_Loop(fft.directTransform(inputBufferTimeDomain), transferFunction));
-		rotate(inputBufferTimeDomain.begin(), inputBufferTimeDomain.size()/2, inputBufferTimeDomain.size());
+		outputBufferTimeDomain = fft.inverseTransformInCP(CMult.CMultVectorInCP(fft.directTransformInReal(inputBufferTimeDomain), transferFunction));
+		rotate(inputBufferTimeDomain.begin(), inputBufferTimeDomain.begin() + inputBufferTimeDomain.size()/2, inputBufferTimeDomain.end());
 		inputBufferPointer = inputBufferTimeDomain.size()/2;
 		outputBufferPointer = outputBufferTimeDomain.size()/2;
 	};
@@ -843,6 +845,43 @@ void OverlapMethod::overlapSaveSyRealIn(vector<double> &v_in, vector<double> &v_
 // Private function prototypes
 static size_t reverseBits(size_t x, unsigned int n);
 
+std::vector<complex <double>> Fft::directTransformInReal(std::vector<double> &real) {
+	//if (In.real.size() != imag.size())
+	//throw "Mismatched lengths";
+	ComplexMult CMult;
+	vector<double> imag(real.size(), 0);
+	vector<complex <double>> v_out(real.size(), 0);
+	size_t n = real.size();
+
+	if (n == 0)
+		return v_out;
+	else if ((n & (n - 1)) == 0)  // Is power of 2
+		transformRadix2(real, imag);
+	else  // More complicated algorithm for arbitrary sizes
+		transformBluestein(real, imag);
+
+	CMult.ReImVect2ComplexVect(real, imag, v_out);
+	return v_out;
+}
+
+std::vector<double> Fft::inverseTransformInCP(std::vector<complex <double>> &In) {
+	ComplexMult CMult;
+	vector<double> real(In.size(), 0);
+	vector<double> imag(In.size(), 0);
+	CMult.ComplexVect2ReImVect(In, real, imag);
+	directTransform(imag, real);
+	for (int x = 0; x != real.size(); ++x)
+	{
+		real[x] = real[x] / real.size();
+		imag[x] = imag[x] / real.size();
+	}
+
+	vector<double> v_out(real.size(), 0);
+	v_out = real;
+	//CMult.ReImVect2ComplexVect(real, imag, v_out);
+
+	return v_out;
+}
 
 void Fft::directTransform(vector<double> &real, vector<double> &imag) {
 	if (real.size() != imag.size())
@@ -1069,6 +1108,16 @@ void ComplexMult::CMultVector_InComplex(vector<complex <double>> &v1_in, vector<
 
 	}
 
+}
+
+vector<complex <double>> ComplexMult::CMultVectorInCP(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in) {
+
+	vector<complex <double>> v_out(v1_in.size(), 0);
+	for (int k = 0; k < v1_in.size(); ++k)
+	{
+		v_out.at(k) = v1_in.at(k)*v2_in.at(k);
+	}
+	return v_out;
 }
 
 void ComplexMult::ComplexVect2ReImVect(vector<complex <double>> &v_in, vector<double> &v1_real, vector<double> &v1_imag) {

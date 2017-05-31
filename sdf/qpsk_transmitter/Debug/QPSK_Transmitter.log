@@ -1,4 +1,4 @@
-﻿Build started 24/05/2017 15:15:43.
+﻿Build started 30/05/2017 23:01:13.
      1>Project "C:\netxpto\Celestino\sdf\qpsk_transmitter\QPSK_Transmitter.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I../../include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\lib\binary_source.cpp ..\..\lib\discrete_to_continuous_time.cpp ..\..\lib\iq_modulator.cpp ..\..\lib\m_qam_mapper.cpp ..\..\lib\netxpto.cpp ..\..\lib\pulse_shaper.cpp ..\..\lib\sink.cpp qpsk_transmitter_sdf.cpp
@@ -6,6 +6,7 @@
          sink.cpp
          pulse_shaper.cpp
          netxpto.cpp
+     1>c:\netxpto\celestino\lib\netxpto.cpp(1119): warning C4018: '<': signed/unsigned mismatch
          m_qam_mapper.cpp
          iq_modulator.cpp
          discrete_to_continuous_time.cpp
@@ -25,4 +26,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:09.28
+Time Elapsed 00:00:15.02

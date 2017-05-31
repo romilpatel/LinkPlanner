@@ -431,10 +431,13 @@ void FD_Filter::initializeFD_Filter(void) {
 
 
 bool FD_Filter::runBlock(void) {
-	/*inputBufferTimeDomainLength = transferFunctionLength / 2;
-	outputBufferTimeDomainLength = transferFunctionLength / 2;
+
+	/*inputBufferTimeDomainLength = transferFunctionLength;
+	outputBufferTimeDomainLength = transferFunctionLength;
 	inputBufferTimeDomain.resize(inputBufferTimeDomainLength);
-	outputBufferTimeDomain.resize(outputBufferTimeDomainLength);*/
+	outputBufferTimeDomain.resize(outputBufferTimeDomainLength);
+	inputBufferPointer = transferFunctionLength/2;
+	outputBufferPointer = transferFunctionLength;*/
 	Fft fft;
 	ComplexMult CMult;
 
@@ -454,7 +457,7 @@ bool FD_Filter::runBlock(void) {
 		inputBufferPointer++;
 	}
 
-	if ((inputBufferPointer == getInputBufferTimeDomainLength()) && (outputBufferPointer == getOutputBufferTimeDomainLength())) {
+	if ((inputBufferPointer == inputBufferTimeDomain.size()) && (outputBufferPointer == outputBufferTimeDomain.size())) {
 		outputBufferTimeDomain = fft.inverseTransformInCP(CMult.CMultVectorInCP(fft.directTransformInReal(inputBufferTimeDomain), transferFunction));
 		rotate(inputBufferTimeDomain.begin(), inputBufferTimeDomain.begin() + inputBufferTimeDomain.size()/2, inputBufferTimeDomain.end());
 		inputBufferPointer = inputBufferTimeDomain.size()/2;

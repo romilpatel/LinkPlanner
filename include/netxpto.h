@@ -498,8 +498,8 @@ public:
 	vector<t_real> inputBufferTimeDomain;
 	vector<t_real> outputBufferTimeDomain;
 
-	int inputBufferPointer;
-	int outputBufferPointer;
+	int inputBufferPointer{0};
+	int outputBufferPointer{0};
 
 	/* Methods */
 	FD_Filter() {};

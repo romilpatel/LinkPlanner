@@ -19,6 +19,8 @@ void FD_PulseShaper::initialize(void) {
 			break;
 	};
 
+	initializeFD_Filter();
+
 }
 
 

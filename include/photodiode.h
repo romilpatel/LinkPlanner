@@ -13,8 +13,8 @@ public:
 
 	double outputOpticalWavelength{ 1550e-9 };
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
-	t_real responsivity = 1;
-	t_real h = 6.62607004e-34;
+	double responsivity = 1;
+	bool shotNoise = false;
 
 	default_random_engine generator1;
 	default_random_engine generator2;
@@ -25,7 +25,10 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	void  setResponsivity(t_real Responsivity) { responsivity = Responsivity; }
+	void setResponsivity(double Responsivity) { responsivity = Responsivity; }
+	double const getResponsivity(void) { return responsivity; }
+
+	void useNoise(bool sNoise) { shotNoise = sNoise; }
 
 private:
 };

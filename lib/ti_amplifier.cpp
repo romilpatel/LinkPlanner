@@ -20,7 +20,10 @@ void TIAmplifier::initialize(void){
 
 bool TIAmplifier::runBlock(void){
 
-	normal_distribution<double> distribution( 0, noiseamp);
+	ofstream translate;
+	translate.open("translate.txt", fstream::app);
+
+	normal_distribution<double> distribution(0, 1);
 
 	int ready = inputSignals[0]->ready();
 
@@ -28,8 +31,10 @@ bool TIAmplifier::runBlock(void){
 
 	int process = min(ready, space);
 
-	if (process == 0) return false;
-
+	if (process == 0) {
+		translate.close();
+		return false;
+	}
 	double noise = 0;
 
 	for (int i = 0; i < process; i++) {
@@ -39,7 +44,15 @@ bool TIAmplifier::runBlock(void){
 		
 		noise = distribution(generator);
 		
-		t_real output = input*amplification +noise; // assuming current in amps
+		t_real output = input*gain; // assuming current in amps
+
+		if (electricalNoiseSpectralDensity!=0)
+		{
+			output = output + noise*electricalNoiseSpectralDensity;
+		}
+
+		translate << output << "\n";
+
 
 		outputSignals[0]->bufferPut(output);
 	}

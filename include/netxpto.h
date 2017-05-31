@@ -508,6 +508,10 @@ public:
 
 	void initializeFD_Filter(void);
 
+	void overlapSaveZPRealIn(void);
+
+	void OverlapSaveMethod(void);
+
 	bool runBlock(void);
 
 	void terminate(void) {};

@@ -21,13 +21,9 @@ void Photodiode::initialize(void){
 
 bool Photodiode::runBlock(void){
 
-	ofstream myfile2;
-	myfile2.open("translate.txt", fstream::app);
-
-
 	double samplingPeriod = inputSignals[0]->getSamplingPeriod();
-	double symbolPeriod = inputSignals[0]->getSymbolPeriod ();
-	int samplesPerSymbol = round(symbolPeriod / samplingPeriod);
+
+	int samplesPerSymbol = inputSignals[0]->getSamplesPerSymbol();
 
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
@@ -37,10 +33,7 @@ bool Photodiode::runBlock(void){
 
 	int process = min(ready, space);
 
-	if (process == 0){
-		myfile2.close();
-		return false;
-	}
+	if (process == 0) return false;
 
 	normal_distribution<double> distribution(0, 1);
 	double w1 = inputSignals[0]->getCentralFrequency();
@@ -152,7 +145,6 @@ bool Photodiode::runBlock(void){
 		}
 
 		outputSignals[0]->bufferPut(out);
-		myfile2 << out << "\n";
 		t = t + samplingPeriod;
 		aux++;
 		if (aux==samplesPerSymbol)

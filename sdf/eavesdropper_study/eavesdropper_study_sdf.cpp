@@ -11,6 +11,8 @@
 # include "sampler.h"
 # include "optical_hybrid.h"
 # include "testblock.h"
+# include "sampler.h"
+# include "bit_decider.h"
 
 int main(){
 
@@ -38,11 +40,58 @@ int main(){
 	// ########################### Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
 
+	// %%%%%%%%%%%%%%%% ALICE SIGNAL GENERATION %%%%%%%%%%%%%%%%
+
 	Binary S0("S0.sgn");
 	S0.setBufferLength(bufferLength);
 
 	OpticalSignal S1("S1.sgn");
 	S1.setBufferLength(bufferLength);
+
+	// %%%%%%%%%%%%%%%%   EVE SIGNAL DETECTION   %%%%%%%%%%%%%%%%
+
+	OpticalSignal ED0("ED0.sgn");
+	ED0.setBufferLength(bufferLength);
+
+	OpticalSignal ED1("ED1.sgn");
+	ED1.setBufferLength(bufferLength);
+
+	OpticalSignal ED2("ED2.sgn");
+	ED2.setBufferLength(bufferLength);
+
+	TimeContinuousAmplitudeContinuousReal ED3("ED3.sgn");
+	ED3.setBufferLength(bufferLength);
+
+	TimeDiscreteAmplitudeContinuousReal ED4("ED4.sgn");
+	ED4.setBufferLength(bufferLength);
+
+	Binary ED5("ED5.sgn");
+	ED5.setBufferLength(bufferLength);
+
+	// %%%%%%%%%%%%%%%% EVE SIGNAL REGENERATION %%%%%%%%%%%%%%%%
+
+	TimeDiscreteAmplitudeDiscreteReal EE1("EE1.sgn");
+	EE1.setBufferLength(bufferLength);
+	
+	TimeDiscreteAmplitudeDiscreteReal EE2("EE2.sgn");
+	EE2.setBufferLength(bufferLength);
+
+	TimeContinuousAmplitudeDiscreteReal EE3("EE3.sgn");
+	EE3.setBufferLength(bufferLength);
+
+	TimeContinuousAmplitudeDiscreteReal EE4("EE4.sgn");
+	EE4.setBufferLength(bufferLength);
+
+	TimeContinuousAmplitudeContinuousReal EE5("EE5.sgn");
+	EE5.setBufferLength(bufferLength);
+
+	TimeContinuousAmplitudeContinuousReal EE6("EE6.sgn");
+	EE6.setBufferLength(bufferLength);
+
+	OpticalSignal EE7("EE7.sgn");
+	EE7.setBufferLength(bufferLength);
+
+	// %%%%%%%%%%%%%%%%   BOB SIGNAL DETECTION   %%%%%%%%%%%%%%%%
 
 	OpticalSignal S2("S2.sgn");
 	S2.setBufferLength(bufferLength);
@@ -56,10 +105,17 @@ int main(){
 	TimeContinuousAmplitudeContinuousReal S5("S5.sgn");
 	S5.setBufferLength(bufferLength);
 
-	TimeContinuousAmplitudeContinuousReal S6("S6.sgn");
+	TimeDiscreteAmplitudeContinuousReal S6("S6.sgn");
 	S6.setBufferLength(bufferLength);
 
-	
+	Binary S7("S7.sgn");
+	S7.setBufferLength(bufferLength);
+
+	Binary S8("S8.sgn");
+	S8.setBufferLength(bufferLength);
+
+
+
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
@@ -73,41 +129,60 @@ int main(){
 	B1.setPulseShaperFilter(Gaussian);
 	B1.setNumberOfSamplesPerSymbol(samplesPerSymbol);
 	B1.setSaveInternalSignals(true);
-	B1.setSeeBeginningOfImpulseResponse(false);
+	B1.setSeeBeginningOfImpulseResponse(true);
 
-	LocalOscillator B2{ vector<Signal*> { }, vector<Signal*> { &S2 } };
+	LocalOscillator B2{ vector<Signal*> { }, vector<Signal*> { &ED0 } };
 	B2.setOpticalPower(localOscillatorPower_dBm);
 	B2.setPhase(localOscillatorPhase);
 	B2.setSamplingPeriod(bitPeriod / samplesPerSymbol);
 	B2.setSymbolPeriod(bitPeriod);
 	B2.setSignaltoNoiseRatio(SNR);
 
-	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4 } };
+	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &ED0}, vector<Signal*> {&ED1, &ED2 } };
 	B3.setTransferMatrix(transferMatrix);
 
-	Photodiode B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
+	Photodiode B4{ vector<Signal*> {&ED1, &ED2}, vector<Signal*> {&ED3} };
 	B4.useNoise(shotNoise);
 	B4.setResponsivity(responsivity);
 
-	TI_Amplifier B5{ vector<Signal*> {&S5}, vector<Signal*> {&S6} };
-	B5.setGain(amplification);
-	B5.setElectricalNoiseSpectralDensity(electricalNoiseAmplitude);
-	B5.setSaveInternalSignals(true);
-	B5.setSeeBeginningOfImpulseResponse(false);
-	B5.setImpulseResponseLength(16);
-	B5.setRollOffFactor(0);
-	B5.usePassiveFilterMode(true);
 
+	Sampler B5{ vector<Signal*> {&ED3}, vector<Signal*> {&ED4} };
 
-	Sink B6{ vector<Signal*> {&S6}, vector<Signal*> {} };
-	B6.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B6.setDisplayNumberOfSamples(true);
+	BitDecider B6{ vector<Signal*> {&ED4}, vector<Signal*> {&ED5} };
+
+	MQamMapper B7{ vector<Signal*> {&ED5}, vector<Signal*> {&EE1, &EE2} };
+
+	DiscreteToContinuousTime  B8{ vector<Signal*> {&EE1}, vector<Signal*> {&EE3} };
+
+	DiscreteToContinuousTime  B9{ vector<Signal*> {&EE2}, vector<Signal*> {&EE4} };
+
+	PulseShaper B10{ vector<Signal*> {&EE3}, vector<Signal*> {&EE5} };
+
+	PulseShaper B11{ vector<Signal*> {&EE4}, vector<Signal*> {&EE6} };
+
+	IqModulator B12{ vector<Signal*> {&EE5, &EE6}, vector<Signal*> {&EE7} };
+
+	LocalOscillator B13{ vector<Signal*> {}, vector<Signal*> {&S2} };
+
+	BalancedBeamSplitter B14{ vector<Signal*> { &EE7, &S2 }, vector<Signal*> {&S3, &S4} };
+
+	Photodiode B14{ vector<Signal*> { &S3, &S4 }, vector<Signal*> {&S5} };
+
+	Sampler B15{ vector<Signal*> { &S5 }, vector<Signal*> { &S6 } };
+
+	BitDecider B16{ vector<Signal*> { &S6 }, vector<Signal*> { &S7 } };
+
+	BitErrorRate B17{ vector<Signal*> { &S0, &S7 }, vector<Signal*> { &S8 } };
+
+	Sink B18{ vector<Signal*> {&S8}, vector<Signal*> {} };
+	B18.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B18.setDisplayNumberOfSamples(true);
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6 } };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14, &B15, &B16, &B17, &B18} };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

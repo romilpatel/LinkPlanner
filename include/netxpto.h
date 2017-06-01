@@ -418,7 +418,7 @@ public:
 
 
 	/* Methods */
-
+	SuperBlock() {};
 	SuperBlock(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal) :Block(inputSignal, outputSignal){ setSaveInternalSignals(false); };
 
 	void initialize(void);

@@ -9,7 +9,11 @@ class Sampler : public Block {
 
 	bool firstTime{ true };
 
-	t_integer samplesToSkip{ 0 };
+	bool firstPass{ true };
+	bool repeatedPass{ false };
+	int samplesToSkip{ 0 };
+	int count = 0;
+	bool aux1{ false };
 
 public:
 
@@ -19,7 +23,8 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	void setSamplesToSkip(t_integer sToSkip) { samplesToSkip = sToSkip; }
+	void setSamplesToSkip(int sToSkip) { samplesToSkip = sToSkip; }
+	int const getSamplesToSkip(void) { return samplesToSkip; }
 
 };
 

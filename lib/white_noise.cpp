@@ -31,6 +31,21 @@ bool WhiteNoise::runBlock(void){
 	signal_value_type sType = outputSignals[0]->getValueType();
 	switch (sType)
 	{
+	case RealValue:
+	{
+					  normal_distribution<double> distributionNoise(0, 1);
+					  for (int i = 0; i < process; i++)
+					  {
+						  t_real output = 0;
+						  if (spectralDensity!=0)
+						  {
+							  t_real noise = distributionNoise(generator1);
+							  output = noise*sqrt(spectralDensity);
+						  }
+						  outputSignals[0]->bufferPut(output);
+					  }
+					  break;
+	}
 	case ComplexValue:
 	{
 						 normal_distribution<double> distributionNoiseI(0, 1);
@@ -43,7 +58,7 @@ bool WhiteNoise::runBlock(void){
 							 {
 								 t_real noiseI = distributionNoiseI(generator1);
 								 t_real noiseQ = distributionNoiseQ(generator2);
-								 output = (noiseI*spectralDensity / sqrt(2), noiseQ*spectralDensity / sqrt(2));
+								 output = (noiseI*sqrt(spectralDensity / 2), noiseQ*sqrt(spectralDensity / 2));
 							 }
 
 							 outputSignals[0]->bufferPut(output);
@@ -66,10 +81,10 @@ bool WhiteNoise::runBlock(void){
 							   {
 								   t_real noiseIX = distributionNoiseIX(generator1);
 								   t_real noiseQX = distributionNoiseQX(generator2);
-								   output.x = (noiseIX*spectralDensity / sqrt(2), noiseQX*spectralDensity / sqrt(2));
+								   output.x = (noiseIX*sqrt(spectralDensity / 2), noiseQX*sqrt(spectralDensity / 2));
 								   t_real noiseIY = distributionNoiseIY(generator3);
 								   t_real noiseQY = distributionNoiseQY(generator4);
-								   output.y = (noiseIY*spectralDensity / sqrt(2), noiseQY*spectralDensity / sqrt(2));
+								   output.y = (noiseIY*sqrt(spectralDensity / 2), noiseQY*sqrt(spectralDensity / 2));
 
 							   }
 

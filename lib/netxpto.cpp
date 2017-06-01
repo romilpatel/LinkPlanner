@@ -280,6 +280,13 @@ bool SuperBlock::runBlock() {
 						outputSignals[i]->bufferPut(signalValue);
 					}
 					break;
+				case RealValue:
+					for (int j = 0; j < length; j++) {
+						t_real signalValue;
+						moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->bufferGet(&signalValue);
+						outputSignals[i]->bufferPut(signalValue);
+					}
+					break;
 				case ComplexValue:
 					for (int j = 0; j < length; j++) {
 						t_complex signalValue;
@@ -675,7 +682,7 @@ void System::run() {
 void System::run(string signalPath) {
 
 	
-	// The signalPath sub-folder must already exists
+	// The signalPath sub-folder must already exist
 	for (int unsigned i = 0; i < SystemBlocks.size(); i++) {
 		for (int unsigned j = 0; j<(SystemBlocks[i]->inputSignals).size(); j++) {
 			(SystemBlocks[i]->inputSignals[j])->writeHeader(signalPath);

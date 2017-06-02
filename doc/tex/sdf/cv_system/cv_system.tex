@@ -1,64 +1,86 @@
-\documentclass[a4paper]{article}
+%\documentclass[a4paper]{article}
+%
+%% subfile handling packages
+%\usepackage{subfiles}
+%\newcommand{\onlyinsubfile}[1]{#1}
+%\newcommand{\notinsubfile}[1]{}
+%
+%% document packages
+%\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
+%\usepackage{amsmath}
+%\usepackage{multicol}
+%\usepackage{caption}
+%\usepackage{subcaption}
+%\usepackage{graphicx}
+%\usepackage{multirow}
+%\usepackage{tabulary}
+%\usepackage{hhline}
+%\usepackage{indentfirst}
+%\RequirePackage{ltxcmds}[2010/12/07]
+%\graphicspath{{../../images/}}
+%%\graphicspath
+%\usepackage{float}
+%\usepackage{amsfonts}
+%\usepackage{hyperref}
+%\usepackage{footnote}
+%\makesavenoteenv{tabular}
+%\usepackage{braket}
+%%opening
+%\title{Safety study}
+%\author{}
+%\date{}
+%
+%
+%\begin{document}
+%\maketitle
 
-% subfile handling packages
-\usepackage{subfiles}
-\newcommand{\onlyinsubfile}[1]{#1}
-\newcommand{\notinsubfile}[1]{}
+\section{Continuos Variable Quantum Transmission System}\label{sec:intro}
 
-% document packages
-\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
-\usepackage{amsmath}
-\usepackage{multicol}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{graphicx}
-\usepackage{multirow}
-\usepackage{tabulary}
-\usepackage{hhline}
-\usepackage{indentfirst}
-\RequirePackage{ltxcmds}[2010/12/07]
-\graphicspath{{../../images/}}
-%\graphicspath
-\usepackage{float}
-\usepackage{amsfonts}
-\usepackage{hyperref}
-\usepackage{footnote}
-\makesavenoteenv{tabular}
-\usepackage{braket}
-%opening
-\title{Safety study}
-\author{}
-\date{}
-
-
-\begin{document}
-\maketitle
-
-\section{Introduction}\label{sec:intro}
-
-This document describes a model to simulate the results presented in~\cite{namiki2003security}. In this article, the security of Continuous Variable Quantum Key Distribution (CV-QKD) is studied theoretically, stemming from the effects of an eavesdropper on the detected BER. Both direct and adapted to double homodyne detection results are presented.
+In this section a continuous varible qauntum transmission system is analyzed.
+The results here presented follow closely the~\cite{namiki2003security}.
+In~\cite{namiki2003security}, the security of a continuous variable quantum key distribution (CV-QKD) system is studied theoretically, here we complete that theoretical study with simulations results.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=.5\linewidth]{constellation.png}
-\caption{State constellation for CV-QKD}
+\includegraphics[width=.5\linewidth]{./sdf/cv_system/figures/constellation.png}
+\caption{State constellation}
 \label{fig:const}
 \end{figure}
 
-The state constellation used in the CV-QKD protocol is presented in Figure~\ref{fig:const}. Since all states have the same probability of occurring, the state density operator is given by:
+The state constellation used in the system is presented in Figure~\ref{fig:const}.
+The emitter (usually named Alice) is going to use two basis, the $45º$ base and the $-45º$ base.
+In the $45º$ base, Alice sends one of two values, $1$ and $-1$, which correspond to the states $\ket{\alpha}$ and $\ket{-\alpha}$.
+In the $-45º$ base, Alice can also send one of two values, $1$ and $-1$, which correspond to the states $\ket{-i\alpha}$ and $\ket{i\alpha}$.
+At the end Alice is going to send one of the four states $\ket{\alpha}$, $\ket{-\alpha}$, $\ket{-i\alpha}$, and $\ket{i\alpha}$, with equal probability.
+
+Because we don't know $\grave{a}$ prior which state is going be transmitted, neither which basis is going to be used, and to incorporate our ``ignorance"\, in the system description, we can work with the density operator. The density operator is a proper tool to describe ``statistical mixtures". A ``statistical mixtures" is one state, from a possible set, but we don't know which state it is. There is no state superposition.
+
+Since all states have the same probability of occurring, the state density operator is given by:
 
 \begin{equation}\label{eq:statedensity}
 \hat{\rho}=\frac{1}{4}\left(\ket{\alpha}\bra{\alpha}+\ket{-\alpha}\bra{-\alpha}+\ket{i\alpha}\bra{i\alpha}+\ket{-i\alpha}\bra{-i\alpha}\right).
 \end{equation}
 
-The coding base is announced after detection, this way the density operator can be reduced to its projections on the $\hat{X}_1$ and $\hat{X}_2$ quadratures, respectively:
+The probability to detect at the receiver the state $\ket{\alpha}$ is given by
+\begin{equation}\label{eq:statedensity}
+P(\alpha)=\bra{\alpha}\hat{\rho}\ket{\alpha}=\frac{1}{4}.
+\end{equation}
+
+
+Note that the density operator is equivalent to the wave function in terms of the system description.
+
+From the receiver perspective, i.e. from the Bob perspective, and after knowing the base used by Alice.
+The density operator can be reduce to,
 
 \begin{align}
-\hat{\rho}_1&=\frac{1}{2}\left(\ket{\alpha}\bra{\alpha}+\ket{-\alpha}\bra{-\alpha}\right),\label{eq:statedensity1} \\ 
+\hat{\rho}_1&=\frac{1}{2}\left(\ket{\alpha}\bra{\alpha}+\ket{-\alpha}\bra{-\alpha}\right),\label{eq:statedensity1} \\
 \hat{\rho}_2&=\frac{1}{2}\left(\ket{i\alpha}\bra{i\alpha}+\ket{-i\alpha}\bra{-i\alpha}\right).\label{eq:statedensity2}
 \end{align}
 
-\subsection{Single Homodyne setup}
+where $1$ corresponds to the $45º$ base and $-1$ corresponds to $-45º$.
+
+\subsection{Single Base Homodyne Detection}
+
 
 The probability of obtaining a quadrature $\hat{X}_\phi=\hat{X}_1\cos\phi+\hat{X}_2\sin\phi$ when measuring the coherent state $\ket{\alpha}$ is given by the following gaussian distribution:
 
@@ -74,7 +96,7 @@ We can define the "correct" and "wrong" basis measurement probability density, r
 \frac{1}{\sqrt{2\pi}}\left(e^{-2(X_i-\alpha)^2}+e^{-2(X_i+\alpha)}\right), & i=j\\
 \sqrt{\frac{2}{\pi}}e^{-2X_i^2}, &i\neq j
 \end{cases}.
-\end{equation} 
+\end{equation}
 
 The post selection efficiency (PSE) can be defined as the probability of a measurement in the correct basis yields a result that satisfies the limit value $X_0$:
 
@@ -93,7 +115,7 @@ Q(X_0,\alpha)=\frac{1}{P(X_0,\alpha)}\int_{-\infty}^{-X_0}\left|\braket{X_i|\alp
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\linewidth, trim= 0mm 60mm 0mm 70mm]{singlehomodyne.pdf}
+\includegraphics[width=\linewidth, trim= 0mm 60mm 0mm 70mm]{./sdf/cv_system/figures/singlehomodyne.pdf}
 \caption{BER and PSE in function of $\alpha$ for the single homodyne setup. $X_0=1$ was used}
 \label{fig:ber}
 \end{figure}
@@ -225,16 +247,16 @@ This system takes into account the following input parameters:
 \begin{tabulary}{1.0\textwidth}{|C|C|}
 \hline
 \textbf{System Parameters} & \textbf{Description}                                                                   \\ \hline
-numberOfBitsGenerated      & Gives the number of bits to be simulated                                               \\ \hline  
-bitPeriod                  & Sets the time between adjacent bits                                                    \\ \hline 
+numberOfBitsGenerated      & Gives the number of bits to be simulated                                               \\ \hline
+bitPeriod                  & Sets the time between adjacent bits                                                    \\ \hline
 samplesPerSymbol           & Establishes the number of samples each bit in the string is given                      \\ \hline
-localOscillatorPower\_dBm1 & Sets the optical power, in units of dBm, at the reference output	                      \\ \hline  
-localOscillatorPower2      & Sets the optical power, in units of W, of the signal                                   \\ \hline  
-localOscillatorPhase1      & Sets the initial phase of the local oscillator used for reference                      \\ \hline 
-localOscillatorPhase2      & Sets the initial phase of the local oscillator used for signal                         \\ \hline  
-transferMatrix             & Sets the transfer matrix of the beam splitter used in the homodyne detector            \\ \hline  
-responsivity               & Sets the responsivity of the photodiodes used in the homodyne detector                 \\ \hline  
-amplification              & Sets the amplification of the trans-impedance amplifier used in the homodyne detector  \\ \hline  
+localOscillatorPower\_dBm1 & Sets the optical power, in units of dBm, at the reference output	                      \\ \hline
+localOscillatorPower2      & Sets the optical power, in units of W, of the signal                                   \\ \hline
+localOscillatorPhase1      & Sets the initial phase of the local oscillator used for reference                      \\ \hline
+localOscillatorPhase2      & Sets the initial phase of the local oscillator used for signal                         \\ \hline
+transferMatrix             & Sets the transfer matrix of the beam splitter used in the homodyne detector            \\ \hline
+responsivity               & Sets the responsivity of the photodiodes used in the homodyne detector                 \\ \hline
+amplification              & Sets the amplification of the trans-impedance amplifier used in the homodyne detector  \\ \hline
 electricalNoiseAmplitude   & Sets the amplitude of the gaussian thermal noise added in the homodyne detector        \\ \hline
 shotNoise                  & Chooses if quantum shot noise is used in the simulation                                \\ \hline
 \end{tabulary}
@@ -243,7 +265,7 @@ shotNoise                  & Chooses if quantum shot noise is used in the simula
 \section{Inputs}
 
 This system takes no inputs.
-
+%
 \section{Outputs}
 
 The single homodyne system outputs the following objects:

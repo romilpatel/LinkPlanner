@@ -45,16 +45,28 @@ This document describes a model to simulate the results presented in~\cite{namik
 \label{fig:const}
 \end{figure}
 
-The state constellation used in the CV-QKD protocol is presented in Figure~\ref{fig:const}. Since all states have the same probability of occurring, the state density operator is given by:
+The state constellation used in the CV-QKD protocol is presented in Figure~\ref{fig:const}.
+The emitter (usually named Alice) is going to send one of the four states $\ket{\alpha}$, $\ket{-\alpha}$, $\ket{-i\alpha}$, and $\ket{i\alpha}$, with equal probability. 
+Alice is going to use two basis, the $45º$ base and the $-45º$ base.
+In the $45º$ base, she can send one of two values, $1$ and $-1$, which correspond to the states $\ket{\alpha}$ and $\ket{-\alpha}$.
+In the $-45º$ base, she can send also one of two values, $1$ and $-1$, which correspond to the states $\ket{-i\alpha}$ and $\ket{i\alpha}$.
+
+
+Because we don't know $\grave{a}$ prior which state is going be transmitted, neither which basis is going to be used, and to incorporate our ``ignorance" in the system description, we can work with the density operator. The density operator is a proper tool to describe ``statistical mixtures". A ``statistical mixtures" is one state, from a possible set, but we don't know which state it is. There is no coherence superposition, in which a state is a superposition of two states and it is both states at the same time.
+
+Since all states have the same probability of occurring, the state density operator is given by:
 
 \begin{equation}\label{eq:statedensity}
 \hat{\rho}=\frac{1}{4}\left(\ket{\alpha}\bra{\alpha}+\ket{-\alpha}\bra{-\alpha}+\ket{i\alpha}\bra{i\alpha}+\ket{-i\alpha}\bra{-i\alpha}\right).
 \end{equation}
 
-The coding base is announced after detection, this way the density operator can be reduced to its projections on the $\hat{X}_1$ and $\hat{X}_2$ quadratures, respectively:
+Note that the density operator is equivalent to the wave function in terms of the system description.
+
+From the receiver perspective, i.e. from the Bob perspective, and after knowing the base used by Alice.
+The density operator can be reduce to, where $1$ corresponds to the $45º$ base and $-1$ corresponds to $-45º$.
 
 \begin{align}
-\hat{\rho}_1&=\frac{1}{2}\left(\ket{\alpha}\bra{\alpha}+\ket{-\alpha}\bra{-\alpha}\right),\label{eq:statedensity1} \\ 
+\hat{\rho}_1&=\frac{1}{2}\left(\ket{\alpha}\bra{\alpha}+\ket{-\alpha}\bra{-\alpha}\right),\label{eq:statedensity1} \\
 \hat{\rho}_2&=\frac{1}{2}\left(\ket{i\alpha}\bra{i\alpha}+\ket{-i\alpha}\bra{-i\alpha}\right).\label{eq:statedensity2}
 \end{align}
 
@@ -74,7 +86,7 @@ We can define the "correct" and "wrong" basis measurement probability density, r
 \frac{1}{\sqrt{2\pi}}\left(e^{-2(X_i-\alpha)^2}+e^{-2(X_i+\alpha)}\right), & i=j\\
 \sqrt{\frac{2}{\pi}}e^{-2X_i^2}, &i\neq j
 \end{cases}.
-\end{equation} 
+\end{equation}
 
 The post selection efficiency (PSE) can be defined as the probability of a measurement in the correct basis yields a result that satisfies the limit value $X_0$:
 
@@ -225,16 +237,16 @@ This system takes into account the following input parameters:
 \begin{tabulary}{1.0\textwidth}{|C|C|}
 \hline
 \textbf{System Parameters} & \textbf{Description}                                                                   \\ \hline
-numberOfBitsGenerated      & Gives the number of bits to be simulated                                               \\ \hline  
-bitPeriod                  & Sets the time between adjacent bits                                                    \\ \hline 
+numberOfBitsGenerated      & Gives the number of bits to be simulated                                               \\ \hline
+bitPeriod                  & Sets the time between adjacent bits                                                    \\ \hline
 samplesPerSymbol           & Establishes the number of samples each bit in the string is given                      \\ \hline
-localOscillatorPower\_dBm1 & Sets the optical power, in units of dBm, at the reference output	                      \\ \hline  
-localOscillatorPower2      & Sets the optical power, in units of W, of the signal                                   \\ \hline  
-localOscillatorPhase1      & Sets the initial phase of the local oscillator used for reference                      \\ \hline 
-localOscillatorPhase2      & Sets the initial phase of the local oscillator used for signal                         \\ \hline  
-transferMatrix             & Sets the transfer matrix of the beam splitter used in the homodyne detector            \\ \hline  
-responsivity               & Sets the responsivity of the photodiodes used in the homodyne detector                 \\ \hline  
-amplification              & Sets the amplification of the trans-impedance amplifier used in the homodyne detector  \\ \hline  
+localOscillatorPower\_dBm1 & Sets the optical power, in units of dBm, at the reference output	                      \\ \hline
+localOscillatorPower2      & Sets the optical power, in units of W, of the signal                                   \\ \hline
+localOscillatorPhase1      & Sets the initial phase of the local oscillator used for reference                      \\ \hline
+localOscillatorPhase2      & Sets the initial phase of the local oscillator used for signal                         \\ \hline
+transferMatrix             & Sets the transfer matrix of the beam splitter used in the homodyne detector            \\ \hline
+responsivity               & Sets the responsivity of the photodiodes used in the homodyne detector                 \\ \hline
+amplification              & Sets the amplification of the trans-impedance amplifier used in the homodyne detector  \\ \hline
 electricalNoiseAmplitude   & Sets the amplitude of the gaussian thermal noise added in the homodyne detector        \\ \hline
 shotNoise                  & Chooses if quantum shot noise is used in the simulation                                \\ \hline
 \end{tabulary}

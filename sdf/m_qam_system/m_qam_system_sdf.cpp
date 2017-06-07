@@ -12,7 +12,7 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated = 50;
+	int numberOfBitsGenerated = 1000;
 	double bitPeriod = 1.0 / 50e9;
 
 	int prbsPatternLength = 5;
@@ -29,8 +29,8 @@ int main(){
 	t_real localOscillatorPhase = 0;
 	//array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	t_real responsivity = 1;
-	t_real amplification = 10e6;
-	t_real noiseAmplitude = 20;
+	t_real amplification = 1;
+	t_real noiseAmplitude = 0.00001;
 	//t_integer samplesToSkip = 0;
 	t_integer samplesToSkip = 2 * 8 * samplesPerSymbol; // +floor(samplesPerSymbol / 2);
 	t_real confidence = 0.95;

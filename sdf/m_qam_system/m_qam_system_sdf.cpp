@@ -12,7 +12,7 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated = 1000;
+	int numberOfBitsGenerated = 50;
 	double bitPeriod = 1.0 / 50e9;
 
 	int prbsPatternLength = 5;
@@ -24,13 +24,13 @@ int main(){
 	int samplesPerSymbol = 16;
 	double symbolPeriod = bitPeriod / samplesPerSymbol;
 
-	t_real signalOutputPower_dBm = 0; 
-	t_real localOscillatorPower_dBm = 0; 
+	t_real signalOutputPower_dBm = -90; 
+	t_real localOscillatorPower_dBm = -20; 
 	t_real localOscillatorPhase = 0;
 	//array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	t_real responsivity = 1;
 	t_real amplification = 10e6;
-	t_real noiseAmplitude = 1e-16;
+	t_real noiseAmplitude = 20;
 	//t_integer samplesToSkip = 0;
 	t_integer samplesToSkip = 2 * 8 * samplesPerSymbol; // +floor(samplesPerSymbol / 2);
 	t_real confidence = 0.95;
@@ -64,7 +64,7 @@ int main(){
 	B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
 	//B1.setMode(PseudoRandom);
-	B1.setMode(DeterministicAppendZeros);
+	B1.setMode(PseudoRandom);
 	B1.setBitStream("01");
 	B1.setBitPeriod(bitPeriod);
 	B1.setPatternLength(prbsPatternLength);

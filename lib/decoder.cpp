@@ -27,6 +27,10 @@ void Decoder::setM(int mValue) {
 
 		iqAmplitudes = { { 1.0, 1.0 },{ -1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
 
+	case 16:
+
+		iqAmplitudes = { { -3.0, -3.0 },{ -3.0, -1.0 },{ -3.0, 1.0 },{ -3.0, 3.0 },{ -1.0, -3.0 },{ -1.0, -1.0 },{ -1.0, 3.0 },{ -1.0, 1.0 },{ 3.0, -3.0 },{ 3.0, -1.0 },{ 3.0, 3.0 },{ 3.0, 1.0 },{ 1.0, -3.0 },{ 1.0, -1.0 },{ 1.0, 3.0 },{ 1.0, 1.0 } };
+
 	};
 };
 
@@ -74,8 +78,8 @@ bool Decoder::runBlock(void) {
 			aux = aux / 2; //returns the quocient of the division
 		}*/
 		t_binary s_out;
-
-		for (int n = 0; n < log2(m); n++) {
+		vector<int> v(log2(m),0);
+			/*for (int n = 0; n < log2(m); n++) {
 
 			if (n > 0) { s_out = aux % 2; }
 			
@@ -83,7 +87,21 @@ bool Decoder::runBlock(void) {
 
 			outputSignals[0]->bufferPut(s_out);
 			aux = aux % 2; 
-		}
+		}*/
+
+		for (int n = 0; n < log2(m); n++) { 
+			
+			v[n] = aux % 2;
+			aux = aux / 2;
+			
+			 }
+
+		for (k = 0; k < size(v); k++) {
+			
+			s_out = v[k];
+			outputSignals[0]->bufferPut(s_out);
+			
+			 }
 
 	}
 

@@ -1,3 +1,5 @@
+// Here we go
+
 # include "netxpto.h"
 
 # include "m_qam_transmitter.h"
@@ -25,7 +27,7 @@ int main(){
 	double signalPower = 6.4078e-13 * 5; // 1.0252e-11 is the power of one photon for dt=2e-7s
 	double localOscillatorPhase = 0;
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
-	double responsivity = 1;
+	double responsivity = 1;\
 	double amplification = 1e6;
 	double electricalNoiseAmplitude = 0;// 0.0022*0.0022;
 	int bufferLength = 512;

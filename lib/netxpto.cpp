@@ -411,11 +411,13 @@ void FD_Filter::initializeFD_Filter(void) {
 
 /*	delayLine.resize(impulseResponseLength, 0);*/
 
-	transferFunction.resize(transferFunctionLength);
+	
 	//inputBufferTimeDomain.resize(transferFunctionLength);
 	//outputBufferTimeDomain.resize(transferFunctionLength);
 	inputBufferPointer = transferFunctionLength / 2 ;
 	outputBufferPointer = transferFunctionLength;
+
+	//raisedCosineTF(transferFunction, transferFunctionLength, rollOffFactor, samplingPeriod, symbolPeriod);
 
 	if (saveTransferFunction) {
 		ofstream fileHandler("./signals/" + transferFunctionFilename, ios::out);
@@ -435,7 +437,7 @@ void FD_Filter::initializeFD_Filter(void) {
 
 };
 
-void FD_Filter::OverlapSaveMethod(void) {
+/*void FD_Filter::OverlapSaveMethod(void) {
 
 	int NFFT = transferFunctionLength;
 	int Nblocks = 2 * (inputBufferTimeDomain.size() / NFFT);
@@ -535,7 +537,7 @@ void FD_Filter::overlapSaveZPRealIn(void) {
 		copy(v_out_temp.begin(), v_out_temp.end(), outputBufferTimeDomain.begin() + k*(NFFT / 2));
 
 	}
-}
+}*/
 
 bool FD_Filter::runBlock(void) {
 

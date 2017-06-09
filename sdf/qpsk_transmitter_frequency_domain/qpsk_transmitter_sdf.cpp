@@ -51,12 +51,12 @@ int main(){
 
 	FD_PulseShaper B5{ vector<Signal*> { &S4 }, vector<Signal*> { &S6 } };
 	B5.setRollOffFactor(0.3);
-	B5.setTransferFunctionLength(16);
+	B5.setTransferFunctionLength(256);
 	//B5.setSeeBeginningOfImpulseResponse(false);
 
 	FD_PulseShaper B6{ vector<Signal*> { &S5 }, vector<Signal*> { &S7 } };
 	B6.setRollOffFactor(0.3);
-	B6.setTransferFunctionLength(16);
+	B6.setTransferFunctionLength(256);
 	//B6.setSeeBeginningOfImpulseResponse(false);
 
 	IqModulator B7{ vector<Signal*> { &S6, &S7 }, vector<Signal*> { &S8 } };

@@ -25,8 +25,8 @@ public:
 
 	void initialize(void);
 	
-	void setTrasferFunctionLength(int tFLength){ transferFunctionLength = tFLength; };
-	int const getTransferFunctionLength(void) { return transferFunctionLength; };
+	//void setTrasferFunctionLength(int tFLength){ transferFunctionLength = tFLength; };
+	//int const getTransferFunctionLength(void) { return transferFunctionLength; };
 
 	void setFilterType(PulseShaperFilter fType){ filterType = fType; };
 	PulseShaperFilter const getFilterType(void){ return filterType; };

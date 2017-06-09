@@ -480,53 +480,54 @@ public:
 
 class FD_Filter : public Block {
 	
+	/* State Variable */
+	
+
 	int inputBufferTimeDomainLength;
 	int outputBufferTimeDomainLength;
-	
-public:
-	
-	
-	/* Input Parameters */
-	bool saveTransferFunction{ true };
-	string transferFunctionFilename{ "transfer_function.tfn" };
-	int transferFunctionLength;
-
-
-	/* State Variable */
-	vector<t_complex> transferFunction;
 
 	vector<t_real> inputBufferTimeDomain;
 	vector<t_real> outputBufferTimeDomain;
 
-	int inputBufferPointer{0};
-	int outputBufferPointer{0};
+	int inputBufferPointer{ 0 };
+	int outputBufferPointer{ 0 };
+	
+	/* Input Parameters */
+	bool saveTransferFunction{ true };
+	string transferFunctionFilename{ "transfer_function.tfn" };
+	int transferFunctionLength{ 128 };
+
+public:
+	/* State Variable */
+	vector<t_complex> transferFunction;
 
 	/* Methods */
 	FD_Filter() {};
-	//FD_Filter(int,int) : inputBufferTimeDomainLength(8), outputBufferTimeDomainLength(8) {};
 	FD_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {};
 
 	void initializeFD_Filter(void);
 
-	void overlapSaveZPRealIn(void);
-
-	void OverlapSaveMethod(void);
-
 	bool runBlock(void);
 
 	void terminate(void) {};
-
-	void setSaveTransferFunction(bool sTransferFunction) { saveTransferFunction = sTransferFunction; };
-	bool getSaveTransferFunction(void) { return saveTransferFunction; };
-
-	void setTransferFunctionLength(int iTransferFunctionLength) { transferFunctionLength = iTransferFunctionLength; };
-	int const getTransferFunctionLength() { return transferFunctionLength; }
 
 	void setInputBufferTimeDomainLength(int iBufferTimeDomainLength) { inputBufferTimeDomainLength = iBufferTimeDomainLength; };
 	int const getInputBufferTimeDomainLength() { return inputBufferTimeDomainLength; }
 
 	void setOutputBufferTimeDomainLength(int oBufferTimeDomainLength) { outputBufferTimeDomainLength = oBufferTimeDomainLength; };
 	int const getOutputBufferTimeDomainLength() { return outputBufferTimeDomainLength; }
+
+	void setInputBufferPointer(int iBufferPointer) { inputBufferPointer = iBufferPointer; };
+	int const getInputBufferPointer() { return inputBufferPointer; }
+
+	void setOutputBufferPointer(int oBufferPointer) { outputBufferPointer = oBufferPointer; };
+	int const getOutputBufferPointer() { return outputBufferPointer; }
+
+	void setSaveTransferFunction(bool sTransferFunction) { saveTransferFunction = sTransferFunction; };
+	bool getSaveTransferFunction(void) { return saveTransferFunction; };
+
+	void setTransferFunctionLength(int iTransferFunctionLength) { transferFunctionLength = iTransferFunctionLength; };
+	int const getTransferFunctionLength() { return transferFunctionLength; }
 
 };
 
@@ -540,12 +541,12 @@ class RealToComplex : public Block {
 };
 
 // Separates the complex signal into two parts: real and imaginary.
-class ComplexToReal : public Block {
+/*class ComplexToReal : public Block {
  public:
 	 ComplexToReal(vector<Signal *> &InputSig, vector<Signal *> &OutputSig);
-  bool runBlock(void);
+	 bool runBlock(void);
  //private:
-};
+};*/
 
 
 

@@ -11,7 +11,7 @@ void PulseShaper::initialize(void) {
 	double symbolPeriod = inputSignals[0]->symbolPeriod;
 
 	impulseResponseLength = (int)floor(impulseResponseTimeLength * symbolPeriod / samplingPeriod);
-
+	//impulseResponseLength = 16;
 	impulseResponse.resize(impulseResponseLength);
 
 	switch (getFilterType()) {
@@ -26,7 +26,7 @@ void PulseShaper::initialize(void) {
 
 void raisedCosine(vector<t_real> &impulseResponse, int impulseResponseLength, double rollOffFactor, double samplingPeriod, double symbolPeriod) {
 	double sinc;
-	for (int i = 0; i < impulseResponseLength; i++) {
+	/*for (int i = 0; i < impulseResponseLength; i++) {
 		t_real t = -impulseResponseLength / 2 * samplingPeriod + i * samplingPeriod;
 		if (t != 0) {
 			sinc = sin(PI * t / symbolPeriod) / (PI * t / symbolPeriod);
@@ -35,5 +35,17 @@ void raisedCosine(vector<t_real> &impulseResponse, int impulseResponseLength, do
 			sinc = 1;
 		}
 		impulseResponse[i] = sinc*cos(rollOffFactor*PI*t / symbolPeriod) / (1 - (4.0 * rollOffFactor * rollOffFactor * t * t) / (symbolPeriod * symbolPeriod));
+	};*/ 
+	
+	for (int i = 0; i < impulseResponseLength; i++) {
+		
+		double t = -impulseResponseLength / 2 * samplingPeriod + i * samplingPeriod;
+		if (t != 0) {
+			impulseResponse[i] = (sin(PI*t / symbolPeriod) / (PI*t / symbolPeriod)) * (cos(rollOffFactor*PI*t / symbolPeriod) / (1- pow(2 * (rollOffFactor*t / symbolPeriod),2)));
+		}
+		else {
+			impulseResponse[i] = 1;
+		}
+		
 	};
 };

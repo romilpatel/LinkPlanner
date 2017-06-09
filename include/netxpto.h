@@ -589,7 +589,7 @@ class Fft
 {
 
 public:
-	std::vector<complex <double>> directTransformInReal(std::vector<double> &real);
+	std::vector<complex <double>> directTransformInReal(std::vector<double> real);
 
 	std::vector<double> inverseTransformInCP(std::vector<complex <double>> &In);
 

@@ -10,8 +10,9 @@ void FD_PulseShaper::initialize(void) {
 	double samplingPeriod = inputSignals[0]->samplingPeriod;
 	double symbolPeriod = inputSignals[0]->symbolPeriod;
 
+	transferFunctionLength = 256;
 	transferFunction.resize(transferFunctionLength);
-
+	
 	switch (getFilterType()) {
 
 		case RaisedCosine:
@@ -35,19 +36,21 @@ void raisedCosineTF(vector<t_complex> &transferFunction, int transferFunctionLen
 	for (int i = 0; i < transferFunctionLength; i++) {
 		freqHz.at(i) = -(1 / (samplingPeriod * 2)) + i*(1 / (samplingPeriod * transferFunctionLength));
 		if (abs(freqHz.at(i)) <= (cond1_if)) {
-			transferFunction[i] = samplingPeriod;
+			transferFunction[i] = 1.0*16.0;
 		}
 		else if ((abs(freqHz.at(i))>cond1_if) && (abs(freqHz.at(i)) <= cond2_if)){
-			transferFunction[i] = (symbolPeriod / 2)*(1 + cos((PI*symbolPeriod / rollOffFactor)*(abs(freqHz.at(i)) - ((1 - rollOffFactor) / (2 * symbolPeriod)))));
+			transferFunction[i] = (1.0 / 2.0)*(1.0 + cos((PI*symbolPeriod / rollOffFactor)*(abs(freqHz.at(i)) - ((1.0 - rollOffFactor) / (2.0 * symbolPeriod)))))*16.0;
 		}
 		else {
 			transferFunction[i] = 0;
 		}
-		transferFunction_normFactor +=  (transferFunction[i] * transferFunction[i]);
+		//transferFunction_normFactor +=  (transferFunction[i] * transferFunction[i]);
 	};
-
+	
 	// Normalization to unit energy
-	for (int i = 0; i < transferFunctionLength; i++) {
+	/*for (int i = 0; i < transferFunctionLength; i++) {
 		transferFunction[i] = transferFunction[i] / sqrt(transferFunction_normFactor);
-	}
+	}*/
+	rotate(transferFunction.begin(), transferFunction.begin() + transferFunctionLength / 2, transferFunction.end());
+
 };

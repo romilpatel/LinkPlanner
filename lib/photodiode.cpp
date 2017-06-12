@@ -79,11 +79,35 @@ bool Photodiode::runBlock(void){
 			t_complex input2;
 			inputSignals[1]->bufferGet(&input2);
 
+			//[DIA] debug
+			cout << "input1 " << input1 << endl;
+			cout << "input2 " << input2 << endl;
+			// end debug
+
 			t_real power1 = abs(input1) * abs(input1) * 4;
 			t_real power2 = abs(input2) * abs(input2) * 4;
 			t_real current1 = responsivity * power1;
 			t_real current2 = responsivity * power2;
 			t_real out = current1 - current2;
+
+			//[DIA] debug
+			cout << "power1 " << power1 << endl;
+			cout << "power1 " << power2 << endl;
+			cout << "out " << out << endl;
+			// end debug
+
+
+			//[DIA] bug
+			// O sistema tá a dar erro, porque o out tem um erro de precisão numérica (out é quase 0);
+
+			//[DIA] correction: add tolerance to out.
+			/*
+			if (abs(out) < 0.01) {
+				out = 0;
+			}
+			*/
+			// Result after correction: the tolerance must be ever increasing -> that cannot be.
+			// end correction
 
 			if (out != 0)
 			{

@@ -170,6 +170,11 @@ int main() {
 	Sampler B5{ vector<Signal*> {&ED3}, vector<Signal*> {&ED4} };
 
 	// Ver se é 0 ou 1 conforme a voltagem ou outra cena.
+	/* [DIA]
+	 * No documento diz que existem 2 parâmetros para configurar :
+	 * setPosReferenceValue e setNegReferenceValue. No entanto na definição do
+	 * header só existe um parâmetro decisionLevel.
+	 */
 	BitDecider B6{ vector<Signal*> {&ED4}, vector<Signal*> {&ED5} };
 
 

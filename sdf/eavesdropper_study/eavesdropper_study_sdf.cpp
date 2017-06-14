@@ -20,7 +20,12 @@ int main() {
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	int numberOfBitsGenerated(100);
+	// [DIA] Valor original
+	//int numberOfBitsGenerated(100);
+	// [DIA] Valor de teste
+	int numberOfBitsGenerated(20);
+
+
 	int samplesPerSymbol(160);
 	double bitPeriod = .5e-9;
 	double localOscillatorPower_dBm = 10;
@@ -50,6 +55,7 @@ int main() {
 	OpticalSignal S1("S1.sgn");
 	S1.setBufferLength(bufferLength);
 
+	
 	// %%%%%%%%%%%%%%%%   EVE SIGNAL DETECTION   %%%%%%%%%%%%%%%%
 
 	OpticalSignal ED0("ED0.sgn");
@@ -63,6 +69,8 @@ int main() {
 
 	TimeContinuousAmplitudeContinuousReal ED3("ED3.sgn");
 	ED3.setBufferLength(bufferLength);
+
+	/*
 
 	TimeDiscreteAmplitudeContinuousReal ED4("ED4.sgn");
 	ED4.setBufferLength(bufferLength);
@@ -116,7 +124,7 @@ int main() {
 	Binary S8("S8.sgn");
 	S8.setBufferLength(bufferLength);
 
-
+	*/
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
@@ -125,7 +133,9 @@ int main() {
 	// BEGIN ALICE
 
 	// (1)
-	MQamTransmitter B1{ vector<Signal*> {}, vector<Signal*> {&S0,&S1} }; // CORRECCAO
+	// [DIA]
+	// Troquei S1 por S0 (optico <-> binario)
+	MQamTransmitter B1{ vector<Signal*> {}, vector<Signal*> {&S1,&S0} }; // CORRECCAO (qual? ver código do daniel)
 	B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower(signalPower);
 	B1.setMode(PseudoRandom);
@@ -141,7 +151,17 @@ int main() {
 	B1.setSeeBeginningOfImpulseResponse(true);
 
 
+	
+	// [DIA]
+	// Tou a meter 2 sinks para os sinais do B1
+	Sink B101{ vector<Signal*> { &S0 }, vector<Signal*> {} };
+	B101.setDisplayNumberOfSamples(true);
 
+	Sink B102{ vector<Signal*> { &S1 }, vector<Signal*> {} };
+	B102.setDisplayNumberOfSamples(true);
+	
+	
+	
 
 	//////// BEGIN EVE ////////
 
@@ -159,22 +179,45 @@ int main() {
 	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &ED0}, vector<Signal*> {&ED1, &ED2 } };
 	B3.setTransferMatrix(transferMatrix);
 
+	// [DIA] Monotorização da execução
+	//B3.setSaveInternalSignals(true);
+	
+	//Sink B103{ vector<Signal*> { &ED0 }, vector<Signal*> {} };
+	//B103.setDisplayNumberOfSamples(true);
+	Sink B104{ vector<Signal*> { &ED1 }, vector<Signal*> {} };
+	B104.setDisplayNumberOfSamples(true);
+	Sink B105{ vector<Signal*> { &ED2 }, vector<Signal*> {} };
+	B105.setDisplayNumberOfSamples(true);
+
+
+
+
+
 	// LEITURA DAS POTÊNCIA (INSTANTÂNEO)
 	Photodiode B4{ vector<Signal*> {&ED1, &ED2}, vector<Signal*> {&ED3} };
 	B4.useNoise(shotNoise); // IMPORTANTE PARA DAR MAIS REALISMO.
 	B4.setResponsivity(responsivity);
 
+	// [DIA] Monotorização da execução
+	Sink B106{ vector<Signal*> { &ED3 }, vector<Signal*> {} };
+	B106.setDisplayNumberOfSamples(true);
+
+
+	// [DIA]
+	// Eliminação dos outros "clientes" para simplificar a execução.
+
+	/*
 
 	// O RUIDO VAI INDUZIR ERROS NA LEITURA
 	// Escolha de apenas 1 ponto por símbolo.
 	Sampler B5{ vector<Signal*> {&ED3}, vector<Signal*> {&ED4} };
 
 	// Ver se é 0 ou 1 conforme a voltagem ou outra cena.
-	/* [DIA]
-	 * No documento diz que existem 2 parâmetros para configurar :
-	 * setPosReferenceValue e setNegReferenceValue. No entanto na definição do
-	 * header só existe um parâmetro decisionLevel.
-	 */
+	// [DIA]
+	// No documento diz que existem 2 parâmetros para configurar :
+	// setPosReferenceValue e setNegReferenceValue. No entanto na definição do
+	// header só existe um parâmetro decisionLevel.
+	
 	BitDecider B6{ vector<Signal*> {&ED4}, vector<Signal*> {&ED5} };
 
 
@@ -227,11 +270,21 @@ int main() {
 	B19.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
 	B19.setDisplayNumberOfSamples(true);
 
+	*/
+
+
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14, &B15, &B16, &B17, &B18, &B19} };
+	// [DIA] Teste original
+	//System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14, &B15, &B16, &B17, &B18, &B19} };
+
+	// [DIA] Teste da Alice
+	//System MainSystem{ vector<Block*> { &B1, &B2, &B3 } };
+
+	// [DIA] Teste da Alice e Eve
+	System MainSystem{ vector<Block*> { &B1, &B101, &B102, &B2, &B104, &B105, &B4, &B106 } };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

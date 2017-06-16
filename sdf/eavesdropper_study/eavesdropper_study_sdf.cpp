@@ -70,13 +70,15 @@ int main() {
 	TimeContinuousAmplitudeContinuousReal ED3("ED3.sgn");
 	ED3.setBufferLength(bufferLength);
 
-	/*
 
 	TimeDiscreteAmplitudeContinuousReal ED4("ED4.sgn");
 	ED4.setBufferLength(bufferLength);
 
+
 	Binary ED5("ED5.sgn");
 	ED5.setBufferLength(bufferLength);
+
+	/*
 
 	// %%%%%%%%%%%%%%%% EVE SIGNAL REGENERATION %%%%%%%%%%%%%%%%
 
@@ -151,7 +153,7 @@ int main() {
 	B1.setSeeBeginningOfImpulseResponse(true);
 
 
-	
+	/*
 	// [DIA]
 	// Tou a meter 2 sinks para os sinais do B1
 	Sink B101{ vector<Signal*> { &S0 }, vector<Signal*> {} };
@@ -159,7 +161,7 @@ int main() {
 
 	Sink B102{ vector<Signal*> { &S1 }, vector<Signal*> {} };
 	B102.setDisplayNumberOfSamples(true);
-	
+	*/
 	
 	
 
@@ -182,13 +184,14 @@ int main() {
 	// [DIA] Monotorização da execução
 	//B3.setSaveInternalSignals(true);
 	
+	/*
 	//Sink B103{ vector<Signal*> { &ED0 }, vector<Signal*> {} };
 	//B103.setDisplayNumberOfSamples(true);
 	Sink B104{ vector<Signal*> { &ED1 }, vector<Signal*> {} };
 	B104.setDisplayNumberOfSamples(true);
 	Sink B105{ vector<Signal*> { &ED2 }, vector<Signal*> {} };
 	B105.setDisplayNumberOfSamples(true);
-
+	*/
 
 
 
@@ -198,28 +201,41 @@ int main() {
 	B4.useNoise(shotNoise); // IMPORTANTE PARA DAR MAIS REALISMO.
 	B4.setResponsivity(responsivity);
 
+	/*
 	// [DIA] Monotorização da execução
 	Sink B106{ vector<Signal*> { &ED3 }, vector<Signal*> {} };
 	B106.setDisplayNumberOfSamples(true);
+	*/
 
-
-	// [DIA]
-	// Eliminação dos outros "clientes" para simplificar a execução.
-
-	/*
 
 	// O RUIDO VAI INDUZIR ERROS NA LEITURA
 	// Escolha de apenas 1 ponto por símbolo.
 	Sampler B5{ vector<Signal*> {&ED3}, vector<Signal*> {&ED4} };
+
+	
+	// [DIA] Monotorização da execução
+	//Sink B107{ vector<Signal*> { &ED4 }, vector<Signal*> {} };
+	//B107.setDisplayNumberOfSamples(true);
+	
+
 
 	// Ver se é 0 ou 1 conforme a voltagem ou outra cena.
 	// [DIA]
 	// No documento diz que existem 2 parâmetros para configurar :
 	// setPosReferenceValue e setNegReferenceValue. No entanto na definição do
 	// header só existe um parâmetro decisionLevel.
-	
-	BitDecider B6{ vector<Signal*> {&ED4}, vector<Signal*> {&ED5} };
 
+
+	BitDecider B6{ vector<Signal*> {&ED4}, vector<Signal*> {&ED5} };
+	// [DIA] Monotorização
+	
+
+	// [DIA]
+	// Eliminação dos outros "clientes" para simplificar a execução.
+	Sink B108{ vector<Signal*> { &ED5 }, vector<Signal*> {} };
+	B108.setDisplayNumberOfSamples(true);
+
+	/*
 
 	// BEGIN Reconstrução do sinal
 	// Para "Simplificar" o processo, pode-se injectar o sinal binário dentro do M_QAM_TRANSMITTER.
@@ -284,7 +300,7 @@ int main() {
 	//System MainSystem{ vector<Block*> { &B1, &B2, &B3 } };
 
 	// [DIA] Teste da Alice e Eve
-	System MainSystem{ vector<Block*> { &B1, &B101, &B102, &B2, &B104, &B105, &B4, &B106 } };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B108 } };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

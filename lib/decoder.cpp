@@ -97,9 +97,11 @@ bool Decoder::runBlock(void) {
 			
 			 }
 
-		for (k = 0; k < size(v); k++) {
+		int S = (int)size(v);
+
+		for (int k = 0; k < S; k++) {
 			
-			s_out = v[k];
+			s_out = v[(S-1)-k];
 			outputSignals[0]->bufferPut(s_out);
 			
 			 }

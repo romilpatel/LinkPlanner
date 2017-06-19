@@ -23,7 +23,7 @@ int main() {
 	// [DIA] Valor original
 	//int numberOfBitsGenerated(100);
 	// [DIA] Valor de teste
-	int numberOfBitsGenerated(20);
+	int numberOfBitsGenerated(40);
 
 
 	int samplesPerSymbol(160);
@@ -78,7 +78,7 @@ int main() {
 	Binary ED5("ED5.sgn");
 	ED5.setBufferLength(bufferLength);
 
-	/*
+
 
 	// %%%%%%%%%%%%%%%% EVE SIGNAL REGENERATION %%%%%%%%%%%%%%%%
 
@@ -88,6 +88,7 @@ int main() {
 	TimeDiscreteAmplitudeDiscreteReal EE2("EE2.sgn");
 	EE2.setBufferLength(bufferLength);
 
+	
 	TimeContinuousAmplitudeDiscreteReal EE3("EE3.sgn");
 	EE3.setBufferLength(bufferLength);
 
@@ -102,6 +103,8 @@ int main() {
 
 	OpticalSignal EE7("EE7.sgn");
 	EE7.setBufferLength(bufferLength);
+
+	/*
 
 	// %%%%%%%%%%%%%%%%   BOB SIGNAL DETECTION   %%%%%%%%%%%%%%%%
 
@@ -227,35 +230,92 @@ int main() {
 
 
 	BitDecider B6{ vector<Signal*> {&ED4}, vector<Signal*> {&ED5} };
+
 	// [DIA] Monotorização
+	//Sink B108{ vector<Signal*> { &ED5 }, vector<Signal*> {} };
+	//B108.setDisplayNumberOfSamples(true);
 	
 
-	// [DIA]
-	// Eliminação dos outros "clientes" para simplificar a execução.
-	Sink B108{ vector<Signal*> { &ED5 }, vector<Signal*> {} };
-	B108.setDisplayNumberOfSamples(true);
-
-	/*
-
+	
 	// BEGIN Reconstrução do sinal
 	// Para "Simplificar" o processo, pode-se injectar o sinal binário dentro do M_QAM_TRANSMITTER.
 	// Este processo é parecido com o da ALICE. (na codificação)
 
 	// TASK: "Copiar" as configurações em (1) (ex: não copiar o numero de bits)
 	MQamMapper B7{ vector<Signal*> {&ED5}, vector<Signal*> {&EE1, &EE2} };
+	
+
+	/*
+	// [DIA] Monotorização
+	Sink B109{ vector<Signal*> { &EE1 }, vector<Signal*> {} };
+	B109.setDisplayNumberOfSamples(true);
+
+	// [DIA] Monotorização
+	Sink B110{ vector<Signal*> { &EE2 }, vector<Signal*> {} };
+	B110.setDisplayNumberOfSamples(true);
+	*/
+
+	/*
+	// [DIA] Introdução de configurações
+	// Creio que isto não seja necessário
+	B7.setNumberOfBits(numberOfBitsGenerated);
+	B7.setOutputOpticalPower(signalPower);
+	B7.setMode(PseudoRandom);
+	B7.setBitPeriod(bitPeriod);
+	B7.setIqAmplitudes(iqAmplitudeValues);
+	B7.setPulseShaperFilter(Gaussian);
+	B7.setNumberOfSamplesPerSymbol(samplesPerSymbol);
+	B7.setSaveInternalSignals(true);
+	B7.setSeeBeginningOfImpulseResponse(true);
+	*/
+
 
 	DiscreteToContinuousTime  B8{ vector<Signal*> {&EE1}, vector<Signal*> {&EE3} };
 
 	DiscreteToContinuousTime  B9{ vector<Signal*> {&EE2}, vector<Signal*> {&EE4} };
 
+	/*
+	// [DIA] Monotorização
+	Sink B111{ vector<Signal*> { &EE3 }, vector<Signal*> {} };
+	B111.setDisplayNumberOfSamples(true);
+
+	// [DIA] Monotorização
+	Sink B112{ vector<Signal*> { &EE4 }, vector<Signal*> {} };
+	B112.setDisplayNumberOfSamples(true);
+	*/
+
 	PulseShaper B10{ vector<Signal*> {&EE3}, vector<Signal*> {&EE5} };
 
 	PulseShaper B11{ vector<Signal*> {&EE4}, vector<Signal*> {&EE6} };
 
+	/*
+	// [DIA] Monotorização
+	Sink B111{ vector<Signal*> { &EE5 }, vector<Signal*> {} };
+	B111.setDisplayNumberOfSamples(true);
+
+	// [DIA] Monotorização
+	Sink B112{ vector<Signal*> { &EE6 }, vector<Signal*> {} };
+	B112.setDisplayNumberOfSamples(true);
+	*/
+
+	
+
+
 	IqModulator B12{ vector<Signal*> {&EE5, &EE6}, vector<Signal*> {&EE7} };
 	// END Reconstrução do sinal
 
+	// [DIA] Monotorização
+	Sink B113{ vector<Signal*> { &EE7 }, vector<Signal*> {} };
+	B113.setDisplayNumberOfSamples(true);
+
+
+
+
 	// END EVE
+
+	// [DIA]
+	// Eliminação dos outros "clientes" para simplificar a execução.
+	/*
 
 
 	// BEGIN BOB.
@@ -300,7 +360,7 @@ int main() {
 	//System MainSystem{ vector<Block*> { &B1, &B2, &B3 } };
 
 	// [DIA] Teste da Alice e Eve
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B108 } };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B113} };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

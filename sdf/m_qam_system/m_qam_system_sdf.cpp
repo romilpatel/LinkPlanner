@@ -12,7 +12,7 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated = 1000;
+	int numberOfBitsGenerated = 300;
 	double bitPeriod = 1.0 / 50e9;
 
 	int prbsPatternLength = 5;
@@ -24,15 +24,16 @@ int main(){
 	int samplesPerSymbol = 16;
 	double symbolPeriod = bitPeriod / samplesPerSymbol;
 
-	t_real signalOutputPower_dBm = -90; 
-	t_real localOscillatorPower_dBm = -20; 
+	t_real signalOutputPower_dBm = -20; 
+	t_real localOscillatorPower_dBm = 0; 
 	t_real localOscillatorPhase = 0;
 	//array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	t_real responsivity = 1;
 	t_real amplification = 1;
-	t_real noiseAmplitude = 0.00001;
+	t_real noiseAmplitude = 1*pow(10,-6);
 	//t_integer samplesToSkip = 0;
-	t_integer samplesToSkip = 2 * 8 * samplesPerSymbol; // +floor(samplesPerSymbol / 2);
+	t_integer samplesToSkip = 2 * 8 * samplesPerSymbol; //+ floor(samplesPerSymbol / 2);
+	//8 is the number of samples used by the filter
 	t_real confidence = 0.95;
 	t_integer midReportSize = 0;
 	t_integer bufferLength = 256;
@@ -64,7 +65,7 @@ int main(){
 	B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
 	//B1.setMode(PseudoRandom);
-	B1.setMode(PseudoRandom);
+	B1.setMode(DeterministicAppendZeros);
 	B1.setBitStream("01");
 	B1.setBitPeriod(bitPeriod);
 	B1.setPatternLength(prbsPatternLength);
@@ -78,6 +79,7 @@ int main(){
 	B2.setIqAmplitudes(iqAmplitudeValues);
 	B2.setLocalOscillatorOpticalPower_dBm(localOscillatorPower_dBm);
 	B2.setLocalOscillatorPhase(localOscillatorPhase);
+	B2.setSamplerOpticalPower_dBm(signalOutputPower_dBm);
 	//B2.setTransferMatrix(transferMatrix);
 	B2.setResponsivity(responsivity);
 	B2.setAmplification(amplification);

@@ -186,6 +186,7 @@ int main() {
 	Sampler B5{ vector<Signal*> {&ED3}, vector<Signal*> {&ED4} };
 	B5.setSamplesToSkip();
 	//impulseResponseLeght*SamplesPerSymbol
+	B5.
 		
 
 

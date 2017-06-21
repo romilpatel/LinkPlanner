@@ -1,40 +1,35 @@
-# ifndef PROGRAM_INCLUDE_ELECTRICAL_FILTER_H_
-# define PROGRAM_INCLUDE_ELECTRICAL_FILTER_H_
+# ifndef ELECTRICAL_FILTER_H_
+# define ELECTRICAL_FILTER_H_
 
 # include "netxpto.h"
-# include <vector>
 
 using namespace std;
 
-enum  ElectricalShapeFilter { RaisedCosine1 };
+enum Filter { LowPass };
 
-// Implements an electrical filter
 class ElectricalFilter : public FIR_Filter {
 
-	ElectricalShapeFilter filterType{ RaisedCosine1 };
+	Filter filterType{ LowPass };
 
 	int impulseResponseTimeLength{ 16 };
 
-	double rollOffFactor{ 0.9 };
-
+	double cutoffFrequency{ 5 }; //hertz
 
 public:
 
-	ElectricalFilter() :FIR_Filter(){};
-	ElectricalFilter(vector<Signal*> &InputSig, vector<Signal*> OutputSig) :FIR_Filter(InputSig, OutputSig){};
+	ElectricalFilter() :FIR_Filter() {};
+	ElectricalFilter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :FIR_Filter(InputSig, OutputSig) {};
 
 	void initialize(void);
 
-	void setImpulseResponseTimeLength(int impResponseTimeLength){ impulseResponseTimeLength = impResponseTimeLength; };
+	void setImpulseResponseTimeLength(int impResponseTimeLength) { impulseResponseTimeLength = impResponseTimeLength; };
 	int const getImpulseResponseTimeLength(void) { return impulseResponseTimeLength; };
 
-	void setFilterType(ElectricalShapeFilter fType){ filterType = fType; };
-	ElectricalShapeFilter const getFilterType(void){ return filterType; };
+	void setCutoffFrequency(double cOffFrequency) { cutoffFrequency = cOffFrequency; };
+	double const getCutoffFrequency() { return cutoffFrequency; };
 
-	void setRollOffFactor(double rOffFactor){ rollOffFactor = rOffFactor; };
-	double const getRollOffFactor(){ return rollOffFactor; };
+	void setFilterType(Filter fType) { filterType = fType; };
+	Filter const getFilterType(void) { return filterType; };
 
 };
-
-
-#endif // !PROGRAM_INCLUDE_ELECTRICAL_FILTER_H_
+#endif

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -13,13 +13,14 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F3D17ED7-6A4A-4DFC-8F1B-33FF541EB52D}</ProjectGuid>
     <RootNamespace>m_qam_system</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -40,12 +41,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>..\..\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86; C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\include</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -67,14 +73,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\lib\binary_source.cpp" />
+    <ClCompile Include="..\..\lib\bit_error_rate.cpp" />
+    <ClCompile Include="..\..\lib\clock.cpp" />
+    <ClCompile Include="..\..\lib\decoder.cpp" />
     <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
+    <ClCompile Include="..\..\lib\homodyne_receiver.cpp" />
     <ClCompile Include="..\..\lib\iq_modulator.cpp" />
+    <ClCompile Include="..\..\lib\local_oscillator.cpp" />
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
     <ClCompile Include="..\..\lib\m_qam_transmitter.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
+    <ClCompile Include="..\..\lib\optical_hybrid.cpp" />
+    <ClCompile Include="..\..\lib\photodiode.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
+    <ClCompile Include="..\..\lib\sampler.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="m_qam_system_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +103,11 @@
     <ClInclude Include="..\..\include\sink.h" />
     <ClInclude Include="..\..\include\super_block_interface.h" />
   </ItemGroup>
+=======
+    <ClCompile Include="..\..\lib\ti_amplifier.cpp" />
+    <ClCompile Include="m_qam_system_sdf.cpp" />
+  </ItemGroup>
+>>>>>>> AnaLuisa
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

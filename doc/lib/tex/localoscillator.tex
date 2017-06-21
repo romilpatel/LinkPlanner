@@ -14,25 +14,21 @@
 	\begin{itemize}
 		\item LocalOscillatorPhase
 		\item LocalOscillatorOpticalPower
-		\item \verb|LocalOscillatorOpticalPower_dBm|
-		\item useShotNoise
+		\item LocalOscillatorOpticalPower\_dBm
 	\end{itemize}
 \end{multicols}
 
 \subsection*{Functional Description}
 
-This blocks accepts a complex signal (either with XY polarization or a simple Band Pass signal) and outputs a phase constant complex signal with the same length as the input signal. The phase and optical power are defined by the values of \textit{LocalOscillatorPhase} and \textit{LocalOscillatorOpticalPower} respectively. This block also adds random gaussian distributed shot noise with an amplitude defined by the power of the inputs. The shot noise is activated by a boolean check fed into the block by the \textit{useShotNoise} parameters.
-
+This blocks outputs a complex signal with a user defined length, phase and power. The phase and optical power are defined by the values of \textit{LocalOscillatorPhase} and \textit{LocalOscillatorOpticalPower} respectively.
 \subsection*{Input Signals}
 
-\textbf{Number}: 1
-
-\textbf{Type}: Complex signal (ContinuousTimeContinuousAmplitude)
+\textbf{Number}: 0
 
 \subsection*{Output Signals}
 
-\textbf{Number}: 2
+\textbf{Number}: 1
 
-\textbf{Type}: Complex signal (ContinuousTimeContinuous Amplitude)
+\textbf{Type}: Complex or Complex\_XY optical signal (ContinuousTimeContinuousAmplitude)
 
 \end{document}

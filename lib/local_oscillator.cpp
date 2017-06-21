@@ -14,8 +14,9 @@ void LocalOscillator::initialize(void){
 
 	outputSignals[0]->setSamplingPeriod(samplingPeriod);
 	outputSignals[0]->setSymbolPeriod(symbolPeriod);
-	outputSignals[0]->setCentralWavelength(wavelength);
-	outputSignals[0]->setCentralFrequency(frequency);
+
+	outputSignals[0]->centralWavelength= outputOpticalWavelength;
+	outputSignals[0]->centralFrequency = outputOpticalFrequency;
 
 }
 
@@ -26,28 +27,27 @@ bool LocalOscillator::runBlock(void){
 	
 	if (process == 0) return false;
 
+	//t_complex outAverage(cos(phase), sin(phase));
 	t_complex out(cos(phase), sin(phase));
+	double outOpticalPower=opticalPower;
+	double wavelength = outputSignals[0]->getCentralWavelength();
+	double deltaPhase = sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (2 * opticalPower*samplingPeriod*wavelength));
+	double dt = outputSignals[0]->getSamplingPeriod();
+
+
+	normal_distribution<double> distribution(0, 1);
+	
+	double noiseRIN;
+	
 	out= .5*sqrt(opticalPower)*out;
 
 	for (int i = 0; i < process; i++) {
-
-        /*if (shotNoise) {
-			t_complex loout;
-
-			normal_distribution<double> distribution(0, 1);
-
-			t_real dt = outputSignals[0]->getSamplingPeriod();
-			t_real wvlgth = outputSignals[0]->getCentralWavelength();
-			t_real noisesignal;
-			t_real noiselo;
-
-			noisesignal = distribution(generator1);
-			noiselo = distribution(generator2);
-
-            t_real powerlooutsqrted = sqrt(powerlo) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (dt * wvlgth))*noiselo*1/2;
-            out = .5*powerlooutsqrted*lo;
-        }*/ 
-		
+		if (signaltoNoiseRatio != 0)
+		{
+			t_real noise = distribution(generatorRIN);
+			outOpticalPower = opticalPower + opticalPower/signaltoNoiseRatio*noise;
+			out = .5*sqrt(outOpticalPower)*out;
+		}
 		outputSignals[0]->bufferPut((t_complex)out);
 	}
 

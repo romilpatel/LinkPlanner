@@ -55,7 +55,7 @@ int main() {
 	OpticalSignal S1("S1.sgn");
 	S1.setBufferLength(bufferLength);
 
-	
+/*	
 	// %%%%%%%%%%%%%%%%   EVE SIGNAL DETECTION   %%%%%%%%%%%%%%%%
 
 	OpticalSignal ED0("ED0.sgn");
@@ -104,7 +104,7 @@ int main() {
 	OpticalSignal EE7("EE7.sgn");
 	EE7.setBufferLength(bufferLength);
 
-
+*/
 
 	// %%%%%%%%%%%%%%%%   BOB SIGNAL DETECTION   %%%%%%%%%%%%%%%%
 
@@ -156,7 +156,7 @@ int main() {
 	B1.setSeeBeginningOfImpulseResponse(true);
 
 
-
+/*
 
 	//////// BEGIN EVE ////////
 
@@ -184,7 +184,7 @@ int main() {
 	// O RUIDO VAI INDUZIR ERROS NA LEITURA
 	// Escolha de apenas 1 ponto por símbolo.
 	Sampler B5{ vector<Signal*> {&ED3}, vector<Signal*> {&ED4} };
-	B5.setSamplesToSkip();
+	//B5.setSamplesToSkip();
 	//impulseResponseLeght*SamplesPerSymbol
 		
 
@@ -221,7 +221,7 @@ int main() {
 
 	// END EVE
 
-
+*/
 
 
 	// BEGIN BOB.
@@ -233,7 +233,8 @@ int main() {
 	B13.setSymbolPeriod(bitPeriod);
 	B13.setSignaltoNoiseRatio(SNR);
 
-	BalancedBeamSplitter B14{ vector<Signal*> { &EE7, &S2 }, vector<Signal*> {&S3, &S4} };
+	//BalancedBeamSplitter B14{ vector<Signal*> { &EE7, &S2 }, vector<Signal*> {&S3, &S4} };
+	BalancedBeamSplitter B14{ vector<Signal*> { &S1, &S2 }, vector<Signal*> {&S3, &S4} };
 	B14.setTransferMatrix(transferMatrix);
 
 	Photodiode B15{ vector<Signal*> { &S3, &S4 }, vector<Signal*> {&S5} };
@@ -263,7 +264,11 @@ int main() {
 
 
 	// [DIA] Teste da Alice e Eve
-	System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14, &B15, &B16, &B17, &B18, &B19} };
+	//System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14, &B15, &B16, &B17, &B18, &B19} };
+
+
+	// [DIA] Alice e Bob
+	System MainSystem{ vector<Block*> {&B1, &B13, &B14, &B15, &B16, &B17, &B18, &B19} };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

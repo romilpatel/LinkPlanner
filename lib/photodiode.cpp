@@ -63,9 +63,12 @@ bool Photodiode::runBlock(void){
 	generatorAmp1.seed(seed);
 	generatorAmp2.seed(seed);
 
-	// [DIA] Magic numbers?!
-	double amp=.5*sqrt(6.4078e-13*5);
+	/*
+	// Implementação de filtros gaussianos
 
+	double amp=.5*sqrt(6.4078e-13*5);
+	
+	
 	vector<t_real> gauss;
 	gauss.resize(samplesPerSymbol);
 
@@ -75,6 +78,7 @@ bool Photodiode::runBlock(void){
 		gauss[i] = amp*exp(-time*time / (samplingPeriod*samplingPeriod / 36));
 	}
 
+	
 	if (firstPass)
 	{
 		firstPass = false;
@@ -101,6 +105,12 @@ bool Photodiode::runBlock(void){
 			}
 		}
 	}
+	*/
+
+	// [DIA] new
+	// Power constant for shotNoise.
+	t_real P = PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength);
+	// end new
 
 	for (int i = 0; i < process; i++) {
 
@@ -117,9 +127,14 @@ bool Photodiode::runBlock(void){
 		t_complex input2;
 		inputSignals[1]->bufferGet(&input2);
 
+		/*
+		// Incio de implementação de beat frequency.
 		t_real powerSignal1 = gauss[aux]; // Assuming Signal input in PIN1
-		t_real powerSignal2 = abs(input1 - input2) / sqrt(2); // Assuming Signal input in PIN2		
+		t_real powerSignal2 = abs(input1 - input2) / sqrt(2); // Assuming Signal input in PIN2
+		*/
 
+
+		// The 4 factor is compensating the bandpass signal representation amplitude correction.
 		t_real power1 = abs(input1)*abs(input1) * 4;
 		t_real power2 = abs(input2)*abs(input2) * 4;
 
@@ -127,6 +142,10 @@ bool Photodiode::runBlock(void){
 		t_real current1 = responsivity*power1;
 		t_real current2 = responsivity*power2;
 		t_real out = current1 - current2;
+
+
+		/*
+		// Incio de implementação de beat frequency.
 		double phaseDifference = 0;
 		double arg;
 		if (powerSignal1!=0)
@@ -143,18 +162,18 @@ bool Photodiode::runBlock(void){
 				phaseDifference = (acos(arg));
 			}
 		}
+		*/
 
 
 		if (shotNoise)
 		{
-			
 			// [DIA] Debug
 			printf("p1: %g\n", power1);
 			printf("p2: %g\n", power2);
 			// end debug
-			
-			power1 = power1 + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp1*(sqrt(power1) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp1 / 4);
-			power2 = power2 + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp2*(sqrt(power2) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp2 / 4);
+
+			power1 += sqrt(P)*noiseAmp1*(sqrt(power1) + sqrt(P)*noiseAmp1 / 4);
+			power2 += sqrt(P)*noiseAmp2*(sqrt(power2) + sqrt(P)*noiseAmp2 / 4);
 			current1 = responsivity*power1;
 			current2 = responsivity*power2;
 
@@ -174,6 +193,9 @@ bool Photodiode::runBlock(void){
 
 		}
 
+
+		/*
+		// Início de implementação de beat frequency.
 		if (frequencyMismatch != 0){
  			out = powerSignal1*powerSignal2*(cos(phaseDifference)*cos(frequencyMismatch*t) - sin(phaseDifference)*sin(frequencyMismatch*t));
 			if (1/samplingPeriod < frequencyMismatch/PI )
@@ -182,6 +204,8 @@ bool Photodiode::runBlock(void){
 				return false;
 			}
 		}
+		*/
+
 
 		// [DIA] debug
 		printf("out: %g\n", out);

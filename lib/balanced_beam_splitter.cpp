@@ -16,14 +16,22 @@ void BalancedBeamSplitter::initialize(void){
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 	 
 	outputSignals[0]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
-	outputSignals[0]->setCentralFrequency(inputSignals[0]->getCentralWavelength());
+
+	// [DIA] BUG
+	//outputSignals[0]->setCentralFrequency(inputSignals[0]->getCentralWavelength());
+	outputSignals[0]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
+	// END BUG
 
 	outputSignals[1]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[1]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
 	outputSignals[1]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
+
+	// [DIA] BUG
 	outputSignals[1]->setCentralFrequency(inputSignals[0]->getCentralWavelength());
+	outputSignals[1]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
+	// END BUG
 }
 
 

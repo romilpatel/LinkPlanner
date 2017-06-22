@@ -27,7 +27,8 @@ bool Photodiode::runBlock(void){
 
 	double samplingPeriod = inputSignals[0]->getSamplingPeriod();
 	double symbolPeriod = inputSignals[0]->getSymbolPeriod ();
-	int samplesPerSymbol = round(symbolPeriod / samplingPeriod);
+	// [DIA] Bug Correction : introducing (int) avoiding implicit conversion.
+	int samplesPerSymbol = (int)round(symbolPeriod / samplingPeriod);
 
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
@@ -51,13 +52,18 @@ bool Photodiode::runBlock(void){
 
 	double wavelength = inputSignals[0]->getCentralWavelength();
 
-	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+
+	// [DIA] BUG
+	// Correction : introducing (unsigned) avoiding implicit conversion.
+	unsigned seed = (unsigned)chrono::system_clock::now().time_since_epoch().count();
+	// end bug
 
 
 	
 	generatorAmp1.seed(seed);
 	generatorAmp2.seed(seed);
 
+	// [DIA] Magic numbers?!
 	double amp=.5*sqrt(6.4078e-13*5);
 
 	vector<t_real> gauss;
@@ -79,10 +85,6 @@ bool Photodiode::runBlock(void){
 			t_complex input2;
 			inputSignals[1]->bufferGet(&input2);
 
-			//[DIA] debug
-			cout << "input1 " << input1 << endl;
-			cout << "input2 " << input2 << endl;
-			// end debug
 
 			t_real power1 = abs(input1) * abs(input1) * 4;
 			t_real power2 = abs(input2) * abs(input2) * 4;
@@ -90,24 +92,6 @@ bool Photodiode::runBlock(void){
 			t_real current2 = responsivity * power2;
 			t_real out = current1 - current2;
 
-			//[DIA] debug
-			cout << "power1 " << power1 << endl;
-			cout << "power1 " << power2 << endl;
-			cout << "out " << out << endl;
-			// end debug
-
-
-			//[DIA] bug
-			// O sistema tá a dar erro, porque o out tem um erro de precisão numérica (out é quase 0);
-
-			//[DIA] correction: add tolerance to out.
-			/*
-			if (abs(out) < 0.01) {
-				out = 0;
-			}
-			*/
-			// Result after correction: the tolerance must be ever increasing -> that cannot be.
-			// end correction
 
 			if (out != 0)
 			{
@@ -123,6 +107,10 @@ bool Photodiode::runBlock(void){
 		noiseAmp1 = distribution(generatorAmp1);
 		noiseAmp2 = distribution(generatorAmp2);
 
+		// [DIA] debug
+		printf("noiseAmp1: %f\n", noiseAmp1);
+		printf("noiseAmp2: %f\n", noiseAmp2);
+		// end debug
 
 		t_complex input1;
 		inputSignals[0]->bufferGet(&input1);
@@ -159,11 +147,31 @@ bool Photodiode::runBlock(void){
 
 		if (shotNoise)
 		{
+			
+			// [DIA] Debug
+			printf("p1: %g\n", power1);
+			printf("p2: %g\n", power2);
+			// end debug
+			
 			power1 = power1 + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp1*(sqrt(power1) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp1 / 4);
 			power2 = power2 + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp2*(sqrt(power2) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp2 / 4);
 			current1 = responsivity*power1;
 			current2 = responsivity*power2;
-			t_real out = current1 - current2;
+
+			// [DIA] Debug
+			printf("n1: %g\n", sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp1*(sqrt(power1) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp1 / 4));
+			printf("samplingPeriod: %g\n", samplingPeriod);
+			printf("p1: %g\n", power1);
+			printf("p2: %g\n", power2);
+			// end debug
+
+			// [DIA] bug
+			// A variaável out está a ser redeclarada
+			//t_real out = current1 - current2;
+			// correcção:
+			out = current1 - current2;
+			// bug
+
 		}
 
 		if (frequencyMismatch != 0){
@@ -174,6 +182,11 @@ bool Photodiode::runBlock(void){
 				return false;
 			}
 		}
+
+		// [DIA] debug
+		printf("out: %g\n", out);
+		printf("\n");
+		// end debug
 
 		outputSignals[0]->bufferPut(out);
 		myfile2 << out << "\n";

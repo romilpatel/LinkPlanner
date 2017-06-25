@@ -496,7 +496,7 @@ class FD_Filter : public Block {
 	bool saveTransferFunction{ true };
 	string transferFunctionFilename{ "transfer_function.tfn" };
 	int transferFunctionLength{ 128 };
-
+	int OversamplingFactor{ 16 };
 public:
 	/* State Variable */
 	vector<t_complex> transferFunction;
@@ -527,7 +527,10 @@ public:
 	bool getSaveTransferFunction(void) { return saveTransferFunction; };
 
 	void setTransferFunctionLength(int iTransferFunctionLength) { transferFunctionLength = iTransferFunctionLength; };
-	int const getTransferFunctionLength() { return transferFunctionLength; }
+	int const getTransferFunctionLength() { return transferFunctionLength; };
+
+	void setOversamplingRate(int iOversamplingFactor) { OversamplingFactor = iOversamplingFactor; };
+	int const getOversamplingFactor() { return OversamplingFactor; }
 
 };
 

@@ -15,7 +15,7 @@
 # include "bit_decider.h"
 
 //[DIA] My includes
-#include "white_noise.h"
+//#include "white_noise.h"
 
 int main() {
 
@@ -58,10 +58,11 @@ int main() {
 	OpticalSignal S1("S1.sgn");
 	S1.setBufferLength(bufferLength);
 
-	//[DIA]
+	//DIA>
 	// Sinal óptico
-	OpticalSignal Sx("Sx.sgn");
-	Sx.setBufferLength(bufferLength);
+	//OpticalSignal Sx("Sx.sgn");
+	//Sx.setBufferLength(bufferLength);
+	//END DIA>
 
 /*	
 	// %%%%%%%%%%%%%%%%   EVE SIGNAL DETECTION   %%%%%%%%%%%%%%%%
@@ -148,7 +149,7 @@ int main() {
 	// (1)
 	// [DIA]
 	// Troquei S1 por S0 (optico <-> binario)
-	MQamTransmitter B1{ vector<Signal*> {}, vector<Signal*> {&Sx, &S0} }; // CORRECCAO (qual? ver código do daniel)
+	MQamTransmitter B1{ vector<Signal*> {}, vector<Signal*> {&S1, &S0} }; // CORRECCAO (qual? ver código do daniel)
 	B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower(signalPower);
 	B1.setMode(PseudoRandom);
@@ -164,9 +165,10 @@ int main() {
 	B1.setSeeBeginningOfImpulseResponse(true);
 
 
-	// Introdução de ruido?
+	//DIA> Introdução de ruido?
 	// O Ruido quântico tem que ter var = 1/4
-	WhiteNoise Bx{ vector<Signal*>{&Sx}, vector<Signal*> {&S1} };
+	//WhiteNoise Bx{ vector<Signal*>{&Sx}, vector<Signal*> {&S1} };
+	//END DIA>
 
 
 /*
@@ -277,7 +279,7 @@ int main() {
 
 	
 	// [DIA] Alice e Bob
-	System MainSystem{ vector<Block*> {&B1, &Bx,  &B13, &B14, &B15, &B16, &B17, &B18, &B19} };
+	System MainSystem{ vector<Block*> {&B1, &B13, &B14, &B15, &B16, &B17, &B18, &B19} };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

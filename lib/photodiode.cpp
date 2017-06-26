@@ -117,10 +117,12 @@ bool Photodiode::runBlock(void){
 		noiseAmp1 = distribution(generatorAmp1);
 		noiseAmp2 = distribution(generatorAmp2);
 
-		// [DIA] debug
+		/*
+		//DIA> debug
 		printf("noiseAmp1: %f\n", noiseAmp1);
 		printf("noiseAmp2: %f\n", noiseAmp2);
-		// end debug
+		//END DIA
+		*/
 
 		t_complex input1;
 		inputSignals[0]->bufferGet(&input1);
@@ -167,29 +169,38 @@ bool Photodiode::runBlock(void){
 
 		if (shotNoise)
 		{
+			/*
 			// [DIA] Debug
 			printf("p1: %g\n", power1);
 			printf("p2: %g\n", power2);
 			// end debug
+			*/
 
+			//DIA>
+
+			// Isto está correcto? 
 			power1 += sqrt(P)*noiseAmp1*(sqrt(power1) + sqrt(P)*noiseAmp1 / 4);
 			power2 += sqrt(P)*noiseAmp2*(sqrt(power2) + sqrt(P)*noiseAmp2 / 4);
+
+			// Será assim?
+			//power1 += sqrt(P)*noiseAmp1*(sqrt(power1)*0 + sqrt(P) / 4);
+			//power2 += sqrt(P)*noiseAmp2*(sqrt(power2)*0 + sqrt(P) / 4);
+			
+			//END DIA
+
 			current1 = responsivity*power1;
 			current2 = responsivity*power2;
 
-			// [DIA] Debug
+			/*
+			//DIA>
 			printf("n1: %g\n", sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp1*(sqrt(power1) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp1 / 4));
 			printf("samplingPeriod: %g\n", samplingPeriod);
 			printf("p1: %g\n", power1);
 			printf("p2: %g\n", power2);
-			// end debug
+			//END DIA
+			*/
 
-			// [DIA] bug
-			// A variaável out está a ser redeclarada
-			//t_real out = current1 - current2;
-			// correcção:
 			out = current1 - current2;
-			// bug
 
 		}
 
@@ -206,11 +217,6 @@ bool Photodiode::runBlock(void){
 		}
 		*/
 
-
-		// [DIA] debug
-		printf("out: %g\n", out);
-		printf("\n");
-		// end debug
 
 		outputSignals[0]->bufferPut(out);
 		myfile2 << out << "\n";

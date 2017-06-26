@@ -37,8 +37,6 @@ bool LocalOscillator::runBlock(void){
 
 	normal_distribution<double> distribution(0, 1);
 	
-	double noiseRIN;
-	
 	// This 0.5 factor is related to the bandpass representation.
 	out= .5*sqrt(opticalPower)*out;
 

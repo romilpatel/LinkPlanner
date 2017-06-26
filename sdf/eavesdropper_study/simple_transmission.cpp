@@ -14,6 +14,9 @@
 # include "sampler.h"
 # include "bit_decider.h"
 
+//DIA> My includes
+//include "white_noise.h"
+
 int main() {
 
 	// #####################################################################################################
@@ -55,7 +58,8 @@ int main() {
 	OpticalSignal S1("S1.sgn");
 	S1.setBufferLength(bufferLength);
 
-	
+
+/*	
 	// %%%%%%%%%%%%%%%%   EVE SIGNAL DETECTION   %%%%%%%%%%%%%%%%
 
 	OpticalSignal ED0("ED0.sgn");
@@ -104,7 +108,7 @@ int main() {
 	OpticalSignal EE7("EE7.sgn");
 	EE7.setBufferLength(bufferLength);
 
-
+*/
 
 	// %%%%%%%%%%%%%%%%   BOB SIGNAL DETECTION   %%%%%%%%%%%%%%%%
 
@@ -117,10 +121,17 @@ int main() {
 	OpticalSignal S4("S4.sgn");
 	S4.setBufferLength(bufferLength);
 
-	TimeContinuousAmplitudeContinuousReal S5("S5.sgn");
+	OpticalSignal S5("S5.sgn");
+	S3.setBufferLength(bufferLength);
+
+	OpticalSignal S6("S6.sgn");
+	S4.setBufferLength(bufferLength);
+
+
+	TimeContinuousAmplitudeContinuousReal S7("S7.sgn");
 	S5.setBufferLength(bufferLength);
 
-	TimeDiscreteAmplitudeContinuousReal S6("S6.sgn");
+	TimeDiscreteAmplitudeContinuousReal S8("S8.sgn");
 	S6.setBufferLength(bufferLength);
 
 	Binary S7("S7.sgn");
@@ -156,7 +167,12 @@ int main() {
 	B1.setSeeBeginningOfImpulseResponse(true);
 
 
+	//DIA> Introdução de ruido?
+	// O Ruido quântico tem que ter var = 1/4
+	//WhiteNoise Bx{ vector<Signal*>{&Sx}, vector<Signal*> {&S1} };
 
+
+/*
 
 	//////// BEGIN EVE ////////
 
@@ -184,9 +200,8 @@ int main() {
 	// O RUIDO VAI INDUZIR ERROS NA LEITURA
 	// Escolha de apenas 1 ponto por símbolo.
 	Sampler B5{ vector<Signal*> {&ED3}, vector<Signal*> {&ED4} };
-	B5.setSamplesToSkip();
+	//B5.setSamplesToSkip();
 	//impulseResponseLeght*SamplesPerSymbol
-	B5.
 		
 
 
@@ -222,7 +237,7 @@ int main() {
 
 	// END EVE
 
-
+*/
 
 
 	// BEGIN BOB.
@@ -234,8 +249,37 @@ int main() {
 	B13.setSymbolPeriod(bitPeriod);
 	B13.setSignaltoNoiseRatio(SNR);
 
-	BalancedBeamSplitter B14{ vector<Signal*> { &EE7, &S2 }, vector<Signal*> {&S3, &S4} };
+
+
+	//DIA> A detecção vai consistir num optical hybrid + 2 photodiodes
+
+	OpticalHybrid B14{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4, &S5, &S6} };
+
+	Photodiode B15{ vector<Signal*> { &S3, &S4 }, vector<Signal*> {&S7} };
+	B15.useNoise(shotNoise);
+	B15.setResponsivity(responsivity);
+
+	Photodiode B16{ vector<Signal*> { &S5, &S6 }, vector<Signal*> {&S8} };
+	B16.useNoise(shotNoise);
+	B16.setResponsivity(responsivity);
+
+	Sink B17{ vector<Signal*> {&S7}, vector<Signal*> {} };
+	B17.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B17.setDisplayNumberOfSamples(true);
+
+	Sink B18{ vector<Signal*> {&S8}, vector<Signal*> {} };
+	B18.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B18.setDisplayNumberOfSamples(true);
+
+	//END DIA>
+
+
+
+	/*
+	//BalancedBeamSplitter B14{ vector<Signal*> { &EE7, &S2 }, vector<Signal*> {&S3, &S4} };
+	BalancedBeamSplitter B14{ vector<Signal*> { &S1, &S2 }, vector<Signal*> {&S3, &S4} };
 	B14.setTransferMatrix(transferMatrix);
+	
 
 	Photodiode B15{ vector<Signal*> { &S3, &S4 }, vector<Signal*> {&S5} };
 	B15.useNoise(shotNoise);
@@ -249,11 +293,11 @@ int main() {
 	// 1-> iguais, 0->diferentes.
 	BitErrorRate B18{ vector<Signal*> { &S0, &S7 }, vector<Signal*> { &S8 } };
 
-
 	Sink B19{ vector<Signal*> {&S8}, vector<Signal*> {} };
 	B19.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
 	B19.setDisplayNumberOfSamples(true);
 
+	*/
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
@@ -262,9 +306,9 @@ int main() {
 	// [DIA] Teste original
 	//System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14, &B15, &B16, &B17, &B18, &B19} };
 
-
-	// [DIA] Teste da Alice e Eve
-	System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14, &B15, &B16, &B17, &B18, &B19} };
+	
+	// [DIA] Alice e Bob
+	System MainSystem{ vector<Block*> {&B1, &B13, &B14, &B15, &B16, &B17, &B18} };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

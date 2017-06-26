@@ -52,12 +52,14 @@ int main(){
 	FD_PulseShaper B5{ vector<Signal*> { &S4 }, vector<Signal*> { &S6 } };
 	B5.setRollOffFactor(0.3);
 	B5.setTransferFunctionLength(256);
+	B5.setInputBufferTimeDomainLength(B5.getTransferFunctionLength());
 	B5.setOversamplingRate(16);
 	//B5.setSeeBeginningOfImpulseResponse(false);
 
 	FD_PulseShaper B6{ vector<Signal*> { &S5 }, vector<Signal*> { &S7 } };
 	B6.setRollOffFactor(0.3);
 	B6.setTransferFunctionLength(256);
+	B6.setInputBufferTimeDomainLength(B6.getTransferFunctionLength());
 	B6.setOversamplingRate(16);
 	//B6.setSeeBeginningOfImpulseResponse(false);
 

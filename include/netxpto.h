@@ -482,10 +482,6 @@ class FD_Filter : public Block {
 	
 	/* State Variable */
 	
-
-	int inputBufferTimeDomainLength;
-	int outputBufferTimeDomainLength;
-
 	vector<t_real> inputBufferTimeDomain;
 	vector<t_real> outputBufferTimeDomain;
 
@@ -497,6 +493,10 @@ class FD_Filter : public Block {
 	string transferFunctionFilename{ "transfer_function.tfn" };
 	int transferFunctionLength{ 128 };
 	int OversamplingFactor{ 16 };
+
+	int inputBufferTimeDomainLength{ transferFunctionLength };
+	int outputBufferTimeDomainLength{ transferFunctionLength };
+
 public:
 	/* State Variable */
 	vector<t_complex> transferFunction;

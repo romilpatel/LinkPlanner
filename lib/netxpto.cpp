@@ -859,7 +859,7 @@ void System::run() {
 		SystemBlocks[i]->initializeBlock();
 	}
 	*/
-
+	int l = 0;
 	bool Alive;
 	do {
 		Alive = false;
@@ -867,6 +867,7 @@ void System::run() {
 			bool aux = SystemBlocks[i]->runBlock();
 			Alive = (Alive || aux);
 		}
+		l++;
 	} while (Alive);
 
 	for (int unsigned i = 0; i < SystemBlocks.size(); i++) {

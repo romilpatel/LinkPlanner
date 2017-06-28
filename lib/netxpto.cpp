@@ -412,10 +412,11 @@ void FD_Filter::initializeFD_Filter(void) {
 /*	delayLine.resize(impulseResponseLength, 0);*/
 
 	
-	//inputBufferTimeDomain.resize(transferFunctionLength);
-	//outputBufferTimeDomain.resize(transferFunctionLength);
-	inputBufferPointer = transferFunctionLength / 2 ;
-	outputBufferPointer = transferFunctionLength;
+	inputBufferTimeDomain.resize(inputBufferTimeDomainLength);
+	outputBufferTimeDomain.resize(inputBufferTimeDomainLength);
+
+	inputBufferPointer = inputBufferTimeDomainLength / 2 ;
+	outputBufferPointer = inputBufferTimeDomainLength;
 
 	//raisedCosineTF(transferFunction, transferFunctionLength, rollOffFactor, samplingPeriod, symbolPeriod);
 
@@ -548,8 +549,8 @@ bool FD_Filter::runBlock(void) {
 	bool alive{ false };
 
 	int ready = inputSignals[0]->ready();
-	inputBufferTimeDomain.resize(ready);
-	outputBufferTimeDomain.resize(ready);
+	//inputBufferTimeDomain.resize(ready);
+	//outputBufferTimeDomain.resize(ready);
 	int space = inputBufferTimeDomain.size() - inputBufferPointer;
 
 	int process1 = min(ready, space);

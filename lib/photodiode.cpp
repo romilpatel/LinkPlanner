@@ -169,12 +169,13 @@ bool Photodiode::runBlock(void){
 
 		if (shotNoise)
 		{
-			/*
-			// [DIA] Debug
+			
+			//DIA> Debug
+			printf("P: %g\n", P);
 			printf("p1: %g\n", power1);
 			printf("p2: %g\n", power2);
-			// end debug
-			*/
+			//END DIA>
+			
 
 			//DIA>
 
@@ -186,19 +187,10 @@ bool Photodiode::runBlock(void){
 			//power1 += sqrt(P)*noiseAmp1*(sqrt(power1)*0 + sqrt(P) / 4);
 			//power2 += sqrt(P)*noiseAmp2*(sqrt(power2)*0 + sqrt(P) / 4);
 			
-			//END DIA
+			//END DIA>
 
 			current1 = responsivity*power1;
 			current2 = responsivity*power2;
-
-			/*
-			//DIA>
-			printf("n1: %g\n", sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp1*(sqrt(power1) + sqrt(PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplingPeriod*wavelength))*noiseAmp1 / 4));
-			printf("samplingPeriod: %g\n", samplingPeriod);
-			printf("p1: %g\n", power1);
-			printf("p2: %g\n", power2);
-			//END DIA
-			*/
 
 			out = current1 - current2;
 

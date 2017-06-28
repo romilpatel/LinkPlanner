@@ -26,15 +26,22 @@ int main()
 
 
 
-	int numberOfBitsGenerated(1000);
+	int numberOfBitsGenerated(50);
 
-	int samplesPerSymbol(1);
-	double bitPeriod = 1.0/5e6;
+	int samplesPerSymbol(64);
+	//double bitPeriod = 1.0/5e9;
+	double bitPeriod = 1.0E-9;
+
+	// powerUnit = PLANCK_CONSTANT * SPEED_OF_LIGHT / (bitPeriod*wavelength)
+	// We will assume: wavelength = 1.550E-6
+	//double powerUnit = 6.4078e-13;
+	double wavelength = 1.55e-6;
+	double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT/(bitPeriod/samplesPerSymbol*wavelength);
 	
-	double localOscillatorPower1 = 6.4078e-13 * 1;
+	double localOscillatorPower1 = powerUnit * 500 ;
 	//double localOscillatorPower_dBm1 = -91.933;
 	
-	double localOscillatorPower2 = 6.4078e-13 * 25;
+	double localOscillatorPower2 = powerUnit * 500;
 	//double localOscillatorPower_dBm2 = 10;
 
 	double localOscillatorPhase = 0;
@@ -51,9 +58,10 @@ int main()
 
 
 
-	// #####################################################################################################
-	// ########################### Signals Declaration and Inicialization ##################################
-	// #####################################################################################################
+
+	// #########################################################################
+	// ################ Signals Declaration and Inicialization #################
+	// #########################################################################
 
 
 
@@ -94,10 +102,15 @@ int main()
 	TimeDiscreteAmplitudeContinuousReal S8("S8.sgn");
 	S8.setBufferLength(bufferLength);
 
+	TimeDiscreteAmplitudeContinuousReal S9("S9.sgn");
+	S9.setBufferLength(bufferLength);
 
-	// #####################################################################################################
-	// ########################### Blocks Declaration and Inicialization ###################################
-	// #####################################################################################################
+	TimeDiscreteAmplitudeContinuousReal S10("S10.sgn");
+	S10.setBufferLength(bufferLength);
+
+	// #########################################################################
+	// ################# Blocks Declaration and Inicialization #################
+	// #########################################################################
 
 	// BEGIN ALICE
 
@@ -106,13 +119,13 @@ int main()
 	B1.setOutputOpticalPower(localOscillatorPower1);
 	//B1.setOutputOpticalPower_dBm(localOscillatorPower_dBm1);
 	
-
-	//B1.setMode(PseudoRandom);
-	B1.setMode(Random);
+	B1.setMode(PseudoRandom);
+	//B1.setMode(Random);
 	
 	B1.setBitPeriod(bitPeriod);
 	B1.setIqAmplitudes(iqAmplitudeValues);
 	B1.setPulseShaperFilter(Gaussian);
+
 	B1.setNumberOfSamplesPerSymbol(samplesPerSymbol);
 	B1.setSaveInternalSignals(true);
 	B1.setSeeBeginningOfImpulseResponse(true);
@@ -131,7 +144,8 @@ int main()
 	B13.setSymbolPeriod(bitPeriod);
 	B13.setSignaltoNoiseRatio(SNR);
 
-	OpticalHybrid B14{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4, &S5, &S6} };
+	OpticalHybrid B14{ vector<Signal*> {&S1, &S2},
+					   vector<Signal*> {&S3, &S4, &S5, &S6} };
 
 	Photodiode B15{ vector<Signal*> { &S3, &S4 }, vector<Signal*> {&S7} };
 	B15.useNoise(shotNoise);
@@ -141,21 +155,25 @@ int main()
 	B16.useNoise(shotNoise);
 	B16.setResponsivity(responsivity);
 
-	Sink B17{ vector<Signal*> {&S7}, vector<Signal*> {} };
-	B17.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B17.setDisplayNumberOfSamples(true);
+	Sampler B17{ vector<Signal*> { &S7 }, vector<Signal*> { &S9 } };
+	
+	Sampler B18{ vector<Signal*> { &S8 }, vector<Signal*> { &S10 } };
 
-	Sink B18{ vector<Signal*> {&S8}, vector<Signal*> {} };
-	B18.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B18.setDisplayNumberOfSamples(true);
+	Sink B19{ vector<Signal*> {&S9}, vector<Signal*> {} };
+	B19.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B19.setDisplayNumberOfSamples(true);
+
+	Sink B20{ vector<Signal*> {&S10}, vector<Signal*> {} };
+	B20.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B20.setDisplayNumberOfSamples(true);
 	
 	// END BOB
 
 
 
-	Sink B19{ vector<Signal*> {&S0}, vector<Signal*> {} };
-	B18.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B18.setDisplayNumberOfSamples(true);
+	Sink B21{ vector<Signal*> {&S0}, vector<Signal*> {} };
+	B21.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B21.setDisplayNumberOfSamples(true);
 
 
 	// #####################################################################################################
@@ -163,7 +181,8 @@ int main()
 	// #####################################################################################################
 
 
-	System MainSystem{ vector<Block*> {&B1, &B13, &B14, &B15, &B16, &B17, &B18, &B19} };
+	System MainSystem{ vector<Block*> {&B1, &B13, &B14, &B15, &B16, &B17, &B18,
+					   &B19, &B20, &B21} };
 
 
 	// #####################################################################################################

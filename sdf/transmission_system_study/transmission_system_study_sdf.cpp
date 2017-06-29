@@ -35,8 +35,8 @@ int main()
 	double wavelength = 1.55e-6;
 	double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (bitPeriod / samplesPerSymbol*wavelength);
 
-	double localOscillatorPower1 = powerUnit * 500;
-	double localOscillatorPower2 = powerUnit * 500;
+	double localOscillatorPower1 = powerUnit * 100;
+	double localOscillatorPower2 = powerUnit * 100;
 
 	double localOscillatorPhase = 0;
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2) } };
@@ -104,6 +104,12 @@ int main()
 	TimeDiscreteAmplitudeContinuousReal S10("S10.sgn");
 	S10.setBufferLength(bufferLength);
 
+	OpticalSignal S11("S11.sgn");
+	S11.setBufferLength(bufferLength);
+
+
+
+
 	// #########################################################################
 	// ################# Blocks Declaration and Inicialization #################
 	// #########################################################################
@@ -113,10 +119,8 @@ int main()
 	MQamTransmitter B1{ vector<Signal*> {}, vector<Signal*> {&S1, &S0} };
 	B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower(localOscillatorPower1);
-	//B1.setOutputOpticalPower_dBm(localOscillatorPower_dBm1);
 
 	B1.setMode(PseudoRandom);
-	//B1.setMode(Random);
 
 	B1.setBitPeriod(bitPeriod);
 	B1.setIqAmplitudes(iqAmplitudeValues);
@@ -133,47 +137,50 @@ int main()
 
 	// BEGIN BOB.
 
-	LocalOscillator B13{ vector<Signal*> {}, vector<Signal*> {&S2} };
-	B13.setOpticalPower(localOscillatorPower2);
-	B13.setPhase(localOscillatorPhase);
-	B13.setSamplingPeriod(bitPeriod / samplesPerSymbol);
-	B13.setSymbolPeriod(bitPeriod);
-	B13.setSignaltoNoiseRatio(SNR);
+	LocalOscillator B2{ vector<Signal*> {}, vector<Signal*> {&S2} };
+	B2.setOpticalPower(localOscillatorPower2);
+	B2.setPhase(localOscillatorPhase);
+	B2.setSamplingPeriod(bitPeriod / samplesPerSymbol);
+	B2.setSymbolPeriod(bitPeriod);
+	B2.setSignaltoNoiseRatio(SNR);
 
-	OpticalHybrid B14{ vector<Signal*> {&S1, &S2},
-		vector<Signal*> {&S3, &S4, &S5, &S6} };
+	OpticalHybrid B3{ vector<Signal*> {&S1, &S2},
+					   vector<Signal*> {&S3, &S4, &S5, &S6} };
 
-	Photodiode B15{ vector<Signal*> { &S3, &S4 }, vector<Signal*> {&S7} };
-	B15.useNoise(shotNoise);
-	B15.setResponsivity(responsivity);
+	Photodiode B4{ vector<Signal*> { &S3, &S4 }, vector<Signal*> {&S7} };
+	B4.useNoise(shotNoise);
+	B4.setResponsivity(responsivity);
 
-	Photodiode B16{ vector<Signal*> { &S5, &S6 }, vector<Signal*> {&S8} };
-	B16.useNoise(shotNoise);
-	B16.setResponsivity(responsivity);
+	Photodiode B5{ vector<Signal*> { &S5, &S6 }, vector<Signal*> {&S8} };
+	B5.useNoise(shotNoise);
+	B5.setResponsivity(responsivity);
 
-	Sampler B17{ vector<Signal*> { &S7 }, vector<Signal*> { &S9 } };
+	Sampler B6{ vector<Signal*> { &S7 }, vector<Signal*> { &S9 } };
 
-	Sampler B18{ vector<Signal*> { &S8 }, vector<Signal*> { &S10 } };
+	Sampler B7{ vector<Signal*> { &S8 }, vector<Signal*> { &S10 } };
 
+	IqModulator B8{ vector<Signal*> { &S9, &S10 }, vector<Signal*> { &S11 } };
 
 	// END BOB
 
 
 
+	/*
+	Sink B8{ vector<Signal*> {&S9}, vector<Signal*> {} };
+	B8.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B8.setDisplayNumberOfSamples(true);
 
-	Sink B19{ vector<Signal*> {&S9}, vector<Signal*> {} };
-	B19.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B19.setDisplayNumberOfSamples(true);
+	*/
 
-	Sink B20{ vector<Signal*> {&S10}, vector<Signal*> {} };
-	B20.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B20.setDisplayNumberOfSamples(true);
+	Sink B9{ vector<Signal*> {&S11}, vector<Signal*> {} };
+	B9.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B9.setDisplayNumberOfSamples(true);
 
 
 
-	Sink B21{ vector<Signal*> {&S0}, vector<Signal*> {} };
-	B21.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B21.setDisplayNumberOfSamples(true);
+	Sink B10{ vector<Signal*> {&S0}, vector<Signal*> {} };
+	B10.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B10.setDisplayNumberOfSamples(true);
 
 
 
@@ -182,8 +189,8 @@ int main()
 	// ################# System Declaration and Inicialization #################
 	// #########################################################################
 
-	System MainSystem{ vector<Block*> {&B1, &B13, &B14, &B15, &B16, &B17, &B18,
-		&B19, &B20, &B21} };
+	System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B5, &B6, &B7,
+		&B8, &B9, &B10} };
 
 
 

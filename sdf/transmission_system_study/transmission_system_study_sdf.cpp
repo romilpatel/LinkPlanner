@@ -33,7 +33,8 @@ int main()
 	// We will assume: wavelength = 1.550E-6
 	//double powerUnit = 6.4078e-13;
 	double wavelength = 1.55e-6;
-	double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (bitPeriod / samplesPerSymbol*wavelength);
+	double samplePeriod = bitPeriod / samplesPerSymbol;
+	double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (bitPeriod*wavelength);
 
 	double localOscillatorPower1 = powerUnit * 100;
 	double localOscillatorPower2 = powerUnit * 100;
@@ -159,6 +160,8 @@ int main()
 
 	Sampler B7{ vector<Signal*> { &S8 }, vector<Signal*> { &S10 } };
 
+	// Conjugação dos dois sinais vindos dos samplers para criar um sinal complexo
+	// de modo a poder ver-se a constelação.
 	IqModulator B8{ vector<Signal*> { &S9, &S10 }, vector<Signal*> { &S11 } };
 
 	// END BOB

@@ -170,11 +170,13 @@ bool Photodiode::runBlock(void){
 		if (shotNoise)
 		{
 			
+			/*
 			//DIA> Debug
 			printf("P: %g\n", P);
 			printf("p1: %g\n", power1);
 			printf("p2: %g\n", power2);
 			//END DIA>
+			*/
 			
 
 			//DIA>

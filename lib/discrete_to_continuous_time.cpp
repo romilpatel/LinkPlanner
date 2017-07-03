@@ -14,6 +14,8 @@ void DiscreteToContinuousTime::initialize(void) {
 
 bool DiscreteToContinuousTime::runBlock(void) {
 
+	count++;
+
 	bool alive{ false };
 
 	int ready = inputSignals[0]->ready();
@@ -41,6 +43,9 @@ bool DiscreteToContinuousTime::runBlock(void) {
 				t_real value;
 				(inputSignals[0])->bufferGet(&value);
 				outputSignals[0]->bufferPut(value);
+
+				if (value == 1 || value == -1) { time = 0.0 + 0.04*contador; }
+
 				contador++;
 				space--;
 				index++;

@@ -24,7 +24,7 @@ int main()
 	// ######################## System Input Parameters ########################
 	// #########################################################################
 
-	int numberOfBitsGenerated(500);
+	int numberOfBitsGenerated(100);
 
 	int samplesPerSymbol(64);
 	double bitPeriod = 1.0E-9;
@@ -34,7 +34,7 @@ int main()
 	//double powerUnit = 6.4078e-13;
 	double wavelength = 1.55e-6;
 	double samplePeriod = bitPeriod / samplesPerSymbol;  // Talvez isto não seja preciso
-	double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (bitPeriod*wavelength);
+	double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplePeriod*wavelength);
 
 	double localOscillatorPower1 = powerUnit * 100;
 	double localOscillatorPower2 = powerUnit * 100;

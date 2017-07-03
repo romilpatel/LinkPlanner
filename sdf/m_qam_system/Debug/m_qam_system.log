@@ -1,3 +1,4 @@
 ﻿  discrete_to_continuous_time.cpp
-  m_qam_system.vcxproj -> C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.exe
-  m_qam_system.vcxproj -> C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)
+d:\netxpto\analuisa\lib\discrete_to_continuous_time.cpp(45): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  m_qam_system.vcxproj -> D:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.exe
+  m_qam_system.vcxproj -> D:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)

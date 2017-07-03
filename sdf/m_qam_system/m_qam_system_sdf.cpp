@@ -12,7 +12,7 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated = 3000;
+	int numberOfBitsGenerated = 1000;
 	double bitPeriod = 1.0 / 50e9;
 
 	int prbsPatternLength = 5;

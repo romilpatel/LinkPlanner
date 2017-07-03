@@ -21,6 +21,10 @@ public:
 	int const getNumberOfSamplesPerSymbol(void){ return numberOfSamplesPerSymbol; };
 
 	int contador{ 0 };
+
+	int count{ 0 };
+
+	double time{ 0 };
 };
 
 #endif

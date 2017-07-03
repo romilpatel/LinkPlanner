@@ -27,7 +27,6 @@ bool Photodiode::runBlock(void){
 
 	double samplingPeriod = inputSignals[0]->getSamplingPeriod();
 	double symbolPeriod = inputSignals[0]->getSymbolPeriod ();
-	// [DIA] Bug Correction : introducing (int) avoiding implicit conversion.
 	int samplesPerSymbol = (int)round(symbolPeriod / samplingPeriod);
 
 	int ready1 = inputSignals[0]->ready();
@@ -53,11 +52,7 @@ bool Photodiode::runBlock(void){
 	double wavelength = inputSignals[0]->getCentralWavelength();
 
 
-	// [DIA] BUG
-	// Correction : introducing (unsigned) avoiding implicit conversion.
 	unsigned seed = (unsigned)chrono::system_clock::now().time_since_epoch().count();
-	// end bug
-
 
 	
 	generatorAmp1.seed(seed);

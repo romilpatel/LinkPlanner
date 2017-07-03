@@ -24,7 +24,7 @@ int main()
 	// ######################## System Input Parameters ########################
 	// #########################################################################
 
-	int numberOfBitsGenerated(100);
+	int numberOfBitsGenerated(500);
 
 	int samplesPerSymbol(64);
 	double bitPeriod = 1.0E-9;
@@ -34,10 +34,14 @@ int main()
 	//double powerUnit = 6.4078e-13;
 	double wavelength = 1.55e-6;
 	double samplePeriod = bitPeriod / samplesPerSymbol;  // Talvez isto não seja preciso
+	
+	
 	double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplePeriod*wavelength);
+	// Correcção da potência.
+	//double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (bitPeriod*wavelength);
 
 	double localOscillatorPower1 = powerUnit * 100;
-	double localOscillatorPower2 = powerUnit * 100;
+	double localOscillatorPower2 = powerUnit * 1e4;
 
 	double localOscillatorPhase = 0;
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2) } };
@@ -52,6 +56,8 @@ int main()
 
 	double SNR = 0;
 
+	// Number of samples to avoid the delay created in the MQAM
+	int samplesToSkip = samplesPerSymbol * 8;
 
 
 
@@ -157,8 +163,10 @@ int main()
 	B5.setResponsivity(responsivity);
 
 	Sampler B6{ vector<Signal*> { &S7 }, vector<Signal*> { &S9 } };
+	B6.setSamplesToSkip(samplesToSkip);
 
 	Sampler B7{ vector<Signal*> { &S8 }, vector<Signal*> { &S10 } };
+	B7.setSamplesToSkip(samplesToSkip);
 
 	// Conjugação dos dois sinais vindos dos samplers para criar um sinal complexo
 	// de modo a poder ver-se a constelação.

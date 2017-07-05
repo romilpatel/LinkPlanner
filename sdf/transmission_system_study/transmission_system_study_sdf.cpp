@@ -52,7 +52,11 @@ int main()
 	
 	int bufferLength = 512;
 	bool shotNoise(true);
+
+	//DIA> novos estados
 	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
+	//vector<t_iqValues> iqAmplitudeValues = { { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
+	//END DIA>
 
 	double SNR = 0;
 

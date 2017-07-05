@@ -112,13 +112,6 @@ bool Photodiode::runBlock(void){
 		noiseAmp1 = distribution(generatorAmp1);
 		noiseAmp2 = distribution(generatorAmp2);
 
-		/*
-		//DIA> debug
-		printf("noiseAmp1: %f\n", noiseAmp1);
-		printf("noiseAmp2: %f\n", noiseAmp2);
-		//END DIA
-		*/
-
 		t_complex input1;
 		inputSignals[0]->bufferGet(&input1);
 		t_complex input2;
@@ -130,15 +123,17 @@ bool Photodiode::runBlock(void){
 		t_real powerSignal2 = abs(input1 - input2) / sqrt(2); // Assuming Signal input in PIN2
 		*/
 
-
+		//DIA> noise old implementation
 		// The 4 factor is compensating the bandpass signal representation amplitude correction.
 		t_real power1 = abs(input1)*abs(input1) * 4;
 		t_real power2 = abs(input2)*abs(input2) * 4;
+		//END DIA>
 
-
-		t_real current1 = responsivity*power1;
-		t_real current2 = responsivity*power2;
-		t_real out = current1 - current2;
+		//DIA> noise new implementation (TEST)
+		//t_real n1 = (abs(input1)*abs(input1) * 4)/P;
+		//t_real n2 = (abs(input2)*abs(input2) * 4)/P;
+		//END DIA>
+	
 
 
 		/*
@@ -161,35 +156,25 @@ bool Photodiode::runBlock(void){
 		}
 		*/
 
+		//t_real sqrt_n1;
+		//t_real sqrt_n2;
 
 		if (shotNoise)
 		{
 			
-			/*
-			//DIA> Debug
-			printf("P: %g\n", P);
-			printf("p1: %g\n", power1);
-			printf("p2: %g\n", power2);
-			//END DIA>
-			*/
 			
-
-			//DIA>
-
-			// Isto está correcto? 
+			//DIA> noise old implementation
 			power1 += sqrt(P)*noiseAmp1*(sqrt(power1) + sqrt(P)*noiseAmp1 / 4);
 			power2 += sqrt(P)*noiseAmp2*(sqrt(power2) + sqrt(P)*noiseAmp2 / 4);
-
-			// Será assim?
-			//power1 += sqrt(P)*noiseAmp1*(sqrt(power1)*0 + sqrt(P) / 4);
-			//power2 += sqrt(P)*noiseAmp2*(sqrt(power2)*0 + sqrt(P) / 4);
-			
 			//END DIA>
 
-			current1 = responsivity*power1;
-			current2 = responsivity*power2;
 
-			out = current1 - current2;
+			//DIA> noise new implementation
+			//poisson_distribution<int> distribution1(n1+0.001);
+			//poisson_distribution<int> distribution2(n2+0.001);
+			//n1 = distribution1(generatorAmp1);
+			//n2 = distribution2(generatorAmp2);
+			//END DIA>
 
 		}
 
@@ -205,6 +190,16 @@ bool Photodiode::runBlock(void){
 			}
 		}
 		*/
+
+
+		//DIA> noise new implementation
+		//t_real power1 = n1*P;
+		//t_real power2 = n2*P;
+		//END DIA>
+
+		t_real current1 = responsivity*power1;
+		t_real current2 = responsivity*power2;
+		t_real out = current1 - current2;
 
 
 		outputSignals[0]->bufferPut(out);

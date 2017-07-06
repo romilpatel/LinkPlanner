@@ -2,13 +2,13 @@
 
 # include "m_qam_transmitter.h"
 # include "i_homodyne_receiver.h"
-# include "sink.h"
 # include "bit_error_rate.h"
 # include "local_oscillator.h"
 # include "balanced_beam_splitter.h"
 # include "photodiode.h"
 # include "ti_amplifier.h"
 # include "sampler.h"
+# include "sink.h"
 
 int main(){
 
@@ -46,7 +46,6 @@ int main(){
 	OpticalSignal S2("S2.sgn");
 	S2.setBufferLength(bufferLength);
 
-
 	OpticalSignal S3("S3.sgn");
 	S3.setBufferLength(bufferLength);
 
@@ -82,13 +81,6 @@ int main(){
 
 	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4} };
 	B3.setTransferMatrix(transferMatrix);
-
-    /*I_HomodyneReceiver B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
-	B4.setResponsivity(responsivity);
-	B4.setGain(amplification);
-	B4.setElectricalNoiseSpectralDensity(electricalNoiseAmplitude);
-	B4.setSaveInternalSignals(true);
-	B4.useShotNoise(shotNoise);*/
 
 	Photodiode B4{ vector<Signal*> {&S3, &S4}, vector<Signal*> {&S5} };
 	B4.useNoise(shotNoise);

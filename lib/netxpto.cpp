@@ -670,15 +670,7 @@ void System::run() {
 		Alive = false;
 		for (unsigned int i = 0; i < SystemBlocks.size(); i++) {
 
-			//[DIA] debug
-			cout << "begin runBlock " << i << endl;
-			// end debug
-
 			bool aux = SystemBlocks[i]->runBlock();
-
-			//[DIA] debug
-			cout << "end runBlock " << i << endl;
-			// end debug
 
 			Alive = (Alive || aux);
 		}
@@ -686,15 +678,7 @@ void System::run() {
 
 	for (int unsigned i = 0; i < SystemBlocks.size(); i++) {
 		
-		//[DIA] debug
-		cout << "begin terminateBlock " << i << endl;
-		// end debug
-		
 		SystemBlocks[i]->terminateBlock();
-
-		//[DIA] debug
-		cout << "end terminateBlock " << i << endl;
-		// end debug
 
 	}
 }

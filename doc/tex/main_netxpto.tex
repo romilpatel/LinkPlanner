@@ -1,127 +1,13 @@
 \documentclass[11pt,oneside,openright]{./style/phdthesis}
-\usepackage{amsmath}
-\usepackage[ansinew]{inputenc}
-\usepackage[portuguese]{babel}
-\usepackage[printonlyused, withpage]{acronym}
-\usepackage{a4wide}
-\usepackage{palatino}
-\usepackage{fancyhdr}
-\usepackage{fancybox}
-\usepackage{amssymb}
-%\usepackage{chapterbib} %com este package as referencias bibliográficas aparecem no final de cada capítulo
-\usepackage{cite}
-\usepackage{epsfig}
-%\usepackage{subfigure}
-\usepackage{graphics}
-\usepackage{float}
-\usepackage{here}
-\usepackage[T1]{fontenc}
-\usepackage{rotating}
-\usepackage{multirow}
-%\usepackage{comment}
-%\usepackage{captionhack}
-\usepackage{epigraph}
-\usepackage[linkcolor=black]{hyperref}
-%\renewcommand{\thesubfigure}{}
-\hypersetup{colorlinks=true}
-\usepackage{enumerate}
-%\usepackage[numbers,sort&compress]{natbib}
-%\usepackage{hypernat}
-\usepackage{booktabs}
-\usepackage{url}                    % needed to cite a site
-\usepackage{eurosym}
-\usepackage{makeidx}
-\usepackage{datatool}
-\usepackage[toc, acronym]{glossaries}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{subcaption}
 
-\usepackage{tabulary}
-\usepackage{braket}
-
-% subfile handling packages
-\usepackage{subfiles}
-
-\usepackage{multicol}
-
-
-\newcommand{\onlyinsubfile}[1]{#1}
-\newcommand{\notinsubfile}[1]{}
+\include{./style/mypackages}
+\include{./style/mycommands}
 
 
 
-%\makesavenoteenv{tabular}
 
 
 
-\hyphenpenalty=50000
-\tolerance=10000
-%%% General page formatting
-\renewcommand{\textfraction}{0.01}
-\renewcommand{\topfraction}{0.99}
-\renewcommand{\floatpagefraction}{0.99}
-\renewcommand{\bottomfraction}{0.99}
-\renewcommand{\heavyrulewidth}{1pt}
-\renewcommand{\lightrulewidth}{0.50pt}
-\oddsidemargin 0.2in
-\evensidemargin 0in
-%\textwidth 155mm
-\headheight 15.0pt
-\topmargin 0in
-%\textheight 237mm
-
-% footheight 1.0in
-\renewcommand{\chaptername}{Capítulo}
-\renewcommand{\figurename}{Figura}
-\renewcommand{\appendixname}{\Large{Anexo}}
-\renewcommand{\tablename}{Tabela}
-\renewcommand{\acronymname}{Acrónimos}
-
-\newcommand{\mli}[1]{\mathit{#1}}
-\newcommand{\intSpace}{\!\!\!\!}
-\newcommand{\doubleInt}{\!\!\int\intSpace\int\!\!}
-\newcommand{\TX}{\mathit{TX}}
-\newcommand{\NLI}{\mathit{NLI}}
-\newcommand{\eff}{\mathit{eff}}
-\newcommand{\LOASE}{\mathit{LO-ASE}}
-\newcommand{\LONLI}{\mathit{LO-NLI}}
-
-\makeatletter
-\providecommand*{\diff}%
-{\@ifnextchar^{\DIfF}{\DIfF^{}}}
-\def\DIfF^#1{%
-\mathop{\mathrm{\mathstrut d}}%
-\nolimits^{#1}\gobblespace}
-\def\gobblespace{%
-\futurelet\diffarg\opspace}
-\def\opspace{%
-\let\DiffSpace\!%
-\ifx\diffarg(%
-\let\DiffSpace\relax
-\else
-\ifx\diffarg[%
-\let\DiffSpace\relax
-\else
-\ifx\diffarg\{%
-\let\DiffSpace\relax
-\fi\fi\fi\DiffSpace}
-
-\providecommand*{\tDeriv}[3][]{%
-\frac{\diff^{#1}#2}{\diff #3^{#1}}}
-\providecommand*{\pDeriv}[3][]{%
-\frac{\partial^{#1}#2}%
-{\partial #3^{#1}}}
-
-\graphicspath{{./figures/}}
-
-
-\DeclareMathOperator{\erf}{erf}
-\DeclareMathOperator{\erfc}{erfc}
-\DeclareMathOperator{\sinc}{sinc}
-\DeclareMathOperator{\R}{Re}
-\DeclareMathOperator{\I}{Im}
-\DeclareMathOperator{\asinh}{asinh}
 
 
 %\include{GlossaryAnp}
@@ -161,13 +47,13 @@
 
 
 %%  include the LaTeX files containing the text for each chapters
-%   create the appendix and include it
-\pagenumbering{arabic}
 
-\include{netxpto/introduction}
 
-\section{Contínuos Variable Quantum Transmission System}
-\subfile{../../sdf/tex/cv_system}
+\include{chapter/introduction}
+
+%\section{Continuous Variable Quantum Transmission System}
+%
+%\subfile{./sdf/cv_system/cv_system}
 
 
 %\include{sdf/cv_system/cv_system}
@@ -181,6 +67,7 @@
 %\include{Acronymous}
 %\printindex
 
+%   create the appendix and include it
 
 
 \pagebreak

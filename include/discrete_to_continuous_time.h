@@ -25,6 +25,14 @@ public:
 	int count{ 0 };
 
 	double time{ 0 };
+
+	ofstream myfile;
+
+	ofstream myfile2;
+
+	ofstream myfile3;
+
+	int l{ 0 };
 };
 
 #endif

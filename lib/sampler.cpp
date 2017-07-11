@@ -125,4 +125,6 @@ bool Sampler::runBlock(void) {
 
 	}
 
+	return 0;
+
 };

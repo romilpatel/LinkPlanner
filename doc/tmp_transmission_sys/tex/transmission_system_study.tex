@@ -30,6 +30,11 @@
 \date{}
 
 % Custom command (just for this work)
+% Bras and Kets commands
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}
+\newcommand{\braket}[2]{\langle#1\mid#2\rangle}
+\newcommand{\lrangle}[1]{\langle#1\rangle}
 
 
 \begin{document}
@@ -38,9 +43,8 @@
 \section{Introduction}\label{sec:intro}
 
 This document describes a simple emission and detection system for coherent states.\\
-We use a constellation based in the states 
-
-
+We use a constellation based in the states $\{ \ket{\alpha}, \ket{i\alpha}, \ket{-\alpha}, \ket{-i \alpha} \}$\\
+\\
 The average current output for a homodyne receiver, with coherent input signals $S_1=\sqrt{P_1}e^{i\theta}$ and $S_2=\sqrt{P_2}e^{i\epsilon}$, is given by:
 \begin{equation}
 I=\eta\sqrt{P_1P_2}\cos\Delta\phi,

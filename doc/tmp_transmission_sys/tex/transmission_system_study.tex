@@ -36,6 +36,9 @@
 \newcommand{\braket}[2]{\langle#1\mid#2\rangle}
 \newcommand{\lrangle}[1]{\langle#1\rangle}
 
+% Fracções
+\newcommand{\slantfrac}[2]{\,^{#1}\!/_{#2}}
+
 
 \begin{document}
 \maketitle
@@ -43,45 +46,48 @@
 \section{Introduction}\label{sec:intro}
 
 This document describes a simple emission and detection system for coherent states.\\
-We use a constellation based in the states $\{ \ket{\alpha}, \ket{i\alpha}, \ket{-\alpha}, \ket{-i \alpha} \}$\\
+We use a constellation based in the states $\{ \ket{\alpha}, \ket{i\alpha}, \ket{ - \alpha}, \ket{ - i \alpha} \}$\\
 \\
-The average current output for a homodyne receiver, with coherent input signals $S_1=\sqrt{P_1}e^{i\theta}$ and $S_2=\sqrt{P_2}e^{i\epsilon}$, is given by:
-\begin{equation}
-I=\eta\sqrt{P_1P_2}\cos\Delta\phi,
-\end{equation}
-where $\Delta\phi=\theta-\epsilon$ is the phase difference between the two input signals. The current variance introduced by the statistical nature of the photon-number, shot noise, is given by:
-\begin{equation}
-(\Delta I)^2=\eta(P_1+P_2).
-\end{equation}
-If only one signal input is used (for example $P_1\neq0\wedge P_2=0$), the output will be purely noise and it's amplitude should scale linearly with the signal power. In addition to the shot noise contribution, two other noise sources are commonly present: 
-\begin{itemize}
-\item thermal noise, originating from the detector’s electronics and which is independent from the power of the applied signal;
-\item relative intensity noise, originating from instabilities in the power level of the used laser.
-\end{itemize}
-The first of these is independent of the laser power while the latter scales with its square.
-
+One of the main features studied in this system is quantum noise, that is intrinsic to the system. In principle  the variance of a coherent state is given by $\Delta X_1 \Delta X_2 = \slantfrac{1}{4}$.\\
+Therefore, assuming Gaussian shot noise, for each quadrature we want $\textrm{Var}(X_i) = \slantfrac{1}{4}$ ?????\\
+(TENHO DE PROCURAR REFERENCIAS)
+\\
+\\
+This quantum noise is introduced in the photodiodes by the following logic:\\
+We know that a coherent state has an expected number of photons distributed by a Poisson distribution, which has an average number equal to it's variance. Therefore, when the photodiode detects the power of signal, which is proportional to the number of photons, then it's variance must also be proportional to the number of photons.\\
+\\
+In fact the last step in detecting the resulting signal introduces an difference between currents, but that only will increase the variance. Assuming the independence between detections, and it's intrinsic noise (PROCURAR MELHOR PALEIO), then:
+$$
+\textrm{Var}(I_{out}) = \textrm{Var}(I_1) + \textrm{Var}(I_2)
+$$
+Therefore, the best result we can achieve will be $\textrm{Var}(X) = \slantfrac{1}{4}$ ???? (PROCURAR PALEIO SOBRE ISTO)\\
+\\
+\\
 \section{Functional Description}
 
-A simplified diagram of the system being simulated is presented in Figures~\ref{fig:singleH}. One of the Local Oscillator block is set to a zero amplitude output (0~W), while the other's power is set at different values to allow for a study of the dynamic properties of the system. The two signals are mixed with a Balanced Beam Splitter and are subsequently evaluated with recourse to a Homodyne Receiver.
-\par
-Both thermal and shot noise were considered for this simulation, the thermal noise amplitude was set to coincide with the value observed in the experimental results.
+The simulation setup is described by diagram in figure \ref{fig:setup}. We start by generating a state from one of the four available ones.???? Then, the signal is received in a Hybrid Detector??? where the signal is compared with a local oscillator giving four different signals in it's output. Two of those signals are detected by a photodiode which outuput will be the difference of the two photocurrents. The other two signals will be also be detected by another photodiode, which will obtain the other quadrature of the signal.????? (TEM QUE FICAR MELHOR EXPLICADO).
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{singlehomodyneSimuBlock.png}
-\caption{Overview of the optical system being simulated.}
-\label{fig:singleH}
-\end{figure}
+
 
 \begin{table}[H]
 \centering
 \begin{tabular}{c|c}
 System Blocks          & netxpto Blocks       \\ \hline
-Local Oscillator       & LocalOscillator      \\
-Homodyne Receiver      & I\_HomodyneReceiver   \\
-Balanced Beam Splitter & BalancedBeamSplitter
+- & MQAM \\
+- & LocalOscillator \\
+- & Hybrid?? \\
+- & Photodiode??
 \end{tabular}
 \end{table}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{../img/scheme1.pdf}
+\caption{Overview of the optical system being simulated.}
+\label{fig:setup}
+\end{figure}
+
 
 \section{Required files}\label{Required files}
 

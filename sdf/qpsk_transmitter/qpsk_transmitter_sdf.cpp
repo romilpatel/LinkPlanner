@@ -13,15 +13,15 @@ int main(){
 	// ################################### System Input Parameters #########################################
 	// #####################################################################################################
 
-	BinarySourceMode sourceMode = PseudoRandom;
-	int patternLength = 5;
+	BinarySourceMode sourceMode{ PseudoRandom };
+	int patternLength{ 5 };
 	string bitStream{ "0" };
-	double bitPeriod = 1.0 / 50e9;
-	vector<t_iqValues> iqAmplitudes = { { 1,1 },{ -1,1 },{ -1,-1 },{ 1,-1 } };
-	int numberOfBits = 1000;
-	int numberOfSamplesPerSymbol = 16;
-	double rollOffFactor = 0.3;
-	int impulseResponseTimeLength = 16;
+	double bitPeriod{ 1.0 / 50e9 };
+	vector<t_iqValues> iqAmplitudes{ { { 1,1 },{ -1,1 },{ -1,-1 },{ 1,-1 } } };
+	int numberOfBits{ 1000 };
+	int numberOfSamplesPerSymbol{ 16 };
+	double rollOffFactor{ 0.3 };
+	int impulseResponseTimeLength{ 16 };
 
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################

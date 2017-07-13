@@ -6,8 +6,11 @@
 \contentsline {chapter}{\numberline {4}Visualizer}{5}{chapter.4}
 \contentsline {chapter}{\numberline {5}Case Studies}{6}{chapter.5}
 \contentsline {section}{\numberline {5.1}QPSK Transmitter}{6}{section.5.1}
-\contentsline {chapter}{\numberline {6}Library}{11}{chapter.6}
-\contentsline {section}{\numberline {6.1}Add}{12}{section.6.1}
-\contentsline {section}{\numberline {6.2}Binary source}{13}{section.6.2}
-\contentsline {section}{\numberline {6.3}Decoder}{17}{section.6.3}
-\contentsline {section}{\numberline {6.4}Clock}{20}{section.6.4}
+\contentsline {chapter}{\numberline {6}Library}{8}{chapter.6}
+\contentsline {section}{\numberline {6.1}Add}{9}{section.6.1}
+\contentsline {section}{\numberline {6.2}Binary source}{10}{section.6.2}
+\contentsline {section}{\numberline {6.3}Decoder}{14}{section.6.3}
+\contentsline {section}{\numberline {6.4}Clock}{17}{section.6.4}
+\contentsline {section}{\numberline {6.5}Discrete to continuous time}{19}{section.6.5}
+\contentsline {section}{\numberline {6.6}Homodyne receiver}{21}{section.6.6}
+\contentsline {section}{\numberline {6.7}IQ modulator}{25}{section.6.7}

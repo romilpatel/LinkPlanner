@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 13/06/2017 17:23:52.
      1>Project "C:\Users\diamantinosilva\Documents\GitHub\LinkPlanner\sdf\qpsk_transmitter\QPSK_Transmitter.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -24,3 +25,16 @@
 Build FAILED.
 
 Time Elapsed 00:00:01.92
+=======
+﻿  qpsk_transmitter_sdf.cpp
+  sink.cpp
+  pulse_shaper.cpp
+  netxpto.cpp
+  m_qam_mapper.cpp
+  iq_modulator.cpp
+  discrete_to_continuous_time.cpp
+  binary_source.cpp
+  Generating Code...
+  QPSK_Transmitter.vcxproj -> D:\netxpto\LinkPlanner\sdf\qpsk_transmitter\Debug\QPSK_Transmitter.exe
+  QPSK_Transmitter.vcxproj -> D:\netxpto\LinkPlanner\sdf\qpsk_transmitter\Debug\QPSK_Transmitter.pdb (Full PDB)
+>>>>>>> develop

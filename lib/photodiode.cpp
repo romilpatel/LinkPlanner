@@ -5,10 +5,9 @@
 
 #include "netxpto.h"
 #include "photodiode.h"
-#include <random>
 
 
-void Photodiode::initialize(void){
+void Photodiode::initialize(void) {
 
 	firstTime = false;
 
@@ -19,8 +18,10 @@ void Photodiode::initialize(void){
 }
 
 
+<<<<<<< HEAD
 bool Photodiode::runBlock(void){
 
+<<<<<<< HEAD
 	//DIA>
 	//turn off output
 	//ofstream myfile2;
@@ -31,15 +32,29 @@ bool Photodiode::runBlock(void){
 	double samplingPeriod = inputSignals[0]->getSamplingPeriod();
 	double symbolPeriod = inputSignals[0]->getSymbolPeriod ();
 	int samplesPerSymbol = (int)round(symbolPeriod / samplingPeriod);
+=======
+	double samplingPeriod = inputSignals[0]->getSamplingPeriod();
+
+	int samplesPerSymbol = inputSignals[0]->getSamplesPerSymbol();
+>>>>>>> develop
 
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
 	int ready = min(ready1, ready2);
+=======
+
+bool Photodiode::runBlock(void) {
+
+	int ready0 = inputSignals[0]->ready();
+	int ready1 = inputSignals[1]->ready();
+	int ready = min(ready0, ready1);
+>>>>>>> AnaLuisa
 
 	int space = outputSignals[0]->space();
 
 	int process = min(ready, space);
 
+<<<<<<< HEAD
 	//DIA>
 	//turn off output
 	//if (process == 0){
@@ -47,7 +62,11 @@ bool Photodiode::runBlock(void){
 	//	return false;
 	//}
 	//END DIA>
+=======
+	if (process == 0) return false;
+>>>>>>> develop
 
+<<<<<<< HEAD
 	normal_distribution<double> distribution(0, 1);
 	double w1 = inputSignals[0]->getCentralFrequency();
 	double w2 = inputSignals[1]->getCentralFrequency();
@@ -118,6 +137,7 @@ bool Photodiode::runBlock(void){
 		noiseAmp1 = distribution(generatorAmp1);
 		noiseAmp2 = distribution(generatorAmp2);
 
+<<<<<<< HEAD
 		t_complex input1;
 		inputSignals[0]->bufferGet(&input1);
 		t_complex input2;
@@ -125,6 +145,20 @@ bool Photodiode::runBlock(void){
 
 		/*
 		// Incio de implementação de beat frequency.
+=======
+=======
+	/*t_real radius = 0.0003; // radius of sensor
+	t_real E0 = 8.854187817e-12;
+	t_real n = 1.1;*/
+
+	t_complex inputSignal1;
+	t_complex inputSignal2;
+>>>>>>> AnaLuisa
+
+	for (int i = 0; i < process; i++) {
+
+<<<<<<< HEAD
+>>>>>>> develop
 		t_real powerSignal1 = gauss[aux]; // Assuming Signal input in PIN1
 		t_real powerSignal2 = abs(input1 - input2) / sqrt(2); // Assuming Signal input in PIN2
 		*/
@@ -209,12 +243,15 @@ bool Photodiode::runBlock(void){
 
 
 		outputSignals[0]->bufferPut(out);
+<<<<<<< HEAD
 
 		//DIA>
 		//turn off output
 		//myfile2 << out << "\n";
 		//END DIA>
 
+=======
+>>>>>>> develop
 		t = t + samplingPeriod;
 		aux++;
 		if (aux==samplesPerSymbol)
@@ -224,6 +261,22 @@ bool Photodiode::runBlock(void){
 
 
 
+=======
+			inputSignals[0]->bufferGet(&inputSignal1);
+			inputSignals[1]->bufferGet(&inputSignal2);
+
+			t_real power1 = abs(inputSignal1)*abs(inputSignal1)*2; 
+			t_real current1 = responsivity * power1;
+
+			t_real power2 = abs(inputSignal2)*abs(inputSignal2)*2;
+			t_real current2 = responsivity * power2;
+
+			t_real outputSignal = current1 - current2;
+
+			outputSignals[0]->bufferPut(outputSignal);
+
+		
+>>>>>>> AnaLuisa
 	}
 	return true;
 }

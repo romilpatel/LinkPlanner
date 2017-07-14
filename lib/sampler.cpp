@@ -117,12 +117,14 @@ bool Sampler::runBlock(void) {
 
 			if (inClock == 1.0) {
 
-				inSignal = inSignal/(.5*sqrt(outputOpticalPower)); // to normalize the signal to 1
+				inSignal = inSignal; // (.5*sqrt(outputOpticalPower)); // to normalize the signal to 1
 				outputSignals[0]->bufferPut(inSignal);
 
 			}
 		}
 
 	}
+
+	return 0;
 
 };

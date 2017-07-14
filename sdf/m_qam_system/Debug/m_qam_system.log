@@ -1,4 +1,5 @@
 ﻿  m_qam_system_sdf.cpp
+<<<<<<< HEAD
   ti_amplifier.cpp
   super_block_interface.cpp
   sink.cpp
@@ -23,3 +24,7 @@ d:\netxpto\linkplanner\lib\clock.cpp(26): warning C4244: 'initializing': convers
 d:\netxpto\linkplanner\lib\sampler.cpp(128): warning C4715: 'Sampler::runBlock': not all control paths return a value
   m_qam_system.vcxproj -> D:\netxpto\LinkPlanner\sdf\m_qam_system\Debug\m_qam_system.exe
   m_qam_system.vcxproj -> D:\netxpto\LinkPlanner\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)
+=======
+  m_qam_system.vcxproj -> C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.exe
+  m_qam_system.vcxproj -> C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)
+>>>>>>> 12136818a3760d9b2c1d06c1527a30487db8a4f6

@@ -1,2 +1,6 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
+<<<<<<< HEAD
 Debug|Win32|D:\netxpto\LinkPlanner\sdf\m_qam_system\|
+=======
+Debug|Win32|C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\sdf\m_qam_system\|
+>>>>>>> 12136818a3760d9b2c1d06c1527a30487db8a4f6

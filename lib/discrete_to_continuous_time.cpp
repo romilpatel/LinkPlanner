@@ -1,4 +1,6 @@
 # include <algorithm> // min
+# include <iostream> //write to file
+# include <fstream>
 
 # include "netxpto.h"
 # include "discrete_to_continuous_time.h"
@@ -9,6 +11,10 @@ void DiscreteToContinuousTime::initialize(void) {
 	outputSignals[0]->samplingPeriod = (inputSignals[0]->samplingPeriod) / numberOfSamplesPerSymbol;
 	outputSignals[0]->samplesPerSymbol = numberOfSamplesPerSymbol;
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
+
+	myfile.open("debug.txt");
+	myfile2.open("space.txt");
+	myfile3.open("length.txt");
 
 }
 
@@ -38,18 +44,40 @@ bool DiscreteToContinuousTime::runBlock(void) {
 	switch (inSignalType) {
 		case RealValue:
 			for (int i = 0; i < length; i++) {
+
+				myfile3 << length << endl;
+
+				time = 0.0 + 0.04*contador;
+				if ((time > 6.7) & (time < 6.8)) {
+
+					time = 0.0 + 0.04*contador;
+
+				}
+
 				t_real value;
 				(inputSignals[0])->bufferGet(&value);
-				outputSignals[0]->bufferPut(value);
+				outputSignals[0]->bufferPut((t_real) value);
+				
+				myfile << value << "\n";
+			
+				myfile2 << space << endl;
+
 				contador++;
 				space--;
 				index++;
+
 				for (int k = 1; (k<numberOfSamplesPerSymbol) & (space>0); k++) {
 					outputSignals[0]->bufferPut((t_real) 0.0);
+
+					myfile << 0 << "\n";
+
 					space--;
 					index++;
 				}
 				if (index == numberOfSamplesPerSymbol) index = 0;
+
+				myfile << "l=" << l << "\n";
+				l += 1;
 			}
 			return true;
 		case BinaryValue:
@@ -77,4 +105,7 @@ bool DiscreteToContinuousTime::runBlock(void) {
 			return false;
 	};
 
+	myfile.close();
+	myfile2.close();
+	myfile3.close();
 };

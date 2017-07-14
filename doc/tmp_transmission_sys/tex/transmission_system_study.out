@@ -6,10 +6,9 @@
 \BOOKMARK [1][-]{section.6}{Outputs}{}% 6
 \BOOKMARK [1][-]{section.7}{Simulation Results}{}% 7
 \BOOKMARK [1][-]{section.8}{Block Description}{}% 8
-\BOOKMARK [2][-]{subsection.8.1}{Homodyne Receiver}{section.8}% 9
+\BOOKMARK [2][-]{subsection.8.1}{MQAM mapper???}{section.8}% 9
 \BOOKMARK [2][-]{subsection.8.2}{Local Oscillator}{section.8}% 10
-\BOOKMARK [2][-]{subsection.8.3}{Beam Splitter}{section.8}% 11
+\BOOKMARK [2][-]{subsection.8.3}{Optical Hybrid}{section.8}% 11
 \BOOKMARK [2][-]{subsection.8.4}{Photodiode}{section.8}% 12
-\BOOKMARK [2][-]{subsection.8.5}{Amplifier}{section.8}% 13
-\BOOKMARK [2][-]{subsection.8.6}{Electrical Filter}{section.8}% 14
-\BOOKMARK [1][-]{section.9}{Known Problems}{}% 15
+\BOOKMARK [2][-]{subsection.8.5}{Sampler}{section.8}% 13
+\BOOKMARK [1][-]{section.9}{Known Problems}{}% 14

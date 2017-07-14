@@ -1,6 +1,5 @@
 # include "netxpto.h"
 # include "ideal_amplifier.h"
-
 # include <algorithm> // min
 
 using namespace std;
@@ -26,11 +25,12 @@ bool IdealAmplifier::runBlock(void) {
 	if (process == 0) return false;
 	
 	signal_value_type sTypeIn = inputSignals[0]->getValueType();
-    signal_value_type sTypeOut= outputSignals[0]->getValueType();
-    if (sTypeIn!=sTypeOut) {
-        cout << "ERRO: ideal_amplifier.cpp (signal type mismatch!)" << "\n";
-        return false;
-    }
+	signal_value_type sTypeOut= outputSignals[0]->getValueType();
+
+	if (sTypeIn!=sTypeOut) {
+        	cout << "ERRO: ideal_amplifier.cpp (signal type mismatch!)" << "\n";
+        	return false;
+    	}
 
 	switch (sTypeIn) {
 	case RealValue:

@@ -41,6 +41,7 @@ bool DiscreteToContinuousTime::runBlock(void) {
 				t_real value;
 				(inputSignals[0])->bufferGet(&value);
 				outputSignals[0]->bufferPut(value);
+				contador++;
 				space--;
 				index++;
 				for (int k = 1; (k<numberOfSamplesPerSymbol) & (space>0); k++) {

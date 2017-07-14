@@ -26,7 +26,7 @@ int main()
 
 	int numberOfBitsGenerated(500);
 
-	int samplesPerSymbol(64);
+	int samplesPerSymbol(16);
 	double bitPeriod = 1.0E-9;
 
 	// powerUnit = PLANCK_CONSTANT * SPEED_OF_LIGHT / (bitPeriod*wavelength)

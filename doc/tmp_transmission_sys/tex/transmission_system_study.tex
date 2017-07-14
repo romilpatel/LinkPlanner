@@ -178,6 +178,8 @@ iqAmplitudeValues       & Sets the amplitude of the states used in the MQAM????\
 \hline
 shotNoise               & Chooses if quantum shot noise is used in the simulation\\
 \hline
+samplesToSkip			& Sets the number of samples to skip when writing out some of the signal files.\\
+\hline
 \end{tabulary}
 \end{table}		
 
@@ -205,9 +207,22 @@ The system outputs the following objects:
 
 \section{Simulation Results}\label{subsec:SHresults}
 
-The objective of this simulation was to get the quantum noise associated to the detection of a coherent state????. We start by calculating it???:
+The objective of this simulation was to get the (quantum noise???) associated to the detection of coherent states.\\
 \\
-.....
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{../img/constelation1.png}
+\caption{Simulation of a constelation of 4 states (n = 100)}
+\label{fig:constelation}
+\end{figure}
+\\
+We expect that the variance is invariant with the number of photons sent from Alice. The plot in \ref{fig:variance} show that the simulation also shows this invariance with the number of photons.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{../img/variance_n.png}
+\caption{Simulation of the variance of $n$.}
+\label{fig:variance}
+\end{figure}
 We can conclude that the expected variance will give us $\textrm{Var(X)} = \slantfrac{1}{2}$.\\
 The results obtained in our simulations are in accordance with the theoretical prevision???
 
@@ -219,9 +234,9 @@ The results obtained in our simulations are in accordance with the theoretical p
 
 \subsection{Local Oscillator}
 \subfile{../../lib/tex/localoscillator}
-
+1
 \subsection{Optical Hybrid}
-MISSING FILE\\
+MISSING FILE FOR OPTICAL HYBRID\\
 %\subfile{../../lib/tex/beamsplitter}
 
 \subsection{Photodiode}

@@ -222,7 +222,9 @@ bool BinarySource::runBlock(void) {
 		std::vector<char> values(bitStream.begin(), bitStream.end());
 		int valuesSize = values.size();
 		t_binary aux;
+
 		for (int k = 0; k < process; k++) {
+
 			if (posBitStream == valuesSize) {
 				aux = 0;
 			}

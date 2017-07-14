@@ -12,7 +12,7 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated = 1000;
+	int numberOfBitsGenerated = 3000;
 	double bitPeriod = 1.0 / 50e9;
 
 	int prbsPatternLength = 5;
@@ -32,11 +32,12 @@ int main(){
 	t_real amplification = 1;
 	t_real noiseAmplitude = 1*pow(10,-6);
 	//t_integer samplesToSkip = 0;
-	t_integer samplesToSkip = 2 * 8 * samplesPerSymbol; //+ floor(samplesPerSymbol / 2);
+	t_integer samplesToSkip = 0;
+	//t_integer samplesToSkip = 2 * 8 * samplesPerSymbol; //+ floor(samplesPerSymbol / 2);
 	//8 is the number of samples used by the filter
 	t_real confidence = 0.95;
 	t_integer midReportSize = 0;
-	t_integer bufferLength = 256;
+	t_integer bufferLength = 512;
 	
 	//double clockPeriod = symbolPeriod;
 	//double samplingPeriod = 16;

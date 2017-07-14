@@ -26,7 +26,7 @@ int main()
 
 	int numberOfBitsGenerated(500);
 
-	int samplesPerSymbol(64);
+	int samplesPerSymbol(16);
 	double bitPeriod = 1.0E-9;
 
 	// powerUnit = PLANCK_CONSTANT * SPEED_OF_LIGHT / (bitPeriod*wavelength)
@@ -40,7 +40,7 @@ int main()
 	// Correcção da potência.
 	//double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (bitPeriod*wavelength);
 
-	double localOscillatorPower1 = powerUnit * 100;
+	double localOscillatorPower1 = powerUnit * 1;
 	double localOscillatorPower2 = powerUnit * 1e4;
 
 	double localOscillatorPhase = 0;
@@ -53,10 +53,13 @@ int main()
 	int bufferLength = 512;
 	bool shotNoise(true);
 
-	//DIA> novos estados
+	// Escolha da constelação
+	// Constelação sempre com o mesmo estado
+	vector<t_iqValues> iqAmplitudeValues = { { 1, 1 }, { 1, 1 } };
+	// Constelação com 2 estados
 	//vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
-	vector<t_iqValues> iqAmplitudeValues = { { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
-	//END DIA>
+	// Constelação com 4 estados
+	//vector<t_iqValues> iqAmplitudeValues = { { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
 
 	double SNR = 0;
 

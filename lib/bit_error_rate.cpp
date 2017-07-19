@@ -51,20 +51,19 @@ bool BitErrorRate::runBlock(void) {
 
 		/* Calculating BER and bounds */
 
-<<<<<<< HEAD
-		double BER = (recievedBits - coincidences) / recievedBits;
-=======
+
+//		double BER = (recievedBits - coincidences) / recievedBits;
+
 		t_real NumberOfBits = receivedBits;
 		t_real Coincidences = coincidences;
 
 		t_real BER;
 		BER = (NumberOfBits - Coincidences) / NumberOfBits;
->>>>>>> AnaLuisa
 
 		double UpperBound = BER + 1 / sqrt(recievedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * recievedBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
 		double LowerBound = BER - 1 / sqrt(recievedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * recievedBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
 
-		/* Outputting a .txt report*/
+/*
 		ofstream myfile;
 		myfile.open("BER.txt");
 		myfile << "BER= " << BER << "\n";
@@ -73,6 +72,7 @@ bool BitErrorRate::runBlock(void) {
 		myfile << "Lower Bound= " << LowerBound << "\n";
 		myfile << "Number of received bits =" << recievedBits << "\n";
 		myfile.close();
+*/
 		return false;
 	}
 
@@ -102,11 +102,9 @@ bool BitErrorRate::runBlock(void) {
 
 				/* Calculating BER and bounds */
 
-<<<<<<< HEAD
-=======
 				t_real NumberOfBits = receivedBits;
 				t_real Coincidences = coincidences;
->>>>>>> AnaLuisa
+/*>>>>>>> AnaLuisa
 
 				double BER;
 				BER = (recievedBits - coincidences) / recievedBits;
@@ -114,7 +112,7 @@ bool BitErrorRate::runBlock(void) {
 				double UpperBound = BER + 1 / sqrt(recievedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * recievedBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
 				double LowerBound = BER - 1 / sqrt(recievedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * recievedBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
 
-				/* Outputting a .txt report*/
+
 				ofstream myfile;
 				myfile.open(filename);
 				myfile << "BER= " << BER << "\n";
@@ -125,23 +123,24 @@ bool BitErrorRate::runBlock(void) {
 				myfile.close();
 			}
 		}
+*/
 
-<<<<<<< HEAD
 		recievedBits++;
-=======
+
+/*=======
 		receivedBits++;
->>>>>>> AnaLuisa
+>>>>>>> AnaLuisa*/
 
 		if (signalValue == SignalValue)
 		{
 			coincidences++;
-<<<<<<< HEAD
+
 			outputSignals[0]->bufferPut((t_binary) 1);
 		}
 		else
 		{
 			outputSignals[0]->bufferPut((t_binary) 0);
-=======
+/*=======
 
 			outputSignals[0]->bufferPut(1);
 
@@ -153,7 +152,7 @@ bool BitErrorRate::runBlock(void) {
 			outputSignals[0]->bufferPut(0);
 
 			translate2 << 0 << "\n";
->>>>>>> AnaLuisa
+>>>>>>> AnaLuisa*/
 		}
 
 	}

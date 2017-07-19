@@ -13,18 +13,18 @@ class Photodiode : public Block {
 
 public:
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	double frequencyMismatch{ 1.9441e+11 };
 	double responsivity = 1;
 	bool shotNoise = false;
 
 	default_random_engine generatorAmp1;
 	default_random_engine generatorAmp2;
-=======
+/*=======
 	double outputOpticalWavelength{ 1550e-9 };
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
 	t_real responsivity = 1;
->>>>>>> AnaLuisa
+>>>>>>> AnaLuisa*/
 
 	Photodiode() {};
 	Photodiode(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};

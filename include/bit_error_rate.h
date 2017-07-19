@@ -25,9 +25,7 @@ public:
 	void setMidReportSize(int M) { m = M; }
 	int const getMidReportSize(void) { return m; }
 
-
 private:
-
 	int firstPass = 1;
 
 	double alpha = 0.05;

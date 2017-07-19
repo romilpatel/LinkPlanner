@@ -9,13 +9,13 @@ class Sampler : public Block {
 
 	bool firstTime{ true };
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	bool firstPass{ true };
 	bool repeatedPass{ false };
 	int samplesToSkip{ 0 };
 	int count = 0;
 	bool aux1{ false };
-=======
+/*=======
 	//int sampling = 16;
 
 	//int delay = 9;
@@ -23,7 +23,7 @@ class Sampler : public Block {
 	//int AuxInt = 0;
 
 	t_integer samplesToSkip{ 0 };
->>>>>>> AnaLuisa
+>>>>>>> AnaLuisa*/
 
 
 public:
@@ -33,10 +33,10 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	void setSamplesToSkip(int sToSkip) { samplesToSkip = sToSkip; }
 	int const getSamplesToSkip(void) { return samplesToSkip; }
-=======
+/*=======
 	Sampler() {};
 	Sampler(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};
 
@@ -46,7 +46,7 @@ public:
 	void setOutputOpticalPower(double outOpticalPower) { outputOpticalPower = outOpticalPower; }
 	void setOutputOpticalPower_dBm(double outOpticalPower_dBm) { outputOpticalPower = 1e-3*pow(10, outOpticalPower_dBm / 10); }
 
->>>>>>> AnaLuisa
+>>>>>>> AnaLuisa*/
 
 };
 

@@ -15,15 +15,15 @@ using namespace std;
 void LocalOscillator::initialize(void){
 	
 	outputSignals[0]->setSamplingPeriod(samplingPeriod);
-<<<<<<< HEAD
-	outputSignals[0]->setSymbolPeriod(symbolPeriod);
+//<<<<<<< HEAD
+//	outputSignals[0]->setSymbolPeriod(symbolPeriod);
 
-	outputSignals[0]->centralWavelength= outputOpticalWavelength;
-	outputSignals[0]->centralFrequency = outputOpticalFrequency;
-=======
+	outputSignals[0]->setCentralWavelength(outputOpticalWavelength);
+	outputSignals[0]->setCentralFrequency(outputOpticalFrequency);
+/*=======
 	outputSignals[0]->setCentralWavelength(wavelength);
 	outputSignals[0]->setCentralFrequency(frequency);
->>>>>>> AnaLuisa
+>>>>>>> AnaLuisa*/
 
 }
 
@@ -34,7 +34,7 @@ bool LocalOscillator::runBlock(void){
     normal_distribution<double> distribution(0, 1);
 
 	t_real dt = samplingPeriod;
-	t_real wvlgth = wavelength;
+//	t_real wvlgth = wavelength;
 	t_real noisesignal;
 	t_real noiselo;
 
@@ -42,7 +42,7 @@ bool LocalOscillator::runBlock(void){
 	
 	if (process == 0) return false;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	//t_complex outAverage(cos(phase), sin(phase));
 	t_complex out(cos(phase), sin(phase));
 	double outOpticalPower=opticalPower;
@@ -65,7 +65,7 @@ bool LocalOscillator::runBlock(void){
 		}
 		outputSignals[0]->bufferPut((t_complex)out);
 	}
-=======
+/*=======
 	t_real real = cos(phase);
 	t_real imag = sin(phase);
 	t_complex lo(real, imag);
@@ -91,7 +91,7 @@ bool LocalOscillator::runBlock(void){
 		}
 
 		outputSignals[0]->bufferPut((t_complex) out);
->>>>>>> AnaLuisa
+>>>>>>> AnaLuisa*/
 
 	}
 	return true;

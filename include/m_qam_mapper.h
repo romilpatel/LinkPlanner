@@ -8,10 +8,10 @@
 
 using namespace std;
 
-struct t_iqValues {
+/*struct t_iqValues {
 	t_real i;
 	t_real q;
-};
+};*/ // eliminar 2017-01-30
 
 /* Realizes the M-QAM mapping. */
 class MQamMapper : public Block {
@@ -27,7 +27,7 @@ public:
 	/* Input Parameters */
 
 	t_integer m{ 4 };
-	vector<t_iqValues> iqAmplitudes;
+	vector<t_iqValues> iqAmplitudes;// {{ 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
 
 
 	/* Methods */

@@ -17,6 +17,7 @@ const int MAX_TOPOLOGY_SIZE = 100;  // Maximum System topology size
 const int MAX_TAPS = 1000;  // Maximum Taps Number
 const double PI = 3.1415926535897932384;
 const double SPEED_OF_LIGHT = 299792458;
+const double PLANCK_CONSTANT = 6.626070040e-34; // NIST
 const int MAX_NUMBER_OF_PATHS = 2;
 
 using namespace std;
@@ -28,6 +29,7 @@ typedef complex<t_real> t_complex;
 typedef struct { t_complex x; t_complex y; } t_complex_xy;
 typedef struct { t_real probabilityAmplitude;  t_real polarization; } t_photon;
 typedef struct { t_photon path[MAX_NUMBER_OF_PATHS]; } t_photon_mp;
+typedef complex<t_real> t_iqValues;
 
 enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP};
 
@@ -39,6 +41,11 @@ enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, Comp
 // Root class for signals
 class Signal {
 
+	/* [DIA]
+	 * Talvez alterar este valor para 0, dado que muitas das funções fazem um
+	 * offset de -1 para ler o buffer.
+	 * É preciso alterar a lógicas dos outro módulos para acomodar esta mudança.
+	 */
 	long int firstValueToBeSaved{ 1 };				// First value (>= 1) to be saved
 	bool saveSignal{ true };
 							
@@ -417,7 +424,7 @@ public:
 
 
 	/* Methods */
-
+	SuperBlock() {};
 	SuperBlock(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal) :Block(inputSignal, outputSignal){ setSaveInternalSignals(false); };
 
 	void initialize(void);
@@ -444,7 +451,7 @@ class FIR_Filter : public Block {
 	string impulseResponseFilename{ "impulse_response.imp" };
 
 	/* Input Parameters */
-	bool seeBeginningOfImpulseResponse{ false };
+	bool seeBeginningOfImpulseResponse{ true };
 
 public:
 
@@ -519,5 +526,3 @@ class System {
 };
 
 # endif // PROGRAM_INCLUDE_netxpto_H_
-
-

@@ -1,0 +1,20 @@
+\select@language {portuguese}
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
+\contentsline {chapter}{\numberline {2}Simulator Structure}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}System}{3}{section.2.1}
+\contentsline {chapter}{\numberline {3}Development Cycle}{4}{chapter.3}
+\contentsline {chapter}{\numberline {4}Visualizer}{5}{chapter.4}
+\contentsline {chapter}{\numberline {5}Case Studies}{6}{chapter.5}
+\contentsline {section}{\numberline {5.1}QPSK Transmitter}{6}{section.5.1}
+\contentsline {section}{\numberline {5.2}Quantum Noise}{8}{section.5.2}
+\contentsline {chapter}{\numberline {6}Library}{14}{chapter.6}
+\contentsline {section}{\numberline {6.1}Add}{15}{section.6.1}
+\contentsline {section}{\numberline {6.2}Binary source}{16}{section.6.2}
+\contentsline {section}{\numberline {6.3}Clock}{20}{section.6.3}
+\contentsline {section}{\numberline {6.4}Decoder}{22}{section.6.4}
+\contentsline {section}{\numberline {6.5}Discrete to continuous time}{25}{section.6.5}
+\contentsline {section}{\numberline {6.6}Homodyne receiver}{27}{section.6.6}
+\contentsline {section}{\numberline {6.7}IQ modulator}{31}{section.6.7}
+\contentsline {section}{\numberline {6.8}Local Oscillator}{33}{section.6.8}
+\contentsline {section}{\numberline {6.9}MQAM mapper}{35}{section.6.9}
+\contentsline {section}{\numberline {6.10}MQAM transmitter}{38}{section.6.10}

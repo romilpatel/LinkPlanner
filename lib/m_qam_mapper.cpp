@@ -39,17 +39,17 @@ MQamMapper::MQamMapper(vector<Signal *> &InputSig, vector<Signal *> &OutputSig):
 
 void MQamMapper::initialize(void){
 
-	outputSignals[0]->symbolPeriod = 2 * inputSignals[0]->symbolPeriod;
-	outputSignals[0]->samplingPeriod = 2 * inputSignals[0]->samplingPeriod;
+	outputSignals[0]->symbolPeriod = log2(m) * inputSignals[0]->symbolPeriod;
+	outputSignals[0]->samplingPeriod = log2(m) * inputSignals[0]->samplingPeriod;
 	outputSignals[0]->samplesPerSymbol = 1;
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
-	outputSignals[1]->symbolPeriod = 2 * inputSignals[0]->symbolPeriod;
-	outputSignals[1]->samplingPeriod = 2 * inputSignals[0]->samplingPeriod;
+	outputSignals[1]->symbolPeriod = log2(m) * inputSignals[0]->symbolPeriod;
+	outputSignals[1]->samplingPeriod = log2(m) * inputSignals[0]->samplingPeriod;
 	outputSignals[1]->samplesPerSymbol = 1;
 	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
-	setM(m);
+	//setM(m);
 }
 
 bool MQamMapper::runBlock(void) {
@@ -71,8 +71,8 @@ bool MQamMapper::runBlock(void) {
 		auxSignalNumber = auxSignalNumber + (int) pow(2, nBinaryValues - 1 - auxBinaryValue) * binaryValue;
 		auxBinaryValue++;
 		if (auxBinaryValue == nBinaryValues) {
-			t_real auxI = iqAmplitudes[auxSignalNumber].i;
-			t_real auxQ = iqAmplitudes[auxSignalNumber].q;
+			t_real auxI = iqAmplitudes[auxSignalNumber].real();
+			t_real auxQ = iqAmplitudes[auxSignalNumber].imag();
 			outputSignals[0]->bufferPut((t_real)auxI);
 			outputSignals[1]->bufferPut((t_real)auxQ);
 			auxBinaryValue = 0;
@@ -96,5 +96,8 @@ void MQamMapper::setM(int mValue){
 	switch (m) {
 	case 4:
 		iqAmplitudes = { { 1.0, 1.0 }, { -1.0, 1.0 }, { -1.0, -1.0 }, { 1.0, -1.0 } };
+
+	case 16:
+		iqAmplitudes = { { -3.0, -3.0 },{ -3.0, -1.0 },{ -3.0, 3.0 },{ -3.0, 1.0 },{ -1.0, -3.0 },{ -1.0, -1.0 },{ -1.0, 3.0 },{ -1.0, 1.0 },{ 3.0, -3.0 },{ 3.0, -1.0 }, { 3.0, 3.0 },{ 3.0, 1.0 },{ 1.0, -3.0 },{ 1.0, -1.0 },{ 1.0, 3.0 },{ 1.0, 1.0 } };
 	};
-};
+}; 

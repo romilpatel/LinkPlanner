@@ -5,20 +5,56 @@
 
 
 This document describes an emission and detection system which is used to simulate the effects of quantum noise.
-
-The mathematics:\\
+\\
+\\
+This system is based in the transmission of coherent states as the support for information. The following section introduces some aspects about coherent states, with special focus on quantum noise.\\
+\\
 A coherent state is a sobreposition of Fock states, wich is related to the distribuition of light in a laser emission? discribed by the following state:\\
 $$
-
+\ket{\alpha} = e^{-\frac{|\alpha|^2}{2}} \sum_{n=0}^\infty \frac{\alpha^n}{\sqrt{n!}} \ket{n}
 $$
-
-
+in which $\ket{\alpha}$ is a $n$?? Fock state. A Fock state represents a state with $n$ excitations?, that in the current case corresponds to photons. We also have creation ($\hat{a}^\dagger$) and anihiliaton ($\hat{a}$) operators which add and remove one photon from the Fock states:????$$
+\hat{a} \ket{n} = \sqrt{n} \ket{n-1} \qquad \qquad \hat{a}^\dagger \ket{n} = \sqrt{n+1} \ket{n+1}
+$$
+The coherent state is an eigenstate of the annihilation operator, $\hat{a}\ket{\alpha} = \alpha \ket{\alpha}$.\\
+We can define two new operators,  $X$ and $Y$, that are quadrature operators
+\footnote{Loudon, p.138, (4.3.36)}
+defined as: (TALVEZ FALAR UM POUCO SOBRE O EFEITO DISTO NAS MEDICOEES REAIS)
+$$
+\hat{X} = \frac{1}{2} \left( \hat{a}^\dagger + \hat{a} \right) \qquad \qquad
+\hat{Y} = \frac{i}{2} \left( \hat{a}^\dagger - \hat{a} \right)
+$$
+\\
+The expected value of these two operators, using a coherent state $\ket{\alpha}$ are:
+$$
+\braket{\hat{X}} = \textrm{Re}(\alpha) \qquad \qquad
+\braket{\hat{Y}} = \textrm{Im}(\alpha)
+$$
+We see then that these operator give us the real and imaginary part of $\alpha$.\\
+Now, we can obtain the uncertainty of these operators, using:
+$$
+\textrm{Var}(\hat{X}) = \braket{\hat{X}^2} - \braket{\hat{X}}^2
+$$
+(VALERA A PENA GENERALIZAR A QUADRATURA?)\\
+For each of these quadrature operators the variance will be:
+$$
+\textrm{Var}(\hat{X}) = \textrm{Var}(\hat{Y}) = \frac{1}{4}
+$$
+This result show us that the variance of measuring in any quadrature is the same and independent of the value of $\alpha$.\\
+\\
+The manifestation of this noise is made in the act of measurement (CONFIRMAR).\\
+\\
+Besides this limitation, we also have shot noise introduced by the photodiodes????
+%
+%
+%
+%
 This document describes an emission and detection system that uses coherent states as it's means?? of transmission???.\\
 The transmitted information consists in a binary sequence which is ??translated?? in a sequence of coherent states. In this simulation, the used constellation is formed by the states $\{ \ket{\alpha}, \ket{i\alpha}, \ket{ - \alpha}, \ket{ - i \alpha} \}$, in which $\alpha$ is defined as $\braket{n} = |\alpha|^2$ ($\braket{n}$ is the expected number of photons in a state). (METER MELHOR) \\
 \\
-One of the main effects studied in this system is quantum noise, which is an intrinsic effect?? to coherent states(VER MARK FOX). In principle???? (VER REFERENCIAS) the variance of a coherent state is given by $\Delta X_1 \Delta X_2 = \frac{1}{4}$.\\
+%One of the main effects studied in this system is quantum noise, which is an intrinsic effect?? to coherent states(VER MARK FOX). In principle???? (VER REFERENCIAS) the variance of a coherent state is given by $\Delta X_1 \Delta X_2 = \frac{1}{4}$.\\
 \\
-But, given that we combine two photocurrents to obtain an output current, then the total noise will have a combined value of SOMETHING??? Procurar referencias.\\
+%But, given that we combine two photocurrents to obtain an output current, then the total noise will have a combined value of SOMETHING??? Procurar referencias.\\
 \\
 Therefore, assuming Gaussian?? (WHY GAUSSIAN?) shot noise, for each quadrature we want $\textrm{Var}(X_i) = \frac{1}{4}$ ?????\\
 (TENHO DE PROCURAR REFERENCIAS)

@@ -1,32 +1,21 @@
 \select@language {portuguese}
-\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
-\contentsline {chapter}{\numberline {2}Simulator Structure}{4}{chapter.2}
-\contentsline {section}{\numberline {2.1}System}{4}{section.2.1}
-\contentsline {chapter}{\numberline {3}Development Cycle}{5}{chapter.3}
-\contentsline {chapter}{\numberline {4}Visualizer}{6}{chapter.4}
-\contentsline {chapter}{\numberline {5}Case Studies}{7}{chapter.5}
-\contentsline {section}{\numberline {5.1}QPSK Transmitter}{7}{section.5.1}
-\contentsline {section}{\numberline {5.2}Quantum Noise}{9}{section.5.2}
-\contentsline {section}{\numberline {5.3}Continuos Variable Quantum Transmission System}{15}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Single Base Homodyne Detection}{16}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Double Homodyne setup}{16}{subsection.5.3.2}
-\contentsline {section}{\numberline {5.4}Functional Description}{18}{section.5.4}
-\contentsline {section}{\numberline {5.5}Required files}{19}{section.5.5}
-\contentsline {section}{\numberline {5.6}System Input Parameters}{20}{section.5.6}
-\contentsline {section}{\numberline {5.7}Inputs}{20}{section.5.7}
-\contentsline {section}{\numberline {5.8}Outputs}{20}{section.5.8}
-\contentsline {section}{\numberline {5.9}Simulation Results}{21}{section.5.9}
-\contentsline {subsection}{\numberline {5.9.1}Single homodyne results}{21}{subsection.5.9.1}
-\contentsline {subsection}{\numberline {5.9.2}Double homodyne results}{21}{subsection.5.9.2}
-\contentsline {section}{\numberline {5.10}Known Problems}{21}{section.5.10}
-\contentsline {chapter}{\numberline {6}Library}{25}{chapter.6}
-\contentsline {section}{\numberline {6.1}Add}{26}{section.6.1}
-\contentsline {section}{\numberline {6.2}Binary source}{27}{section.6.2}
-\contentsline {section}{\numberline {6.3}Clock}{31}{section.6.3}
-\contentsline {section}{\numberline {6.4}Decoder}{33}{section.6.4}
-\contentsline {section}{\numberline {6.5}Discrete to continuous time}{36}{section.6.5}
-\contentsline {section}{\numberline {6.6}Homodyne receiver}{38}{section.6.6}
-\contentsline {section}{\numberline {6.7}IQ modulator}{42}{section.6.7}
-\contentsline {section}{\numberline {6.8}Local Oscillator}{44}{section.6.8}
-\contentsline {section}{\numberline {6.9}MQAM mapper}{46}{section.6.9}
-\contentsline {section}{\numberline {6.10}MQAM transmitter}{49}{section.6.10}
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
+\contentsline {chapter}{\numberline {2}Simulator Structure}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}System}{3}{section.2.1}
+\contentsline {chapter}{\numberline {3}Development Cycle}{4}{chapter.3}
+\contentsline {chapter}{\numberline {4}Visualizer}{5}{chapter.4}
+\contentsline {chapter}{\numberline {5}Case Studies}{6}{chapter.5}
+\contentsline {section}{\numberline {5.1}QPSK Transmitter}{6}{section.5.1}
+\contentsline {section}{\numberline {5.2}Quantum Noise}{8}{section.5.2}
+\contentsline {section}{\numberline {5.3}Continuos Variable Quantum Transmission System}{14}{section.5.3}
+\contentsline {chapter}{\numberline {6}Library}{24}{chapter.6}
+\contentsline {section}{\numberline {6.1}Add}{25}{section.6.1}
+\contentsline {section}{\numberline {6.2}Binary source}{26}{section.6.2}
+\contentsline {section}{\numberline {6.3}Clock}{30}{section.6.3}
+\contentsline {section}{\numberline {6.4}Decoder}{32}{section.6.4}
+\contentsline {section}{\numberline {6.5}Discrete to continuous time}{35}{section.6.5}
+\contentsline {section}{\numberline {6.6}Homodyne receiver}{37}{section.6.6}
+\contentsline {section}{\numberline {6.7}IQ modulator}{41}{section.6.7}
+\contentsline {section}{\numberline {6.8}Local Oscillator}{43}{section.6.8}
+\contentsline {section}{\numberline {6.9}MQAM mapper}{45}{section.6.9}
+\contentsline {section}{\numberline {6.10}MQAM transmitter}{48}{section.6.10}

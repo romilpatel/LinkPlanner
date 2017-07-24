@@ -160,7 +160,7 @@
     <ClCompile Include="..\..\lib\sampler.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface.cpp" />
-    <ClCompile Include="quantum_noise.cpp" />
+    <ClCompile Include="quantum_noise_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\binary_source.h" />

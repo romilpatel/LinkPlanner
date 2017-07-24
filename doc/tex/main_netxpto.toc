@@ -7,6 +7,7 @@
 \contentsline {chapter}{\numberline {5}Case Studies}{6}{chapter.5}
 \contentsline {section}{\numberline {5.1}QPSK Transmitter}{6}{section.5.1}
 \contentsline {section}{\numberline {5.2}Quantum Noise}{8}{section.5.2}
+<<<<<<< HEAD
 \contentsline {chapter}{\numberline {6}Library}{14}{chapter.6}
 \contentsline {section}{\numberline {6.1}Add}{15}{section.6.1}
 \contentsline {section}{\numberline {6.2}Binary source}{16}{section.6.2}
@@ -18,3 +19,17 @@
 \contentsline {section}{\numberline {6.8}Local Oscillator}{33}{section.6.8}
 \contentsline {section}{\numberline {6.9}MQAM mapper}{35}{section.6.9}
 \contentsline {section}{\numberline {6.10}MQAM transmitter}{38}{section.6.10}
+=======
+\contentsline {section}{\numberline {5.3}Continuos Variable Quantum Transmission System}{14}{section.5.3}
+\contentsline {chapter}{\numberline {6}Library}{24}{chapter.6}
+\contentsline {section}{\numberline {6.1}Add}{25}{section.6.1}
+\contentsline {section}{\numberline {6.2}Binary source}{26}{section.6.2}
+\contentsline {section}{\numberline {6.3}Clock}{30}{section.6.3}
+\contentsline {section}{\numberline {6.4}Decoder}{32}{section.6.4}
+\contentsline {section}{\numberline {6.5}Discrete to continuous time}{35}{section.6.5}
+\contentsline {section}{\numberline {6.6}Homodyne receiver}{37}{section.6.6}
+\contentsline {section}{\numberline {6.7}IQ modulator}{41}{section.6.7}
+\contentsline {section}{\numberline {6.8}Local Oscillator}{43}{section.6.8}
+\contentsline {section}{\numberline {6.9}MQAM mapper}{45}{section.6.9}
+\contentsline {section}{\numberline {6.10}MQAM transmitter}{48}{section.6.10}
+>>>>>>> 244be535c7695fff9cde17c376c317a0882da7b8

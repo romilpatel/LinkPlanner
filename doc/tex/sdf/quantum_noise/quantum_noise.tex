@@ -84,12 +84,13 @@ The simulation setup is described by diagram in figure \ref{fig:setup}. We start
 \begin{table}[H]
 \centering
 \begin{tabular}{c|c}
-System Blocks          & netxpto Blocks       \\ \hline
-- & MQAM \\
-- & LocalOscillator \\
-- & Hybrid?? \\
-- & Photodiode??\\
-- & Sampler ??\\
+System Blocks       & netxpto Blocks
+\\ \hline
+M - Quadrature Amplitude Modulator	& MQamTransmitter\\
+Local Oscillator 	& LocalOscillator\\
+- 					& OpticalHybrid\\
+Photodiode			& Photodiode\\
+- 					& Sampler\\
 \end{tabular}
 \end{table}
 
@@ -113,15 +114,15 @@ Header Files
 \hline
 netxpto.h               & Generic purpose simulator definitions.         \\
 \hline
-m\_qam\_transmitter.h   & ---\\
+m\_qam\_transmitter.h   & Outputs a QPSK modulated optical signal.??\\
 \hline
 local\_oscillator.h     & Generates continuous coherent signal.            \\
 \hline
 optical\_hybrid.h       & ---\\
 \hline
-photodiode.h            & ---\\
+photodiode.h            & Converts two optical signals to a difference of photocurrents.??\\
 \hline
-sampler.h               & ---\\
+sampler.h               & Samples the input signal.??\\
 \hline
 sink.h                  & Closes any unused signals.                       \\
 \hline
@@ -138,15 +139,15 @@ Source Files
 \hline
 netxpto.cpp                     & Generic purpose simulator definitions.\\
 \hline
-m\_qam\_transmitter.cpp         & ---\\
+m\_qam\_transmitter.cpp         & Outputs a QPSK modulated optical signal.??\\
 \hline
 local\_oscillator.cpp           & Generates continuous coherent signal.\\
 \hline
 optical\_hybrid.cpp             & ---\\
 \hline
-photodiode.cpp                  & ---\\
+photodiode.cpp                  & Converts two optical signals to a difference of photocurrents.??\\
 \hline
-sampler.cpp                     & ---\\
+sampler.cpp                     & Samples the input signal.??\\
 \hline
 sink.cpp                        & Closes any unused signals.\\
 \hline

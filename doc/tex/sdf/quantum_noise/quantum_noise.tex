@@ -54,25 +54,25 @@ Besides this limitation, we also have shot noise introduced by the photodiodes??
 %
 %
 %
-This document describes an emission and detection system that uses coherent states as it's means?? of transmission???.\\
-The transmitted information consists in a binary sequence which is ??translated?? in a sequence of coherent states. In this simulation, the used constellation is formed by the states $\{ \ket{\alpha}, \ket{i\alpha}, \ket{ - \alpha}, \ket{ - i \alpha} \}$, in which $\alpha$ is defined as $\braket{n} = |\alpha|^2$ ($\braket{n}$ is the expected number of photons in a state). (METER MELHOR) \\
-\\
+%This document describes an emission and detection system that uses coherent states as it's means?? of transmission???.\\
+%The transmitted information consists in a binary sequence which is ??translated?? in a sequence of coherent states. In this simulation, the used constellation is formed by the states $\{ \ket{\alpha}, \ket{i\alpha}, \ket{ - \alpha}, \ket{ - i \alpha} \}$, in which $\alpha$ is defined as $\braket{n} = |\alpha|^2$ ($\braket{n}$ is the expected number of photons in a state). (METER MELHOR) \\
+%\\
 %One of the main effects studied in this system is quantum noise, which is an intrinsic effect?? to coherent states(VER MARK FOX). In principle???? (VER REFERENCIAS) the variance of a coherent state is given by $\Delta X_1 \Delta X_2 = \frac{1}{4}$.\\
-\\
+%\\
 %But, given that we combine two photocurrents to obtain an output current, then the total noise will have a combined value of SOMETHING??? Procurar referencias.\\
-\\
-Therefore, assuming Gaussian?? (WHY GAUSSIAN?) shot noise, for each quadrature we want $\textrm{Var}(X_i) = \frac{1}{4}$ ?????\\
-(TENHO DE PROCURAR REFERENCIAS)
-\\
-\\
-In this simulation, we introduce quantum noise in the photodiodes.
-We know that a coherent state has an expected number of photons distributed by a Poisson distribution, which has an average number equal to it's variance. Therefore, when the photodiode detects the power of signal, which is proportional to the number of photons, then it's variance must also be proportional to the number of photons.\\
-\\
-In fact the last step in detecting the resulting signal introduces an difference between currents, but that only will increase the variance. Assuming the independence between detections, and it's intrinsic noise (PROCURAR MELHOR PALEIO), then:
-$$
-\textrm{Var}(I_{out}) = \textrm{Var}(I_1) + \textrm{Var}(I_2)
-$$
-Therefore, the best result we can achieve will be $\textrm{Var}(X) = \frac{1}{4}$ ???? (PROCURAR PALEIO SOBRE ISTO)\\
+%\\
+%Therefore, assuming Gaussian?? (WHY GAUSSIAN?) shot noise, for each quadrature we want $\textrm{Var}(X_i) = \frac{1}{4}$ ?????\\
+%(TENHO DE PROCURAR REFERENCIAS)
+%\\
+%\\
+%In this simulation, we introduce quantum noise in the photodiodes.
+%We know that a coherent state has an expected number of photons distributed by a Poisson distribution, which has an average number equal to it's variance. Therefore, when the photodiode detects the power of signal, which is proportional to the number of photons, then it's variance must also be proportional to the number of photons.\\
+%\\
+%In fact the last step in detecting the resulting signal introduces an difference between currents, but that only will increase the variance. Assuming the independence between detections, and it's intrinsic noise (PROCURAR MELHOR PALEIO), then:
+%$$
+%\textrm{Var}(I_{out}) = \textrm{Var}(I_1) + \textrm{Var}(I_2)
+%$$
+%Therefore, the best result we can achieve will be $\textrm{Var}(X) = \frac{1}{4}$ ???? (PROCURAR PALEIO SOBRE ISTO)\\
 \\
 \\
 \subsection*{Functional Description}

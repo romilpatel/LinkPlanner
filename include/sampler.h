@@ -9,11 +9,8 @@ class Sampler : public Block {
 
 	bool firstTime{ true };
 
-	bool firstPass{ true };
-	bool repeatedPass{ false };
 	int samplesToSkip{ 0 };
 	int count = 0;
-	bool aux1{ false };
 
 public:
 

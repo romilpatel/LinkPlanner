@@ -19,6 +19,8 @@ public:
 		
 	void setNumberOfSamplesPerSymbol(int nSamplesPerSymbol){ numberOfSamplesPerSymbol = nSamplesPerSymbol; };
 	int const getNumberOfSamplesPerSymbol(void){ return numberOfSamplesPerSymbol; };
+
+	int contador{ 0 };
 };
 
 #endif

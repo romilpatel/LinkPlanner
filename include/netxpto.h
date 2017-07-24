@@ -29,6 +29,7 @@ typedef complex<t_real> t_complex;
 typedef struct { t_complex x; t_complex y; } t_complex_xy;
 typedef struct { t_real probabilityAmplitude;  t_real polarization; } t_photon;
 typedef struct { t_photon path[MAX_NUMBER_OF_PATHS]; } t_photon_mp;
+typedef complex<t_real> t_iqValues;
 
 enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP};
 
@@ -40,6 +41,11 @@ enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, Comp
 // Root class for signals
 class Signal {
 
+	/* [DIA]
+	 * Talvez alterar este valor para 0, dado que muitas das funções fazem um
+	 * offset de -1 para ler o buffer.
+	 * É preciso alterar a lógicas dos outro módulos para acomodar esta mudança.
+	 */
 	long int firstValueToBeSaved{ 1 };				// First value (>= 1) to be saved
 	bool saveSignal{ true };
 							
@@ -520,5 +526,3 @@ class System {
 };
 
 # endif // PROGRAM_INCLUDE_netxpto_H_
-
-

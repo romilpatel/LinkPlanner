@@ -146,6 +146,7 @@
     <ClCompile Include="..\..\lib\iq_modulator.cpp" />
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
+    <ClCompile Include="..\..\lib\polarization_beam_splitter.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="simplified_coherent_receiver_sdf.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="..\..\include\iq_modulator.h" />
     <ClInclude Include="..\..\include\m_qam_mapper.h" />
     <ClInclude Include="..\..\include\netxpto.h" />
+    <ClInclude Include="..\..\include\polarization_beam_splitter.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sink.h" />
   </ItemGroup>

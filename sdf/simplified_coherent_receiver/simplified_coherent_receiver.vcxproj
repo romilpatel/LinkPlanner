@@ -76,6 +76,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\..\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -140,9 +141,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\lib\balanced_beam_splitter.cpp" />
     <ClCompile Include="..\..\lib\binary_source.cpp" />
     <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
     <ClCompile Include="..\..\lib\iq_modulator.cpp" />
+    <ClCompile Include="..\..\lib\local_oscillator.cpp" />
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
@@ -150,9 +153,11 @@
     <ClCompile Include="simplified_coherent_receiver_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\balanced_beam_splitter.h" />
     <ClInclude Include="..\..\include\binary_source.h" />
     <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
     <ClInclude Include="..\..\include\iq_modulator.h" />
+    <ClInclude Include="..\..\include\local_oscillator.h" />
     <ClInclude Include="..\..\include\m_qam_mapper.h" />
     <ClInclude Include="..\..\include\netxpto.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />

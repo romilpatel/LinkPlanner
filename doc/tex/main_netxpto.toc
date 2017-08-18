@@ -2,32 +2,24 @@
 \contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
 \contentsline {chapter}{\numberline {2}Simulator Structure}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}System}{3}{section.2.1}
-<<<<<<< HEAD
 \contentsline {chapter}{\numberline {3}Development Cycle}{4}{chapter.3}
 \contentsline {chapter}{\numberline {4}Visualizer}{5}{chapter.4}
 \contentsline {chapter}{\numberline {5}Case Studies}{6}{chapter.5}
 \contentsline {section}{\numberline {5.1}QPSK Transmitter}{6}{section.5.1}
-\contentsline {section}{\numberline {5.2}Quantum Noise}{8}{section.5.2}
-\contentsline {section}{\numberline {5.3}Continuos Variable Quantum Transmission System}{14}{section.5.3}
-\contentsline {section}{\numberline {5.4}Simplified Coherent Receiver}{24}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Tx side}{24}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Rx side}{24}{subsection.5.4.2}
-\contentsline {chapter}{\numberline {6}Library}{26}{chapter.6}
-\contentsline {section}{\numberline {6.1}Add}{27}{section.6.1}
-\contentsline {section}{\numberline {6.2}Binary source}{28}{section.6.2}
-\contentsline {section}{\numberline {6.3}Clock}{32}{section.6.3}
-\contentsline {section}{\numberline {6.4}Coupler 2 by 2}{34}{section.6.4}
-\contentsline {section}{\numberline {6.5}Decoder}{35}{section.6.5}
-\contentsline {section}{\numberline {6.6}Discrete to continuous time}{38}{section.6.6}
-\contentsline {section}{\numberline {6.7}Homodyne receiver}{40}{section.6.7}
-\contentsline {section}{\numberline {6.8}IQ modulator}{44}{section.6.8}
-\contentsline {section}{\numberline {6.9}Local Oscillator}{46}{section.6.9}
-\contentsline {section}{\numberline {6.10}MQAM mapper}{48}{section.6.10}
-\contentsline {section}{\numberline {6.11}MQAM transmitter}{51}{section.6.11}
-=======
-\contentsline {chapter}{\numberline {3}Library}{4}{chapter.3}
-\contentsline {chapter}{\numberline {4}Visualizer}{5}{chapter.4}
-\contentsline {chapter}{\numberline {5}Case Studies}{6}{chapter.5}
-\contentsline {section}{\numberline {5.1}QPSK Transmitter}{6}{section.5.1}
-\contentsline {chapter}{\numberline {6}Development Cycle}{11}{chapter.6}
->>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+\contentsline {section}{\numberline {5.2}Quantum Noise}{7}{section.5.2}
+\contentsline {section}{\numberline {5.3}Continuos Variable Quantum Transmission System}{13}{section.5.3}
+\contentsline {section}{\numberline {5.4}Simplified Coherent Receiver}{23}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Tx side}{23}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Rx side}{23}{subsection.5.4.2}
+\contentsline {chapter}{\numberline {6}Library}{25}{chapter.6}
+\contentsline {section}{\numberline {6.1}Add}{26}{section.6.1}
+\contentsline {section}{\numberline {6.2}Binary source}{27}{section.6.2}
+\contentsline {section}{\numberline {6.3}Clock}{31}{section.6.3}
+\contentsline {section}{\numberline {6.4}Coupler 2 by 2}{33}{section.6.4}
+\contentsline {section}{\numberline {6.5}Decoder}{34}{section.6.5}
+\contentsline {section}{\numberline {6.6}Discrete to continuous time}{37}{section.6.6}
+\contentsline {section}{\numberline {6.7}Homodyne receiver}{39}{section.6.7}
+\contentsline {section}{\numberline {6.8}IQ modulator}{43}{section.6.8}
+\contentsline {section}{\numberline {6.9}Local Oscillator}{45}{section.6.9}
+\contentsline {section}{\numberline {6.10}MQAM mapper}{47}{section.6.10}
+\contentsline {section}{\numberline {6.11}MQAM transmitter}{50}{section.6.11}

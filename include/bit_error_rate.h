@@ -16,6 +16,10 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	double coincidences = 0;
 	double recievedBits = 0;
 
@@ -24,8 +28,21 @@ public:
 
 	void setMidReportSize(int M) { m = M; }
 	int const getMidReportSize(void) { return m; }
+<<<<<<< HEAD
 
 private:
+=======
+=======
+	long int coincidences = 0;
+	long int receivedBits = 0;
+
+	void setConfidence(t_real P) { alpha = 1-P; }
+	void setMidReportSize(int M) { m = M; }
+>>>>>>> AnaLuisa
+
+private:
+
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	int firstPass = 1;
 
 	double alpha = 0.05;

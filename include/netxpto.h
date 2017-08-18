@@ -41,11 +41,14 @@ enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, Comp
 // Root class for signals
 class Signal {
 
+<<<<<<< HEAD
 	/* [DIA]
 	 * Talvez alterar este valor para 0, dado que muitas das funções fazem um
 	 * offset de -1 para ler o buffer.
 	 * É preciso alterar a lógicas dos outro módulos para acomodar esta mudança.
 	 */
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	long int firstValueToBeSaved{ 1 };				// First value (>= 1) to be saved
 	bool saveSignal{ true };
 							
@@ -525,4 +528,10 @@ class System {
   vector<Block *> SystemBlocks;  // Pointer to an array of pointers to Block objects
 };
 
+<<<<<<< HEAD
 # endif // PROGRAM_INCLUDE_netxpto_H_
+=======
+# endif // PROGRAM_INCLUDE_netxpto_H_
+
+
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd

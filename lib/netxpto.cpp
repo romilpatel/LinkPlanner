@@ -669,17 +669,25 @@ void System::run() {
 	do {
 		Alive = false;
 		for (unsigned int i = 0; i < SystemBlocks.size(); i++) {
+<<<<<<< HEAD
 
 			bool aux = SystemBlocks[i]->runBlock();
 
+=======
+			bool aux = SystemBlocks[i]->runBlock();
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 			Alive = (Alive || aux);
 		}
 	} while (Alive);
 
 	for (int unsigned i = 0; i < SystemBlocks.size(); i++) {
+<<<<<<< HEAD
 		
 		SystemBlocks[i]->terminateBlock();
 
+=======
+		SystemBlocks[i]->terminateBlock();
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	}
 }
 

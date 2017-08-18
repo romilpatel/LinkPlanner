@@ -14,6 +14,7 @@
 # include "sampler.h"
 # include "bit_decider.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 //[DIA] My includes
 //#include "white_noise.h"
@@ -21,38 +22,58 @@
 >>>>>>> develop
 
 int main() {
+=======
+
+int main(){
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 
 	// #####################################################################################################
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
+<<<<<<< HEAD
 	// [DIA] Valor original
 	//int numberOfBitsGenerated(100);
 	// [DIA] Valor de teste
 	int numberOfBitsGenerated(40);
 
 
+=======
+	int numberOfBitsGenerated(100);
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	int samplesPerSymbol(160);
 	double bitPeriod = .5e-9;
 	double localOscillatorPower_dBm = 10;
 	double signalPower = 6.4078e-13 * 5; // 1.0252e-11 is the power of one photon for dt=2e-7s
 	double localOscillatorPhase = 0;
+<<<<<<< HEAD
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2) } };
+=======
+	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	double responsivity = 1;
 	double amplification = 1e6;
 	double electricalNoiseAmplitude = 0;// 0.0022*0.0022;
 	int bufferLength = 512;
 	bool shotNoise(true);
+<<<<<<< HEAD
 	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
 
 	double SNR = 0;
 
+=======
+	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
+
+	double SNR = 0;
+		
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
 
 	// %%%%%%%%%%%%%%%% ALICE SIGNAL GENERATION %%%%%%%%%%%%%%%%
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	// Geração dos sinais binários
 =======
@@ -74,6 +95,14 @@ int main() {
 /*	
 =======
 >>>>>>> develop
+=======
+	Binary S0("S0.sgn");
+	S0.setBufferLength(bufferLength);
+
+	OpticalSignal S1("S1.sgn");
+	S1.setBufferLength(bufferLength);
+
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	// %%%%%%%%%%%%%%%%   EVE SIGNAL DETECTION   %%%%%%%%%%%%%%%%
 
 	OpticalSignal ED0("ED0.sgn");
@@ -89,6 +118,7 @@ int main() {
 	ED3.setBufferLength(bufferLength);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	TimeDiscreteAmplitudeContinuousReal ED4("ED4.sgn");
 	ED4.setBufferLength(bufferLength);
@@ -100,17 +130,23 @@ int main() {
 
 
 =======
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	TimeDiscreteAmplitudeContinuousReal ED4("ED4.sgn");
 	ED4.setBufferLength(bufferLength);
 
 	Binary ED5("ED5.sgn");
 	ED5.setBufferLength(bufferLength);
 
+<<<<<<< HEAD
 >>>>>>> develop
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	// %%%%%%%%%%%%%%%% EVE SIGNAL REGENERATION %%%%%%%%%%%%%%%%
 
 	TimeDiscreteAmplitudeDiscreteReal EE1("EE1.sgn");
 	EE1.setBufferLength(bufferLength);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	TimeDiscreteAmplitudeDiscreteReal EE2("EE2.sgn");
@@ -118,11 +154,16 @@ int main() {
 
 	
 =======
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	
 	TimeDiscreteAmplitudeDiscreteReal EE2("EE2.sgn");
 	EE2.setBufferLength(bufferLength);
 
+<<<<<<< HEAD
 >>>>>>> develop
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	TimeContinuousAmplitudeDiscreteReal EE3("EE3.sgn");
 	EE3.setBufferLength(bufferLength);
 
@@ -139,10 +180,13 @@ int main() {
 	EE7.setBufferLength(bufferLength);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 */
 
 =======
 >>>>>>> develop
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	// %%%%%%%%%%%%%%%%   BOB SIGNAL DETECTION   %%%%%%%%%%%%%%%%
 
 	OpticalSignal S2("S2.sgn");
@@ -172,17 +216,22 @@ int main() {
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
+<<<<<<< HEAD
 	// BEGIN ALICE
 
 	// (1)
 	// [DIA]
 	// Troquei S1 por S0 (optico <-> binario)
 	MQamTransmitter B1{ vector<Signal*> {}, vector<Signal*> {&S1, &S0} }; // CORRECCAO (qual? ver código do daniel)
+=======
+	MQamTransmitter B1{ vector<Signal*> {}, vector<Signal*> {&S1} };
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower(signalPower);
 	B1.setMode(PseudoRandom);
 	B1.setBitPeriod(bitPeriod);
 	B1.setIqAmplitudes(iqAmplitudeValues);
+<<<<<<< HEAD
 
 	B1.setPulseShaperFilter(Gaussian);
 	// BUG? O sinal dos sincs é desviado no tempo e mantém o comprimento do vector que sai do discrete do
@@ -210,6 +259,13 @@ int main() {
 =======
 
 >>>>>>> develop
+=======
+	B1.setPulseShaperFilter(Gaussian);
+	B1.setNumberOfSamplesPerSymbol(samplesPerSymbol);
+	B1.setSaveInternalSignals(true);
+	B1.setSeeBeginningOfImpulseResponse(true);
+
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	LocalOscillator B2{ vector<Signal*> { }, vector<Signal*> { &ED0 } };
 	B2.setOpticalPower(localOscillatorPower_dBm);
 	B2.setPhase(localOscillatorPhase);
@@ -217,6 +273,7 @@ int main() {
 	B2.setSymbolPeriod(bitPeriod);
 	B2.setSignaltoNoiseRatio(SNR);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	// BEAM SPLITTER
 	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &ED0}, vector<Signal*> {&ED1, &ED2 } };
@@ -303,6 +360,8 @@ int main() {
 	B19.setDisplayNumberOfSamples(true);
 
 =======
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	BalancedBeamSplitter B3{ vector<Signal*> {&S1, &ED0}, vector<Signal*> {&ED1, &ED2 } };
 	B3.setTransferMatrix(transferMatrix);
 
@@ -342,12 +401,16 @@ int main() {
 	Sink B18{ vector<Signal*> {&S8}, vector<Signal*> {} };
 	B18.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
 	B18.setDisplayNumberOfSamples(true);
+<<<<<<< HEAD
 >>>>>>> develop
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	// [DIA] Teste original
 	//System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14, &B15, &B16, &B17, &B18, &B19} };
@@ -358,6 +421,9 @@ int main() {
 =======
 	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14, &B15, &B16, &B17, &B18} };
 >>>>>>> develop
+=======
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14, &B15, &B16, &B17, &B18} };
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

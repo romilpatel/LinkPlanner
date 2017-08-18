@@ -143,10 +143,13 @@ int main(){
 	//B4.setDisplayNumberOfSamples(true);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	Sink B3{ vector<Signal*> { &S2 }, vector<Signal*> {} };
 	B3.setDisplayNumberOfSamples(true);
 =======
 >>>>>>> develop
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################

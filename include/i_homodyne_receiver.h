@@ -54,7 +54,11 @@ public:
 
 	/* Set Methods */
 
+<<<<<<< HEAD
 //<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	void setResponsivity(double Responsivity) { B1.setResponsivity(Responsivity); };
 	double const getResponsivity(void) { B1.getResponsivity(); }
 	void useShotNoise(bool uShotNoise){ B1.useNoise(uShotNoise); };
@@ -76,7 +80,11 @@ public:
     int const getImpulseResponseLength(void) { return B2.getImpulseResponseLength();};
     
 	void usePassiveFilterMode(bool pFilterMode){ B2.usePassiveFilterMode(pFilterMode); }
+<<<<<<< HEAD
 /*=======
+=======
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 	void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
 	//void setLocalOscillatorSymbolPeriod(double sPeriod) { B1.setSymbolPeriod(sPeriod); }
 	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
@@ -96,7 +104,11 @@ public:
 	void setSamplesToSkip(int sToSkip) { B5.setSamplesToSkip(sToSkip); };
 
 	void setDecionLevel(int dLevel) { B6.setDecisionLevel(dLevel); };
+<<<<<<< HEAD
 >>>>>>> AnaLuisa*/
+=======
+>>>>>>> AnaLuisa
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 
 };
 

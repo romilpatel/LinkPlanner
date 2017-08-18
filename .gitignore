@@ -73,6 +73,7 @@ Temporary Items
 *.sgn
 *.sgn
 <<<<<<< HEAD
+<<<<<<< HEAD
 sdf/cv_transmission_system/signals/S2.sgn
 sdf/cv_transmission_system/signals/TI_AMP04.sgn
 sdf/bpsk_system/_bpsk_system.VC.db
@@ -89,3 +90,8 @@ doc/tex/main_netxpto.synctex
 doc/tex/main_netxpto.toc
 *.obj
 visualizerXPTO/nRead.mat
+=======
+sdf/cv_transmission_system/signals/S2.sgn
+sdf/cv_transmission_system/signals/TI_AMP04.sgn
+sdf/bpsk_system/_bpsk_system.VC.db
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd

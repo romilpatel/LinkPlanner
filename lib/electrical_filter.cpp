@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 #include <algorithm>
 #include <complex>
 #include <array>
@@ -5,7 +9,14 @@
 
 #include "netxpto.h"
 #include "electrical_filter.h"
+<<<<<<< HEAD
 
+=======
+=======
+# include "netxpto.h"
+# include "electrical_filter.h"
+>>>>>>> AnaLuisa
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
 
 using namespace std;
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.9)  18 AUG 2017 10:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.9)  22 AUG 2017 15:55
 entering extended mode
 **./main_netxpto.tex
 (main_netxpto.tex
@@ -1359,7 +1359,7 @@ File: ./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf Graphic file (type p
 df)
  <use ./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf>
 Package pdftex.def Info: ./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf u
-sed on input line 9.
+sed on input line 15.
 (pdftex.def)             Requested size: 442.64384pt x 199.1649pt.
 
 <./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf, id=366, 963
@@ -1369,20 +1369,20 @@ File: ./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf Graphic
 
 <use ./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf>
 Package pdftex.def Info: ./sdf/simplified_coherent_receiver/figures/detailed_su
-bsystem.pdf used on input line 15.
+bsystem.pdf used on input line 21.
 (pdftex.def)             Requested size: 442.64384pt x 199.1649pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 25.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 22.
+(babel)             in language  on input line 28.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 24.
+(babel)             in language  on input line 30.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 24.
+(babel)             in language  on input line 30.
 [24
 
  <./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf>]))
@@ -2090,7 +2090,7 @@ type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on main_netxpto.pdf (57 pages, 1010561 bytes).
+Output written on main_netxpto.pdf (57 pages, 1010850 bytes).
 PDF statistics:
  809 PDF objects out of 1000 (max. 8388607)
  267 named destinations out of 1000 (max. 500000)

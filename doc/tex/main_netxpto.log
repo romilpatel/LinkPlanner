@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.9)  22 AUG 2017 15:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.20)  24 AUG 2017 16:01
 entering extended mode
 **./main_netxpto.tex
 (main_netxpto.tex
 LaTeX2e <2017-04-15>
-Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
+Babel <3.10> and hyphenation patterns for 75 language(s) loaded.
 (style/phdthesis.cls
 
 LaTeX Warning: You have requested document class `./style/phdthesis',
@@ -141,7 +141,7 @@ Package: inputenc 2015/03/17 v1.2c Input encoding file
 File: ansinew.def 2015/03/17 v1.2c Input encoding file
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.sty"
-Package: babel 2016/04/23 3.9r The Babel package
+Package: babel 2017/05/19 3.10 The Babel package
 
 *************************************
 * Local config file bblopts.cfg used
@@ -154,7 +154,7 @@ File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
 Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def"
-File: babel.def 2016/04/23 3.9r Babel common definitions
+File: babel.def 2017/05/19 3.10 Babel common definitions
 \babel@savecnt=\count101
 \U@D=\dimen116
 )
@@ -186,16 +186,17 @@ Package: a4 2004/04/15 v1.2g A4 based page layout
 Package: palatino 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
-Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
-\fancy@headwidth=\skip49
-\f@ncyO@elh=\skip50
-\f@ncyO@erh=\skip51
-\f@ncyO@olh=\skip52
-\f@ncyO@orh=\skip53
-\f@ncyO@elf=\skip54
-\f@ncyO@erf=\skip55
-\f@ncyO@olf=\skip56
-\f@ncyO@orf=\skip57
+Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footer
+s
+\f@nch@headwidth=\skip49
+\f@nch@O@elh=\skip50
+\f@nch@O@erh=\skip51
+\f@nch@O@olh=\skip52
+\f@nch@O@orh=\skip53
+\f@nch@O@elf=\skip54
+\f@nch@O@erf=\skip55
+\f@nch@O@olf=\skip56
+\f@nch@O@orf=\skip57
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fancybox\fancybox.sty"
 Package: fancybox 2010/05/15 1.4
@@ -540,7 +541,7 @@ Package: fp-eval 1995/04/03
 \dtl@omitlines=\count154
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\base\glossaries.sty"
-Package: glossaries 2017/01/19 v4.29 (NLCT)
+Package: glossaries 2017/06/11 v4.30 (NLCT)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\mfirstuc\mfirstuc.sty"
 Package: mfirstuc 2016/07/31 v2.04 (NLCT)
@@ -552,7 +553,7 @@ Package: textcase 2004/10/07 v0.07 Text only upper/lower case changing (DPC)
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\base\glossaries-compatible-3
 07.sty"
-Package: glossaries-compatible-307 2017/01/19 v4.29 (NLCT)
+Package: glossaries-compatible-307 2017/06/11 v4.30 (NLCT)
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\tracklang\tracklang.sty"
 Package: tracklang 2017/03/25 v1.3.4 (NLCT) Track Languages
 
@@ -578,12 +579,12 @@ File: glossaries-portuges.ldf 2014/11/23 v1.0
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-hypernav.sty
 "
-Package: glossary-hypernav 2017/01/19 v4.29 (NLCT)
+Package: glossary-hypernav 2017/06/11 v4.30 (NLCT)
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-list.sty"
-Package: glossary-list 2017/01/19 v4.29 (NLCT)
+Package: glossary-list 2017/06/11 v4.30 (NLCT)
 \glslistdottedwidth=\skip69
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-long.sty"
-Package: glossary-long 2017/01/19 v4.29 (NLCT)
+Package: glossary-long 2017/06/11 v4.30 (NLCT)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty"
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
@@ -607,7 +608,7 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \glspagelistwidth=\skip75
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-super.sty"
-Package: glossary-super 2017/01/19 v4.29 (NLCT)
+Package: glossary-super 2017/06/11 v4.30 (NLCT)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\supertabular\supertabular.sty"
 Package: supertabular 2004/02/20 v4.1e the supertabular environment
@@ -629,7 +630,7 @@ Package: supertabular 2004/02/20 v4.1e the supertabular environment
 \ST@pbox=\box38
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-tree.sty"
-Package: glossary-tree 2017/01/19 v4.29 (NLCT)
+Package: glossary-tree 2017/06/11 v4.30 (NLCT)
 \glstreeindent=\skip79
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty"
@@ -688,7 +689,7 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks63
 \verbatim@line=\toks64
 \verbatim@in@stream=\read3
-)))
+))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty"
 Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
 \c@tracingmulticols=\count166
@@ -738,12 +739,261 @@ Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
 \colbreak@box=\box64
 \mc@col@check@num=\count174
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\tcolorbox\tcolorbox.sty"
+Package: tcolorbox 2017/07/05 version 4.10 text color boxes
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\utilities\pgfrcs.sty"
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.tex"
+\pgfutil@everybye=\toks65
+\pgfutil@tempdima=\dimen170
+\pgfutil@tempdimb=\dimen171
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common-lists.te
+x")) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-latex.def"
+\pgfutil@abb=\box65
+("C:\Program Files\MiKTeX 2.9\tex\latex\ms\everyshi.sty"
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfrcs.code.tex"
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgfcore.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\systemlayer\pgfsys.sty"
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys.code.tex"
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex"
+\pgfkeys@pathtoks=\toks66
+\pgfkeys@temptoks=\toks67
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeysfiltered.code.te
+x"
+\pgfkeys@tmptoks=\toks68
+))
+\pgf@x=\dimen172
+\pgf@y=\dimen173
+\pgf@xa=\dimen174
+\pgf@ya=\dimen175
+\pgf@xb=\dimen176
+\pgf@yb=\dimen177
+\pgf@xc=\dimen178
+\pgf@yc=\dimen179
+\w@pgf@writea=\write6
+\r@pgf@reada=\read4
+\c@pgf@counta=\count175
+\c@pgf@countb=\count176
+\c@pgf@countc=\count177
+\c@pgf@countd=\count178
+\t@pgf@toka=\toks69
+\t@pgf@tokb=\toks70
+\t@pgf@tokc=\toks71
+ ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgf.cfg"
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys-pdftex.def"
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def
+"
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.t
+ex"
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count179
+\pgfsyssoftpath@bigbuffer@items=\count180
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsysprotocol.code.t
+ex"
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+)) ("C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcore.code.tex"
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathcalc.code.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathutil.code.tex")
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathparser.code.tex"
+\pgfmath@dimen=\dimen180
+\pgfmath@count=\count181
+\pgfmath@box=\box66
+\pgfmath@toks=\toks72
+\pgfmath@stack@operand=\toks73
+\pgfmath@stack@operation=\toks74
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.code.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.basic.code.
+tex")
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.trigonometr
+ic.code.tex")
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.random.code
+.tex")
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.comparison.
+code.tex")
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.base.code.t
+ex")
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.round.code.
+tex")
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.misc.code.t
+ex")
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.integerarit
+hmetics.code.tex")))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfloat.code.tex"
+\c@pgfmathroundto@lastzeros=\count182
+))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex
+"
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen181
+\pgf@picmaxx=\dimen182
+\pgf@picminy=\dimen183
+\pgf@picmaxy=\dimen184
+\pgf@pathminx=\dimen185
+\pgf@pathmaxx=\dimen186
+\pgf@pathminy=\dimen187
+\pgf@pathmaxy=\dimen188
+\pgf@xx=\dimen189
+\pgf@xy=\dimen190
+\pgf@yx=\dimen191
+\pgf@yy=\dimen192
+\pgf@zx=\dimen193
+\pgf@zy=\dimen194
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathconstruct.c
+ode.tex"
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen195
+\pgf@path@lasty=\dimen196
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathusage.code.
+tex"
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen197
+\pgf@shorten@start@additional=\dimen198
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex
+"
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box67
+\pgf@hbox=\box68
+\pgf@layerbox@main=\box69
+\pgf@picture@serial@count=\count183
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoregraphicstate.co
+de.tex"
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen199
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransformations
+.code.tex"
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen256
+\pgf@pt@y=\dimen257
+\pgf@pt@temp=\dimen258
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorequick.code.tex"
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreobjects.code.te
+x"
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathprocessing.
+code.tex"
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex
+"
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen259
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex"
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen260
+\pgf@sys@shading@range@num=\count184
+) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreimage.code.te
+x"
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreexternal.code.t
+ex"
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box70
+))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex
+"
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransparency.co
+de.tex"
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepatterns.code.t
+ex"
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleshapes.code.tex"
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box71
+) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleplot.code.tex"
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-0-65.
+sty"
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen261
+\pgf@nodesepend=\dimen262
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-1-18.
+sty"
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+)) ("C:\Program Files\MiKTeX 2.9\tex\latex\environ\environ.sty"
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\trimspaces\trimspaces.sty"
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\tcb@titlebox=\box72
+\tcb@upperbox=\box73
+\tcb@lowerbox=\box74
+\tcb@phantombox=\box75
+\c@tcbbreakpart=\count185
+\c@tcblayer=\count186
+\tcolorbox@number=\count187
+\tcb@temp=\box76
+\tcb@temp=\box77
+\tcb@temp=\box78
+\tcb@temp=\box79
+\tcb@out=\write7
+\tcb@record@out=\write8
+))
 \@input{./style/my_commands.aux}
 \openout2 = `./style/my_commands.aux'.
 
 (style/my_commands.tex)
-\@indexfile=\write6
-\openout6 = `main_netxpto.idx'.
+\@indexfile=\write9
+\openout9 = `main_netxpto.idx'.
 
 
 Writing index file main_netxpto.idx
@@ -789,17 +1039,17 @@ File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 )
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count175
-\scratchdimen=\dimen170
-\scratchbox=\box65
-\nofMPsegments=\count176
-\nofMParguments=\count177
-\everyMPshowfont=\toks65
-\MPscratchCnt=\count178
-\MPscratchDim=\dimen171
-\MPnumerator=\count179
-\makeMPintoPDFobject=\count180
-\everyMPtoPDFconversion=\toks66
+\scratchcounter=\count188
+\scratchdimen=\dimen263
+\scratchbox=\box80
+\nofMPsegments=\count189
+\nofMParguments=\count190
+\everyMPshowfont=\toks75
+\MPscratchCnt=\count191
+\MPscratchDim=\dimen264
+\MPnumerator=\count192
+\makeMPintoPDFobject=\count193
+\everyMPtoPDFconversion=\toks76
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -813,16 +1063,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-\AtBeginShipoutBox=\box66
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
-Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
-File: color.cfg 2016/01/02 v1.6 sample color configuration
-)
-Package color Info: Driver file: pdftex.def on input line 147.
-)
+\AtBeginShipoutBox=\box81
 Package hyperref Info: Link coloring ON on input line 9.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
@@ -831,18 +1072,19 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count181
+\c@section@level=\count194
 )
 LaTeX Info: Redefining \ref on input line 9.
 LaTeX Info: Redefining \pageref on input line 9.
 LaTeX Info: Redefining \nameref on input line 9.
 
 (main_netxpto.out) (main_netxpto.out)
-\@outlinefile=\write7
-\openout7 = `main_netxpto.out'.
+\@outlinefile=\write10
+\openout10 = `main_netxpto.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
+ ABD: EveryShipout initializing macros
 LaTeX Font Info:    Try loading font information for U+msa on input line 18.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
@@ -864,6 +1106,7 @@ Package babel Info: Redefining portuges shorthand "|
 \providecommand\@newglossary[4]{}
 \@newglossary{main}{glg}{gls}{glo}
 \@newglossary{acronym}{alg}{acr}{acn}
+\providecommand\tcolorbox@label[2]{}
 
 
 
@@ -877,8 +1120,8 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <17.28> not available
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 2.
 )
-\tf@toc=\write8
-\openout8 = `main_netxpto.toc'.
+\tf@toc=\write11
+\openout11 = `main_netxpto.toc'.
 
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 24.
@@ -973,7 +1216,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 
-<./sdf/qpsk_transmitter/figures/qpsk_transmitter.pdf, id=151, 831.97066pt x 193
+<./sdf/qpsk_transmitter/figures/qpsk_transmitter.pdf, id=154, 831.97066pt x 193
 .29314pt>
 File: ./sdf/qpsk_transmitter/figures/qpsk_transmitter.pdf Graphic file (type pd
 f)
@@ -1048,7 +1291,7 @@ Package babel Info: Redefining portuges shorthand "|
 [8
 
 ]
-<./sdf/quantum_noise/figures/scheme1.pdf, id=188, 426.79132pt x 227.62204pt>
+<./sdf/quantum_noise/figures/scheme1.pdf, id=191, 426.79132pt x 227.62204pt>
 File: ./sdf/quantum_noise/figures/scheme1.pdf Graphic file (type pdf)
 
 <use ./sdf/quantum_noise/figures/scheme1.pdf>
@@ -1094,7 +1337,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 149.
  [11]
-<./sdf/quantum_noise/figures/constelation1.png, id=216, 421.575pt x 314.67563pt
+<./sdf/quantum_noise/figures/constelation1.png, id=219, 421.575pt x 314.67563pt
 >
 File: ./sdf/quantum_noise/figures/constelation1.png Graphic file (type png)
  <use ./sdf/quantum_noise/figures/constelation1.png>
@@ -1111,7 +1354,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 168--178
 
  []
 
-<./sdf/quantum_noise/figures/variance_n.png, id=218, 421.575pt x 316.18124pt>
+<./sdf/quantum_noise/figures/variance_n.png, id=221, 421.575pt x 316.18124pt>
 File: ./sdf/quantum_noise/figures/variance_n.png Graphic file (type png)
 
 <use ./sdf/quantum_noise/figures/variance_n.png>
@@ -1132,7 +1375,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 37.
 
-<./sdf/cv_system/figures/constellation.png, id=236, 637.38126pt x 626.34pt>
+<./sdf/cv_system/figures/constellation.png, id=239, 637.38126pt x 626.34pt>
 File: ./sdf/cv_system/figures/constellation.png Graphic file (type png)
 
 <use ./sdf/cv_system/figures/constellation.png>
@@ -1202,7 +1445,7 @@ nt pro-ba-bi-lity den-sity,
  []
 
 
-<./sdf/cv_system/figures/singlehomodyne.pdf, id=248, 597.23125pt x 845.1575pt>
+<./sdf/cv_system/figures/singlehomodyne.pdf, id=251, 597.23125pt x 845.1575pt>
 File: ./sdf/cv_system/figures/singlehomodyne.pdf Graphic file (type pdf)
 
 <use ./sdf/cv_system/figures/singlehomodyne.pdf>
@@ -1223,7 +1466,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 140.
  [16 <./sdf/cv_system/figures/singlehomodyne.pdf>]
-<./figures/doublehomodynePSE.pdf, id=278, 597.23125pt x 845.1575pt>
+<./figures/doublehomodynePSE.pdf, id=281, 597.23125pt x 845.1575pt>
 File: ./figures/doublehomodynePSE.pdf Graphic file (type pdf)
 
 <use ./figures/doublehomodynePSE.pdf>
@@ -1231,7 +1474,7 @@ Package pdftex.def Info: ./figures/doublehomodynePSE.pdf used on input line 164
 .
 (pdftex.def)             Requested size: 212.4719pt x 169.0816pt.
 
-<./figures/doublehomodyneBER.pdf, id=279, 597.23125pt x 845.1575pt>
+<./figures/doublehomodyneBER.pdf, id=282, 597.23125pt x 845.1575pt>
 File: ./figures/doublehomodyneBER.pdf Graphic file (type pdf)
 
 <use ./figures/doublehomodyneBER.pdf>
@@ -1242,7 +1485,7 @@ Package pdftex.def Info: ./figures/doublehomodyneBER.pdf used on input line 169
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./figures/singlehomodyneSimuBlock.png, id=282, 963.6pt x 170.6375pt>
+<./figures/singlehomodyneSimuBlock.png, id=285, 963.6pt x 170.6375pt>
 File: ./figures/singlehomodyneSimuBlock.png Graphic file (type png)
 
 <use ./figures/singlehomodyneSimuBlock.png>
@@ -1250,7 +1493,7 @@ Package pdftex.def Info: ./figures/singlehomodyneSimuBlock.png used on input li
 ne 182.
 (pdftex.def)             Requested size: 442.65375pt x 78.38483pt.
 
-<./figures/doublehomodyneSimuBlock.png, id=283, 963.6pt x 170.6375pt>
+<./figures/doublehomodyneSimuBlock.png, id=286, 963.6pt x 170.6375pt>
 File: ./figures/doublehomodyneSimuBlock.png Graphic file (type png)
 
 <use ./figures/doublehomodyneSimuBlock.png>
@@ -1305,7 +1548,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 279.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 279.
-[19] <./figures/directBER.pdf, id=328, 597.23125pt x 845.1575pt>
+[19] <./figures/directBER.pdf, id=331, 597.23125pt x 845.1575pt>
 File: ./figures/directBER.pdf Graphic file (type pdf)
 
 <use ./figures/directBER.pdf>
@@ -1315,7 +1558,7 @@ Package pdftex.def Info: ./figures/directBER.pdf used on input line 300.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./figures/adaptedBER.pdf, id=332, 597.23125pt x 845.1575pt>
+<./figures/adaptedBER.pdf, id=335, 597.23125pt x 845.1575pt>
 File: ./figures/adaptedBER.pdf Graphic file (type pdf)
 
 <use ./figures/adaptedBER.pdf>
@@ -1351,41 +1594,53 @@ Package babel Info: Redefining portuges shorthand "|
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 2.
+(babel)             in language  on input line 3.
 
-<./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf, id=365, 963.6pt x 542.02
+Underfull \hbox (badness 1466) in paragraph at lines 9--10
+[]|\T1/ppl/m/n/10.95 Develop a sim-pli-fied struc-ture (low cost) for a cohe-re
+nt
+ []
+
+
+Overfull \hbox (7.33366pt too wide) in paragraph at lines 6--11
+[][] 
+ []
+
+
+<./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf, id=368, 963.6pt x 542.02
 5pt>
 File: ./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf Graphic file (type p
 df)
  <use ./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf>
 Package pdftex.def Info: ./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf u
-sed on input line 15.
+sed on input line 18.
 (pdftex.def)             Requested size: 442.64384pt x 199.1649pt.
 
-<./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf, id=366, 963
+<./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf, id=369, 963
 .6pt x 542.025pt>
 File: ./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf Graphic
  file (type pdf)
 
 <use ./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf>
 Package pdftex.def Info: ./sdf/simplified_coherent_receiver/figures/detailed_su
-bsystem.pdf used on input line 21.
+bsystem.pdf used on input line 24.
 (pdftex.def)             Requested size: 442.64384pt x 199.1649pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 25.
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 28.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 30.
+(babel)             in language  on input line 31.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 30.
+(babel)             in language  on input line 31.
 [24
 
- <./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf>]))
+ <./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 31.
+))
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 28.
 Package babel Info: Redefining portuges shorthand "|
@@ -1473,7 +1728,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 102.
 [29]
-<./lib/binary_source/figures/BinarySequenceN3.png, id=431, 404.712pt x 297.2706
+<./lib/binary_source/figures/BinarySequenceN3.png, id=434, 404.712pt x 297.2706
 pt>
 File: ./lib/binary_source/figures/BinarySequenceN3.png Graphic file (type png)
  <use ./lib/binary_source/figures/BinarySequenceN3.png>
@@ -1481,7 +1736,7 @@ Package pdftex.def Info: ./lib/binary_source/figures/BinarySequenceN3.png used
 on input line 105.
 (pdftex.def)             Requested size: 221.32687pt x 162.56946pt.
 
-<./lib/binary_source/figures/BinarySource_output.jpg, id=433, 562.1pt x 419.567
+<./lib/binary_source/figures/BinarySource_output.jpg, id=436, 562.1pt x 419.567
 5pt>
 File: ./lib/binary_source/figures/BinarySource_output.jpg Graphic file (type jp
 g)
@@ -1516,7 +1771,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--42
 i-ons.
  []
 
-<./lib/clock/figures/Clock_output.jpg, id=459, 562.1pt x 419.5675pt>
+<./lib/clock/figures/Clock_output.jpg, id=462, 562.1pt x 419.5675pt>
 File: ./lib/clock/figures/Clock_output.jpg Graphic file (type jpg)
 
 <use ./lib/clock/figures/Clock_output.jpg>
@@ -1533,7 +1788,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
 
-<./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf, id=472, 963.6pt x 542.025pt>
+<./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf, id=475, 963.6pt x 542.025pt>
 File: ./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf Graphic file (type pdf)
 
 <use ./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf>
@@ -1562,7 +1817,7 @@ Package babel Info: Redefining portuges shorthand "|
  [35
 
 ]
-<./lib/decoder/figures/Decoder_output.jpg, id=501, 562.1pt x 419.5675pt>
+<./lib/decoder/figures/Decoder_output.jpg, id=504, 562.1pt x 419.5675pt>
 File: ./lib/decoder/figures/Decoder_output.jpg Graphic file (type jpg)
 
 <use ./lib/decoder/figures/Decoder_output.jpg>
@@ -1597,7 +1852,7 @@ vector$\OML/cmm/m/it/10.95 <$\T1/ppl/m/n/10.95 Signal *$\OML/cmm/m/it/10.95 >$
 
 
 <./figures/../lib/discrete_to_continuous_time/figures/TimeDiscreteToContinuous_
-output.jpg, id=520, 562.1pt x 419.5675pt>
+output.jpg, id=523, 562.1pt x 419.5675pt>
 File: ./figures/../lib/discrete_to_continuous_time/figures/TimeDiscreteToContin
 uous_output.jpg Graphic file (type jpg)
 
@@ -1628,7 +1883,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
 <./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram_simple.
-png, id=541, 1139.00531pt x 149.8097pt>
+png, id=544, 1139.00531pt x 149.8097pt>
 File: ./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram_si
 mple.png Graphic file (type png)
 
@@ -1639,7 +1894,7 @@ er_block_diagram_simple.png used on input line 9.
 (pdftex.def)             Requested size: 354.12434pt x 46.57538pt.
 
 <./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram.png, id
-=544, 2048.40282pt x 726.46407pt>
+=547, 2048.40282pt x 726.46407pt>
 File: ./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram.pn
 g Graphic file (type png)
 
@@ -1799,7 +2054,7 @@ Package babel Info: Redefining portuges shorthand "|
 [44
 
 ]
-<./figures/../lib/iq_modulator/figures/IQmodulator0_output.jpg, id=589, 562.1pt
+<./figures/../lib/iq_modulator/figures/IQmodulator0_output.jpg, id=592, 562.1pt
  x 421.575pt>
 File: ./figures/../lib/iq_modulator/figures/IQmodulator0_output.jpg Graphic fil
 e (type jpg)
@@ -1864,7 +2119,7 @@ Out-put-Sig)
  []
 
 
-<./lib/m_qam_mapper/figures/MQAM_constellation.png, id=619, 357.4956pt x 345.45
+<./lib/m_qam_mapper/figures/MQAM_constellation.png, id=622, 357.4956pt x 345.45
 06pt>
 File: ./lib/m_qam_mapper/figures/MQAM_constellation.png Graphic file (type png)
 
@@ -1873,7 +2128,7 @@ Package pdftex.def Info: ./lib/m_qam_mapper/figures/MQAM_constellation.png used
  on input line 34.
 (pdftex.def)             Requested size: 265.59494pt x 256.66258pt.
 
-<./lib/m_qam_mapper/figures/IQmodulator_output.jpg, id=620, 562.1pt x 419.5675p
+<./lib/m_qam_mapper/figures/IQmodulator_output.jpg, id=623, 562.1pt x 419.5675p
 t>
 File: ./lib/m_qam_mapper/figures/IQmodulator_output.jpg Graphic file (type jpg)
 
@@ -1904,7 +2159,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
 <./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram_simple.png, id=
-648, 727.21687pt x 154.32657pt>
+651, 727.21687pt x 154.32657pt>
 File: ./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram_simple.png
  Graphic file (type png)
 
@@ -1913,7 +2168,7 @@ Package pdftex.def Info: ./lib/m_qam_transmitter/figures/MQAM_transmitter_block
 _diagram_simple.png used on input line 9.
 (pdftex.def)             Requested size: 221.32687pt x 46.96944pt.
 
-<./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram.png, id=652, 16
+<./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram.png, id=655, 16
 99.85063pt x 444.15938pt>
 File: ./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram.png Graphi
 c file (type png)
@@ -2010,7 +2265,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 124.
  [53]
-<./lib/m_qam_transmitter/figures/BinarySource_output.jpg, id=673, 562.1pt x 419
+<./lib/m_qam_transmitter/figures/BinarySource_output.jpg, id=676, 562.1pt x 419
 .5675pt>
 File: ./lib/m_qam_transmitter/figures/BinarySource_output.jpg Graphic file (typ
 e jpg)
@@ -2019,7 +2274,7 @@ Package pdftex.def Info: ./lib/m_qam_transmitter/figures/BinarySource_output.jp
 g used on input line 135.
 (pdftex.def)             Requested size: 354.12434pt x 264.32892pt.
 
-<./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg, id=674, 562.1pt x 421
+<./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg, id=677, 562.1pt x 421
 .575pt>
 File: ./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg Graphic file (typ
 e jpg)
@@ -2044,7 +2299,6 @@ Package babel Info: Redefining portuges shorthand "|
  [55 <./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg>]
 No file main_netxpto.gls.
 No file main_netxpto.acr.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 62.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 62.
 Package babel Info: Redefining portuges shorthand "|
@@ -2052,6 +2306,7 @@ Package babel Info: Redefining portuges shorthand "|
 [56
 
 ]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 62.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 62.
  (main_netxpto.aux (chapter/introduction.aux)
 (chapter/simulator_structure.aux) (chapter/development_cycle.aux)
@@ -2067,13 +2322,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
- 16515 strings out of 493328
- 269537 string characters out of 3139131
- 428241 words of memory out of 3000000
- 19253 multiletter control sequences out of 15000+200000
+ 25592 strings out of 493323
+ 465425 string characters out of 3139051
+ 603782 words of memory out of 3000000
+ 28156 multiletter control sequences out of 15000+200000
  34290 words of font info for 76 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,12n,94p,1979b,595s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 58i,12n,94p,1979b,595s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Program Files/MiKTeX 2.9/fon
@@ -2090,9 +2345,9 @@ type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on main_netxpto.pdf (57 pages, 1010850 bytes).
+Output written on main_netxpto.pdf (57 pages, 1014889 bytes).
 PDF statistics:
- 809 PDF objects out of 1000 (max. 8388607)
+ 812 PDF objects out of 1000 (max. 8388607)
  267 named destinations out of 1000 (max. 500000)
- 338 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 350 words of extra memory for PDF output out of 10000 (max. 10000000)
 

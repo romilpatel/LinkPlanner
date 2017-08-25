@@ -13,12 +13,16 @@ void Sampler::initialize(void){
 
 	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Romil
 	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSymbolPeriod());
 }
 
 
 bool Sampler::runBlock(void){
 
+<<<<<<< HEAD
 =======
 
 	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSymbolPeriod());
@@ -61,6 +65,8 @@ bool Sampler::runBlock(void) {
 
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 	ofstream myfile2;
 	myfile2.open("translate.txt", fstream::app);
 
@@ -81,15 +87,19 @@ bool Sampler::runBlock(void) {
 
 		int process = min(ready, samplesToSkip);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 
 
 		for (int k = 0; k < process; k++) {
 			t_real in;
 			inputSignals[0]->bufferGet(&in);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		}
 
@@ -101,6 +111,10 @@ bool Sampler::runBlock(void) {
 
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+		}
+
+>>>>>>> Romil
 		samplesToSkip = samplesToSkip - process;
 		repeatedPass = false;
 		if (samplesToSkip != 0)
@@ -132,6 +146,7 @@ bool Sampler::runBlock(void) {
 
 	}
 	return true;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 =======
@@ -206,3 +221,6 @@ bool Sampler::runBlock(void) {
 };
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+}
+>>>>>>> Romil

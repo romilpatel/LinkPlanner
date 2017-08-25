@@ -42,13 +42,19 @@ enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, Comp
 class Signal {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Romil
 	/* [DIA]
 	 * Talvez alterar este valor para 0, dado que muitas das funções fazem um
 	 * offset de -1 para ler o buffer.
 	 * É preciso alterar a lógicas dos outro módulos para acomodar esta mudança.
 	 */
+<<<<<<< HEAD
 =======
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 	long int firstValueToBeSaved{ 1 };				// First value (>= 1) to be saved
 	bool saveSignal{ true };
 							
@@ -529,9 +535,13 @@ class System {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # endif // PROGRAM_INCLUDE_netxpto_H_
 =======
 # endif // PROGRAM_INCLUDE_netxpto_H_
 
 
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+# endif // PROGRAM_INCLUDE_netxpto_H_
+>>>>>>> Romil

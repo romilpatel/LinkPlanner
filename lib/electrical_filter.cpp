@@ -1,7 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 #include <algorithm>
 #include <complex>
 #include <array>
@@ -10,6 +13,7 @@
 #include "netxpto.h"
 #include "electrical_filter.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 =======
@@ -17,6 +21,9 @@
 # include "electrical_filter.h"
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+
+>>>>>>> Romil
 
 using namespace std;
 

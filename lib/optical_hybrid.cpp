@@ -1,7 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 #include <algorithm>
 #include <complex>
 #include <iostream>
@@ -14,6 +17,7 @@
 void OpticalHybrid::initialize(void){
 
 	firstTime = false;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -32,10 +36,13 @@ using namespace std;
 void OpticalHybrid::initialize(void) {
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 
 	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 
 	outputSignals[0]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
@@ -51,11 +58,17 @@ void OpticalHybrid::initialize(void) {
 	outputSignals[0]->centralFrequency = outputOpticalFrequency;*/
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+	 
+	outputSignals[0]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
+	outputSignals[0]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
+>>>>>>> Romil
 
 	outputSignals[1]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[1]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	outputSignals[1]->setCentralWavelength(inputSignals[1]->getCentralWavelength());
 	outputSignals[1]->setCentralFrequency(inputSignals[1]->getCentralFrequency());
@@ -68,11 +81,16 @@ void OpticalHybrid::initialize(void) {
 	outputSignals[1]->centralFrequency = outputOpticalFrequency;*/
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+	outputSignals[1]->setCentralWavelength(inputSignals[1]->getCentralWavelength());
+	outputSignals[1]->setCentralFrequency(inputSignals[1]->getCentralFrequency());
+>>>>>>> Romil
 
 	outputSignals[2]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[2]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[2]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	outputSignals[2]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
 	outputSignals[2]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
@@ -85,21 +103,29 @@ void OpticalHybrid::initialize(void) {
 	outputSignals[2]->centralFrequency = outputOpticalFrequency;*/
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+	outputSignals[2]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
+	outputSignals[2]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
+>>>>>>> Romil
 
 	outputSignals[3]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[3]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[3]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 	outputSignals[3]->setCentralWavelength(inputSignals[1]->getCentralWavelength());
 	outputSignals[3]->setCentralFrequency(inputSignals[1]->getCentralFrequency());
 }
 
 
 bool OpticalHybrid::runBlock(void){
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -126,15 +152,20 @@ bool OpticalHybrid::runBlock(void){
 bool OpticalHybrid::runBlock(void) {
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 
 	int ready0 = inputSignals[0]->ready();
 	int ready1 = inputSignals[1]->ready();
 	int ready = min(ready0, ready1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 	int space0 = outputSignals[0]->space();
 	int space1 = outputSignals[1]->space();
 	int space2 = outputSignals[2]->space();
@@ -143,20 +174,26 @@ bool OpticalHybrid::runBlock(void) {
 	int spaceb = min(space2, space3);
 	int space = min(spacea, spaceb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 	int space = outputSignals[0]->space();
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 
 	int process = min(ready, space);
 
 	if (process == 0) return false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 	complex<double> imaginary(0, 1);
 	
 	complex<double> div(0.5, 0);
@@ -180,6 +217,7 @@ bool OpticalHybrid::runBlock(void) {
 	}
 	return true;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -214,3 +252,5 @@ bool OpticalHybrid::runBlock(void) {
 }
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil

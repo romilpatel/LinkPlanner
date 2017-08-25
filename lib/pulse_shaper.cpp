@@ -59,11 +59,17 @@ void gaussian(vector<t_real> &impulseResponse, int impulseResponseLength, double
 	for (int i = 0; i < impulseResponseLength; i++) {
 		t_real t = -impulseResponseLength / 2 * samplingPeriod + i * samplingPeriod;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		//DIA>
 		// Magic number -> 36 e pulsewidth
 		//END DIA>
 =======
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+		//DIA>
+		// Magic number -> 36 e pulsewidth
+		//END DIA>
+>>>>>>> Romil
 		gauss = exp(-t*t / (pulsewidth*pulsewidth/36));
 		impulseResponse[i] = gauss;
 		gain = gain + impulseResponse[i];
@@ -76,7 +82,11 @@ void gaussian(vector<t_real> &impulseResponse, int impulseResponseLength, double
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 =======
 };
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+};
+>>>>>>> Romil

@@ -14,10 +14,14 @@ void BitErrorRate::initialize(void){
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool BitErrorRate::runBlock(void){
 =======
 bool BitErrorRate::runBlock(void) {
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+bool BitErrorRate::runBlock(void){
+>>>>>>> Romil
 
 	/* Computing z */ // This code converges in below 10 steps, exactness chosen in order to achieve this rapid convergence
 	if (firstPass)
@@ -29,10 +33,14 @@ bool BitErrorRate::runBlock(void) {
 		double exacteness = 1e-15;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		while (abs(erf(x3 / sqrt(2)) + 1 - alpha)>exacteness)
 =======
 		while (abs(erf(x3 / sqrt(2)) + 1 - alpha) > exacteness)
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+		while (abs(erf(x3 / sqrt(2)) + 1 - alpha)>exacteness)
+>>>>>>> Romil
 		{
 			x3 = x2 - (erf(x2 / sqrt(2)) + 1 - alpha)*(x2 - x1) / (erf(x2 / sqrt(2)) - erf(x1 / sqrt(2)));
 			x1 = x2;
@@ -60,6 +68,7 @@ bool BitErrorRate::runBlock(void) {
 		/* Calculating BER and bounds */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		double BER = (recievedBits - coincidences) / recievedBits;
 =======
 <<<<<<< HEAD
@@ -72,6 +81,9 @@ bool BitErrorRate::runBlock(void) {
 		BER = (NumberOfBits - Coincidences) / NumberOfBits;
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+		double BER = (recievedBits - coincidences) / recievedBits;
+>>>>>>> Romil
 
 		double UpperBound = BER + 1 / sqrt(recievedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * recievedBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
 		double LowerBound = BER - 1 / sqrt(recievedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * recievedBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
@@ -101,6 +113,7 @@ bool BitErrorRate::runBlock(void) {
 		if (m > 0)
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if ((remainder(recievedBits, m) == 0) & (recievedBits>0))
 =======
 <<<<<<< HEAD
@@ -109,6 +122,9 @@ bool BitErrorRate::runBlock(void) {
 			if (remainder(receivedBits, m) == 0 && receivedBits>0)
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+			if ((remainder(recievedBits, m) == 0) & (recievedBits>0))
+>>>>>>> Romil
 			{
 				n++;
 
@@ -119,6 +135,7 @@ bool BitErrorRate::runBlock(void) {
 				/* Calculating BER and bounds */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -126,6 +143,8 @@ bool BitErrorRate::runBlock(void) {
 				t_real Coincidences = coincidences;
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 
 				double BER;
 				BER = (recievedBits - coincidences) / recievedBits;
@@ -146,6 +165,7 @@ bool BitErrorRate::runBlock(void) {
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		recievedBits++;
 =======
 <<<<<<< HEAD
@@ -154,25 +174,35 @@ bool BitErrorRate::runBlock(void) {
 		receivedBits++;
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+		recievedBits++;
+>>>>>>> Romil
 
 		if (signalValue == SignalValue)
 		{
 			coincidences++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 			outputSignals[0]->bufferPut((t_binary) 1);
 		}
 		else
 		{
 			outputSignals[0]->bufferPut((t_binary) 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Romil
 		}
 
 	}
 	return true;
 
+<<<<<<< HEAD
 }
 =======
 =======
@@ -195,3 +225,6 @@ bool BitErrorRate::runBlock(void) {
 
 	}
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+}
+>>>>>>> Romil

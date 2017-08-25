@@ -2,9 +2,12 @@
 # define PROGRAM_INCLUDE_OPTICAL_HYBRID_H_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 # include "netxpto.h"
 # include <iostream>
 # include <complex>
@@ -27,6 +30,7 @@ public:
 	
 	OpticalHybrid() {};
 	OpticalHybrid(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -54,14 +58,19 @@ public:
 	OpticalHybrid(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 
 	void initialize(void);
 	bool runBlock(void);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 	void setTransferMatrix(array<complex<double>, 8> TransferMatrix) { matrix = TransferMatrix; }
 	array<complex<double>, 8> const getTransferMatrix(void) { return matrix; }
 
@@ -71,6 +80,7 @@ private:
 
 
 #endif // !PROGRAM_INCLUDE_OPTICAL_HYBRID_H_
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -86,3 +96,5 @@ private:
 #endif 
 >>>>>>> AnaLuisa
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil

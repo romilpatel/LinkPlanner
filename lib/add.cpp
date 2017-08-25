@@ -35,6 +35,9 @@ bool Add::runBlock(void){
 	if (sType1!=sType2 || sTypeOut!=sType1)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Romil
 		cout << "ERRO: add.cpp (signal type mismatch!)" << "\n";
 		return false;
 	}
@@ -79,6 +82,7 @@ bool Add::runBlock(void){
 			outputSignals[0]->bufferPut(outComplexValueXY);
 		}
 		break;
+<<<<<<< HEAD
 =======
         cout << "ERRO: add.cpp (signal type mismatch!)" << "\n";
         return false;
@@ -126,6 +130,8 @@ bool Add::runBlock(void){
 						   }
 						   break;
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 	}
 	/*case ComplexValueXY:
 	{

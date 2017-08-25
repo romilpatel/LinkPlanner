@@ -17,9 +17,12 @@ public:
 	bool runBlock(void);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 	double coincidences = 0;
 	double recievedBits = 0;
 
@@ -28,6 +31,7 @@ public:
 
 	void setMidReportSize(int M) { m = M; }
 	int const getMidReportSize(void) { return m; }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 private:
@@ -43,6 +47,10 @@ private:
 private:
 
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+
+private:
+>>>>>>> Romil
 	int firstPass = 1;
 
 	double alpha = 0.05;

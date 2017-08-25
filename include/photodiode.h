@@ -3,9 +3,13 @@
 
 # include "netxpto.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <random>
 =======
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+#include <random>
+>>>>>>> Romil
 
 // Simulates a photodiode
 class Photodiode : public Block {
@@ -18,9 +22,12 @@ class Photodiode : public Block {
 public:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 	double frequencyMismatch{ 1.9441e+11 };
 	double responsivity = 1;
 	bool shotNoise = false;
@@ -28,10 +35,14 @@ public:
 	default_random_engine generatorAmp1;
 	default_random_engine generatorAmp2;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Romil
 
 	Photodiode() {};
 	Photodiode(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	
+<<<<<<< HEAD
 =======
 =======
 	double outputOpticalWavelength{ 1550e-9 };
@@ -43,6 +54,8 @@ public:
 	Photodiode(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};
 
 >>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 	void initialize(void);
 	bool runBlock(void);
 

@@ -16,17 +16,45 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	long int coincidences = 0;
-	long int recievedbits = 0;
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
+	double coincidences = 0;
+	double recievedBits = 0;
 
-	void setConfidence(t_real P) { alpha = 1-P; }
-	void setMidReportSize(t_real M) { m = M; }
+	void setConfidence(double P) { alpha = 1-P; }
+	double const getConfidence(void) { return 1 - alpha; }
+
+	void setMidReportSize(int M) { m = M; }
+	int const getMidReportSize(void) { return m; }
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 private:
+=======
+=======
+	long int coincidences = 0;
+	long int receivedBits = 0;
+
+	void setConfidence(t_real P) { alpha = 1-P; }
+	void setMidReportSize(int M) { m = M; }
+>>>>>>> AnaLuisa
+
+private:
+
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+
+private:
+>>>>>>> Romil
 	int firstPass = 1;
 
-	t_real alpha = 0.05;
-	t_real z;
+	double alpha = 0.05;
+	double z;
 	int m = 0;
 	int n = 0;
 };

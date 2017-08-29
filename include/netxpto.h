@@ -29,6 +29,7 @@ typedef complex<t_real> t_complex;
 typedef struct { t_complex x; t_complex y; } t_complex_xy;
 typedef struct { t_real probabilityAmplitude;  t_real polarization; } t_photon;
 typedef struct { t_photon path[MAX_NUMBER_OF_PATHS]; } t_photon_mp;
+typedef complex<t_real> t_iqValues;
 
 enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP};
 
@@ -418,7 +419,7 @@ public:
 
 
 	/* Methods */
-
+	SuperBlock() {};
 	SuperBlock(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal) :Block(inputSignal, outputSignal){ setSaveInternalSignals(false); };
 
 	void initialize(void);
@@ -632,5 +633,3 @@ public:
 
 
 # endif // PROGRAM_INCLUDE_netxpto_H_
-
-

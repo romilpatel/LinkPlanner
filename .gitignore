@@ -8,6 +8,8 @@
 *.ilk
 *.pdb
 *.tlog
+*.VC.opendb
+*.VC.db
 
 ######################
 # Matlab
@@ -63,7 +65,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.obj
-*.obj
 *.exe
 *.mat
 *.mat
+*.sgn
+*.sgn
+*.aux
+*.out
+*.aux

@@ -49,7 +49,7 @@ void MQamMapper::initialize(void){
 	outputSignals[1]->samplesPerSymbol = 1;
 	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 
-	setM(m);
+	//setM(m);
 }
 
 bool MQamMapper::runBlock(void) {
@@ -71,8 +71,8 @@ bool MQamMapper::runBlock(void) {
 		auxSignalNumber = auxSignalNumber + (int) pow(2, nBinaryValues - 1 - auxBinaryValue) * binaryValue;
 		auxBinaryValue++;
 		if (auxBinaryValue == nBinaryValues) {
-			t_real auxI = iqAmplitudes[auxSignalNumber].i;
-			t_real auxQ = iqAmplitudes[auxSignalNumber].q;
+			t_real auxI = iqAmplitudes[auxSignalNumber].real();
+			t_real auxQ = iqAmplitudes[auxSignalNumber].imag();
 			outputSignals[0]->bufferPut((t_real)auxI);
 			outputSignals[1]->bufferPut((t_real)auxQ);
 			auxBinaryValue = 0;
@@ -96,5 +96,8 @@ void MQamMapper::setM(int mValue){
 	switch (m) {
 	case 4:
 		iqAmplitudes = { { 1.0, 1.0 }, { -1.0, 1.0 }, { -1.0, -1.0 }, { 1.0, -1.0 } };
+
+	case 16:
+		iqAmplitudes = { { -3.0, -3.0 },{ -3.0, -1.0 },{ -3.0, 3.0 },{ -3.0, 1.0 },{ -1.0, -3.0 },{ -1.0, -1.0 },{ -1.0, 3.0 },{ -1.0, 1.0 },{ 3.0, -3.0 },{ 3.0, -1.0 }, { 3.0, 3.0 },{ 3.0, 1.0 },{ 1.0, -3.0 },{ 1.0, -1.0 },{ 1.0, 3.0 },{ 1.0, 1.0 } };
 	};
-};
+}; 

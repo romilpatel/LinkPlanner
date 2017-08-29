@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {5.2}Quantum Noise}{8}{section.5.2}
 \contentsline {section}{\numberline {5.3}Continuos Variable Quantum Transmission System}{14}{section.5.3}
 \contentsline {section}{\numberline {5.4}Simplified Coherent Receiver}{24}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Tx side}{24}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.1}Tx side}{25}{subsection.5.4.1}
 \contentsline {subsection}{\numberline {5.4.2}Rx side}{25}{subsection.5.4.2}
 \contentsline {chapter}{\numberline {6}Library}{26}{chapter.6}
 \contentsline {section}{\numberline {6.1}Add}{27}{section.6.1}

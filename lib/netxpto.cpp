@@ -198,8 +198,8 @@ void Signal::bufferGet(t_photon_mp *valueAddr) {
 
 Block::Block(vector<Signal*> &InputSig, vector<Signal*> &OutputSig) {
 
-	numberOfInputSignals = InputSig.size();
-	numberOfOutputSignals = OutputSig.size();
+	numberOfInputSignals = (int) InputSig.size();
+	numberOfOutputSignals = (int) OutputSig.size();
 
 	inputSignals = InputSig;
 	outputSignals = OutputSig;
@@ -207,8 +207,8 @@ Block::Block(vector<Signal*> &InputSig, vector<Signal*> &OutputSig) {
 }
 
 void Block::initializeBlock(vector<Signal*> &InputSig, vector<Signal*> &OutputSig) {
-	numberOfInputSignals = InputSig.size();
-	numberOfOutputSignals = OutputSig.size();
+	numberOfInputSignals = (int) InputSig.size();
+	numberOfOutputSignals = (int) OutputSig.size();
 
 	inputSignals = InputSig;
 	outputSignals = OutputSig;
@@ -280,6 +280,13 @@ bool SuperBlock::runBlock() {
 				case BinaryValue:
 					for (int j = 0; j < length; j++) {
 						t_binary signalValue;
+						moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->bufferGet(&signalValue);
+						outputSignals[i]->bufferPut(signalValue);
+					}
+					break;
+				case RealValue:
+					for (int j = 0; j < length; j++) {
+						t_real signalValue;
 						moduleBlocks[moduleBlocks.size() - 1]->outputSignals[i]->bufferGet(&signalValue);
 						outputSignals[i]->bufferPut(signalValue);
 					}
@@ -610,8 +617,8 @@ DiscreteToContinuousTime::DiscreteToContinuousTime(vector<Signal *> &InputSig, v
 
 RealToComplex::RealToComplex(vector <Signal *> &InputSig, vector <Signal *> &OutputSig) {
 
-  numberOfInputSignals = InputSig.size();
-  numberOfOutputSignals = OutputSig.size();
+  numberOfInputSignals = (int) InputSig.size();
+  numberOfOutputSignals = (int) OutputSig.size();
 
   inputSignals = InputSig;
   outputSignals = OutputSig;
@@ -865,13 +872,15 @@ void System::run() {
 	do {
 		Alive = false;
 		for (unsigned int i = 0; i < SystemBlocks.size(); i++) {
+
 			bool aux = SystemBlocks[i]->runBlock();
+
 			Alive = (Alive || aux);
 		}
 		l++;
 	} while (Alive);
 
-	for (int unsigned i = 0; i < SystemBlocks.size(); i++) {
+	for (int unsigned i = 0; i < SystemBlocks.size(); i++) {		
 		SystemBlocks[i]->terminateBlock();
 	}
 }
@@ -879,7 +888,7 @@ void System::run() {
 void System::run(string signalPath) {
 
 	
-	// The signalPath sub-folder must already exists
+	// The signalPath sub-folder must already exist
 	for (int unsigned i = 0; i < SystemBlocks.size(); i++) {
 		for (int unsigned j = 0; j<(SystemBlocks[i]->inputSignals).size(); j++) {
 			(SystemBlocks[i]->inputSignals[j])->writeHeader(signalPath);

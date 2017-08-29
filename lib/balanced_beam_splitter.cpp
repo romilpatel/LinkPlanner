@@ -7,27 +7,47 @@
 #include "balanced_beam_splitter.h"
 
 
-void BalancedBeamSplitter::initialize(void){
+void BalancedBeamSplitter::initialize(void) {
 
 	firstTime = false;
 
 	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
-	 
+<<<<<<< HEAD
+<<<<<<< HEAD
 	outputSignals[0]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
-	outputSignals[0]->setCentralFrequency(inputSignals[0]->getCentralWavelength());
+	outputSignals[0]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
+=======
+
+	outputSignals[0]->centralWavelength = outputOpticalWavelength;
+	outputSignals[0]->centralFrequency = outputOpticalFrequency;
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+	outputSignals[0]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
+	outputSignals[0]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
+>>>>>>> Romil
 
 	outputSignals[1]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[1]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
-
+<<<<<<< HEAD
+<<<<<<< HEAD
 	outputSignals[1]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
-	outputSignals[1]->setCentralFrequency(inputSignals[0]->getCentralWavelength());
+	outputSignals[1]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
+=======
+
+	outputSignals[1]->centralWavelength = outputOpticalWavelength;
+	outputSignals[1]->centralFrequency = outputOpticalFrequency;
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+	outputSignals[1]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
+	outputSignals[1]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
+>>>>>>> Romil
+
 }
 
-
-bool BalancedBeamSplitter::runBlock(void){
+bool BalancedBeamSplitter::runBlock(void) {
 
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
@@ -40,22 +60,47 @@ bool BalancedBeamSplitter::runBlock(void){
 	int process = min(ready, space);
 
 	if (process == 0) return false;
-
-	complex<t_real> imaginary(0, 1);
 	
+
 	for (int i = 0; i < process; i++) {
 
-		t_complex ina;
-		t_complex inb;
-		inputSignals[0]->bufferGet(&ina);
-		inputSignals[1]->bufferGet(&inb);
+		if (mode = 0) {
 
-		t_complex outa = matrix[0]*ina + matrix[1]*inb;
-		t_complex outb = matrix[2]*ina + matrix[3]*inb;
+			t_complex inSignal1;
+			//This should implement a 1x2 beam splitters
 
-		outputSignals[0]->bufferPut((t_complex) outa);
-		outputSignals[1]->bufferPut((t_complex) outb);
+				inputSignals[0]->bufferGet(&inSignal1);
+
+				t_complex outSignal1 = matrix[0] * inSignal1;
+				t_complex outSignal2 = matrix[2] * inSignal1;
+
+				outputSignals[0]->bufferPut(outSignal1);
+				outputSignals[1]->bufferPut(outSignal2);
+
+			}
+
+		else {
+
+			t_complex inSignal1;
+			t_complex inSignal2;
+		
+			complex<t_real> imaginary(0, 1);
+
+			//This should implement a 2x2 beam splitter
+
+				inputSignals[0]->bufferGet(&inSignal1);
+				inputSignals[1]->bufferGet(&inSignal2);
+
+				t_complex out1 = matrix[0] * inSignal1 + matrix[1] * inSignal2;
+				t_complex out2 = matrix[2] * inSignal1 + matrix[3] * inSignal2;
+
+				outputSignals[0]->bufferPut(out1);
+				outputSignals[1]->bufferPut(out2);
+
+			
+		}
+	
 
 	}
 	return true;
-}
+};

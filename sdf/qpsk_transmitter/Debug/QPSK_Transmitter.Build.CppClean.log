@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 c:\universidade\investigacao\netxpto\github_netxpto_anp\linkplanner\sdf\qpsk_transmitter\debug\vc140.pdb
 c:\universidade\investigacao\netxpto\github_netxpto_anp\linkplanner\sdf\qpsk_transmitter\debug\vc140.idb
 c:\universidade\investigacao\netxpto\github_netxpto_anp\linkplanner\sdf\qpsk_transmitter\debug\binary_source.obj
@@ -29,3 +30,18 @@ c:\netxpto\celestino\sdf\qpsk_transmitter\debug\qpsk_transmitter.tlog\cl.write.1
 c:\netxpto\celestino\sdf\qpsk_transmitter\debug\qpsk_transmitter.tlog\link.command.1.tlog
 c:\netxpto\celestino\sdf\qpsk_transmitter\debug\qpsk_transmitter.tlog\link.read.1.tlog
 c:\netxpto\celestino\sdf\qpsk_transmitter\debug\qpsk_transmitter.tlog\link.write.1.tlog
+=======
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\vc140.pdb
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\vc140.idb
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\binary_source.obj
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\discrete_to_continuous_time.obj
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\iq_modulator.obj
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\m_qam_mapper.obj
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\netxpto.obj
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\pulse_shaper.obj
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\sink.obj
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\qpsk_transmitter_sdf.obj
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\qpsk_transmitter.tlog\cl.command.1.tlog
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\qpsk_transmitter.tlog\cl.read.1.tlog
+d:\netxpto\linkplanner\sdf\qpsk_transmitter\debug\qpsk_transmitter.tlog\cl.write.1.tlog
+>>>>>>> Develop

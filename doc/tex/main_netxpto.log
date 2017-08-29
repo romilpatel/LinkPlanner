@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.20)  24 AUG 2017 16:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.20)  29 AUG 2017 17:08
 entering extended mode
 **./main_netxpto.tex
 (main_netxpto.tex
@@ -1607,48 +1607,48 @@ Overfull \hbox (7.33366pt too wide) in paragraph at lines 6--11
  []
 
 
-<./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf, id=368, 963.6pt x 542.02
-5pt>
-File: ./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf Graphic file (type p
-df)
- <use ./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf>
-Package pdftex.def Info: ./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf u
-sed on input line 18.
+<./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf, id=367,
+ 963.6pt x 542.025pt>
+File: ./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf Gra
+phic file (type pdf)
+
+<use ./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf>
+Package pdftex.def Info: ./sdf/simplified_coherent_receiver/figures/Single_Pola
+rization_Tx.pdf used on input line 19.
 (pdftex.def)             Requested size: 442.64384pt x 199.1649pt.
 
-<./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf, id=369, 963
+<./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf, id=368, 963
 .6pt x 542.025pt>
 File: ./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf Graphic
  file (type pdf)
 
 <use ./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf>
 Package pdftex.def Info: ./sdf/simplified_coherent_receiver/figures/detailed_su
-bsystem.pdf used on input line 24.
-(pdftex.def)             Requested size: 442.64384pt x 199.1649pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+bsystem.pdf used on input line 25.
+(pdftex.def)             Requested size: 442.64384pt x 227.62413pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 28.
+(babel)             in language  on input line 27.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 31.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 31.
+(babel)             in language  on input line 27.
+
 [24
 
- <./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf>]
+ <./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 31.
+(babel)             in language  on input line 29.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 32.
 ))
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 28.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 28.
- [25 <./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf>]
+
+[25 <./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf>]
 \openout2 = `chapter/library.aux'.
 
- (chapter/library.tex
+
+(chapter/library.tex
 Cap\'{\i }tulo 6.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
@@ -1728,7 +1728,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 102.
 [29]
-<./lib/binary_source/figures/BinarySequenceN3.png, id=434, 404.712pt x 297.2706
+<./lib/binary_source/figures/BinarySequenceN3.png, id=454, 404.712pt x 297.2706
 pt>
 File: ./lib/binary_source/figures/BinarySequenceN3.png Graphic file (type png)
  <use ./lib/binary_source/figures/BinarySequenceN3.png>
@@ -1736,7 +1736,7 @@ Package pdftex.def Info: ./lib/binary_source/figures/BinarySequenceN3.png used
 on input line 105.
 (pdftex.def)             Requested size: 221.32687pt x 162.56946pt.
 
-<./lib/binary_source/figures/BinarySource_output.jpg, id=436, 562.1pt x 419.567
+<./lib/binary_source/figures/BinarySource_output.jpg, id=456, 562.1pt x 419.567
 5pt>
 File: ./lib/binary_source/figures/BinarySource_output.jpg Graphic file (type jp
 g)
@@ -1771,7 +1771,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--42
 i-ons.
  []
 
-<./lib/clock/figures/Clock_output.jpg, id=462, 562.1pt x 419.5675pt>
+<./lib/clock/figures/Clock_output.jpg, id=482, 562.1pt x 419.5675pt>
 File: ./lib/clock/figures/Clock_output.jpg Graphic file (type jpg)
 
 <use ./lib/clock/figures/Clock_output.jpg>
@@ -1788,7 +1788,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
 
-<./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf, id=475, 963.6pt x 542.025pt>
+<./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf, id=495, 963.6pt x 542.025pt>
 File: ./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf Graphic file (type pdf)
 
 <use ./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf>
@@ -1817,7 +1817,7 @@ Package babel Info: Redefining portuges shorthand "|
  [35
 
 ]
-<./lib/decoder/figures/Decoder_output.jpg, id=504, 562.1pt x 419.5675pt>
+<./lib/decoder/figures/Decoder_output.jpg, id=524, 562.1pt x 419.5675pt>
 File: ./lib/decoder/figures/Decoder_output.jpg Graphic file (type jpg)
 
 <use ./lib/decoder/figures/Decoder_output.jpg>
@@ -1852,7 +1852,7 @@ vector$\OML/cmm/m/it/10.95 <$\T1/ppl/m/n/10.95 Signal *$\OML/cmm/m/it/10.95 >$
 
 
 <./figures/../lib/discrete_to_continuous_time/figures/TimeDiscreteToContinuous_
-output.jpg, id=523, 562.1pt x 419.5675pt>
+output.jpg, id=543, 562.1pt x 419.5675pt>
 File: ./figures/../lib/discrete_to_continuous_time/figures/TimeDiscreteToContin
 uous_output.jpg Graphic file (type jpg)
 
@@ -1883,7 +1883,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
 <./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram_simple.
-png, id=544, 1139.00531pt x 149.8097pt>
+png, id=564, 1139.00531pt x 149.8097pt>
 File: ./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram_si
 mple.png Graphic file (type png)
 
@@ -1894,7 +1894,7 @@ er_block_diagram_simple.png used on input line 9.
 (pdftex.def)             Requested size: 354.12434pt x 46.57538pt.
 
 <./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram.png, id
-=547, 2048.40282pt x 726.46407pt>
+=567, 2048.40282pt x 726.46407pt>
 File: ./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram.pn
 g Graphic file (type png)
 
@@ -2054,7 +2054,7 @@ Package babel Info: Redefining portuges shorthand "|
 [44
 
 ]
-<./figures/../lib/iq_modulator/figures/IQmodulator0_output.jpg, id=592, 562.1pt
+<./figures/../lib/iq_modulator/figures/IQmodulator0_output.jpg, id=612, 562.1pt
  x 421.575pt>
 File: ./figures/../lib/iq_modulator/figures/IQmodulator0_output.jpg Graphic fil
 e (type jpg)
@@ -2119,7 +2119,7 @@ Out-put-Sig)
  []
 
 
-<./lib/m_qam_mapper/figures/MQAM_constellation.png, id=622, 357.4956pt x 345.45
+<./lib/m_qam_mapper/figures/MQAM_constellation.png, id=642, 357.4956pt x 345.45
 06pt>
 File: ./lib/m_qam_mapper/figures/MQAM_constellation.png Graphic file (type png)
 
@@ -2128,7 +2128,7 @@ Package pdftex.def Info: ./lib/m_qam_mapper/figures/MQAM_constellation.png used
  on input line 34.
 (pdftex.def)             Requested size: 265.59494pt x 256.66258pt.
 
-<./lib/m_qam_mapper/figures/IQmodulator_output.jpg, id=623, 562.1pt x 419.5675p
+<./lib/m_qam_mapper/figures/IQmodulator_output.jpg, id=643, 562.1pt x 419.5675p
 t>
 File: ./lib/m_qam_mapper/figures/IQmodulator_output.jpg Graphic file (type jpg)
 
@@ -2159,7 +2159,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
 <./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram_simple.png, id=
-651, 727.21687pt x 154.32657pt>
+671, 727.21687pt x 154.32657pt>
 File: ./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram_simple.png
  Graphic file (type png)
 
@@ -2168,7 +2168,7 @@ Package pdftex.def Info: ./lib/m_qam_transmitter/figures/MQAM_transmitter_block
 _diagram_simple.png used on input line 9.
 (pdftex.def)             Requested size: 221.32687pt x 46.96944pt.
 
-<./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram.png, id=655, 16
+<./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram.png, id=675, 16
 99.85063pt x 444.15938pt>
 File: ./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram.png Graphi
 c file (type png)
@@ -2265,7 +2265,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 124.
  [53]
-<./lib/m_qam_transmitter/figures/BinarySource_output.jpg, id=676, 562.1pt x 419
+<./lib/m_qam_transmitter/figures/BinarySource_output.jpg, id=696, 562.1pt x 419
 .5675pt>
 File: ./lib/m_qam_transmitter/figures/BinarySource_output.jpg Graphic file (typ
 e jpg)
@@ -2274,7 +2274,7 @@ Package pdftex.def Info: ./lib/m_qam_transmitter/figures/BinarySource_output.jp
 g used on input line 135.
 (pdftex.def)             Requested size: 354.12434pt x 264.32892pt.
 
-<./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg, id=677, 562.1pt x 421
+<./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg, id=697, 562.1pt x 421
 .575pt>
 File: ./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg Graphic file (typ
 e jpg)
@@ -2323,7 +2323,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
  25592 strings out of 493323
- 465425 string characters out of 3139051
+ 465510 string characters out of 3139051
  603782 words of memory out of 3000000
  28156 multiletter control sequences out of 15000+200000
  34290 words of font info for 76 fonts, out of 3000000 for 9000
@@ -2345,9 +2345,9 @@ type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on main_netxpto.pdf (57 pages, 1014889 bytes).
+Output written on main_netxpto.pdf (57 pages, 1351057 bytes).
 PDF statistics:
- 812 PDF objects out of 1000 (max. 8388607)
+ 832 PDF objects out of 1000 (max. 8388607)
  267 named destinations out of 1000 (max. 500000)
  350 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -10,18 +10,19 @@
 \end{tabular}
 \end{tcolorbox}
 
-In recent days, homodyne detection has been discussed and investigated a lot due to the advancement in the DSP in the electrical domain. However, a major drawback of homodyne detection is the incoming signal should be separated into inphase and quadrature (I/Q) signals in the optical domain. Therefore, it demands more hardware to accommodate the requirement of the signal separation  in the optical domain. For instance, 4 balanced photodetectors with double hybrid structures and 4-channel ADCs are required.\\
-On the other hand, heterodyne receiver simplifies the detection scheme to a great extent with the requirement of having only half of photodetectors and ADCs. A schematic representation of this heterodyne detection system is shown in figure \ref{simplified_coherent_transceiver}.
+In recent days, homodyne detection has been discussed and investigated a lot due to the advancement in the DSP in the electrical domain. However, a major drawback of homodyne detection is the incoming signal should be separated into inphase and quadrature (I/Q) signals in the optical domain. Therefore, it demands more hardware to accommodate the requirement of the signal separation  in the optical domain. For instance, 4 balanced photodetectors with double hybrid structures and 4-channel ADCs are required.
+On the other hand, heterodyne receiver simplifies the detection scheme to some extent with the requirement of having only half of photodetectors and ADC.\\
+Such coherent detection scheme constitute the solution for the medium-to-long-reach application; however, the cost of coherent receiver becomes a major obstacle in the case of short-reach links applications like PON, inter-data-center communications, metropolitan network etc. In order to get rid of higher cost and to make the transceiver more efficiently applicable in short-reach links, a new architecture of optical receiver has been proposed which combines the advantages of coherent transmission and cost effectiveness of direct detection. The working principle of the receiver is based on the famous Kramers-Kronig(KK) relationship. It facilitates digital post-compensation of linear propagation impairments which is highly efficient in terms of spectral occupancy and energy consumptions.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/simplified_coherent_receiver/figures/Tx_Rx.pdf}
+	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf}
 	\caption{Simplified Coherent Transceiver}\label{simplified_coherent_transceiver}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf}
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf}
 	\caption{Tx/Rx DSP main subsystem}\label{DSP_main_subsystem}
 \end{figure}
 

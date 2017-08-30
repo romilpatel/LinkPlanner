@@ -31,9 +31,12 @@ void PulseShaper::initialize(void) {
 
 void raisedCosine(vector<t_real> &impulseResponse, int impulseResponseLength, double rollOffFactor, double samplingPeriod, double symbolPeriod, bool passiveFilterMode) {
 	double sinc;
-
+<<<<<<< HEAD
+	/*for (int i = 0; i < impulseResponseLength; i++) {
+=======
 	double gain{ 0 };
 	for (int i = 0; i < impulseResponseLength; i++) {
+>>>>>>> Develop
 		t_real t = -impulseResponseLength / 2 * samplingPeriod + i * samplingPeriod;
 		if (t != 0) {
 			sinc = sin(PI * t / symbolPeriod) / (PI * t / symbolPeriod);
@@ -42,6 +45,20 @@ void raisedCosine(vector<t_real> &impulseResponse, int impulseResponseLength, do
 			sinc = 1;
 		}
 		impulseResponse[i] = sinc*cos(rollOffFactor*PI*t / symbolPeriod) / (1 - (4.0 * rollOffFactor * rollOffFactor * t * t) / (symbolPeriod * symbolPeriod));
+<<<<<<< HEAD
+	};*/ 
+	
+	for (int i = 0; i < impulseResponseLength; i++) {
+		
+		double t = -impulseResponseLength / 2 * samplingPeriod + i * samplingPeriod;
+		if (t != 0) {
+			impulseResponse[i] = (sin(PI*t / symbolPeriod) / (PI*t / symbolPeriod)) * (cos(rollOffFactor*PI*t / symbolPeriod) / (1- pow(2 * (rollOffFactor*t / symbolPeriod),2)));
+		}
+		else {
+			impulseResponse[i] = 1;
+		}
+		
+=======
 		gain = gain + impulseResponse[i];
 	};
 	if (passiveFilterMode)
@@ -62,6 +79,7 @@ void gaussian(vector<t_real> &impulseResponse, int impulseResponseLength, double
 		gauss = exp(-t*t / (pulsewidth*pulsewidth/36));
 		impulseResponse[i] = gauss;
 		gain = gain + impulseResponse[i];
+>>>>>>> Develop
 	};
 	if (passiveFilterMode)
 	{

@@ -1236,7 +1236,7 @@ void ComplexMult::CMultVector_InComplex(vector<complex <double>> &v1_in, vector<
 vector<complex <double>> ComplexMult::CMultVectorInCP(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in) {
 
 	vector<complex <double>> v_out(v1_in.size(), 0);
-	for (int k = 0; k < v1_in.size(); ++k)
+	for (unsigned int k = 0; k < v1_in.size(); ++k)
 	{
 		v_out.at(k) = v1_in.at(k)*v2_in.at(k);
 	}

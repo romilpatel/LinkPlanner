@@ -12,6 +12,7 @@
 *.VC.db
 *.idb
 *.lastbuildstate
+*.user
 
 ######################
 # Matlab

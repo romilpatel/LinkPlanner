@@ -10,6 +10,8 @@
 *.tlog
 *.VC.opendb
 *.VC.db
+*.idb
+*.lastbuildstate
 
 ######################
 # Matlab

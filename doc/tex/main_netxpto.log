@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.20)  29 AUG 2017 17:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.20)  31 AUG 2017 18:16
 entering extended mode
 **./main_netxpto.tex
 (main_netxpto.tex
@@ -1216,7 +1216,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 
-<./sdf/qpsk_transmitter/figures/qpsk_transmitter.pdf, id=154, 831.97066pt x 193
+<./sdf/qpsk_transmitter/figures/qpsk_transmitter.pdf, id=159, 831.97066pt x 193
 .29314pt>
 File: ./sdf/qpsk_transmitter/figures/qpsk_transmitter.pdf Graphic file (type pd
 f)
@@ -1291,7 +1291,7 @@ Package babel Info: Redefining portuges shorthand "|
 [8
 
 ]
-<./sdf/quantum_noise/figures/scheme1.pdf, id=191, 426.79132pt x 227.62204pt>
+<./sdf/quantum_noise/figures/scheme1.pdf, id=196, 426.79132pt x 227.62204pt>
 File: ./sdf/quantum_noise/figures/scheme1.pdf Graphic file (type pdf)
 
 <use ./sdf/quantum_noise/figures/scheme1.pdf>
@@ -1337,7 +1337,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 149.
  [11]
-<./sdf/quantum_noise/figures/constelation1.png, id=219, 421.575pt x 314.67563pt
+<./sdf/quantum_noise/figures/constelation1.png, id=224, 421.575pt x 314.67563pt
 >
 File: ./sdf/quantum_noise/figures/constelation1.png Graphic file (type png)
  <use ./sdf/quantum_noise/figures/constelation1.png>
@@ -1354,7 +1354,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 168--178
 
  []
 
-<./sdf/quantum_noise/figures/variance_n.png, id=221, 421.575pt x 316.18124pt>
+<./sdf/quantum_noise/figures/variance_n.png, id=226, 421.575pt x 316.18124pt>
 File: ./sdf/quantum_noise/figures/variance_n.png Graphic file (type png)
 
 <use ./sdf/quantum_noise/figures/variance_n.png>
@@ -1375,7 +1375,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 37.
 
-<./sdf/cv_system/figures/constellation.png, id=239, 637.38126pt x 626.34pt>
+<./sdf/cv_system/figures/constellation.png, id=244, 637.38126pt x 626.34pt>
 File: ./sdf/cv_system/figures/constellation.png Graphic file (type png)
 
 <use ./sdf/cv_system/figures/constellation.png>
@@ -1445,7 +1445,7 @@ nt pro-ba-bi-lity den-sity,
  []
 
 
-<./sdf/cv_system/figures/singlehomodyne.pdf, id=251, 597.23125pt x 845.1575pt>
+<./sdf/cv_system/figures/singlehomodyne.pdf, id=256, 597.23125pt x 845.1575pt>
 File: ./sdf/cv_system/figures/singlehomodyne.pdf Graphic file (type pdf)
 
 <use ./sdf/cv_system/figures/singlehomodyne.pdf>
@@ -1466,7 +1466,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 140.
  [16 <./sdf/cv_system/figures/singlehomodyne.pdf>]
-<./figures/doublehomodynePSE.pdf, id=281, 597.23125pt x 845.1575pt>
+<./figures/doublehomodynePSE.pdf, id=286, 597.23125pt x 845.1575pt>
 File: ./figures/doublehomodynePSE.pdf Graphic file (type pdf)
 
 <use ./figures/doublehomodynePSE.pdf>
@@ -1474,7 +1474,7 @@ Package pdftex.def Info: ./figures/doublehomodynePSE.pdf used on input line 164
 .
 (pdftex.def)             Requested size: 212.4719pt x 169.0816pt.
 
-<./figures/doublehomodyneBER.pdf, id=282, 597.23125pt x 845.1575pt>
+<./figures/doublehomodyneBER.pdf, id=287, 597.23125pt x 845.1575pt>
 File: ./figures/doublehomodyneBER.pdf Graphic file (type pdf)
 
 <use ./figures/doublehomodyneBER.pdf>
@@ -1485,7 +1485,7 @@ Package pdftex.def Info: ./figures/doublehomodyneBER.pdf used on input line 169
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./figures/singlehomodyneSimuBlock.png, id=285, 963.6pt x 170.6375pt>
+<./figures/singlehomodyneSimuBlock.png, id=290, 963.6pt x 170.6375pt>
 File: ./figures/singlehomodyneSimuBlock.png Graphic file (type png)
 
 <use ./figures/singlehomodyneSimuBlock.png>
@@ -1493,7 +1493,7 @@ Package pdftex.def Info: ./figures/singlehomodyneSimuBlock.png used on input li
 ne 182.
 (pdftex.def)             Requested size: 442.65375pt x 78.38483pt.
 
-<./figures/doublehomodyneSimuBlock.png, id=286, 963.6pt x 170.6375pt>
+<./figures/doublehomodyneSimuBlock.png, id=291, 963.6pt x 170.6375pt>
 File: ./figures/doublehomodyneSimuBlock.png Graphic file (type png)
 
 <use ./figures/doublehomodyneSimuBlock.png>
@@ -1548,7 +1548,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 279.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 279.
-[19] <./figures/directBER.pdf, id=331, 597.23125pt x 845.1575pt>
+[19] <./figures/directBER.pdf, id=336, 597.23125pt x 845.1575pt>
 File: ./figures/directBER.pdf Graphic file (type pdf)
 
 <use ./figures/directBER.pdf>
@@ -1558,7 +1558,7 @@ Package pdftex.def Info: ./figures/directBER.pdf used on input line 300.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./figures/adaptedBER.pdf, id=335, 597.23125pt x 845.1575pt>
+<./figures/adaptedBER.pdf, id=340, 597.23125pt x 845.1575pt>
 File: ./figures/adaptedBER.pdf Graphic file (type pdf)
 
 <use ./figures/adaptedBER.pdf>
@@ -1606,45 +1606,77 @@ Overfull \hbox (7.33366pt too wide) in paragraph at lines 6--11
 [][] 
  []
 
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 16.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 26.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 26.
+[24
 
-<./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf, id=367,
+]
+<./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf, id=379,
  963.6pt x 542.025pt>
 File: ./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf Gra
 phic file (type pdf)
 
 <use ./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf>
 Package pdftex.def Info: ./sdf/simplified_coherent_receiver/figures/Single_Pola
-rization_Tx.pdf used on input line 19.
+rization_Tx.pdf used on input line 34.
 (pdftex.def)             Requested size: 442.64384pt x 199.1649pt.
 
-<./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf, id=368, 963
+<./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf, id=380, 963
 .6pt x 542.025pt>
 File: ./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf Graphic
  file (type pdf)
 
 <use ./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf>
 Package pdftex.def Info: ./sdf/simplified_coherent_receiver/figures/detailed_su
-bsystem.pdf used on input line 25.
+bsystem.pdf used on input line 40.
 (pdftex.def)             Requested size: 442.64384pt x 227.62413pt.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 27.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 27.
 
-[24
 
- <./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf>]
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 29.
+(babel)             in language  on input line 44.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 32.
-))
+(babel)             in language  on input line 47.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 50.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 50.
+[25 <./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 50.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 50.
+
+[26 <./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf>]
+
+! LaTeX Error: Command \texteuro unavailable in encoding T1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.60 	Annalen der Physik, 322(10):891â€
+                                       “921, 1905.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 64.
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd"
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)))
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 28.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 28.
+ [27
 
-[25 <./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf>]
+]
 \openout2 = `chapter/library.aux'.
 
 
@@ -1657,7 +1689,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [26
+ [28
 
 
 
@@ -1669,7 +1701,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [27
+ [29
 
 ]
 Package babel Info: Redefining portuges shorthand "|
@@ -1708,7 +1740,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 58.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 58.
-[28
+[30
 
 ]
 Underfull \hbox (badness 2635) in paragraph at lines 72--73
@@ -1727,8 +1759,8 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 102.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 102.
-[29]
-<./lib/binary_source/figures/BinarySequenceN3.png, id=454, 404.712pt x 297.2706
+[31]
+<./lib/binary_source/figures/BinarySequenceN3.png, id=477, 404.712pt x 297.2706
 pt>
 File: ./lib/binary_source/figures/BinarySequenceN3.png Graphic file (type png)
  <use ./lib/binary_source/figures/BinarySequenceN3.png>
@@ -1736,7 +1768,7 @@ Package pdftex.def Info: ./lib/binary_source/figures/BinarySequenceN3.png used
 on input line 105.
 (pdftex.def)             Requested size: 221.32687pt x 162.56946pt.
 
-<./lib/binary_source/figures/BinarySource_output.jpg, id=456, 562.1pt x 419.567
+<./lib/binary_source/figures/BinarySource_output.jpg, id=479, 562.1pt x 419.567
 5pt>
 File: ./lib/binary_source/figures/BinarySource_output.jpg Graphic file (type jp
 g)
@@ -1750,20 +1782,20 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [30 <./lib/binary_source/figures/BinarySequenceN3.png>]
+ [32 <./lib/binary_source/figures/BinarySequenceN3.png>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 
-[31 <./lib/binary_source/figures/BinarySource_output.jpg>]
+[33 <./lib/binary_source/figures/BinarySource_output.jpg>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 32.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 32.
- [32
+ [34
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 41--42
@@ -1771,7 +1803,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--42
 i-ons.
  []
 
-<./lib/clock/figures/Clock_output.jpg, id=482, 562.1pt x 419.5675pt>
+<./lib/clock/figures/Clock_output.jpg, id=504, 562.1pt x 419.5675pt>
 File: ./lib/clock/figures/Clock_output.jpg Graphic file (type jpg)
 
 <use ./lib/clock/figures/Clock_output.jpg>
@@ -1784,11 +1816,11 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [33 <./lib/clock/figures/Clock_output.jpg>]
+ [35 <./lib/clock/figures/Clock_output.jpg>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 2.
 
-<./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf, id=495, 963.6pt x 542.025pt>
+<./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf, id=517, 963.6pt x 542.025pt>
 File: ./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf Graphic file (type pdf)
 
 <use ./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf>
@@ -1800,24 +1832,19 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
-[34
+[36
 
  <./lib/coupler_2_by_2/figures/coupler_2_by_2.pdf>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 10.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd"
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 39.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 39.
- [35
+ [37
 
 ]
-<./lib/decoder/figures/Decoder_output.jpg, id=524, 562.1pt x 419.5675pt>
+<./lib/decoder/figures/Decoder_output.jpg, id=546, 562.1pt x 419.5675pt>
 File: ./lib/decoder/figures/Decoder_output.jpg Graphic file (type jpg)
 
 <use ./lib/decoder/figures/Decoder_output.jpg>
@@ -1830,12 +1857,12 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [36 <./lib/decoder/figures/Decoder_output.jpg>]
+ [38 <./lib/decoder/figures/Decoder_output.jpg>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [37]
+ [39]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
@@ -1852,7 +1879,7 @@ vector$\OML/cmm/m/it/10.95 <$\T1/ppl/m/n/10.95 Signal *$\OML/cmm/m/it/10.95 >$
 
 
 <./figures/../lib/discrete_to_continuous_time/figures/TimeDiscreteToContinuous_
-output.jpg, id=543, 562.1pt x 419.5675pt>
+output.jpg, id=564, 562.1pt x 419.5675pt>
 File: ./figures/../lib/discrete_to_continuous_time/figures/TimeDiscreteToContin
 uous_output.jpg Graphic file (type jpg)
 
@@ -1870,20 +1897,20 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 11.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 11.
- [38
+ [40
 
 ] (lib/homodyne_receiver/homodyne_receiver.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [39 <./figures/../lib/discrete_to_continuous_time/figures/TimeDiscreteToContin
+ [41 <./figures/../lib/discrete_to_continuous_time/figures/TimeDiscreteToContin
 uous_output.jpg>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
 <./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram_simple.
-png, id=564, 1139.00531pt x 149.8097pt>
+png, id=585, 1139.00531pt x 149.8097pt>
 File: ./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram_si
 mple.png Graphic file (type png)
 
@@ -1894,7 +1921,7 @@ er_block_diagram_simple.png used on input line 9.
 (pdftex.def)             Requested size: 354.12434pt x 46.57538pt.
 
 <./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram.png, id
-=567, 2048.40282pt x 726.46407pt>
+=588, 2048.40282pt x 726.46407pt>
 File: ./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram.pn
 g Graphic file (type png)
 
@@ -1991,7 +2018,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 51.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 51.
-[40
+[42
 
  <./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram_simple
 .png> <./figures/../lib/homodyne_receiver/figures/MQAM_receiver_block_diagram.p
@@ -2012,17 +2039,17 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 75.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 75.
-[41]
+[43]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 89.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 89.
- [42]) (lib/iq_modulator/iq_modulator.tex
+ [44]) (lib/iq_modulator/iq_modulator.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [43]
+ [45]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
@@ -2051,10 +2078,10 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 47.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 47.
-[44
+[46
 
 ]
-<./figures/../lib/iq_modulator/figures/IQmodulator0_output.jpg, id=612, 562.1pt
+<./figures/../lib/iq_modulator/figures/IQmodulator0_output.jpg, id=633, 562.1pt
  x 421.575pt>
 File: ./figures/../lib/iq_modulator/figures/IQmodulator0_output.jpg Graphic fil
 e (type jpg)
@@ -2069,7 +2096,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [45 <./figures/../lib/iq_modulator/figures/IQmodulator0_output.jpg>]
+ [47 <./figures/../lib/iq_modulator/figures/IQmodulator0_output.jpg>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
@@ -2084,14 +2111,14 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 47.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 47.
-[46
+[48
 
 ]) (lib/m_qam_mapper/m_qam_mapper.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [47]
+ [49]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
@@ -2119,7 +2146,7 @@ Out-put-Sig)
  []
 
 
-<./lib/m_qam_mapper/figures/MQAM_constellation.png, id=642, 357.4956pt x 345.45
+<./lib/m_qam_mapper/figures/MQAM_constellation.png, id=664, 357.4956pt x 345.45
 06pt>
 File: ./lib/m_qam_mapper/figures/MQAM_constellation.png Graphic file (type png)
 
@@ -2128,7 +2155,7 @@ Package pdftex.def Info: ./lib/m_qam_mapper/figures/MQAM_constellation.png used
  on input line 34.
 (pdftex.def)             Requested size: 265.59494pt x 256.66258pt.
 
-<./lib/m_qam_mapper/figures/IQmodulator_output.jpg, id=643, 562.1pt x 419.5675p
+<./lib/m_qam_mapper/figures/IQmodulator_output.jpg, id=665, 562.1pt x 419.5675p
 t>
 File: ./lib/m_qam_mapper/figures/IQmodulator_output.jpg Graphic file (type jpg)
 
@@ -2142,24 +2169,24 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [48
+ [50
 
 ]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [49 <./lib/m_qam_mapper/figures/MQAM_constellation.png>]
+ [51 <./lib/m_qam_mapper/figures/MQAM_constellation.png>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
- [50 <./lib/m_qam_mapper/figures/IQmodulator_output.jpg>]
+ [52 <./lib/m_qam_mapper/figures/IQmodulator_output.jpg>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
 <./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram_simple.png, id=
-671, 727.21687pt x 154.32657pt>
+692, 727.21687pt x 154.32657pt>
 File: ./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram_simple.png
  Graphic file (type png)
 
@@ -2168,7 +2195,7 @@ Package pdftex.def Info: ./lib/m_qam_transmitter/figures/MQAM_transmitter_block
 _diagram_simple.png used on input line 9.
 (pdftex.def)             Requested size: 221.32687pt x 46.96944pt.
 
-<./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram.png, id=675, 16
+<./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram.png, id=696, 16
 99.85063pt x 444.15938pt>
 File: ./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram.png Graphi
 c file (type png)
@@ -2244,7 +2271,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 65.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 65.
-[51
+[53
 
  <./lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram_simple.png> <.
 /lib/m_qam_transmitter/figures/MQAM_transmitter_block_diagram.png>]
@@ -2259,13 +2286,13 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 88.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 88.
-[52]
+[54]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 124.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 124.
- [53]
-<./lib/m_qam_transmitter/figures/BinarySource_output.jpg, id=696, 562.1pt x 419
+ [55]
+<./lib/m_qam_transmitter/figures/BinarySource_output.jpg, id=718, 562.1pt x 419
 .5675pt>
 File: ./lib/m_qam_transmitter/figures/BinarySource_output.jpg Graphic file (typ
 e jpg)
@@ -2274,7 +2301,7 @@ Package pdftex.def Info: ./lib/m_qam_transmitter/figures/BinarySource_output.jp
 g used on input line 135.
 (pdftex.def)             Requested size: 354.12434pt x 264.32892pt.
 
-<./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg, id=697, 562.1pt x 421
+<./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg, id=719, 562.1pt x 421
 .575pt>
 File: ./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg Graphic file (typ
 e jpg)
@@ -2291,19 +2318,19 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 29.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 29.
- [54 <./lib/m_qam_transmitter/figures/BinarySource_output.jpg>]
+ [56 <./lib/m_qam_transmitter/figures/BinarySource_output.jpg>]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 29.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 29.
- [55 <./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg>]
+ [57 <./lib/m_qam_transmitter/figures/IQmodulator0_output.jpg>]
 No file main_netxpto.gls.
 No file main_netxpto.acr.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 62.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 62.
-[56
+[58
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 62.
@@ -2314,7 +2341,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 62.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 62.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 62.
 Package rerunfilecheck Info: File `main_netxpto.out' has not changed.
-(rerunfilecheck)             Checksum: 8339B900C739F4232C6EA37D419EAC92;1434.
+(rerunfilecheck)             Checksum: 0DD977DDDADD1FEDA06E6E4D39EEA799;1509.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2322,10 +2349,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
- 25592 strings out of 493323
- 465510 string characters out of 3139051
- 603782 words of memory out of 3000000
- 28156 multiletter control sequences out of 15000+200000
+ 25613 strings out of 493323
+ 465786 string characters out of 3139051
+ 603935 words of memory out of 3000000
+ 28167 multiletter control sequences out of 15000+200000
  34290 words of font info for 76 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,12n,94p,1979b,595s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2345,9 +2372,9 @@ type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on main_netxpto.pdf (57 pages, 1351057 bytes).
+Output written on main_netxpto.pdf (59 pages, 1361527 bytes).
 PDF statistics:
- 832 PDF objects out of 1000 (max. 8388607)
- 267 named destinations out of 1000 (max. 500000)
- 350 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 855 PDF objects out of 1000 (max. 8388607)
+ 277 named destinations out of 1000 (max. 500000)
+ 358 words of extra memory for PDF output out of 10000 (max. 10000000)
 

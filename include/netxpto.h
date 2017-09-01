@@ -41,11 +41,6 @@ enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, Comp
 // Root class for signals
 class Signal {
 
-	/* [DIA]
-	 * Talvez alterar este valor para 0, dado que muitas das funções fazem um
-	 * offset de -1 para ler o buffer.
-	 * É preciso alterar a lógicas dos outro módulos para acomodar esta mudança.
-	 */
 	long int firstValueToBeSaved{ 1 };				// First value (>= 1) to be saved
 	bool saveSignal{ true };
 							

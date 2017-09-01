@@ -5,10 +5,22 @@
 
 #include "netxpto.h"
 #include "photodiode.h"
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Romil
 #include <random>
 
 
 void Photodiode::initialize(void){
+<<<<<<< HEAD
+=======
+
+
+void Photodiode::initialize(void) {
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 
 	firstTime = false;
 
@@ -19,6 +31,13 @@ void Photodiode::initialize(void){
 }
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 bool Photodiode::runBlock(void){
 
 	double samplingPeriod = inputSignals[0]->getSamplingPeriod();
@@ -28,6 +47,20 @@ bool Photodiode::runBlock(void){
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
 	int ready = min(ready1, ready2);
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+
+bool Photodiode::runBlock(void) {
+
+	int ready0 = inputSignals[0]->ready();
+	int ready1 = inputSignals[1]->ready();
+	int ready = min(ready0, ready1);
+>>>>>>> AnaLuisa
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 
 	int space = outputSignals[0]->space();
 
@@ -35,6 +68,13 @@ bool Photodiode::runBlock(void){
 
 	if (process == 0) return false;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 	normal_distribution<double> distribution(0, 1);
 	double w1 = inputSignals[0]->getCentralFrequency();
 	double w2 = inputSignals[1]->getCentralFrequency();
@@ -92,12 +132,33 @@ bool Photodiode::runBlock(void){
 		noiseAmp1 = distribution(generatorAmp1);
 		noiseAmp2 = distribution(generatorAmp2);
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Romil
 
 		t_complex input1;
 		inputSignals[0]->bufferGet(&input1);
 		t_complex input2;
 		inputSignals[1]->bufferGet(&input2);
 
+<<<<<<< HEAD
+=======
+=======
+	/*t_real radius = 0.0003; // radius of sensor
+	t_real E0 = 8.854187817e-12;
+	t_real n = 1.1;*/
+
+	t_complex inputSignal1;
+	t_complex inputSignal2;
+>>>>>>> AnaLuisa
+
+	for (int i = 0; i < process; i++) {
+
+<<<<<<< HEAD
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 		t_real powerSignal1 = gauss[aux]; // Assuming Signal input in PIN1
 		t_real powerSignal2 = abs(input1 - input2) / sqrt(2); // Assuming Signal input in PIN2		
 
@@ -154,6 +215,34 @@ bool Photodiode::runBlock(void){
 
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 	}
 	return true;
 }
+=======
+=======
+			inputSignals[0]->bufferGet(&inputSignal1);
+			inputSignals[1]->bufferGet(&inputSignal2);
+
+			t_real power1 = abs(inputSignal1)*abs(inputSignal1)*2; 
+			t_real current1 = responsivity * power1;
+
+			t_real power2 = abs(inputSignal2)*abs(inputSignal2)*2;
+			t_real current2 = responsivity * power2;
+
+			t_real outputSignal = current1 - current2;
+
+			outputSignals[0]->bufferPut(outputSignal);
+
+		
+>>>>>>> AnaLuisa
+	}
+	return true;
+}
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+	}
+	return true;
+}
+>>>>>>> Romil

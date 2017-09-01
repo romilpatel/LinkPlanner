@@ -33,6 +33,7 @@
 %
 %\begin{document}
 %\maketitle
+
 \clearpage
 \section{Continuos Variable Quantum Transmission System}\label{sec:intro}
 
@@ -82,6 +83,7 @@ where $1$ corresponds to the $45º$ base and $-1$ corresponds to $-45º$.
 \subsubsection*{Single Base Homodyne Detection}
 
 
+
 The probability of obtaining a quadrature $\hat{X}_\phi=\hat{X}_1\cos\phi+\hat{X}_2\sin\phi$ when measuring the coherent state $\ket{\alpha}$ is given by the following gaussian distribution:
 
 \begin{equation}
@@ -119,6 +121,7 @@ Q(X_0,\alpha)=\frac{1}{P(X_0,\alpha)}\int_{-\infty}^{-X_0}\left|\braket{X_i|\alp
 \caption{BER and PSE in function of $\alpha$ for the single homodyne setup. $X_0=1$ was used}
 \label{fig:ber}
 \end{figure}
+
 
 
 
@@ -172,6 +175,7 @@ note that, in this definition for BER, only values $\theta\in\left[0,\frac{\pi}{
 \caption{Theoretical results for double homodyne setup.}
 \end{figure}
 
+
 \subsection*{Functional Description}
 
 Simplified diagrams of the systems being simulated are presented in Figures~\ref{fig:singleH}. and~\ref{fig:doubleH}. Two optical signals are generated, one with a constant power level of 10~dBm and the other with power in multiples of the power corresponding to a single photon per sampling time (6.4078e$\times10^{-13}$~W for a sampling time of 200~ns). The two signals are mixed, with a Balanced Beam Splitter in the single homodyne case and with a 90$^\text{o}$ Optical Hybrid in the double homodyne one, and are subsequently evaluated with recourse to Homodyne Receivers.
@@ -206,6 +210,7 @@ Balanced Beam Splitter & BalancedBeamSplitter \\
 \end{table}
 
 \pagebreak
+
 \subsection*{Required files}\label{Required files}
 
 Header Files
@@ -239,6 +244,7 @@ sink.cpp                     & Closes any unused signals.                       
 \end{table}
 
 
+
 \subsection*{System Input Parameters}
 
 This system takes into account the following input parameters:
@@ -261,6 +267,7 @@ electricalNoiseAmplitude   & Sets the amplitude of the gaussian thermal noise ad
 shotNoise                  & Chooses if quantum shot noise is used in the simulation                                \\ \hline
 \end{tabulary}
 \end{table}		
+
 
 \subsection*{Inputs}
 
@@ -290,6 +297,7 @@ The double homodyne system outputs the following objects:
 \end{itemize}
 \end{itemize}		
 
+
 \subsection*{Simulation Results}
 \subsubsection*{Single homodyne results}\label{subsec:SHresults}
 
@@ -301,6 +309,7 @@ The numerical results presented in Figure~\ref{fig:directber} were obtained with
 \caption{BER in function of $\alpha$ for the single homodyne setup. $X_0=0$ was used}
 \label{fig:directber}
 \end{figure}
+
 
 \subsubsection*{Double homodyne results}\label{subsec:DHresults}
 
@@ -336,6 +345,7 @@ The numerical results presented in Figure~\ref{fig:adaptedber} were obtained wit
 %\subfile{./lib/pulse_shaper}
 
 \subsection*{Known Problems}
+
 \begin{enumerate}
     \item Homodyne Super-Block not functioning
     \item 90$^\text{o}$ Optical Hybrid PDF needs to be written
@@ -344,4 +354,4 @@ The numerical results presented in Figure~\ref{fig:adaptedber} were obtained wit
 
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
-%\end{document} 
+

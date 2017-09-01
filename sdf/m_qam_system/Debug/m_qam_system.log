@@ -1,4 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Romil
 ﻿Build started 14/06/2017 15:47:15.
      1>Project "C:\Users\diamantinosilva\Documents\GitHub\LinkPlanner\sdf\m_qam_system\m_qam_system.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -32,6 +36,11 @@ Build succeeded.
 
 Time Elapsed 00:00:05.04
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> Romil
 ﻿  m_qam_system_sdf.cpp
 <<<<<<< HEAD
 =======
@@ -65,4 +74,11 @@ d:\netxpto\analuisa\lib\sampler.cpp(128): warning C4715: 'Sampler::runBlock': no
   m_qam_system.vcxproj -> D:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.exe
   m_qam_system.vcxproj -> D:\netxpto\AnaLuisa\sdf\m_qam_system\Debug\m_qam_system.pdb (Full PDB)
 >>>>>>> AnaLuisa
+<<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> develop
+=======
+>>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
+=======
+>>>>>>> develop
+>>>>>>> Romil

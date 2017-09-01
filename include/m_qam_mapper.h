@@ -29,7 +29,6 @@ public:
 	t_integer m{ 4 };
 	vector<t_iqValues> iqAmplitudes{{ 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
 
-
 	/* Methods */
 	MQamMapper() {};
 	MQamMapper(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};

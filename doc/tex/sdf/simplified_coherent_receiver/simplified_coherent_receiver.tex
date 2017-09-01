@@ -1,12 +1,11 @@
 \clearpage
-
 \section{Simplified Coherent Receiver}
 
 \begin{tcolorbox}	
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
 \textbf{Student Name}  &:& Romil Patel\\
-\textbf{Starting Date} &:& August 16, 2017\\ 
-\textbf{Goal}          &:& Develop a simplified structure (low cost) for a coherent receiver, that can be used in coherent PON, inter-data-center connections, or metropolitan networks (optical path lengths should be < 100 km). 
+\textbf{Starting Date} &:& August 16, 2017\\
+\textbf{Goal}          &:& Develop a simplified structure (low cost) for a coherent receiver, that can be used in coherent PON, inter-data-center connections, or metropolitan networks (optical path lengths should be < 100 km).
 \end{tabular}
 \end{tcolorbox}
 
@@ -22,13 +21,13 @@ Where $A$ is a constant. Here, Nyquist stability criterion can be used to ensure
 When $h(t)$ is a minimum-phase signal, its phase $\phi(t)$ and absolute value $|h(t)|$ are uniquely related by Hilbert transform:
 \begin{equation}
 	\phi(t)=\frac{1}{\pi}  p.v. \int_{-\infty}^{\infty} dt' \frac{log[|h(t')|]}{t-t'}
-	\label{Eq:5.15}  
+	\label{Eq:5.15}
 \end{equation}
 where \textit{p.v.} stands for \textit{principal value}. The relationship depicted in Equation \ref{Eq:5.15} can also be conveniently implemented in frequency domain as,
 \begin{equation}
 \tilde{\phi}(\omega)=i sign(\omega) \mathcal{F} \{log[|h(t)|]\}
 \end{equation}
-where $sign(\omega)$ is the sign function which is equal to 1 when $\omega>0$, to 0 when $\omega=0$ and to -1 when $\omega<0$. Symbol $\mathcal{F}$ denotes the Fourier transform.    
+where $sign(\omega)$ is the sign function which is equal to 1 when $\omega>0$, to 0 when $\omega=0$ and to -1 when $\omega<0$. Symbol $\mathcal{F}$ denotes the Fourier transform.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf}
@@ -47,20 +46,20 @@ Dual polarization(DP) DP-QPSK/DP-16QAM signals (1.25 Gbaud) to be generated at t
 \subsection{Rx side}
 At the receiver side, signal is coherently detected using a simplified coherent receiver and a local oscillator. The optical signal is then converted into the electrical domain using two balanced photodetector (BPD), or alternatively four photodetector, and amplified by a transimpedance amplifier (TIA). Following that, the signals are sampled by two 8-bit 2.5 GSa/s ADC and the this digitized signal sent to the FPGA (Virtex-7) where all post-detection DSP implemented in real-time.
 
-\begin{thebibliography}{9}
-	\bibitem{latexcompanion} 
-	Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
-	\textit{The \LaTeX\ Companion}. 
-	Addison-Wesley, Reading, Massachusetts, 1993.
-	
-	\bibitem{einstein} 
-	Albert Einstein. 
-	\textit{Zur Elektrodynamik bewegter K{\"o}rper}. (German) 
-	[\textit{On the electrodynamics of moving bodies}]. 
-	Annalen der Physik, 322(10):891–921, 1905.
-	
-	\bibitem{knuthwebsite} 
-	Knuth: Computers and Typesetting,
-	\\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}
-\end{thebibliography}
+%\begin{thebibliography}{9}
+%	\bibitem{latexcompanion}
+%	Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+%	\textit{The \LaTeX\ Companion}.
+%	Addison-Wesley, Reading, Massachusetts, 1993.
+%	
+%	\bibitem{einstein}
+%	Albert Einstein.
+%	\textit{Zur Elektrodynamik bewegter K{\"o}rper}. (German)
+%	[\textit{On the electrodynamics of moving bodies}].
+%	Annalen der Physik, 322(10):891–921, 1905.
+%	
+%	\bibitem{knuthwebsite}
+%	Knuth: Computers and Typesetting,
+%	\\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}
+%\end{thebibliography}
 

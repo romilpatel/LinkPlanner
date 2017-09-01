@@ -676,10 +676,8 @@ void System::run() {
 		}
 	} while (Alive);
 
-	for (int unsigned i = 0; i < SystemBlocks.size(); i++) {
-		
+	for (int unsigned i = 0; i < SystemBlocks.size(); i++) {		
 		SystemBlocks[i]->terminateBlock();
-
 	}
 }
 

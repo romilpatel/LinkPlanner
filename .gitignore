@@ -20,7 +20,8 @@ doc/tex/main_netxpto.pdf
 # Winedt
 ######################
 *.synctex
-
+*.log
+*.ilg
 
 ######################
 # Matlab

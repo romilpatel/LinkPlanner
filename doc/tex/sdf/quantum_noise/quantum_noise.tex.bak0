@@ -61,10 +61,6 @@ Besides this limitation, we also have shot noise introduced by the photodiodes??
 \\
 ---WARNING: WORK IN PROGRESS---\\
 {\bf Relation to experimental setting? }\\
-A coherent state is in fact a "good?" representation of an impulse of a laser beam? 
-\\
-Homodyne detection is used to measure quadratures, wich consists in interfering a local oscilator of the same frequency with the input signal.
-\\
 In reality, a quantum state $\ket{\alpha} = \ket{|\alpha|^{\theta}}$ corresponds to a pulse of light?? with an expected number of photons $|\alpha|^2$ and a phase $\theta$ relative to some local oscillator.\\
 In fact, these operators correspond to the act of measuring one of the modes???? experimental blocks (procedures?). The measurement is made by interfiring the signal with a local oscillator, wich will resonate or destroy this signal, depending on it's phase.\\
 Therefore, to measure the two quadratures, we simply create two local oscillators, one with an arbitrary phase $\beta$, which will correspond with the $\hat{X}$ operator, and another oscillator with phase $\beta + \pi/2$, which will correspond to the operator $\hat{Y}$.(PROCURAR REFERENCIAS)\\

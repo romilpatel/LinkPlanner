@@ -8,7 +8,6 @@
 # include <vector>
 # include <algorithm> 
 # include <random>
-
 # include "netxpto.h"
 # include "binary_source.h"
 

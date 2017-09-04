@@ -479,6 +479,62 @@ public:
 };
 
 
+class FD_Filter : public Block {
+	
+	/* State Variable */
+	
+	vector<t_real> inputBufferTimeDomain;
+	vector<t_real> outputBufferTimeDomain;
+
+	int inputBufferPointer{ 0 };
+	int outputBufferPointer{ 0 };
+	
+	/* Input Parameters */
+	bool saveTransferFunction{ true };
+	string transferFunctionFilename{ "transfer_function.tfn" };
+	int transferFunctionLength{ 128 };
+	//int OversamplingFactor{ 16 };
+
+	int inputBufferTimeDomainLength{ transferFunctionLength };
+	int outputBufferTimeDomainLength{ transferFunctionLength };
+
+public:
+	/* State Variable */
+	vector<t_complex> transferFunction;
+
+	/* Methods */
+	FD_Filter() {};
+	FD_Filter(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {};
+
+	void initializeFD_Filter(void);
+
+	bool runBlock(void);
+
+	void terminate(void) {};
+
+	void setInputBufferTimeDomainLength(int iBufferTimeDomainLength) { inputBufferTimeDomainLength = iBufferTimeDomainLength; };
+	int const getInputBufferTimeDomainLength() { return inputBufferTimeDomainLength; }
+
+	void setOutputBufferTimeDomainLength(int oBufferTimeDomainLength) { outputBufferTimeDomainLength = oBufferTimeDomainLength; };
+	int const getOutputBufferTimeDomainLength() { return outputBufferTimeDomainLength; }
+
+	void setInputBufferPointer(int iBufferPointer) { inputBufferPointer = iBufferPointer; };
+	int const getInputBufferPointer() { return inputBufferPointer; }
+
+	void setOutputBufferPointer(int oBufferPointer) { outputBufferPointer = oBufferPointer; };
+	int const getOutputBufferPointer() { return outputBufferPointer; }
+
+	void setSaveTransferFunction(bool sTransferFunction) { saveTransferFunction = sTransferFunction; };
+	bool getSaveTransferFunction(void) { return saveTransferFunction; };
+
+	void setTransferFunctionLength(int iTransferFunctionLength) { transferFunctionLength = iTransferFunctionLength; };
+	int const getTransferFunctionLength() { return transferFunctionLength; };
+
+//	void setOversamplingRate(int iOversamplingFactor) { OversamplingFactor = iOversamplingFactor; };
+//	int const getOversamplingFactor() { return OversamplingFactor; }
+
+};
+
 
 // Generates a complex signal knowing the real part and the complex part.
 class RealToComplex : public Block {
@@ -489,12 +545,12 @@ class RealToComplex : public Block {
 };
 
 // Separates the complex signal into two parts: real and imaginary.
-class ComplexToReal : public Block {
+/*class ComplexToReal : public Block {
  public:
 	 ComplexToReal(vector<Signal *> &InputSig, vector<Signal *> &OutputSig);
-  bool runBlock(void);
+	 bool runBlock(void);
  //private:
-};
+};*/
 
 
 
@@ -519,5 +575,61 @@ class System {
   int (*topology)[MAX_TOPOLOGY_SIZE];  // Relationship matrix
   vector<Block *> SystemBlocks;  // Pointer to an array of pointers to Block objects
 };
+
+//########################################################################################################################################################
+//############################################################### GENERIC DSP FUNCTIONS ##################################################################
+//########################################################################################################################################################
+
+
+class OverlapMethod
+{
+
+public:
+
+	void overlapSaveSymComplexIn(vector<complex <double>> &v_in, vector<complex <double>> &v_out, vector<complex <double>> Hf, int NFFT);
+	void overlapSaveSyRealIn(vector<double> &v_in, vector<double> &v_out, vector<double> Hf, int NFFT);
+	void overlapSaveAsym(vector<double> &real_in, vector<double> &imag_in, vector<double> &real_out, vector<double> &imag_out, vector<double> h_real, vector<double> h_imag, int M, int L, int N);
+	void overlapSaveSym(vector<double> &real_in, vector<double> &imag_in, vector<double> &real_out, vector<double> &imag_out, vector<double> h_real, vector<double> h_imag, int NFFT);
+	void checkSize(vector<double> &real_in, vector<double> &imag_in, int L);
+
+};
+
+class Fft
+{
+
+public:
+	std::vector<complex <double>> directTransformInReal(std::vector<double> real);
+
+	std::vector<double> inverseTransformInCP(std::vector<complex <double>> &In);
+
+	void directTransform(std::vector<double> &real, std::vector<double> &imag);
+
+	void inverseTransform(std::vector<double> &real, std::vector<double> &imag);
+
+	void transformRadix2(std::vector<double> &real, std::vector<double> &imag);
+
+	void transformBluestein(std::vector<double> &real, std::vector<double> &imag);
+
+	void convolve(const std::vector<double> &x, const std::vector<double> &y, std::vector<double> &out);
+
+	void convolve(const std::vector<double> &xreal, const std::vector<double> &ximag, const std::vector<double> &yreal, const std::vector<double> &yimag, std::vector<double> &outreal, std::vector<double> &outimag);
+
+
+};
+
+class ComplexMult
+{
+
+public:
+
+	void CMultVector(vector<double> &v1_real, vector<double> &v1_imag, vector<double> v2_real, vector<double> v2_imag);
+	void CMultVector_Loop(vector<double> &v1_real, vector<double> &v1_imag, vector<double> v2_real, vector<double> v2_imag);
+	vector<complex <double>> CMultVectorInCP(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in);
+	void ComplexVect2ReImVect(vector<complex <double>> &v_in, vector<double> &v1_real, vector<double> &v1_imag);
+	void CMultVector_InComplex(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in);
+	void ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &v1_imag, vector<complex <double>> &v_out);
+
+};
+
 
 # endif // PROGRAM_INCLUDE_netxpto_H_

@@ -26,6 +26,7 @@ When $h(t)$ is a minimum-phase signal, its phase $\phi(t)$ and absolute value $|
 where \textit{p.v.} stands for \textit{principal value}. The relationship depicted in Equation \ref{Eq:5.15} can also be conveniently implemented in frequency domain as,
 \begin{equation}
 \tilde{\phi}(\omega)=i sign(\omega) \mathcal{F} \{log[|h(t)|]\}
+\label{Eq:5.16}
 \end{equation}
 where $sign(\omega)$ is the sign function which is equal to 1 when $\omega>0$, to 0 when $\omega=0$ and to -1 when $\omega<0$. Symbol $\mathcal{F}$ denotes the Fourier transform.
 \begin{figure}[h]
@@ -35,8 +36,20 @@ where $sign(\omega)$ is the sign function which is equal to 1 when $\omega>0$, t
 \end{figure}
 
 \subsection{KK Scheme}
-
-
+If we consider the complex envelope of the incoming electric field by $E_s(t)$ confined within the optical bandwidth denoted by B. The LO assumed to be a continuous wave (CW) signal whose amplitude is $E_0$ whose frequency coincides with the left edge of the information-carrying signal spectrum. Here, we assumed that $E_0$ is real-valued and positive, which is equivalent to referring all phase value to that of LO.\\
+The complex envelope of the field striking upon the photo-diode can be given as,
+\begin{equation}
+E(t)=E_s(t)+E_0 exp(i\pi Bt)
+\end{equation}
+The photo current $I$ produced by the photo-diode is proportional to the field intensity $I=|E(t)|^2$, here proportionality constant considered as 1 for the sake of simplicity. If $E_0$ is large enough to ensure that the signal $E(t)exp(i\pi Bt)=E_0+E_s(t)exp(-i\pi Bt)$ is minimum phase. Equations \ref{Eq:5.15} and \ref{Eq:5.16} can be used to reconstruct the signal $E_s(t)$ as follows:
+\begin{equation}
+E_s(t)=\{\sqrt{I(t)} exp[i\phi_E(t)]-E_0\} exp(i\pi Bt)
+\end{equation}
+\begin{equation}
+\phi_E(t)=\dfrac{1}{2\pi} p.v. \int_{-\infty}^{\infty} dt' \frac{log[|I(t')|]}{t-t'}
+\label{Eq:5.19}
+\end{equation}
+Here, the average value of the phase returned by Equation \ref{Eq:5.19} is zero, which implies the need for an additional phase-recovery procedure. 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf}

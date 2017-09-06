@@ -206,7 +206,7 @@ bool BinarySource::runBlock(void) {
 
 	if (mode == DeterministicCyclic){
 		std::vector<char> values(bitStream.begin(), bitStream.end());
-		int valuesSize = (int) values.size();
+		int valuesSize = values.size();
 		for (int k = 0; k < process; k++) {
 			t_binary aux = (t_binary)(values[posBitStream++] - '0');
 			for (auto k = 0; k < numberOfOutputSignals; k++) {
@@ -220,7 +220,7 @@ bool BinarySource::runBlock(void) {
 
 	if (mode == DeterministicAppendZeros){
 		std::vector<char> values(bitStream.begin(), bitStream.end());
-		int valuesSize = (int) values.size();
+		int valuesSize = values.size();
 		t_binary aux;
 		for (int k = 0; k < process; k++) {
 			if (posBitStream == valuesSize) {

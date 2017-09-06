@@ -54,7 +54,6 @@ public:
 
 	/* Set Methods */
 
-//<<<<<<< HEAD
 	void setResponsivity(double Responsivity) { B1.setResponsivity(Responsivity); };
 	double const getResponsivity(void) { B1.getResponsivity(); }
 	void useShotNoise(bool uShotNoise){ B1.useNoise(uShotNoise); };
@@ -76,27 +75,6 @@ public:
     int const getImpulseResponseLength(void) { return B2.getImpulseResponseLength();};
     
 	void usePassiveFilterMode(bool pFilterMode){ B2.usePassiveFilterMode(pFilterMode); }
-/*=======
-	void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
-	//void setLocalOscillatorSymbolPeriod(double sPeriod) { B1.setSymbolPeriod(sPeriod); }
-	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
-	void setLocalOscillatorOpticalPower_dBm(double opticalPower_dBm) { B1.setOpticalPower_dBm(opticalPower_dBm); };
-	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setPhase(lOscillatorPhase); };
-	void setLocalOscillatorOpticalWavelength(double lOscillatorWavelength) { B1.setWavelength(lOscillatorWavelength); };
-
-	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
-
-	void setTransferMatrix(array<t_complex, 4> TransferMatrix) { B2.matrix = TransferMatrix; };
-
-	void  setResponsivity(t_real Responsivity) { B3.responsivity = Responsivity; };
-
-	void setAmplification(t_real Amplification) { B4.amplification = Amplification; };
-	void setNoiseAmplitude(t_real NoiseAmplitude) { B4.noiseamp = NoiseAmplitude; };
-
-	void setSamplesToSkip(int sToSkip) { B5.setSamplesToSkip(sToSkip); };
-
-	void setDecionLevel(int dLevel) { B6.setDecisionLevel(dLevel); };
->>>>>>> AnaLuisa*/
 
 };
 

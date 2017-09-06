@@ -194,8 +194,8 @@ void Signal::bufferGet(t_photon_mp *valueAddr) {
 
 Block::Block(vector<Signal*> &InputSig, vector<Signal*> &OutputSig) {
 
-	numberOfInputSignals = (int) InputSig.size();
-	numberOfOutputSignals = (int) OutputSig.size();
+	numberOfInputSignals = InputSig.size();
+	numberOfOutputSignals = OutputSig.size();
 
 	inputSignals = InputSig;
 	outputSignals = OutputSig;
@@ -203,8 +203,8 @@ Block::Block(vector<Signal*> &InputSig, vector<Signal*> &OutputSig) {
 }
 
 void Block::initializeBlock(vector<Signal*> &InputSig, vector<Signal*> &OutputSig) {
-	numberOfInputSignals = (int) InputSig.size();
-	numberOfOutputSignals = (int) OutputSig.size();
+	numberOfInputSignals = InputSig.size();
+	numberOfOutputSignals = OutputSig.size();
 
 	inputSignals = InputSig;
 	outputSignals = OutputSig;
@@ -414,8 +414,8 @@ DiscreteToContinuousTime::DiscreteToContinuousTime(vector<Signal *> &InputSig, v
 
 RealToComplex::RealToComplex(vector <Signal *> &InputSig, vector <Signal *> &OutputSig) {
 
-  numberOfInputSignals = (int) InputSig.size();
-  numberOfOutputSignals = (int) OutputSig.size();
+  numberOfInputSignals = InputSig.size();
+  numberOfOutputSignals = OutputSig.size();
 
   inputSignals = InputSig;
   outputSignals = OutputSig;

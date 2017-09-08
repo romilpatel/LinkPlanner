@@ -85,16 +85,9 @@
     <ClCompile Include="..\..\lib\netxpto.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
-    <ClCompile Include="qpsk_transmitter_sdf.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\include\binary_source.h" />
-    <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
-    <ClInclude Include="..\..\include\iq_modulator.h" />
-    <ClInclude Include="..\..\include\m_qam_mapper.h" />
-    <ClInclude Include="..\..\include\netxpto.h" />
-    <ClInclude Include="..\..\include\pulse_shaper.h" />
-    <ClInclude Include="..\..\include\sink.h" />
+    <ClCompile Include="qpsk_transmitter_sdf.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../include</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

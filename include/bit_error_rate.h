@@ -36,3 +36,4 @@ private:
 
 
 #endif // !PROGRAM_INCLUDE_BIT_ERROR_RATE_H_
+

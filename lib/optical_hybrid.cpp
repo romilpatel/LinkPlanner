@@ -1,3 +1,4 @@
+
 #include <algorithm>
 #include <complex>
 #include <iostream>
@@ -11,9 +12,11 @@ void OpticalHybrid::initialize(void){
 
 	firstTime = false;
 
+
 	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
 	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
+
 	 
 	outputSignals[0]->setCentralWavelength(inputSignals[0]->getCentralWavelength());
 	outputSignals[0]->setCentralFrequency(inputSignals[0]->getCentralFrequency());
@@ -43,9 +46,11 @@ void OpticalHybrid::initialize(void){
 
 bool OpticalHybrid::runBlock(void){
 
+
 	int ready0 = inputSignals[0]->ready();
 	int ready1 = inputSignals[1]->ready();
 	int ready = min(ready0, ready1);
+
 
 	int space0 = outputSignals[0]->space();
 	int space1 = outputSignals[1]->space();
@@ -55,9 +60,11 @@ bool OpticalHybrid::runBlock(void){
 	int spaceb = min(space2, space3);
 	int space = min(spacea, spaceb);
 
+
 	int process = min(ready, space);
 
 	if (process == 0) return false;
+
 
 	complex<double> imaginary(0, 1);
 	
@@ -82,3 +89,4 @@ bool OpticalHybrid::runBlock(void){
 	}
 	return true;
 }
+

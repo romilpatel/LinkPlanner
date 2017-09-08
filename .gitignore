@@ -1,3 +1,5 @@
+doc/tex/main_netxpto.pdf
+
 ######################
 # Visual C++
 ######################
@@ -8,9 +10,18 @@
 *.ilk
 *.pdb
 *.tlog
-
 *.VC.opendb
 *.VC.db
+*.idb
+*.lastbuildstate
+*.user
+
+######################
+# Winedt
+######################
+*.synctex
+*.log
+*.ilg
 
 ######################
 # Matlab
@@ -66,12 +77,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.obj
-*.obj
 *.exe
 *.mat
 *.mat
 *.sgn
 *.sgn
-sdf/cv_transmission_system/signals/S2.sgn
-sdf/cv_transmission_system/signals/TI_AMP04.sgn
-sdf/bpsk_system/_bpsk_system.VC.db
+*.aux
+*.out
+*.aux

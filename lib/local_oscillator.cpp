@@ -1,17 +1,19 @@
 # include "netxpto.h"
 # include "local_oscillator.h"
 
+
 # include <algorithm>
 # include <complex>
 # include <iostream>
 # include <fstream>
 # include <random>
 
+
 using namespace std;
 
 
 void LocalOscillator::initialize(void){
-
+	
 	outputSignals[0]->setSamplingPeriod(samplingPeriod);
 	outputSignals[0]->setSymbolPeriod(symbolPeriod);
 
@@ -22,6 +24,14 @@ void LocalOscillator::initialize(void){
 
 
 bool LocalOscillator::runBlock(void){
+
+
+    normal_distribution<double> distribution(0, 1);
+
+	t_real dt = samplingPeriod;
+	t_real wvlgth = wavelength;
+	t_real noisesignal;
+	t_real noiselo;
 
 	int process = outputSignals[0]->space();
 	
@@ -37,7 +47,8 @@ bool LocalOscillator::runBlock(void){
 
 	normal_distribution<double> distribution(0, 1);
 	
-	// This 0.5 factor is related to the bandpass representation.
+	double noiseRIN;
+	
 	out= .5*sqrt(opticalPower)*out;
 
 	for (int i = 0; i < process; i++) {
@@ -50,5 +61,6 @@ bool LocalOscillator::runBlock(void){
 		outputSignals[0]->bufferPut((t_complex)out);
 	}
 
+	}
 	return true;
 }

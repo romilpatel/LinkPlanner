@@ -45,8 +45,6 @@ int main(){
 	Sink B2{ vector<Signal*> { &S1 }, vector<Signal*> {} };
 	B2.setDisplayNumberOfSamples(true);
 
-	Sink B3{ vector<Signal*> { &S2 }, vector<Signal*> {} };
-	B3.setDisplayNumberOfSamples(true);
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################

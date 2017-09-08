@@ -13,7 +13,7 @@ void PulseShaper::initialize(void) {
 	double symbolPeriod = inputSignals[0]->symbolPeriod;
 
 	impulseResponseLength = (int)floor(impulseResponseTimeLength * symbolPeriod / samplingPeriod);
-
+	//impulseResponseLength = 16;
 	impulseResponse.resize(impulseResponseLength);
 
 	switch (getFilterType()) {

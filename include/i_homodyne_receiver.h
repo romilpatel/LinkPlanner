@@ -54,6 +54,7 @@ public:
 
 	/* Set Methods */
 
+
 	void setResponsivity(double Responsivity) { B1.setResponsivity(Responsivity); };
 	double const getResponsivity(void) { B1.getResponsivity(); }
 	void useShotNoise(bool uShotNoise){ B1.useNoise(uShotNoise); };
@@ -75,6 +76,7 @@ public:
     int const getImpulseResponseLength(void) { return B2.getImpulseResponseLength();};
     
 	void usePassiveFilterMode(bool pFilterMode){ B2.usePassiveFilterMode(pFilterMode); }
+
 
 };
 

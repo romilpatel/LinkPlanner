@@ -21,7 +21,7 @@ public:
 	array <complex<double>, 4> matrix = { { div*unit, div*unit, div*unit, -unit*div } };
 	
 	BalancedBeamSplitter() {};
-	BalancedBeamSplitter(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	BalancedBeamSplitter(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};
 
 	void initialize(void);
 	bool runBlock(void);
@@ -35,3 +35,4 @@ private:
 
 
 #endif // !PROGRAM_INCLUDE_BEAM_SPLITTER_H_
+

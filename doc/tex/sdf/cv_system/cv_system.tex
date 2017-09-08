@@ -172,7 +172,7 @@ note that, in this definition for BER, only values $\theta\in\left[0,\frac{\pi}{
 \caption{Theoretical results for double homodyne setup.}
 \end{figure}
 
-\subsection*{Functional Description}
+\section{Functional Description}
 
 Simplified diagrams of the systems being simulated are presented in Figures~\ref{fig:singleH}. and~\ref{fig:doubleH}. Two optical signals are generated, one with a constant power level of 10~dBm and the other with power in multiples of the power corresponding to a single photon per sampling time (6.4078e$\times10^{-13}$~W for a sampling time of 200~ns). The two signals are mixed, with a Balanced Beam Splitter in the single homodyne case and with a 90$^\text{o}$ Optical Hybrid in the double homodyne one, and are subsequently evaluated with recourse to Homodyne Receivers.
 
@@ -239,7 +239,7 @@ sink.cpp                     & Closes any unused signals.                       
 \end{table}
 
 
-\subsection*{System Input Parameters}
+\section{System Input Parameters}
 
 This system takes into account the following input parameters:
 \begin{table}[H]
@@ -262,7 +262,7 @@ shotNoise                  & Chooses if quantum shot noise is used in the simula
 \end{tabulary}
 \end{table}		
 
-\subsection*{Inputs}
+\section{Inputs}
 
 This system takes no inputs.
 %
@@ -290,8 +290,8 @@ The double homodyne system outputs the following objects:
 \end{itemize}
 \end{itemize}		
 
-\subsection*{Simulation Results}
-\subsubsection*{Single homodyne results}\label{subsec:SHresults}
+\section{Simulation Results}
+\subsection{Single homodyne results}\label{subsec:SHresults}
 
 The numerical results presented in Figure~\ref{fig:directber} were obtained with the simulation described by the block diagram in Figure~\ref{fig:singleH}. Theoretical results are a direct trace of~\eqref{eq:biterrorratio}. One can see that the numerical results adhere quite well to the expected curve.
 
@@ -302,7 +302,7 @@ The numerical results presented in Figure~\ref{fig:directber} were obtained with
 \label{fig:directber}
 \end{figure}
 
-\subsubsection*{Double homodyne results}\label{subsec:DHresults}
+\subsection{Double homodyne results}\label{subsec:DHresults}
 
 The numerical results presented in Figure~\ref{fig:adaptedber} were obtained with the simulation described by the block diagram in Figure~\ref{fig:doubleH}. Theoretical results are a direct trace of~\eqref{eq:adaptedBER} with $\theta=\frac{\pi}{4}$. One can see that the numerical results adhere quite well to the expected curve.
 
@@ -335,7 +335,27 @@ The numerical results presented in Figure~\ref{fig:adaptedber} were obtained wit
 %\subsection{Electrical Filter}
 %\subfile{./lib/pulse_shaper}
 
-\subsection*{Known Problems}
+\subsection{Homodyne Receiver}
+\subfile{./lib/i_homodyne_receiver}
+
+\subsection{Local Oscillator}
+\subfile{./lib/localoscillator}
+
+\subsection{Beam Splitter}
+\subfile{./lib/beamsplitter}
+
+\subsection{90$^\text{o}$ Optical Hybrid}
+
+\subsection{Photodiode}
+\subfile{./lib/photodiode}
+
+\subsection{Amplifier}
+\subfile{./lib/ideal_amplifier}
+
+\subsection{Electrical Filter}
+\subfile{./lib/pulse_shaper}
+
+\section{Known Problems}
 \begin{enumerate}
     \item Homodyne Super-Block not functioning
     \item 90$^\text{o}$ Optical Hybrid PDF needs to be written
@@ -344,4 +364,4 @@ The numerical results presented in Figure~\ref{fig:adaptedber} were obtained wit
 
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
-%\end{document} 
+\end{document} 

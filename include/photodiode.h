@@ -2,7 +2,6 @@
 # define PROGRAM_INCLUDE_PHOTODIODE_H_
 
 # include "netxpto.h"
-#include <random>
 
 // Simulates a photodiode
 class Photodiode : public Block {
@@ -21,9 +20,10 @@ public:
 	default_random_engine generatorAmp1;
 	default_random_engine generatorAmp2;
 
+
 	Photodiode() {};
-	Photodiode(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
-	
+	Photodiode(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};
+
 	void initialize(void);
 	bool runBlock(void);
 

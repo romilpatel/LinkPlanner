@@ -1,0 +1,312 @@
+﻿  cv_transmission_system_sdf.cpp
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(19): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(20): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(24): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(25): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(28): error C2086: 't_complex BalancedBeamSplitter::unit': redefinition
+  d:\netxpto\linkplanner\include\balanced_beam_splitter.h(21): note: see declaration of 'BalancedBeamSplitter::unit'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(29): error C2086: 'std::array<std::complex<double>,4> BalancedBeamSplitter::matrix': redefinition
+  d:\netxpto\linkplanner\include\balanced_beam_splitter.h(22): note: see declaration of 'BalancedBeamSplitter::matrix'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(32): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(33): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(39): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(40): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(42): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(43): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(48): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(50): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(16): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\photodiode.h(17): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(23): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\photodiode.h(24): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(26): error C2086: 'double BalancedBeamSplitter::Photodiode::responsivity': redefinition
+  d:\netxpto\linkplanner\include\photodiode.h(18): note: see declaration of 'BalancedBeamSplitter::Photodiode::responsivity'
+d:\netxpto\linkplanner\include\photodiode.h(27): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\photodiode.h(29): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\electrical_filter.h(6): error C2059: syntax error: 'using namespace'
+d:\netxpto\linkplanner\include\electrical_filter.h(6): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\sampler.h(12): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\sampler.h(13): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\sampler.h(18): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\sampler.h(25): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\sampler.h(26): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\sampler.h(29): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(57): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(58): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(79): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(80): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(99): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(101): error C2143: syntax error: missing ';' before '}'
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(101): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\bit_error_rate.h(19): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\bit_error_rate.h(20): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\bit_error_rate.h(28): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\bit_error_rate.h(29): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\bit_error_rate.h(32): error C2535: 'void BalancedBeamSplitter::Sampler::BitErrorRate::setConfidence(double)': member function already defined or declared
+  d:\netxpto\linkplanner\include\bit_error_rate.h(23): note: see declaration of 'BalancedBeamSplitter::Sampler::BitErrorRate::setConfidence'
+d:\netxpto\linkplanner\include\bit_error_rate.h(33): error C2535: 'void BalancedBeamSplitter::Sampler::BitErrorRate::setMidReportSize(int)': member function already defined or declared
+  d:\netxpto\linkplanner\include\bit_error_rate.h(26): note: see declaration of 'BalancedBeamSplitter::Sampler::BitErrorRate::setMidReportSize'
+d:\netxpto\linkplanner\include\bit_error_rate.h(34): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\bit_error_rate.h(36): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\include\optical_hybrid.h(4): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\optical_hybrid.h(14): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\include\optical_hybrid.h(75): fatal error C1020: unexpected #endif
+  white_noise.cpp
+  ti_amplifier.cpp
+  testblock.cpp
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(19): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(20): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(24): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(25): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(28): error C2086: 't_complex BalancedBeamSplitter::unit': redefinition
+  d:\netxpto\linkplanner\include\balanced_beam_splitter.h(21): note: see declaration of 'BalancedBeamSplitter::unit'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(29): error C2086: 'std::array<std::complex<double>,4> BalancedBeamSplitter::matrix': redefinition
+  d:\netxpto\linkplanner\include\balanced_beam_splitter.h(22): note: see declaration of 'BalancedBeamSplitter::matrix'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(32): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(33): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(39): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(40): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(42): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(43): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(48): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(50): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(16): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\photodiode.h(17): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(21): error C3646: 'generatorAmp1': unknown override specifier
+d:\netxpto\linkplanner\include\photodiode.h(21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\netxpto\linkplanner\include\photodiode.h(22): error C3646: 'generatorAmp2': unknown override specifier
+d:\netxpto\linkplanner\include\photodiode.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\netxpto\linkplanner\include\photodiode.h(23): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\photodiode.h(24): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(26): error C2086: 'double BalancedBeamSplitter::Photodiode::responsivity': redefinition
+  d:\netxpto\linkplanner\include\photodiode.h(18): note: see declaration of 'BalancedBeamSplitter::Photodiode::responsivity'
+d:\netxpto\linkplanner\include\photodiode.h(27): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\photodiode.h(29): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\random(30): error C2059: syntax error: 'namespace'
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\random(30): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\white_noise.h(17): error C3646: 'generator1': unknown override specifier
+d:\netxpto\linkplanner\include\white_noise.h(17): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\netxpto\linkplanner\include\white_noise.h(18): error C3646: 'generator2': unknown override specifier
+d:\netxpto\linkplanner\include\white_noise.h(18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\netxpto\linkplanner\include\white_noise.h(19): error C3646: 'generator3': unknown override specifier
+d:\netxpto\linkplanner\include\white_noise.h(19): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\netxpto\linkplanner\include\white_noise.h(20): error C3646: 'generator4': unknown override specifier
+d:\netxpto\linkplanner\include\white_noise.h(20): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\netxpto\linkplanner\include\pulse_shaper.h(7): error C2059: syntax error: 'using namespace'
+d:\netxpto\linkplanner\include\pulse_shaper.h(7): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\local_oscillator.h(25): error C3646: 'generatorRIN': unknown override specifier
+d:\netxpto\linkplanner\include\local_oscillator.h(25): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\netxpto\linkplanner\include\local_oscillator.h(26): error C3646: 'generatorPhas': unknown override specifier
+d:\netxpto\linkplanner\include\local_oscillator.h(26): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\netxpto\linkplanner\include\local_oscillator.h(27): error C3646: 'generatorShot': unknown override specifier
+d:\netxpto\linkplanner\include\local_oscillator.h(27): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\netxpto\linkplanner\include\sampler.h(12): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\sampler.h(13): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\sampler.h(18): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\sampler.h(25): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\sampler.h(26): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\sampler.h(29): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\lib\testblock.cpp(10): error C3254: 'BalancedBeamSplitter::Sampler': class contains explicit override 'initialize' but does not derive from an interface that contains the function declaration
+d:\netxpto\linkplanner\lib\testblock.cpp(10): error C2838: 'initialize': illegal qualified name in member declaration
+d:\netxpto\linkplanner\lib\testblock.cpp(24): error C3254: 'BalancedBeamSplitter::Sampler': class contains explicit override 'runBlock' but does not derive from an interface that contains the function declaration
+d:\netxpto\linkplanner\lib\testblock.cpp(24): error C2838: 'runBlock': illegal qualified name in member declaration
+d:\netxpto\linkplanner\lib\testblock.cpp(55): fatal error C1004: unexpected end-of-file found
+  super_block_interface.cpp
+  sink.cpp
+  sampler.cpp
+d:\netxpto\linkplanner\include\sampler.h(12): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\sampler.h(13): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\sampler.h(18): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\sampler.h(25): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\sampler.h(26): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\sampler.h(29): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\lib\sampler.cpp(124): error C2059: syntax error: 'else'
+d:\netxpto\linkplanner\lib\sampler.cpp(124): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\lib\sampler.cpp(54): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\lib\sampler.cpp(56): error C2065: 'myfile2': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(56): error C2228: left of '.open' must have class/struct/union
+  d:\netxpto\linkplanner\lib\sampler.cpp(56): note: type is 'unknown-type'
+d:\netxpto\linkplanner\lib\sampler.cpp(58): error C2374: 'ready': redefinition; multiple initialization
+  d:\netxpto\linkplanner\lib\sampler.cpp(28): note: see declaration of 'ready'
+d:\netxpto\linkplanner\lib\sampler.cpp(60): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+d:\netxpto\linkplanner\lib\sampler.cpp(62): error C2065: 'firstPass': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(65): error C2065: 'firstPass': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(71): error C2065: 'firstPass': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(74): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\lib\sampler.cpp(78): error C2065: 'k': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(78): error C2059: syntax error: ')'
+d:\netxpto\linkplanner\lib\sampler.cpp(79): error C2275: 't_real': illegal use of this type as an expression
+  d:\netxpto\linkplanner\include\netxpto.h(27): note: see declaration of 't_real'
+d:\netxpto\linkplanner\lib\sampler.cpp(79): error C2146: syntax error: missing ')' before identifier 'in'
+d:\netxpto\linkplanner\lib\sampler.cpp(80): error C2065: 'in': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(81): error C2065: 'k': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(82): error C2065: 'in': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(86): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\lib\sampler.cpp(97): error C2065: 'ready': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(101): error C2065: 'myfile2': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(101): error C2228: left of '.close' must have class/struct/union
+  d:\netxpto\linkplanner\lib\sampler.cpp(101): note: type is 'unknown-type'
+d:\netxpto\linkplanner\lib\sampler.cpp(109): error C2065: 'samplesPerSymbol': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(113): error C2065: 'myfile2': undeclared identifier
+d:\netxpto\linkplanner\lib\sampler.cpp(119): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\lib\sampler.cpp(121): error C2059: syntax error: '}'
+d:\netxpto\linkplanner\lib\sampler.cpp(121): error C2143: syntax error: missing ';' before '}'
+  pulse_shaper.cpp
+  photodiode.cpp
+d:\netxpto\linkplanner\include\photodiode.h(16): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\photodiode.h(17): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(21): error C3646: 'generatorAmp1': unknown override specifier
+d:\netxpto\linkplanner\include\photodiode.h(21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\netxpto\linkplanner\include\photodiode.h(22): error C3646: 'generatorAmp2': unknown override specifier
+d:\netxpto\linkplanner\include\photodiode.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\netxpto\linkplanner\include\photodiode.h(23): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\photodiode.h(24): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(26): error C2086: 'double Photodiode::responsivity': redefinition
+  d:\netxpto\linkplanner\include\photodiode.h(18): note: see declaration of 'Photodiode::responsivity'
+d:\netxpto\linkplanner\include\photodiode.h(27): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\photodiode.h(29): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(25): error C2065: 'outputOpticalWavelength': undeclared identifier
+d:\netxpto\linkplanner\lib\photodiode.cpp(21): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\lib\photodiode.cpp(22): error C2143: syntax error: missing ';' before '{'
+d:\netxpto\linkplanner\lib\photodiode.cpp(22): error C2447: '{': missing function header (old-style formal list?)
+d:\netxpto\linkplanner\lib\photodiode.cpp(191): fatal error C1004: unexpected end-of-file found
+  optical_hybrid.cpp
+d:\netxpto\linkplanner\lib\optical_hybrid.cpp(1): error C2059: syntax error: '<<'
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\sal.h(2361): error C2143: syntax error: missing ';' before '{'
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\sal.h(2361): error C2447: '{': missing function header (old-style formal list?)
+d:\netxpto\linkplanner\include\optical_hybrid.h(4): error C2059: syntax error: '<<'
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\iterator(15): error C2143: syntax error: missing ';' before '{'
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\iterator(15): error C2447: '{': missing function header (old-style formal list?)
+d:\netxpto\linkplanner\include\optical_hybrid.h(27): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\optical_hybrid.h(32): error C3769: 'OpticalHybrid': a nested class cannot have the same name as the immediately enclosing class
+d:\netxpto\linkplanner\include\optical_hybrid.h(32): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\include\optical_hybrid.h(75): fatal error C1020: unexpected #endif
+  netxpto.cpp
+  m_qam_transmitter.cpp
+  m_qam_mapper.cpp
+  local_oscillator.cpp
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(18): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(23): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(25): error C2065: 'frequency': undeclared identifier
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(26): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(37): error C2065: 'wavelength': undeclared identifier
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(45): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(51): error C2374: 'dt': redefinition; multiple initialization
+  d:\netxpto\linkplanner\lib\local_oscillator.cpp(36): note: see declaration of 'dt'
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(54): error C2374: 'distribution': redefinition; multiple initialization
+  d:\netxpto\linkplanner\lib\local_oscillator.cpp(34): note: see declaration of 'distribution'
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(58): error C2065: 'out': undeclared identifier
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(63): error C2440: 'initializing': cannot convert from 'std::normal_distribution<double>' to 't_real'
+  d:\netxpto\linkplanner\lib\local_oscillator.cpp(63): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(65): error C2065: 'out': undeclared identifier
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(67): error C2065: 'out': undeclared identifier
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(69): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(72): error C2664: 'std::complex<double>::complex(std::complex<double> &&)': cannot convert argument 1 from 'overloaded-function' to 'const std::complex<double>::_Ty &'
+  d:\netxpto\linkplanner\lib\local_oscillator.cpp(72): note: Reason: cannot convert from 'overloaded-function' to 'const std::complex<double>::_Ty'
+  d:\netxpto\linkplanner\lib\local_oscillator.cpp(72): note: Context does not allow for disambiguation of overloaded function
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(80): error C2065: 'generator1': undeclared identifier
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(80): error C2440: '=': cannot convert from 'std::normal_distribution<double>' to 't_real'
+  d:\netxpto\linkplanner\lib\local_oscillator.cpp(80): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(81): error C2065: 'generator2': undeclared identifier
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(81): error C2440: '=': cannot convert from 'std::normal_distribution<double>' to 't_real'
+  d:\netxpto\linkplanner\lib\local_oscillator.cpp(81): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(85): error C2065: 'shotNoise': undeclared identifier
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(95): error C2059: syntax error: '>>'
+  i_homodyne_receiver.cpp
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(19): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(20): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(24): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(25): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(28): error C2086: 't_complex BalancedBeamSplitter::unit': redefinition
+  d:\netxpto\linkplanner\include\balanced_beam_splitter.h(21): note: see declaration of 'BalancedBeamSplitter::unit'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(29): error C2086: 'std::array<std::complex<double>,4> BalancedBeamSplitter::matrix': redefinition
+  d:\netxpto\linkplanner\include\balanced_beam_splitter.h(22): note: see declaration of 'BalancedBeamSplitter::matrix'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(32): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(33): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(39): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(40): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(42): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(43): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(48): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(50): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(16): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\photodiode.h(17): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(23): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\photodiode.h(24): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\photodiode.h(26): error C2086: 'double BalancedBeamSplitter::Photodiode::responsivity': redefinition
+  d:\netxpto\linkplanner\include\photodiode.h(18): note: see declaration of 'BalancedBeamSplitter::Photodiode::responsivity'
+d:\netxpto\linkplanner\include\photodiode.h(27): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\photodiode.h(29): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\pulse_shaper.h(7): error C2059: syntax error: 'using namespace'
+d:\netxpto\linkplanner\include\pulse_shaper.h(7): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\electrical_filter.h(6): error C2059: syntax error: 'using namespace'
+d:\netxpto\linkplanner\include\electrical_filter.h(6): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\sampler.h(12): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\sampler.h(13): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\sampler.h(18): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\sampler.h(25): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\sampler.h(26): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\sampler.h(29): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(57): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(58): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(79): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(80): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(99): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(101): error C2143: syntax error: missing ';' before '}'
+d:\netxpto\linkplanner\include\i_homodyne_receiver.h(101): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\lib\i_homodyne_receiver.cpp(4): error C3254: 'BalancedBeamSplitter::Sampler': class contains explicit override '{ctor}' but does not derive from an interface that contains the function declaration
+d:\netxpto\linkplanner\lib\i_homodyne_receiver.cpp(4): error C2838: '{ctor}': illegal qualified name in member declaration
+d:\netxpto\linkplanner\lib\i_homodyne_receiver.cpp(15): fatal error C1004: unexpected end-of-file found
+  iq_modulator.cpp
+  ideal_amplifier.cpp
+  electrical_filter.cpp
+d:\netxpto\linkplanner\lib\electrical_filter.cpp(1): error C2059: syntax error: '<<'
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\sal.h(2361): error C2143: syntax error: missing ';' before '{'
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\sal.h(2361): error C2447: '{': missing function header (old-style formal list?)
+d:\netxpto\linkplanner\lib\electrical_filter.cpp(9): error C2059: syntax error: '=='
+  discrete_to_continuous_time.cpp
+  discarder.cpp
+  Generating Code...
+  Compiling...
+  bit_error_rate.cpp
+d:\netxpto\linkplanner\include\bit_error_rate.h(19): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\bit_error_rate.h(20): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\bit_error_rate.h(28): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\bit_error_rate.h(29): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\bit_error_rate.h(32): error C2535: 'void BitErrorRate::setConfidence(double)': member function already defined or declared
+  d:\netxpto\linkplanner\include\bit_error_rate.h(23): note: see declaration of 'BitErrorRate::setConfidence'
+d:\netxpto\linkplanner\include\bit_error_rate.h(33): error C2535: 'void BitErrorRate::setMidReportSize(int)': member function already defined or declared
+  d:\netxpto\linkplanner\include\bit_error_rate.h(26): note: see declaration of 'BitErrorRate::setMidReportSize'
+d:\netxpto\linkplanner\include\bit_error_rate.h(34): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\bit_error_rate.h(36): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\lib\bit_error_rate.cpp(7): error C2535: 'void BitErrorRate::initialize(void)': member function already defined or declared
+  d:\netxpto\linkplanner\include\bit_error_rate.h(16): note: see declaration of 'BitErrorRate::initialize'
+d:\netxpto\linkplanner\lib\bit_error_rate.cpp(16): error C2535: 'bool BitErrorRate::runBlock(void)': member function already defined or declared
+  d:\netxpto\linkplanner\include\bit_error_rate.h(17): note: see declaration of 'BitErrorRate::runBlock'
+d:\netxpto\linkplanner\lib\bit_error_rate.cpp(163): fatal error C1004: unexpected end-of-file found
+  bit_decider.cpp
+  binary_source.cpp
+  balanced_beam_splitter.cpp
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(19): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(20): error C2238: unexpected token(s) preceding ';'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(24): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(25): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(28): error C2086: 't_complex BalancedBeamSplitter::unit': redefinition
+  d:\netxpto\linkplanner\include\balanced_beam_splitter.h(21): note: see declaration of 'BalancedBeamSplitter::unit'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(29): error C2086: 'std::array<std::complex<double>,4> BalancedBeamSplitter::matrix': redefinition
+  d:\netxpto\linkplanner\include\balanced_beam_splitter.h(22): note: see declaration of 'BalancedBeamSplitter::matrix'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(32): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(33): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(39): error C2059: syntax error: '<<'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(40): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(42): error C2059: syntax error: '=='
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(43): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(48): error C2059: syntax error: '>>'
+d:\netxpto\linkplanner\include\balanced_beam_splitter.h(50): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+d:\netxpto\linkplanner\lib\balanced_beam_splitter.cpp(10): error C2535: 'void BalancedBeamSplitter::initialize(void)': member function already defined or declared
+  d:\netxpto\linkplanner\include\balanced_beam_splitter.h(36): note: see declaration of 'BalancedBeamSplitter::initialize'
+d:\netxpto\linkplanner\lib\balanced_beam_splitter.cpp(30): error C2535: 'bool BalancedBeamSplitter::runBlock(void)': member function already defined or declared
+  d:\netxpto\linkplanner\include\balanced_beam_splitter.h(37): note: see declaration of 'BalancedBeamSplitter::runBlock'
+d:\netxpto\linkplanner\lib\balanced_beam_splitter.cpp(87): fatal error C1004: unexpected end-of-file found
+  add.cpp
+  Generating Code...

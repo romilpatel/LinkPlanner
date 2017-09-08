@@ -1,0 +1,28 @@
+﻿  quantum_noise_sdf.cpp
+d:\netxpto\linkplanner\include\m_qam_transmitter.h(104): warning C4267: '=': conversion from 'size_t' to 't_integer', possible loss of data
+  super_block_interface.cpp
+d:\netxpto\linkplanner\lib\super_block_interface.cpp(10): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\netxpto\linkplanner\lib\super_block_interface.cpp(11): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  sink.cpp
+  sampler.cpp
+d:\netxpto\linkplanner\lib\sampler.cpp(26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  pulse_shaper.cpp
+  photodiode.cpp
+d:\netxpto\linkplanner\lib\photodiode.cpp(26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+d:\netxpto\linkplanner\lib\photodiode.cpp(47): warning C4244: 'initializing': conversion from 'std::chrono::system_clock::rep' to 'unsigned int', possible loss of data
+  optical_hybrid.cpp
+  netxpto.cpp
+  m_qam_transmitter.cpp
+d:\netxpto\linkplanner\include\m_qam_transmitter.h(104): warning C4267: '=': conversion from 'size_t' to 't_integer', possible loss of data
+d:\netxpto\linkplanner\lib\m_qam_transmitter.cpp(6): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\netxpto\linkplanner\lib\m_qam_transmitter.cpp(7): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  m_qam_mapper.cpp
+d:\netxpto\linkplanner\lib\m_qam_mapper.cpp(87): warning C4267: '=': conversion from 'size_t' to 't_integer', possible loss of data
+  local_oscillator.cpp
+d:\netxpto\linkplanner\lib\local_oscillator.cpp(40): warning C4101: 'noiseRIN': unreferenced local variable
+  iq_modulator.cpp
+  discrete_to_continuous_time.cpp
+  binary_source.cpp
+  Generating Code...
+  quantum_noise.vcxproj -> D:\netxpto\LinkPlanner\sdf\quantum_noise\x64\Debug\quantum_noise.exe
+  quantum_noise.vcxproj -> D:\netxpto\LinkPlanner\sdf\quantum_noise\x64\Debug\quantum_noise.pdb (Full PDB)

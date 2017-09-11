@@ -17,7 +17,9 @@ int main() {
 	int patternLength{ 5 };
 	string bitStream{ "0" };
 	double bitPeriod{ 1.0 / 50e9 };
-	vector<t_iqValues> iqAmplitudes{ { { 1,1 },{ -1,1 },{ -1,-1 },{ 1,-1 } } };
+	//vector<t_iqValues> iqAmplitudes{ { { 1,1 },{ -1,1 },{ -1,-1 },{ 1,-1 } } };
+	vector<t_iqValues> iqAmplitudes{ { { -3.0, -3.0 }, { -3.0, -1.0 }, { -3.0, 3.0 }, { -3.0, 1.0 }, { -1.0, -3.0 }, { -1.0, -1.0 }, { -1.0, 3.0 }, { -1.0, 1.0 }, { 3.0, -3.0 }, { 3.0, -1.0 }, { 3.0, 3.0 }, { 3.0, 1.0 }, { 1.0, -3.0 }, { 1.0, -1.0 }, { 1.0, 3.0 }, { 1.0, 1.0 } } };
+
 	int numberOfBits{ 1000 };
 	int numberOfSamplesPerSymbol{ 16 };
 	double rollOffFactor{ 0.3 };

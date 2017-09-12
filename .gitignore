@@ -26,6 +26,7 @@ doc/tex/main_netxpto.pdf
 *.user
 *.json
 *.sqlite
+*.ipch
 
 ######################
 # Winedt

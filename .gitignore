@@ -24,6 +24,8 @@ doc/tex/main_netxpto.pdf
 *.idb
 *.lastbuildstate
 *.user
+*.json
+*.sqlite
 
 ######################
 # Winedt

@@ -1,3 +1,5 @@
+doc/tex/main_netxpto.pdf
+
 ######################
 # Visual C++
 ######################
@@ -10,6 +12,16 @@
 *.tlog
 *.VC.opendb
 *.VC.db
+*.idb
+*.lastbuildstate
+*.user
+
+######################
+# Winedt
+######################
+*.synctex
+*.log
+*.ilg
 
 ######################
 # Matlab

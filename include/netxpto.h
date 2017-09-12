@@ -493,7 +493,6 @@ class FD_Filter : public Block {
 	bool saveTransferFunction{ true };
 	string transferFunctionFilename{ "transfer_function.tfn" };
 	int transferFunctionLength{ 128 };
-	//int OversamplingFactor{ 16 };
 
 	int inputBufferTimeDomainLength{ transferFunctionLength };
 	int outputBufferTimeDomainLength{ transferFunctionLength };
@@ -529,9 +528,6 @@ public:
 
 	void setTransferFunctionLength(int iTransferFunctionLength) { transferFunctionLength = iTransferFunctionLength; };
 	int const getTransferFunctionLength() { return transferFunctionLength; };
-
-//	void setOversamplingRate(int iOversamplingFactor) { OversamplingFactor = iOversamplingFactor; };
-//	int const getOversamplingFactor() { return OversamplingFactor; }
 
 };
 

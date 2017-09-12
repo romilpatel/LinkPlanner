@@ -529,9 +529,6 @@ public:
 	void setTransferFunctionLength(int iTransferFunctionLength) { transferFunctionLength = iTransferFunctionLength; };
 	int const getTransferFunctionLength() { return transferFunctionLength; };
 
-//	void setOversamplingRate(int iOversamplingFactor) { OversamplingFactor = iOversamplingFactor; };
-//	int const getOversamplingFactor() { return OversamplingFactor; }
-
 };
 
 

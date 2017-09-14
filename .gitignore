@@ -34,6 +34,8 @@ doc/tex/main_netxpto.pdf
 *.synctex
 *.log
 *.ilg
+*.gz
+*.toc
 
 ######################
 # Matlab

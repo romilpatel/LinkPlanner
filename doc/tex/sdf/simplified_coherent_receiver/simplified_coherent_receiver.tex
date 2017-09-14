@@ -57,15 +57,15 @@ Here, the average value of the phase returned by Equation \ref{Eq:5.19} is zero,
 \end{figure}
 
 \subsection{Tx side}
-Dual polarization(DP) DP-QPSK/DP-16QAM signals (1.25 Gbaud) to be generated at the Tx through an IQ modulator (Figure \ref{DSP_main_subsystem}) driven by DAC mounted in a FPGA. Polarization-division multiplexing is emulated by dividing the signal in two signals using an optical splitter, where a delay of 12 symbols is applied in order to decorrelate the two polarization tributaries and then, both signals are joined orthogonally employing a polarization beam combiner (PBC).
+Single polarization 16QAM signals (1.25 Gbaud) to be generated at the Tx through an IQ modulator (Figure \ref{DSP_main_subsystem}). The IQ modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.
 
 \subsection{Rx side}
 At the receiver side, signal is coherently detected using a simplified coherent receiver and a local oscillator. The optical signal is then converted into the electrical domain using two balanced photodetector (BPD), or alternatively four photodetector, and amplified by a transimpedance amplifier (TIA). Following that, the signals are sampled by two 8-bit 2.5 GSa/s ADC and the this digitized signal sent to the FPGA (Virtex-7) where all post-detection DSP implemented in real-time.
 
 \begin{thebibliography}{9}
-	\bibitem{latexcompanion} 
-	Antonio Mecozzi, Cristian Antonelli, and Mark Shtaif. 
-	\textit{Kramers-Kronig Coherent Receiver}. 
+	\bibitem{latexcompanion}
+	Antonio Mecozzi, Cristian Antonelli, and Mark Shtaif.
+	\textit{Kramers-Kronig Coherent Receiver}.
 	Optica, vol.3, no.11, 2016, p.1220., doi:10.1364/optica.3.001220.
 	
 \end{thebibliography}

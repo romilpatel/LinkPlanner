@@ -1,3 +1,12 @@
+######################
+# GIT Files
+######################
+*.pdf~*
+
+######################
+# PDF Files
+######################
+
 doc/tex/main_netxpto.pdf
 
 ######################
@@ -15,6 +24,9 @@ doc/tex/main_netxpto.pdf
 *.idb
 *.lastbuildstate
 *.user
+*.json
+*.sqlite
+*.ipch
 
 ######################
 # Winedt

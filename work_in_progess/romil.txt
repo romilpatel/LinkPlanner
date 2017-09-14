@@ -1,0 +1,5 @@
+2017-09-14
+TO BE DONE
+- study two papers (Mecozzi16, Mecozzi17)
+- write in our own words the system setup (explain)
+- reproduce the results in NetXPTO - LinkPlanner

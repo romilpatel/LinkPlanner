@@ -1,0 +1,7 @@
+2017-09-11
+Paten revision (DONE)
+
+TO BE DONE
+- finalize frequency domain filter implementation
+- integrate the nonlinear compensation with the D-FIR-CDE
+- ROF compensation of optical nonlinearity

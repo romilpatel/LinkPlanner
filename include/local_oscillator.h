@@ -42,7 +42,12 @@ public:
 	void setSymbolPeriod(double sPeriod) { symbolPeriod = sPeriod; }
 	void setOpticalPower(double oPower) { opticalPower = oPower; }
 	void setOpticalPower_dBm(double oPower_dBm) { opticalPower = 1e-3*pow(10, oPower_dBm / 10); }
-	void setWavelength(double wlength) { outputOpticalWavelength = wlength; }
+
+	void setWavelength(double wlength) { outputOpticalWavelength = wlength;  outputOpticalFrequency = SPEED_OF_LIGHT / outputOpticalWavelength; }
+	double getWavelength() { return outputOpticalWavelength; }
+
+	void setFrequency(double freq) { outputOpticalFrequency = freq;  outputOpticalWavelength = SPEED_OF_LIGHT / outputOpticalFrequency; }
+	double getFrequency() { return outputOpticalFrequency; }
 	
 	void setPhase(double lOscillatorPhase) { phase= lOscillatorPhase; }
 	double const getPhase(void) { return phase; }

@@ -27,6 +27,8 @@ doc/tex/main_netxpto.pdf
 *.json
 *.sqlite
 *.ipch
+*.vcxproj
+*.filters
 
 ######################
 # Winedt

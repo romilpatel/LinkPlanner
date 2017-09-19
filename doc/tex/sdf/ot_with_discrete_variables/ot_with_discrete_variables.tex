@@ -9,14 +9,14 @@
 \end{tabular}
 \end{tcolorbox}
 
-Oblivious transfer is one of the most fundamental basics in Cryptography and it is used in a number of communication protocols in order to guarantee its security against eavesdropping. This one-out-of-two Oblivious Transfer Protocol consists in a communication protocol between Alice and Bob which has two classical channels and one quantum communication channel. At the beginning of the protocol Alice has two messages $m_1$ and $m_2$ and Bob wants to read one of them thereby choosing a random bit b, and in this way he will learn the message $m_{b}$. Two conditions must be fulfilled:
+Oblivious Transfer (OT) is a fundamental primitive in multi-party computation. The one-out-of-two OT consists in a communication protocol between Alice and Bob. At the beginning of the protocol Alice has two messages $m_1$ and $m_2$ and Bob wants to know one of them, $m_b$, without Alice knowing which one, i.e. without Alice knowing $b$, and Alice wants to keep the other message private, i.e. without Bob knowing $m_{\bar{b}}$. therefore two conditions must be fulfilled:
 \begin{enumerate}
-	\item{The protocol must be concealing, i.e at the beggining of the protocol Bob does not know nothing about the messages sent by Alice, while at the end of the protocol Bob will learn the message b chose by him.}
-	\item{The protocol is oblivious, i.e at the end of the protocol Alice remains without learning which message was choosen by Bob. Alice cannot learn anything about bit b and Bob cannot learning nothing about the other message $m_{1-b}.$}
+	\item{The protocol must be concealing, i.e at the beginning of the protocol Bob does not know nothing about the messages sent by Alice, while at the end of the protocol Bob will learn the message $b$ chose by him.}
+	\item{The protocol is oblivious, i.e Alice cannot learn anything about bit $b$ and Bob cannot learning nothing about the other message $m_{\bar{b}}$.}
 \end {enumerate}
 
-\subsection{OT protocol detailed}
-In this case study, an OT protocol will be implemented as described bellow. 
+\subsection{OT Protocol Detailed}
+In this case study, an OT protocol will be implemented as described bellow.
 
 Let $U=\{+,\times\}^{n} \times \{0,1\}^{n}$ where $+$ and $\times$ are the rectilinear and diagonal basis, respectively.
 A first phase of the protocol is to test Bob's honesty.
@@ -34,7 +34,7 @@ At this time, we can assume that Bob is honest. Let two new sets, $T_{0}$ the se
 	\item{Bob receives the two messages, though he only may has learnt one of them.}
 \end{enumerate}
 
-\subsection{A more concrete example about OT-protocol}
+\subsection{OT Protocol Example}
 
 Let's look in a more specific example. Let $m_{1}: [1 1 0]$ and $m_{2}:[0 0 1]$ the two messages sent by Alice. First of all, Alice picks a random $g[i]$ which is the state and a random basis $a[i]$, being \textit{i} the photon's position.
 
@@ -54,8 +54,8 @@ The data sent by Alice is encrypted one bit for two, i.e if Alice sends 00 or 11
 After Alice made her choices, Bob picks a random basis too. When Alice sends her choice, Bob knows in which positions he has succeeded and then he will pick two new sets:
 
 \begin{center}
-$I_{0} \{ 1,3,6 \}$ - Positions of wrong choices\\
-$I_{1} \{ 2,4,5 \}$ - Positions of right choices
+$I_{0} = \{ 1,3,6 \}$ - Positions of wrong choices\\
+$I_{1} = \{ 2,4,5 \}$ - Positions of right choices
 \end{center}
 
 After that, Bob sends to Alice a new set $ \{ I_{0},I_{1} \}$ or $\{ I_{1}, I_{0}\}$ radonmly choosen. Alice receives $\{ I_{i}, I_{\bar{i}}\}$ and sends to Bob $\{ m_{1}, m_{2}\}$ encrypted:
@@ -71,11 +71,11 @@ $\{ 0 0 0\} \oplus{} \{ 0 1 0\} = \{ 0 1 0\} $: Message 2 $\times$ \\
 
 Bob only was able to learn one of the messages and Alice still does not know which message Bob has learnt.
 
-\subsection{Experimental Setup}
+\subsection{Simulation}
 
 In a first phase, this protocol will be simulatedand then a experimental setup will be built in laboratory.
 
-In order to implement the protocol described above, the setup below will be built. 
+In order to implement the protocol described above, the setup below will be built.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/ot_with_discrete_variables/figures/SetupOt.png}
@@ -85,3 +85,4 @@ In order to implement the protocol described above, the setup below will be buil
 There must be two computers, one on Alice's side and other on Bob's side in order that they can communicate through classical channels. There will be three channels, two classical channels and one quantum channel. In \textit{Conditional Mutual Information Evaluation} block it qill be calculated $I(A,B|m_{i},i)$ and $I(A,B|m_{\bar{i}, i})$.
 Alice send discrete photon through a quantum channel and the other two channels are for changing infomartion between Alice and Bob according with the above protocol.
 
+\subsection{Experimental}

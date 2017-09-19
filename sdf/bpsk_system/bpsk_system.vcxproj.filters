@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\lib\add.cpp" />
+    <ClCompile Include="..\..\lib\balanced_beam_splitter.cpp" />
+    <ClCompile Include="..\..\lib\binary_source.cpp" />
+    <ClCompile Include="..\..\lib\bit_decider.cpp" />
+    <ClCompile Include="..\..\lib\bit_error_rate.cpp" />
+    <ClCompile Include="..\..\lib\discarder.cpp" />
+    <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
+    <ClCompile Include="..\..\lib\electrical_filter.cpp" />
+    <ClCompile Include="..\..\lib\ideal_amplifier.cpp" />
+    <ClCompile Include="..\..\lib\iq_modulator.cpp" />
+    <ClCompile Include="..\..\lib\i_homodyne_receiver.cpp" />
+    <ClCompile Include="..\..\lib\local_oscillator.cpp" />
+    <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
+    <ClCompile Include="..\..\lib\m_qam_transmitter.cpp" />
+    <ClCompile Include="..\..\lib\netxpto.cpp" />
+    <ClCompile Include="..\..\lib\photodiode.cpp" />
+    <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
+    <ClCompile Include="..\..\lib\sampler.cpp" />
+    <ClCompile Include="..\..\lib\sink.cpp" />
+    <ClCompile Include="..\..\lib\super_block_interface.cpp" />
+    <ClCompile Include="..\..\lib\ti_amplifier.cpp" />
+    <ClCompile Include="..\..\lib\white_noise.cpp" />
+    <ClCompile Include="bpsk_system_sdf.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\i_homodyne_receiver.h" />
+    <ClInclude Include="..\..\include\local_oscillator.h" />
+    <ClInclude Include="..\..\include\sampler.h" />
+  </ItemGroup>
+</Project>

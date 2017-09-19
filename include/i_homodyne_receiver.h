@@ -3,12 +3,12 @@
 
 # include "netxpto.h"
 
+# include "sampler.h"
 # include "local_oscillator.h"
 # include "balanced_beam_splitter.h"
 # include "photodiode.h"
 # include "ti_amplifier.h"
 # include "electrical_filter.h"
-# include "sampler.h"
 # include "bit_decider.h"
 
 

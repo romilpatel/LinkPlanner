@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -13,19 +13,19 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DAFD9CC4-62DF-4A41-A4B5-1898FA3561BC}</ProjectGuid>
     <RootNamespace>m_qam_system</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -83,19 +83,42 @@
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
     <ClCompile Include="..\..\lib\m_qam_transmitter.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
+    <ClCompile Include="..\..\lib\optical_hybrid.cpp" />
     <ClCompile Include="..\..\lib\photodiode.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sampler.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface.cpp" />
+    <ClCompile Include="..\..\lib\testblock.cpp" />
     <ClCompile Include="..\..\lib\ti_amplifier.cpp" />
     <ClCompile Include="..\..\lib\white_noise.cpp" />
-    <ClCompile Include="bpsk_system_sdf.cpp" />
+    <ClCompile Include="cv_system.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\add.h" />
+    <ClInclude Include="..\..\include\balanced_beam_splitter.h" />
+    <ClInclude Include="..\..\include\binary_source.h" />
+    <ClInclude Include="..\..\include\bit_decider.h" />
+    <ClInclude Include="..\..\include\bit_error_rate.h" />
+    <ClInclude Include="..\..\include\discarder.h" />
+    <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
+    <ClInclude Include="..\..\include\electrical_filter.h" />
+    <ClInclude Include="..\..\include\ideal_amplifier.h" />
+    <ClInclude Include="..\..\include\iq_modulator.h" />
     <ClInclude Include="..\..\include\i_homodyne_receiver.h" />
     <ClInclude Include="..\..\include\local_oscillator.h" />
+    <ClInclude Include="..\..\include\m_qam_mapper.h" />
+    <ClInclude Include="..\..\include\m_qam_transmitter.h" />
+    <ClInclude Include="..\..\include\netxpto.h" />
+    <ClInclude Include="..\..\include\optical_hybrid.h" />
+    <ClInclude Include="..\..\include\photodiode.h" />
+    <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sampler.h" />
+    <ClInclude Include="..\..\include\sink.h" />
+    <ClInclude Include="..\..\include\super_block_interface.h" />
+    <ClInclude Include="..\..\include\testblock.h" />
+    <ClInclude Include="..\..\include\ti_amplifier.h" />
+    <ClInclude Include="..\..\include\white_noise.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

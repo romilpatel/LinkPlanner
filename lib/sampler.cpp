@@ -18,7 +18,6 @@ void Sampler::initialize(void) {
 
 bool Sampler::runBlock(void) {
 
-
 	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSymbolPeriod());
 	numberOfInputSignals = inputSignals.size();
 
@@ -33,6 +32,7 @@ bool Sampler::runBlock(void) {
 			}
 			samplesToSkip = samplesToSkip - process;
 			if (samplesToSkip > 0) return true;
+			if (samplesToSkip == 0) return false;
 		}
 		ready = inputSignals[0]->ready();
 		int space = outputSignals[0]->space();

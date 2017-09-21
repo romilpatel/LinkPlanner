@@ -1,5 +1,9 @@
+2017-09-21
+TO BE DONE
+ - Diagrama de bloco com o sistema a simular, incluir no manual do netxpto - RoF System
+
 2017-09-11
-Paten revision (DONE)
+Patent revision (DONE)
 
 TO BE DONE
 - finalize frequency domain filter implementation

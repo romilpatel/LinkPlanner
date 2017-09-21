@@ -26,7 +26,7 @@ public:
 	int const getMidReportSize(void) { return m; }
 
 	void setSizeConstellation(int sConst) { sizeConstellation = sConst; };
-	int const getSizeConsetalltion(void) { sizeConstellation; }
+	int const getSizeConstellation(void) { sizeConstellation; }
 
 private:
 	int firstPass = 1;

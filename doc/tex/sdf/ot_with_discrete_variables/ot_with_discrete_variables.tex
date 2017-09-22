@@ -11,24 +11,26 @@
 
 Oblivious Transfer (OT) is a fundamental primitive in multi-party computation. The one-out-of-two OT consists in a communication protocol between Alice and Bob. At the beginning of the protocol Alice has two messages $m_1$ and $m_2$ and Bob wants to know one of them, $m_b$, without Alice knowing which one, i.e. without Alice knowing $b$, and Alice wants to keep the other message private, i.e. without Bob knowing $m_{\bar{b}}$. therefore two conditions must be fulfilled:
 \begin{enumerate}
-	\item{The protocol must be concealing, i.e at the beginning of the protocol Bob does not know nothing about the messages sent by Alice, while at the end of the protocol Bob will learn the message $b$ chose by him.}
-	\item{The protocol is oblivious, i.e Alice cannot learn anything about bit $b$ and Bob cannot learning nothing about the other message $m_{\bar{b}}$.}
+	\item{The protocol must be concealing, i.e at the beginning of the protocol Bob does not know nothing about the messages know by Alice, while at the end of the protocol Bob will learn the message $b$ chose by him.}
+	\item{The protocol is oblivious, i.e Alice cannot learn anything about the choice of Bob, i.e. about bit $b$, and Bob cannot learning nothing about the other message $m_{\bar{b}}$.}
 \end {enumerate}
 
 \subsection{OT Protocol Detailed}
 
 
-First of all, we have to know if Bob is honest or not. In order to get this information Alice will test Bob's honesty.
+%First of all, we have to know if Bob is honest or not. In order to get this information Alice will test Bob's honesty.
+%
+%Let $+$ the rectilinear basis and $\times$ the diagonal basis, where $+$ matches the bit $0$ and $\times$ matches the bit $1$.
+%\begin{enumerate}
+%	\item{Alice picks a random basis $a[i]$ and a random state $g[i]$ for each photon \textit{i}. Then, Alice sends to Bob the photons \textit{i} (where $0\le i \le n$) with polarizations are given by $a[i]$ and $g[i]$.}
+%	\item{Also Bob randomly chooses the basis $b[i]$ according to which he will make the measurements. Next, he measures the photons \textit{i} through basis $b[i]$ and records the data in an array $h[i]$, where $h[i]$ can take values $0$ or $1$ according to the basis that were chosen. Then he makes a commit of all \textit{n} pairs $(b[i],g[i])$ to Alice.}
+%	\item{After receive Bob's commitments, Alice randomly chooses some positions of the Key's array and tests the basis committed by Bob. If any \textit{i} values reveal $a[i]=b[i]$ and $g[i] \neq h[i]$, Alice immediately stops the protocol, otherwise she accepts the commitment and the protocol continue.}
+%\end{enumerate}
 
-Let $+$ the rectilinear basis and $\times$ the diagonal basis, where $+$ matches the bit $0$ and $\times$ matches the bit $1$.
+%Lets assume that Bob is honest.
+Let $+$ be the rectilinear basis and $\times$ the diagonal basis.%, where $+$ matches the bit $0$ and $\times$ matches the bit $1$.
 \begin{enumerate}
-	\item{Alice picks a random basis $a[i]$ and a random state $g[i]$ for each photon \textit{i}. Then, Alice sends to Bob the photons \textit{i} (where $0\le i \le n$) with polarizations are given by $a[i]$ and $g[i]$.}
-	\item{Also Bob randomly chooses the basis $b[i]$ according to which he will make the measurements. Next, he measures the photons \textit{i} through basis $b[i]$ and records the data in an array $h[i]$, where $h[i]$ can take values $0$ or $1$ according to the basis that were chosen. Then he makes a commit of all \textit{n} pairs $(b[i],g[i])$ to Alice.}
-	\item{After receive Bob's commitments, Alice randomly chooses some positions of the Key's array and tests the basis committed by Bob. If any \textit{i} values reveal $a[i]=b[i]$ and $g[i] \neq h[i]$, Alice immediately stops the protocol, otherwise she accepts the commitment and the protocol continue.}
-\end{enumerate}
-
-At this time, we can assume that Bob is honest.
-\begin{enumerate}
+    \item{Alice picks a random basis $a[i]$ and a random state $g[i]$ for each photon \textit{i}. Then, Alice sends to Bob the photons \textit{i} (where $0\le i \le n$) with polarizations are given by $a[i]$ and $g[i]$.}
 	\item{First, Alice sends through a classical channel the basis \textbf{a[i]} to Bob.}
 	\item{Bob chooses two subsets $I_{0}$ and $I_{1}$ which represents the set of positions which Bob was wrong, i.e the basis chosen by him is different of the basis chosen by Alice $(a[i]\neq b[i])$,  and the positions he has succeeded, i.e the basis chosen by him is the same of the basis chosen by Alice, respectively. He sends through a classical channel this subsets in a random order, $\{ I_{0},I_{1} \}$ or $\{ I_{1},I_{0} \}$.}
 	\item{Alice sends to Bob the two messages encrypted according to the sets sent by Bob in the previous step.}
@@ -102,4 +104,4 @@ In figure \ref{quantumchannelcommunication} is presented the experimental setup 
 \begin{figure}[H]
 	\centering \includegraphics[width=1.2\textwidth,height=12cm]{./sdf/ot_with_discrete_variables/figures/OT_experimental_setup.pdf}
 	\caption{Quantum communication diagram}\label{quantumchannelcommunication}
-\end{figure}
+\end{figure} 

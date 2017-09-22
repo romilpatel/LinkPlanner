@@ -6,7 +6,7 @@
 #include "add.h"
 
 
-void Add::initialize(void){
+void Add::initialize(void) {
 
 	firstTime = false;
 
@@ -16,7 +16,7 @@ void Add::initialize(void){
 }
 
 
-bool Add::runBlock(void){
+bool Add::runBlock(void) {
 
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
@@ -32,7 +32,7 @@ bool Add::runBlock(void){
 	signal_value_type sType2 = inputSignals[1]->getValueType();
 	signal_value_type sTypeOut = outputSignals[0]->getValueType();
 
-	if (sType1!=sType2 || sTypeOut!=sType1)
+	if (sType1 != sType2 || sTypeOut != sType1)
 	{
 		cout << "ERRO: add.cpp (signal type mismatch!)" << "\n";
 		return false;
@@ -53,7 +53,7 @@ bool Add::runBlock(void){
 		}
 		break;
 	}
-	
+
 	case ComplexValue:
 	{
 		for (int k = 0; k < process; k++) {
@@ -66,7 +66,7 @@ bool Add::runBlock(void){
 		}
 		break;
 	}
-	
+
 	case ComplexValueXY:
 	{
 		for (int k = 0; k < process; k++) {
@@ -79,21 +79,6 @@ bool Add::runBlock(void){
 		}
 		break;
 	}
-	/*case ComplexValueXY:
-	{
-						   for (int k = 0; k < process; k++) {
-
-							   t_complex_xy in;
-							   inputSignals[0]->bufferGet(&in);
-							   t_complex_xy noise;
-							   inputSignals[1]->bufferGet(&noise);
-
-							   t_complex_xy out = { in.x + noise.x, in.y + noise.y };
-
-							   outputSignals[0]->bufferPut(out);
-						   }
-						 break;
-	}*/
 	}
 	return true;
 }

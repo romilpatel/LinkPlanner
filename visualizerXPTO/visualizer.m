@@ -9,6 +9,7 @@ function [ ] = visualizer( ~ )
 %   IT, Aveiro.
 
 %% Clear command window
+
 warning('off'); 
 clc;
 

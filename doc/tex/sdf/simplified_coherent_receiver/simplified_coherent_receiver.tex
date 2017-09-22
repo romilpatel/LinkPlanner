@@ -57,7 +57,74 @@ Here, the average value of the phase returned by Equation \ref{Eq:5.19} is zero,
 \end{figure}
 
 \subsection{Tx side}
-Single polarization 16QAM signals (1.25 Gbaud) to be generated at the Tx through an IQ modulator (Figure \ref{DSP_main_subsystem}). The IQ modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.
+Single polarization 16QAM signals (1.25 Gbaud) to be generated at the Tx through an IQ modulator (Figure \ref{DSP_main_subsystem}). The IQ modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.\\
+Suppose we have a SSB signal $u(t)$ described as,
+\begin{equation}
+u(t)=u_r(t)+iu_i(t)
+\label{Eq:5.20}
+\end{equation}
+In the equation \ref{Eq:5.20}, the real and imaginary parts $U_r(t)$ and $U_i(t)$ are related through the Kramers-Kronig relation with each other. An intuitive way to analyze the relation is based on expressing its Fourier transform $\tilde{U}(\omega)$ as follows,
+\begin{equation}
+\tilde{U}(\omega)=\dfrac{1}{2}[1+sgn(\omega)]\tilde{U}(\omega)
+\label{Eq:5.21}
+\end{equation}
+The equation \ref{Eq:5.21} follows the SSB signal condition $\tilde{U}(\omega)=0$ for $\omega<0$. Further, simplification0n of the signal can be summarized as follows:
+\begin{equation}
+\begin{split}
+\tilde{U}(\omega)&=\dfrac{1}{2}[1+sgn(\omega)]\tilde{U}(\omega)\\
+				 &=\dfrac{1}{2}\tilde{U}(\omega)+\dfrac{1}{2}sgn(\omega)\tilde{U}(\omega)
+\end{split}
+\label{Eq:5.22}
+\end{equation}
+Taking inverse Fourier transform of the equation \ref{Eq:5.22},
+\begin{equation}
+\begin{split}
+	{u}(t)&=IFT\{\tilde{}(\omega)\}\\
+	      &=\dfrac{1}{2}{u}(t)+\underline{\dfrac{1}{2}[IFT\{sgn(\omega)\} \circledast {u}(t)]}
+\end{split}
+\label{Eq:5.23}
+\end{equation}
+The underlined term in Equation \ref{Eq:5.23} displays that multiplication in frequency domain converted into the convolution in the time domain. Further, IFT of the function $sgn(\omega)$ given as $(-i/\pi t)$. As a consequences, we can further simplify our equation as,
+\begin{equation}
+\begin{split}
+{u}(t)&=\dfrac{1}{2}{U}(t)+\frac{1}{2}\bigg[\frac{i}{\pi t} \circledast {u}(t) \bigg]\\
+\frac{{u}(t)}{2} &=\frac{1}{2}\bigg[\frac{i}{\pi t} \circledast {u}(t) \bigg]\\
+{u}(t) &=i\bigg[\frac{1}{\pi t} \circledast {u}(t) \bigg]\\
+{u}(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u(t')}{t-t'} dt' 
+\end{split}
+\label{Eq:5.24}
+\end{equation}
+Using Equation \ref{Eq:5.20} into Equation \ref{Eq:5.24},
+\begin{equation}
+\begin{split}
+u_r(t)+iu_i(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u(t')}{t-t'} dt' 
+\end{split}
+\label{Eq:5.24}
+\end{equation}
+Therefore,
+\begin{equation}
+\begin{split}
+u_r(t)+iu_i(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_r(t')+iu_i(t')}{t-t'} dt' \\
+u_r(t)+iu_i(t)&=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_i(t')}{t-t'} dt' + \frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_r(t')}{t-t'} dt'
+\end{split}
+\label{Eq:5.24}
+\end{equation}
+which leads to,
+\begin{equation}
+\begin{split}
+u_r(t) &=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_i(t')}{t-t'} dt' \\
+u_i(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_r(t')}{t-t'} dt' \\
+\end{split}
+\label{Eq:5.24}
+\end{equation}
+
+
+
+
+
+  
+
+
 
 \subsection{Rx side}
 At the receiver side, signal is coherently detected using a simplified coherent receiver and a local oscillator. The optical signal is then converted into the electrical domain using two balanced photodetector (BPD), or alternatively four photodetector, and amplified by a transimpedance amplifier (TIA). Following that, the signals are sampled by two 8-bit 2.5 GSa/s ADC and the this digitized signal sent to the FPGA (Virtex-7) where all post-detection DSP implemented in real-time.

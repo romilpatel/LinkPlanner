@@ -1,0 +1,5 @@
+2017-09-18
+TO BE DONE
+- write the plan of the work
+- start with the simulation
+- start with the laboratorial implementation

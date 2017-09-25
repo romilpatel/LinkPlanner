@@ -63,19 +63,19 @@ Third, only Alice knows information about messages $m_{1}$ and $m_{2}$. She sets
   \item Next, Alice sends to Bob throughout a quantum channel $ks$ photons encrypted using the basis defined in $S_{A1}$ and according to the values defined in $S_{A2}$.
       $$S_{AB} = \{\uparrow, \nearrow, \searrow, \to, \to, \nearrow, \to, \searrow \}$$
 
-  \item Before step 2, Bob also randomly generate $ks$ bits and fill the following array:
+  \item Before step 2, Bob also randomly generates $ks$ bits and fills the following array:
   $$S_{B1} = \{0,1,0,1,0,1,1,1 \}$$
-  $S_{B1}$ has the basis which Bob chooses to read the photons sent by Alice.
+  $S_{B1}$ has the basis which Bob chooses to measure the photons sent by Alice.
 
-  \item When Bob has received photon from Alice, He measures them through the basis defined in $S_{B1}$:
+  \item When Bob has received photons from Alice, He measures them through the basis defined in $S_{B1}$:
   $$\{ +,\times,+,\times,+,\times, \times, \times \}$$ and He will get $ks$ results:
   $$S_{B1\prime} = \{1,1,?,?,0,1,?,0 \}$$
 
-  \item After measurements have been taken, Bob informs Alice that he has already measure the photons and sends a \textit{Hash Function}.
+  \item After measurements have been taken, Bob informs Alice that he has already measured the photons and sends a \textit{Hash Function}.
 
   \item Once Alice has received the \textit{Hash Function} from Bob, she sends throughout a classical channel the basis which she has used to codify the photons, $S_{A1} = \{0,1,1,0,0,1,0,1\}$.
 
-  \item In order to know which photon were measured correctly, Bob does the operation $S_{B2}=S_{B1} \oplus S_{A1}$ and gets the following result: $$S_{B2} = \{1,1,0,0,1,1,0,1 \}$$.
+  \item In order to know which photons were measured correctly, Bob does the operation $S_{B2}=S_{B1} \oplus S_{A1}$ and gets the following result: $$S_{B2} = \{1,1,0,0,1,1,0,1 \}$$.
       After that, Bob sends to Alice the information about the minimum number between "ones" and "zeros" $$n=min(\#0,\#1)=3$$
 
   \item If $n<s$, being $s$ the size of the message, Alice and Bob will repeat the steps from $1$ to $7$ and Bob adds more bits to sequence $S_{B2}$.
@@ -117,7 +117,7 @@ First of all, the protocol will be simulated and then a experimental setup will 
 	\caption{Experimental Setup}\label{experimentalsetup}
 \end{figure}
 
-As one may see in figure \ref{experimentalsetup} this simulation will have three block. Two of them are Alice and Bob and they are connected through two classical channels and one quantum channel. In addition, a third block will be performed for the calculation of \textit{Mutual Information}. The mutual information (MI) between Alice and Bob is defined in terms of their join distribution.
+As one may see in figure \ref{experimentalsetup} this simulation will have three blocks. Two of them are Alice and Bob and they are connected through two classical channels and one quantum channel. In addition, a third block will be performed for the calculation of \textit{Mutual Information}. The mutual information (MI) between Alice and Bob is defined in terms of their join distribution.
 
 \begin{figure}[h]
 	\centering \includegraphics[width=1.1\textwidth,height=9cm]{./sdf/ot_with_discrete_variables/figures/DiagramBlock_Simulation.jpg}
@@ -130,11 +130,11 @@ In figure \ref{functionalblockdiagram} is presented the block diagram of the sim
 In figures \ref{quantumchannelcommunication1} and \ref{quantumchannelcommunication2} are presented the experimental setup to be performed in the lab. Starting with Alice's side and then Bob's side.
 
 \begin{figure}[H]
-	\centering \includegraphics[width=0.9\textwidth,height=11cm]{./sdf/ot_with_discrete_variables/figures/OT_experimental_alice.pdf}
+	\centering \includegraphics[width=1.1\textwidth,height=20cm]{./sdf/ot_with_discrete_variables/figures/OT_experimental_alice.pdf}
 	\caption{Quantum communication diagram - Alice's side}\label{quantumchannelcommunication1}
 \end{figure}
 
 \begin{figure}[H]
-	\centering \includegraphics[width=0.9\textwidth,height=11cm]{./sdf/ot_with_discrete_variables/figures/OT_experimental_bob.pdf}
+	\centering \includegraphics[width=1.1\textwidth,height=20cm]{./sdf/ot_with_discrete_variables/figures/OT_experimental_bob.pdf}
 	\caption{Quantum communication diagram - Bob's side}\label{quantumchannelcommunication2}
 \end{figure} 

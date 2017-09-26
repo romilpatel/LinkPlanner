@@ -17,7 +17,7 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated(1000);
+	int numberOfBitsGenerated(40000);
 	int samplesPerSymbol(16);
 	int pLength = 5;
 	double bitPeriod = 20e-12;
@@ -28,7 +28,7 @@ int main(){
 	vector<t_iqValues> iqAmplitudeValues = { {-1, 0} , {1, 0} };
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	double responsivity = 1;
-	double amplification = 1e6;
+	double amplification = 1;
 	double electricalNoiseAmplitude = 0;// 15.397586549153788;
 	int samplesToSkip = 8 * samplesPerSymbol;
 	int bufferLength = 512;

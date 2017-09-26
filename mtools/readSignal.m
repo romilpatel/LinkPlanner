@@ -39,19 +39,11 @@ toxy = 'OpticalSignalXY';
 
 %% Get global variable "nRead"
 %nReadr = getGlobalnRead;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 if nargin == 1
     nReadr = Inf;
 end
-=======
-nReadr = 256;
->>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
-=======
-if nargin == 1
-    nReadr = Inf;
-end
->>>>>>> Romil
+
 % 
 % %% Get global variable "t_binary"
 % t_binaryr = getGlobalt_binary;
@@ -59,7 +51,7 @@ t_binaryr = 'int';
 % 
 % %% Get global variable "t_real"
 %t_realr = getGlobalt_real;
-t_realr = 'double'
+t_realr = 'double';
 % 
 % %% Get global variable "t_complex"
 % t_complexr = getGlobalt_complex;

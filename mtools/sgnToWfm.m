@@ -1,4 +1,4 @@
-function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn,fname_wfm, nReadr )
+function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn, fname_wfm, nReadr )
 % This function will build a WFM file given an input signal filename.
 %
 % [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate

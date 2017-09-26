@@ -1,25 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname, nReadr )
-=======
-function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname )
->>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
-=======
-function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname, nReadr )
->>>>>>> Romil
+
 %READSIGNALDATA Reads signal data to "visualizer".
 %   [ data, samplingFrequency ] = READSIGNALDATA(fid, type, symbolPeriod, samplingPeriod)
 %   just reads data ("data") from a file ("fid")
 %   knowing the data parameters ("type", "symbolPeriod" and "samplingPeriod") and 
 %   returning the new sampling simulation frequency ("samplingFrequency").
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 %   nReadr specifies the number of symbols to read
-=======
->>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
-=======
-%   nReadr specifies the number of symbols to read
->>>>>>> Romil
 
 fid = fopen(fname,'r');
 

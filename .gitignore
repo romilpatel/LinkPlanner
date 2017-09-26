@@ -44,6 +44,12 @@
 
 *.mat
 
+######################
+# Visio
+######################
+
+*.~vsdx
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

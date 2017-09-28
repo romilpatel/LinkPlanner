@@ -18,15 +18,15 @@ public:
 	double responsivity = 1;
 	bool shotNoise = false;
 
+	bool thermalNoise = false;
+	t_real thermalNoiseAmplitude = 4.7626e-06;
+
 	default_random_engine generatorAmp1;
 	default_random_engine generatorAmp2;
 
 	Photodiode() {};
 	Photodiode(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	
-	double outputOpticalWavelength{ 1550e-9 };
-	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
-
 	void initialize(void);
 	bool runBlock(void);
 
@@ -35,6 +35,11 @@ public:
 
 	void useNoise(bool sNoise) { shotNoise = sNoise; }
 
+	void useThermalNoise(bool sNoise) { thermalNoise = sNoise; }
+	void setThermalNoiseAmplitude(double amplitude) { thermalNoiseAmplitude = amplitude; }
+	double const getThermalNoiseAmplitude(void) { return thermalNoiseAmplitude; };
+
+private:
 };
 
 

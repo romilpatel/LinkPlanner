@@ -4,7 +4,7 @@
 #include "netxpto.h"
 #include "bit_error_rate.h"
 
-void BitErrorRate::initialize(void) {
+void BitErrorRate::initialize(void){
 	firstTime = false;
 
 	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
@@ -13,7 +13,7 @@ void BitErrorRate::initialize(void) {
 }
 
 
-bool BitErrorRate::runBlock(void) {
+bool BitErrorRate::runBlock(void){
 
 	/* Computing z */ // This code converges in below 10 steps, exactness chosen in order to achieve this rapid convergence
 	if (firstPass)
@@ -24,7 +24,7 @@ bool BitErrorRate::runBlock(void) {
 		double x3 = x2 - (erf(x2 / sqrt(2)) + 1 - alpha)*(x2 - x1) / (erf(x2 / sqrt(2)) - erf(x1 / sqrt(2)));
 		double exacteness = 1e-15;
 
-		while (abs(erf(x3 / sqrt(2)) + 1 - alpha) > exacteness)
+		while (abs(erf(x3 / sqrt(2)) + 1 - alpha)>exacteness)
 		{
 			x3 = x2 - (erf(x2 / sqrt(2)) + 1 - alpha)*(x2 - x1) / (erf(x2 / sqrt(2)) - erf(x1 / sqrt(2)));
 			x1 = x2;
@@ -43,7 +43,7 @@ bool BitErrorRate::runBlock(void) {
 
 	int process = min(ready, space);
 
-
+	
 	/* Outputting final report */
 
 	if (process == 0)

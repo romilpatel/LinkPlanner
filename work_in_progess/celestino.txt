@@ -1,4 +1,11 @@
-2917-09-25
+2017-09-26
+TO BE DONE
+  - melhorar a introdução ao artigo sobre SSFM time domain
+  - detalhar modelo de simulação, transmissor
+  - Diagrama de bloco para QPSK transmiter no dominio da frequencia / ANP, vai tentar corrigir os erros do código
+
+
+2017-09-25
 DONE
  - enviar pdf do artigo compensação não linear no dominio do tempo para o e-mail para discutirmos
 

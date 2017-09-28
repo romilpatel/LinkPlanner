@@ -75,7 +75,7 @@ int Signal::ready() {
 			return (inPosition - outPosition);
 		}
 		else {
-			return (bufferLength - outPosition + inPosition + 1);
+			return (bufferLength - outPosition + inPosition);
 		}
 
 	}
@@ -378,11 +378,11 @@ bool FIR_Filter::runBlock(void) {
 	int space = outputSignals[0]->space();
 
 	vector<double> var_temp(ready, 0);
-	for (int k = 0; k < ready; k++) {
+/*	for (int k = 0; k < ready; k++) {
 		t_real val;
 		(inputSignals[0])->bufferGet(&val);
 		var_temp[k] = val;
-	}
+	}*/
 
 	int process = min(ready, space);
 

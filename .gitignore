@@ -7,7 +7,7 @@
 # PDF Files
 ######################
 
-doc/tex/main_netxpto.pdf
+#doc/tex/main_netxpto.pdf
 
 ######################
 # Visual C++
@@ -43,6 +43,25 @@ doc/tex/main_netxpto.pdf
 ######################
 
 *.mat
+
+######################
+# Visio
+######################
+
+*.~vsdx
+
+######################
+# netxpto
+######################
+
+*.sgn
+
+
+######################
+# netxpto/mtools
+######################
+
+*.wfm
 
 # Windows image file caches
 Thumbs.db

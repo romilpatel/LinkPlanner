@@ -7,7 +7,7 @@
 #include "sampler.h"
 
 
-void Sampler::initialize(void) {
+void Sampler::initialize(void){
 
 	firstTime = false;
 

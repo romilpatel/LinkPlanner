@@ -25,13 +25,10 @@ public:
 	void setMidReportSize(int M) { m = M; }
 	int const getMidReportSize(void) { return m; }
 
-	void setSizeConstellation(int sConst) { sizeConstellation = sConst; };
-	int const getSizeConstellation(void) { sizeConstellation; }
-
 private:
+
 	int firstPass = 1;
 
-	int sizeConstellation = 2;
 	double alpha = 0.05;
 	double z;
 	int m = 0;

@@ -17,7 +17,6 @@ public:
 	bool runBlock(void);
 	
 private:
-	int aux = 0;
 };
 
 

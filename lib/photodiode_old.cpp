@@ -8,7 +8,7 @@
 #include <random>
 
 
-void Photodiode::initialize(void) {
+void Photodiode::initialize(void){
 
 	firstTime = false;
 

@@ -1,5 +1,5 @@
-BER= 0.454054
+BER= 0.222222
 Upper and lower confidence bounds for 95% confidence level 
-Upper Bound= 0.522299
-Lower Bound= 0.373404
-Number of received bits =185
+Upper Bound= 0.288251
+Lower Bound= 0.149964
+Number of received bits =153

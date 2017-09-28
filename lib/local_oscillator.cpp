@@ -14,10 +14,8 @@ void LocalOscillator::initialize(void){
 
 	outputSignals[0]->setSamplingPeriod(samplingPeriod);
 	outputSignals[0]->setSymbolPeriod(symbolPeriod);
-
 	outputSignals[0]->setCentralWavelength(getWavelength());
 	outputSignals[0]->setCentralFrequency(getFrequency());
-
 }
 
 

@@ -5,7 +5,7 @@
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
 \textbf{Student Name}  &:& Romil Patel\\
 \textbf{Starting Date} &:& August 16, 2017\\
-\textbf{Goal}          &:& Develop a simplified structure (low cost) for a coherent receiver, that can be used in coherent PON, inter-data center connections, or metropolitan networks (optical path lengths should be < 100 km).
+\textbf{Goal}          &:& Develop a simplified structure (low cost) for a coherent receiver, that can be used in coherent PON, inter-data center connections, or metropolitan networks (optical path lengths < 100 km).
 \end{tabular}
 \end{tcolorbox}
 
@@ -13,6 +13,62 @@ In recent days, homodyne detection has been discussed and investigated a lot due
 On the other hand, heterodyne receiver simplifies the detection scheme to some extent with the requirement of having only half of photodetectors and ADC.\\
 Such coherent detection scheme constitute the solution for the medium-to-long-reach application; however, the cost of coherent receiver becomes a major obstacle in the case of short-reach links applications like PON, inter-data-center communications, metropolitan network etc. In order to get rid of higher cost and to make the transceiver more efficiently applicable in short-reach links, a new architecture of optical receiver has been proposed which combines the advantages of coherent transmission and cost effectiveness of direct detection. The working principle of the receiver is based on the famous Kramers-Kronig(KK) relationship which facilitates digital post-compensation of linear propagation impairments. The proposed Kramers-Kronig(KK) receiver structure is highly efficient in terms of spectral occupancy and energy consumptions.
 \subsection{Minimum Phase Signal}
+
+\subsubsection{Requirements for the KK receiver scheme}
+
+The Kramers-Kronig receiver based communication scheme relies on identifying a condition which ensures that \textbf{the received signal is minimum phase}, in such a case its phase can be uniquely extracted from its intensity.\\ In order to facilitate the extraction of phase information from the intesity of the received minimum phase signal, it is prerequisite that the transmitted signal should be \textbf{analytical signal} in which real and imaginary parts are related to each other by means of Hilbert transform of each other.   
+
+\subsubsection{What is minimum phase signal?}
+A necessary and sufficient condition for a signal $E(t)$ to be minimum phase is that the curve described by $E(t)$ when $t\rightarrow -\infty$ to $t\rightarrow \infty$ \textbf{does not encircle the origin}.
+
+\subsubsection{what is Analytical Signal?}
+An analytic signal is a complex-valued function that has no negative frequency components and its real and imaginary parts are related to each other by the Hilbert transform.
+\begin{equation}
+s_a(t)=s(t)+j\hat{s}(t)
+\label{Analytical signal}
+\end{equation}
+where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transform of the signal ${s}(t)$. Such analytical signal can be used to generate SSB signal. In this section, we´ll discuss the brief idea of generating SSB signal using Hilbert transform method. To understand this, we may express signal $s(t)$ as a summation of the two complex-valued functions.
+\begin{equation}
+s(t)=\dfrac{1}{2}[s(t)+j\hat{s}(t)]+\dfrac{1}{2}[s(t)-j\hat{s}(t)]
+\label{}
+\end{equation}
+where, the term $\dfrac{1}{2}[s(t)+j\hat{s}(t)]$ is the analytical representation of the signal $s(t)$ (from Equation \ref{Analytical signal}). Another term represents the complex conjugate $\dfrac{1}{2}[s(t)-j\hat{s}(t)]$ of this analytical signal. Such representation of the signal ${s_a}(t)$ and ${s_a^*}(t)$ divide the signal into non-negative frequency component and non-positive frequency component respectively. Alternatively, we can write it as,
+\begin{equation}
+\dfrac{1}{2}{S_a}(f) = \begin{cases}
+S(f) &\text{for $f>0$}\\
+0    &\text{for $f<0$}\\
+\end{cases}
+\end{equation}
+where ${S_a}(f)$ and ${S}(f)$ are the Fourier transform of ${t_a}(t)$ and ${s}(t)$ respectively. The frequency translated version of ${S_a}(f-f_0)$ contains only one side (positive) of ${S}(f)$ and hence it is called single sideband signal ${s_ssb}(t)$,
+\begin{equation}
+{F}^{-1}\{S_a(f-f_0)\}={s_a}(t) e^{j2\pi f_0 t}={s_{ssb}}(t)+j{\hat{s}_{ssb}(t)}
+\end{equation}
+Therefore, from the Euler's formula,
+\begin{equation}
+\begin{split}
+{s}_{ssb}(t)&=Re\{s_a(t)  e^{j2\pi f_0 t}\}\\
+&=Re\{[s(t)+j\hat{s}(t)] [cos(2\pi f_0t)+jsin(2\pi f_0t)]\}\\
+&=s(t)cos(2\pi f_0t)-\hat{s}(t)sin(2\pi f_0t)
+\end{split}
+\label{USB_SSB}
+\end{equation}
+This Equation \ref{USB_SSB} displays the mathematical modeling of the upper sideband SSB signal. Similarly, we can generate lower sideband SSB signal by,
+\begin{equation}
+{s}_{ssb}(t)=s(t)cos(2\pi f_0t)+\hat{s}(t)sin(2\pi f_0t)
+\label{LSB_SSB}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
 The communication scheme discussed here relies on the identifying a specific condition that ensures the received signal is minimum phase. This condition facilitates the unique way to extract the phase of the received signal from its intensity. If we denote s(t) as a complex data-carrying signals whose spectrum is contained between -B/2 to B/2, and consider a single sideband signal of the form,
 \begin{equation}
 h(t)=A+s(t)exp(i\pi Bt)
@@ -59,42 +115,7 @@ Here, the average value of the phase returned by Equation \ref{Eq:5.19} is zero,
 \subsection{Tx side}
 Single polarization 16QAM signals (1.25 Gbaud) to be generated at the Tx through an IQ modulator (Figure \ref{DSP_main_subsystem}). The IQ modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.
 
-\subsubsection{Analytical Signal}
-In mathematics and signal processing, an analytic signal is a complex-valued function that has no negative frequency components.The real and imaginary parts of an analytic signal are real-valued functions related to each other by the Hilbert transform.
-\begin{equation}
-s_a(t)=s(t)+j\hat{s}(t)
-\label{Analytical signal}
-\end{equation}
-where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transform of the signal ${s}(t)$. Such analytical signal can be used to generate SSB signal. In this section, we´ll discuss the brief idea of generating SSB signal using Hilbert transform method. To understand this, we may express signal $s(t)$ as a summation of the two complex-valued functions.
-\begin{equation}
-s(t)=\dfrac{1}{2}[s(t)+j\hat{s}(t)]+\dfrac{1}{2}[s(t)-j\hat{s}(t)]
-\label{}
-\end{equation}
-where, the term $\dfrac{1}{2}[s(t)+j\hat{s}(t)]$ is the analytical representation of the signal $s(t)$ (from Equation \ref{Analytical signal}). Another term represents the complex conjugate $\dfrac{1}{2}[s(t)-j\hat{s}(t)]$ of this analytical signal. Such representation of the signal ${s_a}(t)$ and ${s_a^*}(t)$ divide the signal into non-negative frequency component and non-positive frequency component respectively. Alternatively, we can write it as,
-\begin{equation}
-	\dfrac{1}{2}{S_a}(f) = \begin{cases}
-		S(f) &\text{for $f>0$}\\
-		0    &\text{for $f<0$}\\
-	\end{cases}
-\end{equation}
-where ${S_a}(f)$ and ${S}(f)$ are the Fourier transform of ${t_a}(t)$ and ${s}(t)$ respectively. The frequency translated version of ${S_a}(f-f_0)$ contains only one side (positive) of ${S}(f)$ and hence it is called single sideband signal ${s_ssb}(t)$,
-\begin{equation}
-{F}^{-1}\{S_a(f-f_0)\}={s_a}(t) e^{j2\pi f_0 t}={s_{ssb}}(t)+j{\hat{s}_{ssb}(t)}
-\end{equation}
-Therefore, from the Euler's formula,
-\begin{equation}
-\begin{split}
-{s}_{ssb}(t)&=Re\{s_a(t)  e^{j2\pi f_0 t}\}\\
-&=Re\{[s(t)+j\hat{s}(t)] [cos(2\pi f_0t)+jsin(2\pi f_0t)]\}\\
-&=s(t)cos(2\pi f_0t)-\hat{s}(t)sin(2\pi f_0t)
-\end{split}
-\label{USB_SSB}
-\end{equation}
-This Equation \ref{USB_SSB} displays the mathematical modeling of the upper sideband SSB signal. Similarly, we can generate lower sideband SSB signal by,
-\begin{equation}
-{s}_{ssb}(t)=s(t)cos(2\pi f_0t)+\hat{s}(t)sin(2\pi f_0t)
-\label{LSB_SSB}
-\end{equation}
+
 
 
 

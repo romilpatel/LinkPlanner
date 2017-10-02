@@ -58,6 +58,46 @@ Here, the average value of the phase returned by Equation \ref{Eq:5.19} is zero,
 
 \subsection{Tx side}
 Single polarization 16QAM signals (1.25 Gbaud) to be generated at the Tx through an IQ modulator (Figure \ref{DSP_main_subsystem}). The IQ modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.
+
+\subsubsection{Analytical Signal}
+In mathematics and signal processing, an analytic signal is a complex-valued function that has no negative frequency components.The real and imaginary parts of an analytic signal are real-valued functions related to each other by the Hilbert transform.
+\begin{equation}
+s_a(t)=s(t)+j\hat{s}(t)
+\label{Analytical signal}
+\end{equation}
+where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transform of the signal ${s}(t)$. Such analytical signal can be used to generate SSB signal. In this section, we´ll discuss the brief idea of generating SSB signal using Hilbert transform method. To understand this, we may express signal $s(t)$ as a summation of the two complex-valued functions.
+\begin{equation}
+s(t)=\dfrac{1}{2}[s(t)+j\hat{s}(t)]+\dfrac{1}{2}[s(t)-j\hat{s}(t)]
+\label{}
+\end{equation}
+where, the term $\dfrac{1}{2}[s(t)+j\hat{s}(t)]$ is the analytical representation of the signal $s(t)$ (from Equation \ref{Analytical signal}). Another term represents the complex conjugate $\dfrac{1}{2}[s(t)-j\hat{s}(t)]$ of this analytical signal. Such representation of the signal ${s_a}(t)$ and ${s_a^*}(t)$ divide the signal into non-negative frequency component and non-positive frequency component respectively. Alternatively, we can write it as,
+\begin{equation}
+	\dfrac{1}{2}{S_a}(f) = \begin{cases}
+		S(f) &\text{for $f>0$}\\
+		0    &\text{for $f<0$}\\
+	\end{cases}
+\end{equation}
+where ${S_a}(f)$ and ${S}(f)$ are the Fourier transform of ${t_a}(t)$ and ${s}(t)$ respectively. The frequency translated version of ${S_a}(f-f_0)$ contains only one side (positive) of ${S}(f)$ and hence it is called single sideband signal ${s_ssb}(t)$,
+\begin{equation}
+{F}^{-1}\{S_a(f-f_0)\}={s_a}(t) e^{j2\pi f_0 t}={s_{ssb}}(t)+j{\hat{s}_{ssb}(t)}
+\end{equation}
+Therefore, from the Euler's formula,
+\begin{equation}
+\begin{split}
+{s}_{ssb}(t)&=Re\{s_a(t)  e^{j2\pi f_0 t}\}\\
+&=Re\{[s(t)+j\hat{s}(t)] [cos(2\pi f_0t)+jsin(2\pi f_0t)]\}\\
+&=s(t)cos(2\pi f_0t)-\hat{s}(t)sin(2\pi f_0t)
+\end{split}
+\label{USB_SSB}
+\end{equation}
+This Equation \ref{USB_SSB} displays the mathematical modeling of the upper sideband SSB signal. Similarly, we can generate lower sideband SSB signal by,
+\begin{equation}
+{s}_{ssb}(t)=s(t)cos(2\pi f_0t)+\hat{s}(t)sin(2\pi f_0t)
+\label{LSB_SSB}
+\end{equation}
+
+
+
 \subsubsection{SSB Signal generation using Hilbert transformation}
 This section describes the SSB signal generation using Hilbert transformation method (Phase Shift Method). Consider a message signal $m(t)$ with its frequency domain spectrum $M(F)$ as shown in Figure\ref{Original_baseband_signal}. From the Figure \ref{Original_baseband_signal}, we can see that both the side are scaled by factor '1' which means it represents the original signal.
 \begin{figure}[h]
@@ -91,14 +131,14 @@ Suppose we modulate the Hilbert transformed message signal $\hat{m}(t)$  with th
 
 \begin{equation}
 \begin{split}
-{\hat{m}t} sin(2\pi f_c t)&={\hat{m}(t)}\frac{e^{j2\pi f_c t} - e^{-j2\pi f_c t} }{2}\\
+{\hat{m}(t)} sin(2\pi f_c t)&={\hat{m}(t)}\frac{e^{j2\pi f_c t} - e^{-j2\pi f_c t} }{2}\\
 &={\hat{m}(t)}\frac{e^{j2\pi f_c t}}{2} - {\hat{m}(t)}\frac{e^{-j2\pi f_c t}}{2}\\
 &={\frac{\hat{M}(f-f_c)}{2j}}-{\frac{\hat{M}(f+f_c)}{2j}}\\
 &={\frac{-j}{2}\hat{M}(f-f_c)}+{\frac{-j}{2}\hat{M}(f+f_c)}\\
 \end{split}
 \label{5.22}
 \end{equation}
-From the equation \ref{Eq:5.22}, the detailed explanation displays that Figure displays the spectrum of the $\hat{M}(f+f_c)$ and $\hat{M}(f-f_c)$ for the positive and negative frequencies respectively. The final equation resolution of equation displays that both positive and negative side of the spectrum has been multiplied with $\frac{j}{2}$ and $\frac{-j}{2}$ respectively. Finally the spectrum of the signal ${\hat{m}t} sin(2\pi f_c t)$ can be given as Figure.
+The detailed explanation of the equation \ref{Eq:5.22} has been described in the Figure \ref{Hilbert_Transformed_modulated_signal} and \ref{Hilbert_Final}. Figure \ref{Hilbert_Transformed_modulated_signal} displays the spectrum of the $\hat{M}(f+f_c)$ and $\hat{M}(f-f_c)$ for the positive and negative frequencies respectively. The final equation resolution of equation displays that both positive and negative side of the spectrum multiplied with $\frac{j}{2}$ and $\frac{-j}{2}$ respectively. Finally the spectrum of the signal ${\hat{m}(t)} sin(2\pi f_c t)$ can be given as Figure \ref{Hilbert_Final}.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB4.pdf}
@@ -108,10 +148,25 @@ From the equation \ref{Eq:5.22}, the detailed explanation displays that Figure d
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB5.pdf}
-	\caption{Spectrum of}\label{xxx}
+	\caption{Hilbert transformed modulated signal}\label{Hilbert_Final}
 \end{figure}
 
- 
+Further, summation of the two signals ${m(t)} cos(2\pi f_c t)$ and ${\hat{m}(t)} sin(2\pi f_c t)$ will generate the upper sideband SSB signal as follows,
+\begin{equation}
+u(t)={m(t)} cos(2\pi f_c t)-{\hat{m}(t)} sin(2\pi f_c t)
+\label{5.23}
+\end{equation}
+From the above discussion, the spectrum of the Equation \ref{5.23} can be given by the Figure \ref{SSB_signal_spectrum}. Similarly, for the lower sideband SSB can be generated by Equation,
+\begin{equation}
+u(t)={m(t)} cos(2\pi f_c t)+{\hat{m}(t)} sin(2\pi f_c t)
+\label{5.24}
+\end{equation}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB6.pdf}
+	\caption{SSB signal spectrum}\label{SSB_signal_spectrum}
+\end{figure}
+
 \subsubsection{Kramers Kronig Relation}
 Suppose we have a SSB signal $u(t)$ described as,
 \begin{equation}

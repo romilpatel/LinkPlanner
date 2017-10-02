@@ -57,26 +57,81 @@ Here, the average value of the phase returned by Equation \ref{Eq:5.19} is zero,
 \end{figure}
 
 \subsection{Tx side}
-Single polarization 16QAM signals (1.25 Gbaud) to be generated at the Tx through an IQ modulator (Figure \ref{DSP_main_subsystem}). The IQ modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.\\
+Single polarization 16QAM signals (1.25 Gbaud) to be generated at the Tx through an IQ modulator (Figure \ref{DSP_main_subsystem}). The IQ modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.
+\subsubsection{SSB Signal generation using Hilbert transformation}
+This section describes the SSB signal generation using Hilbert transformation method (Phase Shift Method). Consider a message signal $m(t)$ with its frequency domain spectrum $M(F)$ as shown in Figure\ref{Original_baseband_signal}. From the Figure \ref{Original_baseband_signal}, we can see that both the side are scaled by factor '1' which means it represents the original signal.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB1.pdf}
+	\caption{Original baseband signal}\label{Original_baseband_signal}
+\end{figure}\\ 	
+Now let's consider the modulated signal $x(t)$ given as,
+\begin{equation}
+x(t)=m(t) cos(2\pi f_c t)
+\label{Eq:5.20}
+\end{equation}
+Frequency domain representation of the equation \ref{Eq:5.20} can be given as,
+\begin{equation}
+X(F)=\frac{1}{2}M(f-f_c)+\frac{1}{2}M(f+f_c)
+\label{Eq:5.21}
+\end{equation}
+Here in equation \ref{Eq:5.21}, we can observe that each side band are scaled by $\dfrac{1}{2}$ on the frequency spectrum. Figure displays the frequency domain representation of the modulated signal $X(F)$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB2.pdf}
+	\caption{Original modulated signal}\label{Original_modulated_signal}
+\end{figure}\\ 
+Next, we will discuss something more interesting which is called as Hilbert transform of the original message signal $m(t)$. As we discussed earlier, in the frequency domain, the Hilbert transformed signal $\hat{M}(f)$ can be achieved by multiplying the Fourier transformed signal $M(F)$ with $[-j sgn(F)]$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB3.pdf}
+	\caption{Hilbert transformed modulated signal}\label{Hilbert_Transformed_signal}
+\end{figure}
+Suppose we modulate the Hilbert transformed message signal $\hat{m}(t)$  with the $sin(2\pi f_c t)$ (quadrature phase carrier), then we get the following results:
+
+\begin{equation}
+\begin{split}
+{\hat{m}t} sin(2\pi f_c t)&={\hat{m}(t)}\frac{e^{j2\pi f_c t} - e^{-j2\pi f_c t} }{2}\\
+&={\hat{m}(t)}\frac{e^{j2\pi f_c t}}{2} - {\hat{m}(t)}\frac{e^{-j2\pi f_c t}}{2}\\
+&={\frac{\hat{M}(f-f_c)}{2j}}-{\frac{\hat{M}(f+f_c)}{2j}}\\
+&={\frac{-j}{2}\hat{M}(f-f_c)}+{\frac{-j}{2}\hat{M}(f+f_c)}\\
+\end{split}
+\label{5.22}
+\end{equation}
+From the equation \ref{Eq:5.22}, the detailed explanation displays that Figure displays the spectrum of the $\hat{M}(f+f_c)$ and $\hat{M}(f-f_c)$ for the positive and negative frequencies respectively. The final equation resolution of equation displays that both positive and negative side of the spectrum has been multiplied with $\frac{j}{2}$ and $\frac{-j}{2}$ respectively. Finally the spectrum of the signal ${\hat{m}t} sin(2\pi f_c t)$ can be given as Figure.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB4.pdf}
+	\caption{Hilbert transformed modulated signal}\label{Hilbert_Transformed_modulated_signal}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB5.pdf}
+	\caption{Spectrum of}\label{xxx}
+\end{figure}
+
+ 
+\subsubsection{Kramers Kronig Relation}
 Suppose we have a SSB signal $u(t)$ described as,
 \begin{equation}
 u(t)=u_r(t)+iu_i(t)
-\label{Eq:5.20}
+\label{Eq:5.22}
 \end{equation}
-In the equation \ref{Eq:5.20}, the real and imaginary parts $U_r(t)$ and $U_i(t)$ are related through the Kramers-Kronig relation with each other. An intuitive way to analyze the relation is based on expressing its Fourier transform $\tilde{U}(\omega)$ as follows,
+In the equation \ref{Eq:5.22}, the real and imaginary parts $U_r(t)$ and $U_i(t)$ are related through the Kramers-Kronig relation with each other. An intuitive way to analyze the relation is based on expressing its Fourier transform $\tilde{U}(\omega)$ as follows,
 \begin{equation}
 \tilde{U}(\omega)=\dfrac{1}{2}[1+sgn(\omega)]\tilde{U}(\omega)
-\label{Eq:5.21}
+\label{Eq:5.23}
 \end{equation}
-The equation \ref{Eq:5.21} follows the SSB signal condition $\tilde{U}(\omega)=0$ for $\omega<0$. Further, simplification0n of the signal can be summarized as follows:
+The equation \ref{Eq:5.23} follows the SSB signal condition $\tilde{U}(\omega)=0$ for $\omega<0$. Further, simplification0n of the signal can be summarized as follows:
 \begin{equation}
 \begin{split}
 \tilde{U}(\omega)&=\dfrac{1}{2}[1+sgn(\omega)]\tilde{U}(\omega)\\
 				 &=\dfrac{1}{2}\tilde{U}(\omega)+\dfrac{1}{2}sgn(\omega)\tilde{U}(\omega)
 \end{split}
-\label{Eq:5.22}
+\label{Eq:5.23}
 \end{equation}
-Taking inverse Fourier transform of the equation \ref{Eq:5.22},
+Taking inverse Fourier transform of the equation \ref{Eq:5.23},
 \begin{equation}
 \begin{split}
 	{u}(t)&=IFT\{\tilde{}(\omega)\}\\
@@ -94,7 +149,7 @@ The underlined term in Equation \ref{Eq:5.23} displays that multiplication in fr
 \end{split}
 \label{Eq:5.24}
 \end{equation}
-Using Equation \ref{Eq:5.20} into Equation \ref{Eq:5.24},
+Using Equation \ref{Eq:5.23} into Equation \ref{Eq:5.24},
 \begin{equation}
 \begin{split}
 u_r(t)+iu_i(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u(t')}{t-t'} dt' 

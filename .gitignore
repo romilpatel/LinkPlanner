@@ -44,6 +44,31 @@ doc/tex/main_netxpto.pdf
 
 *.mat
 
+######################
+# Matlools
+######################
+
+*.wfm
+
+######################
+# Visio
+######################
+
+*.~vsdx
+
+######################
+# netxpto
+######################
+
+*.sgn
+
+
+######################
+# netxpto/mtools
+######################
+
+*.wfm
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

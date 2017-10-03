@@ -1,0 +1,13 @@
+2017-09-28
+TO BE DONE
+  - photodiode.cpp 
+	- sem ruído térmico, e sem ruído quântico, largura de banda infinita
+	- com ruído térmico,  largura de banda infinita
+	- com ruído quântico, largura de banda infinita
+	- com largura de banda finita (LATER)
+  - photodiode.h
+  - photodiode.tex
+  - difference.cpp
+  - difference.h
+  - quantum_noise.tex
+

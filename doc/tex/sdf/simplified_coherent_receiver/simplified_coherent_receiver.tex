@@ -9,53 +9,50 @@
 \end{tabular}
 \end{tcolorbox}
 
-In recent days, homodyne detection has been discussed and investigated a lot due to the advancement in the DSP in the electrical domain. However, a major drawback of homodyne detection is the incoming signal should be separated into inphase and quadrature (I/Q) signals in the optical domain. Therefore, it demands more hardware to accommodate the requirement of the signal separation  in the optical domain. For instance, 4 balanced photodetectors with double hybrid structures and 4-channel ADCs are required.
-On the other hand, heterodyne receiver simplifies the detection scheme to some extent with the requirement of having only half of photodetectors and ADC.\\
-Such coherent detection scheme constitute the solution for the medium-to-long-reach application; however, the cost of coherent receiver becomes a major obstacle in the case of short-reach links applications like PON, inter-data-center communications, metropolitan network etc. In order to get rid of higher cost and to make the transceiver more efficiently applicable in short-reach links, a new architecture of optical receiver has been proposed which combines the advantages of coherent transmission and cost effectiveness of direct detection. The working principle of the receiver is based on the famous Kramers-Kronig(KK) relationship which facilitates digital post-compensation of linear propagation impairments. The proposed Kramers-Kronig(KK) receiver structure is highly efficient in terms of spectral occupancy and energy consumptions.
-\subsection{Minimum Phase Signal}
+%In recent days, homodyne detection has been discussed and investigated a lot due to the advancement in the DSP in the electrical domain. However, a major drawback of homodyne detection is the incoming signal should be separated into inphase and quadrature (I/Q) signals in the optical domain. Therefore, it demands more hardware to accommodate the requirement of the signal separation  in the optical domain. For instance, 4 balanced photodetectors with double hybrid structures and 4-channel ADCs are required.
+%On the other hand, heterodyne receiver simplifies the detection scheme to some extent with the requirement of having only half of photodetectors and ADC.\\
+In the optical communication, coherent detection scheme constitute the solution for the medium-to-long-reach application; however, the cost of coherent receiver becomes a major obstacle in the case of short-reach links applications like PON, inter-data-center communications, metropolitan network etc. In order to get rid of higher cost and to make the transceiver more applicable in short-reach links, a new architecture of optical receiver has been proposed which combines the advantages of coherent transmission and cost effectiveness of direct detection. The working principle of the receiver is based on the famous Kramers-Kronig(KK) relationship which facilitates digital post-compensation of linear propagation impairments.
+\subsection{Kramers-Kronig receiver}
+The key concept behind the Kramers-Kronig self coherent receiver is to aquire "\textit{minimum phase single sideband signal}".
 
-\subsubsection{Requirements for the KK receiver scheme}
 
-The Kramers-Kronig receiver based communication scheme relies on identifying a condition which ensures that \textbf{the received signal is minimum phase}, in such a case its phase can be uniquely extracted from its intensity.\\ In order to facilitate the extraction of phase information from the intesity of the received minimum phase signal, it is prerequisite that the transmitted signal should be \textbf{analytical signal} in which real and imaginary parts are related to each other by means of Hilbert transform of each other.   
 
-\subsubsection{What is minimum phase signal?}
+\subsubsection{1. What are the requirements for the KK receiver scheme?}
+The Kramers-Kronig receiver based communication scheme relies on identifying a condition which ensures that \textbf{the received signal is minimum phase}, in such a case its phase can be uniquely extracted from its intensity.\\ In order to facilitate the extraction of phase information from the intensity of the received minimum phase signal, it is prerequisite that the transmitted signal should be \textbf{analytical signal} in which real and imaginary parts are related to each other by means of Hilbert transform of each other.   
+
+\subsubsection{2. What is minimum phase signal?}
 A necessary and sufficient condition for a signal $E(t)$ to be minimum phase is that the curve described by $E(t)$ when $t\rightarrow -\infty$ to $t\rightarrow \infty$ \textbf{does not encircle the origin}.
 
-\subsubsection{what is Analytical Signal?}
-An analytic signal is a complex-valued function that has no negative frequency components and its real and imaginary parts are related to each other by the Hilbert transform.
+\subsubsection{3. what is Analytical Signal?}
+An analytic signal is a complex-valued signal that has no negative frequency components, and its real and imaginary parts are related to each other by the Hilbert transform.
 \begin{equation}
-s_a(t)=s(t)+j\hat{s}(t)
+s_a(t)=s(t)+i\hat{s}(t)
 \label{Analytical signal}
 \end{equation}
-where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transform of the signal ${s}(t)$. Such analytical signal can be used to generate SSB signal. In this section, we´ll discuss the brief idea of generating SSB signal using Hilbert transform method. To understand this, we may express signal $s(t)$ as a summation of the two complex-valued functions.
+where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transform of the signal ${s}(t)$. Such analytical signal can be used to generate Single Sideband Signal (SSB) signal(See the Appendices).
+
+\subsubsection{4. How we can use these signals and profit from them?}
+This section represents the justification that why we need to use these signals into our proposed transceiver system.\\
+\textbf{Single Sideband Signal(SSB):}\\
+In the case of a SSB signal $u(t)$ described as,
 \begin{equation}
-s(t)=\dfrac{1}{2}[s(t)+j\hat{s}(t)]+\dfrac{1}{2}[s(t)-j\hat{s}(t)]
-\label{}
+u(t)=u_r(t)+iu_i(t)
+\label{5.15}
 \end{equation}
-where, the term $\dfrac{1}{2}[s(t)+j\hat{s}(t)]$ is the analytical representation of the signal $s(t)$ (from Equation \ref{Analytical signal}). Another term represents the complex conjugate $\dfrac{1}{2}[s(t)-j\hat{s}(t)]$ of this analytical signal. Such representation of the signal ${s_a}(t)$ and ${s_a^*}(t)$ divide the signal into non-negative frequency component and non-positive frequency component respectively. Alternatively, we can write it as,
-\begin{equation}
-\dfrac{1}{2}{S_a}(f) = \begin{cases}
-S(f) &\text{for $f>0$}\\
-0    &\text{for $f<0$}\\
-\end{cases}
-\end{equation}
-where ${S_a}(f)$ and ${S}(f)$ are the Fourier transform of ${t_a}(t)$ and ${s}(t)$ respectively. The frequency translated version of ${S_a}(f-f_0)$ contains only one side (positive) of ${S}(f)$ and hence it is called single sideband signal ${s_ssb}(t)$,
-\begin{equation}
-{F}^{-1}\{S_a(f-f_0)\}={s_a}(t) e^{j2\pi f_0 t}={s_{ssb}}(t)+j{\hat{s}_{ssb}(t)}
-\end{equation}
-Therefore, from the Euler's formula,
+the real part $U_r(t)$  and the imaginary parts $U_i(t)$ are Hilbert transform of each other.
 \begin{equation}
 \begin{split}
-{s}_{ssb}(t)&=Re\{s_a(t)  e^{j2\pi f_0 t}\}\\
-&=Re\{[s(t)+j\hat{s}(t)] [cos(2\pi f_0t)+jsin(2\pi f_0t)]\}\\
-&=s(t)cos(2\pi f_0t)-\hat{s}(t)sin(2\pi f_0t)
+u_r(t) &=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_i(t')}{t-t'} dt' \\
+u_i(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_r(t')}{t-t'} dt' \\
 \end{split}
-\label{USB_SSB}
+\label{Eq:5.24}
 \end{equation}
-This Equation \ref{USB_SSB} displays the mathematical modeling of the upper sideband SSB signal. Similarly, we can generate lower sideband SSB signal by,
+These relations are known as Kramers-Kronig relation. Alternatively we can define both these relationship into the following form,
 \begin{equation}
-{s}_{ssb}(t)=s(t)cos(2\pi f_0t)+\hat{s}(t)sin(2\pi f_0t)
-\label{LSB_SSB}
+\begin{split}
+u(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u(t')}{t-t'} dt' 
+\end{split}
+\label{Eq:5.24}
 \end{equation}
 
 
@@ -69,22 +66,33 @@ This Equation \ref{USB_SSB} displays the mathematical modeling of the upper side
 
 
 
-The communication scheme discussed here relies on the identifying a specific condition that ensures the received signal is minimum phase. This condition facilitates the unique way to extract the phase of the received signal from its intensity. If we denote s(t) as a complex data-carrying signals whose spectrum is contained between -B/2 to B/2, and consider a single sideband signal of the form,
-\begin{equation}
-h(t)=A+s(t)exp(i\pi Bt)
-\end{equation}
-Where $A$ is a constant. Here, Nyquist stability criterion can be used to ensure that $s(t)$ is a minimum phase signal. The condition of minimum phase signal is satisfied when $|A|>|s(t)|$ by guaranteeing Nyquist stability of the received signal.
-When $h(t)$ is a minimum-phase signal, its phase $\phi(t)$ and absolute value $|h(t)|$ are uniquely related by Hilbert transform:
-\begin{equation}
-	\phi(t)=\frac{1}{\pi}  p.v. \int_{-\infty}^{\infty} dt' \frac{log[|h(t')|]}{t-t'}
-	\label{Eq:5.15}
-\end{equation}
-where \textit{p.v.} stands for \textit{principal value}. The relationship depicted in Equation \ref{Eq:5.15} can also be conveniently implemented in frequency domain as,
-\begin{equation}
-\tilde{\phi}(\omega)=i sign(\omega) \mathcal{F} \{log[|h(t)|]\}
-\label{Eq:5.16}
-\end{equation}
-where $sign(\omega)$ is the sign function which is equal to 1 when $\omega>0$, to 0 when $\omega=0$ and to -1 when $\omega<0$. Symbol $\mathcal{F}$ denotes the Fourier transform.
+
+
+
+
+
+
+
+
+
+
+
+%The communication scheme discussed here relies on the identifying a specific condition that ensures the received signal is minimum phase. This condition facilitates the unique way to extract the phase of the received signal from its intensity. If we denote s(t) as a complex data-carrying signals whose spectrum is contained between -B/2 to B/2, and consider a single sideband signal of the form,
+%\begin{equation}
+%h(t)=A+s(t)exp(i\pi Bt)
+%\end{equation}
+%Where $A$ is a constant. Here, Nyquist stability criterion can be used to ensure that $s(t)$ is a minimum phase signal. The condition of minimum phase signal is satisfied when $|A|>|s(t)|$ by guaranteeing Nyquist stability of the received signal.
+%When $h(t)$ is a minimum-phase signal, its phase $\phi(t)$ and absolute value $|h(t)|$ are uniquely related by Hilbert transform:
+%\begin{equation}
+%	\phi(t)=\frac{1}{\pi}  p.v. \int_{-\infty}^{\infty} dt' \frac{log[|h(t')|]}{t-t'}
+%	\label{Eq:5.15}
+%\end{equation}
+%where \textit{p.v.} stands for \textit{principal value}. The relationship depicted in Equation \ref{Eq:5.15} can also be conveniently implemented in frequency domain as,
+%\begin{equation}
+%\tilde{\phi}(\omega)=i sign(\omega) \mathcal{F} \{log[|h(t)|]\}
+%\label{Eq:5.16}
+%\end{equation}
+%where $sign(\omega)$ is the sign function which is equal to 1 when $\omega>0$, to 0 when $\omega=0$ and to -1 when $\omega<0$. Symbol $\mathcal{F}$ denotes the Fourier transform.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf}
@@ -275,4 +283,34 @@ At the receiver side, signal is coherently detected using a simplified coherent 
 	\textit{A necessary and sufficient condition for minimum phase and implication of phase retrieval}. arXiv:1606.04861.
 \end{thebibliography}
 
-
+\subsubsection{\textbf{APPENDICES}}
+In this section, we'll discuss the brief idea of generating SSB signal using Hilbert transform method. To understand this, we may express signal $u(t)$ as a summation of the two complex-valued functions.
+\begin{equation}
+s(t)=\dfrac{1}{2}[s(t)+j\hat{s}(t)]+\dfrac{1}{2}[s(t)-j\hat{s}(t)]
+\label{}
+\end{equation}
+where, the term $\dfrac{1}{2}[s(t)+j\hat{s}(t)]$ is the analytical representation of the signal $s(t)$ (from Equation \ref{Analytical signal}). Another term represents the complex conjugate $\dfrac{1}{2}[s(t)-j\hat{s}(t)]$ of this analytical signal. Such representation of the signal ${s_a}(t)$ and ${s_a^*}(t)$ divide the signal into non-negative frequency component and non-positive frequency component respectively. Alternatively, we can write it as,
+\begin{equation}
+\dfrac{1}{2}{S_a}(f) = \begin{cases}
+S(f) &\text{for $f>0$}\\
+0    &\text{for $f<0$}\\
+\end{cases}
+\end{equation}
+where ${S_a}(f)$ and ${S}(f)$ are the Fourier transform of ${t_a}(t)$ and ${s}(t)$ respectively. The frequency translated version of ${S_a}(f-f_0)$ contains only one side (positive) of ${S}(f)$ and hence it is called single sideband signal ${s_ssb}(t)$,
+\begin{equation}
+{F}^{-1}\{S_a(f-f_0)\}={s_a}(t) e^{j2\pi f_0 t}={s_{ssb}}(t)+j{\hat{s}_{ssb}(t)}
+\end{equation}
+Therefore, from the Euler's formula,
+\begin{equation}
+\begin{split}
+{s}_{ssb}(t)&=Re\{s_a(t)  e^{j2\pi f_0 t}\}\\
+&=Re\{[s(t)+j\hat{s}(t)] [cos(2\pi f_0t)+jsin(2\pi f_0t)]\}\\
+&=s(t)cos(2\pi f_0t)-\hat{s}(t)sin(2\pi f_0t)
+\end{split}
+\label{USB_SSB}
+\end{equation}
+This Equation \ref{USB_SSB} displays the mathematical modeling of the upper sideband SSB signal. Similarly, we can generate lower sideband SSB signal by,
+\begin{equation}
+{s}_{ssb}(t)=s(t)cos(2\pi f_0t)+\hat{s}(t)sin(2\pi f_0t)
+\label{LSB_SSB}
+\end{equation}

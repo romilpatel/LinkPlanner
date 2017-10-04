@@ -33,8 +33,8 @@ where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transfor
 
 \subsubsection{4. How we can use these signals and profit from them?}
 This section represents the justification that why we need to use these signals into our proposed transceiver system.\\
-\textbf{Single Sideband Signal(SSB):}\\
-In the case of a SSB signal $u(t)$ described as,
+\textbf{Analytical Signal:}\\
+Analytical signal used for generating single sidebnad (SSB) signal. In the case of a SSB signal $u(t)$ described as,
 \begin{equation}
 u(t)=u_r(t)+iu_i(t)
 \label{5.15}
@@ -53,8 +53,9 @@ These relations are known as Kramers-Kronig relation. Alternatively we can defin
 u(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u(t')}{t-t'} dt' 
 \end{split}
 \label{Eq:5.24}
-\end{equation}
-
+\end{equation}\\
+\textbf{Minimum Phase signal:}\\
+If the trajectory of the received SSB signal never encircles the origin for $t\epsilon(-\infty,\infty)$
 
 
 
@@ -196,7 +197,67 @@ u(t)={m(t)} cos(2\pi f_c t)+{\hat{m}(t)} sin(2\pi f_c t)
 	\caption{SSB signal spectrum}\label{SSB_signal_spectrum}
 \end{figure}
 
-\subsubsection{Kramers Kronig Relation}
+
+
+
+
+
+  
+
+
+
+\subsection{Rx side}
+At the receiver side, signal is coherently detected using a simplified coherent receiver and a local oscillator. The optical signal is then converted into the electrical domain using two balanced photodetector (BPD), or alternatively four photodetector, and amplified by a transimpedance amplifier (TIA). Following that, the signals are sampled by two 8-bit 2.5 GSa/s ADC and the this digitized signal sent to the FPGA (Virtex-7) where all post-detection DSP implemented in real-time.
+
+\begin{thebibliography}{9}
+	\bibitem{latexcompanion}
+	Antonio Mecozzi, Cristian Antonelli, and Mark Shtaif.
+	\textit{Kramers-Kronig Coherent Receiver}.
+	Optica, vol.3, no.11, 2016, p.1220., doi:10.1364/optica.3.001220.
+	
+	\bibitem{latexcompanion}
+	Antonio Mecozzi.
+	\textit{Retrieving the full optical response from amplitude data by Hilbert transform}. Opt. Comm. 282, 4183-4187.
+	
+	\bibitem{latexcompanion}
+	Antonio Mecozzi.
+	\textit{A necessary and sufficient condition for minimum phase and implication of phase retrieval}. arXiv:1606.04861.
+\end{thebibliography}
+
+\subsubsection{\textbf{APPENDICES}}
+\textbf{Apppendix A}\\
+In this section, we'll discuss the brief idea of generating SSB signal using Hilbert transform method. To understand this, we may express signal $u(t)$ as a summation of the two complex-valued functions.
+\begin{equation}
+s(t)=\dfrac{1}{2}[s(t)+j\hat{s}(t)]+\dfrac{1}{2}[s(t)-j\hat{s}(t)]
+\label{}
+\end{equation}
+where, the term $\dfrac{1}{2}[s(t)+j\hat{s}(t)]$ is the analytical representation of the signal $s(t)$ (from Equation \ref{Analytical signal}). Another term represents the complex conjugate $\dfrac{1}{2}[s(t)-j\hat{s}(t)]$ of this analytical signal. Such representation of the signal ${s_a}(t)$ and ${s_a^*}(t)$ divide the signal into non-negative frequency component and non-positive frequency component respectively. Alternatively, we can write it as,
+\begin{equation}
+\dfrac{1}{2}{S_a}(f) = \begin{cases}
+S(f) &\text{for $f>0$}\\
+0    &\text{for $f<0$}\\
+\end{cases}
+\end{equation}
+where ${S_a}(f)$ and ${S}(f)$ are the Fourier transform of ${t_a}(t)$ and ${s}(t)$ respectively. The frequency translated version of ${S_a}(f-f_0)$ contains only one side (positive) of ${S}(f)$ and hence it is called single sideband signal ${s_ssb}(t)$,
+\begin{equation}
+{F}^{-1}\{S_a(f-f_0)\}={s_a}(t) e^{j2\pi f_0 t}={s_{ssb}}(t)+j{\hat{s}_{ssb}(t)}
+\end{equation}
+Therefore, from the Euler's formula,
+\begin{equation}
+\begin{split}
+{s}_{ssb}(t)&=Re\{s_a(t)  e^{j2\pi f_0 t}\}\\
+&=Re\{[s(t)+j\hat{s}(t)] [cos(2\pi f_0t)+jsin(2\pi f_0t)]\}\\
+&=s(t)cos(2\pi f_0t)-\hat{s}(t)sin(2\pi f_0t)
+\end{split}
+\label{USB_SSB}
+\end{equation}
+This Equation \ref{USB_SSB} displays the mathematical modeling of the upper sideband SSB signal. Similarly, we can generate lower sideband SSB signal by,
+\begin{equation}
+{s}_{ssb}(t)=s(t)cos(2\pi f_0t)+\hat{s}(t)sin(2\pi f_0t)
+\label{LSB_SSB}
+\end{equation}\\
+\textbf{Apppendix B}\\
+%\subsubsection{Kramers Kronig Relation}
 Suppose we have a SSB signal $u(t)$ described as,
 \begin{equation}
 u(t)=u_r(t)+iu_i(t)
@@ -211,15 +272,15 @@ The equation \ref{Eq:5.23} follows the SSB signal condition $\tilde{U}(\omega)=0
 \begin{equation}
 \begin{split}
 \tilde{U}(\omega)&=\dfrac{1}{2}[1+sgn(\omega)]\tilde{U}(\omega)\\
-				 &=\dfrac{1}{2}\tilde{U}(\omega)+\dfrac{1}{2}sgn(\omega)\tilde{U}(\omega)
+&=\dfrac{1}{2}\tilde{U}(\omega)+\dfrac{1}{2}sgn(\omega)\tilde{U}(\omega)
 \end{split}
 \label{Eq:5.23}
 \end{equation}
 Taking inverse Fourier transform of the equation \ref{Eq:5.23},
 \begin{equation}
 \begin{split}
-	{u}(t)&=IFT\{\tilde{}(\omega)\}\\
-	      &=\dfrac{1}{2}{u}(t)+\underline{\dfrac{1}{2}[IFT\{sgn(\omega)\} \circledast {u}(t)]}
+{u}(t)&=IFT\{\tilde{}(\omega)\}\\
+&=\dfrac{1}{2}{u}(t)+\underline{\dfrac{1}{2}[IFT\{sgn(\omega)\} \circledast {u}(t)]}
 \end{split}
 \label{Eq:5.23}
 \end{equation}
@@ -258,59 +319,3 @@ u_i(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_r(t')}{t-t'} dt' \\
 \end{equation}
 
 
-
-
-
-  
-
-
-
-\subsection{Rx side}
-At the receiver side, signal is coherently detected using a simplified coherent receiver and a local oscillator. The optical signal is then converted into the electrical domain using two balanced photodetector (BPD), or alternatively four photodetector, and amplified by a transimpedance amplifier (TIA). Following that, the signals are sampled by two 8-bit 2.5 GSa/s ADC and the this digitized signal sent to the FPGA (Virtex-7) where all post-detection DSP implemented in real-time.
-
-\begin{thebibliography}{9}
-	\bibitem{latexcompanion}
-	Antonio Mecozzi, Cristian Antonelli, and Mark Shtaif.
-	\textit{Kramers-Kronig Coherent Receiver}.
-	Optica, vol.3, no.11, 2016, p.1220., doi:10.1364/optica.3.001220.
-	
-	\bibitem{latexcompanion}
-	Antonio Mecozzi.
-	\textit{Retrieving the full optical response from amplitude data by Hilbert transform}. Opt. Comm. 282, 4183-4187.
-	
-	\bibitem{latexcompanion}
-	Antonio Mecozzi.
-	\textit{A necessary and sufficient condition for minimum phase and implication of phase retrieval}. arXiv:1606.04861.
-\end{thebibliography}
-
-\subsubsection{\textbf{APPENDICES}}
-In this section, we'll discuss the brief idea of generating SSB signal using Hilbert transform method. To understand this, we may express signal $u(t)$ as a summation of the two complex-valued functions.
-\begin{equation}
-s(t)=\dfrac{1}{2}[s(t)+j\hat{s}(t)]+\dfrac{1}{2}[s(t)-j\hat{s}(t)]
-\label{}
-\end{equation}
-where, the term $\dfrac{1}{2}[s(t)+j\hat{s}(t)]$ is the analytical representation of the signal $s(t)$ (from Equation \ref{Analytical signal}). Another term represents the complex conjugate $\dfrac{1}{2}[s(t)-j\hat{s}(t)]$ of this analytical signal. Such representation of the signal ${s_a}(t)$ and ${s_a^*}(t)$ divide the signal into non-negative frequency component and non-positive frequency component respectively. Alternatively, we can write it as,
-\begin{equation}
-\dfrac{1}{2}{S_a}(f) = \begin{cases}
-S(f) &\text{for $f>0$}\\
-0    &\text{for $f<0$}\\
-\end{cases}
-\end{equation}
-where ${S_a}(f)$ and ${S}(f)$ are the Fourier transform of ${t_a}(t)$ and ${s}(t)$ respectively. The frequency translated version of ${S_a}(f-f_0)$ contains only one side (positive) of ${S}(f)$ and hence it is called single sideband signal ${s_ssb}(t)$,
-\begin{equation}
-{F}^{-1}\{S_a(f-f_0)\}={s_a}(t) e^{j2\pi f_0 t}={s_{ssb}}(t)+j{\hat{s}_{ssb}(t)}
-\end{equation}
-Therefore, from the Euler's formula,
-\begin{equation}
-\begin{split}
-{s}_{ssb}(t)&=Re\{s_a(t)  e^{j2\pi f_0 t}\}\\
-&=Re\{[s(t)+j\hat{s}(t)] [cos(2\pi f_0t)+jsin(2\pi f_0t)]\}\\
-&=s(t)cos(2\pi f_0t)-\hat{s}(t)sin(2\pi f_0t)
-\end{split}
-\label{USB_SSB}
-\end{equation}
-This Equation \ref{USB_SSB} displays the mathematical modeling of the upper sideband SSB signal. Similarly, we can generate lower sideband SSB signal by,
-\begin{equation}
-{s}_{ssb}(t)=s(t)cos(2\pi f_0t)+\hat{s}(t)sin(2\pi f_0t)
-\label{LSB_SSB}
-\end{equation}

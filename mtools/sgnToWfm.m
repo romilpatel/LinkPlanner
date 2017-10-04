@@ -1,4 +1,4 @@
-function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn, fname_wfm, nReadr )
+function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn,fname_wfm, nReadr )
 % This function will build a WFM file given an input signal filename.
 %
 % [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate
@@ -25,6 +25,25 @@ if nargin == 1
 end
 
 [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname_sgn, nReadr );
+samplingRate=1/samplingPeriod;
+if (~strcmp(type,'TimeContinuousAmplitudeContinuousReal'))
+     msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
+     error('\nError: The chosen signal type is not compatible with this function (%s).\nMake sure the type of the signal is TimeContinuousAmplitudeContinuousReal. \n\n',type);
+     clear all;
+     return;
+end
+if (samplingRate >  16e9)
+     msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
+     error('\nError: The Sampling Rate of the chosen signal(%d GS/s) is greater than the maximum sampling frequency of the AWG(16 GS/s).\nPlease choose a signal with a sampling frequency lower than 16 GS/s.\n\n',samplingRate/1e9);
+      clear all;
+      return;
+end
+if (length(data) >  8e9)
+      msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
+      error('\nError: The chosen signal has to many samples(%d GS).\nMake sure it is less or equal to 8 G samples.\n\n',length(data)/1e9);
+      clear all;
+      return;
+end
 if (length(data)/4 ~= 0)
     data=data(1:length(data)-rem(length(data),4));
 end
@@ -32,7 +51,7 @@ data=data/max(abs(data));
 data=data';
 sizeMark=size(data,1);
 marker = false(sizeMark, 2);  % Initializing markers
-samplingRate=1/samplingPeriod;
+
 
 BuildTektronixAWG710xWFM(data,marker,samplingRate,fname_wfm);
 
@@ -128,3 +147,7 @@ fwrite(fid, combined_marker, 'uint8', 4);
 fwrite(fid, ['CLOCK', sprintf('%7e',ClockRate)]);
 fwrite(fid, crlf);
 fclose(fid);
+
+
+
+

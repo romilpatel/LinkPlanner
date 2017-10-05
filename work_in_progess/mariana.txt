@@ -1,3 +1,12 @@
+2017-10-02
+TO BE DONE
+- write the protocol with detail (finish)
+- envia-me pdf só com a secção 5.6 e 5.6.1
+- envio Prof. Paulo Mateus, agendamos reunião (ANP)
+- draw the simulation setup (continue)
+- draw the experimental setup (begining)
+
+
 2017-09-26
 TO BE DONE
 - write the protocol with detail (continue)

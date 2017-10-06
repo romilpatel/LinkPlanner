@@ -14,11 +14,10 @@
 \contentsline {subsubsection}{2. What is minimum phase signal?}{24}{section*.42}
 \contentsline {subsubsection}{3. what is Analytical Signal?}{25}{section*.43}
 \contentsline {subsubsection}{4. How we can use these signals and profit from them?}{25}{section*.44}
-\contentsline {subsection}{\numberline {5.4.2}KK Scheme}{25}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.2}KK Scheme}{26}{subsection.5.4.2}
 \contentsline {subsection}{\numberline {5.4.3}Tx side}{26}{subsection.5.4.3}
-\contentsline {subsubsection}{SSB Signal generation using Hilbert transformation}{26}{section*.47}
-\contentsline {subsection}{\numberline {5.4.4}Rx side}{30}{subsection.5.4.4}
-\contentsline {subsubsection}{\textbf {APPENDICES}}{32}{section*.55}
+\contentsline {subsection}{\numberline {5.4.4}Rx side}{27}{subsection.5.4.4}
+\contentsline {subsubsection}{\textbf {APPENDICES}}{28}{section*.48}
 \contentsline {chapter}{\numberline {6}Library}{35}{chapter.6}
 \contentsline {section}{\numberline {6.1}Add}{36}{section.6.1}
 \contentsline {section}{\numberline {6.2}Binary source}{37}{section.6.2}

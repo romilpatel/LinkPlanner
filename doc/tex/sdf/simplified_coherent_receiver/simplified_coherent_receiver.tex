@@ -34,49 +34,32 @@ where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transfor
 \subsubsection{4. How we can use these signals and profit from them?}
 This section represents the justification that why we need to use these signals into our proposed transceiver system.\\
 \textbf{Analytical Signal:}\\
-Analytical signal used for generating single sidebnad (SSB) signal. In the case of a SSB signal $u(t)$ described as,
+Analytical signal used for generating single sidebnad (SSB) signal. In the case of a SSB signal $E_s(t)$ described as,
 \begin{equation}
-u(t)=u_r(t)+iu_i(t)
+E_s(t)=E_{s,r}(t)+iE_{s,i}(t)
 \label{5.15}
 \end{equation}
-the real part $U_r(t)$  and the imaginary parts $U_i(t)$ are Hilbert transform of each other.
+the real part $E_{s,r}(t)$  and the imaginary parts $E_{s,i}(t)$ are Hilbert transform of each other (See Appendix ).
 \begin{equation}
 \begin{split}
-u_r(t) &=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_i(t')}{t-t'} dt' \\
-u_i(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_r(t')}{t-t'} dt' \\
+E_{s,r}(t) &=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_{s,i}(t')}{t-t'} dt' \\
+E_{s,i}(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_{s,r}(t')}{t-t'} dt' \\
 \end{split}
-\label{Eq:5.24}
+\label{E}
 \end{equation}
-These relations are known as Kramers-Kronig relation. Alternatively we can define both these relationship into the following form,
+These relations are known as Kramers-Kronig relation. We can define this Kramers-Kronig relationship into the following simplified form,
 \begin{equation}
 \begin{split}
-u(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u(t')}{t-t'} dt' 
+E_{s}(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_{s}(t')}{t-t'} dt' 
 \end{split}
-\label{Eq:5.24}
+\label{Eq:5.17}
 \end{equation}\\
 \textbf{Minimum Phase signal:}\\
-If the trajectory of the received SSB signal never encircles the origin for $t\epsilon(-\infty,\infty)$
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+If the trajectory of the received SSB signal $E(t)=E_{s}(t)+\bar{E}$ never encircles the origin for $t\in(-\infty,\infty)$ then its phase can be reconstructed by a logarithmaic Hilbert transform of its amplitude(See Appendix ),
+\begin{equation}
+\phi(t) = \bar{\phi} + \dfrac{1}{2\pi} p.v. \int_{-\infty}^{\infty} \dfrac{log[|E(t')|^2]}{t-t'} dt'
+\end{equation}\\
+where the $E(t)=|E(t)|exp(i\phi(t))$ and $\bar{E}=|\bar{E}|exp(i\bar{\phi})$.
 
 %The communication scheme discussed here relies on the identifying a specific condition that ensures the received signal is minimum phase. This condition facilitates the unique way to extract the phase of the received signal from its intensity. If we denote s(t) as a complex data-carrying signals whose spectrum is contained between -B/2 to B/2, and consider a single sideband signal of the form,
 %\begin{equation}
@@ -124,88 +107,6 @@ Here, the average value of the phase returned by Equation \ref{Eq:5.19} is zero,
 \subsection{Tx side}
 Single polarization 16QAM signals (1.25 Gbaud) to be generated at the Tx through an IQ modulator (Figure \ref{DSP_main_subsystem}). The IQ modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.
 
-
-
-
-
-\subsubsection{SSB Signal generation using Hilbert transformation}
-This section describes the SSB signal generation using Hilbert transformation method (Phase Shift Method). Consider a message signal $m(t)$ with its frequency domain spectrum $M(F)$ as shown in Figure\ref{Original_baseband_signal}. From the Figure \ref{Original_baseband_signal}, we can see that both the side are scaled by factor '1' which means it represents the original signal.
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB1.pdf}
-	\caption{Original baseband signal}\label{Original_baseband_signal}
-\end{figure}\\ 	
-Now let's consider the modulated signal $x(t)$ given as,
-\begin{equation}
-x(t)=m(t) cos(2\pi f_c t)
-\label{Eq:5.20}
-\end{equation}
-Frequency domain representation of the equation \ref{Eq:5.20} can be given as,
-\begin{equation}
-X(F)=\frac{1}{2}M(f-f_c)+\frac{1}{2}M(f+f_c)
-\label{Eq:5.21}
-\end{equation}
-Here in equation \ref{Eq:5.21}, we can observe that each side band are scaled by $\dfrac{1}{2}$ on the frequency spectrum. Figure displays the frequency domain representation of the modulated signal $X(F)$.
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB2.pdf}
-	\caption{Original modulated signal}\label{Original_modulated_signal}
-\end{figure}\\ 
-Next, we will discuss something more interesting which is called as Hilbert transform of the original message signal $m(t)$. As we discussed earlier, in the frequency domain, the Hilbert transformed signal $\hat{M}(f)$ can be achieved by multiplying the Fourier transformed signal $M(F)$ with $[-j sgn(F)]$.
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB3.pdf}
-	\caption{Hilbert transformed modulated signal}\label{Hilbert_Transformed_signal}
-\end{figure}
-Suppose we modulate the Hilbert transformed message signal $\hat{m}(t)$  with the $sin(2\pi f_c t)$ (quadrature phase carrier), then we get the following results:
-
-\begin{equation}
-\begin{split}
-{\hat{m}(t)} sin(2\pi f_c t)&={\hat{m}(t)}\frac{e^{j2\pi f_c t} - e^{-j2\pi f_c t} }{2}\\
-&={\hat{m}(t)}\frac{e^{j2\pi f_c t}}{2} - {\hat{m}(t)}\frac{e^{-j2\pi f_c t}}{2}\\
-&={\frac{\hat{M}(f-f_c)}{2j}}-{\frac{\hat{M}(f+f_c)}{2j}}\\
-&={\frac{-j}{2}\hat{M}(f-f_c)}+{\frac{-j}{2}\hat{M}(f+f_c)}\\
-\end{split}
-\label{5.22}
-\end{equation}
-The detailed explanation of the equation \ref{Eq:5.22} has been described in the Figure \ref{Hilbert_Transformed_modulated_signal} and \ref{Hilbert_Final}. Figure \ref{Hilbert_Transformed_modulated_signal} displays the spectrum of the $\hat{M}(f+f_c)$ and $\hat{M}(f-f_c)$ for the positive and negative frequencies respectively. The final equation resolution of equation displays that both positive and negative side of the spectrum multiplied with $\frac{j}{2}$ and $\frac{-j}{2}$ respectively. Finally the spectrum of the signal ${\hat{m}(t)} sin(2\pi f_c t)$ can be given as Figure \ref{Hilbert_Final}.
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB4.pdf}
-	\caption{Hilbert transformed modulated signal}\label{Hilbert_Transformed_modulated_signal}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB5.pdf}
-	\caption{Hilbert transformed modulated signal}\label{Hilbert_Final}
-\end{figure}
-
-Further, summation of the two signals ${m(t)} cos(2\pi f_c t)$ and ${\hat{m}(t)} sin(2\pi f_c t)$ will generate the upper sideband SSB signal as follows,
-\begin{equation}
-u(t)={m(t)} cos(2\pi f_c t)-{\hat{m}(t)} sin(2\pi f_c t)
-\label{5.23}
-\end{equation}
-From the above discussion, the spectrum of the Equation \ref{5.23} can be given by the Figure \ref{SSB_signal_spectrum}. Similarly, for the lower sideband SSB can be generated by Equation,
-\begin{equation}
-u(t)={m(t)} cos(2\pi f_c t)+{\hat{m}(t)} sin(2\pi f_c t)
-\label{5.24}
-\end{equation}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB6.pdf}
-	\caption{SSB signal spectrum}\label{SSB_signal_spectrum}
-\end{figure}
-
-
-
-
-
-
-  
-
-
-
 \subsection{Rx side}
 At the receiver side, signal is coherently detected using a simplified coherent receiver and a local oscillator. The optical signal is then converted into the electrical domain using two balanced photodetector (BPD), or alternatively four photodetector, and amplified by a transimpedance amplifier (TIA). Following that, the signals are sampled by two 8-bit 2.5 GSa/s ADC and the this digitized signal sent to the FPGA (Virtex-7) where all post-detection DSP implemented in real-time.
 
@@ -225,7 +126,7 @@ At the receiver side, signal is coherently detected using a simplified coherent 
 \end{thebibliography}
 
 \subsubsection{\textbf{APPENDICES}}
-\textbf{Apppendix A}\\
+\textbf{Appendix A}\\
 In this section, we'll discuss the brief idea of generating SSB signal using Hilbert transform method. To understand this, we may express signal $u(t)$ as a summation of the two complex-valued functions.
 \begin{equation}
 s(t)=\dfrac{1}{2}[s(t)+j\hat{s}(t)]+\dfrac{1}{2}[s(t)-j\hat{s}(t)]
@@ -256,7 +157,8 @@ This Equation \ref{USB_SSB} displays the mathematical modeling of the upper side
 {s}_{ssb}(t)=s(t)cos(2\pi f_0t)+\hat{s}(t)sin(2\pi f_0t)
 \label{LSB_SSB}
 \end{equation}\\
-\textbf{Apppendix B}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Appendix B}\\
 %\subsubsection{Kramers Kronig Relation}
 Suppose we have a SSB signal $u(t)$ described as,
 \begin{equation}
@@ -316,6 +218,122 @@ u_r(t) &=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_i(t')}{t-t'} dt' \\
 u_i(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_r(t')}{t-t'} dt' \\
 \end{split}
 \label{Eq:5.24}
+\end{equation}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Appendix C}\\
+This section describes the SSB signal generation using Hilbert transformation method (Phase Shift Method). Consider a message signal $m(t)$ with its frequency domain spectrum $M(F)$ as shown in Figure\ref{Original_baseband_signal}. From the Figure \ref{Original_baseband_signal}, we can see that both the side are scaled by factor '1' which means it represents the original signal.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth, height=5cm]{./sdf/simplified_coherent_receiver/figures/SSB1.pdf}
+	\caption{Original baseband signal}\label{Original_baseband_signal}
+\end{figure}\\ 	
+Now let's consider the modulated signal $x(t)$ given as,
+\begin{equation}
+x(t)=m(t) cos(2\pi f_c t)
+\label{Eq:5.20}
 \end{equation}
+Frequency domain representation of the equation \ref{Eq:5.20} can be given as,
+\begin{equation}
+X(F)=\frac{1}{2}M(f-f_c)+\frac{1}{2}M(f+f_c)
+\label{Eq:5.21}
+\end{equation}
+Here in equation \ref{Eq:5.21}, we can observe that each side band are scaled by $\dfrac{1}{2}$ on the frequency spectrum. Figure displays the frequency domain representation of the modulated signal $X(F)$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB2.pdf}
+	\caption{Original modulated signal}\label{Original_modulated_signal}
+\end{figure}\\ 
+Next, we will discuss something more interesting which is called as Hilbert transform of the original message signal $m(t)$. As we discussed earlier, in the frequency domain, the Hilbert transformed signal $\hat{M}(f)$ can be achieved by multiplying the Fourier transformed signal $M(F)$ with $[-j sgn(F)]$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth, height=5cm]{./sdf/simplified_coherent_receiver/figures/SSB3.pdf}
+	\caption{Hilbert transformed modulated signal}\label{Hilbert_Transformed_signal}
+\end{figure}
+Suppose we modulate the Hilbert transformed message signal $\hat{m}(t)$  with the $sin(2\pi f_c t)$ (quadrature phase carrier), then we get the following results:
 
+\begin{equation}
+\begin{split}
+{\hat{m}(t)} sin(2\pi f_c t)&={\hat{m}(t)}\frac{e^{j2\pi f_c t} - e^{-j2\pi f_c t} }{2}\\
+&={\hat{m}(t)}\frac{e^{j2\pi f_c t}}{2} - {\hat{m}(t)}\frac{e^{-j2\pi f_c t}}{2}\\
+&={\frac{\hat{M}(f-f_c)}{2j}}-{\frac{\hat{M}(f+f_c)}{2j}}\\
+&={\frac{-j}{2}\hat{M}(f-f_c)}+{\frac{-j}{2}\hat{M}(f+f_c)}\\
+\end{split}
+\label{5.22}
+\end{equation}
+The detailed explanation of the equation \ref{Eq:5.22} has been described in the Figure \ref{Hilbert_Transformed_modulated_signal} and \ref{Hilbert_Final}. Figure \ref{Hilbert_Transformed_modulated_signal} displays the spectrum of the $\hat{M}(f+f_c)$ and $\hat{M}(f-f_c)$ for the positive and negative frequencies respectively. The final equation resolution of equation displays that both positive and negative side of the spectrum multiplied with $\frac{j}{2}$ and $\frac{-j}{2}$ respectively. Finally the spectrum of the signal ${\hat{m}(t)} sin(2\pi f_c t)$ can be given as Figure \ref{Hilbert_Final}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB4.pdf}
+	\caption{Hilbert transformed modulated signal}\label{Hilbert_Transformed_modulated_signal}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB5.pdf}
+	\caption{Hilbert transformed modulated signal}\label{Hilbert_Final}
+\end{figure}
+
+Further, summation of the two signals ${m(t)} cos(2\pi f_c t)$ and ${\hat{m}(t)} sin(2\pi f_c t)$ will generate the upper sideband SSB signal as follows,
+\begin{equation}
+u(t)={m(t)} cos(2\pi f_c t)-{\hat{m}(t)} sin(2\pi f_c t)
+\label{5.23}
+\end{equation}
+From the above discussion, the spectrum of the Equation \ref{5.23} can be given by the Figure \ref{SSB_signal_spectrum}. Similarly, for the lower sideband SSB can be generated by Equation,
+\begin{equation}
+u(t)={m(t)} cos(2\pi f_c t)+{\hat{m}(t)} sin(2\pi f_c t)
+\label{5.24}
+\end{equation}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB6.pdf}
+	\caption{SSB signal spectrum}\label{SSB_signal_spectrum}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\
+\\
+\textbf{Appendix D}\\
+Given function $E(t)=E_{s}(t)+\bar{E}$ never encircles the origin for $t\in(-\infty,\infty)$. if we define,
+\begin{equation}
+G(t)=log\bigg[\dfrac{E(t)}{\bar{E}}\bigg]
+\label{Eq 5.40}
+\end{equation} 
+then $\tilde{G}(\omega)$, the spectrum of $G(t)$, is such that $G(\omega)=0$ for $\omega<0$.
+Under the hypothesis stated by Equation \ref{Eq:5.17},we can write $G(t)$ as,
+\begin{equation}
+\begin{split}
+G(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{G(t')}{t-t'} dt' 
+\end{split}
+\label{Eq 5.41}
+\end{equation}
+From the equations \ref{Eq 5.40} and \ref{Eq 5.41},
+\begin{equation}
+\begin{split}
+log|E(t)|-log|\bar{E}|+i[\phi(t)-\bar{\phi}] &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|E(t)|-log|\bar{E}|}{t-t'} dt' + \frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{\phi(t)-\bar{\phi}}{t-t'} dt' 
+\end{split}
+\label{Eq 5.42}
+\end{equation}
+Comparing Imaginary part of Equation \ref{Eq 5.42},
+\begin{equation}
+\begin{split}
+\phi(t)-\bar{\phi} &= + \frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|E(t)|-log|\bar{E}|}{t-t'} dt'\\
+\end{split}
+\label{Eq 5.43}
+\end{equation}
+In equation \ref{Eq 5.43}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\bar{E}|}{t-t'} dt'=0$ which leads to,
+\begin{equation}.
+\begin{split}
+\phi(t) &= \bar{\phi} + \frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|E(t)|}{t-t'} dt'\\
+\phi(t) &= \bar{\phi} + \frac{1}{2\pi} p.v. \int_{-\infty}^{\infty} \frac{log|E(t)|^2}{t-t'} dt'\\
+\end{split}
+\label{Eq 5.44}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Appendix E}\\
+If we consider a filter $H(\omega)$, described in Figure, that has a unity magnitude response for all frequencies. Also, the phase response is $-\pi/2$ for all positive frequencies and $\pi/2$ for negative frequencies. The transfer function of this filter is,
+\begin{equation}
+\begin{split}
+H(j\omega)=-jsgn(\omega)
+\end{split}
+\label{}
+\end{equation}
 

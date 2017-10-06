@@ -52,8 +52,6 @@ bool BitErrorRate::runBlock(void){
 		/* Calculating BER and bounds */
 
 		double BER = (receivedBits - coincidences) / receivedBits;
-		t_real NumberOfBits = receivedBits;
-		t_real Coincidences = coincidences;
 
 		double UpperBound = BER + 1 / sqrt(receivedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * receivedBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
 		double LowerBound = BER - 1 / sqrt(receivedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * receivedBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
@@ -62,7 +60,7 @@ bool BitErrorRate::runBlock(void){
 		ofstream myfile;
 		myfile.open("BER.txt");
 		myfile << "BER= " << BER << "\n";
-		myfile << "Upper and lower confidence bounds for " << (1 - alpha)*100 << "% confidence level \n";
+		myfile << "Upper and lower confidence bounds for " << (1 - alpha) * 100 << "% confidence level \n";
 		myfile << "Upper Bound= " << UpperBound << "\n";
 		myfile << "Lower Bound= " << LowerBound << "\n";
 		myfile << "Number of received bits =" << receivedBits << "\n";
@@ -82,7 +80,7 @@ bool BitErrorRate::runBlock(void){
 		/* Outputting mid reports */
 		if (m > 0)
 		{
-			if ((remainder(receivedBits, m) == 0) & (receivedBits>0))
+			if ((remainder(receivedBits, m) == 0) & (receivedBits > 0))
 			{
 				n++;
 
@@ -102,7 +100,7 @@ bool BitErrorRate::runBlock(void){
 				ofstream myfile;
 				myfile.open(filename);
 				myfile << "BER= " << BER << "\n";
-				myfile << "Upper and lower confidence bounds for" << 1-alpha << "confidence level \n";
+				myfile << "Upper and lower confidence bounds for" << 1 - alpha << "confidence level \n";
 				myfile << "Upper Bound= " << UpperBound << "\n";
 				myfile << "Lower Bound= " << LowerBound << "\n";
 				myfile << "Number of received bits =" << receivedBits << "\n";
@@ -111,14 +109,30 @@ bool BitErrorRate::runBlock(void){
 		}
 
 		receivedBits++;
-		if (signalValue == SignalValue)
-		{
-			coincidences++;
-			outputSignals[0]->bufferPut((t_binary) 1);
-		}
-		else
-		{
-			outputSignals[0]->bufferPut((t_binary) 0);
+		switch (sizeConstellation) {
+		case 2: 
+			if (signalValue == SignalValue)
+			{
+				coincidences++;
+				outputSignals[0]->bufferPut((t_binary)1);
+			}
+			else
+			{
+				outputSignals[0]->bufferPut((t_binary)0);
+			}
+			break;
+		case 4:
+			if (signalValue == SignalValue)
+			{
+				coincidences++;
+				outputSignals[0]->bufferPut((t_binary)1);
+			}
+			else
+			{
+				outputSignals[0]->bufferPut((t_binary)0);
+			}
+			inputSignals[0]->bufferGet(&signalValue);
+			break;
 		}
 
 	}

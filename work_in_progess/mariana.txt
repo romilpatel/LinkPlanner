@@ -1,3 +1,10 @@
+2017-10-06
+TO BE DONE
+- conlcuir o doc da simulação
+- fazer o doc do Bob
+- corrigir o protocolo (after meeting with Paulo Mateus)
+
+
 2017-10-02
 TO BE DONE
 - write the protocol with detail (finish)

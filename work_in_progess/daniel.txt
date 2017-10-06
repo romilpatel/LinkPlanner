@@ -1,0 +1,20 @@
+2017-10-06
+TO BE DONE
+- atualizar o doc do sd/BPSK system
+	Colocar o cabeçalho e a introdução
+	Atualizes com figuras o sdf/BPSK
+		obter os pontos simulados do BER com o intervalo de confiança e sobrepor a curva teórica.
+
+- actualizar no lib 
+	local_oscillator
+	bit_error_rate (bastante detalhe)
+	ver os outros blocos que usaste no BPSK transmission system
+
+
+2017-09-28
+TO BE DONE
+- system BPSK with BER measurement
+
+2017-09-22
+TO BE DONE
+- system BPSK with BER measurement

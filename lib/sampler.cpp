@@ -21,7 +21,7 @@ bool Sampler::runBlock(void) {
 	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSymbolPeriod());
 	numberOfInputSignals = inputSignals.size();
 
-	//Sampler with only one input signal (internal clock)
+	// Sampler with only one input signal (internal clock), only works with an integer number of samplesPerSynbol
 	if (numberOfInputSignals == 1) {
 		int ready = inputSignals[0]->ready();
 		if (samplesToSkip > 0) {
@@ -40,7 +40,7 @@ bool Sampler::runBlock(void) {
 
 		if (process == 0) return false;
 
-		int samplesPerSymbol = inputSignals[0]->getSamplesPerSymbol();
+		int samplesPerSymbol = (int) inputSignals[0]->getSamplesPerSymbol();
 		if (samplesToSkip == 0)
 		{
 			for (int k = 0; k < process; k++) {
@@ -54,5 +54,9 @@ bool Sampler::runBlock(void) {
 
 		}
 		return true;
+	}
+	{
+		cout << "ERROR: Sampler\n";
+		return false;
 	}
 }

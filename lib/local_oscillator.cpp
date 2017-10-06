@@ -37,8 +37,6 @@ bool LocalOscillator::runBlock(void) {
 
 	normal_distribution<double> distribution(0, 1);
 
-	double noiseRIN;
-
 	out = .5*sqrt(opticalPower)*out;
 
 	for (int i = 0; i < process; i++) {

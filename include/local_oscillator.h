@@ -23,7 +23,7 @@ class LocalOscillator : public Block {
 	double symbolPeriod{ 0.0 };
 	
 	default_random_engine generatorRIN;
-	double signaltoNoiseRatio = 0;
+	double signaltoNoiseRatio{ 0 };
 
 public:
 

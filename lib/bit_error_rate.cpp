@@ -35,7 +35,6 @@ bool BitErrorRate::runBlock(void){
 
 	}
 
-
 	int ready1 = inputSignals[0]->ready();
 	int ready2 = inputSignals[1]->ready();
 	int ready = min(ready1, ready2);
@@ -109,8 +108,6 @@ bool BitErrorRate::runBlock(void){
 		}
 
 		receivedBits++;
-		switch (sizeConstellation) {
-		case 2: 
 			if (signalValue == SignalValue)
 			{
 				coincidences++;
@@ -120,24 +117,8 @@ bool BitErrorRate::runBlock(void){
 			{
 				outputSignals[0]->bufferPut((t_binary)0);
 			}
-			break;
-		case 4:
-			if (signalValue == SignalValue)
-			{
-				coincidences++;
-				outputSignals[0]->bufferPut((t_binary)1);
-			}
-			else
-			{
-				outputSignals[0]->bufferPut((t_binary)0);
-			}
-			inputSignals[0]->bufferGet(&signalValue);
-			break;
-		}
-
 	}
 	return true;
-
 }
 
 

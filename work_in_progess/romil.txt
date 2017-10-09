@@ -1,3 +1,11 @@
+2017-10-09
+TO BE DONE
+- Improve the text (theory)
+- Start to write a simulation section
+- Start to write a experimental section
+
+Next meeting: 2017-10-17, 2 pm
+
 2017-10-02
 TO BE DONEI
 Next meeting 

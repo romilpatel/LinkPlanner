@@ -1,5 +1,5 @@
 \clearpage
-\section{Simplified Coherent Receiver}
+\section{Kramers-Kronig PAM Transceiver}
 
 \begin{tcolorbox}	
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
@@ -11,9 +11,10 @@
 
 %In recent days, homodyne detection has been discussed and investigated a lot due to the advancement in the DSP in the electrical domain. However, a major drawback of homodyne detection is the incoming signal should be separated into inphase and quadrature (I/Q) signals in the optical domain. Therefore, it demands more hardware to accommodate the requirement of the signal separation  in the optical domain. For instance, 4 balanced photodetectors with double hybrid structures and 4-channel ADCs are required.
 %On the other hand, heterodyne receiver simplifies the detection scheme to some extent with the requirement of having only half of photodetectors and ADC.\\
-In the optical communication, coherent detection scheme constitute the solution for the medium-to-long-reach application; however, the cost of coherent receiver becomes a major obstacle in the case of short-reach links applications like PON, inter-data-center communications, metropolitan network etc. In order to get rid of higher cost and to make the transceiver applicable in short-reach links, a new architecture of optical receiver has been proposed which combines the advantages of coherent transmission and cost effectiveness of direct detection. The working principle of the receiver is based on the famous Kramers-Kronig(KK) relationship. 
+Coherent optical transceiver schemes are spectrally efficient since they allow the encoding of information in both quadrature of sinusoid signal. Coherent detection schemes constitute the solution for the medium-to-long-reach optical transmission links; however, the cost of coherent receiver becomes a major obstacle in the case of short-reach links applications like PON, inter-data-center communications and metropolitan network. In order to get rid of higher cost and to make the transceiver applicable in short-reach links, a new architecture of optical receiver has been proposed which combines the advantages of coherent transmission and cost effectiveness of direct detection. The working principle of the proposed transceiver is based on the famous Kramers-Kronig (KK) relationship. The KK transceiver scheme allows digital compensation of linear propagation impairment, and it is efficient in terms of spectral occupancy and energy consumption. 
 \subsection{Concept of Kramers-Kronig receiver }
-The key concept behind the Kramers-Kronig self coherent receiver is to aquire "\textit{minimum phase single sideband signal}". The proposed receiver scheme allows the full reconstruction of the complex-valued signal from the amplitude data. The following few questions would give a comprehensive overview of the Kramers-Kronig receiver.
+%The key concept behind the Kramers-Kronig self coherent receiver is to aquire "\textit{minimum phase single sideband signal}".
+The proposed receiver scheme allows the full reconstruction of the complex-valued signal from the amplitude data. The following few questions would give a comprehensive overview of the Kramers-Kronig receiver.
 
 \subsubsection{1. What are the requirements for the KK receiver scheme?}
 The Kramers-Kronig receiver based communication scheme relies on identifying a condition which ensures that \textbf{the received signal is minimum phase}, in such a case its phase can be uniquely extracted from its intensity.\\ In order to facilitate the extraction of phase information from the intensity of the received minimum phase signal, it is prerequisite that the transmitted signal should be \textbf{analytical signal} in which real and imaginary parts are related to each other by means of Hilbert transform of each other.

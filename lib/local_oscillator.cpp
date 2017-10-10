@@ -17,6 +17,11 @@ void LocalOscillator::initialize(void) {
 
 	outputSignals[0]->setCentralWavelength(getWavelength());
 	outputSignals[0]->setCentralFrequency(getFrequency());
+<<<<<<< HEAD
+
+}
+=======
+>>>>>>> Daniel
 
 }
 
@@ -36,8 +41,6 @@ bool LocalOscillator::runBlock(void) {
 
 
 	normal_distribution<double> distribution(0, 1);
-
-	double noiseRIN;
 
 	out = .5*sqrt(opticalPower)*out;
 

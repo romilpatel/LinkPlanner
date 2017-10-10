@@ -62,6 +62,14 @@ bool Photodiode::runBlock(void) {
 
 		t_real current1 = responsivity*power1;
 		t_real current2 = responsivity*power2;
+		
+		// Implementation of thermal noise
+		if (thermalNoise) {
+			current1 += thermalNoiseAmplitude * distribution(generatorAmp1);
+			current2 += thermalNoiseAmplitude * distribution(generatorAmp2);
+		}
+
+		// Current difference calculation.	
 		t_real out = current1 - current2;
 
 		if (shotNoise)

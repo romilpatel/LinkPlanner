@@ -72,6 +72,7 @@ In this case, lets assume she sets the two messages $m_{0} = \{0 0 1 1\}$ and $m
       In the current example, Alice sends the photons, throughout a quantum channel, according to the following,
 
       $$S_{AB} = \{\uparrow, \nearrow, \searrow, \to, \to, \nearrow, \to, \searrow \}.$$
+       $$S_{AB} = \{90^{\circ}, 45^{\circ}, -45^{\circ}, 0^{\circ}, 0^{\circ}, 45^{\circ}, 0^{\circ}, -45^{\circ} \}.$$
 
   \item Bob also randomly generates $ks$ bits, which are going to define his measurement basis, $S_{B1}$. He will measure the photons sent by Alice. Lets assume:
 
@@ -81,9 +82,9 @@ In this case, lets assume she sets the two messages $m_{0} = \{0 0 1 1\}$ and $m
   In the current example, $S_{B1}$ corresponds to the following set:
   $$\{ +,\times,+,\times,+,\times, \times, \times \}.$$
   Bob will get $ks$ results:
-  $$S_{B1\prime} = \{1,1,0,1,0,1,1,0 \}.$$
+  $$S_{B1'} = \{1,1,0,1,0,1,1,0 \}.$$
 
-  \item Bob will send a \textit{Hash Function} result HASH1 to Alice. This value will do Bob's commitment with the measurements done.
+  \item Bob will send a \textit{Hash Function} result HASH1 to Alice. This value will do Bob's commitment with the measurements done. In this case, this \textit{Hash Function} is calculated from \textit{SHA-256} algorithm for each pair (Basis from $S_{B1}$ and measured value from $S_{B1'}$). 
 
   \item Once Alice has received the confirmation of measurement from Bob, she sends throughout a classical channel the basis which she has used to codify the photons, which in this case we assumed $S_{A1} = \{0,1,1,0,0,1,0,1\}$.
 
@@ -101,7 +102,7 @@ In this case, lets assume she sets the two messages $m_{0} = \{0 0 1 1\}$ and $m
 
       In this way, Bob gets $$S_{B2} = \{1,1,0,0,1,1,0,1 \}.$$ When Bob uses the right basis he gets the values correctly, when he uses the wrong basis he just guess the value. The values ``$1$'' correspond to the values he measured correctly and ``$0$'' to the values he just guessed.
 
-       Next, Bob sends to Alice, through a classical channel, information about the minimum number between ``ones'' and ``zeros'', i.e $$n=min(\#0,\#1)=3,$$ where $\#0$ represents the number of zeros in $S_{B2}$ and $\#1$ the number of ones in $S_{B2}$.
+       Next, Bob sends to Alice, through a classical channel, information about the minimum number between ``ones'' and ``zeros'', i.e $$n=min(\#0,\#1)=3,$$ where $\#0$ represents the number of zeros in $S_{B2}$ and $\#1$ the number of ones in $S_{B2}$. At this time, Alice must be able to know if Bob is being honest or not. Therefore, she will open Bob's commitment from \textit{step 4} and she verify if the number n sent by Bob is according with the commitment values sent by him.
 
   \item If $n<s$, being \textit{s} the message's size, Alice and Bob will repeat the steps from $1$ to $7$. In this case, $n=3$ which is smaller than $s=4$. Therefore, Alice and Bob repeat the steps from 1 to 7 in order to enlarge Bob's sets $S_{B1}$ and $S_{B2}$ as well as Alice's sets $S_{A1}$ and $S_{A2}$.
 
@@ -193,7 +194,7 @@ This problems can hopefully be solved using \textit{Bit Commitment} through \tex
 
 First of all, the protocol will be simulated and then a experimental setup will be built in the laboratory.
 
-The main goal of this simulation is to demonstrate that Bob was able to learn correctly message $m_{b}$ and he is unaware of message $m_{\overline{b}}$.
+The main goal of this simulation is to demonstrate that Bob was able to learn correctly message $m_{b}$ and he does not know the message $m_{\overline{b}}$.
 
 \begin{figure}[H]
 	\centering
@@ -201,7 +202,7 @@ The main goal of this simulation is to demonstrate that Bob was able to learn co
 	\caption{Simulation diagram at a top level}\label{toplevelsimulation}
 \end{figure}
 
-As one may see in figure \ref{toplevelsimulation} this simulation will have three top level blocks. Two of them are Alice and Bob and they are connected through two classical channels and one quantum channel. In addition, a third block will be performed for the calculation of \textit{Mutual Information}. The mutual information (MI) between Alice and Bob is defined in terms of their join distribution.
+As one may see in figure \ref{toplevelsimulation} this simulation will have three top level blocks. Two of them are Alice and Bob and they are connected through two classical channels and one quantum channel. In addition, a third block will be performed in order to calculate the \textit{Mutual Information}. The mutual information (MI) between Alice and Bob is defined in terms of their join distribution.
 
 
 \begin{enumerate}
@@ -213,9 +214,22 @@ As one may see in figure \ref{toplevelsimulation} this simulation will have thre
 	\caption{Simulation diagram - Alice's side}\label{simulationalice}
 \end{figure}
 
-    In figure \ref{simulationalice} one can observe a block diagram of the simulation at Alice's side. As it is shown in the figure above, Alice must have two blocks for random number generation: one for basis generation in order to polarize the photons according this basis, and other for key random generation in order to have a random state for encode each photon. Furthermore, she has a CPU block for all logical operations: array analysis, hash function results validation, and others. This block also receives the start information, i.e. message size s, the expansion factor k and messages $m_{0}$ and $m_{1}$, as well as information from a classical receiver block which receives information from Bob, i.e sets $I_{0}$ and $I_{1}$, hash function results, and others. This block also must be responsible for send classical information to Bob. Finally, CPU block will also give information to single photon generator, i.e number of photons for example, through the signal $S_{A1}$, as well as to polarizer, i.e basis and keys according which the photons must be polarized, through the signal $S_{A2}$. Therefore, she has two more blocks for quantum tasks: the single photon generator and the polarizer block which is responsible to encode the photons generated from the previous block and send them throughout a quantum channel from Alice to Bob.
+    In figure \ref{simulationalice} one can observe a block diagram of the simulation at Alice's side. As it is shown in the figure, Alice must have two blocks for random number generation: one for basis generation in order to polarize the photons according this basis, and other for key random generation in order to have a random state to encode each photon. Furthermore, she has a Processor block for all logical operations: array analysis, hash function results validation, and others. This block also receives the start information, i.e. message size s, the expansion factor k and messages $m_{0}$ and $m_{1}$, as well as information from Bob, i.e sets $I_{0}$ and $I_{1}$, hash function results, and others. This block also must be responsible for send classical information to Bob. Finally, Processor block will also send a real continuous time signal to single photon generator, in order to generate photons according to this signal, and finally this block also sends to polarizer a real discrete signal in order to inform the polarizer which basis it should use. Therefore, she has two more blocks for quantum tasks: the single photon generator and the polarizer block which is responsible to encode the photons generated from the previous block and send them throughout a quantum channel from Alice to Bob. 
+    
+    Finally, Alice's processor has an output to Mutual Information top level block, $Ms_{A}$.
 
-  \item BOB's side
+  \item 
+  
+  \begin{figure}[h]
+	\centering
+	\includegraphics[width=1.1\textwidth, height=9cm]{./sdf/ot_with_discrete_variables/figures/Simulation_Bob.png}
+	\caption{Simulation diagram - Bob's side}\label{simulationbob}
+\end{figure}
+    
+    In figure \ref{simulationbob} one can observe a block diagram of the simulation at Bob's side. From this side, Bob only has one block for Random Number Generation which is responsible for randomly generate basis values which Bob will use to measure the photons sent by Alice throughout the quantum channel. Like Alice, Bob has a Processor block responsible for all logical tasks, i.e Hash function generation, analysing functions, etc. It receives information from Alice throughout a classical channel and a quantum channel but it sends information to Alice only throughout a classical channel. Furthermore, Bob has one more block for single photon detection which receives from processor block a real discrete time signal, in order to obtain the basis it should use to measure the photons.
+    
+    Finally, Bob's processor has an output to Mutual Information top level block, $Ms_{B}$.
+  
   \item Mutual Information calculation
   \item
   \item

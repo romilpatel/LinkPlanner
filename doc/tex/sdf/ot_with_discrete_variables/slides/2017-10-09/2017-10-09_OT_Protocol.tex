@@ -96,7 +96,7 @@
 \vspace*{1cm}
 \begin{center}
     \color{black} \sffamily \noindent \Large
-    \br{Oblivious Transfer Protocol\\}
+    \br{Oblivious Transfer Protocol with discrete variables (Polarization)\\}
 \end{center}
 \vspace{6mm}
 \begin{center}
@@ -143,21 +143,22 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
 \mysection{ \\[-5mm]1-out-of-2 OT Protocol: starting conditions}\large
 \vspace{5mm}
 \begin{center}
-  \begin{tabular}{|c|c|c|c|}
-  \hline
-  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-  \textbf{Bit} & \textbf{Basis} & \textbf{Degrees} & \textbf{Polarization} \\
-  0 & $+$ & $0^{\circ}$ & $\longrightarrow$ \\
-  0 & $\times$ & $-45^{\circ}$ & $\searrow$ \\
-  1 & $+$ & $90^{\circ}$ & $\uparrow$ \\
-  1 & $\times$ & $45^{\circ}$ & $\nearrow$ \\
-  \hline
-\end{tabular}
+    \begin{tabular}{c|c}
+            & Basis "+" \\ \hline
+         0 & $\to (0^{\circ})$ \\
+         1 & $\uparrow (90^{\circ})$ \\
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|c}
+          & Basis "$\times$" \\ \hline
+         0 & $\searrow (-45^{\circ})$ \\
+         1 & $\nearrow (45^{\circ})$ \\
+    \end{tabular}
 
 \end{center}
 \vspace{5mm}
 \begin{itemize}
-  \item Alice has two messages to send to Bob: $m_{0} = \{0 0 1 1\}$ and $m_{1} = \{0 0 0 1\}$.
+  \item Lets look an example: Alice has two messages to send to Bob: $m_{0} = \{0 0 1 1\}$ and $m_{1} = \{0 0 0 1\}$.
   \item Lets assume that in this example Alice and Bob knows two start parameters: the message's size $s=4$ and a expansion factor $k=2$.
 \end{itemize}
 
@@ -173,22 +174,24 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
       $S_{A1}$ & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 1 & \textbf{Basis}\\
       & $+$ & $\times$ & $\times$ & $+$ & $+$ & $\times$ & $+$ & $\times$ &\\ \hline
     \end{tabular}
-    
+
     \vspace{5mm}
-    
+
     \begin{tabular}{c|ccccccccc}
       $S_{A2}$ & 1 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & \textbf{Keys}\\
       & $\uparrow$ & $\nearrow$ & $\searrow$ & $\longrightarrow$ & $\longrightarrow$ & $\nearrow$ & $\longrightarrow$ & $\searrow$ &\\ \hline
     \end{tabular}
   \end{center}
-  
+
   \vspace{3mm}
-  
+
   \item[Step 2] Alice sends to Bob throughout a quantum channel $ks$ photons encrypted using the basis defined in $S_{A1}$ and according to the keys defined in $S_{A2}$.
       \begin{center}
         $S_{AB} = \{\uparrow, \nearrow, \searrow, \to, \to, \nearrow, \to, \searrow \}$
+        \vspace{2mm}
+        $S_{AB} = \{90^{\circ}, 45^{\circ}, -45^{\circ}, 0^{\circ}, 0^{\circ}, 45^{\circ}, 0^{\circ}, -45^{\circ} \}$
       \end{center}
-  
+
 \end{description}
 
 %--------------------------------------------------------------------------------------------------
@@ -202,20 +205,39 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
     \begin{center}
         $S_{B1} = \{0,1,0,1,0,1,1,1 \}$.
     \end{center}
-    
+
      When Bob receives photons from Alice, he measures them using the basis defined in $S_{B1}$:
-     
+
      \begin{center}
        $\{ +,\times,+,\times,+,\times, \times, \times \}$
      \end{center}
-     
+
       Bob will get $ks$ results:
-      
+
       \begin{center}
         $S_{B1'} = \{1,1,0,1,0,1,1,0 \}$
       \end{center}
+
   
-  \item[Step 4] Bob sends to Alice an Hash Function value HASH1, which will do Bob's commitment with the measurements done.
+\end{description}
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE -------------------------------------------------------------------------------
+
+\mysection{ \\[-5mm]1-out-of-2 OT Protocol: Description}\large
+\vspace*{4mm}
+
+\begin{description}
+  \item[Step 4] Bob will send a \textit{Hash Function} result HASH1 to Alice. This value will do Bob's commitment with the measurements done. In this case, this \textit{Hash Function} is calculated from \textit{SHA-256} algorithm for each pair (Basis from $S_{B1}$ and measured value from $S_{B1'}$).
+  
+  \vspace*{4mm}
+  
+  \item[Step 5] When Alice receives HASH1, she sends throughout a classical channel the basis she used to encode the photons. In this case, we have assumed:
+
+      \begin{center}
+        $S_{A1} = \{0,1,1,0,0,1,0,1\}$
+      \end{center}
+
 \end{description}
 
 %--------------------------------------------------------------------------------------------------
@@ -223,16 +245,9 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
 
 \mysection{ \\[-5mm]1-out-of-2 OT Protocol: Description}\large
 \vspace*{0mm}
-
 \begin{description}
-  \item[Step 5] When Alice receives HASH1, she sends throughout a classical channel the basis she used to encode the photons. In this case, we have assumed:
-      
-      \begin{center}
-        $S_{A1} = \{0,1,1,0,0,1,0,1\}$
-      \end{center}
-      
-  \item[Step 6] In order to know if he measured the photons correctly, Bob does the operation $S_{B2}=S_{B1} \oplus S_{A1}$. 
-      
+  \item[Step 6] In order to know if he measured the photons correctly, Bob does the operation $S_{B2}=S_{B1} \oplus S_{A1}$.
+
       \begin{center}
         \begin{tabular}{c|c c c c c c c c}
          $S_{B1}$ & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 1 \\
@@ -240,8 +255,8 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
          $\oplus$ & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1
         \end{tabular}
       \end{center}
-      
-      The values $'1'$ correspond to the values he measured correctly and $'0'$ to the values he just guessed. Thus, $S_{B2} = \{1,1,0,0,1,1,0,1 \}$.
+
+      The values $'1'$ correspond to the values he measured correctly and $'0'$ to the values he just guessed. Thus, $S_{B2} = \{1,1,0,0,1,1,0,1 \}$. Bob needs to send to Alice, through a classical channel, $n=min(\#0,\#1)=3$, where $\#0$ represents the number of zeros in $S_{B2}$ and $\#1$ the number of ones in $S_{B2}$. In order to prove his honesty and to prove that he is not cheating Alice, Bob must send to Alice a value (resulted from an Hash Function), such that she can know $n$ from this function.
 
 \end{description}
 %--------------------------------------------------------------------------------------------------
@@ -249,9 +264,10 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
 
 \mysection{ \\[-5mm]1-out-of-2 OT Protocol: Description}\large
 \vspace*{0mm}
- 
+
  \begin{description}
-   \item[Step 6 (cont)] Bob sends to Alice, through a classical channel, $n=min(\#0,\#1)=3$, where $\#0$ represents the number of zeros in $S_{B2}$ and $\#1$ the number of ones in $S_{B2}$.
+   \item[Step 6 (cont)]  At this time, Alice must be able to know if Bob is being honest or not. Therefore, she will open Bob's commitment from \textit{step 4} and she verify if the number n sent by Bob is according with the commitment values sent by him.
+
    \item[Step 7] If $n<s$, Alice and Bob will repeat the steps from $1$ to $7$. In this case, $n=3$ which is smaller than $s=4$. Therefore, Alice and Bob repeat the steps from 1 to 7 in order to enlarge Bob's sets $S_{B1}$ and $S_{B2}$ as well as Alice's sets $S_{A1}$ and $S_{A2}$.
    \item[Step 8] Lets assume :
         \begin{center}
@@ -259,8 +275,8 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
           $S_{A1}=\{0,1,1,0,0,1,0,1,1,1,0,0,1,1,1,0 \},$
           $S_{A2}=\{1,1,0,0,0,1,0,0,1,0,1,0,0,0,1,1 \}.$
         \end{center}
-        
-       
+
+
  \end{description}
 
 %--------------------------------------------------------------------------------------------------
@@ -297,7 +313,7 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
       \end{center}
       Bob sends to Alice the set $S_{b}$.
       If Bob wants to know $m_{0}$ he must send to Alice throughout a classical channel the set $S_{0}=\{I_{1},I_{0} \}$, otherwise if he wants to know $m_{1}$ he must send to Alice throughout a classical channel the set $S_{1}=\{I_{0},I_{1} \}$.
-  \item[Step 12]  With both the received set $S_{b}$ and the hash function value HASH1, Alice must be able to prove that Bob has being honest. \textbf{HOW???}
+  \item[Step 12]  With both the received set $S_{b}$ and the hash function value HASH1, Alice must be able to prove that Bob has been being honest.
 \end{description}
 
 %--------------------------------------------------------------------------------------------------
@@ -306,11 +322,11 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
 \vspace{0cm}
 
 \begin{description}
-  \item[Step 13] Lets assume Bob sent $S_{0}=\{I_{1},I_{0} \}$. Alice defines two encryption keys $K_{0}$ and $K_{1}$ using the values in positions defined by Bob in the set sent by him. In this example, lets assume: 
+  \item[Step 13] Lets assume Bob sent $S_{0}=\{I_{1},I_{0} \}$. Alice defines two encryption keys $K_{0}$ and $K_{1}$ using the values in positions defined by Bob in the set sent by him. In this example, lets assume:
       \begin{center}
         $K_{0}=\{1,0,1,0\}$ and $K_{1}=\{0,0,0,1\}.$
       \end{center}
-  
+
        Alice does the operation  $m = \{m_{0}\oplus K_{0}, m_{1} \oplus K_{1} \}.$
        \vspace{5mm}
        \begin{center}
@@ -326,8 +342,8 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
              $\oplus$ & 0 & 0 & 0 & 0
          \end{tabular}
        \end{center}
-       \vspace{5mm}  
-       
+       \vspace{5mm}
+
     Adding the two results, Alice will send to Bob the encoded message $m=\{1,0,0,1,0,0,0,0\}.$
 \end{description}
 
@@ -339,7 +355,7 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
 
 \begin{description}
   \item[Step 14] When Bob receives the message $m$, in the same way as Alice, Bob uses $S_{B1'}$ values of positions given by $I_{1}$ and $I_{0}$ and does the decrypted operation:
-      
+
       \begin{center}
         \begin{tabular}{c|c c c c c c c c}
          $m$ & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
@@ -347,10 +363,10 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
          $\oplus$ & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
         \end{tabular}
       \end{center}
-      
+
       \vspace{6mm}
       The first four bits corresponds to message 1 and he received $\{0,0,1,1\}$, which is the right message $m_{0}$ and $\{0,1,1,0\}$ which is a wrong message for $m_{1}$.
-      
+
 
 \end{description}
 

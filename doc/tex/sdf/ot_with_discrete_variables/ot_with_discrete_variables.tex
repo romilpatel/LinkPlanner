@@ -84,7 +84,7 @@ In this case, lets assume she sets the two messages $m_{0} = \{0 0 1 1\}$ and $m
   Bob will get $ks$ results:
   $$S_{B1'} = \{1,1,0,1,0,1,1,0 \}.$$
 
-  \item Bob will send a \textit{Hash Function} result HASH1 to Alice. This value will do Bob's commitment with the measurements done. In this case, this \textit{Hash Function} is calculated from \textit{SHA-256} algorithm for each pair (Basis from $S_{B1}$ and measured value from $S_{B1'}$). 
+  \item Bob will send a \textit{Hash Function} result HASH1 to Alice. This value will do Bob's commitment with the measurements done. In this case, this \textit{Hash Function} is calculated from \textit{SHA-256} algorithm for each pair (Basis from $S_{B1}$ and measured value from $S_{B1'}$), i.e Bob sends to Alice $sk$ pairs as his commitment. In this case, Bob sends eight pairs encoded using a \textit{Hash Function} which is also send to Alice. From that moment on Bob cannot change his commitment neither the basis which he uses to measure the photons sent by Alice.
 
   \item Once Alice has received the confirmation of measurement from Bob, she sends throughout a classical channel the basis which she has used to codify the photons, which in this case we assumed $S_{A1} = \{0,1,1,0,0,1,0,1\}$.
 
@@ -102,7 +102,7 @@ In this case, lets assume she sets the two messages $m_{0} = \{0 0 1 1\}$ and $m
 
       In this way, Bob gets $$S_{B2} = \{1,1,0,0,1,1,0,1 \}.$$ When Bob uses the right basis he gets the values correctly, when he uses the wrong basis he just guess the value. The values ``$1$'' correspond to the values he measured correctly and ``$0$'' to the values he just guessed.
 
-       Next, Bob sends to Alice, through a classical channel, information about the minimum number between ``ones'' and ``zeros'', i.e $$n=min(\#0,\#1)=3,$$ where $\#0$ represents the number of zeros in $S_{B2}$ and $\#1$ the number of ones in $S_{B2}$. At this time, Alice must be able to know if Bob is being honest or not. Therefore, she will open Bob's commitment from \textit{step 4} and she verify if the number n sent by Bob is according with the commitment values sent by him.
+       Next, Bob sends to Alice, through a classical channel, information about the minimum number between ``ones'' and ``zeros'', i.e $$n=min(\#0,\#1)=3,$$ where $\#0$ represents the number of zeros in $S_{B2}$ and $\#1$ the number of ones in $S_{B2}$. At this time, Alice must be able to know if Bob is being honest or not. Therefore, she will open Bob's commitment from \textit{step 4} and she verify if the number n sent by Bob is according with the commitment values sent by him. In other words, she opens a number of pairs committed by Bob which is known from the beginning. 
 
   \item If $n<s$, being \textit{s} the message's size, Alice and Bob will repeat the steps from $1$ to $7$. In this case, $n=3$ which is smaller than $s=4$. Therefore, Alice and Bob repeat the steps from 1 to 7 in order to enlarge Bob's sets $S_{B1}$ and $S_{B2}$ as well as Alice's sets $S_{A1}$ and $S_{A2}$.
 
@@ -133,7 +133,7 @@ In this case, lets assume she sets the two messages $m_{0} = \{0 0 1 1\}$ and $m
   Thus, if Bob wants to know $m_{0}$ he must send to Alice throughout a classical channel the set $S_{0}=\{I_{1},I_{0} \}$, otherwise if he wants to know $m_{1}$ he must send to Alice throughout a classical channel the set $S_{1}=\{I_{0},I_{1} \}$.
 
 
-  \item With both the received set $S_{b}$ and the hash function value HASH1, Alice must be able to prove that Bob has being honest. HOW???
+  \item With both the received set $S_{b}$ and the hash function value HASH1, Alice must be able to prove that Bob has being honest. 
 
   \item Lets assume Bob sent $S_{0}=\{I_{1},I_{0} \}$.
    Alice defines two encryption keys $K_{0}$ and $K_{1}$ using the values in positions defined by Bob in the set sent by him. In this example, lets assume: $$K_{0}=\{1,0,1,0\}$$ $$K_{1}=\{0,0,0,1\}.$$
@@ -214,22 +214,22 @@ As one may see in figure \ref{toplevelsimulation} this simulation will have thre
 	\caption{Simulation diagram - Alice's side}\label{simulationalice}
 \end{figure}
 
-    In figure \ref{simulationalice} one can observe a block diagram of the simulation at Alice's side. As it is shown in the figure, Alice must have two blocks for random number generation: one for basis generation in order to polarize the photons according this basis, and other for key random generation in order to have a random state to encode each photon. Furthermore, she has a Processor block for all logical operations: array analysis, hash function results validation, and others. This block also receives the start information, i.e. message size s, the expansion factor k and messages $m_{0}$ and $m_{1}$, as well as information from Bob, i.e sets $I_{0}$ and $I_{1}$, hash function results, and others. This block also must be responsible for send classical information to Bob. Finally, Processor block will also send a real continuous time signal to single photon generator, in order to generate photons according to this signal, and finally this block also sends to polarizer a real discrete signal in order to inform the polarizer which basis it should use. Therefore, she has two more blocks for quantum tasks: the single photon generator and the polarizer block which is responsible to encode the photons generated from the previous block and send them throughout a quantum channel from Alice to Bob. 
-    
+    In figure \ref{simulationalice} one can observe a block diagram of the simulation at Alice's side. As it is shown in the figure, Alice must have two blocks for random number generation: one for basis generation in order to polarize the photons according this basis, and other for key random generation in order to have a random state to encode each photon. Furthermore, she has a Processor block for all logical operations: array analysis, hash function results validation, and others. This block also receives the start information, i.e. message size s, the expansion factor k and messages $m_{0}$ and $m_{1}$, as well as information from Bob, i.e sets $I_{0}$ and $I_{1}$, hash function results, and others. This block also must be responsible for send classical information to Bob. Finally, Processor block will also send a real continuous time signal to single photon generator, in order to generate photons according to this signal, and finally this block also sends to polarizer a real discrete signal in order to inform the polarizer which basis it should use. Therefore, she has two more blocks for quantum tasks: the single photon generator and the polarizer block which is responsible to encode the photons generated from the previous block and send them throughout a quantum channel from Alice to Bob.
+
     Finally, Alice's processor has an output to Mutual Information top level block, $Ms_{A}$.
 
-  \item 
-  
+  \item
+
   \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.1\textwidth, height=9cm]{./sdf/ot_with_discrete_variables/figures/Simulation_Bob.png}
 	\caption{Simulation diagram - Bob's side}\label{simulationbob}
 \end{figure}
-    
+
     In figure \ref{simulationbob} one can observe a block diagram of the simulation at Bob's side. From this side, Bob only has one block for Random Number Generation which is responsible for randomly generate basis values which Bob will use to measure the photons sent by Alice throughout the quantum channel. Like Alice, Bob has a Processor block responsible for all logical tasks, i.e Hash function generation, analysing functions, etc. It receives information from Alice throughout a classical channel and a quantum channel but it sends information to Alice only throughout a classical channel. Furthermore, Bob has one more block for single photon detection which receives from processor block a real discrete time signal, in order to obtain the basis it should use to measure the photons.
-    
+
     Finally, Bob's processor has an output to Mutual Information top level block, $Ms_{B}$.
-  
+
   \item Mutual Information calculation
   \item
   \item

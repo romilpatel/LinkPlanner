@@ -28,7 +28,7 @@ An analytic signal is a complex-valued signal that has no negative frequency com
 s_a(t)=s(t)+i\hat{s}(t)
 \label{Analytical signal}
 \end{equation}
-where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transform of the signal ${s}(t)$. Such analytical signal can be used to generate Single Sideband Signal (SSB) signal(See the Appendix B).
+where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transform of the signal ${s}(t)$. Such analytical signal can be used to generate Single Sideband Signal (SSB) signal (See the Appendix B).
 
 \subsubsection{4. How we can use these signals and profit from them?}
 This section represents the justification that why we need to use these signals into our proposed transceiver system.\\
@@ -38,7 +38,7 @@ Analytical signal used for generating single sidebnad (SSB) signal. In the case 
 A_s(t)=A_{s,r}(t)+iA_{s,i}(t)
 \label{5.15}
 \end{equation}
-the real part $A_{s,r}(t)$  and the imaginary parts $A_{s,i}(t)$ are Hilbert transform of each other as(See Appendix C),
+the real part $A_{s,r}(t)$  and the imaginary parts $A_{s,i}(t)$ are Hilbert transform of each other as (See Appendix C)[1],
 \begin{equation}
 \begin{split}
 A_{s,r}(t) &=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_{s,i}(t')}{t-t'} dt' \\
@@ -54,7 +54,7 @@ A_{s}(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_{s}(t')}{t-t'} dt'
 \label{Eq:5.17}
 \end{equation}\\
 \textbf{Minimum Phase signal:}\\
-If the trajectory of the received SSB signal $A(t)=A_{s}(t)+\bar{A}$ never encircles the origin for $t\in(-\infty,\infty)$ then its phase can be reconstructed by a logarithmaic Hilbert transform of its amplitude(See Appendix D),
+If the trajectory of the received SSB signal $A(t)=A_{s}(t)+\bar{A}$ never encircles the origin for $t\in(-\infty,\infty)$ then its phase can be reconstructed by a logarithmaic Hilbert transform of its amplitude (See Appendix D)[3],
 \begin{equation}
 \phi(t) = \bar{\phi} + \dfrac{1}{2\pi} p.v. \int_{-\infty}^{\infty} \dfrac{log[|A(t')|^2]}{t-t'} dt'
 \end{equation}\\
@@ -92,26 +92,37 @@ A_s(t)=\{\sqrt{I(t)} exp[i\phi_E(t)]-A_0\} exp(i\pi Bt)
 \label{Eq:5.19}
 \end{equation}
 %Here, the average value of the phase returned by Equation \ref{Eq:5.19} is zero, which implies the need for an additional phase-recovery procedure. 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf}
-	\caption{Tx/Rx DSP main subsystem}\label{DSP_main_subsystem}
-\end{figure}
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf}
+%	\caption{Tx/Rx DSP main subsystem}\label{DSP_main_subsystem}
+%\end{figure}
 
 \subsection{Simulation set-up}
-
-\subsection{Practical set-up}
-
 \subsection{Tx side}
+Single polarization 4PAM signals to be generated at the transmitter side (Figure \ref{Transmitter}). The 4PAM modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.  
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf}
-	\caption{Transmitter}\label{Transmitter}
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/Simulation_setup_Tx.pdf}
+	\caption{Transmitter simulation setup}\label{Simulation_setup_Tx}
 \end{figure}
-Single polarization 4PAM signals to be generated at the transmitter side (Figure \ref{Transmitter}). The 4PAM modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.  
 
 \subsection{Rx side}
 At the receiver side, signal is coherently detected using a simplified coherent receiver and a local oscillator. The optical signal is then converted into the electrical domain using two balanced photodetector (BPD), or alternatively four photodetector, and amplified by a transimpedance amplifier (TIA). Following that, the signals are sampled by two 8-bit 2.5 GSa/s ADC and the this digitized signal sent to the FPGA (Virtex-7) where all post-detection DSP implemented in real-time.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/Simulation_setup_Rx.pdf}
+	\caption{Receiver simulation setup}\label{Simulation_setup_Rx}
+\end{figure}
+
+\subsection{Experimental set-up}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/Practical_setup_TxRx.pdf}
+	\caption{Kramers-Kronig receiver experimental setup}\label{Practical_setup_TxRx}
+\end{figure}
+
+
 
 \begin{thebibliography}{9}
 	\bibitem{latexcompanion}

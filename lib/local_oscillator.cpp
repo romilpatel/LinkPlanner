@@ -17,12 +17,6 @@ void LocalOscillator::initialize(void) {
 
 	outputSignals[0]->setCentralWavelength(getWavelength());
 	outputSignals[0]->setCentralFrequency(getFrequency());
-<<<<<<< HEAD
-
-}
-=======
->>>>>>> Daniel
-
 }
 
 

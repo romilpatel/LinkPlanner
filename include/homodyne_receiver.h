@@ -6,7 +6,7 @@
 # include "optical_hybrid.h"
 # include "photodiode.h"
 # include "subtractor.h"
-# include "ti_amplifier.h"
+# include "ideal_amplifier.h"
 # include "decoder.h"
 # include "local_oscillator.h"
 # include "sampler.h"
@@ -68,9 +68,9 @@ class HomodyneReceiver : public SuperBlock {
 
 	Photodiode B4;
 
-	TIAmplifier B5;
+	IdealAmplifier B5;
 
-	TIAmplifier B6;
+	IdealAmplifier B6;
 
 	PulseShaper B7;
 
@@ -118,8 +118,8 @@ public:
 
 	void  setResponsivity(t_real Responsivity) { B3.responsivity = Responsivity; B4.responsivity = Responsivity; };
 
-	void setAmplification(t_real Amplification) { B5.amplification = Amplification; B6.amplification = Amplification; };
-	void setNoiseAmplitude(t_real NoiseAmplitude) { B5.noiseamp = NoiseAmplitude; B6.noiseamp = NoiseAmplitude;};
+	//void setAmplification(t_real Amplification) { B5.amplification = Amplification; B6.amplification = Amplification; };
+	//void setNoiseAmplitude(t_real NoiseAmplitude) { B5.noiseamp = NoiseAmplitude; B6.noiseamp = NoiseAmplitude;};
 
 	void setImpulseResponseTimeLength(int impResponseTimeLength) { B7.setImpulseResponseTimeLength(impResponseTimeLength); B8.setImpulseResponseTimeLength(impResponseTimeLength); };
 	void setFilterType(PulseShaperFilter fType) { B7.setFilterType(fType); B8.setFilterType(fType); };

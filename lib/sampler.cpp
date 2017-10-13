@@ -55,8 +55,4 @@ bool Sampler::runBlock(void) {
 		}
 		return true;
 	}
-	{
-		cout << "ERROR: Sampler\n";
-		return false;
-	}
 }

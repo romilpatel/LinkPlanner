@@ -11,7 +11,7 @@
 
 %In recent days, homodyne detection has been discussed and investigated a lot due to the advancement in the DSP in the electrical domain. However, a major drawback of homodyne detection is the incoming signal should be separated into inphase and quadrature (I/Q) signals in the optical domain. Therefore, it demands more hardware to accommodate the requirement of the signal separation  in the optical domain. For instance, 4 balanced photodetectors with double hybrid structures and 4-channel ADCs are required.
 %On the other hand, heterodyne receiver simplifies the detection scheme to some extent with the requirement of having only half of photodetectors and ADC.\\
-Coherent optical transceiver schemes are spectrally efficient since they allow the encoding of information in both quadrature of sinusoid signal. Coherent detection schemes constitute the solution for the medium-to-long-reach optical transmission links; however, the cost of coherent receiver becomes a major obstacle in the case of short-reach links applications like PON, inter-data-center communications and metropolitan network. In order to get rid of higher cost and to make the transceiver applicable in short-reach links, a new architecture of optical receiver has been proposed which combines the advantages of coherent transmission and cost effectiveness of direct detection. The working principle of the proposed transceiver is based on the famous Kramers-Kronig (KK) relationship. The KK transceiver scheme allows digital compensation of linear propagation impairment, and it is efficient in terms of spectral occupancy and energy consumption. 
+Coherent optical transmission schemes are spectrally efficient since they allow the encoding of information in both quadrature of sinusoid signal. Coherent detection schemes constitute the solution for the medium-to-long-reach optical transmission links; however, the cost of coherent receiver becomes a major obstacle in the case of short-reach links applications like PON, inter-data-center communications and metropolitan network. In order to get rid of higher cost and to make the transceiver applicable in short-reach links, a new architecture of optical receiver has been proposed which combines the advantages of coherent transmission and cost effectiveness of direct detection. The working principle of the proposed transceiver is based on the famous Kramers-Kronig (KK) relationship. The KK transceiver scheme allows digital compensation of linear propagation impairment, and it is efficient in terms of spectral occupancy and energy consumption. 
 \subsection{Concept of Kramers-Kronig receiver }
 %The key concept behind the Kramers-Kronig self coherent receiver is to aquire "\textit{minimum phase single sideband signal}".
 The proposed receiver scheme allows the full reconstruction of the complex-valued signal from the amplitude data. The following few questions would give a comprehensive overview of the Kramers-Kronig receiver.
@@ -77,7 +77,7 @@ where the $A(t)=|A(t)|exp(i\phi(t))$ and $\bar{A}=|\bar{E}|exp(i\bar{\phi})$.
 %\end{equation}
 %where $sign(\omega)$ is the sign function which is equal to 1 when $\omega>0$, to 0 when $\omega=0$ and to -1 when $\omega<0$. Symbol $\mathcal{F}$ denotes the Fourier transform.
 
-\subsection{KK Scheme}
+\subsection{KK scheme}
 If we consider the complex envelope of the incoming electric field by $A_s(t)$ confined within the optical bandwidth denoted by B. The LO assumed to be a continuous wave (CW) signal whose amplitude is $A_0$ whose frequency coincides with the left edge of the information-carrying signal spectrum. Here, we assumed that $A_0$ is real-valued and positive, which is equivalent to referring all phase value to that of LO.\\
 The complex envelope of the field striking upon the photo-diode can be given as,
 \begin{equation}
@@ -99,27 +99,31 @@ A_s(t)=\{\sqrt{I(t)} exp[i\phi_E(t)]-A_0\} exp(i\pi Bt)
 %\end{figure}
 
 \subsection{Simulation set-up}
-\subsection{Tx side}
-Single polarization 4PAM signals to be generated at the transmitter side (Figure \ref{Transmitter}). The 4PAM modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.  
+\subsubsection{Tx side}
+At the transmitter side (Figure \ref{Simulation_setup_Tx}), random bit sequence generated and mapped it to MPAM symbol. After mapping, MPAM signal passed through the RRC filter and up-converted to form a band-limited signal $s(t)$. As per the requirement of KK receiver, it is a prerequisite that the transmitted signal needs to be an analytical signal. In the analytical signal $s_a(t)$, imaginary part $\hat{s}(t)$ is Hilbert transformed version of signal $s(t)$. Real part  $s(t)$ of the analytical signal  $s_a(t)$ applied to one quadrature of the IQ modulator and imaginary part  $\hat{s}(t)$ applied to the other quadrature. As discussed earlier, the output of the IQ modulator will generate single sideband (SSB) signal $A_s(t)$ that will be launched into the optical fiber.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/Simulation_setup_Tx.pdf}
+	\includegraphics[width=1.0\textwidth, height=9cm]{./sdf/simplified_coherent_receiver/figures/Simulation_setup_Tx.pdf}
 	\caption{Transmitter simulation setup}\label{Simulation_setup_Tx}
 \end{figure}
 
-\subsection{Rx side}
-At the receiver side, signal is coherently detected using a simplified coherent receiver and a local oscillator. The optical signal is then converted into the electrical domain using two balanced photodetector (BPD), or alternatively four photodetector, and amplified by a transimpedance amplifier (TIA). Following that, the signals are sampled by two 8-bit 2.5 GSa/s ADC and the this digitized signal sent to the FPGA (Virtex-7) where all post-detection DSP implemented in real-time.
+\subsubsection{Rx side}
+At the receiver end (Figure \ref{Simulation_setup_Rx}), to ensure minimum phase condition, an LO $A_0exp(i\pi Bt)$ added to the information carrying signal $A_s(t)$ using the frequency selective coupler to avoid signal and LO loss. This implementation accommodates polarization multiplexing and eliminates the need of optical hybrid. The minimum phase signal $A(t)$ applied to the single photo-detector for direct-detection which will generate photo current proportional to its intensity $I(t)=|A(t)|^2$ (assuming proportionality constant to be 1). From the amplitude data generated by single photo-detector, full reconstruction of the complex envelope carried out by Kramers-Kronig algorithm. The availability of the complex signal at the end of reconstruction makes KK-PAM scheme equivalent to a coherent receiver which allows compensation of chromatic dispersion digitally. 
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/Simulation_setup_Rx.pdf}
+	\includegraphics[width=1.0\textwidth, height=10cm]{./sdf/simplified_coherent_receiver/figures/Simulation_setup_Rx.pdf}
 	\caption{Receiver simulation setup}\label{Simulation_setup_Rx}
 \end{figure}
 
+
 \subsection{Experimental set-up}
+If an optical signals received together with a CW tine at the band edge such that it satisfies the minimum phase condition, then its full complex signal can be recovered after direct-detection by using KK algorithm. The principle can be extended to the dual-polarization signals through a polarization diversity transceiver set-up. In order to save cost
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/Practical_setup_TxRx.pdf}
-	\caption{Kramers-Kronig receiver experimental setup}\label{Practical_setup_TxRx}
+	\caption{PDM Kramers-Kronig receiver experimental setup}\label{Practical_setup_TxRx}
 \end{figure}
 
 

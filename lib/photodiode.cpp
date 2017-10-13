@@ -42,7 +42,7 @@ bool Photodiode::runBlock(void){
 			t_complex input1;
 			inputSignals[0]->bufferGet(&input1);
 
-			// The 4 factor is compensating the bandpass signal representation
+			// The 2 factor is compensating the bandpass signal representation
 			// amplitude correction.
 			power = 2 * abs(input1)*abs(input1);
 

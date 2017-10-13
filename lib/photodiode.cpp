@@ -47,6 +47,8 @@ bool Photodiode::runBlock(void){
 			power = 2 * abs(input1)*abs(input1);
 
 			current = responsivity*power;
+
+			outputSignals[0]->bufferPut(current);
 		}
 	};
 

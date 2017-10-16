@@ -3,31 +3,26 @@
 # include "netxpto.h"
 
 # include "m_qam_transmitter.h"
-# include "sink.h"
-# include "bit_error_rate.h"
 # include "local_oscillator.h"
-# include "balanced_beam_splitter.h"
-# include "photodiode.h"
-# include "ti_amplifier.h"
-# include "sampler.h"
 # include "optical_hybrid.h"
-# include "testblock.h"
-# include "sampler.h"
-# include "bit_decider.h"
+# include "photodiode.h"
 # include "difference.h"
+# include "sampler.h"
+# include "sink.h"
 
 
-int main(int argc, char* argv[])
+
+//# include "i_homodyne_receiver.h"
+//# include "bit_error_rate.h"
+//# include "balanced_beam_splitter.h"
+//# include "ti_amplifier.h"
+//# include "testblock.h"
+//# include "bit_decider.h"
+
+
+
+int main()
 {	
-	
-	// External input reading.
-	double n_in;
-	if (argc != 2) {
-		n_in = -1;
-	}
-	else {
-		n_in = atof(argv[1]);
-	}
 
 	// #########################################################################
 	// ######################## System Input Parameters ########################
@@ -52,11 +47,7 @@ int main(int argc, char* argv[])
 	double photonNumber1 = 100;
 	double photonNumber2 = 1e4;
 
-	// In case of external input, override the number of photons.
-	if (n_in != -1) {
-		photonNumber1 = n_in;
-	}
-
+	
 	double localOscillatorPower1 = powerUnit * photonNumber1;
 	double localOscillatorPower2 = powerUnit * photonNumber2;
 
@@ -205,7 +196,7 @@ int main(int argc, char* argv[])
 	B4.setThermalNoiseAmplitude(thermalNoiseAmplitude);*/
 	B4.setResponsivity(responsivity);
 
-	Sink B100{ vector<Signal*> {&S7}, vector<Signal*> {} };
+	//Sink B100{ vector<Signal*> {&S7}, vector<Signal*> {} };
 
 	Photodiode B5{ vector<Signal*> {&S4}, vector<Signal*> {&S8} };
 	/*B5.useNoise(shotNoise);

@@ -1,3 +1,10 @@
+2017-10-17
+TO BE DONE
+ - Finish the simulation setup (top priority)
+ - Improve the theoretical part;
+
+
+
 2017-10-09
 TO BE DONE
 - make clear the goal of your work: to apply the Stokes PolDemux algorithm to a KK receiver

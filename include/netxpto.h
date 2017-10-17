@@ -57,8 +57,8 @@ public:
 	
 	long int numberOfValuesToBeSaved{ -1 };			// Number of values to be saved, if -1 all values are going to be saved
 
-	int inPosition{ 0 };							// Next position for the input values
-	int outPosition{ 0 };							// Next position for the output values
+	int inPosition{ 0 };							// Next position for the buffer input values
+	int outPosition{ 0 };							// Next position for the buffer output values
 	bool bufferEmpty{ true };						// Flag bufferEmpty
 	bool bufferFull{ false };						// Flag bufferFull
 	long int numberOfSavedValues{ 0 };				// Number of saved values
@@ -68,9 +68,9 @@ public:
 
 	int bufferLength{ 512 };						// Buffer length
 
-	double symbolPeriod{ 1 };										// Signal symbol period (it is the inverse of the symbol rate)
-	double samplingPeriod{ 1 };										// Signal sampling period (it is the time space between two samples)
-	double samplesPerSymbol{ symbolPeriod / samplingPeriod };		// samplesPerSymbol = symbolPeriod / samplingPeriod;
+	double symbolPeriod{ 1.0 };						// Signal symbol period (it is the inverse of the symbol rate)
+	double samplingPeriod{ 1.0 };					// Signal sampling period (it is the time space between two samples)
+	double samplesPerSymbol{ 1.0 };					// samplesPerSymbol = symbolPeriod / samplingPeriod;
 
 	double centralWavelength{ 1550E-9 };
 	double centralFrequency{ SPEED_OF_LIGHT / centralWavelength };
@@ -82,7 +82,8 @@ public:
 	Signal(string fName) {setFileName(fName); };	// Signal constructor
 	Signal(string fName, bool sSignal) { setFileName(fName); setSaveSignal(sSignal); };
 	Signal(int bLength) { setBufferLength(bLength); };
-										// Signal constructor
+
+	// Signal constructor
 
 	~Signal(){ delete buffer; };					// Signal destructor
 
@@ -93,8 +94,7 @@ public:
 	void writeHeader(string signalPath);			// Opens the signal file in the signalPath directory, and writes the signal header
 
 
-
-	template<typename T>							// Puts a value in the buffer
+		template<typename T>							// Puts a value in the buffer
 	void bufferPut(T value) {
 		(static_cast<T *>(buffer))[inPosition] = value;
 		if (bufferEmpty) bufferEmpty = false;

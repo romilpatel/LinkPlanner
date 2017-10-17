@@ -5,7 +5,7 @@
 # include "bit_error_rate.h"
 # include "local_oscillator.h"
 # include "balanced_beam_splitter.h"
-# include "photodiode.h"
+# include "photodiode_old.h"
 # include "ti_amplifier.h"
 # include "sampler.h"
 # include "sink.h"
@@ -17,28 +17,29 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated(1000);
+	int numberOfBitsGenerated(40000);
 	int samplesPerSymbol(16);
 	int pLength = 5;
-	double bitPeriod = 1.0 / 5e6;
+	double bitPeriod = 20e-12;
 	double rollOffFactor = 0.3;
-	vector<t_iqValues> iqAmplitudeValues = { { -1, 0 }, { 1, 0 } };
-	double signalOutputPower_dBm = -4; // doesn't matter right now
-	double localOscillatorPower_dBm1 = -20;
-	double localOscillatorPower2 = 0;
-	double localOscillatorPhase1 = 0;
-	double localOscillatorPhase2 = PI;
+	double signalOutputPower_dBm = -20;
+	double localOscillatorPower_dBm = -20;
+	double localOscillatorPhase = 0;
+	vector<t_iqValues> iqAmplitudeValues = { {-1, 0} , {1, 0} };
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	double responsivity = 1;
-	double amplification = 1e6;
-	double electricalNoiseAmplitude = 0.0022*0.0022;
-	int samplesToSkip = 16*16;// 8 * samplesPerSymbol;
+	double amplification = 1;
+	double electricalNoiseAmplitude = 0;// 15.397586549153788;
+	int samplesToSkip = 8 * samplesPerSymbol;
 	int bufferLength = 512;
-	bool shotNoise(true);
+	bool shotNoise(false);
 		
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
+
+	Binary S0("S0.sgn");
+	S0.setBufferLength(bufferLength);
 
 	OpticalSignal S1("S1.sgn");
 	S1.setBufferLength(bufferLength);
@@ -61,21 +62,34 @@ int main(){
 	TimeDiscreteAmplitudeContinuousReal S7("S7.sgn");
 	S7.setBufferLength(bufferLength);
 
+	Binary S8("S8.sgn");
+	S8.setBufferLength(bufferLength);
+
+	Binary S9("S9.sgn");
+	S9.setBufferLength(bufferLength);
 
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-<<<<<<< HEAD
-	LocalOscillator B1{ vector<Signal*> { }, vector<Signal*> { &S1 } };
-	B1.setOpticalPower_dBm(localOscillatorPower_dBm1);
-	B1.setPhase(localOscillatorPhase1);
-	B1.setSamplingPeriod(bitPeriod / samplesPerSymbol);
-	B1.setSymbolPeriod(bitPeriod);
+	MQamTransmitter B1{ vector<Signal*> {}, vector<Signal*> {&S1, &S0} };
+	B1.setNumberOfBits(numberOfBitsGenerated);
+	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
+	B1.setMode(PseudoRandom);
+	B1.setBitPeriod(bitPeriod);
+	B1.setPatternLength(pLength);
+	B1.setIqAmplitudes(iqAmplitudeValues);
+	B1.setNumberOfSamplesPerSymbol(samplesPerSymbol);
+	B1.setRollOffFactor(rollOffFactor);
+	B1.setSaveInternalSignals(true);
+	B1.setPulseShaperFilter(RaisedCosine);
+	B1.setSeeBeginningOfImpulseResponse(false);
+
+
 
 	LocalOscillator B2{ vector<Signal*> { }, vector<Signal*> { &S2 } };
-	B2.setOpticalPower(localOscillatorPower2);
-	B2.setPhase(localOscillatorPhase2);
+	B2.setOpticalPower_dBm(localOscillatorPower_dBm);
+	B2.setPhase(localOscillatorPhase);
 	B2.setSamplingPeriod(bitPeriod / samplesPerSymbol);
 	B2.setSymbolPeriod(bitPeriod);
 
@@ -96,51 +110,22 @@ int main(){
 	B5.usePassiveFilterMode(true);
 
 	Sampler B6{ vector<Signal*> {&S6}, vector<Signal*> {&S7} };
+	B6.setSamplesToSkip(samplesToSkip);
+	
+	BitDecider B7{ vector<Signal*> {&S7}, vector<Signal*> {&S8} };
 
-	Sink B7{ vector<Signal*> { &S7 }, vector<Signal*> {} };
-	B7.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B7.setDisplayNumberOfSamples(true);
-=======
-	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S1, &S0 } };
-	B1.setNumberOfBits(numberOfBitsGenerated);
-	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
-	B1.setMode(DeterministicAppendZeros);
-	B1.setBitStream("010");
-	B1.setBitPeriod(bitPeriod);
-	B1.setPatternLength(pLength);
-	B1.setIqAmplitudes(iqAmplitudeValues);
-	B1.setNumberOfSamplesPerSymbol(samplesPerSymbol);
-	B1.setRollOffFactor(rollOffFactor);
-	B1.setSaveInternalSignals(true);
-	B1.setSeeBeginningOfImpulseResponse(true);
+	BitErrorRate B8{ vector<Signal*> {&S0, &S8}, vector<Signal*> {&S9} };
 
-	I_HomodyneReceiver B2{ vector<Signal*> {&S1}, vector<Signal*> {&S2} };
-	B2.setLocalOscillatorOpticalPower_dBm(localOscillatorPower_dBm);
-	B2.setLocalOscillatorPhase(localOscillatorPhase);
-	B2.setLocalOscillatorSamplingPeriod(bitPeriod / samplesPerSymbol);
-	//B2.setLocalOscillatorSymbolPeriod(bitPeriod);
-	B2.setTransferMatrix(transferMatrix);
-	B2.setResponsivity(responsivity);
-	B2.setAmplification(amplification);
-	B2.setNoiseAmplitude(noiseAmplitude);
-	B2.setSamplesToSkip(samplesToSkip);
-	B2.setSaveInternalSignals(true);
-
-	Sink B3{ vector<Signal*> { &S0 }, vector<Signal*> {} };
-	B3.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
-	B3.setDisplayNumberOfSamples(true);
-
-	Sink B4{ vector<Signal*> { &S2 }, vector<Signal*> {} };
-	B4.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
-	B4.setDisplayNumberOfSamples(true);
->>>>>>> AnaLuisa
+	Sink B9{ vector<Signal*> { &S9 }, vector<Signal*> {} };
+	B9.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B9.setDisplayNumberOfSamples(true);
 
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7 } };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9} };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################

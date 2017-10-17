@@ -75,7 +75,7 @@ int Signal::ready() {
 			return (inPosition - outPosition);
 		}
 		else {
-			return (bufferLength - outPosition + inPosition + 1);
+			return (bufferLength - outPosition + inPosition);
 		}
 
 	}
@@ -377,13 +377,6 @@ bool FIR_Filter::runBlock(void) {
 	int ready = inputSignals[0]->ready();
 	int space = outputSignals[0]->space();
 
-	vector<double> var_temp(ready, 0);
-	for (int k = 0; k < ready; k++) {
-		t_real val;
-		(inputSignals[0])->bufferGet(&val);
-		var_temp[k] = val;
-	}
-
 	int process = min(ready, space);
 
 	if (process == 0) return false;
@@ -568,7 +561,7 @@ bool FD_Filter::runBlock(void) {
 	for (int k = 0; k < process1; k++) {
 		t_real val;
 		(inputSignals[0])->bufferGet(&val);
-		inputBufferTimeDomain[k] = val;
+		inputBufferTimeDomain[inputBufferPointer] = val;
 		inputBufferPointer++;
 	}
 	//overlapSaveZPRealIn();
@@ -587,7 +580,7 @@ bool FD_Filter::runBlock(void) {
 	if (process2 > 0) alive = true;
 	//int process2 = outputBufferTimeDomain.size();
 	for (int k = 0; k < process2; k++) {
-		t_real val = outputBufferTimeDomain[k];
+		t_real val = outputBufferTimeDomain[outputBufferPointer];
 		(outputSignals[0])->bufferPut(&val);
 		outputBufferPointer++;
 	}

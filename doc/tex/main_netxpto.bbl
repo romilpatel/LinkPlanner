@@ -5,4 +5,10 @@ Ryo Namiki and Takuya Hirano.
 \newblock Security of quantum cryptography using balanced homodyne detection.
 \newblock {\em Physical Review A}, 67(2):022308, 2003.
 
+\bibitem{Liu2009}
+Tie-Ming Liu, Lie-hui Jiang, Hong-qi He, Ji-zhong Li, and Xian Yu.
+\newblock {\em Researching on Cryptographic Algorithm Recognition Based on
+  Static Characteristic-Code}, pages 140--147.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2009.
+
 \end{thebibliography}

@@ -149,11 +149,15 @@
   <ItemGroup>
     <ClCompile Include="..\..\lib\local_oscillator.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
+    <ClCompile Include="..\..\lib\photodiode.cpp" />
+    <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="photodiode_study_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\local_oscillator.h" />
     <ClInclude Include="..\..\include\netxpto.h" />
+    <ClInclude Include="..\..\include\photodiode.h" />
+    <ClInclude Include="..\..\include\sink.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,10 +5,6 @@ A level-1 auxiliary file: chapter/development_cycle.aux
 A level-1 auxiliary file: chapter/visualizer.aux
 A level-1 auxiliary file: chapter/case_studies.aux
 The style file: unsrt.bst
-Illegal, another \bibdata command---line 101 of file chapter/case_studies.aux
- : \bibdata
- :         {ot_with_discrete_variables}
-I'm skipping whatever remains of this command
 A level-1 auxiliary file: chapter/library.aux
 A level-1 auxiliary file: chapter/mtools.aux
 Illegal, another \bibstyle command---line 32 of file main_netxpto.aux
@@ -16,13 +12,8 @@ Illegal, another \bibstyle command---line 32 of file main_netxpto.aux
  :          {ieeetr}
 I'm skipping whatever remains of this command
 Database file #1: bibliography.bib
-<<<<<<< HEAD
 Warning--I didn't find a database entry for "loudon2000"
 Warning--I didn't find a database entry for "fox2006"
 Warning--I didn't find a database entry for "hans2004"
 Warning--can't use both author and editor fields in Liu2009
 (There was 1 error message)
-=======
-Warning--can't use both author and editor fields in Liu2009
-(There were 2 error messages)
->>>>>>> 23ecc0cd86a9a1aed7421d8615ff51a2bc0e3ee7

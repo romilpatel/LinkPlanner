@@ -1,0 +1,81 @@
+2017-10-06
+TO BE DONE
+  - artigo RSS-DBP-TD-SSFM
+	- finalizar o abstract (multi-band quandtization, step randomization versus complexity reduction, performance improvement) 
+	- resumo, melhor a notação 
+	- melhorar a introdução, ser mais objetivo
+	- explicar melhor o passo aleatório
+	- explicar melhor o conceito de sub-bandas (2 sub-bandas)
+
+	- testar duas distribuições (uniforme e a gaussiana) e ver o impacto do desvio-padrão
+	- concluir qual a melhor distribuição e qual o valor ótimo para o desvio padrão
+
+	- testar 2, 3, 4 bandas
+	- largura das bandas
+
+	- figura de mérito BER
+	
+
+  - detalhar modelo de simulação, transmissor (RoF)
+	- introdução ao trabalho
+	- diagram de blocos a simular
+	- 
+  - Diagrama de bloco para QPSK transmiter no dominio da frequencia / ANP, vai tentar corrigir os erros do código
+
+
+
+2017-10-03
+TO BE DONE
+  - artigo RSS-DBP-TD-SSFM
+	- resumo, melhor a notação 
+	- melhorar a introdução, ser mais objetivo
+	- explicar melhor o passo aleatório
+	- explicar melhor o conceito de sub-bandas (2 sub-bandas)
+
+	- testar duas distribuições (uniforme e a gaussiana) e ver o impacto do desvio-padrão
+	- concluir qual a melhor distribuição e qual o valor ótimo para o desvio padrão
+
+	- testar 2, 3, 4 bandas
+	- largura das bandas
+
+	- figura de mérito BER
+	
+
+  - detalhar modelo de simulação, transmissor (RoF)
+	- introdução ao trabalho
+	- diagram de blocos a simular
+	- 
+  - Diagrama de bloco para QPSK transmiter no dominio da frequencia / ANP, vai tentar corrigir os erros do código
+
+
+
+2017-09-26
+TO BE DONE
+  - melhorar a introdução ao artigo sobre SSFM time domain
+  - detalhar modelo de simulação, transmissor (RoF)
+  - Diagrama de bloco para QPSK transmiter no dominio da frequencia / ANP, vai tentar corrigir os erros do código
+
+
+2017-09-25
+DONE
+ - enviar pdf do artigo compensação não linear no dominio do tempo para o e-mail para discutirmos
+
+TO BE DONE
+  - detalhar modelo de simulação, transmissor
+  - Diagrama de bloco para QPSK transmiter no dominio da frequencia / ANP, vai tentar corrigir os erros do código
+
+
+2017-09-21
+TO BE DONE
+ - Diagrama de bloco com o sistema RoF a simular, incluir no manual do netxpto - RoF System
+ 
+ - enviar pdf do artigo compensação não linear no dominio do tempo para o e-mail para discutirmos
+ 
+
+2017-09-11
+Patent revision (DONE)
+
+TO BE DONE
+- finalize frequency domain filter implementation
+- integrate the nonlinear compensation with the D-FIR-CDE
+- ROF compensation of optical nonlinearity

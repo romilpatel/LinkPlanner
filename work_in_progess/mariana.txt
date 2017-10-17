@@ -1,0 +1,35 @@
+2017-10-13
+TO BE DONE
+- acabar a proposta de protocolo para enviarmos ao Paulo Mateus
+
+2017-10-06
+TO BE DONE
+- conlcuir o doc da simulação
+- fazer o doc do Bob
+- corrigir o protocolo (after meeting with Paulo Mateus)
+
+
+2017-10-02
+TO BE DONE
+- write the protocol with detail (finish)
+- envia-me pdf só com a secção 5.6 e 5.6.1
+- envio Prof. Paulo Mateus, agendamos reunião (ANP)
+- draw the simulation setup (continue)
+- draw the experimental setup (begining)
+
+
+2017-09-26
+TO BE DONE
+- write the protocol with detail (continue)
+- start to draw the simulation setup
+
+2017-09-22
+TO BE DONE
+- write the protocol with detail
+
+
+2017-09-18
+TO BE DONE
+- write the plan of the work
+- start with the simulation
+- start with the laboratorial implementation

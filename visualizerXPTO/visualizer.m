@@ -9,6 +9,8 @@ function [ ] = visualizer( ~ )
 %   IT, Aveiro.
 
 %% Clear command window
+
+warning('off'); 
 clc;
 
 s1 = [ pwd '\set'];

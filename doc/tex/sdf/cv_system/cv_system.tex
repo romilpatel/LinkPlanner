@@ -1,41 +1,23 @@
-%\documentclass[a4paper]{article}
-%
-%% subfile handling packages
-%\usepackage{subfiles}
-%\newcommand{\onlyinsubfile}[1]{#1}
-%\newcommand{\notinsubfile}[1]{}
-%
-%% document packages
-%\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
-%\usepackage{amsmath}
-%\usepackage{multicol}
-%\usepackage{caption}
-%\usepackage{subcaption}
-%\usepackage{graphicx}
-%\usepackage{multirow}
-%\usepackage{tabulary}
-%\usepackage{hhline}
-%\usepackage{indentfirst}
-%\RequirePackage{ltxcmds}[2010/12/07]
-%\graphicspath{{../../images/}}
-%%\graphicspath
-%\usepackage{float}
-%\usepackage{amsfonts}
-%\usepackage{hyperref}
-%\usepackage{footnote}
-%\makesavenoteenv{tabular}
-%\usepackage{braket}
-%%opening
-%\title{Safety study}
-%\author{}
-%\date{}
-%
-%
-%\begin{document}
-%\maketitle
 
 \clearpage
 \section{Continuos Variable Quantum Transmission System}\label{sec:intro}
+
+Student Name: Daniel Pereira\\
+
+Starting Date: May 1, 2017\\
+
+Goal: Simulation and experimental validation of a continuous variable transmission system.\\
+
+Description of the Laboratorial and Simulation Setup:
+
+
+Theoretical Description of the System:
+
+
+Laboratorial and Simulation Results:
+
+
+Discussion:
 
 In this section a continuous varible quantum transmission system is analyzed.
 The results here presented follow closely the~\cite{namiki2003security}.
@@ -124,7 +106,6 @@ Q(X_0,\alpha)=\frac{1}{P(X_0,\alpha)}\int_{-\infty}^{-X_0}\left|\braket{X_i|\alp
 
 
 
-
 \subsubsection*{Double Homodyne setup}
 
 In our proposed double homodyne protocol both quadratures are measured simultaneously, as such the concept of correct and wrong basis measurements has no value. Our protocol also makes use of a locally generated Local Oscillator (LO), obtained from a different laser than the one used to generate the signal, thus we have to take into account the phase drift between both lasers. High intensity reference pulses are sent periodically to allow for an estimation of the phase drift. The double homodyne setup requires the signal to be divided into the two utilized detectors, so each measurement is made on a coherent state with half the amplitude of the incoming signal $\alpha\rightarrow\frac{\alpha}{\sqrt{2}}$
@@ -175,7 +156,6 @@ note that, in this definition for BER, only values $\theta\in\left[0,\frac{\pi}{
 \caption{Theoretical results for double homodyne setup.}
 \end{figure}
 
-
 \subsection*{Functional Description}
 
 Simplified diagrams of the systems being simulated are presented in Figures~\ref{fig:singleH}. and~\ref{fig:doubleH}. Two optical signals are generated, one with a constant power level of 10~dBm and the other with power in multiples of the power corresponding to a single photon per sampling time (6.4078e$\times10^{-13}$~W for a sampling time of 200~ns). The two signals are mixed, with a Balanced Beam Splitter in the single homodyne case and with a 90$^\text{o}$ Optical Hybrid in the double homodyne one, and are subsequently evaluated with recourse to Homodyne Receivers.
@@ -211,6 +191,101 @@ Balanced Beam Splitter & BalancedBeamSplitter \\
 
 \pagebreak
 
+\subsection*{Theoretical study of the setup}
+
+A detailed diagram of the system studied is presented in Figure~\ref{fig:theoexpDia}, with the respective mathematical treatment presented in equations~\eqref{eq:1} through~\eqref{eq:20}.
+
+\begin{figure}
+\centering
+\includegraphics[width=.6\linewidth]{finalsystemdiagram.pdf}
+\caption{Simplified diagram of experimental setup.}
+\label{fig:theoexpDia}
+\end{figure}
+
+\begin{equation}\label{eq:1}
+E_1=|E_S|e^{i\left(\omega_St+\xi_S(t)\right)}
+\end{equation}
+\begin{equation}\label{eq:2}
+p(t)=
+\begin{cases}
+1,~\frac{T}{8}\leq t<\frac{T}{8}\\
+0,~\text{other}
+\end{cases}
+\end{equation}
+\begin{equation}\label{eq:3}
+E_2=p(t)|E_S|e^{i\left(\omega_St+\xi_S(t)\right)}
+\end{equation}
+\begin{equation}\label{eq:4}
+E_{S1}=\frac{p(t)}{\sqrt{2}}|E_S|e^{i\left(\omega_St+\xi_S(t)\right)}
+\end{equation}
+\begin{equation}\label{eq:5}
+E_{S2}=\frac{p(t)}{\sqrt{2}}|E_S|e^{i\left(\omega_St+\phi_{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)\right)}
+\end{equation}
+\begin{equation}\label{eq:6}
+E_{S3}=\frac{p(t)}{\sqrt{2}\text{Att}}|E_S|e^{i\left(\omega_St+\phi_{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)\right)}
+\end{equation}
+\begin{equation}\label{eq:7}
+E_{R1}=\frac{p(t)}{\sqrt{2}}|E_S|e^{i\left(\omega_St+\xi_S(t)\right)}
+\end{equation}
+\begin{equation}\label{eq:8}
+E_{R2}=\frac{p(t-\frac{T}{2})}{\sqrt{2}}|E_S|e^{i\left(\omega_S(t-\frac{T}{2})+\xi_S(t-\frac{T}{2})\right)}
+\end{equation}
+\begin{equation}\label{eq:9}
+E_{SR}=\frac{|E_S|}{\sqrt{2}}\left[\frac{p(t)}{\text{Att}}e^{i\left(\omega_St+\phi_{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)\right)}+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]
+\end{equation}
+\begin{equation}\label{eq:10}
+E_{SR1}=\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i\left(\omega_St+\phi_{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)\right)}+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]
+\end{equation}
+\begin{equation}\label{eq:11}
+E_{SR2}=\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i\left(\omega_St+\phi_{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)\right)}+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]
+\end{equation}
+\begin{equation}\label{eq:12}
+E_L(t)=|E_L|e^{i\left(\omega_Lt+\xi_L(t)\right)}
+\end{equation}
+\begin{equation}\label{eq:13}
+E_{LP}(t)=\frac{1}{\sqrt{2}}|E_L|e^{i\left(\omega_Lt+\xi_L(t)\right)}
+\end{equation}
+\begin{equation}\label{eq:14}
+E_{LQ}(t)=\frac{1}{\sqrt{2}}|E_L|e^{i\left(\omega_Lt+\xi_L(t)+\frac{\pi}{2}\right)}
+\end{equation}
+\begin{multline}\label{eq:15}
+E_{P1}(t)=\frac{1}{\sqrt{2}}\left\lbrace\frac{|E_L|}{\sqrt{2}}e^{i\left(\omega_Lt+\xi_L(t)\right)}+\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i(\omega_St+\phi_{IQ}t+\xi_S(t)+\xi_{IQ}(t))}\right.\right.\\
+\left.\left.+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]\right\rbrace
+\end{multline}
+\begin{multline}\label{eq:16}
+E_{P2}(t)=\frac{1}{\sqrt{2}}\left\lbrace\frac{|E_L|}{\sqrt{2}}e^{i\left(\omega_Lt+\xi_L(t)\right)}-\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i(\omega_St+\phi_{IQ}t+\xi_S(t)+\xi_{IQ}(t))}\right.\right.\\
+\left.\left.+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]\right\rbrace
+\end{multline}
+\begin{multline}\label{eq:17}
+E_{Q1}(t)=\frac{1}{\sqrt{2}}\left\lbrace\frac{|E_L|}{\sqrt{2}}e^{i\left(\omega_Lt+\xi_L(t)+\frac{\pi}{2}\right)}+\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i(\omega_St+\phi_{IQ}t+\xi_S(t)+\xi_{IQ}(t))}\right.\right.\\
+\left.\left.+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]\right\rbrace
+\end{multline}
+\begin{multline}\label{eq:18}
+E_{Q2}(t)=\frac{1}{\sqrt{2}}\left\lbrace\frac{|E_L|}{\sqrt{2}}e^{i\left(\omega_Lt+\xi_L(t)+\frac{\pi}{2}\right)}-\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i(\omega_St+\phi_{IQ}t+\xi_S(t)+\xi_{IQ}(t))}\right.\right.\\
+\left.\left.+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]\right\rbrace
+\end{multline}
+\begin{multline}\label{eq:19}
+I_P(t)=\frac{|E_S||E_L|}{\sqrt{2}}\left\lbrace\frac{p(t)}{\text{Att}}\cos((\omega_S-\omega_L)t+\phi{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)-\xi_L(t))\right.\\
+\left.+p\left(t-\frac{T}{2}\right)\cos\left((\omega_S-\omega_L)t+\omega_S\frac{T}{2}+\xi_S\left(t-\frac{T}{2}\right)-\xi_L(t)\right)\right\rbrace
+\end{multline}
+\begin{multline}\label{eq:20}
+I_Q(t)=\frac{|E_S||E_L|}{\sqrt{2}}\left\lbrace\frac{p(t)}{\text{Att}}\sin((\omega_S-\omega_L)t+\phi{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)-\xi_L(t))\right.\\
+\left.+p\left(t-\frac{T}{2}\right)\sin\left((\omega_S-\omega_L)t+\omega_S\frac{T}{2}+\xi_S\left(t-\frac{T}{2}\right)-\xi_L(t)\right)\right\rbrace
+\end{multline}
+
+\subsection*{Experimental description}
+
+The main experimental setup utilized for the study presented in this document is presented in Figure~\ref{fig:expDia}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth, trim={0cm 2.5cm 0cm 3cm}, clip=true]{withtrace.pdf}
+\caption{Diagram of full experimental setup.}
+\label{fig:expDia}
+\end{figure}
+The setup contained two Yenista OSICS Band C/AG TLS lasers, tuned to a 1550~nm wavelength. A JDSU dual drive Mach-Zehnder Modulator with a Picosecond 5865 RF driver, employed at the output of one of the lasers, set the repetition rate at 1~GHz with a pulse time of 125~ps. The driving signal was generated by an Agilent Technologies BER Tester. A 50/50 beam-splitter was employed at the output of the Mach-Zehnder Modulator, one arm output is sent through an IQ Modulator while the other is sent through a fibre loop with length chosen such that the two arms have a relative delay of $\sim$500~ps. The employed IQ Modulator was a u2t photonics 32~GHz IQ Modulator with a SHF 807 RF driver, the driving signal being generated by a Tektronix AWG70002A Arbitrary Waveform Generator (AWG). A Variable Optical Attenuator (VOA) was set at the output of the IQ modulator to allow a fine tuning of the optical power to the desired level. The two arms output created by the first beam-splitter are combined by a 50/50 beam combiner. A fibre channel of $\sim10$~km was set between Alice's and Bob's setup. A Picometrix CR-100D 100G Integrated Balanced Receiver for Coherent Applications was employed to perform double homodyne measurements, recovering both the in-phase and in-quadrature components of the incoming light field. The response of the receiver was recorded by a Tektronix DPO77002SX-R3 oscilloscope, with an acquisition frequency of 100~GHz for a period of 400~$\mu$s.
+
+\subsubsection*{Experimental results}
+
 \subsection*{Required files}\label{Required files}
 
 Header Files
@@ -244,7 +319,6 @@ sink.cpp                     & Closes any unused signals.                       
 \end{table}
 
 
-
 \subsection*{System Input Parameters}
 
 This system takes into account the following input parameters:
@@ -267,7 +341,6 @@ electricalNoiseAmplitude   & Sets the amplitude of the gaussian thermal noise ad
 shotNoise                  & Chooses if quantum shot noise is used in the simulation                                \\ \hline
 \end{tabulary}
 \end{table}		
-
 
 \subsection*{Inputs}
 
@@ -297,7 +370,6 @@ The double homodyne system outputs the following objects:
 \end{itemize}
 \end{itemize}		
 
-
 \subsection*{Simulation Results}
 \subsubsection*{Single homodyne results}\label{subsec:SHresults}
 
@@ -309,7 +381,6 @@ The numerical results presented in Figure~\ref{fig:directber} were obtained with
 \caption{BER in function of $\alpha$ for the single homodyne setup. $X_0=0$ was used}
 \label{fig:directber}
 \end{figure}
-
 
 \subsubsection*{Double homodyne results}\label{subsec:DHresults}
 
@@ -345,13 +416,11 @@ The numerical results presented in Figure~\ref{fig:adaptedber} were obtained wit
 %\subfile{./lib/pulse_shaper}
 
 \subsection*{Known Problems}
-
 \begin{enumerate}
     \item Homodyne Super-Block not functioning
-    \item 90$^\text{o}$ Optical Hybrid PDF needs to be written
 \end{enumerate}
 
 
 \bibliographystyle{unsrt}
+ 
 \bibliography{bibliography}
-

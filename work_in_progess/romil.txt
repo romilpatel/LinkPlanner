@@ -1,0 +1,33 @@
+2017-10-17
+TO BE DONE
+ - Finish the simulation setup (top priority)
+ - Improve the theoretical part;
+
+
+
+2017-10-09
+TO BE DONE
+- make clear the goal of your work: to apply the Stokes PolDemux algorithm to a KK receiver
+- Improve the text (theory)
+- Start to write a simulation section
+- Start to write a experimental section
+
+Next meeting: 2017-10-17, 2 pm
+
+2017-10-02
+TO BE DONEI
+Next meeting 
+- What are the requirements for the KK receiver? (Minimum Phase Signal and Analytical Signal)
+- What is the definition (Minimum Phase Signal and Analytical Signal)?
+- How we can use these signals and profit from?
+
+Later
+Hilbert Transform
+How to generate?
+
+
+2017-09-14
+TO BE DONE
+- study two papers (Mecozzi16, Mecozzi17)
+- write in our own words the system setup (explain)
+- reproduce the results in NetXPTO - LinkPlanner

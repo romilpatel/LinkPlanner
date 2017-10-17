@@ -1,25 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname, nReadr )
-=======
-function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname )
->>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
-=======
-function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname, nReadr )
->>>>>>> Romil
+
 %READSIGNALDATA Reads signal data to "visualizer".
 %   [ data, samplingFrequency ] = READSIGNALDATA(fid, type, symbolPeriod, samplingPeriod)
 %   just reads data ("data") from a file ("fid")
 %   knowing the data parameters ("type", "symbolPeriod" and "samplingPeriod") and 
 %   returning the new sampling simulation frequency ("samplingFrequency").
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 %   nReadr specifies the number of symbols to read
-=======
->>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
-=======
-%   nReadr specifies the number of symbols to read
->>>>>>> Romil
 
 fid = fopen(fname,'r');
 
@@ -39,19 +26,11 @@ toxy = 'OpticalSignalXY';
 
 %% Get global variable "nRead"
 %nReadr = getGlobalnRead;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 if nargin == 1
     nReadr = Inf;
 end
-=======
-nReadr = 256;
->>>>>>> 526292907dd2ff7d6ea618152856721b6b80e5dd
-=======
-if nargin == 1
-    nReadr = Inf;
-end
->>>>>>> Romil
+
 % 
 % %% Get global variable "t_binary"
 % t_binaryr = getGlobalt_binary;
@@ -59,7 +38,7 @@ t_binaryr = 'int';
 % 
 % %% Get global variable "t_real"
 %t_realr = getGlobalt_real;
-t_realr = 'double'
+t_realr = 'double';
 % 
 % %% Get global variable "t_complex"
 % t_complexr = getGlobalt_complex;

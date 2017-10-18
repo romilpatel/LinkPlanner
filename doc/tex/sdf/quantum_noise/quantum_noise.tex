@@ -72,14 +72,12 @@ This result show us that for both quadratures, the variance of measurement is th
 %
 %
 \subsubsection{Homodyne detection}
-ESCLARECER A QUESTAO DAS QUADRATURAS, FASES E O QUE E QUE A DETECCAO HOMODINA MEDE\\
-\\
 The balanced homododyne technique is used to measure the phase of the input signal (S), relative to the phase of a local oscillator (LO), which has the same frequency as the input signal, but a much larger amplitude. The technique consists in combining the input signal and the local oscillator, using a 50:50 beam splitter, from whom two beams emerge, which are then converted to currents using photodides. Finally, the two currents are subtracted, resulting in an output current.\\
-By changing the phase of the local oscillator, in particular by $\pi/2$, we will obtain the quadrature of the signal. Therefore, the $\hat{X}$ operator will correspond to the in-phase component and $\hat{Y}$ operator correspond to quadrature component.
+A phase of the local oscillator can be defined as the reference phase. A phase offset equal to $0$ or $pi/2$ will give an output proportional to the signal's in-phase component or to the quadrature component, respectively. Therefore, the $\hat{X}$ operator will correspond to the in-phase component and $\hat{Y}$ operator correspond to quadrature component.
 %\footnote{Mark Fox, p. 140}
 \cite{fox2006}
 \\
-In the lab and in our simulations, we will use a more complex system, the double balanced homodyne detection, which allows the simultaneous measurement of two quadratures. The signal is divided in two beam with half the power of the original. One of the beams will be used in a balanced homodyne detection with a local oscillator. The other beam will be used in another balanced homodyne detection, but using a local oscillator with a phase difference $\pi/2$ relative to the first one.
+In the lab and in our simulations, we will use a more complex system, the double balanced homodyne detection, which allows the simultaneous measurement of the in-phase and quadrature components. The signal is divided in two beam with half the power of the original. One of the beams will be used in a balanced homodyne detection with a local oscillator. The other beam will be used in another balanced homodyne detection, but using a local oscillator with a phase difference $\pi/2$ relative to the first one.
 %
 \begin{figure}[H]
 \label{fig:scheme_homodyne}
@@ -132,7 +130,9 @@ If we assume that the local oscillator produces the the coherent state $\ket{\be
 \textrm{Var}(m) = |\alpha|^2 + |\beta|^2
 \end{equation}
 %
-The local oscillator normally has a greater power than the signal (VER REFERENCIAS), then $|\alpha| \ll |\beta|$. If we use as unit, $2|\beta|$, then these two quantities can be simplified to:
+The local oscillator normally has a greater power than the signal
+%VER REFERENCIAS
+, then $|\alpha| \ll |\beta|$. If we use as unit, $2|\beta|$, then these two quantities can be simplified to:
 %
 \begin{equation}
 \label{eq:approx_noise}
@@ -415,3 +415,4 @@ The system outputs the following objects:
     \item ----
 \end{enumerate}
 
+\bibliography{./sdf/quantum_noise/quantum_noise}

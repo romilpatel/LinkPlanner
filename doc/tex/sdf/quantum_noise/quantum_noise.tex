@@ -1,6 +1,15 @@
 \clearpage
 \section{Quantum Noise}
 
+\begin{tcolorbox}	
+\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}}
+\textbf{Student Name}  &:& Diamantino Silva\\
+\textbf{Starting Date} &:& October 19, 2017\\
+\textbf{Goal}          &:& Simulation of quantum noise in double homodyne detection.
+\end{tabular}
+\end{tcolorbox}
+
+
 \subsection*{Introduction}\label{sec:intro}
 
 
@@ -179,7 +188,7 @@ in which $K_B$ it's Boltzmann's constant, $T_0$ is the absolute temperature, $B$
 \vspace{1cm}
 %
 %
-\subsection*{Simulation setup}
+\subsection*{Simulation}
 
 The simulation setup is represented in figure \ref{fig:setup}. The starting point is the MQAM, which generates random states from a given constelation. The output from the generator is received in the Optical Hybrid where it is mixed with a local oscillator, outputing two optical signal pairs. Each pair is converted to currents by two photodiodes, and then subtracted from each other, originating a current proportional to one of the quadratures of the input state. 
 The other pair suffers the same process, but the resulting subtraction current will be proportional to another quadrature, dephased by $\pi/2$ relative to the other quadrature.\\
@@ -204,8 +213,133 @@ Difference Circuit                    & Difference\\
 Sampler                               & Sampler\\
 \end{tabular}
 \end{table}
+
+
+\subsection*{Required files}\label{Required files}
+
+Header Files
+\begin{table}[H]
+\centering
+\begin{tabulary}{1.0\textwidth}{|L|L|}
+\hline
+\textbf{File}           & \textbf{Description}\\
+\hline
+netxpto.h               & Generic purpose simulator definitions.\\
+\hline
+m\_qam\_transmitter.h   & Outputs a QPSK modulated optical signal.\\
+\hline
+local\_oscillator.h     & Generates continuous coherent signal.\\
+\hline
+optical\_hybrid.h       & Mixes the two input signals into four outputs.\\
+\hline
+photodiode.h            & Converts an optical signal to a current.\\
+\hline
+difference.h            & Ouputs the difference between two input signals.\\
+\hline
+sampler.h               & Samples the input signal.\\
+\hline
+sink.h                  & Closes any unused signals.\\
+\hline
+\end{tabulary}
+\end{table}
 %
-\noindent
+%
+Source Files
+\begin{table}[H]
+\centering
+\begin{tabulary}{1.0\textwidth}{|L|L|}
+\hline
+\textbf{File}                   & \textbf{Description}\\
+\hline
+netxpto.cpp                     & Generic purpose simulator definitions.\\
+\hline
+m\_qam\_transmitter.cpp         & Outputs a QPSK modulated optical signal.\\
+\hline
+local\_oscillator.cpp           & Generates continuous coherent signal.\\
+\hline
+optical\_hybrid.cpp             & Mixes the two input signals into four outputs.\\
+\hline
+photodiode.h                    & Converts an optical signal to a current.\\
+\hline
+difference.h                    & Ouputs the difference between two input signals.\\
+\hline
+sampler.cpp                     & Samples the input signal.\\
+\hline
+sink.cpp                        & Empties the signal buffer.\\
+\hline
+\end{tabulary}
+\end{table}
+
+
+\subsection*{System Input Parameters}
+
+This system takes into account the following input parameters:
+\begin{table}[H]
+\centering
+\begin{tabulary}{1.0\textwidth}{|C|L|}
+\hline
+\textbf{System Parameters} & \textbf{Description}\\
+\hline
+numberOfBitsGenerated   & Gives the number of bits to be simulated\\
+\hline
+bitPeriod               & Sets the time between adjacent bits\\
+\hline
+wavelength              & Sets the wavelength of the local oscillator in the MQAM\\
+\hline
+samplesPerSymbol        & Establishes the number of samples each bit in the string is given\\
+\hline
+localOscillatorPower1   & Sets the optical power, in units of W, of the local oscillator inside the MQAM\\
+\hline
+localOscillatorPower2   & Sets the optical power, in units of W, of the local oscillator used for Bob's measurements\\
+\hline
+localOscillatorPhase    & Sets the initial phase of the local oscillator used in the detection\\
+\hline
+transferMatrix          & Sets the transfer matrix of the beam splitter used in the homodyne detector\\
+\hline
+responsivity            & Sets the responsivity of the photodiodes used in the homodyne detectors\\
+\hline
+bufferLength            & Sets the length of the buffer used in the signals\\
+\hline
+iqAmplitudeValues       & Sets the amplitude of the states used in the MQAM\\
+%\hline
+%shotNoise (FUTURE)      & Chooses if quantum shot noise is used in the simulation\\
+\hline
+samplesToSkip           & Sets the number of samples to skip when writing out some of the signal files\\
+%\hline
+%thermalNoise (FUTURE)   & Chooses if thermal noise is used in the simulation\\
+%\hline
+%thermalNoiseAmplitude  (FUTURE)  & Sets the amplitude of the thermal noise\\
+\hline
+\end{tabulary}
+\end{table}        
+
+\subsection*{Inputs}
+
+This system takes no inputs.
+
+\pagebreak
+\subsection*{Outputs}
+
+The system outputs the following objects:
+\begin{itemize}
+\item Signals:
+\begin{itemize}
+\item Binary Sequence used in the MQAM; (S$_{0}$)
+\item Local Oscillator used in the MQAM; (S$_{1}$)
+\item Local Oscillator used in the detection; (S$_{2}$)
+\item Optical Hybrid Outputs; (S$_{3}$, S$_{4}$, S$_{5}$, S$_{6}$)
+\item In phase Photodiodes output; (S$_{7}$, S$_{8}$)
+\item Quadrature Photodiode output; (S$_{9}$, S$_{10}$)
+\item In phase Difference output; (S$_{11}$)
+\item Quadrature Difference output; (S$_{12}$)
+\item In phase Sampler output; (S$_{13}$)
+\item Quadrature Sampler output; (S$_{14}$)
+\end{itemize}
+\end{itemize}    
+
+
+
+
 
 \subsection*{Simulation Results}\label{subsec:SHresults}
 
@@ -269,150 +403,7 @@ Figures $\ref{fig:noise-exp-1}$ and $\ref{fig:noise-exp-3}$ show measures measur
 So, we see that both the simulation and experimental data display a similar behaviour, but the quadratic growth of noise for large $P_{LO}$ was not predicted in the simulations.\\
 %
 %
-\subsection*{Required files}\label{Required files}
-
-Header Files
-\begin{table}[H]
-\centering
-\begin{tabulary}{1.0\textwidth}{|L|L|}
-\hline
-\textbf{File}           & \textbf{Description}\\
-\hline
-netxpto.h               & Generic purpose simulator definitions.\\
-\hline
-m\_qam\_transmitter.h   & Outputs a QPSK modulated optical signal.\\
-\hline
-local\_oscillator.h     & Generates continuous coherent signal.\\
-\hline
-optical\_hybrid.h       & Mixes the two input signals into four outputs.\\
-\hline
-photodiode.h            & Converts an optical signal to a current.\\
-\hline
-difference.h            & Ouputs the difference between two input signals.\\
-\hline
-sampler.h               & Samples the input signal.\\
-\hline
-sink.h                  & Closes any unused signals.\\
-\hline
-\end{tabulary}
-\end{table}
-%
-%
-Source Files
-\begin{table}[H]
-\centering
-\begin{tabulary}{1.0\textwidth}{|L|L|}
-\hline
-\textbf{File}                   & \textbf{Description}\\
-\hline
-netxpto.cpp                     & Generic purpose simulator definitions.\\
-\hline
-m\_qam\_transmitter.cpp         & Outputs a QPSK modulated optical signal.\\
-\hline
-local\_oscillator.cpp           & Generates continuous coherent signal.\\
-\hline
-optical\_hybrid.cpp             & Mixes the two input signals into four outputs.\\
-\hline
-photodiode.h                    & Converts an optical signal to a current.\\
-\hline
-difference.h                    & Ouputs the difference between two input signals.\\
-\hline
-sampler.cpp                     & Samples the input signal.\\
-\hline
-sink.cpp                        & Closes any unused signals.\\
-\hline
-\end{tabulary}
-\end{table}
 
 
-\subsection*{System Input Parameters}
-
-This system takes into account the following input parameters:
-\begin{table}[H]
-\centering
-\begin{tabulary}{1.0\textwidth}{|C|L|}
-\hline
-\textbf{System Parameters} & \textbf{Description}\\
-\hline
-numberOfBitsGenerated   & Gives the number of bits to be simulated\\
-\hline
-bitPeriod               & Sets the time between adjacent bits\\
-\hline
-wavelength              & Sets the wavelength of the local oscillator in the MQAM\\
-\hline
-samplesPerSymbol        & Establishes the number of samples each bit in the string is given\\
-\hline
-localOscillatorPower1   & Sets the optical power, in units of W, of the local oscillator inside the MQAM\\
-\hline
-localOscillatorPower2   & Sets the optical power, in units of W, of the local oscillator used for Bob's measurements\\
-\hline
-localOscillatorPhase    & Sets the initial phase of the local oscillator used in the detection\\
-\hline
-transferMatrix          & Sets the transfer matrix of the beam splitter used in the homodyne detector\\
-\hline
-responsivity            & Sets the responsivity of the photodiodes used in the homodyne detectors\\
-\hline
-bufferLength            & Sets the length of the buffer used in the signals\\
-\hline
-iqAmplitudeValues       & Sets the amplitude of the states used in the MQAM\\
-\hline
-shotNoise               & Chooses if quantum shot noise is used in the simulation\\
-\hline
-samplesToSkip           & Sets the number of samples to skip when writing out some of the signal files\\
-\hline
-thermalNoise            & Chooses if thermal noise is used in the simulation\\
-\hline
-thermalNoiseAmplitude   & Sets the amplitude of the thermal noise\\
-\hline
-\end{tabulary}
-\end{table}        
-
-\subsection*{Inputs}
-
-This system takes no inputs.
-
-\pagebreak
-\subsection*{Outputs}
-
-The system outputs the following objects:
-\begin{itemize}
-\item Signals:
-\begin{itemize}
-\item Binary Sequence used in the MQAM; (S$_{0}$)
-\item Local Oscillator used in the MQAM; (S$_{1}$)
-\item Local Oscillator used in the detection; (S$_{2}$)
-\item Optical Hybrid Outputs; (S$_{3}$, S$_{4}$, S$_{5}$, S$_{6}$)
-\item In phase Photodiodes output; (S$_{7}$, S$_{8}$)
-\item Quadrature Photodiode output; (S$_{9}$, S$_{10}$)
-\item In phase Difference output; (S$_{11}$)
-\item Quadrature Difference output; (S$_{12}$)
-\item In phase Sampler output; (S$_{13}$)
-\item Quadrature Sampler output; (S$_{14}$)
-\end{itemize}
-\end{itemize}    
-
-
-%\subsection*{Block Description}
-%
-%\subsubsection*{MQAM mapper???}
-%\subfile{../../lib/tex/m_qam_mapper_v2}
-%
-%\subsection{Local Oscillator}
-%\subfile{../../lib/tex/localoscillator}
-%1
-%\subsection{Optical Hybrid}
-%MISSING FILE FOR OPTICAL HYBRID\\
-%%\subfile{../../lib/tex/beamsplitter}
-%
-%\subsection{Photodiode}
-%\subfile{../../lib/tex/photodiode}
-%
-%\subsection{Sampler}
-%\subfile{../../lib/tex/sampler}
-
-\subsection*{Known Problems}
-\begin{enumerate}
-    \item ----
-\end{enumerate}
 
 \bibliography{./sdf/quantum_noise/quantum_noise}

@@ -40,7 +40,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\..\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\include;$(IncludePath);C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\include</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86; C:\Users\Ana Luisa\Documents\GitHub\AnaLuisa\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -55,6 +55,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -78,6 +79,7 @@
     <ClCompile Include="..\..\lib\decoder.cpp" />
     <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
     <ClCompile Include="..\..\lib\homodyne_receiver.cpp" />
+    <ClCompile Include="..\..\lib\ideal_amplifier.cpp" />
     <ClCompile Include="..\..\lib\iq_modulator.cpp" />
     <ClCompile Include="..\..\lib\local_oscillator.cpp" />
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
@@ -89,25 +91,27 @@
     <ClCompile Include="..\..\lib\sampler.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="m_qam_system_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\binary_source.h" />
+    <ClInclude Include="..\..\include\bit_error_rate.h" />
+    <ClInclude Include="..\..\include\clock.h" />
     <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
+    <ClInclude Include="..\..\include\homodyne_receiver.h" />
+    <ClInclude Include="..\..\include\ideal_amplifier.h" />
     <ClInclude Include="..\..\include\iq_modulator.h" />
+    <ClInclude Include="..\..\include\local_oscillator.h" />
     <ClInclude Include="..\..\include\m_qam_mapper.h" />
     <ClInclude Include="..\..\include\m_qam_transmitter.h" />
     <ClInclude Include="..\..\include\netxpto.h" />
+    <ClInclude Include="..\..\include\optical_hybrid.h" />
+    <ClInclude Include="..\..\include\photodiode.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />
+    <ClInclude Include="..\..\include\sampler.h" />
     <ClInclude Include="..\..\include\sink.h" />
     <ClInclude Include="..\..\include\super_block_interface.h" />
   </ItemGroup>
-=======
-    <ClCompile Include="..\..\lib\ti_amplifier.cpp" />
-    <ClCompile Include="m_qam_system_sdf.cpp" />
-  </ItemGroup>
->>>>>>> AnaLuisa
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

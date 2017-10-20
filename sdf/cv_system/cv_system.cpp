@@ -35,10 +35,7 @@ int main() {
 	int samplesToSkip = 8 * samplesPerSymbol;
 	int bufferLength = 512;
 	bool shotNoise(true);
-	int aux = 1;
 
-	double SNR = 0;
-		
 	// #####################################################################################################
 	// ########################### Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
@@ -51,7 +48,6 @@ int main() {
 
 	OpticalSignal S2("S2.sgn");
 	S2.setBufferLength(bufferLength);
-
 
 	OpticalSignal S3("S3.sgn");
 	S3.setBufferLength(bufferLength);
@@ -111,7 +107,6 @@ int main() {
 	B2.setPhase(localOscillatorPhase);
 	B2.setSamplingPeriod(bitPeriod / samplesPerSymbol);
 	B2.setSymbolPeriod(bitPeriod);
-	B2.setSignaltoNoiseRatio(SNR);
 
 	OpticalHybrid B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4, &S5, &S6} };
 

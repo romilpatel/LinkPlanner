@@ -1,3 +1,9 @@
+2017-10-20
+TO BE DONE
+   - acabar o manual da sgnToWfm
+   - atualizar o help da função
+
+
 2017-09-26
 TO BE DONE
 - concluir o manual a aplicação sgnToWFM

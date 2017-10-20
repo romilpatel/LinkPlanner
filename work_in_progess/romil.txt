@@ -5,6 +5,8 @@ TO BE DONE
  - check which blocks are already in the simulator and which are not
  - experimental setup transmitter part (low priority)
 
+Next meeting: Friday, 27/10, 8:30 am
+
 2017-10-17
 TO BE DONE
  - Finish the simulation setup (top priority)

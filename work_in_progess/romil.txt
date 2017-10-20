@@ -1,3 +1,10 @@
+2017-10-20
+TO BE DONE
+ - Improve the theoretical part;
+ - Finish the simulation setup including description
+ - check which blocks are already in the simulator and which are not
+ - experimental setup transmitter part (low priority)
+
 2017-10-17
 TO BE DONE
  - Finish the simulation setup (top priority)

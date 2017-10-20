@@ -1,4 +1,4 @@
-function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn,fname_wfm, nReadr )
+function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn, nReadr, fname_wfm )
 % This function will build a WFM file given an input signal filename.
 %
 % [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate
@@ -23,7 +23,9 @@ if nargin == 1
     fname_wfm = [strtok(fname_sgn,'.') '.wfm'];
     nReadr = Inf;
 end
-
+if nargin == 2
+    fname_wfm = [strtok(fname_sgn,'.') '.wfm'];
+end
 [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname_sgn, nReadr );
 samplingRate=1/samplingPeriod;
 if (~strcmp(type,'TimeContinuousAmplitudeContinuousReal'))
@@ -32,12 +34,12 @@ if (~strcmp(type,'TimeContinuousAmplitudeContinuousReal'))
      clear all;
      return;
 end
-if (samplingRate >  16e9)
-     msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
-     error('\nError: The Sampling Rate of the chosen signal(%d GS/s) is greater than the maximum sampling frequency of the AWG(16 GS/s).\nPlease choose a signal with a sampling frequency lower than 16 GS/s.\n\n',samplingRate/1e9);
-      clear all;
-      return;
-end
+% if (samplingRate >  16e9)
+%      msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
+%      error('\nError: The Sampling Rate of the chosen signal(%d GS/s) is greater than the maximum sampling frequency of the AWG(16 GS/s).\nPlease choose a signal with a sampling frequency lower than 16 GS/s.\n\n',samplingRate/1e9);
+%       clear all;
+%       return;
+% end
 if (length(data) >  8e9)
       msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
       error('\nError: The chosen signal has to many samples(%d GS).\nMake sure it is less or equal to 8 G samples.\n\n',length(data)/1e9);

@@ -5,7 +5,8 @@
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
 \textbf{Student Name}  &:& Mariana Ramos\\
 \textbf{Starting Date} &:& September 18, 2017\\
-\textbf{Goal}          &:& Quantum oblivious key distribution (QOKD) implementation with discrete variables.
+\textbf{Goal}          &:& Quantum oblivious key distribution (QOKD) implementation with discrete variables.\\
+\textbf{Directory}     &:& sdf/ot\_with\_discrete\_variables.
 \end{tabular}
 \end{tcolorbox}
 
@@ -17,9 +18,10 @@ Oblivious Transfer (OT) is a fundamental primitive in multi-party computation. T
 
 In order to implement OT between two parties (Alice and Bob) they must be able to exchange continuously oblivious keys, i.e a QOKD system must exist between them.
 
-\subsection{QOKD system}
+\subsection{Quantum Oblivious Key Distribution System (QOKD)}
 
-In this section we are going to describe the quantum oblivious key distribution system.
+In this section we are going to describe the Quantum Oblivious Key Distribution system (QOKD).
+The QOKD system enables two parties (Alice and Bob) share a set of keys only known by them. In this QOKD system the sets shared by Alice and Bob have some position bits which Bob measured with the same basis as Alice and other position bits which Bob measured with a different basis. In fact, these sets have tabs which mark sub-sets where they know there are the same number of right and wrong measurements.
 
 Considering a discrete variables implementation, both Alice and Bob agree with the following correspondence, where $+$ corresponds to \textit{Rectilinear Basis} and $\times$ corresponds to \textit{Diagonal Basis},
 
@@ -65,7 +67,7 @@ and for \textit{Diagonal Basis}, "$\times$",
       Therefore, in the current example, Alice sends the following photons,
 
       \begin{align*}
-        S_{AB} & = \{\uparrow,\uparrow, \nearrow, \searrow, \searrow, \to, \to, \searrow, \nearrow,\uparrow, \to, \searrow,\nearrow,\searrow,\uparrow,\nearrow \} \\
+        S_{AB} & = \{\space { }\uparrow \ \space { }\space { },\space { }\uparrow \ \space { }\space { }, \space { }\nearrow \ \space { }\space { },\space { } \searrow \ \space { }\space { } \ , \space { }\searrow \ \space { }\space { }, \to \ , \to \ ,\space { } \searrow \ \space { }\space { },\space { } \nearrow \ \space { },\space { }\uparrow \ \space { }\space { }, \space { }\to \ ,\space { } \searrow\space { }\space { },\space { }\nearrow\space { }\space { },\space { }\searrow \ \ \space { }\space { },\space { }\uparrow \ \space { }\space { },\space { }\nearrow \space { }\space { }\} \\
           & =\{90^{\circ},90^{\circ}, 45^{\circ}, -45^{\circ},-45^{\circ}, 0^{\circ}, 0^{\circ}, -45^{\circ}, 45^{\circ},90^{\circ}, 0^{\circ}, -45^{\circ}, 45^{\circ}, -45^{\circ}, 90^{\circ}, 45^{\circ} \}.
         \label{eq:photonsalice}
       \end{align*}
@@ -73,29 +75,30 @@ and for \textit{Diagonal Basis}, "$\times$",
 
   \item Bob also randomly generates $l=16$ bits, which are going to define his measurement basis, $S_{B1'}$. Lets assume,
         \begin{align*}
-             S_{B1'} & = \{0,1,1,0,0,1,0,1,1,0,1,1,0,0,0,1 \} \\
+             S_{B1'} & = \{0 \ ,1 \ ,1 \ ,0 \ ,0 \ ,1 \ ,0 \ ,1 \ ,1 \ ,0 \ ,1 \ ,1 \ ,0 \ ,0 \ ,0 \ ,1 \  \} \\
                     & = \{ +,\times,\times,+,+,\times,+,\times, \times,+, \times, \times \,+,+,+,\times \}.
         \end{align*}
 
       Bob will get $l$ results:
       $$S_{B2'} = \{1,-,\underline{0},0,-,1,\underline{1},-,1,-,1,0,1,1,\underline{0},1 \}.$$
 
-      The $'-'$ corresponds to no clicks in Bob's detector. These no clicks happen due to attenuation. The underlined values are bits which were measured with a correct basis but an error has occurred.
+      The "$-$"\space{ } corresponds to no clicks in Bob's detector, due to attenuation. The underlined values are bits which were measured with a correct basis but an error has occurred due to imperfections in the quantum communication system.
 
-  \item Bob is going to send a $'-1'$ or a hash value to Alice for each measurement that he performed, thereby being $'-1'$ the measurements which correspond to no clicks. In this case, we are going to assume that the hash value is calculated using the \textit{SHA-256} algorithm \cite{Liu2009}. In detail, Bob has two sets $S_{B1'}$ and $S_{B2'}$ and he is going to generate the set $S_{BH1}$ which have $l$ hash values calculated for each position of $S_{B1'}$ with the correspondent position of $S_{B2'}$. Therefore, Bob will send to Alice the following set:
-      $$S_{BH1}=\{{sha}_{1},-1,{sha}_{2},{sha}_{3}, -1,{sha}_{4},{sha}_{5},-1,{sha}_{6},-1,{sha}_{7},{sha}_{8},{sha}_{9},{sha}_{10},{sha}_{11},{sha}_{12} \}.$$
+  \item Bob is going to send a "$-1$"\space{ } or a hash value to Alice for each measurement that he performed, thereby being "$-1$"\space{ } the measurements which correspond to no clicks. In this case, we are going to assume that the hash value is calculated using the \textit{SHA-256} algorithm \cite{Liu2009}. In detail, Bob has two sets $S_{B1'}$ and $S_{B2'}$ and he is going to generate the set $S_{BH1}$ with $l$ values ("$-1$"\space{ } or hash values calculated for each position of $S_{B1'}$ with the correspondent position of $S_{B2'}$). Therefore, Bob will send to Alice the following set:
+      $$S_{BH1}=\{{S}_{1},-1,{S}_{2},{S}_{3}, -1,{S}_{4},{S}_{5},-1,{S}_{6},-1,{S}_{7},{S}_{8},{S}_{9},{S}_{10},{S}_{11},{S}_{12} \}.$$
 
 
-  \item Since Alice has received the confirmation of measurement from Bob, i.e after Alice has received $S_{BH1}$, she sends throughout a classical channel the basis which she has used to codify the photons, which in this case we assumed $S_{A1'} = \{0,-1,1,1,-1,0,0,-1,1,-1,0,1,1,1,0,1 \}$.
+  \item Since Alice has received the confirmation of measurement from Bob, i.e after Alice has received $S_{BH1}$, she sends throughout a classical channel the basis which she has used to codify the photons updated with the information about the no received photons, $$S_{A1'} = \{0,-1,1,1,-1,0,0,-1,1,-1,0,1,1,1,0,1 \}$$.
 
-      Due to attenuation, the previous sets are reduced to the length $l=12$ and they shall be replaced by the following:
+      Due to attenuation, the previous sets are reduced to the length $12$ and they shall be replaced by the following:
       $$S_{A1}=\{0,1,1,0,0,1,0,1,1,1,0,1 \},$$
       $$S_{A2}=\{1,1,0,0,0,1,0,0,1,0,1,1 \},$$
       $$S_{B1}=\{0,1,0,1,0,1,1,1,0,0,0,1 \},$$
       $$S_{B2}=\{1,\underline{0},0,1,\underline{1},1,1,0,1,1,\underline{0},1 \}$$
+      Note that $S_{B2}$ still has errors.
 
   \item In order to know which photons were measured correctly, Bob does the operation $S_{B3}=S_{B1} \oplus S_{A1}$.
-      In the current example the operation will be:
+      In the current example,
 
   \begin{table}[H]
     \centering
@@ -106,19 +109,19 @@ and for \textit{Diagonal Basis}, "$\times$",
     \end{tabular}
     \end{table}
 
-      In this way, Bob gets $$S_{B3} = \{1,1,0,0,1,1,0,1,0,0,1,1 \}.$$ When Bob uses the right basis he gets the values correctly, apart from possible errors in transmission, when he uses the wrong basis he just guess the value. The values ``$1$'' correspond to the values he measured correctly and ``$0$'' to the values he just guessed.
-      Thus, Bob is building two sets of keys, one $'r'$ with correct measurements values and other $'w'$ with the measurement values that he just guessed.
+      In this way, Bob gets $$S_{B3} = \{1,1,0,0,1,1,0,1,0,0,1,1 \}.$$ When Bob uses the right basis he gets the values correctly, apart from possible errors in transmission, when he uses the wrong basis he just guess the value. The values "1"\space{ } correspond to the values he measured correctly and "0" \space{ }to the values he just guessed.
+      Thus, Bob is building two sets of keys, one with correct basis measurements values and other with the wrong basis measurement values that he just guessed.
 
-      Thus, Bob has two pair of sets, one for the photons he measured correctly,
+      Thus, Bob has two pair of sets, one for the right basis,
 
       $$S_{B_{rp}}= \{1,2,5,6,8,11,12 \},$$ $$ S_{B_{rb}} = \{1,0,1,1,0,0,1 \},$$
-      where $S_{B_{rp}}$ is the set of positions he was right about and $SB_{rb}$ is the set of bit values he measured for each position he was right about. The other pair is for photons he just guessed the measurement,
+      where $S_{B_{rp}}$ is the set of positions and $SB_{rb}$ is the set of bit values he measured for each position. The other pair is for photons he measured with the wrong basis and then he just guessed the values,
       $$S_{B_{wp}}= \{3,4,7,9,10 \},$$ $$S_{B_{wb}} = \{0,1,1,1,1 \},$$
-      where $S_{B_{wp}}$ is the set of positions he just guessed the values and $S_{B_{wb}}$ is the set of bit values he measured for each position he just guessed the values.
+      where $S_{B_{wp}}$ is the set of positions and $S_{B_{wb}}$ is the set of bit values he measured for each position.
 
-      Nevertheless, due to errors in transmission, some of the bits in $S_{B_{rb}}$ may be not right.
+      Nevertheless, due to errors in transmission, some bits in $S_{B_{rb}}$ may be not right.
 
-      At this point, in order to test Bob's honesty, Alice is going to ask Bob to open some pairs of the right set and some pairs of the wrong set. These pairs are destroyed from them sets. Lets assume she asked to open two pairs of the right set and one pair of the wrong set. She verified these pairs using the hash function committed by Bob and concluded that he is being honest.
+      At this point, in order to test Bob's honesty and to estimate the \textit{QBER} of the channel, Alice is going to ask Bob to open some pairs of the Bob's sets. Alice chooses some positions to open and tells Bob which positions she wants to open. Bob sends to Alice the pairs she chose and then these pairs are destroyed from them sets. Lets assume she asked to open the positions $10$, $11$ and $12$. If she concludes Bob is not being honest, she stops the protocol and they must start it again. Otherwise, the protocol continues. Lets assume Alice has verified these pairs using the hash function committed by Bob and concluded that he is being honest. Therefore, she sends to Bob the \textit{QBER} estimated by her.
 
       Now, Bob has the previous sets replaced by the following,
       \begin{align*}
@@ -129,35 +132,42 @@ and for \textit{Diagonal Basis}, "$\times$",
       \end{align*}
 
 
-      Bob and Alice are going to use a modified version of \textit{Cascade algorithm} to correct the errors due transmission.
+      Bob is going to use a modified version of \textit{Cascade algorithm} to correct the errors due transmission.
 
       \subsubsection{Modified version of Cascade Algorithm}
       The Cascade algorithm is often used with a key set where all values are supposed right. In this case, Bob has two pairs of sets, one with the position and bit values of photon he measured with the correct basis and other with position and bit values of photon he measured with the wrong basis. He only needs to apply the Cascade algorithm in the set that he measured the photons correctly \cite{Brassard1994}. However, he must apply a modified version of the Cascade in the other set in order to keep in secret from Alice which set corresponds to right and which set corresponds to wrong measurements.
 
+      Bob randomly generates a bit value. If he gets $0$, he will send to Alice the set $\{ S_{B_{rp}}, S_{B_{wp}}\}$. Otherwise, if he gets $1$ he will send the set $\{S_{B_{wp}}, S_{B_{rp}}\}$. This guarantee that Alice does not know which is the right or wrong set. Lets assume this random bit is "0" and he sends $\{S_{B_{rp}}, S_{B_{wp}}\}$.
+
       \begin{enumerate}
-        \item Bob randomly generates a bit value. If he gets $0$, he will send to Alice the set $\{ S_{B_{rp}}, S_{B_{wp}}\}$. Otherwise, if he gets $1$ he will send the set $\{S_{B_{wp}}, S_{B_{rp}}\}$. This guarantee that Alice does not know which is the right or wrong set. Lets assume this random bit is "1" and he sends $\{S_{B_{wp}}, S_{B_{rp}}\}$. Lest assume Alice and Bob have agreed with $N=2$, where $N$ is the number of sub-blocks they will firstly divide the original set. After the first iteration, if there still be errors, $N$ will be incremented by 1 for the next iteration. However, if there is some set which Bob thinks is already corrected, this block is discarded and the remaining blocks are divided again.
-            If the set to be corrected has a odd number of bits, Bob and Alice must add an additional bit $0$ at the end.
-
-            \label{itema}
-
-        \item Now, Bob applies the Cascade algorithm in the two sets. However, to the wrong set he is going to apply a modified version, the \textit{fake Cascade} in order to hiding that it is the set with wrong positions. In this case, he starts from the modified version of Cascade.
-
-        \item In this modified version Bob generates a random number to define $i$ which is the number of iterations. Assuming $s$ as the size of the set, $i$ must be $ 2 \geq i \leq s $.
-            As normal Cascade, in this modified version Bob divide the set in $N$ blocks, where $N$ is agreed with Alice at the beginning of the procedure and $N\geq1$. Lets assume $N=1$. After that, Alice sends to Bob the set with parity of the $N$ blocks. He receives the set and do nothing with it. Bob says to Alice that an error has occurred and $N$ is being incremented until $N \leq \frac{s}{2}$ or until the number of iterations achieves $i$. Bob has been asking Alice for parities to keep her entertained during $i$ iterations.
-
-        \item Bob acknowledge Alice that all values were fixed.
-
-        \item Next, Bob starts to apply the normal Cascade to the right set. Lets assumed they were agreed with first $N=2$.
+        \item Bob starts by applying the normal cascade to the set $S_{B_{rb}}$. After both know the error estimative Bob determine if the error rate is above the fail threshold. If it is truth they must start the procedure again. Lets assume the estimated error rate is acceptable. Bob and Alice use a random permutation which is represented in figure \ref{cascadepermutation} for a larger number of bits (agreed at the beginning) by applying it to the shifted keys, in order to guarantee the spread out of the error bits randomly and to separate consecutive errors from each other.
 
             \begin{figure}[h]
             	\centering
-            	\includegraphics[width=0.7\textwidth, height=7cm]{./sdf/ot_with_discrete_variables/figures/cascade.png}
-                	\caption{Cascade algorithm applied in the set of right values.}\label{cascade}
+            	\includegraphics[width=0.6\textwidth, height=4cm]{./sdf/ot_with_discrete_variables/figures/cascade_permutation.png}
+                	\caption{Cascade Algorithm - permutation}\label{cascadepermutation}
             \end{figure}
 
-            They start with $N=2$ and Alice sends the parity set. After that, as there is a possibility of error, Bob increments for $N=3$ and asks Alice to do the same. After that, Bob discard the last block since the parity matches with Alice's parity. With the other two blocks he change the bits position and combines the first bits and the second bits of each block and he asks Alice for the parity values again.
+        \item Bob and Alice divide all the shifted key bits into blocks of N bits depending on the estimated error rate in order to have one or no error per block. In general, the sets of keys are too large and it is easier to explain the algorithm based on a larger number of bits. Therefore, figure \ref{cascade_1} represents the typical cascade initial steps. However, in this case, the set to be corrected only has five bits, therefore they divide the set in two sub-blocks, one with $3$ bits and other with $2$ bits.
 
-            By analysing figure \ref{cascade}, the set of right positions is corrected and it will be replaced by the following:
+             \begin{figure}[h]
+            	\centering
+            	\includegraphics[width=0.8\textwidth, height=6cm]{./sdf/ot_with_discrete_variables/figures/cascade_1.png}
+                	\caption{Cascade Algorithm}\label{cascade_1}
+            \end{figure}
+
+        \item They use a classical channel to compare the block parities. For blocks with different parities, an odd number of errors must exist, otherwise an even number of errors would mask each other. Thus, the block in which the parities disagree is divided in half into two smaller blocks of length $\frac{N}{2}$, and another parity check is performed on the first sub-block, as one can see in figure \ref{cascade_2}. As it was referred above, there is at least one error in one sub-block being the error location revealed by the parity of one sub-block. In other words, if the parity of the first sub-block passes, the error will be in the second sub-block. The sub-block with error will be sub-divided until the error is found.
+
+            \begin{figure}[h]
+            	\centering
+            	\includegraphics[width=0.6\textwidth, height=6cm]{./sdf/ot_with_discrete_variables/figures/cascade_2.png}
+                	\caption{Cascade Algorithm - example of error correction}\label{cascade_2}
+            \end{figure}
+
+        \item When the error is corrected, the last bit of the block is discard in order to prevent the gain of additional information by Bob.
+
+
+            In this case, lets assume the set of right positions was corrected with the algorithm described above and it will be replaced by the following:
 
             \begin{align*}
               S_{B_{rp}} & = \{1,2,5,6,8 \} \\
@@ -166,8 +176,42 @@ and for \textit{Diagonal Basis}, "$\times$",
 
       \end{enumerate}
 
+      After that, Bob needs to apply the Fake Cascade to the set $S_{B_{wb}}$. The main goal of this step is to convince Alice she is performing the real Cascade but she is not.
 
-   \item Next, Bob calculates the minimum number between ``ones'' and ``zeros'' in $S_{B3}$, i.e $$n=min(\#0,\#1)=4,$$ where $\#0$ represents the number of zeros in $S_{B2}$ and $\#1$ the number of ones in $S_{B2}$. Bob sends to Alice, throughout a classical channel, the set ${4,w}$, where $4$ is the $n$ and $w$ represents the nature of $n$, i.e in this case $n$ corresponds to the number of wrong measured photons.
+      \begin{enumerate}
+        \item First of all, based on the positions contained in $S_{B_{wb}}$, Bob must build an array with the correspondent bits in a random order and informs Alice the order of positions. In order to best explain this version of the algorithm, lets assume a larger set of bits. 
+            
+            Bob sends to Alice throughout a classical channel the new positions order as if it were the permutation step represented in figure \ref{cascadepermutation} in real Cascade algorithm.
+
+        \item Assuming each of them has a set with 32 bits randomly organized by Bob, they divide the supposed shifted keys in blocks with N bits according to the estimated error rate. As the \textit{QBER} is the same as for real cascade, Bob will assume the same number of errors, even if he starts for this modified version he can know the number of errors from \textit{QBER} estimated by Alice.
+
+        \item Bob and Alice use a classical channel to compare the block parities. Alice sends to Bob her parity list. Based on Alice's parity list, Bob sends a block list with odd parities, i.e the blocks position in which parity supposed disagree. This list is randomly built based on the number of errors considered by Bob, i.e if he considered five errors from \textit{QBER} estimative, he will distributed them randomly and after that he will fill the remaining spaces with even parities. Bob sends to Alice the set with the list of odd parities, i.e the list of sub-sets he has different parities than Alice.
+
+        \item The blocks with errors will be consecutively divided until they found the supposed errors. Since we have assumed there were five errors, this is the number of errors that Alice must supposedly correct.
+
+            \begin{figure}[h]
+            	\centering
+            	\includegraphics[width=0.6\textwidth, height=6cm]{./sdf/ot_with_discrete_variables/figures/fake_cascade.png}
+                	\caption{Fake cascade - example of error correction}\label{fake cascade}
+            \end{figure}
+
+            Lets assume one of the blocks with error and analyse figure \ref{fake cascade}. Bob starts with a set filled with random bits, therefore we do not need to know which bits are. Alice starts by dividing her set in half with two blocks with $N$ bits.
+
+            \begin{description}
+              \item [Step 1:] Bob chooses one of the to blocks and informs Alice she must send the parity of this block. Lets assume he chose sub-block 2. She sends the parity and Bob is going to send his parity, which after know Alice's block parity he send the opposite parity. As referred in normal Cascade, there must be one error or no error in each block. Thus, since the parities disagree, the error must be in seconde block. They start the procedure to correct it.
+              \item [Step 2:] Bob divides again the sub-block in half with $\frac{N}{2}$ bits and asks Alice for the parity of the first sub-block. She sends her parity equals to 0 and Bob sends to her the opposite parity again.
+
+              \item [Step 3:] They divide the sub-block in half again and Bob asks Alice for the parity of the first bit. Alice sends to him the parity equals to her. As the error is not in the first be, it must be in the second, therefore Bob is able to correct this bit with the information sent by Alice.
+            \end{description}
+
+            Note that Bob make his choice of which half analyse first using a random bit generator result. If he got "0" he starts with the first half of the sub-block, otherwise, if he got "1", he starts with the second half. In addition, they must discard the last bit of the blocks and sub-blocks in which fake Cascade were applied in order to guarantee that Bob does not gain additional information.
+
+            After apply the fake Cascade to $S_{B_{wb}}$, it must remains the same,
+            $$S_{B_{wb}}  = \{0,1,1,1 \}.$$
+
+
+      \end{enumerate}
+
 
   \item When Alice sends to Bob a photons set, they are building a set of pairs (array positions and bit values which correspond to measured photons at Bob's side and to the key bit with the photon was encoded at Alice's side).
       The main goal is to guarantee that Bob has the same number of right and wrong pairs. In addition, they must know information about $t$ (represented in figure \ref{alicebobkeys}) which corresponds to the points where the previous condition is verified.
@@ -311,4 +355,6 @@ In figures \ref{quantumchannelcommunication1} and \ref{quantumchannelcommunicati
 	\caption{Quantum communication diagram - Bob's side}\label{quantumchannelcommunication2}
 \end{figure}
 
-\bibliography{ot_with_discrete_variables}
+\bibliographystyle{unsrt}
+
+\bibliography{bibliography}

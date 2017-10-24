@@ -1,6 +1,22 @@
 \clearpage
 
-\section{sgnToWfm}
+\section{Generation of AWG compatible Signals}
+
+\begin{tcolorbox}	
+\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+\textbf{Student Name}  &:& Francisco Marques dos Santos\\
+\textbf{Starting Date} &:& September 1, 2017\\
+\textbf{Goal}          &:& Convert simulation signals into waveform files compatible with the laboratory's Arbitrary Waveform Generator\\
+Directory              &:& mtools
+\end{tabular}
+\end{tcolorbox}
+
+
+Throughout this project there have been multiple simulations that try to predict the behavior of signals when they are submitted to a given system. However, in a physical system there may be some factors the simulation does not take into account.
+\par
+For this reason, this section shows how to convert a simulation signal into an AWG compatible waveform file through the use of a matlab function called sgnToWfm. This allows the application of simulated signals into real world systems.
+
+\subsection{sgnToWfm}
 
 [data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm(fname\_sgn, nReadr, fname\_wfm );
 
@@ -82,7 +98,7 @@ Using three arguments:
 This creates a waveform file with the name "myWaveform" and the number of samples used equals nReadr x samplesPerSymbol. The samplesPerSymbol constant is defined in the *.sgn file.
 
 
-\subsection*{Key performance specifications of the AWG}
+\subsection{Key performance specifications of the AWG}
 
 The AWG we will be using is the Tekatronix AWG70002A which has the following key specifications:
 \bigskip
@@ -97,7 +113,7 @@ The AWG we will be using is the Tekatronix AWG70002A which has the following key
 After making sure this specifications are respected you can create your waveform using the function. When you load your waveform, the AWG will output it and repeat it constantly until you stop playing it.
 
 
-\subsection*{Tutorial - Loading a signal to the AWG}
+\subsection{Tutorial - Loading a signal to the AWG}
 
 \textbf{1. Using the function sgnToWfm}:
 Start up Matlab and change your current folder to mtools and add the signals folder that you want to convert to the Matlab search path. Use the function accordingly, putting as the input parameter the signal file name you want to convert.
@@ -129,14 +145,14 @@ To do this go to the settings tab, clock settings, and change the sampling rate 
 
 
 
-\begin{figure}[h]
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=\textwidth]{../mtools/sgnToWfm/figures/tutorial3}
 	\label{TUT_ConfigSR}\caption{Configuring the right sampling rate}
 \end{figure}
 
 Compare the waveform in the AWG with the original signal, they should be identical (Figure 7.4).
-\begin{figure}[h]
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\textwidth]{../mtools/sgnToWfm/figures/tutorial4}
 	\label{TUT_CompGood}\caption{Comparison between the waveform in the AWG and the original signal after configuring the sampling rate}

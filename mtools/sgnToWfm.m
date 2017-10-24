@@ -1,23 +1,42 @@
 function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn, nReadr, fname_wfm )
-% This function will build a WFM file given an input signal filename.
 %
-% [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate
-% ] = sgnToWfm(fname_sgn);
+%
+% [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn, nReadr, fname_wfm );
 %
 % Inputs
 % fname_sgn: Input filename of the signal you want to convert
+% nReadr:    Number of symbols you want to extract from the signal.
+% fname_wfm: Name that will be given to the waveform file.
 %
 % Outputs
 % A waveform file will be created in the current folder.
 %
-% It will also return six variables in the workspace witch are:
+% It will also return six variables in the workspace which are:
 % data: A vector with the signal data.
 % symbolPeriod} Equal to the symbol period of the corresponding signal
 % samplingPeriod: Sampling period of the signal.
 % type: A string with the name of the signal type.
 % numberOfSymbols: Number of symbols retrieved from the signal.
 % samplingRate: Sampling rate of the signal.
-
+%
+% Functional Description
+% This matlab function generates a *.wfm file given an input signal file (*.sgn).
+% the signal must be real, not exceed 8GS  and have a sampling rate equal or bellow 16 GS/s. 
+%
+% Examples 
+% Using one argument:
+% [data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn');
+% This creates a waveform file with the same name as the *.sgn file and uses all of the samples it contains.
+% 
+% Using two arguments:
+% [data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn',256);
+% This creates a waveform file with the same name as the signal file name and the number of samples
+% used equals nReadr x samplesPerSymbol. The samplesPerSymbol constant is defined in the *.sgn file.
+%
+% Using three arguments:
+% [data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn',256,'myWaveform.wfm');
+% This creates a waveform file with the name "myWaveform" and the number of samples used equals nReadr x samplesPerSymbol.
+% The samplesPerSymbol constant is defined in the *.sgn file.
 
 if nargin == 1
     fname_wfm = [strtok(fname_sgn,'.') '.wfm'];

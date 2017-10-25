@@ -1,6 +1,5 @@
 #include "homodyne_receiver.h"
 
-
 HomodyneReceiver::HomodyneReceiver(vector<Signal *> &inputSignal, vector<Signal *> &outputSignal) :SuperBlock(inputSignal, outputSignal) {
 
 	setLocalOscillatorSamplingPeriod(inputSignal[0]->getSamplingPeriod());

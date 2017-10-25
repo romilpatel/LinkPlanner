@@ -1,28 +1,32 @@
 \clearpage
-\section{Oblivious Transfer with Discrete Variables}
+\section{Quantum Oblivious Key Distribution with Discrete Variables}
 
 \begin{tcolorbox}	
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
 \textbf{Student Name}  &:& Mariana Ramos\\
 \textbf{Starting Date} &:& September 18, 2017\\
-\textbf{Goal}          &:& Oblivious transfer implementation with discrete variables.
+\textbf{Goal}          &:& Quantum oblivious key distribution (QOKD) implementation with discrete variables.
 \end{tabular}
 \end{tcolorbox}
 
 Oblivious Transfer (OT) is a fundamental primitive in multi-party computation. The one-out-of-two OT consists in a communication protocol between Alice and Bob. At the beginning of the protocol Alice has two messages $m_1$ and $m_2$ and Bob wants to know one of them, $m_b$, without Alice knowing which one, i.e. without Alice knowing $b$, and Alice wants to keep the other message private, i.e. without Bob knowing $m_{\bar{b}}$. therefore two conditions must be fulfilled:
 \begin{enumerate}
-	\item{The protocol must be concealing, i.e at the beginning of the protocol Bob does not know nothing about the messages sent by Alice, while at the end of the protocol Bob will learn the message $b$ chose by him.}
-	\item{The protocol is oblivious, i.e Alice cannot learn anything about bit $b$ and Bob cannot learning nothing about the other message $m_{\bar{b}}$.}
+	\item{The protocol must be concealing, i.e at the beginning of the protocol Bob does not know nothing about Alice's messages, while at the end of the protocol Bob will learn the message $m_{b}$ chosen by him.}
+	\item{The protocol is oblivious, i.e Alice cannot learn anything about Bob's choice, bit $b$, and Bob cannot learning nothing about the other message $m_{\bar{b}}$.}
 \end {enumerate}
 
-\subsection{OT Protocol Detailed}
+In order to implement OT between two parties (Alice and Bob) they must be able to exchange continuously oblivious keys, i.e a QOKD system must exist between them.
 
- First of all, it is important to set the initial conditions of Bob and Alice's knowledge.
+\subsection{QOKD and OR Protocol Detailed}
+In this section, we are going to detail an 1-out-2 OT Protocol's implementation using discrete variables (single photons) with polarization encoding supported by a QOKD system.
 
-In general, the first step is to establish for both Alice and Bob the message length $s$ and the parameter $k$, which is multiplicative factor of message's length.
-In this case, lets assume message's length $s=4$ and a multiplicative factor $k=2$.
+\subsubsection{QOKD system}
+In this sub-section we are going to describe the quantum oblivious key distribution procedure by analysing a specific example.
 
- In addition, both Alice and Bob know the following correspondence, where $+$ corresponds to \textit{Rectilinear Basis} and $\times$ corresponds to \textit{Diagonal Basis}:
+
+The first step is to establish for both Alice and Bob the block length $l$. In this case, lets assume $l=12$.
+
+Considering a discrete variables implementation, both Alice and Bob agree with the following correspondence, where $+$ corresponds to \textit{Rectilinear Basis} and $\times$ corresponds to \textit{Diagonal Basis},
 
 \begin{table}[H]
 \centering
@@ -32,57 +36,66 @@ In this case, lets assume message's length $s=4$ and a multiplicative factor $k=
  1 & $\times$ \\
 \end{tabular}
 \end{table}
-
-Secondly both Alice and Bob also know the bit correspondence for each direction for each basis. For \textit{Rectilinear basis}, "$+$":
+Alice and Bob also agree with the bit correspondence for each direction for each basis. For \textit{Rectilinear basis}, "$+$",
 
 \begin{table}[H]
 \centering
 \begin{tabular}{c|c}
             & Basis "+" \\ \hline
- 0 & $\to$ \\
- 1 & $\uparrow$ \\
+ 0 & $\to (0^{\circ})$ \\
+ 1 & $\uparrow (90^{\circ})$ \\
 \end{tabular}
 \end{table}
-
-and for \textit{Diagonal Basis}, "$\times$":
+and for \textit{Diagonal Basis}, "$\times$",
 
 \begin{table}[H]
 \centering
 \begin{tabular}{c|c}
       & Basis "$\times$" \\ \hline
- 0 & $\searrow$ \\
- 1 & $\nearrow$ \\
+ 0 & $\searrow (-45^{\circ})$ \\
+ 1 & $\nearrow (45^{\circ})$ \\
 \end{tabular}
 \end{table}
 
-Third, only Alice knows information about messages $m_{1}$ and $m_{2}$.
-In this case, lets assume she sets the two messages $m_{1} = \{0 0 1 1\}$ and $m_{2} = \{0 0 0 1\}$.
-
 \begin{enumerate}
-  \item Alice randomly generate a bit sequence with length $k.s$ being, in this case, $k=2$ and $s=4$ and both were defined at the beginning of the protocol.
-      Therefore, she must define two sets $S_{A1}$, which contains the basis values, and $S_{A2}$, which contains the key values.
+  \item Alice randomly generate a bit sequence with length $l=12$.
+      Therefore, she must define two sets randomly: $S_{A1}$ which contains the basis values; and $S_{A2}$, which contains the key values.
 
       In that case, lets assume she gets the following sets $S_{A1}$ and $S_{A2}$:
-      $$S_{A1} = \{0,1,1,0,0,1,0,1 \}$$
-      $$S_{A2} = \{1,1,0,0,0,1,0,0 \}$$
+      $$S_{A1} = \{0,0,1,1,1,0,0,1,1,0,0,1 \},$$
+      $$S_{A2} = \{1,1,1,0,0,0,0,0,1,1,0,0 \}.$$
 
-  \item Next, Alice sends to Bob throughout a quantum channel $ks$ photons encrypted using the basis defined in $S_{A1}$ and according to the keys defined in $S_{A2}$.
+  \item Next, Alice sends to Bob throughout a quantum channel $l$ photons encoded using the basis defined in $S_{A1}$ and according to the bits defined in $S_{A2}$.
 
-      In the current example, Alice sends the photons, throughout a quantum channel, according to the following basis and keys:
+      Therefore, in the current example, Alice sends the photons, throughout a quantum channel, according to the following,
 
-      $$S_{AB} = \{\uparrow, \nearrow, \searrow, \to, \to, \nearrow, \to, \searrow \}$$
+      $$S_{AB} = \{\uparrow,\uparrow, \nearrow, \searrow, \searrow, \to, \to, \searrow, \nearrow,\uparrow, \to, \searrow \} =$$
+      $$ =\{90^{\circ},90^{\circ}, 45^{\circ}, -45^{\circ},-45^{\circ}, 0^{\circ}, 0^{\circ}, -45^{\circ}, 45^{\circ},90^{\circ}, 0^{\circ}, -45^{\circ} \}.$$
 
-  \item Bob also randomly generates $ks$ bits according to the basis through which he will measure the photons sent by Alice and he fills an array $S_{B1}$ with the basis chosen by him. In this example, lets assume:
 
-  $$S_{B1} = \{0,1,0,1,0,1,1,1 \}$$
+  \item Bob also randomly generates $l=8$ bits, which are going to define his measurement basis, $S_{B1}$. He will measure the photons sent by Alice. Lets assume:
 
-  \item When Bob receives photons from Alice, he measures them using the basis defined in $S_{B1}$.
-  In the current example, we assumed that $S_{B1}$ is the following set:
-  $$\{ +,\times,+,\times,+,\times, \times, \times \}$$
-  In this follow-up he will get $ks$ results. Some of them Bob is $100\%$ sure he was succeeded and others he may be succeeded or not with a probability of $\frac{1}{2}$. The values which he is not sure about are underlined in the following sequence:
-  $$S_{B1\prime} = \{1,1,\underline{0},\underline{1},0,1,\underline{1},0 \}$$
+  $$S_{B1} = \{0,1,1,0,0,1,0,1,1,0,1,1 \}.$$
 
-  \item Once Alice has received the confirmation of measurement from Bob, she sends throughout a classical channel the basis which she has used to codify the photons, which in this case we assumed $S_{A1} = \{0,1,1,0,0,1,0,1\}$.
+    When Bob receives photons from Alice, he measures them using the basis defined in $S_{B1}$.
+  In the current example,
+  $$S_{B1} = \{ +,\times,\times,+,+,\times,+,\times, \times,+, \times, \times \}.$$
+  Bob will get $s$ results:
+  $$S_{B1'} = \{1,-,1,0,-,1,0,-,1,-,1,0 \}.$$
+
+  The '-' corresponds to no clicks in Bob's detector. These no clicks happen due to attenuation.
+
+  \item Bob is going to send a $'-1'$ or a hash value to Alice for each measurement that he performed, thereby being $'-1'$ the measurements which correspond to no clicks. In this case, we are going to assume that the hash value is calculated using the \textit{SHA-256} algorithm \cite{Liu2009}. In detail, Bob has two sets $S_{B1}$ and $S_{B1'}$ and he is going to generate the set $S_{BH1}$ which have $l$ hash values calculated for each position of $S_{B1}$ with the correspondent position of $S_{B1'}$. Therefore, Bob will send to Alice the following set:
+      $$S_{BH1}=\{SHA_1,-1,SHA_2,SHA_3, -1,SHA_4,SHA_5,-1,SHA_6,-1,SHA_7,SHA_8 \}.$$
+
+
+  \item Since Alice has received the confirmation of measurement from Bob, i.e after Alice has received $S_{BH1}$, she sends throughout a classical channel the basis which she has used to codify the photons, which in this case we assumed $S_{A1} = \{0,-1,1,0,-1,1,0,1\}$.
+
+      Due to attenuation, the previous sets are reduced to the length $l=8$ and they shall be replaced by the following:
+      $$S_{A1}=\{0,1,1,0,0,1,0,1 \},$$
+      $$S_{A2}=\{1,1,0,0,0,1,0,0 \},$$
+      $$S_{B1}=\{0,1,0,1,0,1,1,1 \},$$
+      $$S_{B1'}=\{1,1,0,1,0,1,1,0 \}$$
 
   \item In order to know which photons were measured correctly, Bob does the operation $S_{B2}=S_{B1} \oplus S_{A1}$.
       In the current example the operation will be:
@@ -96,47 +109,66 @@ In this case, lets assume she sets the two messages $m_{1} = \{0 0 1 1\}$ and $m
     \end{tabular}
     \end{table}
 
-      In this way, Bob gets $$S_{B2} = \{1,1,0,0,1,1,0,1 \}$$. The values "$1$" correspond to the values he measured correctly and "$0$" to the values he wrongly measured.
+      In this way, Bob gets $$S_{B2} = \{1,1,0,0,1,1,0,1 \}.$$ When Bob uses the right basis he gets the values correctly, when he uses the wrong basis he just guess the value. The values ``$1$'' correspond to the values he measured correctly and ``$0$'' to the values he just guessed.
+      Thus, Bob is building two sets of keys, one $'r'$ with correct measurements values and other $'w'$ with the measurement values that he just guessed.
 
-       Next, Bob sends to Alice through a classical channel information about the minimum number between "ones" and "zeros", i.e $$n=min(\#0,\#1)=3$$ where $\#0$ represents the minimum number of zeros and $\#1$ the minimum number of ones. Function $min(a,b)$ counts the number of \textit{a}, $n_{a}$, and the number of \textit{b}, $n_{b}$ and if $n_{a}<n_{b}$ the function will takes $n_{a}$ as result and $n=n_{a}$, otherwise $n=n_{b}$.
+      Thus, Bob has two pair of sets, one for the photons he measured correctly,
 
-  \item If $n<s$, being \textit{s} the message's size, Alice and Bob will repeat the steps from $1$ to $7$.
+      $$S_{B_{rp}}= \{1,2,5,6,8 \},$$ $$ S_{B_{rb}} = \{0,1,0,1,1 \},$$
+      where $S_{B_{rp}}$ is the set of positions he was right about and $SB_{rb}$ is the set of bit values for each position he was right about. The other pair is for photons he just guessed the measurement,
+      $$S_{B_{wp}}= \{3,4,7 \},$$ $$S_{B_{wb}} = \{0,1,1 \},$$
+      where $S_{B_{wp}}$ is the set of positions he just guessed the values and $S_{B_{wb}}$ is the set of bit values for each position he just guessed the values.
 
-  \item Lets assume for the values set which contains the results of Bobs measurements $S_{B1\prime}$ we have the following sequence being underlined values those which Bob is not $100\%$ sure about, having a probability of success about $\frac{1}{2}$ :
+      Nevertheless, due to errors in transmission, some of the bits in $S_{B_{rb}}$ may be not right. Thus, Bob and Alice are going to use a modified version of \textit{Cascade algorithm} to correct the errors.
 
-   $$S_{B1\prime}= \{1,1,\underline{0},\underline{0},0,1,\underline{0},0,\underline{1},0,\underline{0},\underline{0},0,0,\underline{1},1 \}$$
+      Next, Bob sends to Alice, through a classical channel, information about the minimum number between ``ones'' and ``zeros'', i.e $$n=min(\#0,\#1)=3 w,$$ where $\#0$ represents the number of zeros in $S_{B2}$ and $\#1$ the number of ones in $S_{B2}$.
 
-    At Alice's side the new sets $S_{A1}$, which contains the basis values, and $S_{A2}$, which contains the key values, will be the following:
+  \item In general, if we assume $l=n+\bar{n}$, Alice will ask Bob to open $\bar{n}-n+1$ pairs of the set that $\bar{n}$ corresponds. Next, Alice asks to open $n-1$ pairs of the set which $n$ corresponds.
 
-    $$S_{A1}=\{0,1,1,0,0,1,0,1,1,1,0,0,1,1,1,0 \}$$ $$S_{A2}=\{1,1,0,0,0,1,0,0,1,0,1,0,0,0,1,1 \}$$
+      It is important to remember that Alice never knows which are the wrong or the right pairs. She only knows that at specific $t$ (in figure \ref{alicebobkeys} at $t=4$ and $t=10$) there are the same number of right and wrong positions in the set.
 
-    Finally, for $S_{B2}=S_{B1} \oplus S_{A1}$ Bob gets the following sequence:
+      In this case, since Alice has already known how many basis Bob was correct about and how many basis he was wrong about, she is going to ask Bob to open one of the wrong pairs and three of the right ones, i.e Bob sends to Alice the pairs that she wants and she will verify Bob's honesty with the hash function sent by him. At this time, Alice destroys one wrong bit and three right bits thereby remaining the same number of right positions and wrong positions, i.e Bob has two right position bits and two wrong positions.
 
-    $$S_{B2}= \{1,1,0,0,1,1,0,1,0,1,0,0,1,1,0,1 \}$$
+      In order to better understand this, lets assume this specific example by analysing figure \ref{alicebobkeys}. In this figure there are two sets which are being built continuously, i.e as Alice sends photons to Bob throughout a quantum channel, he measured them with the random basis that he chose, then she sends to him the basis she used to encode the photons and at this time he knows in which measurements he was correct. In this case, he sends to Alice the number 3 of wrong bits and she ask to open one pair of wrong values and three pairs of right values according with the commitment done by Bob in the previous step 4. In this way, Bob and Alice add to them sets the positions that she does not destroy in order to have a set with the same number of right and wrong values. As we can see in figure \ref{alicebobkeys} they know that at $t=4$ the number of right pairs and wrong pairs are the same and this condition is verified. After that, the previous procedure is being performed again until $t=10$ when they know the same again.
 
-  \item At this time, Bob sends again to Alice through a classical channel the minimum number between "ones" and "zeros" $n=min(\#0,\#1)$. In this case, $n$ is equal to $7$ which is the number of zeros.
+      They continuously do this procedures during all protocol, i.e them sets are built simultaneously with the other message's exchange throughout the classical channels.
 
-  \item Alice checks if $n>s$ and reveals to Bob that she already knows that $n>s$. In this case, $n=7$ and $s=4$ being $n>s$ a valid condition.
+      \begin{figure}[h]
+    	\centering
+    	\includegraphics[width=1.0\textwidth, height=9cm]{./sdf/ot_with_discrete_variables/figures/alicebobkeys.png}
+        	\caption{Alice and Bob key sets.}\label{alicebobkeys}
+        \end{figure}
+\end{enumerate}
 
-  \item Next, Bob defines two new sets, $I_{1}$ and $I_{0}$ where one contains $s$ positions of measurements that Bob has succeeded and other contains $s$ positions of measurements that Bob was wrong about, respectively.
+\subsubsection{OT Protocol}
+    At this time, we are going to describe the oblivious transfer protocol with detail. As it was referred at the beginning, Alice sends two messages to Bob and he wants to know one of them. Alice does not know which message Bob wants and Bob only know the message he wants, i.e he does not know anything about the other message.
+    Furthermore, only Alice knows information about messages $m_{0}$ and $m_{1}$.
+    In this case, lets assume the following two messages with size $s=4$, $m_{0} = \{0 0 1 1\}$ and $m_{1} = \{0 0 0 1\}$.
+  \begin{enumerate}
+  \item Bob defines two new sub-sets, $I_{0}$ and $I_{1}$. $I_{0}$ is a set of values with photons array positions which Bob just guessed the measurement since he did not measure them with the same basis as Alice, $I_{1}$ is a set of values with photons array positions which Bob measured correctly since he used the same basis as Alice used to encoded them. The position of the pairs of each right and wrong message are in the keys sets that they have been building during the protocol.
 
-  In this example, Bob defines two sequences with size $s=4$:
-  $$I_{0}=\{3,4,7,11 \}$$
-  and $$I_{1}= \{2,5,6,13 \}$$ where $I_{0}$ is the sequence of positions in which Bob was wrong and $I_{1}$ is the sequence of positions in which Bob was right.
+  In this example, the message size is 4. Since, at this time $t=10$ and we have $5$ right pairs and $5$ wrong pairs, Alice ask to Bob to open one right pair and one wrong pair in order to both have exactly the message's size number of right and wrong pairs. Lets assume that Alice opened two pairs, position $15$ which is a wrong measurement and position $10$ which is a right measurement. We have now $t=8$.
 
-  Thus, if Bob wants to know $m_{1}$ he must send to Alice throughout a classical channel the set $\{I_{1},I_{0} \}$, otherwise if he wants to know $m_{2}$ he must send to Alice throughout a classical channel the set $\{I_{0},I_{1} \}$.
+  Next, Bob defines two sub-sets with size $s=4$:
+  $$I_{0}=\{3,4,7,11 \},$$
+  and $$I_{1}= \{2,5,6,13 \},$$ where $I_{0}$ is the sequence of positions in which Bob was wrong about basis measurement and $I_{1}$ is the sequence of positions in which Bob was right about basis measurement. Bob sends to Alice the set $S_{b}$
 
-  \item Lets assume Bob sent $\{I_{1},I_{0} \}$.
-   Alice defines two encryption keys $K_{1}$ and $K_{2}$ using the values in positions defined by Bob in the set sent by him. In this example, lets assume: $$K_{1}=\{1,0,1,0\}$$ $$K_{2}=\{0,0,0,1\}$$
+  Thus, if Bob wants to know $m_{0}$ he must send to Alice throughout a classical channel the set $S_{0}=\{I_{1},I_{0} \}$, otherwise if he wants to know $m_{1}$ he must send to Alice throughout a classical channel the set $S_{1}=\{I_{0},I_{1} \}$.
+
+
+  \item Alice is sure about Bob's honesty, since she knows he only has $4$ right basis to measure the photons. In addition, Alice cannot know which message Bob chose because she did not know the order that he sent the sets.
+
+  \item Lets assume Bob sent $S_{0}=\{I_{1},I_{0} \}$.
+   Alice defines two encryption keys $K_{0}$ and $K_{1}$ using the values in positions defined by Bob in the set sent by him. In this example, lets assume: $$K_{0}=\{1,0,1,0\}$$ $$K_{1}=\{0,0,0,1\}.$$
 
    Alice does the following operations:
-   $$m = \{m_{1}\oplus K_{1}, m_{2} \oplus K_{2} \}$$
+   $$m = \{m_{0}\oplus K_{0}, m_{1} \oplus K_{1} \}.$$
 
    \begin{table}[H]
     \centering
     \begin{tabular}{c|c c c c c c c c}
-     $m_{1}$ & 0 & 0 & 1 & 1 \\
-     $K_{1}$ & 1 & 0 & 1 & 0 \\ \hline
+     $m_{0}$ & 0 & 0 & 1 & 1 \\
+     $K_{0}$ & 1 & 0 & 1 & 0 \\ \hline
      $\oplus$ & 1 & 0 & 0 & 1
     \end{tabular}
     \end{table}
@@ -144,13 +176,13 @@ In this case, lets assume she sets the two messages $m_{1} = \{0 0 1 1\}$ and $m
    \begin{table}[H]
     \centering
     \begin{tabular}{c|c c c c c c c c}
-     $m_{2}$ & 0 & 0 & 0 & 1 \\
-     $K_{2}$ & 0 & 0 & 0 & 1 \\ \hline
+     $m_{1}$ & 0 & 0 & 0 & 1 \\
+     $K_{1}$ & 0 & 0 & 0 & 1 \\ \hline
      $\oplus$ & 0 & 0 & 0 & 0
     \end{tabular}
     \end{table}
 
-    Adding the two results, $m$ will be: $$m=\{1,0,0,1,0,0,0,0\}$$.
+    Adding the two results, $m$ will be: $$m=\{1,0,0,1,0,0,0,0\}.$$
 
    After that, Alice sends to Bob the encrypted message $m$ through a classical channel.
 
@@ -165,45 +197,60 @@ In this case, lets assume she sets the two messages $m_{1} = \{0 0 1 1\}$ and $m
         \end{tabular}
         \end{table}
 
-      The first four bits corresponds to message 1 and he received $\{0,0,1,1\}$, which is the right message $m_{1}$ and $\{0,1,1,0\}$ which is a wrong message for $m_{2}$.
+      The first four bits corresponds to message 1 and he received $\{0,0,1,1\}$, which is the right message $m_{0}$ and $\{0,1,1,0\}$ which is a wrong message for $m_{1}$.
 
 
 \end{enumerate}
-
-\subsection{OT Protocol - Potential Problems}
-There are two potential problems with the protocol described above:
-\begin{enumerate}
-  \item In step $5$ Bob may says to Alice that he has already measured the photon and it could be a lie.
-
-  \item In step $10$ Bob may uses some values of $I_{1}$ in $I_{0}$ of positions which he knows are right in order to know correct information about message $m_{2}$.
-\end{enumerate}
-
-This problems can hopefully be solved using \textit{Bit Commitment} through \textit{Hash Functions}.
 
 \subsection{Simulation}
 
 First of all, the protocol will be simulated and then a experimental setup will be built in the laboratory.
 
+The main goal of this simulation is to demonstrate that Bob was able to learn correctly message $m_{b}$ and he does not know the message $m_{\overline{b}}$.
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/ot_with_discrete_variables/figures/Simulation_diagram_1.png}
+	\includegraphics[width=1.0\textwidth, height=9cm]{./sdf/ot_with_discrete_variables/figures/Simulation_diagram_top.png}
 	\caption{Simulation diagram at a top level}\label{toplevelsimulation}
 \end{figure}
 
-As one may see in figure \ref{toplevelsimulation} this simulation will have three top level blocks. Two of them are Alice and Bob and they are connected through two classical channels and one quantum channel. In addition, a third block will be performed for the calculation of \textit{Mutual Information}. The mutual information (MI) between Alice and Bob is defined in terms of their join distribution.
+As one may see in figure \ref{toplevelsimulation} this simulation will have three top level blocks. Two of them are Alice and Bob and they are connected through two classical channels and one quantum channel. In addition, a third block will be performed in order to calculate the \textit{Mutual Information}. The mutual information (MI) between Alice and Bob is defined in terms of their join distribution.
 
-\begin{figure}[H]
+
+\begin{enumerate}
+  \item
+
+  \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/ot_with_discrete_variables/figures/Simulation_diagram.png}
-	\caption{Simulation diagram - blocks}\label{blocksimulation}
+	\includegraphics[width=1.1\textwidth, height=9cm]{./sdf/ot_with_discrete_variables/figures/Simulation_Alice.png}
+	\caption{Simulation diagram - Alice's side}\label{simulationalice}
 \end{figure}
 
-In figure \ref{blocksimulation} is presented the block diagram of the simulation that will be performed. There are two sides (Alice and Bob) and three channels throughout which they will communicate. 
-At the beginning of the protocol Alice and Bob must know two values: message's size, s, and a multiplicative factor, k.
-Furthermore, Alice must have two blocks, \textit{RNG - Random Number Generate}, for randomly picks the basis $B_{i}$ and the keys $K_{i}$. In a similar way, Bob also has one \textit{RNG - Random Number Generate} for randomly chooses in which basis he will measure the photons sent by Alice. In addition, Bob has one \textit{OT Master Block} to analyse the data and picks two more sub-sets $I_{0}$ and $I_{1}$ and a \textit{Photons counter} which has i as output in order to send to Alice the number of photons which Bob has received through the Quantum channel. 
-Moreover, Alice must have a block for \textit{Single Photon Generator} which receives information through "$S_A1$" channel about the basis and keys to encrypt the photons and then send them to Bob using the Quantum channel.
+    In figure \ref{simulationalice} one can observe a block diagram of the simulation at Alice's side. As it is shown in the figure, Alice must have two blocks for random number generation: one for basis generation in order to polarize the photons according this basis, and other for key random generation in order to have a random state to encode each photon. Furthermore, she has a Processor block for all logical operations: array analysis, hash function results validation, and others. This block also receives the start information, i.e. message size s, the expansion factor k and messages $m_{0}$ and $m_{1}$, as well as information from Bob, i.e sets $I_{0}$ and $I_{1}$, hash function results, and others. This block also must be responsible for send classical information to Bob. Finally, Processor block will also send a real continuous time signal to single photon generator, in order to generate photons according to this signal, and finally this block also sends to polarizer a real discrete signal in order to inform the polarizer which basis it should use. Therefore, she has two more blocks for quantum tasks: the single photon generator and the polarizer block which is responsible to encode the photons generated from the previous block and send them throughout a quantum channel from Alice to Bob.
 
-In general, the simulation must have two Classical channels, one from Alice to Bob and other from Bob to Alice through which they change all the information about basis. Third channel is used only in one direction, from Alice to Bob, and Alice sends the photons to Bob through this channel.
+    Finally, Alice's processor has an output to Mutual Information top level block, $Ms_{A}$.
+
+  \item
+
+  \begin{figure}[h]
+	\centering
+	\includegraphics[width=1.1\textwidth, height=9cm]{./sdf/ot_with_discrete_variables/figures/Simulation_Bob.png}
+	\caption{Simulation diagram - Bob's side}\label{simulationbob}
+\end{figure}
+
+    In figure \ref{simulationbob} one can observe a block diagram of the simulation at Bob's side. From this side, Bob only has one block for Random Number Generation which is responsible for randomly generate basis values which Bob will use to measure the photons sent by Alice throughout the quantum channel. Like Alice, Bob has a Processor block responsible for all logical tasks, i.e Hash function generation, analysing functions, etc. It receives information from Alice throughout a classical channel and a quantum channel but it sends information to Alice only throughout a classical channel. Furthermore, Bob has one more block for single photon detection which receives from processor block a real discrete time signal, in order to obtain the basis it should use to measure the photons.
+
+    Finally, Bob's processor has an output to Mutual Information top level block, $Ms_{B}$.
+
+  \item Mutual Information calculation
+  \item
+  \item
+  \item
+\end{enumerate}
+
+
+
+
 
 \subsection{Experimental}
 In figures \ref{quantumchannelcommunication1} and \ref{quantumchannelcommunication2} are presented the experimental setup to be performed in the lab. Starting with Alice's side and then Bob's side.

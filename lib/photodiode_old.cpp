@@ -4,7 +4,7 @@
 #include <fstream>
 
 #include "netxpto.h"
-#include "photodiode.h"
+#include "photodiode_old.h"
 #include <random>
 
 

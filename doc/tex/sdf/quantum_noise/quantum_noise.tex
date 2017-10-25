@@ -10,34 +10,17 @@
 \textbf{Directory}     &:& sdf/quantum\_noise
 \end{tabular}
 \end{tcolorbox}
+%
+\vspace{2em}
+%
+Quantum noise is an intrinsic property of light, which is a manifestation of the fluctuations of the vaccum field
+\cite{fox2006}.
+%\footnote{Mark Fox, p.132}
+Contrarily to the majority of noise sources, which can be overcome by better equipment, quantum noise has a lower bound, given by the Heisengberg uncertanty principle, which cannot be broken. Various quantum cryptography protocols depend on this propertie to ensure their security.\\
+The objective of this module is to simulate a simple communication system based on the transmission of coherent states, subjected to quantum noise and other sources of noise, and compare it to analytical and experimental results.\\
 
+\subsection{Theoretical Introduction}\label{sec:intro}
 
-INTRO DO INTRO\\
-PORQUE FAZER ISTO?\\
-In quantum transmission of data, the 
-Quantum noise is an important effect in one of the most important effects in quantum cenas...\\
-The objective of this module of to simulate the impact of quantum noise in a ...
-This module simulates the effects of various sources of noise,\\
-The objective of this module \\
-
-This module 
-
-The effect of noise in transmissions is ???? 
-The study of quantum noise is fundamental for bla bla bla... in unde
-
-Given the level of intensity studied far from classical states, quantum noise is intrinsic to the intensity level given by the ????? (já não sei do que tou a falar) NEED MARK FOX, MAYBE LONDON.\\
-Quantum noise 
-
-The study of quantum noise and its effect is fundamental in simulating a real transmission system. Many (?maybe all?) depend on these effects in assuring their security.
-Besides this fundamental effect 
-
-
-\subsection{Introduction}\label{sec:intro}
-MOVER TITULO PARA SEGUINTE??\\
-
-
-This document describes an emission and detection system which is used to simulate the effects of quantum noise. The system is based on the transmission of coherent states as the support of information. The following section introduces some aspects about coherent states, with special focus on quantum noise.\\
-\\
 We start by defining number states $\ket{n}$ (or Fock states), which correspond to states with perfectly fixed number of photons
 %\footnote{Loundon, p.184}
 \cite{loudon2000}.
@@ -111,18 +94,18 @@ This result show us that for both quadratures, the variance of measurement is th
 %
 \subsubsection{Homodyne detection}
 
-LIGACAO COM A MATERIA ANTERIOR\\
-The measurent of a quadrature is made by using the homodyne detection technique. This measurement will give the phase difference between the input signal and a local oscillator....
-Using a reference phase of the local oscillator, we can define a $X$ as the ...\\
-This technique consists in ... 
+The measurent of a quadrature of an input signal (S) is made by using the balanced homodyne detection technique, which measures the phase difference between the input signal and a local oscillator (LO). The measurement of quadrature are made relative to a reference phase of the LO, such that if the measurement is made in-phase with this reference, the value will be proportional to the $\hat{X}$ quadrature of the signal. If the phase of the LO is has an offset of $\pi/2$ relative to the reference, the output will be proportional to the $\hat{Y}$ quadrature of the signal.\\
 \\
-\\
-The balanced homododyne technique is used to measure the phase of the input signal (S), relative to the phase of a local oscillator (LO), which has the same frequency as the input signal, but a much larger amplitude. The technique consists in combining the input signal and the local oscillator, using a 50:50 beam splitter, from whom two beams emerge, which are then converted to currents using photodides. Finally, the two currents are subtracted, resulting in an output current.\\
-A phase of the local oscillator can be defined as the reference phase. A phase offset equal to $0$ or $pi/2$ will give an output proportional to the signal's in-phase component or to the quadrature component, respectively. Therefore, the $\hat{X}$ operator will correspond to the in-phase component and $\hat{Y}$ operator correspond to quadrature component
-\cite{fox2006}.
+Experimentally, the balanced homodyne detection requires a local oscillator with the same frequency as the input signal, but with a much larger amplitude. These two signals are combined using a 50:50 beam splitter, from were two beams emerge, which are then converted to currents using photodides. Finally, the two currents are subtracted, resulting in an output current proportional to a quadrature of the input signal
+\cite{fox2006}.\\
+%\footnote{Mark Fox, p. 140}
+%
+%The balanced homododyne technique is used to measure the phase of the input signal (S), relative to the phase of a local oscillator (LO), which has the same frequency as the input signal, but a much larger amplitude. The technique consists in combining the input signal and the local oscillator, using a 50:50 beam splitter, from whom two beams emerge, which are then converted to currents using photodides. Finally, the two currents are subtracted, resulting in an output current.\\
+%A phase of the local oscillator can be defined as the reference phase. A phase offset equal to $0$ or $\pi/2$ will give an output proportional to the signal's in-phase component or to the quadrature component, respectively. Therefore, the $\hat{X}$ operator will correspond to the in-phase component and $\hat{Y}$ operator correspond to quadrature component
+%\cite{fox2006}.
 %\footnote{Mark Fox, p. 140}
 \\
-In the lab and in our simulations, we will use a more complex system, the double balanced homodyne detection, which allows the simultaneous measurement of the in-phase and quadrature components. The signal is divided in two beam with half the power of the original. One of the beams will be used in a balanced homodyne detection with a local oscillator. The other beam will be used in another balanced homodyne detection, but using a local oscillator with a phase difference $\pi/2$ relative to the first one.
+In the lab and in our simulations, a more complex system is used, the double balanced homodyne detection, which allows the simultaneous measurement of the $\hat{X}$ and $\hat{Y}$ components. The signal is divided in two beam with half the power of the original. One of the beams is used in a balanced homodyne detection with a local oscillator. The other beam is used in another balanced homodyne detection, but using a local oscillator with a phase difference $\pi/2$ relative to the first one.
 %
 \begin{figure}[H]
 \label{fig:scheme_homodyne}
@@ -135,9 +118,9 @@ In the lab and in our simulations, we will use a more complex system, the double
 %
 \subsubsection{Noise sources in homodyne detection}
 The detection of light using photodiodes is subjected to various sources of noise. One of these sources is the electrical field itself. The interaction of the signal with the vaccuum field adds quantum noise to the detection.
-Another source of noise comes from the detection system, such as photodiodes and other electrical circuits, originating various kinds of noise, such as thermal noise, dark noise and amplifier noise.
+Another source of noise comes from the detection system, such as photodiodes and other electrical circuits, originating various kinds of noise, such as thermal noise, dark noise and amplifier noise
 %\footnote{Hans, p.185}
-\cite{hans2004}
+\cite{hans2004}.
 In the following sections, we will focus on two noise sources, quantum noise and thermal noise.
 %
 %

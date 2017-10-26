@@ -1,5 +1,11 @@
-2017-10-17
+2017-10-24
 TO BE DONE
+- melhorar a descrição do algoritmo (para enviar ao Paulo Mateus)
+
+2017-10-20
+TO BE DONE
+- melhorar a descrição do algoritmo
+- fazer com detalhe a parte do true Cascade e do Fake Cascade
 
 2017-10-16
 TO BE DONE

@@ -13,11 +13,11 @@
 %
 \vspace{2em}
 %
-Quantum noise is an intrinsic property of light, which is a manifestation of the fluctuations of the vaccum field
+Quantum noise is an intrinsic property of light, a manifestation of the vaccum field fluctuations
 \cite{fox2006}.
 %\footnote{Mark Fox, p.132}
-Contrarily to the majority of noise sources, which can be overcome by better equipment, quantum noise has a lower bound, given by the Heisengberg uncertanty principle, which cannot be broken. Various quantum cryptography protocols depend on this propertie to ensure their security.\\
-The objective of this module is to simulate a simple communication system based on the transmission of coherent states, subjected to quantum noise and other sources of noise, and compare it to analytical and experimental results.\\
+Contrarily to the majority of noise sources, that are overcomed by better equipment, quantum noise has a lower bound, given by the Heisenberg uncertanty principle, which cannot be broken. This propertie can be useful in some areas, such in quantum cryptography, were many protocols depend on it to ensure their security.\\ 
+The objective of this module is the simulation of a simple communication system based on the transmission of coherent states, which will be subjected to various sources of noise, in particular to quantum noise, and compared to analytical and experimental results.\\
 
 %REF:
 %https://www.rp-photonics.com/quantum_noise.html
@@ -32,17 +32,44 @@ Associated to those states are two operators, the creation $\hat{a}^\dagger$ and
 \cite{fox2006}.
 Their action is defined as
 \\
-\begin{equation}
-\hat{a} \ket{n} = \sqrt{n} \ket{n-1}
-\end{equation}
+\\
+\begin{tabular}{@{}ccccc}
+	\begin{minipage}{4.3cm}
+		\noindent
+		\begin{equation}
+			\hat{a} \ket{n} = \sqrt{n} \ket{n-1}
+		\end{equation}
+	\end{minipage}
+	&
+	&
+	\begin{minipage}{5.6cm}
+		\noindent
+		\begin{equation}
+			\quad \hat{a}^\dagger \ket{n} = \sqrt{n+1} \ket{n+1}
+		\end{equation}
+	\end{minipage}
+	&
+	&
+	\begin{minipage}{3.5cm}
+		\noindent
+		\begin{equation}
+			\hat{n} \ket{n} = n \ket{n}
+		\end{equation}
+	\end{minipage}
+\end{tabular}
+\\
+\\
+%\begin{equation}
+%\hat{a} \ket{n} = \sqrt{n} \ket{n-1}
+%\end{equation}
 %
-\begin{equation}
-\hat{a}^\dagger \ket{n} = \sqrt{n+1} \ket{n+1}
-\end{equation}
+%\begin{equation}
+%\hat{a}^\dagger \ket{n} = \sqrt{n+1} \ket{n+1}
+%\end{equation}
 %
-\begin{equation}
-\hat{n} \ket{n} = n \ket{n}
-\end{equation}
+%\begin{equation}
+%\hat{n} \ket{n} = n \ket{n}
+%\end{equation}
 %
 in which $\hat{n} = \hat{a}^\dagger\hat{a}$ is the number operator. Therefore, number states are eigenvectors of the number operator.\\
 \\
@@ -435,8 +462,17 @@ As we have seen earlier, the system will manifest noise even in the absence of i
     \caption{Noise variance dependency with local oscilator power for two different quadratures. Experimental vs fitted data.}
 \end{figure}
 %
-Figures $\ref{fig:noise-exp-1}$ and $\ref{fig:noise-exp-3}$ show measures measurements of total noise for two different quadratures. For low power of LO, the noise variance flutuates around a constant value. For high power of LO, $(P_{LO}>10^{-4}W)$, the variance of noise shows an increasing trend roughly proportional to $P_{LO}^2$. The expected growth should be proportional to $P_{LO}$, but the RIN noise, originated by the electric apparatus, grows quadratically with the power, dominating the noise amplitude for large $P_{LO}$.\\
-So, we see that both the simulation and experimental data display a similar behaviour, but the quadratic growth of noise for large $P_{LO}$ was not predicted in the simulations.\\
+Figures $\ref{fig:noise-exp-1}$ and $\ref{fig:noise-exp-3}$ show measurements of total noise for two different quadratures. For low power of LO, the noise variance flutuates around a constant value. For high power of LO, $(P_{LO}>10^{-4}W)$, the variance of noise shows an increasing trend roughly proportional to $P_{LO}^2$. The polynomial fittings confirm this trend, showing a degree 2 coefficient much larger than the degree 1 coefficient
+%
+\begin{equation}
+y_1 = 1.41 \!\! \times \!\! 10^{-5} - 8.5 \!\! \times \!\! 10^{-3} x + 46.5 x^2
+\end{equation}
+\begin{equation}
+y_2 = 1.79 \!\! \times \!\! 10^{-5} - 3.0 \!\! \times \!\! 10^{-3} x + 19.4 x^2
+\end{equation}
+%
+The expected growth should be proportional to $P_{LO}$, but the RIN noise, originated by the electric apparatus, who grows quadratically with the power, is dominating the noise amplitude for large $P_{LO}$.\\
+We see that both the simulation and experimental data display a similar behaviour, but the quadratic growth of noise for large $P_{LO}$ was not predicted in the simulations.\\
 %
 %
 

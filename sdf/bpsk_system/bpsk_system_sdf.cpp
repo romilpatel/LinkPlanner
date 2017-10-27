@@ -2,6 +2,7 @@
 
 # include "m_qam_transmitter.h"
 # include "i_homodyne_receiver.h"
+# include "bit_decider.h"
 # include "bit_error_rate.h"
 # include "local_oscillator.h"
 # include "balanced_beam_splitter.h"

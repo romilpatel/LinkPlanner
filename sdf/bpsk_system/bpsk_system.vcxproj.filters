@@ -31,9 +31,6 @@
     <ClCompile Include="..\..\lib\i_homodyne_receiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\ideal_amplifier.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\lib\iq_modulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -47,9 +44,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\lib\netxpto.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lib\pulse_shaper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\lib\sampler.cpp">
@@ -70,6 +64,8 @@
     <ClCompile Include="..\..\lib\photodiode_old.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
+    <ClCompile Include="..\..\lib\ideal_amplifier.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\i_homodyne_receiver.h">
@@ -97,9 +93,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ti_amplifier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\ideal_amplifier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\super_block_interface.h">
@@ -135,6 +128,7 @@
     <ClInclude Include="..\..\include\photodiode_old.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\ideal_amplifier.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

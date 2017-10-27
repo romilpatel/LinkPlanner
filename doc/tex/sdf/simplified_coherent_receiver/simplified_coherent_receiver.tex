@@ -62,13 +62,11 @@ The function $\hat{s}(t)$ is called the Hilbert transform if $s(t)$. Note that
 \end{equation}
 In conclusion, if we convolve any time domain signal with $\frac{1}{\pi t}$ then it will give us Hilbert transformed signal in time domain. Similarly, from the convolution property of the Fourier transform, if we multiply $-isgn(\omega)$ with any frequency domain signal $S(\omega)$ then it'll give us Hilbert transformed signal in frequency domain.
 
-
 \subsubsection{2. What is minimum phase signal?}
 %The Kramers-Kronig receiver based communication scheme relies on identifying a condition which ensures that the received signal is \textbf{minimum phase}, in such a case its phase can be uniquely extracted from its intensity[2].\\ 
 %In order to achieve minimum phase condition at the receiver end, it is prerequisite that the transmitted signal should be \textbf{analytical signal} in which real and imaginary parts are related to each other by means of Hilbert transform of each other.\\ \\
 %\textbf{Minimum phase signal:}\\
 A necessary and sufficient condition for a complex signal $A(t)$ to be minimum phase is that the curve described in a complex plane by $A(t)$ when $t\rightarrow -\infty$ to $t\rightarrow \infty$ \textbf{does not encircle the origin}. A minimum-phase signal has an useful property that the natural logarithm of the magnitude of the frequency response is related to the phase angle of the frequency response by the Hilbert transform.
-
 
 \subsubsection{3. What is analytical signal?}
 An analytic signal is a complex-valued signal that has no negative frequency components, and its real and imaginary parts are related to each other by the Hilbert transform.
@@ -77,7 +75,6 @@ s_a(t)=s(t)+i\hat{s}(t)
 \label{Analytical signal}
 \end{equation}
 where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transform of the signal ${s}(t)$. Such analytical signal can be used to generate Single Sideband Signal (SSB) signal.
-
 
 \subsubsection{4. What is a SSB signal and how it can be generated?}
 In communication, the SSB signal contains either upper sideband or lower sideband and hence it reduces the spectral occupancy by half. This section will represent the brief idea of generating SSB signal using Hilbert transform method.\\
@@ -121,7 +118,6 @@ This Equation \ref{USB_SSB} displays the mathematical modeling of the upper side
 {s}_{ssb}(t)=s(t)cos(2\pi f_0t)+\hat{s}(t)sin(2\pi f_0t)
 \label{LSB_SSB}
 \end{equation}
-
 
 \subsubsection{5. How we can use these signals and profit from them?}
 This section represents the justification that why we need to use these signals into our proposed transceiver system.\\ \\
@@ -344,7 +340,6 @@ If an optical signal received together with a CW tone at the band edge such that
 	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/simplified_coherent_receiver/figures/Practical_setup_TxRx.pdf}
 	\caption{PDM Kramers-Kronig receiver experimental setup}\label{Practical_setup_TxRx}
 \end{figure}
-
 
 
 \begin{thebibliography}{9}

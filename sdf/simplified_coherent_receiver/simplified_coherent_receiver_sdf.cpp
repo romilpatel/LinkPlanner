@@ -13,14 +13,13 @@ int main() {
 	// ################################### System Input Parameters #########################################
 	// #####################################################################################################
 
-	BinarySourceMode sourceMode{ PseudoRandom };
+	BinarySourceMode sourceMode{ PseudoRandom };				
 	int patternLength{ 5 };
 	string bitStream{ "0" };
 	double bitPeriod{ 1.0 / 50e9 };
-	//vector<t_iqValues> iqAmplitudes{ { { 1,1 },{ -1,1 },{ -1,-1 },{ 1,-1 } } };
-	vector<t_iqValues> iqAmplitudes{ { { -3.0, -3.0 }, { -3.0, -1.0 }, { -3.0, 3.0 }, { -3.0, 1.0 }, { -1.0, -3.0 }, { -1.0, -1.0 }, { -1.0, 3.0 }, { -1.0, 1.0 }, { 3.0, -3.0 }, { 3.0, -1.0 }, { 3.0, 3.0 }, { 3.0, 1.0 }, { 1.0, -3.0 }, { 1.0, -1.0 }, { 1.0, 3.0 }, { 1.0, 1.0 } } };
-
-	int numberOfBits{ 1000 };
+	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 } } };
+	//vector<t_iqValues> iqAmplitudes{ { { -3.0, -3.0 }, { -3.0, -1.0 }, { -3.0, 3.0 }, { -3.0, 1.0 }, { -1.0, -3.0 }, { -1.0, -1.0 }, { -1.0, 3.0 }, { -1.0, 1.0 }, { 3.0, -3.0 }, { 3.0, -1.0 }, { 3.0, 3.0 }, { 3.0, 1.0 }, { 1.0, -3.0 }, { 1.0, -1.0 }, { 1.0, 3.0 }, { 1.0, 1.0 } } };
+	int numberOfBits{ 1000 };				// For value of {-1}, it'll generate long bit sequence.
 	int numberOfSamplesPerSymbol{ 16 };
 	double rollOffFactor{ 0.3 };
 	int impulseResponseTimeLength{ 16 };
@@ -29,44 +28,36 @@ int main() {
 	// ########################### Signals Declaration and Inicialization ##################################
 	// #####################################################################################################
 
-	Binary S1{ "S1.sgn" };
-
-	TimeDiscreteAmplitudeDiscreteReal S2{ "S2.sgn" };
-
-	TimeDiscreteAmplitudeDiscreteReal S3{ "S3.sgn" };
-
-	TimeContinuousAmplitudeDiscreteReal S4{ "S4.sgn" };
-
-	TimeContinuousAmplitudeDiscreteReal S5{ "S5.sgn" };
-
-	TimeContinuousAmplitudeContinuousReal S6{ "S6.sgn" };
-
-	TimeContinuousAmplitudeContinuousReal S7{ "S7.sgn" };
-
-	BandpassSignal S8{ "S8.sgn" };
-
-	Binary S9{ "S9.sgn" };
-
+	Binary S1{ "S1.sgn" };										// Binary Sequence
+	TimeDiscreteAmplitudeDiscreteReal S2{ "S2.sgn" };			// MPAM Mapping
+	TimeContinuousAmplitudeDiscreteReal S3{ "S3.sgn" };			// Discrete to continious time
+	TimeContinuousAmplitudeContinuousReal S4{ "S4.sgn" };		// Pulse Shapping filter
+	BandpassSignal S5{ "S5.sgn" };								// Oscillator
+	BandpassSignal S6{ "S6.sgn" };								// Mixer	
+	BandpassSignal S7{ "S7.sgn" };								// Fork_s7
+	BandpassSignal S8{ "S8.sgn" };								// Fork_s8
+	BandpassSignal S9{ "S9.sgn" };								// Hilbert Transformer
+	BandpassSignal S10{ "S10.sgn" };							// IQ Modulator
+	
 	// #####################################################################################################
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-
-	BinarySource B1{ vector<Signal*> {}, vector<Signal*> { &S1, &S9 } };
+	BinarySource B1{ vector<Signal*> {}, vector<Signal*> { &S1} };
 	B1.setMode(sourceMode);
 	B1.setPatternLength(patternLength);
 	B1.setBitStream(bitStream);
 	B1.setBitPeriod(bitPeriod);
 	B1.setNumberOfBits(numberOfBits);
 
-	MQamMapper B2{ vector<Signal*> { &S1 }, vector<Signal*> { &S2, &S3 } };
+	MPamMapper B2{ vector<Signal*> { &S1 }, vector<Signal*> { &S2} };
 	B2.setIqAmplitudes(iqAmplitudes);
 
-	DiscreteToContinuousTime B3{ vector<Signal*> { &S2 }, vector<Signal*> { &S4 } };
+	DiscreteToContinuousTime B3{ vector<Signal*> { &S2 }, vector<Signal*> { &S3 } };
 	B3.setNumberOfSamplesPerSymbol(numberOfSamplesPerSymbol);
 
-	DiscreteToContinuousTime B4{ vector<Signal*> { &S3 }, vector<Signal*> { &S5 } };
-	B4.setNumberOfSamplesPerSymbol(numberOfSamplesPerSymbol);
+	//DiscreteToContinuousTime B4{ vector<Signal*> { &S3 }, vector<Signal*> { &S5 } };
+	//B4.setNumberOfSamplesPerSymbol(numberOfSamplesPerSymbol);
 
 	PulseShaper B5{ vector<Signal*> { &S4 }, vector<Signal*> { &S6 } };
 	B5.setRollOffFactor(rollOffFactor);

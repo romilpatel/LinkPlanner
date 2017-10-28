@@ -24,7 +24,7 @@ int main(){
 	double bitPeriod = 20e-12;
 	double rollOffFactor = 0.3;
 	double signalOutputPower_dBm = -20;
-	double localOscillatorPower_dBm = -20;
+	double localOscillatorPower_dBm = 0;
 	double localOscillatorPhase = 0;
 	vector<t_iqValues> iqAmplitudeValues = { {-1, 0} , {1, 0} };
 	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };

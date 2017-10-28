@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{thorlabs}
+Thorlabs.
+\newblock {\em Thorlabs Balance Amplified Photodetectors: PDB4xx Series
+  Operation Manual}, 2014.
+
 \bibitem{namiki2003security}
 Ryo Namiki and Takuya Hirano.
 \newblock Security of quantum cryptography using balanced homodyne detection.
@@ -17,6 +22,5 @@ Tie-Ming Liu, Lie-hui Jiang, Hong-qi He, Ji-zhong Li, and Xian Yu.
 \newblock Continuous control of random polarization rotations for quantum
   communications.
 \newblock {\em Journal of Lightwave Technology}, 34(16):3914--3922, 2016.
-
 
 \end{thebibliography}

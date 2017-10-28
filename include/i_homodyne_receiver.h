@@ -3,9 +3,6 @@
 
 # include "netxpto.h"
 
-# include "sampler.h"
-# include "local_oscillator.h"
-# include "balanced_beam_splitter.h"
 # include "photodiode_old.h"
 # include "ti_amplifier.h"
 # include "electrical_filter.h"

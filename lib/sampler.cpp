@@ -40,7 +40,7 @@ bool Sampler::runBlock(void) {
 
 		if (process == 0) return false;
 
-		int samplesPerSymbol = (int) inputSignals[0]->getSamplesPerSymbol();
+		int samplesPerSymbol = (int)inputSignals[0]->getSamplesPerSymbol();
 		if (samplesToSkip == 0)
 		{
 			for (int k = 0; k < process; k++) {

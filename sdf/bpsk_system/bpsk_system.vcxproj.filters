@@ -64,8 +64,12 @@
     <ClCompile Include="..\..\lib\photodiode_old.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
-    <ClCompile Include="..\..\lib\ideal_amplifier.cpp" />
+    <ClCompile Include="..\..\lib\ideal_amplifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pulse_shaper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\i_homodyne_receiver.h">
@@ -128,7 +132,9 @@
     <ClInclude Include="..\..\include\photodiode_old.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ideal_amplifier.h" />
+    <ClInclude Include="..\..\include\ideal_amplifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

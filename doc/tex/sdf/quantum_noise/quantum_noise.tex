@@ -31,45 +31,30 @@ Associated to those states are two operators, the creation $\hat{a}^\dagger$ and
 %\footnote{Mark Fox, p.155}
 \cite{fox2006}.
 Their action is defined as
-\\
-\\
-\begin{tabular}{@{}ccccc}
-	\begin{minipage}{4.3cm}
+%
+\begin{center}
+	\hspace{-4mm}
+	\begin{minipage}{44mm}
 		\noindent
 		\begin{equation}
 			\hat{a} \ket{n} = \sqrt{n} \ket{n-1}
 		\end{equation}
 	\end{minipage}
-	&
-	&
-	\begin{minipage}{5.6cm}
+	$,\quad$
+	\begin{minipage}{52mm}
 		\noindent
 		\begin{equation}
-			\quad \hat{a}^\dagger \ket{n} = \sqrt{n+1} \ket{n+1}
+			\hat{a}^\dagger \ket{n} = \sqrt{n+1} \ket{n+1}
 		\end{equation}
 	\end{minipage}
-	&
-	&
-	\begin{minipage}{3.5cm}
+	$,\quad$
+	\begin{minipage}{35mm}
 		\noindent
 		\begin{equation}
 			\hat{n} \ket{n} = n \ket{n}
 		\end{equation}
 	\end{minipage}
-\end{tabular}
-\\
-\\
-%\begin{equation}
-%\hat{a} \ket{n} = \sqrt{n} \ket{n-1}
-%\end{equation}
-%
-%\begin{equation}
-%\hat{a}^\dagger \ket{n} = \sqrt{n+1} \ket{n+1}
-%\end{equation}
-%
-%\begin{equation}
-%\hat{n} \ket{n} = n \ket{n}
-%\end{equation}
+\end{center}
 %
 in which $\hat{n} = \hat{a}^\dagger\hat{a}$ is the number operator. Therefore, number states are eigenvectors of the number operator.\\
 \\
@@ -90,21 +75,40 @@ In fact, if we calculate the expected number of photons with $\bra{\alpha} \hat{
 Using the creation and annihilation operators, we can define two quadrature operators
 \cite{loudon2000}
 %\footnote{Loudon, p.138, (4.3.36)}
-%\footnote{Loudon, p.138, (4.3.36)}
 %
-\begin{equation}
-\hat{X} = \frac{1}{2} \left( \hat{a}^\dagger + \hat{a} \right)
-\quad , \quad
-\hat{Y} = \frac{i}{2} \left( \hat{a}^\dagger - \hat{a} \right)
-\end{equation}
+\begin{center}
+	\begin{minipage}{41mm}
+		\noindent
+		\begin{equation}
+			\hat{X} = \frac{1}{2} \left( \hat{a}^\dagger + \hat{a} \right)
+		\end{equation}
+	\end{minipage}
+	$,\quad$
+	\begin{minipage}{40mm}
+		\noindent
+		\begin{equation}
+			\hat{Y} = \frac{i}{2} \left( \hat{a}^\dagger - \hat{a} \right)
+		\end{equation}
+	\end{minipage}
+\end{center}
 %
 The expected value of these two operators, using a coherent state $\ket{\alpha}$ are
 %
-\begin{equation}
-\braket{\hat{X}} = \textrm{Re}(\alpha)
-\quad , \quad
-\braket{\hat{Y}} = \textrm{Im}(\alpha)
-\end{equation}
+\begin{center}
+	\begin{minipage}{37mm}
+		\noindent
+		\begin{equation}
+			\braket{\hat{X}} = \textrm{Re}(\alpha)
+		\end{equation}
+	\end{minipage}
+	$,\quad$
+	\begin{minipage}{37mm}
+		\noindent
+		\begin{equation}
+			\braket{\hat{Y}} = \textrm{Im}(\alpha)
+		\end{equation}
+	\end{minipage}
+\end{center}
 %
 We see that the expected value of these operators give us the real and imaginary part of $\alpha$. Now, we can obtain the uncertainty of these operators, using:
 %
@@ -159,12 +163,21 @@ In the following sections, we will focus on two noise sources, quantum noise and
 In order to grasp this effect, the quantum mechanical description of balanced homodyne detection will be used, employing quantum operators to describe the effect of each component in the system (fig. \ref{fig:scheme_homodyne}). We start with the operators $\hat{a}_S$ and $\hat{a}_{LO}$ corresponding to the annihilation operator for the signal and local oscillator, which are the inputs in a beam divisor. The outputs will be $\hat{a}_3$ and $\hat{a}_4$.
 Using a balanced beam splitter, we can write the output as
 %
-\begin{equation}
-\hat{a}_3 = \frac{1}{\sqrt{2}} \left( \hat{a}_S + \hat{a}_{LO} \right)
-\qquad
-\qquad
-\hat{a}_4 = \frac{1}{\sqrt{2}} \left( \hat{a}_S - \hat{a}_{LO} \right)
-\end{equation}
+\begin{center}
+	\begin{minipage}{48mm}
+		\noindent
+		\begin{equation}
+			\hat{a}_3 = \frac{1}{\sqrt{2}} \left( \hat{a}_S + \hat{a}_{LO} \right)
+		\end{equation}
+	\end{minipage}
+	$,\quad$
+	\begin{minipage}{48mm}
+		\noindent
+		\begin{equation}
+			\hat{a}_4 = \frac{1}{\sqrt{2}} \left( \hat{a}_S - \hat{a}_{LO} \right)
+		\end{equation}
+	\end{minipage}
+\end{center}
 %
 The final output of a homodyne measurement will be proportional to the difference between the photocurrents in arm $3$ and $4$. Then
 %
@@ -180,45 +193,79 @@ We can define an operator that describes the difference of number of photons in 
 %
 If we assume that the local oscillator produces the the coherent state $\ket{\beta}$, then the expected value of this measurement will be
 %
-\begin{equation}
-\label{eq:noise}
-\braket{m} = 2|\alpha||\beta|\cos({\theta_\alpha - \theta_\beta})
-\qquad
-\qquad
-\textrm{Var}(m) = |\alpha|^2 + |\beta|^2
-\end{equation}
+\begin{center}
+	\begin{minipage}{58mm}
+		\noindent
+		\begin{equation}
+			\braket{m} = 2|\alpha||\beta|\cos({\theta_\alpha - \theta_\beta})
+		\end{equation}
+	\end{minipage}
+	$,\quad$
+	\begin{minipage}{46mm}
+		\noindent
+		\begin{equation}
+			\textrm{Var}(m) = |\alpha|^2 + |\beta|^2
+		\end{equation}
+	\end{minipage}
+\end{center}
 %
 The local oscillator normally has a greater power than the signal
 %VER REFERENCIAS
 , then $|\alpha| \ll |\beta|$. If we use as unit, $2|\beta|$, then these two quantities can be simplified to
 %
-\begin{equation}
-\label{eq:approx_noise}
-\braket{m} = |\alpha|\cos({\theta_\alpha - \theta_\beta})
-\qquad
-\qquad
-\textrm{Var}(m) \approx \frac{1}{4}
-\end{equation}
+\begin{center}
+	\begin{minipage}{52mm}
+		\noindent
+		\begin{equation}
+			\braket{m} = |\alpha|\cos({\theta_\alpha - \theta_\beta})
+		\end{equation}
+	\end{minipage}
+	$,\quad$
+	\begin{minipage}{34mm}
+		\noindent
+		\begin{equation}
+			\textrm{Var}(m) \approx \frac{1}{4}
+		\end{equation}
+	\end{minipage}
+\end{center}
 %
-%\footnote{Referencia indirecta: Livro: Hans, p.207}
 \cite{hans2004}
+%\footnote{Referencia indirecta: Livro: Hans, p.207}
 \\
 Has we have seen previously, in order to measure two quadratures simultaneously, we can use double balanced homodyne detection. For each quadrature, the input signal now has half the power, so $|\alpha| \rightarrow |\alpha/\sqrt{2}|$.  If we use a local oscillator that produces states $\ket{\beta}$, then we can divide it in two beams in state $\ket{\beta/\sqrt{2}}$ and $\ket{i\beta/\sqrt{2}}$ which will be used in each homodyne detection. In this setting, the expected values for each quadrature, $X$ and $Y$, (in normalized values of $\sqrt{2}|\beta|$) are
 %
-\begin{equation}
-\braket{m_X} = \left|\frac{\alpha}{\sqrt{2}}\right| \cos({\theta_\alpha - \theta_\beta})
-\qquad
-\qquad
-\textrm{Var}(m_X) \approx \frac{1}{4}
-\end{equation}
+\begin{center}
+	\begin{minipage}{58mm}
+		\noindent
+		\begin{equation}
+			\braket{m_X} = \left|\frac{\alpha}{\sqrt{2}}\right| \cos({\theta_\alpha - \theta_\beta})
+		\end{equation}
+	\end{minipage}
+	$,\quad$
+	\begin{minipage}{37mm}
+		\noindent
+		\begin{equation}
+			\textrm{Var}(m_X) \approx \frac{1}{4}
+		\end{equation}
+	\end{minipage}
+\end{center}
 %
 %
-\begin{equation}
-\braket{m_Y} =  \left|\frac{\alpha}{\sqrt{2}}\right| \sin({\theta_\alpha - \theta_\beta})
-\qquad
-\qquad
-\textrm{Var}(m_Y) \approx \frac{1}{4}
-\end{equation}
+\begin{center}
+	\begin{minipage}{58mm}
+		\noindent
+		\begin{equation}
+			\braket{m_Y} =  \left|\frac{\alpha}{\sqrt{2}}\right| \sin({\theta_\alpha - \theta_\beta})
+		\end{equation}
+	\end{minipage}
+	$,\quad$
+	\begin{minipage}{37mm}
+		\noindent
+		\begin{equation}
+			\textrm{Var}(m_Y) \approx \frac{1}{4}
+		\end{equation}
+	\end{minipage}
+\end{center}
 %
 Therefore the measurement of each quadrature will have half the amplitude, but the same variance.
 %

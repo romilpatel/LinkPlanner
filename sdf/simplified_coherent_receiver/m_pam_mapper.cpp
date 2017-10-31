@@ -34,7 +34,7 @@ outputSignals[1]->samplingPeriod = 2 * inputSignals[0]->samplingPeriod;
 setM(m);
 }*/
 
-void MPamMapper::initialize(void) {																	// WHY?
+void MPamMapper::initialize(void) {																	// WHY? (outputSignals[0] : For inphase data  &&&&  outputSignals[1] : Quadrature data){Make sure}
 
 	outputSignals[0]->symbolPeriod = log2(m) * inputSignals[0]->symbolPeriod;						// Symbol period    = 
 	outputSignals[0]->samplingPeriod = log2(m) * inputSignals[0]->samplingPeriod;					// Sampling period  =
@@ -48,7 +48,7 @@ void MPamMapper::initialize(void) {																	// WHY?
 	//setM(m);
 }
 
-bool MPamMapper::runBlock(void) {
+bool MPamMapper::runBlock(void) {																	// :: can be used to define a method{bool runBlock(void)} of the class{MPamMapper} outside the class{MPamMapper}.
 
 	int ready = inputSignals[0]->ready();
 	int space1 = outputSignals[0]->space();
@@ -68,8 +68,8 @@ bool MPamMapper::runBlock(void) {
 		if (auxBinaryValue == nBinaryValues) {
 			t_real auxI = iqAmplitudes[auxSignalNumber].real();
 			t_real auxQ = iqAmplitudes[auxSignalNumber].imag();
-			outputSignals[0]->bufferPut((t_real)auxI);
-			outputSignals[1]->bufferPut((t_real)auxQ);
+			outputSignals[0]->bufferPut((t_real)auxI);												// Real part (For MPAM consider only this one : Revise it and make sure)
+			outputSignals[1]->bufferPut((t_real)auxQ);												// Imaginary part
 			auxBinaryValue = 0;
 			auxSignalNumber = 0;
 		}

@@ -512,10 +512,17 @@ As we have seen earlier, the system will manifest noise even in the absence of i
 Figures $\ref{fig:noise-exp-1}$ and $\ref{fig:noise-exp-3}$ show measurements of total noise for two different quadratures. For low power of LO, the noise variance flutuates around a constant value. For high power of LO, $(P_{LO}>10^{-4}W)$, the variance of noise shows an increasing trend roughly proportional to $P_{LO}^2$. The polynomial fittings confirm this trend, showing a degree 2 coefficient much larger than the degree 1 coefficient
 %
 \begin{equation}
+<<<<<<< HEAD
 \textrm{Var}_X = 1.41 \!\! \times \!\! 10^{-5} - 8.5 \!\! \times \!\! 10^{-3} P_{LO} + 46.5 P_{LO}^2
 \end{equation}
 \begin{equation}
 \textrm{Var}_Y = 1.79 \!\! \times \!\! 10^{-5} - 3.0 \!\! \times \!\! 10^{-3} P_{LO} + 19.4 P_{LO}^2
+=======
+y_1 = 2.22 \!\! \times \!\! 10^{-5} + 9.6 \!\! \times \!\! 10^{-3} x + 3.40 x^2
+\end{equation}
+\begin{equation}
+y_2 = 2.71 \!\! \times \!\! 10^{-5} + 8.9 \!\! \times \!\! 10^{-3} x + 7.25 x^2
+>>>>>>> 3e037053dde0e2e3a9b6c0edd20c6844d77da905
 \end{equation}
 %
 The expected growth should be proportional to $P_{LO}$, but the RIN noise, originated by the electric apparatus, who grows quadratically with the power, is dominating the noise amplitude for large $P_{LO}$.\\

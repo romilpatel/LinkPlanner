@@ -1,3 +1,16 @@
+2017-10-31
+TO BE DONE
+	- simulação
+		concluir a descrição do setupo de simulação, para podermos ver o status
+
+	- parte experimental
+		acabar a especificação
+
+	- apresentação
+		alterar ordem, 1º oblivious keys, 2º 1-out-2 OT, 3º QOKD
+
+next meeting: quinta-feira, 15h, 2/11
+
 2017-10-27
 TO BE DONE
 	- parte experimental

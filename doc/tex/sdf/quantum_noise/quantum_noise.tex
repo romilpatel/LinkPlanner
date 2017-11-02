@@ -17,12 +17,12 @@ Quantum noise is an intrinsic property of light, a manifestation of the vaccum f
 \cite{fox2006}.
 %\footnote{Mark Fox, p.132}
 Contrarily to the majority of noise sources, that are overcomed by better equipment, quantum noise has a lower bound, given by the Heisenberg uncertanty principle, which cannot be broken. This propertie can be useful in some areas, such in quantum cryptography, were many protocols depend on it to ensure their security.\\ 
-The objective of this module is the simulation of a simple communication system based on the transmission of coherent states, which will be subjected to various sources of noise, in particular to quantum noise, and compared to analytical and experimental results.\\
+The objective of thiswork is to develop a numerical model for the quantum noise in a double homodyne detection and to validate the numerical model with experimental results.\\
 
 %REF:
 %https://www.rp-photonics.com/quantum_noise.html
 
-\subsection{Theoretical Introduction}\label{sec:intro}
+\subsection{Theoretical Description}\label{sec:intro}
 
 We start by defining number states $\ket{n}$ (or Fock states), which correspond to states with perfectly fixed number of photons
 %\footnote{Loundon, p.184}
@@ -300,18 +300,23 @@ List of signals used in the simulation:
 \centering
 \begin{tabular}{|c|l|l|}
 \hline
-\bf{Signals}	& \bf{Type}								& \bf{Description}\\
+\bf{Signals}	& \bf{Type}								& \bf{Status}\\
 \hline
-S0				& Binary								& Binary sequence used in the MQAM\\
-S1				& OpticalSignal							& MQAM signal outputp\\
-S2				& OpticalSignal							& Local Oscillator output\\
-S3, S4, S5, S6  & Optical signal						& Optical Hybrid output \\
-S7,S8			& TimeContinuousAmplitudeContinuousReal	& In phase Photodiodes output\\
-S9,S10			& TimeContinuousAmplitudeContinuousReal	& Quadrature Photodiodes output\\
-S11				& TimeContinuousAmplitudeContinuousReal	& In phase difference\\
-S12				& TimeContinuousAmplitudeContinuousReal	& Quadrature difference\\
-S13				& TimeDiscreteAmplitudeContinuousReal	& In phase measurement\\
-S14				& TimeDiscreteAmplitudeContinuousReal	& Quadrature measurement\\
+S0				& Binary								& check\\
+S1				& OpticalSignal							& check\\
+S2				& OpticalSignal							& check\\
+S3				& Optical signal						& check\\
+S4				& Optical signal						& check\\
+S5				& Optical signal						& check\\
+S6				& Optical signal						& check\\
+S7				& TimeContinuousAmplitudeContinuousReal	& check\\
+S8				& TimeContinuousAmplitudeContinuousReal	& check\\
+S9				& TimeContinuousAmplitudeContinuousReal	& check\\
+S10				& TimeContinuousAmplitudeContinuousReal	& check\\
+S11				& TimeContinuousAmplitudeContinuousReal	& check\\
+S12				& TimeContinuousAmplitudeContinuousReal	& check\\
+S13				& TimeDiscreteAmplitudeContinuousReal	& check\\
+S14				& TimeDiscreteAmplitudeContinuousReal	& check\\
 \hline
 \end{tabular}
 \end{table}

@@ -41,20 +41,21 @@ void MPamMapper::initialize(void) {																	// WHY? (outputSignals[0] : 
 	outputSignals[0]->samplesPerSymbol = 1;															// Sample per Symbol
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());			// Set first value to be saved
 
-	outputSignals[1]->symbolPeriod = log2(m) * inputSignals[0]->symbolPeriod;
+	/*outputSignals[1]->symbolPeriod = log2(m) * inputSignals[0]->symbolPeriod;
 	outputSignals[1]->samplingPeriod = log2(m) * inputSignals[0]->samplingPeriod;
 	outputSignals[1]->samplesPerSymbol = 1;
-	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
+	outputSignals[1]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());*/
 	//setM(m);
 }
 
 bool MPamMapper::runBlock(void) {																	// :: can be used to define a method{bool runBlock(void)} of the class{MPamMapper} outside the class{MPamMapper}.
 
 	int ready = inputSignals[0]->ready();
-	int space1 = outputSignals[0]->space();
-	int space2 = outputSignals[1]->space();
+	int space = outputSignals[0]->space();															// Added : write "space" inplace of "space1" for MPAM
+	//int space1 = outputSignals[0]->space();
+	//int space2 = outputSignals[1]->space();
 
-	int space = (space1 <= space2) ? space1 : space2;												// equivalent to min(space1, space2);
+	//int space = (space1 <= space2) ? space1 : space2;												// equivalent to min(space1, space2);
 	int length = (ready <= (2 * space)) ? ready : space;											// equivalent to min(ready, 2 * space);
 
 	if (length <= 0) return false;
@@ -67,9 +68,9 @@ bool MPamMapper::runBlock(void) {																	// :: can be used to define a 
 		auxBinaryValue++;
 		if (auxBinaryValue == nBinaryValues) {
 			t_real auxI = iqAmplitudes[auxSignalNumber].real();
-			t_real auxQ = iqAmplitudes[auxSignalNumber].imag();
+			//t_real auxQ = iqAmplitudes[auxSignalNumber].imag();
 			outputSignals[0]->bufferPut((t_real)auxI);												// Real part (For MPAM consider only this one : Revise it and make sure)
-			outputSignals[1]->bufferPut((t_real)auxQ);												// Imaginary part
+			//outputSignals[1]->bufferPut((t_real)auxQ);												// Imaginary part
 			auxBinaryValue = 0;
 			auxSignalNumber = 0;
 		}
@@ -83,6 +84,8 @@ void MPamMapper::setIqAmplitudes(vector<t_iqValues> iqAmplitudesValues) {
 	iqAmplitudes.resize(m);
 	iqAmplitudes = iqAmplitudesValues;
 };
+
+// We can set either iqAmplitudes OR "m"
 
 void MPamMapper::setM(int mValue) {
 	m = mValue;

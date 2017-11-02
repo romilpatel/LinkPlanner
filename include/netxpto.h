@@ -401,7 +401,6 @@ class Block {
 
 	void terminateBlock();
 	virtual void terminate(void){};
-	
 };
 
 

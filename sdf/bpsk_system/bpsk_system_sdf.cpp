@@ -18,7 +18,7 @@ int main(){
 	// #####################################################################################################
 
 	int numberOfBitsReceived(-1);
-	int numberOfBitsGenerated(40000);
+	int numberOfBitsGenerated(4000);
 	int samplesPerSymbol(16);
 	int pLength = 5;
 	double bitPeriod = 20e-12;
@@ -109,7 +109,7 @@ int main(){
 	BitErrorRate B7{ vector<Signal*> {&S0, &S7}, vector<Signal*> {&S8} };
 
 	Sink B8{ vector<Signal*> { &S8 }, vector<Signal*> {} };
-	B8.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B8.setNumberOfSamples(numberOfBitsGenerated);
 	B8.setDisplayNumberOfSamples(true);
 
 

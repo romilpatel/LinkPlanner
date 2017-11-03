@@ -74,5 +74,8 @@
     <ClInclude Include="m_pam_mapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RF_Oscillator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

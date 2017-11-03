@@ -2,10 +2,9 @@
 
 # include "binary_source.h"
 # include "m_qam_mapper.h"	
-# include "m_pam_mapper.h"							// Modified for PAM
 # include "discrete_to_continuous_time.h"
 # include "pulse_shaper.h"
-//# include "rf_oscillator.h"
+# include "rf_oscillator.h"								// 
 //# include "mixer.h"
 //# include "fork.h"
 //# include "hilbert_transform.h"
@@ -20,7 +19,6 @@ int main() {
 
 	BinarySourceMode sourceMode{ PseudoRandom };
 	int patternLength{ 5 };
-	//string bitStream{ "0" };
 	double bitPeriod{ 1.0 / 50e9 };
 	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 } } };
 	int numberOfBits{ 1000 };				                                        // For value of {-1}, it'll generate long bit sequence.
@@ -43,7 +41,7 @@ int main() {
 	TimeContinuousAmplitudeContinuousReal S4{ "S4.sgn" };		// Pulse Shapping filter
 	TimeContinuousAmplitudeContinuousReal S5{ "S5.sgn" };		// Oscillator
 	TimeContinuousAmplitudeContinuousReal S6{ "S6.sgn" };		// Mixer	
-	TimeContinuousAmplitudeContinuousReal S7{ "S7.sgn" };			// Fork_s7
+	TimeContinuousAmplitudeContinuousReal S7{ "S7.sgn" };		// Fork_s7
 	TimeContinuousAmplitudeContinuousReal S8{ "S8.sgn" };		// Fork_s8
 	TimeContinuousAmplitudeContinuousReal S9{ "S9.sgn" };		// Hilbert Transformer
 	OpticalSignal S10{ "S10.sgn" };							    // IQ Modulator
@@ -55,7 +53,6 @@ int main() {
 	BinarySource B1{ vector<Signal*> {}, vector<Signal*> { &S1} };
 	B1.setMode(sourceMode);
 	B1.setPatternLength(patternLength);
-	//B1.setBitStream(bitStream);
 	B1.setBitPeriod(bitPeriod);
 	B1.setNumberOfBits(numberOfBits);
 
@@ -72,7 +69,7 @@ int main() {
 	B4.setImpulseResponseTimeLength(impulseResponseTimeLength);
 	B4.setSeeBeginningOfImpulseResponse(false);
 
-/*
+	/*
 	RFOscillator B5{ vector<Signal*> {}, vector<Signal*> { &S5 } };							// #2
 	B5.setFrequency(rfFrequency);
 	B5.setAmplitude(rfAmplitude);

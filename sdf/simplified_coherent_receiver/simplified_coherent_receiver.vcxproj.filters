@@ -45,6 +45,9 @@
     <ClCompile Include="m_pam_mapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RF_Oscillator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\netxpto.h">

@@ -151,6 +151,7 @@
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="kramers_kronig_transceiver_sdf.cpp" />
     <ClCompile Include="m_pam_mapper.cpp" />
+    <ClCompile Include="RF_Oscillator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\binary_source.h" />

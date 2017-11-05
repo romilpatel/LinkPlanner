@@ -14,13 +14,12 @@ class realToComplex : public Block {
 
 	/* Methods */
 	realToComplex() {};
-	realToComplex(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
+	realToComplex(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :
+		Block(InputSig, OutputSig){};
 
 	void initialize(void);
 	bool runBlock(void);
 
 };
 
-# endif
-
-
+# endif // PROGRAM_INCLUDE_REAL_TO_COMPLEX_H_

@@ -1,14 +1,15 @@
 // Transmissão de um sinal binário usando apenas 1 base.
 
-# include "netxpto.h"
+#include "netxpto.h"
 
-# include "m_qam_transmitter.h"
-# include "local_oscillator.h"
-# include "optical_hybrid.h"
-# include "photodiode.h"
-# include "difference.h"
-# include "sampler.h"
-# include "sink.h"
+#include "m_qam_transmitter.h"
+#include "local_oscillator.h"
+#include "optical_hybrid.h"
+#include "photodiode.h"
+#include "difference.h"
+#include "sampler.h"
+#include "real_to_complex.h"
+#include "sink.h"
 
 
 
@@ -44,7 +45,7 @@ int main()
 	// Correcção da potência. Quem é que está correcto?
 	//double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (bitPeriod*wavelength);
 
-	double photonNumber1 = 100;
+	double photonNumber1 = 50;
 	double photonNumber2 = 1e4;
 
 	
@@ -229,7 +230,9 @@ int main()
 
 	// Conjugação dos dois sinais vindos dos samplers para criar um sinal complexo
 	// de modo a poder ver-se a constelação.
-	IqModulator B12{ vector<Signal*> { &S13, &S14 }, vector<Signal*> { &S15 } };
+	// Estou a usar a função RealToComplex2, para evitar um conflito com uma função
+	// RealToComplex existente no netxpto.
+	RealToComplex2 B12{ vector<Signal*> { &S13, &S14 }, vector<Signal*> { &S15 } };
 
 	// END BOB
 
@@ -258,8 +261,7 @@ int main()
 	// #########################################################################
 
 	System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14} };
-	//System MainSystem{ vector<Block*> {&B1, &B2, &B3}};  // FUNCIONA ATE AQUI
-	//System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B100} };
+
 
 
 

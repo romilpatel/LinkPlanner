@@ -5,7 +5,7 @@ using namespace std;
 
 
 
-void realToComplex::initialize(void) {
+void RealToComplex2::initialize(void) {
 
 	firstTime = false;
 
@@ -18,7 +18,7 @@ void realToComplex::initialize(void) {
 
 
 
-bool realToComplex::runBlock(void) {
+bool RealToComplex2::runBlock(void) {
 	
 	
 	int ready0 = inputSignals[0]->ready();
@@ -64,10 +64,9 @@ bool realToComplex::runBlock(void) {
 		inputSignals[0]->bufferGet(&re);
 		inputSignals[1]->bufferGet(&im);
 		
-		valueX(re, im);
+		valueX = {re, im};
 		outputSignals[0]->bufferPut(valueX);
 
-		}
 	}
 
 	return true;

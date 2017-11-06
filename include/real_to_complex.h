@@ -5,7 +5,7 @@
 
 
 // Creates a complex signal from two real signals
-class realToComplex : public Block {
+class RealToComplex2 : public Block {
 
 	/* State Variables */
 	bool firstTime{ true };
@@ -13,8 +13,8 @@ class realToComplex : public Block {
  public:
 
 	/* Methods */
-	realToComplex() {};
-	realToComplex(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :
+	RealToComplex2() {};
+	RealToComplex2(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :
 		Block(InputSig, OutputSig){};
 
 	void initialize(void);

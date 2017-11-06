@@ -291,21 +291,21 @@ If we normalize the units of $m$ by $2|\beta|$ and knowing that $\alpha \ll \bet
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
-\mysection{Homodyne Detection}\large
+\mysection{Double Homodyne Detection}\large
 \vspace{0cm}
 
 
 In fact, we can measure the two quadratures $X$ and $Y$ at the same time, using the double homodyne detection. This tecnique consists in simply divide the signal in two beams with half the power of the original one and one of them is measure in-phase with the local oscillator, and the other is measured with a phase difference of $\pi/2$ relative to the first one???????
 %
 \begin{center}
-	\begin{minipage}{65mm}
+	\begin{minipage}{85mm}
 		\noindent
 		\begin{equation}
 			\braket{m_X} = \left|\frac{\alpha}{\sqrt{2}}\right| \cos({\theta_\alpha - \theta_\beta})
 		\end{equation}
 	\end{minipage}
 	$,\quad$
-	\begin{minipage}{40mm}
+	\begin{minipage}{50mm}
 		\noindent
 		\begin{equation}
 			\textrm{Var}(m_X) \approx \frac{1}{4}
@@ -315,14 +315,14 @@ In fact, we can measure the two quadratures $X$ and $Y$ at the same time, using 
 %
 %
 \begin{center}
-	\begin{minipage}{65mm}
+	\begin{minipage}{80mm}
 		\noindent
 		\begin{equation}
 			\braket{m_Y} =  \left|\frac{\alpha}{\sqrt{2}}\right| \sin({\theta_\alpha - \theta_\beta})
 		\end{equation}
 	\end{minipage}
 	$,\quad$
-	\begin{minipage}{40mm}
+	\begin{minipage}{50mm}
 		\noindent
 		\begin{equation}
 			\textrm{Var}(m_Y) \approx \frac{1}{4}
@@ -330,6 +330,77 @@ In fact, we can measure the two quadratures $X$ and $Y$ at the same time, using 
 	\end{minipage}
 \end{center}
 %
+
+
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Simulation setup}\large
+\vspace{0cm}
+
+\begin{figure}[h]
+\label{fig:scheme_homodyne}
+\centering
+\includegraphics{../figures/scheme_setup.pdf}
+%\caption{Balanced double homodyne detection.}
+\end{figure}
+
+A state is generated in the MQAM wich is then mixed with in the Optical hybrid with a local oscillator. The 2 pairs of output optical signals are then converted to photodiodes, it's difference calculated and then sampled.
+
+
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Simulation results}\large
+\vspace{0cm}
+
+\begin{figure}[h]
+\centering
+	\begin{subfigure}
+%		\label{fig:scheme_homodyne}
+		\centering
+		\includegraphics[height=65mm]{../figures/plot_var_vs_n1.png}
+		%\caption{Balanced double homodyne detection.}
+	\end{subfigure}
+	\begin{subfigure}
+%		\label{fig:scheme_homodyne}
+		\centering
+		\includegraphics[height=65mm]{../figures/power_plot.png}
+		%\caption{Balanced double homodyne detection.}
+	\end{subfigure}
+\end{figure}
+
+These plots show the variance of $\hat{m}$ in function of....
+
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Experimental results}\large
+\vspace{0cm}
+
+SUBSTITUIR PLOTS!!!!
+
+\begin{figure}[h]
+\centering
+	\begin{subfigure}
+%		\label{fig:scheme_homodyne}
+		\centering
+		\includegraphics[height=65mm]{../figures/plot_var_vs_n1.png}
+		%\caption{Balanced double homodyne detection.}
+	\end{subfigure}
+	\begin{subfigure}
+%		\label{fig:scheme_homodyne}
+		\centering
+		\includegraphics[height=65mm]{../figures/power_plot.png}
+		%\caption{Balanced double homodyne detection.}
+	\end{subfigure}
+\end{figure}
+
+These plots show the variance of $\hat{m}$ in function of....
+
 
 
 %-------------------------------------------------------------------

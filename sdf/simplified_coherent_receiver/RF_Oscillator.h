@@ -34,7 +34,7 @@ public:
 
 	/* Methods */
 	RFOscillator() {};
-	RFOscillator(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};
+	RFOscillator(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) : Block(InputSig, OutputSig) {};
 
 	void initialize(void);
 	bool runBlock(void);

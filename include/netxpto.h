@@ -75,6 +75,9 @@ public:
 	double centralWavelength{ 1550E-9 };
 	double centralFrequency{ SPEED_OF_LIGHT / centralWavelength };
 
+	double centralrfFrequency{100E6};									// Set RF frequency for RF oscillator
+	double centralrfWavelength{ SPEED_OF_LIGHT / centralrfFrequency };	// Set RF wavength  for RF oscillator
+
 
 	/* Methods */
 
@@ -167,6 +170,12 @@ public:
 
 	void setCentralWavelength(double cWavelength){ centralWavelength = cWavelength; centralFrequency = SPEED_OF_LIGHT / centralWavelength; }
 	double getCentralWavelength(){ return centralWavelength; }
+
+	void setCentralrfFrequency(double crfFrequency) { centralrfFrequency = crfFrequency; centralrfWavelength = SPEED_OF_LIGHT / centralrfFrequency; }		// RF oscillator frequency
+	double getCentralrfFrequency() { return centralrfFrequency; };
+
+	void setCentralrfWavelength(double crfWavelength) { centralrfWavelength = crfWavelength; centralrfFrequency = SPEED_OF_LIGHT / centralrfWavelength; }	// RF oscillator wavelength
+	double getCentralrfWavelength() { return centralrfWavelength; }
 
 };
 

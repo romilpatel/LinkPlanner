@@ -16,7 +16,7 @@
 Quantum noise is an intrinsic property of light, a manifestation of the vaccum field fluctuations
 \cite{fox2006}.
 %\footnote{Mark Fox, p.132}
-Contrarily to the majority of noise sources, that are overcomed by better equipment, quantum noise has a lower bound, given by the Heisenberg uncertanty principle, which cannot be broken. This propertie can be useful in some areas, such in quantum cryptography, were many protocols depend on it to ensure their security.\\ 
+Contrarily to the majority of noise sources, that are overcomed by better equipment, quantum noise has a lower bound, given by the Heisenberg uncertanty principle, which cannot be broken. This propertie can be useful in some areas, such in quantum cryptography, were many protocols depend on it to ensure their security.\\
 The objective of this work is to develop a numerical model for the quantum noise in a double homodyne detection and to validate the numerical model with experimental results.\\
 
 %REF:
@@ -361,7 +361,7 @@ iqAmplitudeValues			& $\{ \{ 1, 1 \}, \{ -1, 1 \},$ $ \{ -1, -1 \}, \{ 1, -1 \} 
 %
 \vspace{2em}
 %
-The simulation setup is represented in figure \ref{fig:setup}. The starting point is the MQAM, which generates random states from the constelation given by the variable \texttt{iqAmplitudeValues}. The output from the generator is received in the Optical Hybrid where it is mixed with a local oscillator, outputing two optical signal pairs. Each pair is converted to currents by two photodiodes, and the same currents are subtracted from each other, originating another current proportional to one of the quadratures of the input state. 
+The simulation setup is represented in figure \ref{fig:setup}. The starting point is the MQAM, which generates random states from the constelation given by the variable \texttt{iqAmplitudeValues}. The output from the generator is received in the Optical Hybrid where it is mixed with a local oscillator, outputing two optical signal pairs. Each pair is converted to currents by two photodiodes, and the same currents are subtracted from each other, originating another current proportional to one of the quadratures of the input state.
 The other pair suffers the same process, but the resulting subtraction current will be proportional to another quadrature, dephased by $\pi/2$ relative to the other quadrature.\\
 %
 %\begin{table}[H]
@@ -381,168 +381,168 @@ The other pair suffers the same process, but the resulting subtraction current w
 
 \subsection*{Required files}\label{Required files}
 
-Header Files
-\begin{table}[H]
-\centering
-\begin{tabulary}{1.0\textwidth}{|L|L|l|}
-\hline
-\textbf{File}           & \textbf{Description}									& {\bf Status}\\
-\hline
-netxpto.h               & Generic purpose simulator definitions.				& check\\
-\hline
-m\_qam\_transmitter.h   & Outputs a QPSK modulated optical signal.				& check\\
-\hline
-local\_oscillator.h     & Generates continuous coherent signal.					& check\\
-\hline
-optical\_hybrid.h       & Mixes the two input signals into four outputs.		& check\\
-\hline
-photodiode.h            & Converts an optical signal to a current.				& check\\
-\hline
-difference.h            & Ouputs the difference between two input signals.		& check\\
-\hline
-ideal_amplifier.h		& Performs a perfect amplification of the input sinal	& check\\
-\hline
-sampler.h               & Samples the input signal.								& check\\
-\hline
-real_to_complex.h		& Combines two real input signals into a complex signal	& check\\
-\hline
-sink.h                  & Closes any unused signals.							& check\\
-\hline
-\end{tabulary}
-\end{table}
+%Header Files
+%\begin{table}[H]
+%\centering
+%\begin{tabulary}{1.0\textwidth}{|L|L|l|}
+%\hline
+%\textbf{File}           & \textbf{Description}									& {\bf Status}\\
+%\hline
+%netxpto.h               & Generic purpose simulator definitions.				& check\\
+%\hline
+%m\_qam\_transmitter.h   & Outputs a QPSK modulated optical signal.				& check\\
+%\hline
+%local\_oscillator.h     & Generates continuous coherent signal.					& check\\
+%\hline
+%optical\_hybrid.h       & Mixes the two input signals into four outputs.		& check\\
+%\hline
+%photodiode.h            & Converts an optical signal to a current.				& check\\
+%\hline
+%difference.h            & Ouputs the difference between two input signals.		& check\\
+%\hline
+%ideal_amplifier.h		& Performs a perfect amplification of the input sinal	& check\\
+%\hline
+%sampler.h               & Samples the input signal.								& check\\
+%\hline
+%real_to_complex.h		& Combines two real input signals into a complex signal	& check\\
+%\hline
+%sink.h                  & Closes any unused signals.							& check\\
+%\hline
+%\end{tabulary}
+%\end{table}
+%%
+%%
+%Source Files
+%\begin{table}[H]
+%\centering
+%\begin{tabulary}{1.0\textwidth}{|L|L|l|}
+%\hline
+%\textbf{File}                   & \textbf{Description}									& {\bf Status}\\
+%\hline
+%netxpto.cpp                     & Generic purpose simulator definitions.				& check\\
+%\hline
+%m\_qam\_transmitter.cpp         & Outputs a QPSK modulated optical signal.				& check\\
+%\hline
+%local\_oscillator.cpp           & Generates continuous coherent signal.					& check\\
+%\hline
+%optical\_hybrid.cpp             & Mixes the two input signals into four outputs.		& check\\
+%\hline
+%photodiode.h                    & Converts an optical signal to a current.				& check\\
+%\hline
+%difference.h                    & Ouputs the difference between two input signals.		& check\\
+%\hline
+%ideal_amplifier.h				& Performs a perfect amplification of the input sinal	& check\\
+%\hline
+%sampler.cpp                     & Samples the input signal.								& check\\
+%\hline
+%real_to_complex.cpp				& Combines two real input signals into a complex signal	& check\\
+%\hline
+%sink.cpp                        & Empties the signal buffer.							& check\\
+%\hline
+%\end{tabulary}
+%\end{table}
 %
 %
-Source Files
-\begin{table}[H]
-\centering
-\begin{tabulary}{1.0\textwidth}{|L|L|l|}
-\hline
-\textbf{File}                   & \textbf{Description}									& {\bf Status}\\
-\hline
-netxpto.cpp                     & Generic purpose simulator definitions.				& check\\
-\hline
-m\_qam\_transmitter.cpp         & Outputs a QPSK modulated optical signal.				& check\\
-\hline
-local\_oscillator.cpp           & Generates continuous coherent signal.					& check\\
-\hline
-optical\_hybrid.cpp             & Mixes the two input signals into four outputs.		& check\\
-\hline
-photodiode.h                    & Converts an optical signal to a current.				& check\\
-\hline
-difference.h                    & Ouputs the difference between two input signals.		& check\\
-\hline
-ideal_amplifier.h				& Performs a perfect amplification of the input sinal	& check\\
-\hline
-sampler.cpp                     & Samples the input signal.								& check\\
-\hline
-real_to_complex.cpp				& Combines two real input signals into a complex signal	& check\\
-\hline
-sink.cpp                        & Empties the signal buffer.							& check\\
-\hline
-\end{tabulary}
-\end{table}
-
-
-
-%\subsection*{Inputs}
-
-%This system takes no inputs.
-
+%
+%%\subsection*{Inputs}
+%
+%%This system takes no inputs.
+%
+%%\pagebreak
+%%\subsection*{Outputs}
+%
+%%The system outputs the following objects:
+%%\begin{itemize}
+%%\item Signals:
+%%\begin{itemize}
+%%\item Binary Sequence used in the MQAM; (S$_{0}$)
+%%\item Local Oscillator used in the MQAM; (S$_{1}$)
+%%\item Local Oscillator used in the detection; (S$_{2}$)
+%%\item Optical Hybrid Outputs; (S$_{3}$, S$_{4}$, S$_{5}$, S$_{6}$)
+%%\item In phase Photodiodes output; (S$_{7}$, S$_{8}$)
+%%\item Quadrature Photodiode output; (S$_{9}$, S$_{10}$)
+%%\item In phase Difference output; (S$_{11}$)
+%%\item Quadrature Difference output; (S$_{12}$)
+%%\item In phase Sampler output; (S$_{13}$)
+%%\item Quadrature Sampler output; (S$_{14}$)
+%%\end{itemize}
+%%\end{itemize}
+%
+%
 %\pagebreak
-%\subsection*{Outputs}
-
-%The system outputs the following objects:
-%\begin{itemize}
-%\item Signals:
-%\begin{itemize}
-%\item Binary Sequence used in the MQAM; (S$_{0}$)
-%\item Local Oscillator used in the MQAM; (S$_{1}$)
-%\item Local Oscillator used in the detection; (S$_{2}$)
-%\item Optical Hybrid Outputs; (S$_{3}$, S$_{4}$, S$_{5}$, S$_{6}$)
-%\item In phase Photodiodes output; (S$_{7}$, S$_{8}$)
-%\item Quadrature Photodiode output; (S$_{9}$, S$_{10}$)
-%\item In phase Difference output; (S$_{11}$)
-%\item Quadrature Difference output; (S$_{12}$)
-%\item In phase Sampler output; (S$_{13}$)
-%\item Quadrature Sampler output; (S$_{14}$)
-%\end{itemize}
-%\end{itemize}    
-
-
-\pagebreak
-
-
-\subsection*{Simulation Results}\label{subsec:SHresults}
-
-To test the simulated implementation, a series of states $\{\ket{\phi_i}\}$ were generated and detected, resulting in a series of measurements $\{(x_i,y_i)\}$. The simulation result is presented in figure $\ref{fig:constelation}$:
-%
-\begin{figure}[H]
-\centering
-\includegraphics[width=10cm]{./sdf/quantum_noise/figures/constelation1.png}
-\caption{Simulation of a constelation of 4 states (n = 100)}
-\label{fig:constelation}
-\end{figure}
-%
-We see that the measurements made groups in certain regions. Each of this groups is centered in the expected value $(\braket{\textrm{X}}, \braket{\textrm{Y}})$ of one the generated states. Also, they show some variance, which was tested for various expected number of photons, $\braket{n}$, resulting in figure \ref{fig:variance}:
-%
-\begin{figure}[H]
-\captionsetup{justification=centering}
-\centering
-\includegraphics[width=10cm]{./sdf/quantum_noise/figures/plot_var_vs_n1.png}
-\caption{Simulation of the variance of $m$.\\Local oscillator expected number of photons: $10^4$}
-\label{fig:variance}
-\end{figure}
-%
-It was expected that the variance should independent of the input's signal number of photons. Plot \ref{fig:variance} shows that for low values of $n_S$, the simulation is in accordance with the theoretical prevision, with $\textrm{Var(X)} = \textrm{Var(Y)} = \frac{1}{4}$ . For large values of $n_S$, when the number of photons is about the same has the local oscillator, the quantum noise variance starts to grow proportionally to $n_S$, in accordance with the non approximated calculation of quantum noise (eq. \ref{eq:noise}).\\
-\\
-{\bf Noise Variance with LO power Simulation}\\
-The following plot shows the behavior of current noise variance $\braket{(\Delta i)^2}$ with local oscilator power, $P_{LO}$:
 %
 %
-\begin{figure}[H]
-\centering
-\includegraphics[width=10cm]{./sdf/quantum_noise/figures/power_plot.png}
-\caption{Output current variance in function of LO power.}
-\label{fig:variance_lo_power}
-\end{figure}
+%\subsection*{Simulation Results}\label{subsec:SHresults}
 %
-%
-We see that for low LO power, the dominant noise is the thermal contribution, but for higher power, quantum noise dominates, growing proportionally to $P_{LO}$. This in accordance with equation \ref{eq:approx_noise}\\
-\\
-\\
-{\bf Comparison to experimental results}\\
-As we have seen earlier, the system will manifest noise even in the absence of input signal (eq \ref{eq:noise}). The experimental procedure for this measurement consisted in just inputing the local oscillator laser and no signal. For each value of  $P_{LO}$, the local oscillator was pulsed, and for each pulse, the variance of the plateau of the maximum was calculated. The final variance was simply the mean of the variances of all pulses.
-%
-\begin{figure}[H]
-    \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=.8\linewidth]{./sdf/quantum_noise/figures/noise_exp_channel1.png}
-        \caption{$X$ quadrature}
-        \label{fig:noise-exp-1}
-    \end{subfigure}%
-    \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=.8\linewidth]{./sdf/quantum_noise/figures/noise_exp_channel3.png}
-        \caption{$Y$ quadrature}
-        \label{fig:noise-exp-3}
-    \end{subfigure}
-    \captionsetup{justification=centering}
-    \caption{Noise variance dependency with local oscilator power for two different quadratures. Experimental vs fitted data.}
-\end{figure}
-%
-Figures $\ref{fig:noise-exp-1}$ and $\ref{fig:noise-exp-3}$ show measurements of total noise for two different quadratures. For low power of LO, the noise variance flutuates around a constant value. For high power of LO, $(P_{LO}>10^{-4}W)$, the variance of noise shows an increasing trend roughly proportional to $P_{LO}^2$. The polynomial fittings confirm this trend, showing a degree 2 coefficient much larger than the degree 1 coefficient
-%
-\begin{equation}
-\textrm{Var}_X = 2.22 \!\! \times \!\! 10^{-5} + 9.6 \!\! \times \!\! 10^{-3} P_{LO} + 3.40 P_{LO}^2
-\end{equation}
-\begin{equation}
-\textrm{Var}_Y = 2.71 \!\! \times \!\! 10^{-5} + 8.9 \!\! \times \!\! 10^{-3} P_{LO} + 7.25 P_{LO}^2
-\end{equation}
-%
-The expected growth should be proportional to $P_{LO}$, but the RIN noise, originated by the electric apparatus, which grows quadratically with the power, is dominating the noise amplitude for large $P_{LO}$.\\
-We see that both the simulation and experimental data display a similar behaviour, but the quadratic growth of noise for large $P_{LO}$ was not predicted in the simulations.\\
-%
-%
+%To test the simulated implementation, a series of states $\{\ket{\phi_i}\}$ were generated and detected, resulting in a series of measurements $\{(x_i,y_i)\}$. The simulation result is presented in figure $\ref{fig:constelation}$:
+%%
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=10cm]{./sdf/quantum_noise/figures/constelation1.png}
+%\caption{Simulation of a constelation of 4 states (n = 100)}
+%\label{fig:constelation}
+%\end{figure}
+%%
+%We see that the measurements made groups in certain regions. Each of this groups is centered in the expected value $(\braket{\textrm{X}}, \braket{\textrm{Y}})$ of one the generated states. Also, they show some variance, which was tested for various expected number of photons, $\braket{n}$, resulting in figure \ref{fig:variance}:
+%%
+%\begin{figure}[H]
+%\captionsetup{justification=centering}
+%\centering
+%\includegraphics[width=10cm]{./sdf/quantum_noise/figures/plot_var_vs_n1.png}
+%\caption{Simulation of the variance of $m$.\\Local oscillator expected number of photons: $10^4$}
+%\label{fig:variance}
+%\end{figure}
+%%
+%It was expected that the variance should independent of the input's signal number of photons. Plot \ref{fig:variance} shows that for low values of $n_S$, the simulation is in accordance with the theoretical prevision, with $\textrm{Var(X)} = \textrm{Var(Y)} = \frac{1}{4}$ . For large values of $n_S$, when the number of photons is about the same has the local oscillator, the quantum noise variance starts to grow proportionally to $n_S$, in accordance with the non approximated calculation of quantum noise (eq. \ref{eq:noise}).\\
+%\\
+%{\bf Noise Variance with LO power Simulation}\\
+%The following plot shows the behavior of current noise variance $\braket{(\Delta i)^2}$ with local oscilator power, $P_{LO}$:
+%%
+%%
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=10cm]{./sdf/quantum_noise/figures/power_plot.png}
+%\caption{Output current variance in function of LO power.}
+%\label{fig:variance_lo_power}
+%\end{figure}
+%%
+%%
+%We see that for low LO power, the dominant noise is the thermal contribution, but for higher power, quantum noise dominates, growing proportionally to $P_{LO}$. This in accordance with equation \ref{eq:approx_noise}\\
+%\\
+%\\
+%{\bf Comparison to experimental results}\\
+%As we have seen earlier, the system will manifest noise even in the absence of input signal (eq \ref{eq:noise}). The experimental procedure for this measurement consisted in just inputing the local oscillator laser and no signal. For each value of  $P_{LO}$, the local oscillator was pulsed, and for each pulse, the variance of the plateau of the maximum was calculated. The final variance was simply the mean of the variances of all pulses.
+%%
+%\begin{figure}[H]
+%    \begin{subfigure}{.5\textwidth}
+%        \centering
+%        \includegraphics[width=.8\linewidth]{./sdf/quantum_noise/figures/noise_exp_channel1.png}
+%        \caption{$X$ quadrature}
+%        \label{fig:noise-exp-1}
+%    \end{subfigure}%
+%    \begin{subfigure}{.5\textwidth}
+%        \centering
+%        \includegraphics[width=.8\linewidth]{./sdf/quantum_noise/figures/noise_exp_channel3.png}
+%        \caption{$Y$ quadrature}
+%        \label{fig:noise-exp-3}
+%    \end{subfigure}
+%    \captionsetup{justification=centering}
+%    \caption{Noise variance dependency with local oscilator power for two different quadratures. Experimental vs fitted data.}
+%\end{figure}
+%%
+%Figures $\ref{fig:noise-exp-1}$ and $\ref{fig:noise-exp-3}$ show measurements of total noise for two different quadratures. For low power of LO, the noise variance flutuates around a constant value. For high power of LO, $(P_{LO}>10^{-4}W)$, the variance of noise shows an increasing trend roughly proportional to $P_{LO}^2$. The polynomial fittings confirm this trend, showing a degree 2 coefficient much larger than the degree 1 coefficient
+%%
+%\begin{equation}
+%\textrm{Var}_X = 2.22 \!\! \times \!\! 10^{-5} + 9.6 \!\! \times \!\! 10^{-3} P_{LO} + 3.40 P_{LO}^2
+%\end{equation}
+%\begin{equation}
+%\textrm{Var}_Y = 2.71 \!\! \times \!\! 10^{-5} + 8.9 \!\! \times \!\! 10^{-3} P_{LO} + 7.25 P_{LO}^2
+%\end{equation}
+%%
+%The expected growth should be proportional to $P_{LO}$, but the RIN noise, originated by the electric apparatus, which grows quadratically with the power, is dominating the noise amplitude for large $P_{LO}$.\\
+%We see that both the simulation and experimental data display a similar behaviour, but the quadratic growth of noise for large $P_{LO}$ was not predicted in the simulations.\\
+%%
+%%
 
 
 

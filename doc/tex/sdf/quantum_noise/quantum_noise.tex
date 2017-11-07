@@ -17,12 +17,12 @@ Quantum noise is an intrinsic property of light, a manifestation of the vaccum f
 \cite{fox2006}.
 %\footnote{Mark Fox, p.132}
 Contrarily to the majority of noise sources, that are overcomed by better equipment, quantum noise has a lower bound, given by the Heisenberg uncertanty principle, which cannot be broken. This propertie can be useful in some areas, such in quantum cryptography, were many protocols depend on it to ensure their security.\\ 
-The objective of this module is the simulation of a simple communication system based on the transmission of coherent states, which will be subjected to various sources of noise, in particular to quantum noise, and compared to analytical and experimental results.\\
+The objective of this work is to develop a numerical model for the quantum noise in a double homodyne detection and to validate the numerical model with experimental results.\\
 
 %REF:
 %https://www.rp-photonics.com/quantum_noise.html
 
-\subsection{Theoretical Introduction}\label{sec:intro}
+\subsection{Theoretical Description}\label{sec:intro}
 
 We start by defining number states $\ket{n}$ (or Fock states), which correspond to states with perfectly fixed number of photons
 %\footnote{Loundon, p.184}
@@ -300,18 +300,26 @@ List of signals used in the simulation:
 \centering
 \begin{tabular}{|c|l|l|}
 \hline
-\bf{Signals}	& \bf{Type}								& \bf{Description}\\
+\bf{Signal name}	& \bf{Signal type}						& \bf{Status}\\
 \hline
-S0				& Binary								& Binary sequence used in the MQAM\\
-S1				& OpticalSignal							& MQAM signal outputp\\
-S2				& OpticalSignal							& Local Oscillator output\\
-S3, S4, S5, S6  & Optical signal						& Optical Hybrid output \\
-S7,S8			& TimeContinuousAmplitudeContinuousReal	& In phase Photodiodes output\\
-S9,S10			& TimeContinuousAmplitudeContinuousReal	& Quadrature Photodiodes output\\
-S11				& TimeContinuousAmplitudeContinuousReal	& In phase difference\\
-S12				& TimeContinuousAmplitudeContinuousReal	& Quadrature difference\\
-S13				& TimeDiscreteAmplitudeContinuousReal	& In phase measurement\\
-S14				& TimeDiscreteAmplitudeContinuousReal	& Quadrature measurement\\
+S0					& Binary								& check\\
+S1					& OpticalSignal							& check\\
+S2					& OpticalSignal							& check\\
+S3					& OpticalSignal							& check\\
+S4					& OpticalSignal							& check\\
+S5					& OpticalSignal							& check\\
+S6					& OpticalSignal							& check\\
+S7					& TimeContinuousAmplitudeContinuousReal	& check\\
+S8					& TimeContinuousAmplitudeContinuousReal	& check\\
+S9					& TimeContinuousAmplitudeContinuousReal	& check\\
+S10					& TimeContinuousAmplitudeContinuousReal	& check\\
+S11					& TimeContinuousAmplitudeContinuousReal	& check\\
+S12					& TimeContinuousAmplitudeContinuousReal	& check\\
+S13					& TimeContinuousAmplitudeContinuousReal	& check\\
+S14					& TimeContinuousAmplitudeContinuousReal	& check\\
+S15					& TimeDiscreteAmplitudeContinuousReal	& check\\
+S16					& TimeDiscreteAmplitudeContinuousReal	& check\\
+S17					& OpticalSignal							& check\\
 \hline
 \end{tabular}
 \end{table}
@@ -321,27 +329,32 @@ S14				& TimeDiscreteAmplitudeContinuousReal	& Quadrature measurement\\
 This system takes into account the following input parameters:
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|c|p{11cm}|}
+\begin{tabulary}{1.0\textwidth}{|c|p{30mm}|p{70mm}|}
 \hline
-\textbf{System Parameters} & \textbf{Description}\\
+\textbf{System Parameters}	& {\bf Default value}		& \textbf{Description}\\
 \hline
-localOscillatorPower1	& Sets the optical power, in units of W, of the local oscillator inside the MQAM\\
+localOscillatorPower1		& $2.0505 \times 10^{-8}$W	& Sets the optical power, in units of W, of the local oscillator inside the MQAM\\
 \hline
-localOscillatorPower2	& Sets the optical power, in units of W, of the local oscillator used for Bob's measurements\\
+localOscillatorPower2		& $2.0505 \times 10^{-8}$W	& Sets the optical power, in units of W, of the local oscillator used for Bob's measurements\\
 \hline
-localOscillatorPhase	& Sets the initial phase of the local oscillator used in the detection\\
+localOscillatorPhase		& $0$ rad					& Sets the initial phase of the local oscillator used in the detection\\
 \hline
-transferMatrix			& Sets the transfer matrix of the beam splitter used in the homodyne detector\\
+responsivity				& $1$ A/W					& Sets the responsivity of the photodiodes used in the homodyne detectors\\
 \hline
-responsivity			& Sets the responsivity of the photodiodes used in the homodyne detectors\\
-\hline
-iqAmplitudeValues		& Sets the amplitude of the states used in the MQAM\\
+iqAmplitudeValues			& $\{ \{ 1, 1 \}, \{ -1, 1 \},$ $ \{ -1, -1 \}, \{ 1, -1 \} \}$
+														& Sets the amplitude of the states used in the MQAM\\
+%
+%\hline
+%transferMatrix				&
+%							$\frac{1}{\sqrt{2}}\{1,1,1,1\}$	
+%														& Sets the transfer matrix of the beam splitter used in the homodyne detector\\
 %\hline
 %shotNoise (FUTURE)      & Chooses if quantum shot noise is used in the simulation\\
 %\hline
 %thermalNoise (FUTURE)   & Chooses if thermal noise is used in the simulation\\
 %\hline
 %thermalNoiseAmplitude  (FUTURE)  & Sets the amplitude of the thermal noise\\
+%
 \hline
 \end{tabulary}
 \end{table}
@@ -371,25 +384,29 @@ The other pair suffers the same process, but the resulting subtraction current w
 Header Files
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|L|L|}
+\begin{tabulary}{1.0\textwidth}{|L|L|l|}
 \hline
-\textbf{File}           & \textbf{Description}\\
+\textbf{File}           & \textbf{Description}									& {\bf Status}\\
 \hline
-netxpto.h               & Generic purpose simulator definitions.\\
+netxpto.h               & Generic purpose simulator definitions.				& check\\
 \hline
-m\_qam\_transmitter.h   & Outputs a QPSK modulated optical signal.\\
+m\_qam\_transmitter.h   & Outputs a QPSK modulated optical signal.				& check\\
 \hline
-local\_oscillator.h     & Generates continuous coherent signal.\\
+local\_oscillator.h     & Generates continuous coherent signal.					& check\\
 \hline
-optical\_hybrid.h       & Mixes the two input signals into four outputs.\\
+optical\_hybrid.h       & Mixes the two input signals into four outputs.		& check\\
 \hline
-photodiode.h            & Converts an optical signal to a current.\\
+photodiode.h            & Converts an optical signal to a current.				& check\\
 \hline
-difference.h            & Ouputs the difference between two input signals.\\
+difference.h            & Ouputs the difference between two input signals.		& check\\
 \hline
-sampler.h               & Samples the input signal.\\
+ideal_amplifier.h		& Performs a perfect amplification of the input sinal	& check\\
 \hline
-sink.h                  & Closes any unused signals.\\
+sampler.h               & Samples the input signal.								& check\\
+\hline
+real_to_complex.h		& Combines two real input signals into a complex signal	& check\\
+\hline
+sink.h                  & Closes any unused signals.							& check\\
 \hline
 \end{tabulary}
 \end{table}
@@ -398,25 +415,29 @@ sink.h                  & Closes any unused signals.\\
 Source Files
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|L|L|}
+\begin{tabulary}{1.0\textwidth}{|L|L|l|}
 \hline
-\textbf{File}                   & \textbf{Description}\\
+\textbf{File}                   & \textbf{Description}									& {\bf Status}\\
 \hline
-netxpto.cpp                     & Generic purpose simulator definitions.\\
+netxpto.cpp                     & Generic purpose simulator definitions.				& check\\
 \hline
-m\_qam\_transmitter.cpp         & Outputs a QPSK modulated optical signal.\\
+m\_qam\_transmitter.cpp         & Outputs a QPSK modulated optical signal.				& check\\
 \hline
-local\_oscillator.cpp           & Generates continuous coherent signal.\\
+local\_oscillator.cpp           & Generates continuous coherent signal.					& check\\
 \hline
-optical\_hybrid.cpp             & Mixes the two input signals into four outputs.\\
+optical\_hybrid.cpp             & Mixes the two input signals into four outputs.		& check\\
 \hline
-photodiode.h                    & Converts an optical signal to a current.\\
+photodiode.h                    & Converts an optical signal to a current.				& check\\
 \hline
-difference.h                    & Ouputs the difference between two input signals.\\
+difference.h                    & Ouputs the difference between two input signals.		& check\\
 \hline
-sampler.cpp                     & Samples the input signal.\\
+ideal_amplifier.h				& Performs a perfect amplification of the input sinal	& check\\
 \hline
-sink.cpp                        & Empties the signal buffer.\\
+sampler.cpp                     & Samples the input signal.								& check\\
+\hline
+real_to_complex.cpp				& Combines two real input signals into a complex signal	& check\\
+\hline
+sink.cpp                        & Empties the signal buffer.							& check\\
 \hline
 \end{tabulary}
 \end{table}

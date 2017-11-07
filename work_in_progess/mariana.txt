@@ -1,6 +1,9 @@
 2017-11-07
 TO BE DONE
-
+	Experimental
+		- perceber bem a geração e a deteção dos estados
+		- verificar o que há e o que falta (fazer lista daquilo que tem que se comprar)
+		- ir para o laboratório implementar a Alice
 
 2017-11-02
 TO BE DONE

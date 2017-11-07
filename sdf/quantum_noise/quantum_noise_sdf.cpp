@@ -46,7 +46,7 @@ int main()
 	// Correcção da potência. Quem é que está correcto?
 	//double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (bitPeriod*wavelength);
 
-	double photonNumber1 = 50;
+	double photonNumber1 = 10;
 	double photonNumber2 = 1e4;
 
 	
@@ -57,7 +57,7 @@ int main()
 	//double localOscillatorPower2 = powerUnit * n2_in;
 
 	double localOscillatorPhase = 0;
-	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2) } };
+	//array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2) } };
 	double responsivity = 1;
 
 	//double amplification = 1e6;
@@ -86,7 +86,7 @@ int main()
 	// Number of samples to avoid the delay created in the MQAM
 	int samplesToSkip = samplesPerSymbol * 8;
 
-	// Amplification after detection\
+	// Amplification after detection
 	double amplifierGain = 1.0e6;
 
 
@@ -232,11 +232,14 @@ int main()
 	Difference B9{ vector<Signal*> {&S9, &S10}, vector<Signal*> {&S12} };
 
 
+
 	IdealAmplifier B10{ vector<Signal*> {&S11}, vector<Signal*> {&S13} };
 	B10.setGain(amplifierGain);
 
 	IdealAmplifier B11{ vector<Signal*> {&S12}, vector<Signal*> {&S14} };
 	B11.setGain(amplifierGain);
+
+
 
 	Sampler B12{ vector<Signal*> { &S13 }, vector<Signal*> { &S15 } };
 	B12.setSamplesToSkip(samplesToSkip);
@@ -257,8 +260,6 @@ int main()
 	Sink B15{ vector<Signal*> {&S17}, vector<Signal*> {} };
 	B15.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
 	B15.setDisplayNumberOfSamples(true);
-
-
 
 	Sink B16{ vector<Signal*> {&S0}, vector<Signal*> {} };
 	B16.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);

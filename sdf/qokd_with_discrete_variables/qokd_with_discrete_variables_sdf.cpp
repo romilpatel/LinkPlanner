@@ -1,5 +1,6 @@
 # include "netxpto.h"
 
+# include "random_number_generator.h"
 # include "m_qam_transmitter.h"
 # include "homodyne_receiver.h"
 # include "bit_error_rate.h"
@@ -11,9 +12,9 @@ int main(){
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	int systemrate(100*10^(3));
+	int symbolRate(100*10^(3));
 	int messageSize(4);
-	int blockLength (16);
+	int blockLength(16);
 	
 	
 	//4 possible encode states

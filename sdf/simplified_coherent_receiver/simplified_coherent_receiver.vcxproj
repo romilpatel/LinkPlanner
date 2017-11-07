@@ -151,7 +151,6 @@
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="kramers_kronig_transceiver_sdf.cpp" />
     <ClCompile Include="mixer.cpp" />
-    <ClCompile Include="m_pam_mapper.cpp" />
     <ClCompile Include="RF_Oscillator.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -164,7 +163,6 @@
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sink.h" />
     <ClInclude Include="mixer.h" />
-    <ClInclude Include="m_pam_mapper.h" />
     <ClInclude Include="RF_Oscillator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

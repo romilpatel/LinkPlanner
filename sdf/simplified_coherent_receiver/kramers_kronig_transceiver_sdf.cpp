@@ -68,7 +68,7 @@ int main() {
 	B4.setSeeBeginningOfImpulseResponse(false);
 
 	
-	RFOscillator B5{ vector<Signal*> {}, vector<Signal*> { &S5 } };							// #2  Find the errors
+	RfOscillator B5{ vector<Signal*> {}, vector<Signal*> { &S5 } };							// #2  Find the errors
 	B5.setSamplingPeriod(bitPeriod / numberOfSamplesPerSymbol);
 	B5.setrfFrequency(rfFrequency);
 	B5.setrfAmplitude(rfAmplitude);
@@ -91,7 +91,7 @@ int main() {
 	B11.setNumberOfSamples(numberOfBits*numberOfSamplesPerSymbol);
 	B11.setDisplayNumberOfSamples(true);
 
-	Sink B12{ vector<Signal*> { &S6 }, vector<Signal*> {} };
+	Sink B12{ vector<Signal*> { &S5 }, vector<Signal*> {} };
 	B12.setNumberOfSamples(numberOfBits*numberOfSamplesPerSymbol);
 	B12.setDisplayNumberOfSamples(true);
 

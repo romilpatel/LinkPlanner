@@ -10,22 +10,22 @@
 # include <functional>	// bind1st
 
 
-const int MAX_NAME_SIZE = 256;					// Maximum size of names
-const long int MAX_Sink_LENGTH = 100000;		// Maximum Sink Block number of values
-const int MAX_BUFFER_LENGTH = 10000;			// Maximum Signal buffer length
-const int MAX_TOPOLOGY_SIZE = 100;				// Maximum System topology size 
-const int MAX_TAPS = 1000;						// Maximum Taps Number
-const double PI = 3.1415926535897932384;		// Value of pi
-const double SPEED_OF_LIGHT = 299792458;		// Speed of light in vaccum
-const double PLANCK_CONSTANT = 6.626070040e-34; // NIST
-const int MAX_NUMBER_OF_PATHS = 2;
+const int		MAX_NAME_SIZE = 256;				// Maximum size of names
+const long int	MAX_Sink_LENGTH = 100000;			// Maximum Sink Block number of values
+const int		MAX_BUFFER_LENGTH = 10000;			// Maximum Signal buffer length
+const int		MAX_TOPOLOGY_SIZE = 100;			// Maximum System topology size 
+const int		MAX_TAPS = 1000;					// Maximum Taps Number
+const double	PI = 3.1415926535897932384;			// Value of pi
+const double	SPEED_OF_LIGHT = 299792458;			// Speed of light in vaccum
+const double	PLANCK_CONSTANT = 6.626070040e-34;	// NIST
+const int		MAX_NUMBER_OF_PATHS = 2;
 
 using namespace std;
 
-typedef unsigned int t_binary;
-typedef int t_integer;
-typedef double t_real;
-typedef complex<t_real> t_complex;
+typedef unsigned int	t_binary;
+typedef int				t_integer;
+typedef double			t_real;
+typedef	complex<t_real> t_complex;
 typedef struct { t_complex x; t_complex y; } t_complex_xy;
 typedef struct { t_real probabilityAmplitude;  t_real polarization; } t_photon;
 typedef struct { t_photon path[MAX_NUMBER_OF_PATHS]; } t_photon_mp;
@@ -97,8 +97,9 @@ public:
 	void writeHeader(string signalPath);			// Opens the signal file in the signalPath directory, and writes the signal header
 
 
-		template<typename T>							// Puts a value in the buffer
-	void bufferPut(T value) {
+		template<typename T>						// Puts a value in the buffer
+	void bufferPut(T value)
+	{
 		(static_cast<T *>(buffer))[inPosition] = value;
 		if (bufferEmpty) bufferEmpty = false;
 		inPosition++;

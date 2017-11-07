@@ -1,3 +1,9 @@
+2017-11-07
+TO BE DONE
+	- Finalizar BPSK (última revisão)
+
+	- 
+
 2017-11-02
 TO BE DONE
 	- concluir doc BPSK (o que está no pdf, nomeadamente o BER em unidades log10)

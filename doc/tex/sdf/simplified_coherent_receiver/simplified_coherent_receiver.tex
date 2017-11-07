@@ -6,7 +6,7 @@
 \textbf{Student Name}  &:& Romil Patel\\
 \textbf{Starting Date} &:& August 16, 2017\\
 \textbf{Goal}          &:& Develop a simplified structure (low cost) for a coherent transceiver, that can be used in coherent PON, inter-data center connections, or metropolitan networks (optical path lengths < 100 km) We are going to explore a Kramers-Kronig transceiver with Stokes based PolDemux.\\
-\textbf{Directory} 	   &:& 
+\textbf{Directory} 	   &:&LinkPlanner\textbackslash doc\textbackslash tex\textbackslash sdf\textbackslash simplified\_coherent\_receiver 
 \end{tabular}
 \end{tcolorbox}
 
@@ -245,7 +245,7 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 		\hline
 		%\multicolumn{3}{|c|}{\textbf{System Input Parameters }} \\
 		%\hline
-		\textbf{Parameter} &  \textbf{Default Value} & \textbf{Comments}\\
+		\textbf{Parameter} &  \textbf{Default Value} & \textbf{Description}\\
 		\hline
 		sourceMode    & PseudoRandom &\\
 		\hline
@@ -282,15 +282,15 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 		\hline
 		binary\_source.h    				&  &\checkmark\\
 		\hline
-		m\_qam\_mapper.h 					& Needs improvement &\\
+		m\_qam\_mapper.h 					& Needs modification : DONE! &\checkmark\\
 		\hline
 		discrete\_to\_continuous\_time.h    &  &\checkmark\\
 		\hline
 		pulse\_shaper.h 					&  &\checkmark\\
 		\hline
-		local\_oscillator.h					&  &\\
+		RF\_Oscillator.h					& Needs modification : On going &\checkmark\\
 		\hline
-		mixer.h		 						&  &\\
+		mixer.h		 						& Needs modification : On going &\checkmark\\
 		\hline
 		fork.h								&  &\\
 		\hline
@@ -314,15 +314,15 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 		\hline
 		binary\_source.cpp    				&  &\checkmark\\
 		\hline
-		m\_qam\_mapper.cpp 					&  &\\
+		m\_qam\_mapper.cpp 					& Modified : DONE! &\checkmark\\
 		\hline
 		discrete\_to\_continuous\_time.cpp  &  &\checkmark\\
 		\hline
 		pulse\_shaper.cpp 					&  &\checkmark\\
 		\hline
-		local\_oscillator.cpp				&  &\\
+		RF\_Oscillator.cpp				& How to define function? : On going &\checkmark\\
 		\hline
-		mixer.cpp		 					&  &\\
+		mixer.cpp		 					& How to define function? : On going &\checkmark\\
 		\hline
 		fork.cpp							&  &\\
 		\hline
@@ -354,6 +354,39 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/simplified_coherent_receiver/figures/Practical_setup_TxRx.pdf}
 	\caption{PDM Kramers-Kronig receiver experimental setup}\label{Practical_setup_TxRx}
 \end{figure}
+
+\subsubsection{Status of equipment}
+\begin{center}
+	\begin{tabular}{ |p{6cm}||p{7cm}|p{1cm}|   }
+		\hline
+		%\multicolumn{3}{|c|}{\textbf{Source Files}} \\
+		%\hline
+		\textbf{Equipment name} & \textbf{Description}&\textbf{Status}\\
+		\hline
+		LASER				   				&  &\checkmark\\
+		\hline
+		PC	 								&  &\checkmark\\
+		\hline
+		Coupler							    &  &\checkmark\\
+		\hline
+		AWG									&  &\checkmark\\
+		\hline
+		Dual polarization IQ mod			&  &\checkmark\\
+		\hline
+		PBS				 					&  &\checkmark\\
+		\hline
+		PLC									&  &\checkmark\\
+		\hline
+		Delay								&  &\checkmark\\
+		\hline
+		Fiber loop							&  &\checkmark\\
+		\hline
+		Single photodetector				& APD+TIA Optical Receiver:\newline
+											  - Maximum bit rate: 10 Gb/s\newline
+											  - Sensitivity: -26 dBm &\checkmark\\
+		\hline
+	\end{tabular}
+\end{center}
 
 
 \begin{thebibliography}{9}

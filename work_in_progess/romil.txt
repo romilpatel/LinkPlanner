@@ -1,3 +1,13 @@
+2017-11-07
+TO BE DONE
+   - simulation part
+	put the mixer and rf_oscillator in the setup
+
+   - presentation
+
+   - start by reviewing the netxpto - NetPlanner software, install
+
+
 2017-11-03
 TO BE DONE
    - simulation part
@@ -5,6 +15,7 @@ TO BE DONE
 
    - start by reviewing the netxpto - NetPlanner software, install
 
+next meeting: Thursday, 10 am
 
 2017-10-26
 TO BE DONE

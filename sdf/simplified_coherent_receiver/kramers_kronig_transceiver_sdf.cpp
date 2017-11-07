@@ -69,9 +69,11 @@ int main() {
 
 	
 	RFOscillator B5{ vector<Signal*> {}, vector<Signal*> { &S5 } };							// #2  Find the errors
+	B5.setSamplingPeriod(bitPeriod / numberOfSamplesPerSymbol);
 	B5.setrfFrequency(rfFrequency);
 	B5.setrfAmplitude(rfAmplitude);
 	B5.setrfPhase(rfPhase);
+
 
 	mixer B6{ vector<Signal*> { &S4,&S5 }, vector<Signal*> { &S6 } };						// #3  
 

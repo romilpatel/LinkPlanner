@@ -21,7 +21,7 @@ In order to implement OT between two parties (Alice and Bob) they must be able t
 \subsection{Quantum Oblivious Key Distribution System (QOKD)}
 
 In this section we are going to describe the Quantum Oblivious Key Distribution system (QOKD).
-The QOKD system enables two parties (Alice and Bob) share a set of keys only known by them. In this QOKD system the sets shared by Alice and Bob have some position bits which Bob measured with the same basis as Alice and other position bits which Bob measured with a different basis. In fact, these sets have tabs which mark sub-sets where they know there are the same number of right and wrong measurements.
+The QOKD system enables two parties (Alice and Bob) to share a set of keys. These keys have the particularity of being half right and half wrong. Only Bob knows which are right and wrong keys.
 
 Considering a discrete variables implementation, both Alice and Bob agree with the following correspondence, where $+$ corresponds to \textit{Rectilinear Basis} and $\times$ corresponds to \textit{Diagonal Basis},
 
@@ -121,7 +121,7 @@ and for \textit{Diagonal Basis}, "$\times$",
 
       Nevertheless, due to errors in transmission, some bits in $S_{B_{rb}}$ may be not right.
 
-      At this point, in order to test Bob's honesty and to estimate the \textit{QBER} of the channel, Alice is going to ask Bob to open some pairs of the Bob's sets. Alice chooses some positions to open and tells Bob which positions she wants to open. Bob sends to Alice the pairs she chose and then these pairs are destroyed from them sets. Lets assume she asked to open the positions $10$, $11$ and $12$. If she concludes Bob is not being honest, she stops the protocol and they must start it again. Otherwise, the protocol continues. Lets assume Alice has verified these pairs using the hash function committed by Bob and concluded that he is being honest. Therefore, she sends to Bob the \textit{QBER} estimated by her.
+      At this point, in order to test Bob's honesty and to estimate the \textit{QBER} of the channel, Alice is going to ask Bob to open some pairs of the Bob's sets. The definition of the protocol to test Bob's honesty is still an open issue. However, depending on the \textit{QBER} estimated by her, Alice must have a parameter to set the number of right position she wants to open, i.e she must open a minimum number of right position in order to guarantee a minimum \textit{QBER}. This will increase the security of the protocol. Alice chooses some positions to open and tells Bob which positions she wants to open. Bob sends to Alice the pairs she chose and then these pairs are eliminated from them sets. Lets assume she asked to open the positions $10$, $11$ and $12$. If she concludes Bob is not being honest, she stops the protocol and they must start it again. Otherwise, the protocol continues. Lets assume Alice has verified these pairs using the hash function committed by Bob and concluded that he is being honest. Therefore, she sends to Bob the \textit{QBER} estimated by her.
 
       Now, Bob has the previous sets replaced by the following,
       \begin{align*}
@@ -144,7 +144,7 @@ and for \textit{Diagonal Basis}, "$\times$",
 
             \begin{figure}[h]
             	\centering
-            	\includegraphics[width=0.6\textwidth, height=4cm]{./sdf/ot_with_discrete_variables/figures/cascade_permutation.png}
+            	\includegraphics[width=0.6\textwidth, height=4cm]{./sdf/qokd_with_discrete_variables/figures/cascade_permutation.png}
                 	\caption{Cascade Algorithm - permutation}\label{cascadepermutation}
             \end{figure}
 
@@ -152,7 +152,7 @@ and for \textit{Diagonal Basis}, "$\times$",
 
              \begin{figure}[h]
             	\centering
-            	\includegraphics[width=0.8\textwidth, height=6cm]{./sdf/ot_with_discrete_variables/figures/cascade_1.png}
+            	\includegraphics[width=0.8\textwidth, height=6cm]{./sdf/qokd_with_discrete_variables/figures/cascade_1.png}
                 	\caption{Cascade Algorithm}\label{cascade_1}
             \end{figure}
 
@@ -160,7 +160,7 @@ and for \textit{Diagonal Basis}, "$\times$",
 
             \begin{figure}[h]
             	\centering
-            	\includegraphics[width=0.6\textwidth, height=6cm]{./sdf/ot_with_discrete_variables/figures/cascade_2.png}
+            	\includegraphics[width=0.6\textwidth, height=6cm]{./sdf/qokd_with_discrete_variables/figures/cascade_2.png}
                 	\caption{Cascade Algorithm - example of error correction}\label{cascade_2}
             \end{figure}
 
@@ -174,13 +174,15 @@ and for \textit{Diagonal Basis}, "$\times$",
               S_{B_{rb}} & = \{1,1,0,1,0 \} \\
             \end{align*}
 
+             In order to test Alice's honesty, Bob must verify if the \textit{QBER} sent by Alice is a realistic value. If it is not he stops the protocol and they must start again. Otherwise, the protocol continues.
+
       \end{enumerate}
 
       After that, Bob needs to apply the Fake Cascade to the set $S_{B_{wb}}$. The main goal of this step is to convince Alice she is performing the real Cascade but she is not.
 
       \begin{enumerate}
-        \item First of all, based on the positions contained in $S_{B_{wb}}$, Bob must build an array with the correspondent bits in a random order and informs Alice the order of positions. In order to best explain this version of the algorithm, lets assume a larger set of bits. 
-            
+        \item First of all, based on the positions contained in $S_{B_{wb}}$, Bob must build an array with the correspondent bits in a random order and informs Alice the order of positions. In order to best explain this version of the algorithm, lets assume a larger set of bits.
+
             Bob sends to Alice throughout a classical channel the new positions order as if it were the permutation step represented in figure \ref{cascadepermutation} in real Cascade algorithm.
 
         \item Assuming each of them has a set with 32 bits randomly organized by Bob, they divide the supposed shifted keys in blocks with N bits according to the estimated error rate. As the \textit{QBER} is the same as for real cascade, Bob will assume the same number of errors, even if he starts for this modified version he can know the number of errors from \textit{QBER} estimated by Alice.
@@ -191,7 +193,7 @@ and for \textit{Diagonal Basis}, "$\times$",
 
             \begin{figure}[h]
             	\centering
-            	\includegraphics[width=0.6\textwidth, height=6cm]{./sdf/ot_with_discrete_variables/figures/fake_cascade.png}
+            	\includegraphics[width=0.6\textwidth, height=6cm]{./sdf/qokd_with_discrete_variables/figures/fake_cascade.png}
                 	\caption{Fake cascade - example of error correction}\label{fake cascade}
             \end{figure}
 
@@ -204,13 +206,18 @@ and for \textit{Diagonal Basis}, "$\times$",
               \item [Step 3:] They divide the sub-block in half again and Bob asks Alice for the parity of the first bit. Alice sends to him the parity equals to her. As the error is not in the first be, it must be in the second, therefore Bob is able to correct this bit with the information sent by Alice.
             \end{description}
 
-            Note that Bob make his choice of which half analyse first using a random bit generator result. If he got "0" he starts with the first half of the sub-block, otherwise, if he got "1", he starts with the second half. In addition, they must discard the last bit of the blocks and sub-blocks in which fake Cascade were applied in order to guarantee that Bob does not gain additional information.
+            Note that Bob make his choice of which half analyse first using a random bit generator result. If he got "0" \  he starts with the first half of the sub-block, otherwise, if he got "1", he starts with the second half. In addition, they must discard the last bit of each block and sub-block in which fake Cascade were applied in order to guarantee that Bob does not gain additional information.
 
-            After apply the fake Cascade to $S_{B_{wb}}$, it must remains the same,
-            $$S_{B_{wb}}  = \{0,1,1,1 \}.$$
+            In this case, after apply the fake Cascade to $S_{B_{wb}}$, lets assume,
+            \begin{align*}
+                S_{B_{wp}} & = \{3,4,7,9 \} \\
+                S_{B_{wb}} & = \{0,1,1,0 \}
+            \end{align*}
 
 
       \end{enumerate}
+
+      If Bob starts by applying the fake Cascade, he must test Alice's honesty at the beginning of the real Cascade application, based on the number of errors he has. If he thinks that the \textit{QBER} sent by Alice is unrealistic, he stops the protocol at this point.
 
 
   \item When Alice sends to Bob a photons set, they are building a set of pairs (array positions and bit values which correspond to measured photons at Bob's side and to the key bit with the photon was encoded at Alice's side).
@@ -220,7 +227,7 @@ and for \textit{Diagonal Basis}, "$\times$",
 
     \begin{figure}[h]
     	\centering
-    	\includegraphics[width=1.0\textwidth, height=9cm]{./sdf/ot_with_discrete_variables/figures/alicebobkeys.png}
+    	\includegraphics[width=1.0\textwidth, height=9cm]{./sdf/qokd_with_discrete_variables/figures/alicebobkeys.png}
         	\caption{Alice and Bob key sets.}\label{alicebobkeys}
     \end{figure}
 
@@ -282,12 +289,12 @@ and for \textit{Diagonal Basis}, "$\times$",
         \centering
         \begin{tabular}{c|c c c c c c c c}
          $m$ & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 \\
-             & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 1 \\ \hline
-         $\oplus$ & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\
+             & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\ \hline
+         $\oplus$ & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
         \end{tabular}
         \end{table}
 
-      The first four bits corresponds to message 1 and he received $\{0,0,1,1\}$, which is the right message $m_{0}$ and $\{0,1,1,1\}$ which is a wrong message for $m_{1}$.
+      The first four bits corresponds to message 1 and he received $\{0,0,1,1\}$, which is the right message $m_{0}$ and $\{0,1,1,0\}$ which is a wrong message for $m_{1}$.
 
 
 \end{enumerate}
@@ -300,7 +307,7 @@ The main goal of this simulation is to demonstrate that Bob was able to learn co
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.0\textwidth, height=9cm]{./sdf/ot_with_discrete_variables/figures/Simulation_diagram_top.png}
+	\includegraphics[width=1.0\textwidth, height=9cm]{./sdf/qokd_with_discrete_variables/figures/Simulation_diagram_top.png}
 	\caption{Simulation diagram at a top level}\label{toplevelsimulation}
 \end{figure}
 
@@ -312,48 +319,160 @@ As one may see in figure \ref{toplevelsimulation} this simulation will have thre
 
   \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.1\textwidth, height=9cm]{./sdf/ot_with_discrete_variables/figures/Simulation_Alice.png}
+	\includegraphics[width=1.1\textwidth, height=9cm]{./sdf/qokd_with_discrete_variables/figures/Simulation_Alice.png}
 	\caption{Simulation diagram - Alice's side}\label{simulationalice}
 \end{figure}
 
-    In figure \ref{simulationalice} one can observe a block diagram of the simulation at Alice's side. As it is shown in the figure, Alice must have two blocks for random number generation: one for basis generation in order to polarize the photons according this basis, and other for key random generation in order to have a random state to encode each photon. Furthermore, she has a Processor block for all logical operations: array analysis, hash function results validation, and others. This block also receives the start information, i.e. message size s, the expansion factor k and messages $m_{0}$ and $m_{1}$, as well as information from Bob, i.e sets $I_{0}$ and $I_{1}$, hash function results, and others. This block also must be responsible for send classical information to Bob. Finally, Processor block will also send a real continuous time signal to single photon generator, in order to generate photons according to this signal, and finally this block also sends to polarizer a real discrete signal in order to inform the polarizer which basis it should use. Therefore, she has two more blocks for quantum tasks: the single photon generator and the polarizer block which is responsible to encode the photons generated from the previous block and send them throughout a quantum channel from Alice to Bob.
+    In figure \ref{simulationalice} one can observe a block diagram of the simulation at Alice's side. As it is shown in the figure, Alice must have one block for random number generation which is responsible for basis generation to polarize the photons, and for key random generation in order to have a random state to encode each photon. Furthermore, she has a Processor block for all logical operations: array analysis, hash function results validation, random number generation requests, and others. This block also receives the start information, i.e. message size s and messages $m_{0}$ and $m_{1}$, as well as information from Bob, i.e sets $I_{0}$ and $I_{1}$, hash function results, and others. In addition it is responsible for set the initial length $l$ of the first array of photons which will send to Bob. This block also must be responsible for send classical information to Bob. Finally, Processor block will also send a real continuous time signal to single photon generator, in order to generate photons according to this signal, and finally this block also sends to polarizer a real discrete signal in order to inform the polarizer which basis it should use. Therefore, she has two more blocks for quantum tasks: the single photon generator and the polarizer block which is responsible to encode the photons generated from the previous block and send them throughout a quantum channel from Alice to Bob.
 
     Finally, Alice's processor has an output to Mutual Information top level block, $Ms_{A}$.
+
 
   \item
 
   \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.1\textwidth, height=9cm]{./sdf/ot_with_discrete_variables/figures/Simulation_Bob.png}
+	\includegraphics[width=1.1\textwidth, height=9cm]{./sdf/qokd_with_discrete_variables/figures/Simulation_Bob.png}
 	\caption{Simulation diagram - Bob's side}\label{simulationbob}
 \end{figure}
 
-    In figure \ref{simulationbob} one can observe a block diagram of the simulation at Bob's side. From this side, Bob only has one block for Random Number Generation which is responsible for randomly generate basis values which Bob will use to measure the photons sent by Alice throughout the quantum channel. Like Alice, Bob has a Processor block responsible for all logical tasks, i.e Hash function generation, analysing functions, etc. It receives information from Alice throughout a classical channel and a quantum channel but it sends information to Alice only throughout a classical channel. Furthermore, Bob has one more block for single photon detection which receives from processor block a real discrete time signal, in order to obtain the basis it should use to measure the photons.
+    In figure \ref{simulationbob} one can observe a block diagram of the simulation at Bob's side. From this side, Bob has one block for Random Number Generation which is responsible for randomly generate basis values which Bob will use to measure the photons sent by Alice throughout the quantum channel. Furthermore, this Block will generate the random bits that Bob needs in Modified Version of Cascade Algorithm. Like Alice, Bob has a Processor block responsible for all logical tasks, i.e Hash function generation, analysing functions, requests for random number generator block, etc. Additionally, it receives information from Alice throughout a classical channel and a quantum channel but it sends information to Alice only throughout a classical channel. Furthermore, Bob has one more block for single photon detection which receives from processor block a real discrete time signal, in order to obtain the basis it should use to measure the photons.
 
     Finally, Bob's processor has an output to Mutual Information top level block, $Ms_{B}$.
 
   \item Mutual Information calculation
-  \item
-  \item
-  \item
+
 \end{enumerate}
 
 
+\begin{table}[hbt]
+\centering
+\caption{System Signals}
+\label{my-label}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Signal name} & \textbf{Signal type} & \textbf{Status} \\ \hline
+NUM\_A                &  Binary signal       &                 \\ \hline
+NUM\_B                &  Binary signal       &                 \\ \hline
+CLK\_A                &  Real continuous Time&                 \\ \hline
+CLK\_B                &  Real continuous Time&                 \\ \hline
+C\_A\_B                &  Message             &                 \\ \hline
+C\_B\_A                &  Message             &                 \\ \hline
+S\_A1                 &  Real continuous Time&                 \\ \hline
+S\_A2                 &  Real discrete   Time&                 \\ \hline
+S\_A3                 &  Photon Stream       &                 \\ \hline
+Q\_A\_B                &  Photon Stream       &                 \\ \hline
+Ms\_A                 &  Message             &                 \\ \hline
+Ms\_B                 &  Message             &                 \\ \hline
+S\_B1                 &  Real continuous Time&                 \\ \hline
+S\_B2                 &  Real continuous Time&                 \\ \hline
 
+\end{tabular}
+\end{table}
 
+\begin{table}[H]
+\centering
+\caption{System input parameters}
+\label{my-label}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Parameter} & \textbf{Default Value} & \textbf{Description}                   \\ \hline
+messageSize                              & 4                                           & Size of the message Alice must send to Bob.\\ \hline
+blockLenght                              & 16                                          & Block length.                                                  \\ \hline
+systemRate                               &                                             &                                                 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Header Files}
+\label{tab:headerfiles}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{File name}           & \textbf{Description}  & \textbf{Status}       \\ \hline
+random\_number\_generator.h  &                       &                       \\ \hline
+real\_continuous\_time.h     &                       &                       \\ \hline
+real\_discrete\_time.h       &                       &                       \\ \hline
+single\_photons\_generator.h &                       &                       \\ \hline
+single\_photons\_detector.h  &                       &                       \\ \hline
+encorder.h                   &                       &                       \\ \hline
+decoder.h                    &                       &                       \\ \hline
+message\_toSend.h              &                       &                       \\ \hline
+message\_toReceive.h           &                       &                       \\ \hline
+alice\_tasks.h               &                       &                       \\ \hline
+Bob\_tasks.h                 &                       &                       \\ \hline
+mutual\_information.h        &                       &                       \\ \hline
+cascade\_truth.h               &                       &                       \\ \hline
+cascade\_fake.h                &                       &                       \\ \hline
+Sha256.h                     &                       &                       \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Source Files}
+\label{tab:sourcefiles}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{File name}           & \textbf{Description}  & \textbf{Status}       \\ \hline
+random\_number\_generator.c  &                       &                       \\ \hline
+real\_continuous\_time.c     &                       &                       \\ \hline
+real\_discrete\_time.c       &                       &                       \\ \hline
+single\_photons\_generator.c &                       &                       \\ \hline
+single\_photons\_detector.c  &                       &                       \\ \hline
+encorder.c                   &                       &                       \\ \hline
+decoder.c                    &                       &                       \\ \hline
+message\_toSend.c              &                       &                       \\ \hline
+message\_toReceive.c           &                       &                       \\ \hline
+alice\_tasks.c               &                       &                       \\ \hline
+Bob\_tasks.c                 &                       &                       \\ \hline
+mutual\_information.c        &                       &                       \\ \hline
+QOKD\_main.c                 &                       &                       \\ \hline
+cascade\_truth.c               &                       &                       \\ \hline
+cascade\_fake.c                &                       &                       \\ \hline
+Sha256.c                     &                       &                       \\ \hline
+\end{tabular}
+\end{table}
 
 \subsection{Experimental}
-In figures \ref{quantumchannelcommunication1} and \ref{quantumchannelcommunication2} are presented the experimental setup to be performed in the lab. Starting with Alice's side and then Bob's side.
 
-\begin{figure}[H]
-	\centering \includegraphics[width=0.8\textwidth,height=8cm]{./sdf/ot_with_discrete_variables/figures/OT_experimental_alice.png}
-	\caption{Quantum communication diagram - Alice's side}\label{quantumchannelcommunication1}
+In figure \ref{experimental_setup} are presented the experimental setup to be performed in the lab. The main goal is to build an experimental setup in with Alice and Bob communicate through two classical channels and one quantum channel that will have only one direction (Alice to Bob).
+
+\begin{figure}[hbt]
+	\centering \includegraphics[width=1.1\textwidth,height=10cm]{./sdf/qokd_with_discrete_variables/figures/Experimental_setup.png}
+	\caption{QOKD Experimental setup}\label{experimental_setup}
 \end{figure}
 
-\begin{figure}[H]
-	\centering \includegraphics[width=0.8\textwidth,height=9cm]{./sdf/ot_with_discrete_variables/figures/OT_experimental_bob.png}
-	\caption{Quantum communication diagram - Bob's side}\label{quantumchannelcommunication2}
-\end{figure}
+
+We will use a experimental setup which has already been used in BB84 protocol implementation \cite{Wang16}. In figure \ref{experimental_setup} there are at Alice's side a Laser Semiconductor (\textbf{LD}), a Mach-Zenhder Modulator (\textbf{MZM}), three Faraday Mirrors (\textbf{FM1, FM2, FM3}), a four-port polarization beam splitter (\textbf{PBS1}), a polarization-insensitive phase modulator (\textbf{PM1}), a optical circulator (\textbf{OC1}) to allows the input and output optical pulses to be separated and finally a variable optical attenuator (\textbf{VOA}) in order to achieve the single-photon regime.
+At Bob's side there is first a polarizer controller (\textbf{PC}) to correct the birefringence effects introduced by the quantum channel, a optical circulator (\textbf{OC2}) to separate the input and output optical pulses, the photons received are decoded by using the same system which were used to encode them, and then the photon are recorded by two single photon detectors \textbf{D1, D2}) after a half-wave plate and a three-port polarization beam splitter (\textbf{PBS3}).
+Furthermore, the two processors (Alice and Bob) must be able to communicate in a bi-directional classical channel to exchange all information that they need.
+
+In table \ref{tb:mat} are described all components needed to build the experimental setup.
+
+\begin{table}[hbt]
+\centering
+\caption{List of material}
+\label{tb:mat}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Material Name}                          & \textbf{Quantity} & \textbf{Status} \\ \hline
+Laser semiconductor 1550nm                      & 1                 &  \checkmark     \\ \hline
+Manual polarization controller                  & 5                 &       \\ \hline
+Faraday Mirror (FM)                             & 6                 & \\ \hline
+Mach-Zehnder Modulator                          & 1                 &  \checkmark 2.56GHz   \\ \hline
+Single Photon Detector                          & 2                 &  \checkmark     \\ \hline
+Phase modulator                                 & 2                 &     \\ \hline
+Four-port polarization beam splitter            & 2                 &\\ \hline
+Three-port polarization beam splitter           & 1                 &\\ \hline
+Half-wave plate                                 & 1                 & \\ \hline
+Optical circulator                              & 2                 &    \\ \hline
+Variable Optical Attenuator                     & 1                 &  \checkmark     \\ \hline
+Computer                                        & 1                 &     \\ \hline
+\end{tabular}
+\end{table}
+
+
 
 \bibliographystyle{unsrt}
 

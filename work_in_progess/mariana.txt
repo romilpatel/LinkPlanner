@@ -5,6 +5,10 @@ TO BE DONE
 		- verificar o que há e o que falta (fazer lista daquilo que tem que se comprar)
 		- ir para o laboratório implementar a Alice
 
+	Simulação
+		- criar o ficheiro qokd_sdf.cpp
+
+
 2017-11-02
 TO BE DONE
 	Apresentação 

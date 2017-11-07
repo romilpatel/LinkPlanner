@@ -8,15 +8,12 @@
 # include <random>
 # include <vector>
 
-class RFOscillator : public Block {
-
-	/* State Variables */
-
+class RfOscillator : public Block {
 
 	/* Input Parameters */
 
 	double rfAmplitude{ 1.0 };				
-	double rfPhase{ 0.0 };
+	double rfInitialPhase{ 0.0 };
 	double rfFrequency{ 100E6 };
 
 	/*double opticalPower{ 1e-3 };
@@ -24,36 +21,31 @@ class RFOscillator : public Block {
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
 	double phase{ 0 };*/
 
-	double samplingPeriod{ 0.0 };
-	double symbolPeriod{ 0.0 };
+	double samplingPeriod{ 1.0 };
 
-	default_random_engine generatorRIN;
-	double signaltoNoiseRatio{ 0 };
+	/* State Variables */
+	double phase{ rfInitialPhase };
 
 public:
 
 	/* Methods */
-	RFOscillator() {};
-	RFOscillator(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) : Block(InputSig, OutputSig) {};
+	RfOscillator() {};
+	RfOscillator(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) : Block(InputSig, OutputSig) {};
 
 	void initialize(void);
 	bool runBlock(void);
 
 	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; }					// ? How it works?
-	void setSymbolPeriod(double sPeriod) { symbolPeriod = sPeriod; }
 	
-	void setrfAmplitude(double rfAmpl) { rfAmplitude = rfAmpl; }							// Set Amplitude of the RF Oscillator
-	double getrfAmplitude() { return rfAmplitude; }
+	void setRfAmplitude(double rfAmpl) { rfAmplitude = rfAmpl; }							// Set Amplitude of the RF Oscillator
+	double getRfAmplitude() { return rfAmplitude; }
 
-	void setrfFrequency(double rfFreq) { rfFrequency = rfFreq; }							// Set Frequency of the RF Oscillator
-	double getrfFrequency() { return rfFrequency; }
+	void setRfFrequency(double rfFreq) { rfFrequency = rfFreq; }							// Set Frequency of the RF Oscillator
+	double getRfFrequency() { return rfFrequency; }
 
-	void setrfPhase(double rfPh) { rfPhase = rfPh; }										// Set Phase     of the RF Oscillator
-	double getrfPhase() { return rfPhase; }
+	void setRfPhase(double rfPh) { rfInitialPhase = rfPh; }										// Set Phase     of the RF Oscillator
+	double getRfPhase() { return rfInitialPhase; }
 	
-	void setSignaltoNoiseRatio(double sNoiseRatio) { signaltoNoiseRatio = sNoiseRatio; }	// Signal to noise ratio
-	double const getSignaltoNoiseRatio(void) { return signaltoNoiseRatio; }
-
 };
 
 #endif 

@@ -4,6 +4,9 @@ TO BE DONE
 	- alterar o bloco BER, de modo a adicionar um parametro de entrada que com o nome, lowestMinorante{1E-10}
 	- alterar o bloco do BER para verificar se o BER estimado é inferior ao lowestMinorante se for inferior devolver uma mensagem de erro.
 
+	Apresentação reunião de grupo
+		- como se fosse a defesa da dissertação
+
 2017-10-18
 TO BE DONE
 	- concluir o doc do BPSK

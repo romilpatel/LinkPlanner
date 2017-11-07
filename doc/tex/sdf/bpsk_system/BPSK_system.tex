@@ -1,5 +1,5 @@
 \clearpage
-\section{BER of BPSK with additive WGN}
+\section{BPSK Transmission System}
 
 \begin{tcolorbox}	
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
@@ -13,13 +13,13 @@ Binary Phase Shift Keying (BPSK) is the simplest form of Phase Shift Keying (PSK
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=.5\linewidth]{bpskconstellation.pdf}
+\includegraphics[width=.3\linewidth]{bpskconstellation.pdf}
 \caption{BPSK symbol constellation.}
 \label{fig:BPSKConst}
 \end{figure}
 
 \par
-White noise is a random signal with equal intensity at all frequencies, having a constant power spectral density. White noise is said to be Gaussian (WGN) if its samples follow a normal distribution with zero mean and a certain variance $\sigma^2$. For WGN we know that its spectral density equals its variance. For the purpose of this work, additive WGN is used to model thermal noise typically observed in coherent receivers.
+White noise is a random signal with equal intensity at all frequencies, having a constant power spectral density. White noise is said to be Gaussian (WGN) if its samples follow a normal distribution with zero mean and a certain variance $\sigma^2$. For WGN its spectral density equals its variance. For the purpose of this work, additive WGN is used to model thermal noise at the receivers.
 \par
 The purpose of this system is to simulate BPSK transmission in back-to-back configuration with additive WGN at the receiver and to perform an accurate estimation of the BER and validate the estimation using theoretical values.
 
@@ -29,7 +29,7 @@ The output of the system with added gaussian noise follows a normal distribution
 \begin{equation}\label{eq:mu1}
 m_i=2\sqrt{P_LP_S}G_{ele}\cos(\Delta\theta_i),
 \end{equation}
-where $P_L$ and $P_S$ are the optical powers, in watts, of the local oscillator and signal, respectively, $G_{ele}$ is the gain of the transimpedance amplifier the coherent receiver and $\Delta\theta_i$ is the phase difference between the local oscillator and the signal, for BPSK this takes the values $\pi$ and 0, in which case~\eqref{eq:mu1} can be reduced to,
+where $P_L$ and $P_S$ are the optical powers, in watts, of the local oscillator and signal, respectively, $G_{ele}$ is the gain of the trans-impedance amplifier in the coherent receiver and $\Delta\theta_i$ is the phase difference between the local oscillator and the signal, for BPSK this takes the values $\pi$ and 0, in which case~\eqref{eq:mu1} can be reduced to,
 \begin{equation}
 m_i=(-1)^{i+1}2\sqrt{P_LP_S}G_{ele},~i=0,~1.
 \end{equation}
@@ -66,7 +66,7 @@ Header Files
 
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|L|L|}
+\begin{tabulary}{1.0\textwidth}{|p{6cm}|L|}
 \hline
 \textbf{File}              & \textbf{Description} 				                  \\ \hline
 add.h                      & Adds the two input signals and outputs the result    \\ \hline
@@ -94,7 +94,7 @@ white\_noise.h             & Generates white gaussian noise with a user defined 
 Source Files
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|L|L|}
+\begin{tabulary}{1.0\textwidth}{|p{6cm}|L|}
 \hline
 \textbf{File}              & \textbf{Description} 				                  \\ \hline
 add.cpp                      & Adds the two input signals and outputs the result    \\ \hline
@@ -169,7 +169,7 @@ This system outputs the following objects:
 \end{itemize}
 \end{itemize}
 
-\subsection*{Comparative Analysis}
+\subsection{Comparative Analysis}
 
 The following results show the dependence of the error rate with the signal power assuming a constant Local Oscillator power of $0~dBm$, the signal power was evaluated at levels between -70~and~-25~dBm, in steps of 5~dBm between each. The simulation results are presented in orange with the computed lower and upper bounds, while the expected value, obtained from~\eqref{eq:BERtheoretical}, is presented as a full blue line. A close agreement is observed between the simulation results and the expected value. The noise spectral density was set at $5\times10^{-4}\sqrt{2}$~V$^2$~\cite{thorlabs}. 
 \begin{figure}[H]

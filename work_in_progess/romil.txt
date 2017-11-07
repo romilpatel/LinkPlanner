@@ -3,6 +3,8 @@ TO BE DONE
    - simulation part
 	put the mixer and rf_oscillator in the setup
 
+   - presentation
+
    - start by reviewing the netxpto - NetPlanner software, install
 
 

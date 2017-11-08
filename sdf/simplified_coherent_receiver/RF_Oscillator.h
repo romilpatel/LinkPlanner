@@ -3,7 +3,6 @@
 
 
 # include "netxpto.h"
-
 # include <complex>
 # include <random>
 # include <vector>
@@ -17,6 +16,7 @@ class RfOscillator : public Block {
 	double rfFrequency{ 100E6 };
 	double samplingPeriod{ 1.0 };
 
+	
 	/* State Variables */
 	double phase{ rfInitialPhase };
 
@@ -29,8 +29,9 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; }					// ? How it works?
-	
+	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; }					// 
+	double getSamplingPeriod() { return samplingPeriod; }
+
 	void setrfAmplitude(double rfAmpl) { rfAmplitude = rfAmpl; }							// Set Amplitude of the RF Oscillator
 	double getRfAmplitude() { return rfAmplitude; }
 

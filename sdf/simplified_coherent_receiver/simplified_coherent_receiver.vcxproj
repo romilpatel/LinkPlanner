@@ -149,9 +149,10 @@
     <ClCompile Include="..\..\lib\netxpto.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
+    <ClCompile Include="fork.cpp" />
     <ClCompile Include="kramers_kronig_transceiver_sdf.cpp" />
     <ClCompile Include="mixer.cpp" />
-    <ClCompile Include="RF_Oscillator.cpp" />
+    <ClCompile Include="rf_oscillator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\binary_source.h" />
@@ -162,8 +163,9 @@
     <ClInclude Include="..\..\include\netxpto.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sink.h" />
+    <ClInclude Include="fork.h" />
     <ClInclude Include="mixer.h" />
-    <ClInclude Include="RF_Oscillator.h" />
+    <ClInclude Include="rf_oscillator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

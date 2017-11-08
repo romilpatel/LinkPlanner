@@ -1,5 +1,5 @@
 # include "netxpto.h"
-# include "RF_Oscillator.h"
+# include "rf_oscillator.h"
 
 # include <algorithm>
 # include <complex>

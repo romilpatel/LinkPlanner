@@ -6,7 +6,7 @@
 # include "pulse_shaper.h"
 # include "rf_oscillator.h"								// 
 # include "mixer.h"
-//# include "fork.h"
+# include "fork.h"
 //# include "hilbert_transform.h"
 //# include "iq_modulator.h"
 # include "sink.h"
@@ -27,7 +27,8 @@ int main() {
 	int impulseResponseTimeLength{ 16 };
 	double rfFrequency{100E6};
 	double rfAmplitude{ 1.0 };
-	double rfPhase{ 0.0 };
+	double rfInitialPhase{ 0.0 };
+	double samplingPeriod{ bitPeriod / numberOfSamplesPerSymbol };
 	double opticalPower{ 1e-3 };
 
 	// #####################################################################################################
@@ -67,31 +68,38 @@ int main() {
 	B4.setImpulseResponseTimeLength(impulseResponseTimeLength);
 	B4.setSeeBeginningOfImpulseResponse(false);
 
-	
+		
 	RfOscillator B5{ vector<Signal*> {}, vector<Signal*> { &S5 } };							// #2  Find the errors
-	B5.setSamplingPeriod(bitPeriod / numberOfSamplesPerSymbol);
+	B5.setSamplingPeriod(samplingPeriod);
 	B5.setrfFrequency(rfFrequency);
 	B5.setrfAmplitude(rfAmplitude);
-	B5.setrfPhase(rfPhase);
+	B5.setrfPhase(rfInitialPhase);
 
 
 	mixer B6{ vector<Signal*> { &S4,&S5 }, vector<Signal*> { &S6 } };						// #3  
 
+
+	fork B78{ vector<Signal*> { &S6 }, vector<Signal*> { &S7,&S8 } };					    // #4
 	//
 
-	/*Fork B78{ vector<Signal*> { &S6 }, vector<Signal*> { &S7,&S8 } };					    // #4
-	//
-
-	HilbertTransform B9{ vector<Signal*> { &S8 }, vector<Signal*> { &S9 } };				// #5
+	/*HilbertTransform B9{ vector<Signal*> { &S8 }, vector<Signal*> { &S9 } };				// #5
 	//
 
 	IqModulator B10{ vector<Signal*> { &S7, &S9 }, vector<Signal*> { &S10 } };
 */
-	Sink B11{ vector<Signal*> { &S4 }, vector<Signal*> {} };
+	Sink B11{ vector<Signal*> { &S5 }, vector<Signal*> {} };
 	B11.setNumberOfSamples(numberOfBits*numberOfSamplesPerSymbol);
 	B11.setDisplayNumberOfSamples(true);
 
-	Sink B12{ vector<Signal*> { &S5 }, vector<Signal*> {} };
+	Sink B12{ vector<Signal*> { &S6 }, vector<Signal*> {} };
+	B12.setNumberOfSamples(numberOfBits*numberOfSamplesPerSymbol);
+	B12.setDisplayNumberOfSamples(true);
+
+	Sink B13{ vector<Signal*> { &S7 }, vector<Signal*> {} };
+	B12.setNumberOfSamples(numberOfBits*numberOfSamplesPerSymbol);
+	B12.setDisplayNumberOfSamples(true);
+
+	Sink B14{ vector<Signal*> { &S8 }, vector<Signal*> {} };
 	B12.setNumberOfSamples(numberOfBits*numberOfSamplesPerSymbol);
 	B12.setDisplayNumberOfSamples(true);
 
@@ -100,14 +108,14 @@ int main() {
 	// #####################################################################################################
 
 	//System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B78, &B9, &B10, &B11 } };
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B11, &B12} };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B5, &B11, &B12,  &B13, &B14} };
 
 	// #####################################################################################################
 	// #################################### System Run #####################################################
 	// #####################################################################################################
 
 	MainSystem.run();
-
+	getchar();
 	return 0;
 
 }

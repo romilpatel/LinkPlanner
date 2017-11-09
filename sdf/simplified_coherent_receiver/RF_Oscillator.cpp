@@ -1,5 +1,5 @@
 # include "netxpto.h"
-# include "RF_Oscillator.h"
+# include "rf_oscillator.h"
 
 # include <algorithm>
 # include <complex>
@@ -8,7 +8,6 @@
 # include <random>
 
 using namespace std;
-
 
 void RfOscillator::initialize(void) {
 	outputSignals[0]->setSamplingPeriod(samplingPeriod);

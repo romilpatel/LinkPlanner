@@ -7,6 +7,7 @@ TO BE DONE
 
    - start by reviewing the netxpto - NetPlanner software, install
 
+next meeting: Thursday, 10 am
 
 2017-11-03
 TO BE DONE
@@ -15,8 +16,7 @@ TO BE DONE
 
    - start by reviewing the netxpto - NetPlanner software, install
 
-next meeting: Thursday, 10 am
-
+######################################## October 2017 ##############################################
 2017-10-26
 TO BE DONE
   - go to the lab and setup a proper place to conduct the experiment (put a sheet with the experimental setup and a short description + student and supervisor name)
@@ -62,7 +62,7 @@ Later
 Hilbert Transform
 How to generate?
 
-
+########################################## September 2017 #############################################
 2017-09-14
 TO BE DONE
 - study two papers (Mecozzi16, Mecozzi17)

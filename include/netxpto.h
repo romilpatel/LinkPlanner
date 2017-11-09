@@ -157,13 +157,13 @@ public:
 	void setNumberOfValuesToBeSaved(long int nOfValuesToBeSaved) { numberOfValuesToBeSaved = nOfValuesToBeSaved; };
 	long int getNumberOfValuesToBeSaved(){ return numberOfValuesToBeSaved; };
 
-	void setSymbolPeriod(double sPeriod) { symbolPeriod = sPeriod; samplesPerSymbol = symbolPeriod / samplingPeriod; };
+	void setSymbolPeriod(double sPeriod) { symbolPeriod = sPeriod; };
 	double getSymbolPeriod() { return symbolPeriod; };
 
-	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; samplesPerSymbol = symbolPeriod / samplingPeriod; };
+	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; };
 	double getSamplingPeriod(){ return samplingPeriod; };
 
-	void setSamplesPerSymbol(double sPeriod) { samplesPerSymbol = sPeriod; symbolPeriod = samplesPerSymbol * samplingPeriod; samplingPeriod = symbolPeriod / samplesPerSymbol; };
+	void setSamplesPerSymbol(double sPeriod) { samplesPerSymbol = sPeriod; };
 	double getSamplesPerSymbol(){ return samplesPerSymbol; };
 
 	void setCentralFrequency(double cFrequency){ centralFrequency = cFrequency; centralWavelength = SPEED_OF_LIGHT / centralFrequency; }

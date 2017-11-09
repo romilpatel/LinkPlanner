@@ -10,7 +10,7 @@ function [ ] = visualizer( ~ )
 
 %% Clear command window
 
-warning('off'); 
+warning('off'); a
 clc;
 
 s1 = [ pwd '\set'];

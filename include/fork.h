@@ -6,14 +6,14 @@
 
 using namespace std;
 
-class fork : public Block
+class Fork : public Block
 {
 	/* Input Parameters */
 
 public:
 	/* Methods */
-	fork() {};
-	fork(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {};
+	Fork() {};
+	Fork(vector<Signal *> &InputSig, vector<Signal *> OutputSig) :Block(InputSig, OutputSig) {};
 	void initialize(void);
 	bool runBlock(void);
 	

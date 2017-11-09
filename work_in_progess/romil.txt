@@ -1,3 +1,17 @@
+2017-11-09
+TO BE DONE
+	presentation
+		finalize the presentation
+		include results from simulation
+
+	simulation
+		finish the fork
+		think about how to implement the Hilbert transform
+
+	- solve the optical networks dimensioning problem
+
+NEXT METTING: Next Thursday, 16/11, 10 am
+
 2017-11-07
 TO BE DONE
    - simulation part

@@ -12,8 +12,18 @@ void mixer::initialize(void)
 	double samplingPeriod2 = inputSignals[1]->samplingPeriod;			// Signal arrives from RF_Osclillator output
 	double symbolPeriod2  = inputSignals[1]->symbolPeriod;
 
-	if (samplingPeriod1 != samplingPeriod2) { cout << "ERROR: Mixer.cpp - samplingPeriod\n"; }
-	if (symbolPeriod1 != symbolPeriod2) { cout << "ERROR: Mixer.cpp - symbolPeriod\n"; }
+	if (samplingPeriod1 != samplingPeriod2) { cout << "ERROR: Mixer.cpp - samplingPeriod\n"; };
+	
+	outputSignals[0]->setSamplingPeriod(samplingPeriod1);
+
+	if (symbolPeriod1 == 1 && symbolPeriod2 == 1) { cout << "ERROR: Mixer.cpp - symbolPeriod\n"; };
+
+	if (symbolPeriod1 == 1) {
+		outputSignals[0]->setSymbolPeriod(symbolPeriod2);
+	} 
+	else {
+		outputSignals[0]->setSymbolPeriod(symbolPeriod1);
+	};
 }
 
 

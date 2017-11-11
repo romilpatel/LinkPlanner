@@ -12,6 +12,11 @@
 \usepackage[absolute,overlay]{textpos}
 \usepackage{tabto}
 \usepackage{animate}
+
+\usepackage{multicol} 
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
 %\usepackage{listings}
 \captionsetup{labelformat=empty,skip=-0.8cm}
 
@@ -27,8 +32,8 @@
 %    showstringspaces=false,         % underline spaces within strings
 %    showtabs=false,                 % show tabs within strings adding particular underscores
 %    tab=\rightarrowfill,
-%    frame=none,	                    % adds a frame around the code
-%    tabsize=2,	                    % sets default tabsize to 2 spaces
+%    frame=none,	                 % adds a frame around the code
+%    tabsize=2,	                   	 % sets default tabsize to 2 spaces
 %    captionpos=b,                   % sets the caption-position to bottom
 %    breaklines=true,                % sets automatic line breaking
 %    breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
@@ -133,45 +138,23 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
   %\item Coherent optical transmission schemes are optimal from the stand point of spectral efficiency since they allow the encoding of information in both quadrature and polarization.
   \item Coherent optical schemes require two optical hybrids and four pairs of balanced photodetector. It formulate a solution for medium-to-long-reach applications, however, cost of such receiver become an obstacle in short reach application like PON, inter-data-center communications and metropolitan network.
   \item Kramers-Kronig transceiver provides a solution for such short links. It allows the reconstruction of complex constellation from an intensity measurement using a single-photo-diode.
-  \item The kramers-Kronig scheme relies on identifying a condition which ensures that the received signal is minimum phase, in which phase can be uniquely extracted from its intensity.
+  \item The kramers-Kronig scheme relies on identifying a condition which ensures that the received signal is minimum phase.
   \item The following few slides would give a comprehensive overview about the working principle Kramers-Kronig receiver.
   
 \end{itemize}
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE--------------------------------------------------------------------------------
-\mysection{Requirement of Kramers-Kronig scheme}\large
-\vspace{0cm}
-By definition, the SSB is the signal which contains either upper sideband or lower sideband and hence it reduces the spectral occupancy by half. In another words, SSB signal is the frequency translated version of an analytical signal.\\
-\begin{itemize}
-\item \textbf{Analytical Signal}  : An analytic signal is a complex-valued signal that has no negative frequency components, and its real and imaginary parts are related to each other by the Hilbert transform.
-\begin{equation}
-s_a(t)=s(t)+i\hat{s}(t)
-\label{Analytical signal}
-\end{equation}
-\end{itemize}
-where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transform of the signal ${s}(t)$. Such analytical signal can be used to generate Single Sideband Signal (SSB) signal.
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE--------------------------------------------------------------------------------
-\mysection{}\large
-Since a SSB signal is the frequency translated version of an analytical signal, it can be generated as,
-\begin{equation}
-\begin{split}
-{s}_{ssb}(t)&=Re\{s_a(t)  e^{i2\pi f_0 t}\}\\
-&=Re\{[s(t)+i\hat{s}(t)] [cos(2\pi f_0t)+isin(2\pi f_0t)]\}\\
-&=s(t)cos(2\pi f_0t)-\hat{s}(t)sin(2\pi f_0t)
-\end{split}
-\label{USB_SSB}
-\end{equation}
-
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
-\mysection{3. What is minimum phase signal?}\large
+\mysection{1. What is minimum phase signal?}\large
 \begin{itemize}
-  \item A necessary and sufficient condition for a complex signal $A(t)$ to be minimum phase is that the curve described in a complex plane by $A(t)$ when $t\rightarrow -\infty$ to $t\rightarrow \infty$ \textbf{does not encircle the origin}.
-  \item A minimum-phase signal has an useful property that the natural logarithm of the magnitude of the frequency response is related to the phase angle of the frequency response by the Hilbert transform.
+  \item A necessary and sufficient condition for a complex signal \textbf{$A(t)=A_{s}(t)+\bar{A}$} to be minimum phase is that the curve described in a complex plane by $A(t)$ when $t\rightarrow -\infty$ to $t\rightarrow \infty$ \textbf{does not encircle the origin}.
+  \item A minimum-phase signal has an useful property that the \textbf{natural logarithm }of the magnitude  related to the phase angle by the Hilbert transform.
 \end{itemize}
 \begin{figure}[hbt]
 	\centering
@@ -182,7 +165,7 @@ Since a SSB signal is the frequency translated version of an analytical signal, 
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
-\mysection{4. How we can use these signals and profit from them?}\large
+\mysection{2. How we can use these signals and profit from them?}\large
 \begin{itemize}
   \item \textbf{Analytical Signal:}\\
          If we denote an analytic signal $A_s(t)$ as,
@@ -199,6 +182,8 @@ A_{s,i}(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_{s,r}(t')}{t-t'}
 \label{Eq:5.38}
 \end{equation}
 
+
+
 \end{itemize}
 
 
@@ -206,24 +191,29 @@ A_{s,i}(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_{s,r}(t')}{t-t'}
 %------------ SLIDE-------
 \mysection{}\large
 \vspace{0cm}
+\begin{tcolorbox}	
+	\begin{tabular}{p{1cm} p{0.2cm} p{15cm}} 	
+		\textbf{Note}&:& Single sideband signal is the frequency translated version of an analytical signal as,\\
+		\textbf{}	 & & ${s}_{ssb}(t)=Re\{A_s(t)  e^{i2\pi f_0 t}\}$\\
+	\end{tabular}
+\end{tcolorbox}
 \begin{itemize}
 \item \textbf{Minimum Phase Signal:}\\
-    Given function $A(t)=A_{s}(t)+\bar{E}$ never encircles the origin for $t\in(-\infty,\infty)$.
+    Given function $A(t)=A_{s}(t)+\bar{A}$ never encircles the origin for $t\in(-\infty,\infty)$.
 \begin{equation}
-G(t)=log\bigg[\dfrac{A(t)}{\bar{A}}\bigg]\\
+G(t)=ln\bigg[\dfrac{A(t)}{\bar{A}}\bigg]\\
 \label{Eq:A1}
 \end{equation}
 
 Under the hypothesis of signal being minimum phase, the phase information can be reconstructed by from its intensity as,
 \begin{equation}.
 \begin{split}
-\phi(t) &= \bar{\phi} + \frac{1}{2\pi} p.v. \int_{-\infty}^{\infty} \frac{log|A(t)|^2}{t-t'} dt'\\
+\phi(t) &= \bar{\phi} + \frac{1}{2\pi} p.v. \int_{-\infty}^{\infty} \frac{ln|A(t)|^2}{t-t'} dt'\\
 \end{split}
 \label{Eq:E1}
 \end{equation}
-
-
 \end{itemize}
+
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------

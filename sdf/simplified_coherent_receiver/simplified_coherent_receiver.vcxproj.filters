@@ -51,10 +51,7 @@
     <ClCompile Include="..\..\lib\iq_modulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\phase_shifter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lib\phaseShifter.cpp">
+    <ClCompile Include="hilbert_transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,10 +89,7 @@
     <ClInclude Include="..\..\include\rf_oscillator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\phase_shifter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\phaseShifter.h">
+    <ClInclude Include="hilbert_transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

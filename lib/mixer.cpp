@@ -108,7 +108,8 @@ bool Mixer::runBlock(void) {
 		t_real inRealValue2;
 		t_real outRealValue;
 
-		for (int k = 0; k < process; k++) {
+		for (int k = 0; k < process; k++)
+		{
 			inputSignals[0]->bufferGet(&inRealValue1);
 			inputSignals[1]->bufferGet(&inRealValue2);
 			outRealValue = inRealValue1*inRealValue2;
@@ -123,7 +124,8 @@ bool Mixer::runBlock(void) {
 		t_complex inComplexValue2;
 		t_complex outComplexValue;
 
-		for (int k = 0; k < process; k++) {
+		for (int k = 0; k < process; k++)
+		{
 			inputSignals[0]->bufferGet(&inComplexValue1);
 			inputSignals[1]->bufferGet(&inComplexValue2);
 			outComplexValue = inComplexValue1*inComplexValue2;
@@ -138,7 +140,8 @@ bool Mixer::runBlock(void) {
 		t_complex_xy inComplexValueXY2;
 		t_complex_xy outComplexValueXY;
 
-		for (int k = 0; k < process; k++) {
+		for (int k = 0; k < process; k++) 
+		{
 			inputSignals[0]->bufferGet(&inComplexValueXY1);
 			inputSignals[1]->bufferGet(&inComplexValueXY2);
 			outComplexValueXY = {

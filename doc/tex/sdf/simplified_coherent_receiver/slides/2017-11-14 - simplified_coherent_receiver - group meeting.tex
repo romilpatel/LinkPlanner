@@ -13,7 +13,7 @@
 \usepackage{tabto}
 \usepackage{animate}
 
-\usepackage{multicol} 
+\usepackage{multicol}
 \usepackage{tcolorbox}
 \usepackage{booktabs}
 
@@ -140,7 +140,7 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
   \item Kramers-Kronig transceiver provides a solution for such short links. It allows the reconstruction of complex constellation from an intensity measurement using a single-photo-diode.
   \item The kramers-Kronig scheme relies on identifying a condition which ensures that the received signal is minimum phase.
   \item The following few slides would give a comprehensive overview about the working principle Kramers-Kronig receiver.
-  
+
 \end{itemize}
 
 %--------------------------------------------------------------------------------------------------
@@ -153,7 +153,9 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
 %------------ SLIDE-------
 \mysection{1. What is minimum phase signal?}\large
 \begin{itemize}
-  \item A necessary and sufficient condition for a complex signal \textbf{$A(t)=A_{s}(t)+\bar{A}$} to be minimum phase is that the curve described in a complex plane by $A(t)$ when $t\rightarrow -\infty$ to $t\rightarrow \infty$ \textbf{does not encircle the origin}.
+  \item A necessary and sufficient condition for a complex signal \textbf{$A(t)=A_{s}(t)+\bar{A}$} to be minimum phase is that the curve described in a complex plane by $A(t)$ when $t\rightarrow -\infty$ to $t\rightarrow \infty$ \textbf{does not encircle the origin}.\\
+      where, $A_{t}\rightarrow $ Single sideband (SSB) signal \& $\bar{A}\rightarrow$ DC value.
+      
   \item A minimum-phase signal has an useful property that the \textbf{natural logarithm }of the magnitude  related to the phase angle by the Hilbert transform.
 \end{itemize}
 \begin{figure}[hbt]
@@ -167,8 +169,8 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
 %------------ SLIDE-------
 \mysection{2. How we can use these signals and profit from them?}\large
 \begin{itemize}
-  \item \textbf{Analytical Signal:}\\
-         If we denote an analytic signal $A_s(t)$ as,
+  \item \textbf{SSB Signal:}\\
+         If we denote a SSB signal $A_s(t)$ as,
         \begin{equation}
         A_s(t)=A_{s,r}(t)+iA_{s,i}(t)
         \label{Eq:5.31}
@@ -194,7 +196,7 @@ A_{s,i}(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_{s,r}(t')}{t-t'}
 \begin{tcolorbox}	
 	\begin{tabular}{p{1cm} p{0.2cm} p{15cm}} 	
 		\textbf{Note}&:& Single sideband signal is the frequency translated version of an analytical signal as,\\
-		\textbf{}	 & & ${s}_{ssb}(t)=Re\{A_s(t)  e^{i2\pi f_0 t}\}$\\
+		\textbf{}	 & & $A_s(t)=Re\{[s(t)+i\hat{s}(t)] e^{i2\pi f_0 t}\}$\\
 	\end{tabular}
 \end{tcolorbox}
 \begin{itemize}
@@ -206,7 +208,7 @@ G(t)=ln\bigg[\dfrac{A(t)}{\bar{A}}\bigg]\\
 \end{equation}
 
 Under the hypothesis of signal being minimum phase, the phase information can be reconstructed by from its intensity as,
-\begin{equation}.
+\begin{equation}
 \begin{split}
 \phi(t) &= \bar{\phi} + \frac{1}{2\pi} p.v. \int_{-\infty}^{\infty} \frac{ln|A(t)|^2}{t-t'} dt'\\
 \end{split}

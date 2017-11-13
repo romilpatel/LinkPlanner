@@ -7,8 +7,8 @@
 # include "rf_oscillator.h"								
 # include "mixer.h"
 # include "fork.h"
-//# include "hilbert_transform.h"
-//# include "iq_modulator.h"
+# include "hilbert_transform.h"
+# include "iq_modulator.h"
 # include "sink.h"
 
 int main() {
@@ -78,18 +78,22 @@ int main() {
 
 	Mixer B7{ vector<Signal*> { &S4,&S5 }, vector<Signal*> { &S6 } };
 
-	Fork B8{ vector<Signal*> { &S6 }, vector<Signal*> { &S7,&S8 } };					    // #4
-	//
+	Fork B8{ vector<Signal*> { &S6 }, vector<Signal*> { &S7,&S8 } };					    
 
-	/*HilbertTransform B9{ vector<Signal*> { &S8 }, vector<Signal*> { &S9 } };				// #5
-	//
+	HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };	
 
-	IqModulator B10{ vector<Signal*> { &S7, &S9 }, vector<Signal*> { &S10 } };
-*/
-	Sink B_7{ vector<Signal*> { &S7 }, vector<Signal*> {} };
+	IqModulator B10{ vector<Signal*> {&S7, &S9}, vector<Signal*> { &S10 } };
+
+	Sink B11{ vector<Signal*> { &S10 }, vector<Signal*> {} };
+	B11.setDisplayNumberOfSamples(true);
+
+
+	Sink B_7{ vector<Signal*> { &S7 }, vector<Signal*> {} };			// Fork output S7
 	B_7.setDisplayNumberOfSamples(true);
 
-	Sink B_8{ vector<Signal*> { &S8 }, vector<Signal*> {} };
+	Sink B_8{ vector<Signal*> { &S8 }, vector<Signal*> {} };			// Fork output S8
+
+	
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################

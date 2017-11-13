@@ -149,11 +149,10 @@
     <ClCompile Include="..\..\lib\mixer.cpp" />
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
-    <ClCompile Include="..\..\lib\phaseShifter.cpp" />
-    <ClCompile Include="..\..\lib\phase_shifter.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\rf_oscillator.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
+    <ClCompile Include="hilbert_transform.cpp" />
     <ClCompile Include="kramers_kronig_transceiver_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,11 +164,10 @@
     <ClInclude Include="..\..\include\mixer.h" />
     <ClInclude Include="..\..\include\m_qam_mapper.h" />
     <ClInclude Include="..\..\include\netxpto.h" />
-    <ClInclude Include="..\..\include\phaseShifter.h" />
-    <ClInclude Include="..\..\include\phase_shifter.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\rf_oscillator.h" />
     <ClInclude Include="..\..\include\sink.h" />
+    <ClInclude Include="hilbert_transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

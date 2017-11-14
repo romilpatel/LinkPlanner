@@ -144,6 +144,7 @@
     <ClCompile Include="..\..\lib\binary_source.cpp" />
     <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
     <ClCompile Include="..\..\lib\fork.cpp" />
+    <ClCompile Include="..\..\lib\hilbert_transform.cpp" />
     <ClCompile Include="..\..\lib\iq_modulator.cpp" />
     <ClCompile Include="..\..\lib\local_oscillator.cpp" />
     <ClCompile Include="..\..\lib\mixer.cpp" />
@@ -152,13 +153,13 @@
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\rf_oscillator.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
-    <ClCompile Include="hilbert_transform.cpp" />
     <ClCompile Include="kramers_kronig_transceiver_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\binary_source.h" />
     <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
     <ClInclude Include="..\..\include\fork.h" />
+    <ClInclude Include="..\..\include\hilbert_transform.h" />
     <ClInclude Include="..\..\include\iq_modulator.h" />
     <ClInclude Include="..\..\include\local_oscillator.h" />
     <ClInclude Include="..\..\include\mixer.h" />
@@ -167,7 +168,6 @@
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\rf_oscillator.h" />
     <ClInclude Include="..\..\include\sink.h" />
-    <ClInclude Include="hilbert_transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

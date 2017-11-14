@@ -25,7 +25,7 @@ int main() {
 	int numberOfSamplesPerSymbol{ 8 };
 	double rollOffFactor{ 0.3 };
 	int impulseResponseTimeLength{ 16 };
-	double rfFrequency{100E6};
+	double rfFrequency{1000E6};
 	double rfAmplitude{ 1.0 };
 	double rfInitialPhase{ 0.0 };
 	double samplingPeriod{ bitPeriod / numberOfSamplesPerSymbol };
@@ -80,12 +80,12 @@ int main() {
 
 	Fork B8{ vector<Signal*> { &S6 }, vector<Signal*> { &S7,&S8 } };					    
 
-	HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };	
+	/*HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };	
 
 	IqModulator B10{ vector<Signal*> {&S7, &S9}, vector<Signal*> { &S10 } };
 
 	Sink B11{ vector<Signal*> { &S10 }, vector<Signal*> {} };
-	B11.setDisplayNumberOfSamples(true);
+	B11.setDisplayNumberOfSamples(true);*/
 
 
 	Sink B_7{ vector<Signal*> { &S7 }, vector<Signal*> {} };			// Fork output S7

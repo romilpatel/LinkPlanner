@@ -9,7 +9,8 @@
 
 using namespace std;
 
-void RfOscillator::initialize(void) {
+void RfOscillator::initialize(void)
+{
 	outputSignals[0]->setSamplingPeriod(samplingPeriod);
 }
 

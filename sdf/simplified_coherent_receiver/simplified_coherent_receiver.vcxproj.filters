@@ -51,7 +51,7 @@
     <ClCompile Include="..\..\lib\iq_modulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hilbert_transform.cpp">
+    <ClCompile Include="..\..\lib\hilbert_transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,7 +89,7 @@
     <ClInclude Include="..\..\include\rf_oscillator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hilbert_transform.h">
+    <ClInclude Include="..\..\include\hilbert_transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

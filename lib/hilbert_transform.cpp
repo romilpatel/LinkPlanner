@@ -11,8 +11,6 @@ void HilbertTransform::initialize(void)
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 }
 
-
-
 bool HilbertTransform::runBlock(void)
 {
 

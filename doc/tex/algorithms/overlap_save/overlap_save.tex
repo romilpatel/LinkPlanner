@@ -1,19 +1,20 @@
-\documentclass[a4paper]{article}
-\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
-\usepackage{amsmath}
-\usepackage{multicol}
-\usepackage{graphicx}
-\usepackage{subfig}
-\usepackage{amssymb}
-%\RequirePackage{ltxcmds}[2010/12/07]
-%opening
-\title{Linear Filtering in Frequency-Domain}
-\author{ }
-\date{ }
-\begin{document}
-
-\maketitle
-\section{Introduction}
+%\documentclass[a4paper]{article}
+%\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
+%\usepackage{amsmath}
+%\usepackage{multicol}
+%\usepackage{graphicx}
+%\usepackage{subfig}
+%\usepackage{amssymb}
+%%\RequirePackage{ltxcmds}[2010/12/07]
+%%opening
+%\title{Linear Filtering in Frequency-Domain}
+%\author{ }
+%\date{ }
+%\begin{document}
+%
+%\maketitle
+\clearpage
+\section{Overlap-Save Method}
 Linear filtering can be easily implemented in time-domain resorting to the use of finite impulse response (FIR) digital filters and convolution property as,
 \begin{equation}
     y(n)= \sum\limits_{k=0}^{R-1} x(n-k)h\left(k\right),
@@ -25,7 +26,6 @@ In this sense, it is used the computation of linear filtering in frequency domai
 However, for long input sequence, the direct implementation of frequency domain filtering in real-time is limited by the limited memory of the digital processors.
 Hence, the filtering in frequency-domain is implemented by sectioning or block the input signal, such that the practical implementation  of FFT and IFFT is feasible. In order to implement the non-cyclic convolution with the finite-length of cyclic convolution that the FFT provides, overlap-save and overlap-add method are use, enabling that the complexity evolves in log scale $\mathcal{O}(N\log_2N)$. The general method is to split the input signal into manageable blocks, then apply the FFT to to perform the linear convolution and at the end recombine the output blocks such that it is avoided the wrap-around errors due to the circular convolution imposed by FFT.
 
-\section{Overlap-Save Method}
 The overlap-save method can be computed in the following steps:
 \begin{enumerate}
     \item   Step 1:
@@ -60,7 +60,7 @@ The overlap-save method can be computed in the following steps:
             \item   Compute the FFT of $x_i$ and $h$ both with length $N$;
             \item   Compute the multiplication of $X_i(f)$ and the transfer function $H(f)$;
             \item   Compute the IFFT of the multiplication result to obtain the time-domain block signal, $y_i$;
-        \end{itemize}     
+        \end{itemize}
     \end{itemize}
     \item   Step 7:
     \begin{itemize}
@@ -82,7 +82,7 @@ In the Figure~\ref{overlapSave} it is illustrated an example of overlap-save met
 %\end{figure*}
 \begin{figure}[t!]
     \centering
-    \includegraphics[width=6cm]{rc-fd-filter-SpS8}
+    \includegraphics[width=6cm]{./algorithms/overlap_save/figures/rc-fd-filter-SpS8.pdf}
     \caption{Frequency response of raised-cosine filter.}
     \label{freq_rc}
 \end{figure}
@@ -126,7 +126,7 @@ Alternatively to the frequency-domain formula, we can obtain the frequency respo
 where $t$ is the time. Figure~\ref{td_rc} shows a plot of impulse response of raised-cosine filter for a roll-off factor of 0.3.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=8cm]{rc-td-filter-stemv2}
+    \includegraphics[width=8cm]{./algorithms/overlap_save/figures/rc-td-filter-stemv2.pdf}
     \caption{Impulsee response of raised-cosine filter.}
     \label{td_rc}
 \end{figure}
@@ -134,7 +134,7 @@ Before calculating the FFT of the impulse response we must zero-pad the impulse 
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[width=6cm]{zp-hn}
+    \includegraphics[width=6cm]{./algorithms/overlap_save/figures/zp-hn.pdf}
     \caption{Zero-padding of impulse response $h(n)$.}
     \label{zp-hn}
 \end{figure}
@@ -142,7 +142,7 @@ Before calculating the FFT of the impulse response we must zero-pad the impulse 
 In both cases, the frequency response of the filter will be limited to the frequency interval $fwindowTF$, [$-\frac{fwindowTF}{2}$, $\frac{fwindowTF}{2}$], and this range show us the $N$ frequency components obtained from FFT. The minimum frequency bin is $-\frac{fwindowTF}{2}$ and the maximum bin is $\frac{fwindowTF}{2}$, in which $fwindowTF$ corresponds to the sampling frequency. We can note that the spectral width of $H(f)$ is $fwindowTF$, which is the inverse of sampling period, $\mathop{dt}$. It is also important to note that, for a given sampling frequency, the frequency resolution, $\Delta f$, of $H(f)$ depends on the parameter $N$ and it increases with $N$, $\Delta f=\frac{fwindowTF}{N}$.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=15cm]{overlap-savev2}
+    \includegraphics[width=15cm]{./algorithms/overlap_save/figures/overlap-savev2.pdf}
     \caption{Illustration of Overlap-save method.}
     \label{overlapSave}
 \end{figure}

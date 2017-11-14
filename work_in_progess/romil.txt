@@ -2,6 +2,8 @@
 TO BE DONE
 	documentation
 		include the fork in the library, follow Bit Error Rate style
+
+		algorithms section, write a section about DFFT (discrete fft and discrete ifft)
 	
 
 	theoretical part

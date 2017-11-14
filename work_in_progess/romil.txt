@@ -3,16 +3,14 @@ TO BE DONE
 	documentation
 		include the fork in the library, follow Bit Error Rate style
 
-		algorithms section, write a section about DFFT (discrete fft and discrete ifft)
+		algorithms section, write a section about DFFT (discrete fft and discrete ifft) (go to netxpto.cpp file and see which algorithm are, try to understand them)
 	
 
 	theoretical part
 		check which is the RF frequency that you need
 
-	simulation
+
 		
-
-
 2017-11-09
 TO BE DONE
 	presentation

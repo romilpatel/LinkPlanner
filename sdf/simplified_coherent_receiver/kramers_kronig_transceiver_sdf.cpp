@@ -25,7 +25,7 @@ int main() {
 	int numberOfSamplesPerSymbol{ 8 };
 	double rollOffFactor{ 0.3 };
 	int impulseResponseTimeLength{ 16 };
-	double rfFrequency{1000E6};
+	double rfFrequency{100E6};
 	double rfAmplitude{ 1.0 };
 	double rfInitialPhase{ 0.0 };
 	double samplingPeriod{ bitPeriod / numberOfSamplesPerSymbol };
@@ -72,6 +72,7 @@ int main() {
 		
 	RfOscillator B6{ vector<Signal*> {}, vector<Signal*> { &S5 } };							
 	B6.setSamplingPeriod(2*samplingPeriod);
+	B6.setSymbolPeriod(2*bitPeriod);
 	B6.setrfFrequency(rfFrequency);
 	B6.setrfAmplitude(rfAmplitude);
 	B6.setrfPhase(rfInitialPhase);

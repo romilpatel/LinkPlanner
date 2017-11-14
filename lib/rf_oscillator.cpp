@@ -12,6 +12,8 @@ using namespace std;
 void RfOscillator::initialize(void)
 {
 	outputSignals[0]->setSamplingPeriod(samplingPeriod);
+	outputSignals[0]->setSymbolPeriod(symbolPeriod);
+
 }
 
 

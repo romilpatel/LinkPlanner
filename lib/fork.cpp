@@ -37,10 +37,10 @@ bool Fork::runBlock(void)
 
 	for (int i = 0; i < process; i++)
 	{
-		t_real s6;
-		inputSignals[0]->bufferGet(&s6);
-		outputSignals[0]->bufferPut((t_real)(s6));
-		outputSignals[1]->bufferPut((t_real)(s6));
+		t_real inSignal;
+		inputSignals[0]->bufferGet(&inSignal);
+		outputSignals[0]->bufferPut((t_real)(inSignal));
+		outputSignals[1]->bufferPut((t_real)(inSignal));
 	}
 
 	return true;

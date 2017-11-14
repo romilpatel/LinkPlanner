@@ -13,8 +13,9 @@ class RfOscillator : public Block {
 
 	double rfAmplitude{ 1.0 };				
 	double rfInitialPhase{ 0.0 };
-	double rfFrequency{ 1000E6 };
+	double rfFrequency{ 100E6 };
 	double samplingPeriod{ 1.0 };
+	double symbolPeriod{ 1.0 };
 
 	
 	/* State Variables */
@@ -31,6 +32,9 @@ public:
 
 	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; }					// 
 	double getSamplingPeriod() { return samplingPeriod; }
+
+	void setSymbolPeriod(double syPeriod) { symbolPeriod = syPeriod; }					// 
+	double getSymbolPeriod() { return symbolPeriod; }
 
 	void setrfAmplitude(double rfAmpl) { rfAmplitude = rfAmpl; }							// Set Amplitude of the RF Oscillator
 	double getRfAmplitude() { return rfAmplitude; }

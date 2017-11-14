@@ -1,3 +1,16 @@
+2017-11-14
+TO BE DONE
+	documentation
+		include the fork in the library, follow Bit Error Rate style
+	
+
+	theoretical part
+		check which is the RF frequency that you need
+
+	simulation
+		
+
+
 2017-11-09
 TO BE DONE
 	presentation

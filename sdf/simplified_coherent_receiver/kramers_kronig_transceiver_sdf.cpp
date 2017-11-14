@@ -4,11 +4,11 @@
 # include "m_qam_mapper.h"	
 # include "discrete_to_continuous_time.h"
 # include "pulse_shaper.h"
-# include "rf_oscillator.h"								// 
+# include "rf_oscillator.h"								
 # include "mixer.h"
 # include "fork.h"
-//# include "hilbert_transform.h"
-//# include "iq_modulator.h"
+# include "hilbert_transform.h"
+# include "iq_modulator.h"
 # include "sink.h"
 
 int main() {
@@ -25,7 +25,7 @@ int main() {
 	int numberOfSamplesPerSymbol{ 8 };
 	double rollOffFactor{ 0.3 };
 	int impulseResponseTimeLength{ 16 };
-	double rfFrequency{100E6};
+	double rfFrequency{1000E6};
 	double rfAmplitude{ 1.0 };
 	double rfInitialPhase{ 0.0 };
 	double samplingPeriod{ bitPeriod / numberOfSamplesPerSymbol };
@@ -51,13 +51,13 @@ int main() {
 	// ########################### Blocks Declaration and Inicialization ###################################
 	// #####################################################################################################
 
-	BinarySource B1{ vector<Signal*> {}, vector<Signal*> { &S1} };
+	BinarySource B1{ vector<Signal*> {}, vector<Signal*> { &S1} };						
 	B1.setMode(sourceMode);
 	B1.setPatternLength(patternLength);
 	B1.setBitPeriod(bitPeriod);
 	B1.setNumberOfBits(numberOfBits);
 
-	MQamMapper B2{ vector<Signal*> { &S1 }, vector<Signal*> { &S2, &S2b } };				// #1 DONE!
+	MQamMapper B2{ vector<Signal*> { &S1 }, vector<Signal*> { &S2, &S2b } };				
 	B2.setIqAmplitudes(iqAmplitudes);
 
 	Sink B3{ vector<Signal*> { &S2b }, vector<Signal*> {} };
@@ -69,37 +69,31 @@ int main() {
 	B5.setRollOffFactor(rollOffFactor);
 	B5.setImpulseResponseTimeLength(impulseResponseTimeLength);
 	B5.setSeeBeginningOfImpulseResponse(false);
-
-					// #3  
 		
-	RfOscillator B6{ vector<Signal*> {}, vector<Signal*> { &S5 } };							// #2  Find the errors
+	RfOscillator B6{ vector<Signal*> {}, vector<Signal*> { &S5 } };							
 	B6.setSamplingPeriod(2*samplingPeriod);
 	B6.setrfFrequency(rfFrequency);
 	B6.setrfAmplitude(rfAmplitude);
 	B6.setrfPhase(rfInitialPhase);
 
-	mixer B7{ vector<Signal*> { &S4,&S5 }, vector<Signal*> { &S6 } };
+	Mixer B7{ vector<Signal*> { &S4,&S5 }, vector<Signal*> { &S6 } };
 
-	fork B8{ vector<Signal*> { &S6 }, vector<Signal*> { &S7,&S8 } };					    // #4
-	//
+	Fork B8{ vector<Signal*> { &S6 }, vector<Signal*> { &S7,&S8 } };					    
 
-	/*HilbertTransform B9{ vector<Signal*> { &S8 }, vector<Signal*> { &S9 } };				// #5
-	//
+	/*HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };	
 
-	IqModulator B10{ vector<Signal*> { &S7, &S9 }, vector<Signal*> { &S10 } };
-*/
-	Sink B_7{ vector<Signal*> { &S7 }, vector<Signal*> {} };
+	IqModulator B10{ vector<Signal*> {&S7, &S9}, vector<Signal*> { &S10 } };
+
+	Sink B11{ vector<Signal*> { &S10 }, vector<Signal*> {} };
+	B11.setDisplayNumberOfSamples(true);*/
+
+
+	Sink B_7{ vector<Signal*> { &S7 }, vector<Signal*> {} };			// Fork output S7
 	B_7.setDisplayNumberOfSamples(true);
 
-	Sink B_8{ vector<Signal*> { &S8 }, vector<Signal*> {} };
+	Sink B_8{ vector<Signal*> { &S8 }, vector<Signal*> {} };			// Fork output S8
 
-/*	Sink B13{ vector<Signal*> { &S5 }, vector<Signal*> {} };
-	B13.setNumberOfSamples(numberOfBits*numberOfSamplesPerSymbol);
-	B13.setDisplayNumberOfSamples(true);
-
-	Sink B14{ vector<Signal*> { &S8 }, vector<Signal*> {} };
-	B14.setNumberOfSamples(numberOfBits*numberOfSamplesPerSymbol);
-	B14.setDisplayNumberOfSamples(true);*/
+	
 
 	// #####################################################################################################
 	// ########################### System Declaration and Inicialization ###################################

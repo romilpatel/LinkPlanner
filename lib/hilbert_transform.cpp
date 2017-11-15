@@ -26,7 +26,7 @@ bool HilbertTransform::runBlock(void)
 	t_real S8;
 	t_real S9;
 
-	/*
+	
 	for (int i = 0; i < process; i++)
 	{
 		inputSignals[0]->bufferGet(&S8);
@@ -51,9 +51,16 @@ bool HilbertTransform::runBlock(void)
 
 		outputSignals[0]->bufferPut(S9);								
 
-	}*/
-	
-	return true;
+	}
 
+	return true;
 }
+
+int fft(int a)
+{
+	int r;
+	r = a;
+	return r;
+}
+
 

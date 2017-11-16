@@ -1,6 +1,8 @@
 #include "netxpto.h"
 #include "hilbert_transform.h"
 
+
+
 using namespace std;
 
 void HilbertTransform::initialize(void)
@@ -25,7 +27,7 @@ bool HilbertTransform::runBlock(void)
 	t_complex outputSignalsFreq[1];
 	t_real S8;
 	t_real S9;
-
+	
 	
 	for (int i = 0; i < process; i++)
 	{
@@ -56,11 +58,5 @@ bool HilbertTransform::runBlock(void)
 	return true;
 }
 
-int fft(int a)
-{
-	int r;
-	r = a;
-	return r;
-}
 
 

@@ -81,12 +81,12 @@ int main() {
 
 	Fork B8{ vector<Signal*> { &S6 }, vector<Signal*> { &S7,&S8 } };					    
 
-	/*HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };	
+	HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };	
 
 	IqModulator B10{ vector<Signal*> {&S7, &S9}, vector<Signal*> { &S10 } };
 
 	Sink B11{ vector<Signal*> { &S10 }, vector<Signal*> {} };
-	B11.setDisplayNumberOfSamples(true);*/
+	B11.setDisplayNumberOfSamples(true);
 
 
 	Sink B_7{ vector<Signal*> { &S7 }, vector<Signal*> {} };			// Fork output S7
@@ -101,7 +101,7 @@ int main() {
 	// #####################################################################################################
 
 	//System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B78, &B9, &B10, &B11 } };
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B_7, &B_8} };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B_7, &B_8} };
 	//System MainSystem{ vector<Block*> { &B5, &B11} };
 
 	// #####################################################################################################

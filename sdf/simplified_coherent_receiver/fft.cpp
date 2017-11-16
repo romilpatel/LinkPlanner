@@ -1,105 +1,57 @@
-# include "netxpto.h"
+#include "netxpto.h"
+#include "fft.h"
 
-#ifndef M_PI
-#define M_PI  3.14159265358979323846
-#endif
+using namespace std;
 
-
-
-// Private function prototypes
-static size_t reverseBits(size_t x, unsigned int n);
-
-std::vector<complex <double>> Fft::directTransformInReal(std::vector<double> real) {
-	//if (In.real.size() != imag.size())
-	//throw "Mismatched lengths";
-	ComplexMult CMult;
-	vector<double> imag(real.size(), 0);
-	vector<complex <double>> v_out(real.size(), 0);
-	size_t n = real.size();
-
-	if (n == 0)
-		return v_out;
-	else if ((n & (n - 1)) == 0)  // Is power of 2
-		transformRadix2(real, imag);
-	else  // More complicated algorithm for arbitrary sizes
-		transformBluestein(real, imag);
-
-	CMult.ReImVect2ComplexVect(real, imag, v_out);
-	return v_out;
-}
-
-std::vector<double> Fft::inverseTransformInCP(std::vector<complex <double>> &In) {
-	ComplexMult CMult;
-	vector<double> real(In.size(), 0);
-	vector<double> imag(In.size(), 0);
-	CMult.ComplexVect2ReImVect(In, real, imag);
-	directTransform(imag, real);
-	for (int x = 0; x != real.size(); ++x)
-	{
-		real[x] = real[x] / real.size();
-		imag[x] = imag[x] / real.size();
-	}
-
-	vector<double> v_out(real.size(), 0);
-	v_out = real;
-	//CMult.ReImVect2ComplexVect(real, imag, v_out);
-
-	return v_out;
-}
-
-void Fft::directTransform(vector<double> &real, vector<double> &imag) {
-	if (real.size() != imag.size())
+void Fft::directTransform(vector<double> &real, vector<double> &imag)
+{
+	if (real.size() != imag.size())						// Length of real and imaginary part should be the same
 		throw "Mismatched lengths";
 
 	size_t n = real.size();
 	if (n == 0)
 		return;
-	else if ((n & (n - 1)) == 0)  // Is power of 2
+	else if ((n & (n - 1)) == 0)						// Is power of 2
 		transformRadix2(real, imag);
-	else  // More complicated algorithm for arbitrary sizes
+	else											    // More complicated algorithm for arbitrary sizes
 		transformBluestein(real, imag);
-}
+};
 
 
-void Fft::inverseTransform(vector<double> &real, vector<double> &imag) {
-	directTransform(imag, real);
-	for (int x = 0; x != real.size(); ++x)
-	{
-		real[x] = real[x] / real.size();
-		imag[x] = imag[x] / real.size();
-	}
-}
 
-
-void Fft::transformRadix2(vector<double> &real, vector<double> &imag) {
-	// Compute levels = floor(log2(n))
-	if (real.size() != imag.size())
+void Fft:: transformRadix2(vector<double> &real, vector<double> &imag)
+{
+	if (real.size() != imag.size())						// Compute levels = floor(log2(n))
 		throw "Mismatched lengths";
 	size_t n = real.size();
 	unsigned int levels;
+	size_t temp = n;
+	levels = 0;
+
+	while (temp > 1)
 	{
-		size_t temp = n;
-		levels = 0;
-		while (temp > 1) {
-			levels++;
-			temp >>= 1;
-		}
-		if (1u << levels != n)
-			throw "Length is not a power of 2";
+		levels++;
+		temp >>= 1;
 	}
 
-	// Trignometric tables
-	vector<double> cosTable(n / 2);
+	if (1u << levels != n)
+		throw "Length is not a power of 2";
+	
+
+	vector<double> cosTable(n / 2);					// Trignometric tables
 	vector<double> sinTable(n / 2);
-	for (size_t i = 0; i < n / 2; i++) {
+	for (size_t i = 0; i < n / 2; i++)
+	{
 		cosTable[i] = cos(2 * M_PI * i / n);
 		sinTable[i] = sin(2 * M_PI * i / n);
 	}
 
-	// Bit-reversed addressing permutation
-	for (size_t i = 0; i < n; i++) {
+
+	for (size_t i = 0; i < n; i++)					// Bit-reversed addressing permutation
+	{
 		size_t j = reverseBits(i, levels);
-		if (j > i) {
+		if (j > i)
+		{
 			double temp = real[i];
 			real[i] = real[j];
 			real[j] = temp;
@@ -109,12 +61,15 @@ void Fft::transformRadix2(vector<double> &real, vector<double> &imag) {
 		}
 	}
 
-	// Cooley-Tukey decimation-in-time radix-2 FFT
-	for (size_t size = 2; size <= n; size *= 2) {
+
+	for (size_t size = 2; size <= n; size *= 2)		// Cooley-Tukey decimation-in-time radix-2 FFT
+	{
 		size_t halfsize = size / 2;
 		size_t tablestep = n / size;
-		for (size_t i = 0; i < n; i += size) {
-			for (size_t j = i, k = 0; j < i + halfsize; j++, k += tablestep) {
+		for (size_t i = 0; i < n; i += size)
+		{
+			for (size_t j = i, k = 0; j < i + halfsize; j++, k += tablestep)
+			{
 				double tpre = real[j + halfsize] * cosTable[k] + imag[j + halfsize] * sinTable[k];
 				double tpim = -real[j + halfsize] * sinTable[k] + imag[j + halfsize] * cosTable[k];
 				real[j + halfsize] = real[j] - tpre;
@@ -123,65 +78,18 @@ void Fft::transformRadix2(vector<double> &real, vector<double> &imag) {
 				imag[j] += tpim;
 			}
 		}
-		if (size == n)  // Prevent overflow in 'size *= 2'
+		if (size == n)								// Prevent overflow in 'size *= 2'
+
 			break;
 	}
-}
+};
 
 
-void Fft::transformBluestein(vector<double> &real, vector<double> &imag) {
-	// Find a power-of-2 convolution length m such that m >= n * 2 + 1
-	if (real.size() != imag.size())
-		throw "Mismatched lengths";
-	size_t n = real.size();
-	size_t m;
-	{
-		size_t target;
-		if (n > (SIZE_MAX - 1) / 2)
-			throw "Vector too large";
-		target = n * 2 + 1;
-		for (m = 1; m < target; m *= 2) {
-			if (SIZE_MAX / 2 < m)
-				throw "Vector too large";
-		}
-	}
+////////// Subfunction for Radix-2 algorithim  //////////
+/////////////////////////////////////////////////////////
 
-	// Trignometric tables
-	vector<double> cosTable(n), sinTable(n);
-	for (size_t i = 0; i < n; i++) {
-		double temp = M_PI * (size_t)((unsigned long long)i * i % ((unsigned long long)n * 2)) / n;
-		// Less accurate version if long long is unavailable: double temp = M_PI * i * i / n;
-		cosTable[i] = cos(temp);
-		sinTable[i] = sin(temp);
-	}
-
-	// Temporary vectors and preprocessing
-	vector<double> areal(m), aimag(m);
-	for (size_t i = 0; i < n; i++) {
-		areal[i] = real[i] * cosTable[i] + imag[i] * sinTable[i];
-		aimag[i] = -real[i] * sinTable[i] + imag[i] * cosTable[i];
-	}
-	vector<double> breal(m), bimag(m);
-	breal[0] = cosTable[0];
-	bimag[0] = sinTable[0];
-	for (size_t i = 1; i < n; i++) {
-		breal[i] = breal[m - i] = cosTable[i];
-		bimag[i] = bimag[m - i] = sinTable[i];
-	}
-
-	// Convolution
-	vector<double> creal(m), cimag(m);
-	convolve(areal, aimag, breal, bimag, creal, cimag);
-
-	// Postprocessing
-	for (size_t i = 0; i < n; i++) {
-		real[i] = creal[i] * cosTable[i] + cimag[i] * sinTable[i];
-		imag[i] = -creal[i] * sinTable[i] + cimag[i] * cosTable[i];
-	}
-}
-
-
-static size_t reverseBits(size_t x, unsigned int n) {
+static size_t reverseBits(size_t x, unsigned int n)
+{
 	size_t result = 0;
 	unsigned int i;
 	for (i = 0; i < n; i++, x >>= 1)
@@ -189,17 +97,72 @@ static size_t reverseBits(size_t x, unsigned int n) {
 	return result;
 }
 
+////////////////////////////////////////////
+//////////// Bluestein Algorithim //////////
+////////////////////////////////////////////
 
-void Fft::convolve(const vector<double> &x, const vector<double> &y, vector<double> &out) {
-	if (x.size() != y.size() || x.size() != out.size())
+void Fft:: transformBluestein(vector<double> &real, vector<double> &imag)
+{
+	if (real.size() != imag.size())									// Find a power-of-2 convolution length m such that m >= n * 2 + 1
 		throw "Mismatched lengths";
-	size_t n = x.size();
-	vector<double> ximag(n), yimag(n), zimag(n);
-	convolve(x, ximag, y, yimag, out, zimag);
-}
+
+	size_t n = real.size();
+	size_t m;
+	size_t target;
+
+	if (n > (SIZE_MAX - 1) / 2)
+		throw "Vector too large";
+
+	target = n * 2 + 1;
+
+	for (m = 1; m < target; m *= 2)
+	{
+		if (SIZE_MAX / 2 < m)
+			throw "Vector too large";
+	}
 
 
-void Fft::convolve(const vector<double> &xreal, const vector<double> &ximag, const vector<double> &yreal, const vector<double> &yimag, vector<double> &outreal, vector<double> &outimag) {
+	vector<double> cosTable(n), sinTable(n);							// Trignometric tables
+	for (size_t i = 0; i < n; i++)
+	{
+		double temp = M_PI * (size_t)((unsigned long long)i * i % ((unsigned long long)n * 2)) / n;
+
+		cosTable[i] = cos(temp);										// Less accurate version if long long is unavailable: double temp = M_PI * i * i / n;
+		sinTable[i] = sin(temp);
+	}
+
+
+	vector<double> areal(m), aimag(m);									// Temporary vectors and preprocessing
+	for (size_t i = 0; i < n; i++)
+	{
+		areal[i] = real[i] * cosTable[i] + imag[i] * sinTable[i];
+		aimag[i] = -real[i] * sinTable[i] + imag[i] * cosTable[i];
+	}
+	vector<double> breal(m), bimag(m);
+	breal[0] = cosTable[0];
+	bimag[0] = sinTable[0];
+	for (size_t i = 1; i < n; i++)
+	{
+		breal[i] = breal[m - i] = cosTable[i];
+		bimag[i] = bimag[m - i] = sinTable[i];
+	}
+
+
+	vector<double> creal(m), cimag(m);									// Convolution
+	convolve(areal, aimag, breal, bimag, creal, cimag);
+
+	// Postprocessing
+	for (size_t i = 0; i < n; i++) {
+		real[i] = creal[i] * cosTable[i] + cimag[i] * sinTable[i];
+		imag[i] = -creal[i] * sinTable[i] + cimag[i] * cosTable[i];
+	}
+};
+
+
+////////// Subfunction for Bluestein algorithim  //////////
+///////////////////////////////////////////////////////////
+void Fft:: convolve(const vector<double> &xreal, const vector<double> &ximag, const vector<double> &yreal, const vector<double> &yimag, vector<double> &outreal, vector<double> &outimag)
+{
 	if (xreal.size() != ximag.size() || xreal.size() != yreal.size() || yreal.size() != yimag.size() || xreal.size() != outreal.size() || outreal.size() != outimag.size())
 		throw "Mismatched lengths";
 
@@ -216,9 +179,22 @@ void Fft::convolve(const vector<double> &xreal, const vector<double> &ximag, con
 		xi[i] = xi[i] * yr[i] + xr[i] * yi[i];
 		xr[i] = temp;
 	}
+
 	inverseTransform(xr, xi);
-	for (size_t i = 0; i < n; i++) {  // Scaling (because this FFT implementation omits it)
+	for (size_t i = 0; i < n; i++)		// Scaling (because this FFT implementation omits it)
+	{
 		outreal[i] = xr[i] / n;
 		outimag[i] = xi[i] / n;
 	}
-}
+};
+
+
+void Fft :: inverseTransform(vector<double> &real, vector<double> &imag)
+{
+	directTransform(imag, real);
+	for (int x = 0; x != real.size(); ++x)
+	{
+		real[x] = real[x] / real.size();
+		imag[x] = imag[x] / real.size();
+	}
+};

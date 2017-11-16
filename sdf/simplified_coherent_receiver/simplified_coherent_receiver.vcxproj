@@ -151,11 +151,10 @@
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
+    <ClCompile Include="..\..\lib\real_to_complex.cpp" />
     <ClCompile Include="..\..\lib\rf_oscillator.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
-    <ClCompile Include="fft.cpp" />
     <ClCompile Include="kramers_kronig_transceiver_sdf.cpp" />
-    <ClCompile Include="ifft.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\binary_source.h" />
@@ -170,8 +169,6 @@
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\rf_oscillator.h" />
     <ClInclude Include="..\..\include\sink.h" />
-    <ClInclude Include="fft.h" />
-    <ClInclude Include="ifft.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

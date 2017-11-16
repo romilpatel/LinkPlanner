@@ -5,48 +5,43 @@
 # include "netxpto.h"
 
 
-// Creates a complex signal from two real signals
-class ifft : public Block
-{
-	/* State Variables */
-	bool firstTime{ true };
-
-public:
-
-	/* Methods */
-	ifft() {};
-	ifft(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) : Block(InputSig, OutputSig) {};
-	void initialize(void);
-	bool runBlock(void);
-
-};
-
-# endif // PROGRAM_INCLUDE_REAL_TO_COMPLEX_H_
-
-
-
-///////////////////////////////// from available code, new class Fft has been defined_Update according to simulator	//////////////////////////////////////
+#ifndef M_PI
+#define M_PI  3.14159265358979323846
+#endif
 
 
 class Ifft
 {
 
 public:
-	//vector<complex <double>> directTransformInReal(vector<double> real);
 
-	//vector<double> inverseTransformInCP(vector<complex <double>> &In);
+	vector<double> ifft(std::vector<complex <double>> &In)
+	{
+		ComplexMult CMult;
+		vector<double> re(In.size(), 0);
+		vector<double> im(In.size(), 0);
+		CMult.ComplexVect2ReImVect(In, re, im);
+		directTransform(im, re);
+		for (int x = 0; x != re.size(); ++x)
+		{
+			re[x] = re[x] / re.size();
+			im[x] = im[x] / re.size();
+		}
+
+		vector<double> v_out(re.size(), 0);
+		v_out = re;
+		//CMult.ReImVect2ComplexVect(real, imag, v_out);
+
+		return v_out;
+	}
+
 
 	void directTransform(vector<double> &real, vector<double> &imag);
-
-	void inverseTransform(vector<double> &real, vector<double> &imag);
-	
+	void inverseTransform(std::vector<double> &real, std::vector<double> &imag);
 	void transformRadix2(vector<double> &real, vector<double> &imag);
-
 	void transformBluestein(vector<double> &real, vector<double> &imag);
-
-	//void convolve(const vector<double> &x, const vector<double> &y, vector<double> &out);
-
 	void convolve(const vector<double> &xreal, const vector<double> &ximag, const vector<double> &yreal, const vector<double> &yimag, vector<double> &outreal, vector<double> &outimag);
-
-
+		
 };
+
+#endif

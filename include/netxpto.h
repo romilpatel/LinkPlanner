@@ -603,24 +603,25 @@ class Fft
 {
 
 public:
-	std::vector<complex <double>> directTransformInReal(std::vector<double> real);
+	vector<complex <double>> fft(vector<double> real);
 
-	std::vector<double> inverseTransformInCP(std::vector<complex <double>> &In);
+	vector<double> ifft(vector<complex <double>> &In);
 
-	void directTransform(std::vector<double> &real, std::vector<double> &imag);
+	void directTransform(vector<double> &real, vector<double> &imag);
 
-	void inverseTransform(std::vector<double> &real, std::vector<double> &imag);
+	void inverseTransform(vector<double> &real, vector<double> &imag);
 
-	void transformRadix2(std::vector<double> &real, std::vector<double> &imag);
+	void transformRadix2(vector<double> &real, vector<double> &imag);
 
-	void transformBluestein(std::vector<double> &real, std::vector<double> &imag);
+	void transformBluestein(vector<double> &real, vector<double> &imag);
 
-	void convolve(const std::vector<double> &x, const std::vector<double> &y, std::vector<double> &out);
+	void convolve(const vector<double> &x, const vector<double> &y, vector<double> &out);
 
-	void convolve(const std::vector<double> &xreal, const std::vector<double> &ximag, const std::vector<double> &yreal, const std::vector<double> &yimag, std::vector<double> &outreal, std::vector<double> &outimag);
-
+	void convolve(const vector<double> &xreal, const vector<double> &ximag, const vector<double> &yreal, const vector<double> &yimag, vector<double> &outreal, vector<double> &outimag);
 
 };
+
+
 
 class ComplexMult
 {

@@ -962,35 +962,37 @@ void OverlapMethod::overlapSaveSyRealIn(vector<double> &v_in, vector<double> &v_
 // Private function prototypes
 static size_t reverseBits(size_t x, unsigned int n);
 
-std::vector<complex <double>> Fft::directTransformInReal(std::vector<double> real) {
+vector<complex <double>> Fft::fft(std::vector<double> real)
+{
 	//if (In.real.size() != imag.size())
 	//throw "Mismatched lengths";
 	ComplexMult CMult;
-	vector<double> imag(real.size(), 0);
+	vector<double> im(real.size(), 0);
 	vector<complex <double>> v_out(real.size(), 0);
 	size_t n = real.size();
 
 	if (n == 0)
 		return v_out;
 	else if ((n & (n - 1)) == 0)  // Is power of 2
-		transformRadix2(real, imag);
+		transformRadix2(real, im);
 	else  // More complicated algorithm for arbitrary sizes
-		transformBluestein(real, imag);
+		transformBluestein(real, im);
 
-	CMult.ReImVect2ComplexVect(real, imag, v_out);
+	CMult.ReImVect2ComplexVect(real, im, v_out);
 	return v_out;
 }
 
-std::vector<double> Fft::inverseTransformInCP(std::vector<complex <double>> &In) {
+std::vector<double> Fft::ifft(std::vector<complex <double>> &In)
+{
 	ComplexMult CMult;
 	vector<double> real(In.size(), 0);
-	vector<double> imag(In.size(), 0);
-	CMult.ComplexVect2ReImVect(In, real, imag);
-	directTransform(imag, real);
+	vector<double> im(In.size(), 0);
+	CMult.ComplexVect2ReImVect(In, real, im);
+	directTransform(im, real);
 	for (int x = 0; x != real.size(); ++x)
 	{
 		real[x] = real[x] / real.size();
-		imag[x] = imag[x] / real.size();
+		  im[x] =   im[x] / real.size();
 	}
 
 	vector<double> v_out(real.size(), 0);

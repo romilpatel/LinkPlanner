@@ -559,13 +559,14 @@ bool FD_Filter::runBlock(void) {
 	// read incoming samples to the input buffer
 	for (int k = 0; k < process1; k++) {
 		t_real val;
-		(inputSignals[0])->bufferGet(&val);
+		inputSignals[0]->bufferGet(&val);
 		inputBufferTimeDomain[inputBufferPointer] = val;
 		inputBufferPointer++;
 	}
 	//overlapSaveZPRealIn();
 	//OverlapSaveMethod();
-	if ((inputBufferPointer == inputBufferTimeDomain.size()) && (outputBufferPointer == outputBufferTimeDomain.size())) {
+	if ((inputBufferPointer == inputBufferTimeDomain.size()) && (outputBufferPointer == outputBufferTimeDomain.size()))
+	{
 		outputBufferTimeDomain = fft.inverseTransformInCP(CMult.CMultVectorInCP(fft.directTransformInReal(inputBufferTimeDomain), transferFunction));
 		rotate(inputBufferTimeDomain.begin(), inputBufferTimeDomain.begin() + inputBufferTimeDomain.size()/2, inputBufferTimeDomain.end());
 		inputBufferPointer = inputBufferTimeDomain.size()/2;

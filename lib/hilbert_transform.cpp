@@ -22,42 +22,46 @@ bool HilbertTransform::runBlock(void)
 
 	if (process <= 0) return false;
 	
-	t_complex imaginary = (0, 1);
 	vector <complex<double>> inputSignalsFreq;
-	vector <double> outputSignalsFreq[1];
 	t_real S8;
 	vector<double> S9;
-	
+	vector<double> inputBufferTimeDomain;
+
+	vector <double> outputSignalsFreq;
 
 	
 	for (int i = 0; i < process; i++)
 	{
 		inputSignals[0]->bufferGet(&S8);
-		inputSignalsFreq = fft(S8);										// Frequeny domain input signal
+		inputBufferTimeDomain[i] = S8;				
+	}
 
-		/////////// Hilbert Tranformation  //////////////
+	inputSignalsFreq = fft(inputBufferTimeDomain);						// Frequeny domain input signal
+	
+	/////////// Hilbert Tranformation  //////////////
+	// Negative frequency components multiplied by "i" 
+	// Positive frequency components multiplied by "-i" 
+	// For DC, it's multiplied by "0" 
+	// Frequency to time domain conversion
 
-		if (i << process / 2)
+	int n = inputSignalsFreq.size();
+
+	for ()
+	{
+		if ()
 		{
-			outputSignalsFreq[0] = inputSignalsFreq[0]*imaginary;		// Negative frequency components multiplied by "i" 
+
 		}
-		else if (i >> process / 2)
-		{
-			outputSignalsFreq[0] = inputSignalsFreq[0]*(-imaginary);	// Positive frequency components multiplied by "-i" 
-		}
-		else
-			outputSignalsFreq[0] = 0;									// For DC, it's multiplied by "0"
-				 
 
-		S9 = ifft(outputSignalsFreq[0]);								// Frequency to time domain conversion
+	}
 
 
-		outputSignals[0]->bufferPut(S9);								
+										
 
 	}
 
 	return true;
-}
+
 
 
 

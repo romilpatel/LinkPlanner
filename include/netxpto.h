@@ -603,9 +603,9 @@ class Fft
 {
 
 public:
-	vector<complex <double>> fft(vector<double> real);
+	vector<complex <double>> directTransformInReal(vector<double> real);
 
-	vector<double> ifft(vector<complex <double>> &In);
+	vector<double> inverseTransformInCP(vector<complex <double>> &In);
 
 	void directTransform(vector<double> &real, vector<double> &imag);
 
@@ -636,5 +636,60 @@ public:
 	void ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &v1_imag, vector<complex <double>> &v_out);
 
 };
+
+
+///////////////////// FFT function ////////////////////////
+vector <complex<double>> fft(vector <double> real)
+{
+	Fft F;
+
+	vector <complex<double>> Output;						// Type of output of this function : vector <complex<double> & Name of the function : Output
+	
+	ComplexMult CMult;
+	vector<double> im(real.size(), 0);						// Create a vector for imaginary values 
+	vector<complex <double>> v_out(real.size(), 0);
+	size_t n = real.size();
+
+
+	if (n == 0)
+		return v_out;
+	else if ((n & (n - 1)) == 0)							// Is power of 2 : Radix-2 Algorithim
+		F.transformRadix2(real, im);
+	else													// More complicated algorithm for arbitrary sizes : Bluestein Algorithim
+		F.transformBluestein(real, im);
+
+
+	CMult.ReImVect2ComplexVect(real, im, Output);
+	return Output;
+
+};
+
+///////////////////// IFFT function ////////////////////////
+vector<double> ifft(vector<complex<double>> input)
+{
+	Fft IF;
+	ComplexMult split;
+	
+	vector <double> re(input.size(),0);						// Vector for holding REAL data
+	vector <double> im(input.size(),0);						// Vector for holding IMAG data
+
+	split.ComplexVect2ReImVect(input, re, im);				// Split complex data into real and imaginary vector
+
+	IF.directTransform(im,re);								// Inverse fourier transformation
+
+	for (int i=0; i<re.size(); i++)
+	{
+		re[i] = re[i] / re.size();							// Normalization of real data
+		im[i] = im[i] / re.size();							// This will be zero in case of real time signal
+	}
+	
+	vector <double> Output;
+	Output = re;
+
+	return Output;
+};
+
+
+
 
 # endif // PROGRAM_INCLUDE_netxpto_H_

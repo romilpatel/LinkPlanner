@@ -962,7 +962,7 @@ void OverlapMethod::overlapSaveSyRealIn(vector<double> &v_in, vector<double> &v_
 // Private function prototypes
 static size_t reverseBits(size_t x, unsigned int n);
 
-vector<complex <double>> Fft::fft(std::vector<double> real)
+vector<complex <double>> Fft::directTransformInReal(std::vector<double> real)
 {
 	//if (In.real.size() != imag.size())
 	//throw "Mismatched lengths";
@@ -982,7 +982,7 @@ vector<complex <double>> Fft::fft(std::vector<double> real)
 	return v_out;
 }
 
-std::vector<double> Fft::ifft(std::vector<complex <double>> &In)
+std::vector<double> Fft::inverseTransformInCP(std::vector<complex <double>> &In)
 {
 	ComplexMult CMult;
 	vector<double> real(In.size(), 0);

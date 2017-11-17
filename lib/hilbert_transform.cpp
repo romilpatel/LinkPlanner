@@ -23,16 +23,17 @@ bool HilbertTransform::runBlock(void)
 	if (process <= 0) return false;
 	
 	t_complex imaginary = (0, 1);
-	t_complex inputSignalsFreq[1];
-	t_complex outputSignalsFreq[1];
+	vector <complex<double>> inputSignalsFreq;
+	vector <double> outputSignalsFreq[1];
 	t_real S8;
-	t_real S9;
+	vector<double> S9;
 	
+
 	
 	for (int i = 0; i < process; i++)
 	{
 		inputSignals[0]->bufferGet(&S8);
-		inputSignalsFreq[0] = fft(S8);									// Frequeny domain input signal
+		inputSignalsFreq = fft(S8);										// Frequeny domain input signal
 
 		/////////// Hilbert Tranformation  //////////////
 
@@ -57,6 +58,7 @@ bool HilbertTransform::runBlock(void)
 
 	return true;
 }
+
 
 
 

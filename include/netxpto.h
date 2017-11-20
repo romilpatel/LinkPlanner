@@ -637,7 +637,7 @@ public:
 
 };
 
-
+/*
 ///////////////////// FFT function ////////////////////////
 vector <complex<double>> fft(vector <double> real)
 {
@@ -689,7 +689,7 @@ vector<double> ifft(vector<complex<double>> input)
 	return Output;
 };
 
-
+*/
 
 
 # endif // PROGRAM_INCLUDE_netxpto_H_

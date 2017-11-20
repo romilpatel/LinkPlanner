@@ -1023,7 +1023,7 @@ void Fft::inverseTransform(vector<double> &real, vector<double> &imag)
 	directTransform(imag, real);					// Inverse function
 	for (int x = 0; x != real.size(); ++x)
 	{
-		real[x] = real[x] / real.size();			// Normalize 
+		real[x] = real[x] / real.size();			// Normalize
 		imag[x] = imag[x] / real.size();
 	}
 }
@@ -1041,7 +1041,7 @@ void Fft::transformRadix2(vector<double> &real, vector<double> &imag) {
 		while (temp > 1)
 		{
 			levels++;
-			temp >>= 1;			// temp = temp >> 1
+			temp >>= 1;			// temp = temp >> 1 (bit wise right shift)
 		}
 		if (1u << levels != n)
 			throw "Length is not a power of 2";

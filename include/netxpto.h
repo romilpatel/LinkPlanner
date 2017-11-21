@@ -10,28 +10,30 @@
 # include <functional>	// bind1st
 
 
-const int		MAX_NAME_SIZE = 256;				// Maximum size of names
-const long int	MAX_Sink_LENGTH = 100000;			// Maximum Sink Block number of values
-const int		MAX_BUFFER_LENGTH = 10000;			// Maximum Signal buffer length
-const int		MAX_TOPOLOGY_SIZE = 100;			// Maximum System topology size 
-const int		MAX_TAPS = 1000;					// Maximum Taps Number
-const double	PI = 3.1415926535897932384;			// Value of pi
-const double	SPEED_OF_LIGHT = 299792458;			// Speed of light in vaccum
-const double	PLANCK_CONSTANT = 6.626070040e-34;	// NIST
-const int		MAX_NUMBER_OF_PATHS = 2;
+const int MAX_NAME_SIZE = 256;					// Maximum size of names
+const long int MAX_Sink_LENGTH = 100000;		// Maximum Sink Block number of values
+const int MAX_BUFFER_LENGTH = 10000;			// Maximum Signal buffer length
+const int MAX_TOPOLOGY_SIZE = 100;				// Maximum System topology size 
+const int MAX_TAPS = 1000;						// Maximum Taps Number
+const double PI = 3.1415926535897932384;		// Value of pi
+const double SPEED_OF_LIGHT = 299792458;		// Speed of light in vaccum
+const double PLANCK_CONSTANT = 6.626070040e-34; // NIST
+const int MAX_NUMBER_OF_PATHS = 2;
 
 using namespace std;
 
-typedef unsigned int	t_binary;
-typedef int				t_integer;
-typedef double			t_real;
-typedef	complex<t_real> t_complex;
+typedef unsigned int t_binary;
+typedef int t_integer;
+typedef double t_real;
+typedef complex<t_real> t_complex;
 typedef struct { t_complex x; t_complex y; } t_complex_xy;
 typedef struct { t_real probabilityAmplitude;  t_real polarization; } t_photon;
 typedef struct { t_photon path[MAX_NUMBER_OF_PATHS]; } t_photon_mp;
 typedef complex<t_real> t_iqValues;
+typedef struct { string fieldName; string fieldValue; } t_message_field;
+typedef vector<t_message_field> t_message;
 
-enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP};
+enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP, Message};
 
 
 //########################################################################################################################################################
@@ -75,9 +77,6 @@ public:
 	double centralWavelength{ 1550E-9 };
 	double centralFrequency{ SPEED_OF_LIGHT / centralWavelength };
 
-	double centralrfFrequency{100E6};									// Set RF frequency for RF oscillator
-	double centralrfWavelength{ SPEED_OF_LIGHT / centralrfFrequency };	// Set RF wavength  for RF oscillator
-
 
 	/* Methods */
 
@@ -88,7 +87,7 @@ public:
 
 	// Signal constructor
 
-	~Signal(){ delete buffer; };					// Signal destructor
+	~Signal() { if (!(valueType == Message)) { delete buffer; }; };					// Signal destructor
 
 	void close();									// Empty the signal buffer and close the signal file
 	int space();									// Returns the signal buffer space
@@ -97,9 +96,8 @@ public:
 	void writeHeader(string signalPath);			// Opens the signal file in the signalPath directory, and writes the signal header
 
 
-		template<typename T>						// Puts a value in the buffer
-	void bufferPut(T value)
-	{
+	template<typename T>							// Puts a value in the buffer
+	void bufferPut(T value) {
 		(static_cast<T *>(buffer))[inPosition] = value;
 		if (bufferEmpty) bufferEmpty = false;
 		inPosition++;
@@ -131,6 +129,7 @@ public:
 	void virtual bufferGet(t_complex_xy *valueAddr);
 	void virtual bufferGet(t_photon *valueAddr);
 	void virtual bufferGet(t_photon_mp *valueAddr);
+	void virtual bufferGet(t_message *valueAdr);
 	
 	void setSaveSignal(bool sSignal){ saveSignal = sSignal; };
 	bool const getSaveSignal(){ return saveSignal; };
@@ -157,13 +156,13 @@ public:
 	void setNumberOfValuesToBeSaved(long int nOfValuesToBeSaved) { numberOfValuesToBeSaved = nOfValuesToBeSaved; };
 	long int getNumberOfValuesToBeSaved(){ return numberOfValuesToBeSaved; };
 
-	void setSymbolPeriod(double sPeriod) { symbolPeriod = sPeriod; };
+	void setSymbolPeriod(double sPeriod) { symbolPeriod = sPeriod; samplesPerSymbol = symbolPeriod / samplingPeriod; };
 	double getSymbolPeriod() { return symbolPeriod; };
 
-	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; };
+	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; samplesPerSymbol = symbolPeriod / samplingPeriod; };
 	double getSamplingPeriod(){ return samplingPeriod; };
 
-	void setSamplesPerSymbol(double sPeriod) { samplesPerSymbol = sPeriod; };
+	void setSamplesPerSymbol(double sPeriod) { samplesPerSymbol = sPeriod; symbolPeriod = samplesPerSymbol * samplingPeriod; samplingPeriod = symbolPeriod / samplesPerSymbol; };
 	double getSamplesPerSymbol(){ return samplesPerSymbol; };
 
 	void setCentralFrequency(double cFrequency){ centralFrequency = cFrequency; centralWavelength = SPEED_OF_LIGHT / centralFrequency; }
@@ -171,12 +170,6 @@ public:
 
 	void setCentralWavelength(double cWavelength){ centralWavelength = cWavelength; centralFrequency = SPEED_OF_LIGHT / centralWavelength; }
 	double getCentralWavelength(){ return centralWavelength; }
-
-	void setCentralrfFrequency(double crfFrequency) { centralrfFrequency = crfFrequency; centralrfWavelength = SPEED_OF_LIGHT / centralrfFrequency; }		// RF oscillator frequency
-	double getCentralrfFrequency() { return centralrfFrequency; };
-
-	void setCentralrfWavelength(double crfWavelength) { centralrfWavelength = crfWavelength; centralrfFrequency = SPEED_OF_LIGHT / centralrfWavelength; }	// RF oscillator wavelength
-	double getCentralrfWavelength() { return centralrfWavelength; }
 
 };
 
@@ -382,6 +375,18 @@ private:
 	vector<double> centralWavelengths;
 	vector<double> centralFrequencies;
 };*/
+
+class Messages : public Signal {
+public:
+	Messages(string fName) { setType("Message", Message); setFileName(fName); if (buffer == nullptr) buffer = new t_message[bufferLength]; }
+	Messages(string fName, int bLength) { setType("Message", Message); setFileName(fName); setBufferLength(bLength); }
+	Messages(int bLength) { setType("Message", Message); setBufferLength(bLength); }
+	Messages() { setType("Message", Message); if (buffer == nullptr) buffer = new t_message[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_message[bLength]; };
+	
+	void bufferPut(t_message);
+};
 
 //########################################################################################################################################################
 //########################################################## GENERIC BLOCK DECLARATIONS AND DEFINITIONS ##################################################

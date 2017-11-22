@@ -21,7 +21,7 @@ function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRat
 %
 % Functional Description
 % This matlab function generates a *.wfm file given an input signal file (*.sgn).
-% the signal must be real, not exceed 8GS  and have a sampling rate equal or bellow 16 GS/s. 
+% the signal must be real, not exceed 8GS  and have a sampling rate equal or bellow 16 GS/s.
 %
 % Examples 
 % Using one argument:
@@ -47,31 +47,47 @@ if nargin == 2
 end
 [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname_sgn, nReadr );
 samplingRate=1/samplingPeriod;
+
+% PRINT ERROR MESSAGE WHEN SIGNAL IS NOT
+% 'TimeContinuousAmplitudeContinuousReal'.
 if (~strcmp(type,'TimeContinuousAmplitudeContinuousReal'))
      msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
      error('\nError: The chosen signal type is not compatible with this function (%s).\nMake sure the type of the signal is TimeContinuousAmplitudeContinuousReal. \n\n',type);
      clear all;
      return;
 end
+
+% PRINT ERROR MESSAGE WHEN SIGNAL SAMPLING RATE IS GREATER THAN '16e9'.
 % if (samplingRate >  16e9)
 %      msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
 %      error('\nError: The Sampling Rate of the chosen signal(%d GS/s) is greater than the maximum sampling frequency of the AWG(16 GS/s).\nPlease choose a signal with a sampling frequency lower than 16 GS/s.\n\n',samplingRate/1e9);
 %       clear all;
 %       return;
 % end
+
+
+% PRINT ERROR MESSAGE WHEN SIGNAL LENGTH IS GREATER THAN '8e9'.
 if (length(data) >  8e9)
       msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
       error('\nError: The chosen signal has to many samples(%d GS).\nMake sure it is less or equal to 8 G samples.\n\n',length(data)/1e9);
       clear all;
       return;
 end
+
+% THIS IF LOOP CONVERT THE LENGTH OF THE SIGNAL TO BE INTEGER MULTIPLE OF
+% 4
 if (length(data)/4 ~= 0)
     data=data(1:length(data)-rem(length(data),4));
 end
-data=data/max(abs(data));
-data=data';
-sizeMark=size(data,1);
-marker = false(sizeMark, 2);  % Initializing markers
+
+decimateFactor = 4;
+data = decimate(data,decimateFactor);
+
+
+data=data/max(abs(data));     % Normalizing the data
+data=data';                   % Row to Columun 
+sizeMark=size(data,1);        % Size of the data = number of row
+marker = false(sizeMark, 2);  % Initializing markers (false will generate mattrix of size 'sizeMark x 2' with all zero logical values)
 
 
 BuildTektronixAWG710xWFM(data,marker,samplingRate,fname_wfm);

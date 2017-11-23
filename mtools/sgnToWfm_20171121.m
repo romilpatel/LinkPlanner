@@ -80,13 +80,14 @@ if (length(data)/4 ~= 0)
     data=data(1:length(data)-rem(length(data),4));
 end
 
-decimateFactor = 4;
-data = decimate(data,decimateFactor);
+% This function will decimate the input signal by given decimation factor.
+% decimateFactor = 16;
+% data = decimate(data,decimateFactor);
 
 
 data=data/max(abs(data));     % Normalizing the data
 data=data';                   % Row to Columun 
-sizeMark=size(data,1);        % Size of the data = number of row
+sizeMark=size(data,1);        % sizeMark = number of row
 marker = false(sizeMark, 2);  % Initializing markers (false will generate mattrix of size 'sizeMark x 2' with all zero logical values)
 
 

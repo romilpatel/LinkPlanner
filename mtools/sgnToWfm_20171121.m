@@ -1,4 +1,4 @@
-function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn, nReadr, fname_wfm )
+function [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRateDecimate ] = sgnToWfm_20171121( fname_sgn, nReadr, fname_wfm )
 %
 %
 % [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn, nReadr, fname_wfm );
@@ -45,8 +45,8 @@ end
 if nargin == 2
     fname_wfm = [strtok(fname_sgn,'.') '.wfm'];
 end
-[ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname_sgn, nReadr );
-samplingRate=1/samplingPeriod;
+[ dataDecimate, data, symbolPeriod, samplingPeriod, samplingPeriodDecimate, type, numberOfSymbols ] = readSignal_20171121( fname_sgn, nReadr );
+samplingRateDecimate=1/samplingPeriodDecimate;
 
 % PRINT ERROR MESSAGE WHEN SIGNAL IS NOT
 % 'TimeContinuousAmplitudeContinuousReal'.
@@ -57,51 +57,28 @@ if (~strcmp(type,'TimeContinuousAmplitudeContinuousReal'))
      return;
 end
 
-% PRINT ERROR MESSAGE WHEN SIGNAL SAMPLING RATE IS GREATER THAN '16e9'.
-% if (samplingRate >  16e9)
-%      msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
-%      error('\nError: The Sampling Rate of the chosen signal(%d GS/s) is greater than the maximum sampling frequency of the AWG(16 GS/s).\nPlease choose a signal with a sampling frequency lower than 16 GS/s.\n\n',samplingRate/1e9);
-%       clear all;
-%       return;
-% end
-
-
 % PRINT ERROR MESSAGE WHEN SIGNAL LENGTH IS GREATER THAN '8e9'.
-if (length(data) >  8e9)
+if    (length(dataDecimate) >  8e9)                   % revise : whether  "(length(data) >  8e9)" is required or not?.
       msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
       error('\nError: The chosen signal has to many samples(%d GS).\nMake sure it is less or equal to 8 G samples.\n\n',length(data)/1e9);
       clear all;
       return;
 end
 
-% THIS IF LOOP CONVERT THE LENGTH OF THE SIGNAL TO BE INTEGER MULTIPLE OF
-% 4
-if (length(data)/4 ~= 0)
-    data=data(1:length(data)-rem(length(data),4));
+% THIS IF LOOP CONVERT THE LENGTH OF THE SIGNAL TO BE INTEGER MULTIPLE OF 4
+if (length(dataDecimate)/4 ~= 0)
+    dataDecimate=dataDecimate(1:length(dataDecimate)-rem(length(dataDecimate),4));
 end
 
-% This function will decimate the input signal by given decimation factor.
-% decimateFactor = 16;
-% data = decimate(data,decimateFactor);
+dataDecimate=dataDecimate/max(abs(dataDecimate));     % Normalizing the data
+dataDecimate=dataDecimate';                           % Row to Columun 
+sizeMark=size(dataDecimate,1);                        % sizeMark = number of row
+marker = false(sizeMark, 2);                          % Initializing markers (false will generate mattrix of size 'sizeMark x 2' with all zero logical values)
 
-
-data=data/max(abs(data));     % Normalizing the data
-data=data';                   % Row to Columun 
-sizeMark=size(data,1);        % sizeMark = number of row
-marker = false(sizeMark, 2);  % Initializing markers (false will generate mattrix of size 'sizeMark x 2' with all zero logical values)
-
-
-BuildTektronixAWG710xWFM(data,marker,samplingRate,fname_wfm);
-
+BuildTektronixAWG710xWFM(dataDecimate,marker,samplingRateDecimate,fname_wfm);
 
 % This function will build a WFM file for importing data into a Tektronix
 % Arbitrary Waveform Generator Model number AWG710 or AWG710B
-%
-% known limitations
-%           - This function will not check that the data will fit within 
-%             the memory of the device
-%           - This function will not check that the clock rate is within
-%             the capabilites if the 
 %
 % Inputs
 % Signal    - A double precision floating point input vector that contains the
@@ -119,7 +96,7 @@ BuildTektronixAWG710xWFM(data,marker,samplingRate,fname_wfm);
 function BuildTektronixAWG710xWFM(Signal,Marker,ClockRate,Filename)
 
 %% perform checks on the Signal input
-if ~isfloat(Signal)
+if ~isfloat(Signal)                 
     error('The signal input must be floating point')
 end
 
@@ -139,8 +116,6 @@ end
 if (max(Signal) < 0.1) || (min(Signal) > -0.1)
     warning('Signal may only be using 10% of the instrument dynmic range')
 end
-
-
     
 %% perform checks on Marker Input
 if ~islogical(Marker)
@@ -180,7 +155,6 @@ fwrite(fid, Signal(2:end), 'float', 1); % skip marker bytes
 
 fseek(fid,position_after_header,'bof');
 fwrite(fid, combined_marker, 'uint8', 4);
-
 
 fwrite(fid, ['CLOCK', sprintf('%7e',ClockRate)]);
 fwrite(fid, crlf);

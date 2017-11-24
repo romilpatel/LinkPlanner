@@ -19,7 +19,7 @@ int main() {
 
 	BinarySourceMode sourceMode{ PseudoRandom };
 	int patternLength{ 5 };
-	double bitPeriod{ 1.0 / 2.5e9 };
+	double bitPeriod{ 1.0 / 10e9 };
 	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 },{ 4,0 } } };
 	//vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 },{ 4,0 },{ 5,0 },{ 6,0 },{ 7,0 },{ 8,0 },{ 9,0 },{ 10,0 },{ 11,0 },{ 12,0 },{ 13,0 },{ 14,0 },{ 15,0 } } };
 	int numberOfBits{ 1000 };				                                        // For value of {-1}, it'll generate long bit sequence.

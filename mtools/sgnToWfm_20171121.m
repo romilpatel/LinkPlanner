@@ -1,4 +1,4 @@
-function [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRateDecimate ] = sgnToWfm_20171121( fname_sgn, nReadr, fname_wfm )
+function [ dataDecimate, data, symbolPeriod, samplingPeriod, samplingRateDecimate,type, numberOfSymbols, r ] = sgnToWfm_20171121( fname_sgn, nReadr, fname_wfm )
 %
 %
 % [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn, nReadr, fname_wfm );
@@ -45,24 +45,15 @@ end
 if nargin == 2
     fname_wfm = [strtok(fname_sgn,'.') '.wfm'];
 end
-[ dataDecimate, data, symbolPeriod, samplingPeriod, samplingPeriodDecimate, type, numberOfSymbols ] = readSignal_20171121( fname_sgn, nReadr );
+[ dataDecimate, data, symbolPeriod, samplingPeriod, samplingPeriodDecimate, type, numberOfSymbols, r ] = readSignal_20171121( fname_sgn, nReadr );
 samplingRateDecimate=1/samplingPeriodDecimate;
 
-% PRINT ERROR MESSAGE WHEN SIGNAL IS NOT
-% 'TimeContinuousAmplitudeContinuousReal'.
+% PRINT ERROR MESSAGE WHEN SIGNAL IS NOT 'TimeContinuousAmplitudeContinuousReal'.
 if (~strcmp(type,'TimeContinuousAmplitudeContinuousReal'))
      msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
      error('\nError: The chosen signal type is not compatible with this function (%s).\nMake sure the type of the signal is TimeContinuousAmplitudeContinuousReal. \n\n',type);
      clear all;
      return;
-end
-
-% PRINT ERROR MESSAGE WHEN SIGNAL LENGTH IS GREATER THAN '8e9'.
-if    (length(dataDecimate) >  8e9)                   % revise : whether  "(length(data) >  8e9)" is required or not?.
-      msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
-      error('\nError: The chosen signal has to many samples(%d GS).\nMake sure it is less or equal to 8 G samples.\n\n',length(data)/1e9);
-      clear all;
-      return;
 end
 
 % THIS IF LOOP CONVERT THE LENGTH OF THE SIGNAL TO BE INTEGER MULTIPLE OF 4

@@ -1,4 +1,4 @@
-function [ dataDecimate, data, symbolPeriod, samplingPeriod, samplingPeriodDecimate, type, numberOfSymbols ] = readSignal_20171121( fname, nReadr )
+function [ dataDecimate, data, symbolPeriod, samplingPeriod, samplingPeriodDecimate, type, numberOfSymbols, r ] = readSignal_20171121( fname, nReadr )
 
 %READSIGNALDATA Reads signal data to "visualizer".
 %   [ data, samplingFrequency ] = READSIGNALDATA(fid, type, symbolPeriod, samplingPeriod)
@@ -101,9 +101,9 @@ end
 difference = samplesPerSymbol-maximumSamples;
 r = ceil(samplesPerSymbol/difference);        % This 'r' is the decimation factor
 
-%% New sampling period
+%% DISPLAY :  NEW SAMPLING FREQUENCY AND RECOMMENDED DECOMATION FACTOR
 samplingPeriodDecimate = 1/samplingFrequencyDecimate;           
-fprintf('\n\nNew "samplingPeriodDecimate = %d" and the decomation factor "r = %d"\n',samplingPeriodDecimate, r);
+fprintf('\n\nNew "samplingFrequencyDecimate = %d" and the recommend decomation factor "r = %d"\n',samplingFrequencyDecimate, r);
 
 %% Number of samples per period
 if (symbolPeriod==1)
@@ -112,13 +112,26 @@ else
     samplesPerSymbolDecimate = (symbolPeriod/samplingPeriodDecimate);
 end
 
-%%
+%% DECIMATE DATA
 if (r==0)
     dataDecimate = data;
 else
     dataDecimate = decimate(data,r);    
 end
-
+%% PRINT ERROR MESSAGE WHEN SIGNAL LENGTH IS GREATER THAN 'maximumWaveformMemory'.
+if    (length(dataDecimate) >  maximumWaveformMemory)                 
+      msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
+      error('\nError: The chosen signal has to many samples(%d GS).\nMake sure it is less or equal to 8 G samples.\n\n',length(dataDecimate)/1e9);
+      clear all;
+      return;
+end
+% CONSIDER MAXIMUM LENGTH OF DATA VECTOR EQUALS TO "maximumWaveformMemory".
+if  (length(dataDecimate) >  maximumWaveformMemory)                   
+    dataDecimate = dataDecimate(1:maximumWaveformMemory);
+else
+    dataDecimate = dataDecimate;
+end
+%%
 figure;
 t = (0:1:length(data)-1)*samplingPeriod;
 tDecimate = (0:r:length(data)-1)*samplingPeriod;

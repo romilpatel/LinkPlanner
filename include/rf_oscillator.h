@@ -13,7 +13,7 @@ class RfOscillator : public Block {
 
 	double rfAmplitude{ 1.0 };				
 	double rfInitialPhase{ 0.0 };
-	double rfFrequency{ 500E6 };
+	double rfFrequency{ 100E6 };
 	double samplingPeriod{ 1.0 };
 	double symbolPeriod{ 1.0 };
 

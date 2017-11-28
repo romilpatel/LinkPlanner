@@ -59,12 +59,11 @@ This matlab function generates a *.wfm file given an input signal file (*.sgn). 
 
 
 \subsection*{This function can be called with one, two or three arguments:}
-Using one argument:
-
+\textbf{Using one argument:}
 \bigskip
 
 \noindent
-[data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn');
+[dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRateDecimate]  = sgnToWfm\_20171121sgnToWfm('S6.sgn')
 \bigskip
 
 \noindent
@@ -72,12 +71,11 @@ This creates a waveform file with the same name as the *.sgn file and uses all o
 \bigskip
 
 \noindent
-Using two arguments:
-
+\textbf{Using two arguments:}
 \bigskip
 
 \noindent
-[data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn',256);
+[dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRateDecimate]  = sgnToWfm\_20171121sgnToWfm('S6.sgn',256);
 \bigskip
 
 \noindent
@@ -85,8 +83,7 @@ This creates a waveform file with the same name as the signal file name and the 
 \bigskip
 
 \noindent
-Using three arguments:
-
+\textbf{Using three arguments:}
 \bigskip
 
 \noindent

@@ -30,8 +30,8 @@ typedef struct { t_complex x; t_complex y; } t_complex_xy;
 typedef struct { t_real probabilityAmplitude;  t_real polarization; } t_photon;
 typedef struct { t_photon path[MAX_NUMBER_OF_PATHS]; } t_photon_mp;
 typedef complex<t_real> t_iqValues;
-typedef struct { string fieldName; string fieldValue; } t_message_field;
-typedef vector<t_message_field> t_message;
+//typedef struct { string fieldName; string fieldValue; } t_message_field;    
+//typedef vector<t_message_field> t_message;
 
 enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP, Message};
 
@@ -129,7 +129,7 @@ public:
 	void virtual bufferGet(t_complex_xy *valueAddr);
 	void virtual bufferGet(t_photon *valueAddr);
 	void virtual bufferGet(t_photon_mp *valueAddr);
-	void virtual bufferGet(t_message *valueAdr);
+	//void virtual bufferGet(t_message *valueAdr);
 	
 	void setSaveSignal(bool sSignal){ saveSignal = sSignal; };
 	bool const getSaveSignal(){ return saveSignal; };
@@ -376,7 +376,7 @@ private:
 	vector<double> centralFrequencies;
 };*/
 
-class Messages : public Signal {
+/*class Messages : public Signal {
 public:
 	Messages(string fName) { setType("Message", Message); setFileName(fName); if (buffer == nullptr) buffer = new t_message[bufferLength]; }
 	Messages(string fName, int bLength) { setType("Message", Message); setFileName(fName); setBufferLength(bLength); }
@@ -386,7 +386,7 @@ public:
 	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_message[bLength]; };
 	
 	void bufferPut(t_message);
-};
+};*/
 
 //########################################################################################################################################################
 //########################################################## GENERIC BLOCK DECLARATIONS AND DEFINITIONS ##################################################

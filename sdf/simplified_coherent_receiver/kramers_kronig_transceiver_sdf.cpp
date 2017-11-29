@@ -19,11 +19,11 @@ int main() {
 
 	BinarySourceMode sourceMode{ PseudoRandom };
 	int patternLength{ 5 };
-	double bitPeriod{ 1.0 / 10e9 };
-	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 },{ 4,0 } } };
+	double bitPeriod{ 1.0 / 5e9 };
+	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 } } };
 	//vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 },{ 4,0 },{ 5,0 },{ 6,0 },{ 7,0 },{ 8,0 },{ 9,0 },{ 10,0 },{ 11,0 },{ 12,0 },{ 13,0 },{ 14,0 },{ 15,0 } } };
 	int numberOfBits{ 1000 };				                                        // For value of {-1}, it'll generate long bit sequence.
-	int numberOfSamplesPerSymbol{ 16 };
+	int numberOfSamplesPerSymbol{ 10 };
 	double rollOffFactor{ 0.3 };
 	int impulseResponseTimeLength{ 16 };
 	double rfFrequency{500E6};														// It depends on the bandwidth of the signal
@@ -110,7 +110,7 @@ int main() {
 	// #####################################################################################################
 
 	MainSystem.run();
+	cout << "\nExecution Finished, Please hit Enter to exit!";
 	getchar();
 	return 0;
-
 }

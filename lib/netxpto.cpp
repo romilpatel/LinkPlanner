@@ -111,7 +111,7 @@ void Signal::writeHeader(){
 		headerFile << "Signal type: " << type << "\n";
 		headerFile << "Symbol Period (s): " << symbolPeriod << "\n";
 		headerFile << "Sampling Period (s): " << samplingPeriod << "\n";
-		headerFile << "Samples per Symbol (s): " << samplesPerSymbol << "\n";
+		//headerFile << "Samples per Symbol (s): " << samplesPerSymbol << "\n";
 
 		headerFile << "// ### HEADER TERMINATOR ###\n";
 
@@ -130,7 +130,7 @@ void Signal::writeHeader(string signalPath){
 		headerFile << "Signal type: " << type << "\n";
 		headerFile << "Symbol Period (s): " << symbolPeriod << "\n";
 		headerFile << "Sampling Period (s): " << samplingPeriod << "\n";
-		headerFile << "Samples per Symbol (s): " << samplesPerSymbol << "\n";
+		//headerFile << "Samples per Symbol (s): " << samplesPerSymbol << "\n";
 
 		headerFile << "// ### HEADER TERMINATOR ###\n";
 

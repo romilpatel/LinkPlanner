@@ -1,4 +1,4 @@
-function [ dataDecimate, data, symbolPeriod, samplingPeriod, samplingRateDecimate,type, numberOfSymbols, r ] = sgnToWfm_20171121( fname_sgn, nReadr, fname_wfm )
+function [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRateDecimate ] = sgnToWfm_20171121( fname_sgn, nReadr, fname_wfm )
 %
 %
 % [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn, nReadr, fname_wfm );
@@ -38,6 +38,7 @@ function [ dataDecimate, data, symbolPeriod, samplingPeriod, samplingRateDecimat
 % This creates a waveform file with the name "myWaveform" and the number of samples used equals nReadr x samplesPerSymbol.
 % The samplesPerSymbol constant is defined in the *.sgn file.
 
+%%
 if nargin == 1
     fname_wfm = [strtok(fname_sgn,'.') '.wfm'];
     nReadr = Inf;
@@ -45,15 +46,89 @@ end
 if nargin == 2
     fname_wfm = [strtok(fname_sgn,'.') '.wfm'];
 end
-[ dataDecimate, data, symbolPeriod, samplingPeriod, samplingPeriodDecimate, type, numberOfSymbols, r ] = readSignal_20171121( fname_sgn, nReadr );
-samplingRateDecimate=1/samplingPeriodDecimate;
 
-% PRINT ERROR MESSAGE WHEN SIGNAL IS NOT 'TimeContinuousAmplitudeContinuousReal'.
+[ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname_sgn, nReadr );
+
+%% DECIMATE START
+maximumSamplingFrequency  = 16e9;         % set the maximum sampling rate of the AWG
+maximumWaveformMemory     = 8e9;          % set the maximum waveform memory of the AWG
+
+symbolFrequency           = 1/symbolPeriod;
+samplingFrequency         = 1/samplingPeriod;
+
+if (symbolPeriod==1)
+    samplesPerSymbol = 1;
+else
+    samplesPerSymbol = (symbolPeriod/samplingPeriod);
+end
+
+
+% CALCULATE DECIMATION FACTOR 'r'.
+excessiveSamples = 0;                             
+samplingFrequencyReference =  1/samplingPeriod;   
+if (samplingFrequency > maximumSamplingFrequency)
+    while samplingFrequencyReference > maximumSamplingFrequency
+    samplingFrequencyReference = samplingFrequencyReference - symbolFrequency;
+    excessiveSamples = excessiveSamples +1;
+    end
+end
+maximumSamples = samplesPerSymbol-excessiveSamples;
+r = ceil(samplesPerSymbol/maximumSamples);          
+
+
+% CALCULATE DECIMATED FREQUENCY
+samplingPeriodDecimate = samplingPeriod*r;
+samplingRateDecimate = 1/samplingPeriodDecimate;
+
+
+% DECIMATE DATA
+if (r==0)
+    warning('Error :: Bit rate is too high !!!');
+    return;
+else
+    dataDecimate = decimate(data,r);    
+end
+
+% DISPLAY IN COMMAND WINDOW
+if (samplingFrequency>maximumSamplingFrequency)
+warning('The sampling frequency was %dGHz and the signal was decimated to obtain a sampling frequency of %gGHz (< %gGHz).\n',samplingFrequency/1e9, samplingRateDecimate/1e9,maximumSamplingFrequency/1e9);
+end
+fprintf('\nThe decomation factor r = %d\n',r);
+
+%% Uncomment this section to view the TO COMPARE ORIGINAL AND DECIMATED DATA
+% figure;
+% t = (0:1:length(data)-1)*samplingPeriod;
+% tDecimate = (0:r:length(data)-1)*samplingPeriod;
+% plot(t(1:end),data(1:end),'-o');
+% grid on
+% hold on
+% stem(tDecimate(1:end),dataDecimate(1:end),'ro','filled','markersize',4);
+% xlabel 'Time in Seconds',ylabel 'Signals'
+% legend('Original','Decimated')
+% 
+% figure;
+% plot(t(1:end),data(1:end));
+% hold on;
+% plot(tDecimate(1:end),dataDecimate(1:end),'LineWidth',3);
+% xlabel 'Time in Seconds',ylabel 'Signal'
+% legend('Simulated Waveform','Downsampled AWG Waveform')
+% title('Simulated vs AWG waveform');
+
+% DECIMATE END
+%% PRINT ERROR MESSAGE WHEN SIGNAL IS NOT 'TimeContinuousAmplitudeContinuousReal'.
 if (~strcmp(type,'TimeContinuousAmplitudeContinuousReal'))
      msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
      error('\nError: The chosen signal type is not compatible with this function (%s).\nMake sure the type of the signal is TimeContinuousAmplitudeContinuousReal. \n\n',type);
      clear all;
      return;
+end
+
+% PRINT ERROR MESSAGE WHEN SIGNAL IS GREATER THAN 'maximumWaveformMemory'.
+if    (length(dataDecimate) >  maximumWaveformMemory)                 
+      msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');
+      error('\nError: The chosen signal has to many samples(%d GS).\nMake sure it is less or equal to 8 G samples.\n\n',length(dataDecimate)/1e9);
+      clear all;
+      return;
 end
 
 % THIS IF LOOP CONVERT THE LENGTH OF THE SIGNAL TO BE INTEGER MULTIPLE OF 4

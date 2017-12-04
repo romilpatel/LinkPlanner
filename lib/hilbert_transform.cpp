@@ -24,9 +24,10 @@ bool HilbertTransform::runBlock(void)
 
 	t_real S8;
 	vector<double> inputBufferTimeDomain(process);
+	vector <complex<double>> IN(process);
 	vector <complex<double>> inputSignalFreqencyDomain(process);
-	
-	vector <complex<double>> outputSignalsFreq;
+	vector <complex<double>> hilbertTransformed(process);
+	complex<double> imaginary{ (0,-1) };
 	
 	for (int i = 0; i < process; i++)									// Get the Input signal as a vector of size "n"
 	{
@@ -36,9 +37,63 @@ bool HilbertTransform::runBlock(void)
 	
 	/*Here we have to convert the vector of REAL value into COMPLEX value because our function acccepts only complex value*/
 
+	ComplexMult C;
+	vector<double> re(process);
+	vector<double> im(process);							// Imaginary part as "0"
+
+	for (int i = 0; i < process; i++)
+	{
+		re[i] = inputBufferTimeDomain.at(i);			// Real part
+	}
+
+	C.ReImVect2ComplexVect(re, im, IN);					// Time domain complex form signal
+	inputSignalFreqencyDomain = transform(IN,1);		// Frequency domain complex form signal
+
+	double zero{ 0 };
+
+	for (int i = 0; i < process; i++)
+	{
+		if (i == 0)
+		{
+			hilbertTransformed[i] = (zero, zero);
+		}
+
+		if (i < process/2)
+		{
+			vector <double> a;
+			vector <double> b;
+			double c;
+			double d;
+			vector <double> ac;
+			vector <double> bd;
+			vector <double> bc;
+			vector <double> ad;
+			vector <double> re;
+			vector <double> im;
+
+			a.at(i) = inputSignalFreqencyDomain[i].real();
+			b.at(i) = inputSignalFreqencyDomain[i].imag();
+			c = imaginary.real();
+			d = imaginary.imag();
+
+			ac.at(i) = a.at(i)*c;	// ac
+			bd.at(i) = b.at(i)*d;	// bd
+			bc.at(i) = b.at(i)*c;	// bc
+			ad.at(i) = a.at(i)*d;	// ad
+
+			re.at(i) = ac.at(i) - bd.at(i);	// ac-bd REAL PART
+			im.at(i) = bc.at(i) - ad.at(i);	// bc-ad IMAG PART
 
 
-	inputSignalFreqencyDomain = transform(inputBufferTimeDomain,1);
+
+		}
+
+		if (i > process/2)
+		{
+			hilbertTransformed[i] = inputSignalFreqencyDomain[i] * imaginary;
+		}
+	}
+
 
 
 

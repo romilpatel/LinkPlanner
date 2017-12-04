@@ -1,4 +1,4 @@
-function [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRateDecimate ] = sgnToWfm_20171121( fname_sgn, nReadr, fname_wfm )
+function [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols,  samplingRate, samplingRateDecimate ] = sgnToWfm_20171121( fname_sgn, nReadr, fname_wfm )
 %
 %
 % [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn, nReadr, fname_wfm );
@@ -50,11 +50,11 @@ end
 [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname_sgn, nReadr );
 
 %% DECIMATE START
-maximumSamplingFrequency  = 16e9;         % set the maximum sampling rate of the AWG
+maximumSamplingRate  = 16e9;         % set the maximum sampling rate of the AWG
 maximumWaveformMemory     = 8e9;          % set the maximum waveform memory of the AWG
 
 symbolFrequency           = 1/symbolPeriod;
-samplingFrequency         = 1/samplingPeriod;
+samplingRate              = 1/samplingPeriod;
 
 if (symbolPeriod==1)
     samplesPerSymbol = 1;
@@ -64,16 +64,21 @@ end
 
 
 % CALCULATE DECIMATION FACTOR 'r'.
-excessiveSamples = 0;                             
-samplingFrequencyReference =  1/samplingPeriod;   
-if (samplingFrequency > maximumSamplingFrequency)
-    while samplingFrequencyReference > maximumSamplingFrequency
-    samplingFrequencyReference = samplingFrequencyReference - symbolFrequency;
-    excessiveSamples = excessiveSamples +1;
-    end
-end
-maximumSamples = samplesPerSymbol-excessiveSamples;
-r = ceil(samplesPerSymbol/maximumSamples);          
+r = ceil(samplingRate/maximumSamplingRate);
+
+
+
+% excessiveSamples = 0;                             
+% samplingRateReference =  1/samplingPeriod;   
+% if (samplingRate > maximumSamplingRate)
+%     while samplingRateReference > maximumSamplingRate
+%     samplingRateReference = samplingRateReference - symbolFrequency;
+%     excessiveSamples = excessiveSamples +1;
+%     end
+% end
+% maximumSamples = samplesPerSymbol-excessiveSamples;
+% r = ceil(samplesPerSymbol/maximumSamples);         
+
 
 
 % CALCULATE DECIMATED FREQUENCY
@@ -90,8 +95,8 @@ else
 end
 
 % DISPLAY IN COMMAND WINDOW
-if (samplingFrequency>maximumSamplingFrequency)
-warning('The sampling frequency was %dGHz and the signal was decimated to obtain a sampling frequency of %gGHz (< %gGHz).\n',samplingFrequency/1e9, samplingRateDecimate/1e9,maximumSamplingFrequency/1e9);
+if (samplingRate>maximumSamplingRate)
+warning('The sampling frequency was %dGHz and the signal was decimated to obtain a sampling frequency of %gGHz (< %gGHz).\n',samplingRate/1e9, samplingRateDecimate/1e9,maximumSamplingRate/1e9);
 end
 fprintf('\nThe decomation factor r = %d\n',r);
 

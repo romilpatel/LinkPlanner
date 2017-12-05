@@ -40,12 +40,12 @@ x_n =\frac{1}{\sqrt{N}} \sum\limits_{n=0}^{N-1} X_k \cdot e^{i2\pi kn/N}		\hspac
 From the above manipulation discussed in equations \ref{FFT} and \ref{IFFT}, we can write only one script for the implementations Fourier algorithm and manipulate its functionality as a FFT or IFFT by applying an appropriate input arguments. \\
 The generalized form for the algorithm can be given as,
 \begin{equation}
-OUT =\frac{1}{\sqrt{N}} \sum\limits_{n=0}^{N-1} IN \cdot e^{sign \cdot i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
+OUT =\frac{1}{\sqrt{N}} \sum\limits_{n=0}^{N-1} IN \cdot e^{s \cdot i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
 \label{FT}
 \end{equation}
 where,\\
 $IN \rightarrow$ {Input complex signal}\\
-$OUT \rightarrow$ {Output complex signal} \& $sign \rightarrow$ {'-1' for FFT and '1' for IFFT}\\
+$OUT \rightarrow$ {Output complex signal} \& $s \rightarrow$ {'-1' for FFT and '1' for IFFT}\\
 
 \subsubsection{Function description}
 To perform FFT operation, the input argument to the function can be given as follows,

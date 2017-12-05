@@ -652,7 +652,7 @@ public:
 
 
 ///////////////////// TRANSFORM ////////////////////////
-
+/*
 vector <complex<double>> transform(vector<complex<double>>IN, int m)
 {
 	Fft F;										// Various function for FT 
@@ -681,7 +681,7 @@ vector <complex<double>> transform(vector<complex<double>>IN, int m)
 	split.ReImVect2ComplexVect(re,im,OUT);
 	
 	return OUT;
-};
+};*/
 
 
 ///////////////////// FFT function ////////////////////////

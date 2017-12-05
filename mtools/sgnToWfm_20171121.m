@@ -1,40 +1,42 @@
 function [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols,  samplingRate, samplingRateDecimate ] = sgnToWfm_20171121( fname_sgn, nReadr, fname_wfm )
 %
 %
-% [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols,samplingRate ] = sgnToWfm( fname_sgn, nReadr, fname_wfm );
+% [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate, samplingRateDecimate ]  = sgnToWfm( fname_sgn, nReadr, fname_wfm );
 %
 % Inputs
-% fname_sgn: Input filename of the signal you want to convert
-% nReadr:    Number of symbols you want to extract from the signal.
-% fname_wfm: Name that will be given to the waveform file.
+% fname_sgn : Input filename of the signal you want to convert
+% nReadr    : Number of symbols you want to extract from the signal.
+% fname_wfm : Name that will be given to the waveform file.
 %
 % Outputs
 % A waveform file will be created in the current folder.
 %
-% It will also return six variables in the workspace which are:
-% data: A vector with the signal data.
-% symbolPeriod} Equal to the symbol period of the corresponding signal
-% samplingPeriod: Sampling period of the signal.
-% type: A string with the name of the signal type.
-% numberOfSymbols: Number of symbols retrieved from the signal.
-% samplingRate: Sampling rate of the signal.
-%
+% It will also return eight variables in the workspace which are:
+% dataDecimate         : A vector which contains decimated signal data by an appropriate decimation factor to make it compatible with the AWG.
+% data                 : A vector with the signal data.
+% symbolPeriod         : Equal to the symbol period of the corresponding signal
+% samplingPeriod       : Sampling period of the signal.
+% type                 : A string with the name of the signal type.
+% numberOfSymbols      : Number of symbols retrieved from the signal.
+% samplingRate         : Sampling rate of the signal.
+% samplingRateDecimate : Reduced sampling rate which is compatible with AWG. (i.e. less than 16 GSa/s).
+
 % Functional Description
 % This matlab function generates a *.wfm file given an input signal file (*.sgn).
 % the signal must be real, not exceed 8GS  and have a sampling rate equal or bellow 16 GS/s.
 %
 % Examples 
 % Using one argument:
-% [data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn');
+% [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols,  samplingRate, samplingRateDecimate ] = sgnToWfm('S6.sgn');
 % This creates a waveform file with the same name as the *.sgn file and uses all of the samples it contains.
 % 
 % Using two arguments:
-% [data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn',256);
+% [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols,  samplingRate, samplingRateDecimate ] = sgnToWfm('S6.sgn',256);
 % This creates a waveform file with the same name as the signal file name and the number of samples
 % used equals nReadr x samplesPerSymbol. The samplesPerSymbol constant is defined in the *.sgn file.
 %
 % Using three arguments:
-% [data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn',256,'myWaveform.wfm');
+% [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols,  samplingRate, samplingRateDecimate ] = sgnToWfm('S6.sgn',256,'myWaveform.wfm');
 % This creates a waveform file with the name "myWaveform" and the number of samples used equals nReadr x samplesPerSymbol.
 % The samplesPerSymbol constant is defined in the *.sgn file.
 
@@ -50,11 +52,10 @@ end
 [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname_sgn, nReadr );
 
 %% DECIMATE START
-maximumSamplingRate  = 16e9;         % set the maximum sampling rate of the AWG
-maximumWaveformMemory     = 8e9;          % set the maximum waveform memory of the AWG
-
-symbolFrequency           = 1/symbolPeriod;
-samplingRate              = 1/samplingPeriod;
+maximumSamplingRate   = 16e9;                % set the maximum sampling rate of the AWG
+maximumWaveformMemory = 8e9;                 % set the maximum waveform memory of the AWG
+samplingRate          = 1/samplingPeriod;
+symbolRate       = 1/symbolPeriod;
 
 if (symbolPeriod==1)
     samplesPerSymbol = 1;
@@ -62,32 +63,33 @@ else
     samplesPerSymbol = (symbolPeriod/samplingPeriod);
 end
 
-
 % CALCULATE DECIMATION FACTOR 'r'.
-r = ceil(samplingRate/maximumSamplingRate);
+%  r = ceil(samplingRate/maximumSamplingRate);
 
+%%%%%%%%%%%%%%%%%% OR %%%%%%%%%%%%%%%%%%%%%
 
+excessiveSamples = 0;                             
+samplingRateReference =  1/samplingPeriod;   
+if (samplingRate > maximumSamplingRate)
+    while samplingRateReference > maximumSamplingRate
+    samplingRateReference = samplingRateReference - symbolRate;
+    excessiveSamples = excessiveSamples +1;
+    end
+end
+maximumSamples = samplesPerSymbol-excessiveSamples;
 
-% excessiveSamples = 0;                             
-% samplingRateReference =  1/samplingPeriod;   
-% if (samplingRate > maximumSamplingRate)
-%     while samplingRateReference > maximumSamplingRate
-%     samplingRateReference = samplingRateReference - symbolFrequency;
-%     excessiveSamples = excessiveSamples +1;
-%     end
-% end
-% maximumSamples = samplesPerSymbol-excessiveSamples;
-% r = ceil(samplesPerSymbol/maximumSamples);         
-
-
+if (maximumSamples==0)
+    warning('bitPeriod is too low !!!');
+    return;
+end
+r = ceil(samplesPerSymbol/maximumSamples);         
 
 % CALCULATE DECIMATED FREQUENCY
 samplingPeriodDecimate = samplingPeriod*r;
 samplingRateDecimate = 1/samplingPeriodDecimate;
 
-
 % DECIMATE DATA
-if (r==0)
+if (r==inf)
     warning('Error :: Bit rate is too high !!!');
     return;
 else
@@ -165,8 +167,7 @@ BuildTektronixAWG710xWFM(dataDecimate,marker,samplingRateDecimate,fname_wfm);
 % Filename  - Output filename
 
 function BuildTektronixAWG710xWFM(Signal,Marker,ClockRate,Filename)
-
-%% perform checks on the Signal input
+% perform checks on the Signal input
 if ~isfloat(Signal)                 
     error('The signal input must be floating point')
 end

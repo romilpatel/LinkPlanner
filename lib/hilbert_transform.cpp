@@ -53,11 +53,6 @@ bool HilbertTransform::runBlock(void)
 
 	for (int i = 0; i < process; i++)
 	{
-		if (i == 0)
-		{
-			hilbertTransformed[i] = (zero, zero);
-		}
-
 		if (i < process/2)
 		{
 			vector <double> a;
@@ -82,28 +77,66 @@ bool HilbertTransform::runBlock(void)
 			ad.at(i) = a.at(i)*d;	// ad
 
 			re.at(i) = ac.at(i) - bd.at(i);	// ac-bd REAL PART
-			im.at(i) = bc.at(i) - ad.at(i);	// bc-ad IMAG PART
+			im.at(i) = bc.at(i) + ad.at(i);	// bc+ad IMAG PART
 
-
-
+			for (int i = 0; i < re.size(); i++)
+			{
+				hilbertTransformed[i] = (re[i],im[i]);
+			}
 		}
 
 		if (i > process/2)
 		{
-			hilbertTransformed[i] = inputSignalFreqencyDomain[i] * imaginary;
+			vector <double> a;
+			vector <double> b;
+			double c;
+			double d;
+			vector <double> ac;
+			vector <double> bd;
+			vector <double> bc;
+			vector <double> ad;
+			vector <double> re;
+			vector <double> im;
+
+			a.at(i) = inputSignalFreqencyDomain[i].real();
+			b.at(i) = inputSignalFreqencyDomain[i].imag();
+			c = imaginary.real();
+			d = imaginary.imag();
+
+			ac.at(i) = a.at(i)*c;	// ac
+			bd.at(i) = b.at(i)*d;	// bd
+			bc.at(i) = b.at(i)*c;	// bc
+			ad.at(i) = a.at(i)*d;	// ad
+
+			re.at(i) = ac.at(i) - bd.at(i);	// ac-bd REAL PART
+			im.at(i) = bc.at(i) + ad.at(i);	// bc+ad IMAG PART
+
+			for (int i = 0; i < re.size(); i++)
+			{
+				hilbertTransformed[i] = (re[i], im[i]);
+			}
 		}
+
+		if (i == 0)
+		{
+			hilbertTransformed[i] = (zero, zero);
+		}
+
+	}
+
+	vector<complex<double>> hilbertTransformedTD(hilbertTransformed.size());
+
+	
+	hilbertTransformedTD = transform(hilbertTransformed, 1);
+
+
+
+	for (int i = 0; i < process; i++)									// put the data using bufferput
+	{
+		t_real S9;
 	}
 
 
-
-
-	//inputSignalsFreq = transform(inputBufferTimeDomain,1);						// Frequeny domain input signal
-
-	/////////// Hilbert Tranformation  //////////////
-	// Negative frequency components multiplied by "i" 
-	// Positive frequency components multiplied by "-i" 
-	// For DC, it's multiplied by "0" 
-	// Frequency to time domain conversion
 	return true;
 	}
 

@@ -1159,7 +1159,7 @@ void Fft::transformRadix2(vector<double> &real, vector<double> &imag)
 
 
 
-void Fft::Radix2(vector<double> &real, vector<double> &imag, int m)
+void Fft::Radix2(vector<double> &real, vector<double> &imag, int s)
 {
 	// Compute levels = floor(log2(n))
 	if (real.size() != imag.size())
@@ -1183,8 +1183,8 @@ void Fft::Radix2(vector<double> &real, vector<double> &imag, int m)
 	vector<double> sinTable(n / 2);
 	for (size_t i = 0; i < n / 2; i++)
 	{
-		cosTable[i] = m*cos(2 * M_PI * i / n);
-		sinTable[i] = m*sin(2 * M_PI * i / n);
+		cosTable[i] =    cos(2 * M_PI * i / n);
+		sinTable[i] = -s*sin(2 * M_PI * i / n);
 	}
 
 	// Bit-reversed addressing permutation
@@ -1313,8 +1313,8 @@ void Fft::Bluestein(vector<double> &real, vector<double> &imag, int s)
 	for (size_t i = 0; i < n; i++) {
 		double temp = M_PI * (size_t)((unsigned long long)i * i % ((unsigned long long)n * 2)) / n;
 		// Less accurate version if long long is unavailable: double temp = M_PI * i * i / n;
-		cosTable[i] = m*cos(temp);
-		sinTable[i] = m* sin(temp);
+		cosTable[i] =    cos(temp);
+		sinTable[i] = -s*sin(temp);
 	}
 
 	// Temporary vectors and preprocessing

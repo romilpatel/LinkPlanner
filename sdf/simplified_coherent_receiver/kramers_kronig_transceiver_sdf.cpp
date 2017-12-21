@@ -19,14 +19,14 @@ int main() {
 
 	BinarySourceMode sourceMode{ PseudoRandom };
 	int patternLength{ 5 };	
-	double bitPeriod{ 1.0 / 5e9 };
+	double bitPeriod{ 1.0 / 1.25e9 };
 	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 } } };
 	//vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 },{ 4,0 },{ 5,0 },{ 6,0 },{ 7,0 },{ 8,0 },{ 9,0 },{ 10,0 },{ 11,0 },{ 12,0 },{ 13,0 },{ 14,0 },{ 15,0 } } };
 	int numberOfBits{ 1000 };				                                        // For value of {-1}, it'll generate long bit sequence.
 	int numberOfSamplesPerSymbol{ 16 };
 	double rollOffFactor{ 0.3 };
 	int impulseResponseTimeLength{ 16 };
-	double rfFrequency{500E6};														// It depends on the bandwidth of the signal
+	double rfFrequency{1.25E9};														// It depends on the bandwidth of the signal
 	double rfAmplitude{ 1.0 };
 	double rfInitialPhase{ 0.0 };
 	double samplingPeriod{ bitPeriod / numberOfSamplesPerSymbol };
@@ -82,9 +82,9 @@ int main() {
 
 	Fork B8{ vector<Signal*> { &S6 }, vector<Signal*> { &S7,&S8 } };					    
 
-	/*HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };	
+	HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };	
 
-	IqModulator B10{ vector<Signal*> {&S7, &S9}, vector<Signal*> { &S10 } };
+	/*IqModulator B10{ vector<Signal*> {&S7, &S9}, vector<Signal*> { &S10 } };
 
 	Sink B11{ vector<Signal*> { &S10 }, vector<Signal*> {} };
 	B11.setDisplayNumberOfSamples(true);*/
@@ -93,7 +93,9 @@ int main() {
 	Sink B_7{ vector<Signal*> { &S7 }, vector<Signal*> {} };			// Fork output S7
 	B_7.setDisplayNumberOfSamples(true);
 
-	Sink B_8{ vector<Signal*> { &S8 }, vector<Signal*> {} };			// Fork output S8		
+	Sink B_8{ vector<Signal*> { &S8 }, vector<Signal*> {} };			// Fork output S8
+
+	Sink B_9{ vector<Signal*> { &S9 }, vector<Signal*> {} };			// Fork output S8	
 
 	
 
@@ -102,7 +104,7 @@ int main() {
 	// #####################################################################################################
 
 	//System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B78, &B9, &B10, &B11 } };
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B_7, &B_8} };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B_7, &B_8, &B_9 } };
 	//System MainSystem{ vector<Block*> { &B5, &B11} };
 
 	// #####################################################################################################

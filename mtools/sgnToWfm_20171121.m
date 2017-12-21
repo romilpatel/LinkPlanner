@@ -55,7 +55,7 @@ end
 maximumSamplingRate   = 16e9;                % set the maximum sampling rate of the AWG
 maximumWaveformMemory = 8e9;                 % set the maximum waveform memory of the AWG
 samplingRate          = 1/samplingPeriod;
-symbolRate       = 1/symbolPeriod;
+symbolRate            = 1/symbolPeriod;
 
 if (symbolPeriod==1)
     samplesPerSymbol = 1;

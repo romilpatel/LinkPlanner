@@ -892,14 +892,14 @@ bool RealToComplex::runBlock(void) {
 
 
 
-System::System(vector<Block *> &Blocks) {
-
+System::System(vector<Block *> &Blocks) 
+{
 	SystemBlocks = Blocks;
 
-	for (int unsigned i = 0; i < SystemBlocks.size(); i++) {
+	for (int unsigned i = 0; i < SystemBlocks.size(); i++) 
+	{
 		SystemBlocks[i]->initializeBlock();
 	}
-
 }
 
 void System::run() {
@@ -1313,8 +1313,8 @@ void Fft::Bluestein(vector<double> &real, vector<double> &imag, int s)
 	for (size_t i = 0; i < n; i++) {
 		double temp = M_PI * (size_t)((unsigned long long)i * i % ((unsigned long long)n * 2)) / n;
 		// Less accurate version if long long is unavailable: double temp = M_PI * i * i / n;
-		cosTable[i] =    cos(temp);
-		sinTable[i] = -s*sin(temp);
+		cosTable[i] =    cos(-s*temp);
+		sinTable[i] =    sin(-s*temp);
 	}
 
 	// Temporary vectors and preprocessing
@@ -1476,3 +1476,37 @@ void ComplexMult::ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &
 	}
 
 }
+
+
+////////////  FourierTransform  /////////////// 
+
+vector <complex<double>> FourierTransform::transform(vector<complex<double>>IN, int m)
+{
+	Fft F;										// Various function for FT
+	ComplexMult split;					        // Complex data functionality like split, addition, multiplication etc.
+	size_t n = IN.size();						// Size of the vector
+
+	vector <complex<double>> OUT(n);
+	vector<double> re(n, 0);
+	vector<double> im(n, 0);
+
+	split.ComplexVect2ReImVect(IN, re, im);    // Here we have splitted real and imag data from IN.
+
+	if (n == 0)
+		return OUT;
+	else if ((n & (n - 1)) == 0)				// Is power of 2 : Radix-2 Algorithim
+		F.Radix2(re, im, m);
+	else										// More complicated algorithm for arbitrary sizes : Bluestein Algorithim
+		F.Bluestein(re, im, m);
+
+	for (int i = 0; i<re.size(); i++)				// Devide by the square root of "N"
+	{
+		re[i] = re[i] / sqrt(re.size());
+		im[i] = im[i] / sqrt(re.size());
+	}
+
+	split.ReImVect2ComplexVect(re, im, OUT);
+
+	return OUT;
+};
+

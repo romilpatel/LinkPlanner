@@ -652,60 +652,20 @@ public:
 
 
 ///////////////////// TRANSFORM ////////////////////////
+
+class FourierTransform
+{
+public:
+	vector <complex<double>> transform(vector<complex<double>>IN, int m);
+
+};
+
+
+
 /*
 vector <complex<double>> transform(vector<complex<double>>IN, int m)
 {
-	Fft F;										// Various function for FT 
-	ComplexMult split;					        // Complex data functionality like split, addition, multiplication etc.
-	size_t n = IN.size();						// Size of the vector
-
-	vector <complex<double>> OUT(n);
-	vector<double> re(n,0);
-	vector<double> im(n,0);
-
-	split.ComplexVect2ReImVect(IN, re, im);    // Here we have splitted real and imag data from IN.
 	
-	if (n == 0)
-		return OUT;
-	else if ((n & (n - 1)) == 0)				// Is power of 2 : Radix-2 Algorithim
-		F.Radix2(re, im, m);
-	else										// More complicated algorithm for arbitrary sizes : Bluestein Algorithim
-		F.Bluestein(re, im, m);
-
-	for (int i=0; i<re.size(); i++)				// Devide by the square root of "N"
-	{
-		re[i] = re[i] / sqrt(re.size());
-		im[i] = im[i] / sqrt(re.size());
-	}
-
-	split.ReImVect2ComplexVect(re,im,OUT);
-	
-	return OUT;
-};*/
-
-
-///////////////////// FFT function ////////////////////////
-/*vector <complex<double>> fft(vector <double> real)
-{
-	Fft F;
-	vector <complex<double>> Output;						// Type of output of this function : vector <complex<double> & Name of the function : Output
-	ComplexMult CMult;
-	vector<double> im(real.size(), 0);						// Create a vector for imaginary values 
-	vector<complex <double>> v_out(real.size(), 0);
-	size_t n = real.size();
-
-
-	if (n == 0)
-		return v_out;
-	else if ((n & (n - 1)) == 0)							// Is power of 2 : Radix-2 Algorithim
-		F.transformRadix2(real, im);
-	else													// More complicated algorithm for arbitrary sizes : Bluestein Algorithim
-		F.transformBluestein(real, im);
-
-
-	CMult.ReImVect2ComplexVect(real, im, Output);
-	return Output;
-
 };*/
 
 ///////////////////// IFFT function ////////////////////////

@@ -24,22 +24,28 @@ bool HilbertTransform::runBlock(void)
 
 	t_real S8;
 	vector<double> inputBufferTimeDomain(process);
+	vector<double> outputSignalTimeDomain(process);
+	vector <complex<double>> inputSignalFreq(process);
 	vector <complex<double>> IN(process);
 	vector <complex<double>> inputSignalFreqencyDomain(process);
 	vector <complex<double>> hilbertTransformed(process);
-	complex<double> imaginary{ (0,-1) };
+	//complex<double> imaginary{ (0,-1) };
 
 	for (int i = 0; i < process; i++)									// Get the Input signal as a vector of size "n"
 	{
 		inputSignals[0]->bufferGet(&S8);
 		inputBufferTimeDomain.at(i) = S8;
+		
 	}
+	FourierTransform FT;
+
+	inputSignalFreq = FT.transform(IN, -1);
 
 	for (int i = 0; i < process; i++)									// put the data using bufferput
 	{
-		t_real S9;
-		S9 = inputBufferTimeDomain.at(i);
-		outputSignals[0]->bufferPut(&S9);
+		t_real OUT;
+	    OUT = inputBufferTimeDomain.at(i);
+		outputSignals[0]->bufferPut((t_real)(OUT));
 	}
 	return true;
 

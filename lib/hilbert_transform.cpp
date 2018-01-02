@@ -24,32 +24,52 @@ bool HilbertTransform::runBlock(void)
 
 	t_real S8;
 	vector<double> inputBufferTimeDomain(process);
-	vector<double> outputSignalTimeDomain(process);
-	vector <complex<double>> inputSignalFreq(process);
 	vector <complex<double>> IN(process);
 	vector <complex<double>> inputSignalFreqencyDomain(process);
-	vector <complex<double>> hilbertTransformed(process);
+	vector <complex<double>> complexOutputSignalTimeDomain(process);
+	vector <double> outputSignalTimeDomain(process);
+
+
+	//vector <complex<double>> inputSignalFreq(process);
+	//vector <complex<double>> hilbertTransformed(process);
 	//complex<double> imaginary{ (0,-1) };
 
 	for (int i = 0; i < process; i++)									// Get the Input signal as a vector of size "n"
 	{
 		inputSignals[0]->bufferGet(&S8);
 		inputBufferTimeDomain.at(i) = S8;
-		
 	}
+
+	vector<double> re(process);
+	vector<double> im(process);											// Imaginary part as "0"
+	ComplexMult C;
+
+	for (int i = 0; i < process; i++)
+	{
+		re[i] = inputBufferTimeDomain.at(i);							// Real part
+		im[i] = 0;														// Imaginary part
+	}
+
 	FourierTransform FT;
+	C.ReImVect2ComplexVect(re, im, IN);												// Time domain complex form signal
+	inputSignalFreqencyDomain = FT.transform(IN, -1);								// FT
 
-	inputSignalFreq = FT.transform(IN, -1);
+	vector<double> a(process);	// vector for real data										
+	vector<double> b(process);	// vector for imag data
+	double c;
+	double d;
 
-	for (int i = 0; i < process; i++)									// put the data using bufferput
+	C.ComplexVect2ReImVect(inputSignalFreqencyDomain, a, b);		
+
+	for (int i = 0; i < process; i++)												// put the data using bufferput
 	{
 		t_real OUT;
-	    OUT = inputBufferTimeDomain.at(i);
+	    OUT = a.at(i);
 		outputSignals[0]->bufferPut((t_real)(OUT));
 	}
 	return true;
-
 }
+
 	
 	/*Here we have to convert the vector of REAL value into COMPLEX value because our function acccepts only complex value
 

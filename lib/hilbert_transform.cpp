@@ -46,22 +46,56 @@ bool HilbertTransform::runBlock(void)
 
 	for (int i = 0; i < process; i++)
 	{
-		re[i] = inputBufferTimeDomain.at(i);							// Real part
-		im[i] = 0;														// Imaginary part
+		re[i] = inputBufferTimeDomain.at(i);			// Real part
+		im[i] = 0;										// Imaginary part
 	}
 
 	FourierTransform FT;
-	C.ReImVect2ComplexVect(re, im, IN);												// Time domain complex form signal
-	inputSignalFreqencyDomain = FT.transform(IN, -1);								// FT
+	C.ReImVect2ComplexVect(re, im, IN);					// Time domain complex form signal
+	inputSignalFreqencyDomain = FT.transform(IN, -1);	// FT
 
-	vector<double> a(process);	// vector for real data										
-	vector<double> b(process);	// vector for imag data
-	double c;
-	double d;
+	vector<double> a(process);	// vector1 for real data										
+	vector<double> b(process);	// vector1 for imag data
+	vector<double> c(process);	// vector2 for real data										
+	vector<double> d(process);	// vector2 for imag data
 
-	C.ComplexVect2ReImVect(inputSignalFreqencyDomain, a, b);		
+	vector <double> ac(process);
+	vector <double> bd(process);
+	vector <double> bc(process);
+	vector <double> ad(process);
+	vector <double> realPart(process);
+	vector <double> imagPart(process);
 
-	for (int i = 0; i < process; i++)												// put the data using bufferput
+
+	C.ComplexVect2ReImVect(inputSignalFreqencyDomain, a, b);	// "a" and "b" vector data
+	vector<complex<double>>imaginary(process, {0,1});
+
+
+	for (int i = 0; i < process; i++)
+	{
+		c.at(i) = imaginary[i].real();		// "c" vector data
+		d.at(i) = imaginary[i].imag();		// "d" vector data
+	}
+
+
+	for (int i = 0; i < process; i++)
+	{
+		ac.at(i) = a.at(i)*c.at(i);		// ac
+		bd.at(i) = b.at(i)*d.at(i);		// bd
+		bc.at(i) = b.at(i)*c.at(i);		// bc
+		ad.at(i) = a.at(i)*d.at(i);		// ad
+	}
+
+
+	for (int i = 0; i < process; i++)
+	{
+		realPart.at(i) = ac.at(i) - bd.at(i);	// ac-bd ==> REAL PART
+		imagPart.at(i) = bc.at(i) + ad.at(i);	// bc+ad ==> IMAG PART
+	}
+
+
+
+	for (int i = 0; i < process; i++)		// put the data using bufferput
 	{
 		t_real OUT;
 	    OUT = a.at(i);
@@ -70,7 +104,10 @@ bool HilbertTransform::runBlock(void)
 	return true;
 }
 
-	
+
+
+
+
 	/*Here we have to convert the vector of REAL value into COMPLEX value because our function acccepts only complex value
 
 	ComplexMult C;

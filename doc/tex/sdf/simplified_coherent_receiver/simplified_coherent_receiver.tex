@@ -257,15 +257,23 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 		\hline
 		numberOfBits  &   1000 & \\
 		\hline
-		numberOfSamplesPerSymbol& 8  &\\
-		\hline
-		filterType& RaisedCosine  &\\
+		numberOfSamplesPerSymbol& 16  &\\
 		\hline
 		rollOffFactor & 0.3    & \\
 		\hline
 		impulseResponseTimeLength&16&\\
 		\hline
+		rfFrequency& 1.25e9 &\\
+		\hline
 		outputOpticalPower&1e-3&\\
+		\hline
+		rfAmplitude{ 1.0 }& 1.0 &\\
+		\hline
+		rfInitialPhase & 0.0 &\\
+		\hline
+		outputOpticalWavelength & 1550e-9 &\\
+		\hline
+		opticalPower & 1e-3 &\\
 		\hline
 %		outputOpticalWavelength&1550e-9&\\
 %		\hline
@@ -274,67 +282,67 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 \vspace{0cm}
 \subsubsection{Transmitter setup description:}
 \begin{center}
-	\begin{tabular}{ |p{6cm}||p{7cm}|p{1cm}|   }
+	\begin{tabular}{ |p{6cm}||p{5.5cm}|p{2.5cm}|   }
 		\hline
 		\multicolumn{3}{|c|}{\textbf{Header Files}} \\
 		\hline
-		\textbf{File name} & \textbf{Comments}&\textbf{Status}\\
+		\textbf{File name} & \textbf{Comments}&\textbf{Code Status}\\
 		\hline
-		binary\_source.h    				&  		&\checkmark\\
+		binary\_source.h    				&  	Integrated	&\checkmark\\
 		\hline
-		m\_qam\_mapper.h 					& DONE! &\checkmark\\
+		m\_qam\_mapper.h 					&Integrated \hspace{5mm} NEW! &\checkmark\\
 		\hline
-		discrete\_to\_continuous\_time.h    &  		&\checkmark\\
+		discrete\_to\_continuous\_time.h    &  Integrated		&\checkmark\\
 		\hline
-		pulse\_shaper.h 					& 		&\checkmark\\
+		pulse\_shaper.h 					& 	Integrated	&\checkmark\\
 		\hline
-		RF\_Oscillator.h					& DONE! &\checkmark\\
+		RF\_Oscillator.h					&Integrated \hspace{5mm} NEW! &\checkmark\\
 		\hline
-		mixer.h		 						& DONE! &\checkmark\\
+		mixer.h		 						&Integrated \hspace{5mm} NEW! &\checkmark\\
 		\hline
-		fork.h								& DONE! &\checkmark\\
+		fork.h								&Integrated \hspace{5mm} NEW! &\checkmark\\
 		\hline
-		hilbert\_transform.h				& DONE! &\checkmark\\
+		hilbert\_transform.h				&Integrated \hspace{5mm} NEW! &\checkmark\\
 		\hline
 		iq\_modulator.h						&  		&\checkmark\\
 		\hline
-		sink.h								&  		&\checkmark\\
+		sink.h								&  Integrated	&\checkmark\\
 		\hline
-		netxpto.h							&  		&\checkmark\\
+		netxpto.h							&  Integrated		&\checkmark\\
 		\hline
 	\end{tabular}
 \end{center}
 \vspace{0.4cm}
 \begin{center}
-	\begin{tabular}{ |p{6cm}||p{7cm}|p{1cm}|   }
+	\begin{tabular}{ |p{6cm}||p{5.5cm}|p{2.5cm}|   }
 		\hline
 		\multicolumn{3}{|c|}{\textbf{Source Files}} \\
 		\hline
-		\textbf{File name} & \textbf{Comments}&\textbf{Status}\\
+		\textbf{File name} & \textbf{Comments}&\textbf{Code Status}\\
 		\hline
-		binary\_source.cpp    				&  &\checkmark\\
+		binary\_source.cpp    				& Integrated &\checkmark\\
 		\hline
-		m\_qam\_mapper.cpp 					& DONE! &\checkmark\\
+		m\_qam\_mapper.cpp 					& Integrated \hspace{5mm} NEW! &\checkmark\\
 		\hline
-		discrete\_to\_continuous\_time.cpp  &  &\checkmark\\
+		discrete\_to\_continuous\_time.cpp  & Integrated &\checkmark\\
 		\hline
-		pulse\_shaper.cpp 					&  &\checkmark\\
+		pulse\_shaper.cpp 					& Integrated &\checkmark\\
 		\hline
-		RF\_Oscillator.cpp					& DONE! &\checkmark\\
+		RF\_Oscillator.cpp					& Integrated \hspace{5mm} NEW! &\checkmark\\
 		\hline
-		mixer.cpp		 					& DONE! &\checkmark\\
+		mixer.cpp		 					& Integrated \hspace{5mm} NEW! &\checkmark\\
 		\hline
-		fork.cpp							& DONE! &\checkmark\\
+		fork.cpp							& Integrated \hspace{5mm} NEW! &\checkmark\\
 		\hline
-		hilbert\_transform.cpp				&  &\\
+		hilbert\_transform.cpp				& Integrated \hspace{5mm} NEW! &\checkmark\\
 		\hline
 		iq\_modulator.cpp					&  &\checkmark\\
 		\hline
-		sink.cpp							&  &\checkmark\\
+		sink.cpp							& Integrated &\checkmark\\
 		\hline
-		netxpto.cpp							&  &\checkmark\\
+		netxpto.cpp							& Integrated  &\checkmark\\
 		\hline
-		kramers\_kronig\_transceiver\_sdf.cpp  &  &\checkmark\\
+		kramers\_kronig\_transceiver\_sdf.cpp  & Integrated &\checkmark\\
 		\hline
 	\end{tabular}
 \end{center}
@@ -365,6 +373,12 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 	\caption{S6, S7 and S8}\label{}
 \end{figure}
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth, height=9cm]{./sdf/simplified_coherent_receiver/figures/S8S9.png}
+	\caption{S8 and S9}\label{}
+\end{figure}
+
 \subsubsection{Receiver setup}
 \begin{figure}[h]
 	\centering
@@ -383,7 +397,7 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 
 \subsubsection{Status of equipment}
 \begin{center}
-	\begin{tabular}{ |p{6cm}||p{7cm}|p{1cm}|   }
+	\begin{tabular}{ |p{6cm}||p{6.5cm}|p{1.5cm}|   }
 		\hline
 		%\multicolumn{3}{|c|}{\textbf{Source Files}} \\
 		%\hline
@@ -419,13 +433,13 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 \subsection{Know Problems}
 
 \begin{center}
-	\begin{tabular}{ |p{6cm}||p{7cm}|p{1cm}|   }
+	\begin{tabular}{ |p{6cm}||p{6.5cm}|p{1.5cm}|   }
 		\hline
 		%\multicolumn{3}{|c|}{\textbf{Source Files}} \\
 		%\hline
 		\textbf{Problem type} & \textbf{Description}&\textbf{Note}\\
 		\hline
-		Simulator			& Require a generalized block for FFT and IFFT  &\\
+		Simulator			& Require a generalized block for FFT and IFFT  &DONE!\\
 		\hline
 	\end{tabular}
 \end{center}

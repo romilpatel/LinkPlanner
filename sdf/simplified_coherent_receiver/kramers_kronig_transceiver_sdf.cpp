@@ -22,14 +22,15 @@ int main() {
 	double bitPeriod{ 1.0 / 1.25e9 };
 	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 } } };
 	//vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 },{ 4,0 },{ 5,0 },{ 6,0 },{ 7,0 },{ 8,0 },{ 9,0 },{ 10,0 },{ 11,0 },{ 12,0 },{ 13,0 },{ 14,0 },{ 15,0 } } };
-	int numberOfBits{ 1000 };				                                        // For value of {-1}, it'll generate long bit sequence.
+	int numberOfBits{ 1000 };				// For value of {-1}, it'll generate long bit sequence.
 	int numberOfSamplesPerSymbol{ 16 };
 	double rollOffFactor{ 0.3 };
 	int impulseResponseTimeLength{ 16 };
-	double rfFrequency{1.25E9};														// It depends on the bandwidth of the signal
+	double rfFrequency{1.25E9};				// It depends on the bandwidth of the signal
 	double rfAmplitude{ 1.0 };
 	double rfInitialPhase{ 0.0 };
 	double samplingPeriod{ bitPeriod / numberOfSamplesPerSymbol };
+	double outputOpticalWavelength{ 1550e-9 };
 	double opticalPower{ 1e-3 };
 
 	// #####################################################################################################
@@ -84,9 +85,9 @@ int main() {
 
 	HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };	
 
-	/*IqModulator B10{ vector<Signal*> {&S7, &S9}, vector<Signal*> { &S10 } };
+	//IqModulator B10{ vector<Signal*> {&S7, &S9}, vector<Signal*> { &S10 } };
 
-	Sink B11{ vector<Signal*> { &S10 }, vector<Signal*> {} };
+	/*Sink B11{ vector<Signal*> { &S10 }, vector<Signal*> {} };
 	B11.setDisplayNumberOfSamples(true);*/
 
 
@@ -94,8 +95,12 @@ int main() {
 	B_7.setDisplayNumberOfSamples(true);
 
 	Sink B_8{ vector<Signal*> { &S8 }, vector<Signal*> {} };			// Fork output S8
+	B_7.setDisplayNumberOfSamples(true);
 
-	Sink B_9{ vector<Signal*> { &S9 }, vector<Signal*> {} };			// Fork output S8	
+	Sink B_9{ vector<Signal*> { &S9 }, vector<Signal*> {} };			// Fork output S9
+	B_7.setDisplayNumberOfSamples(true);
+
+	//Sink B_10{ vector<Signal*> { &S10 }, vector<Signal*> {} };			// Fork output S10	
 
 	
 

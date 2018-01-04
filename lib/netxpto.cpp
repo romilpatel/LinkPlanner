@@ -1183,8 +1183,8 @@ void Fft::Radix2(vector<double> &real, vector<double> &imag, int s)
 	vector<double> sinTable(n / 2);
 	for (size_t i = 0; i < n / 2; i++)
 	{
-		cosTable[i] =    cos(2 * M_PI * i / n);
-		sinTable[i] = -s*sin(2 * M_PI * i / n);
+		cosTable[i] = cos(-s*2 * M_PI * i / n);
+		sinTable[i] = sin(-s*2 * M_PI * i / n);
 	}
 
 	// Bit-reversed addressing permutation
@@ -1223,14 +1223,6 @@ void Fft::Radix2(vector<double> &real, vector<double> &imag, int s)
 			break;
 	}
 }
-
-
-
-
-
-
-
-
 
 
 void Fft::transformBluestein(vector<double> &real, vector<double> &imag) 
@@ -1478,19 +1470,45 @@ void ComplexMult::ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &
 }
 
 
-////////////  FourierTransform  /////////////// 
+vector<complex<double>> ComplexMult::ReImVect2ComplexVector(vector<double> &v1_real, vector<double> &v1_imag)
+{
+	vector<complex<double>> v_out(v1_real.size());
+
+	for (size_t i = 0; i < v1_real.size(); ++i)
+	{
+		complex<double> iNum(v1_real[i], v1_imag[i]);
+		v_out.at(i) = iNum;
+	}
+
+	return v_out;
+}
+
+vector<complex <double>> ComplexMult::complexVectorMultiplication(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in)
+{
+
+	vector<complex <double>> v_out(v1_in.size(), 0);
+	for (unsigned int k = 0; k < v1_in.size(); ++k)
+	{
+		v_out.at(k) = v1_in.at(k)*v2_in.at(k);
+	}
+	return v_out;
+}
+
+
+
+////////////  Fast FourierTransform  /////////////// 
 
 vector <complex<double>> FourierTransform::transform(vector<complex<double>>IN, int m)
 {
 	Fft F;										// Various function for FT
-	ComplexMult split;					        // Complex data functionality like split, addition, multiplication etc.
+	ComplexMult C;					        // Complex data functionality like split, addition, multiplication etc.
 	size_t n = IN.size();						// Size of the vector
 
 	vector <complex<double>> OUT(n);
 	vector<double> re(n, 0);
 	vector<double> im(n, 0);
 
-	split.ComplexVect2ReImVect(IN, re, im);    // Here we have splitted real and imag data from IN.
+	C.ComplexVect2ReImVect(IN, re, im);    // Here we have splitted real and imag data from IN.
 
 	if (n == 0)
 		return OUT;
@@ -1499,13 +1517,13 @@ vector <complex<double>> FourierTransform::transform(vector<complex<double>>IN, 
 	else										// More complicated algorithm for arbitrary sizes : Bluestein Algorithim
 		F.Bluestein(re, im, m);
 
-	for (int i = 0; i<re.size(); i++)				// Devide by the square root of "N"
+	for (int i = 0; i<re.size(); i++)		    // Devide by the square root of "N"
 	{
 		re[i] = re[i] / sqrt(re.size());
 		im[i] = im[i] / sqrt(re.size());
 	}
 
-	split.ReImVect2ComplexVect(re, im, OUT);
+	C.ReImVect2ComplexVect(re, im, OUT);
 
 	return OUT;
 };

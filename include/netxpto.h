@@ -610,6 +610,9 @@ public:
 
 };
 
+
+
+
 class Fft
 {
 
@@ -619,28 +622,20 @@ public:
 	vector<double> inverseTransformInCP(vector<complex <double>> &In);
 	
 	void directTransform(vector<double> &real, vector<double> &imag);
-
 	void inverseTransform(vector<double> &real, vector<double> &imag);
-
 	void transformRadix2(vector<double> &real, vector<double> &imag);
-
 	void transformBluestein(vector<double> &real, vector<double> &imag);
-
-	void Radix2(vector<double> &real, vector<double> &imag, int m);
-	void Fft::Bluestein(vector<double> &real, vector<double> &imag, int m);
-
 	void convolve(const vector<double> &x, const vector<double> &y, vector<double> &out);
-
 	void convolve(const vector<double> &xreal, const vector<double> &ximag, const vector<double> &yreal, const vector<double> &yimag, vector<double> &outreal, vector<double> &outimag);
-
+	
+	void Radix2(vector<double> &real, vector<double> &imag, int m);
+	void Bluestein(vector<double> &real, vector<double> &imag, int m);
 };
 
 
 class ComplexMult
 {
-
 public:
-
 	void CMultVector(vector<double> &v1_real, vector<double> &v1_imag, vector<double> v2_real, vector<double> v2_imag);
 	void CMultVector_Loop(vector<double> &v1_real, vector<double> &v1_imag, vector<double> v2_real, vector<double> v2_imag);
 	vector<complex <double>> CMultVectorInCP(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in);
@@ -648,52 +643,17 @@ public:
 	void CMultVector_InComplex(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in);
 	void ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &v1_imag, vector<complex <double>> &v_out);
 
+	vector<complex<double>> ReImVect2ComplexVector(vector<double> &v1_real, vector<double> &v1_imag);
+	vector<complex <double>> complexVectorMultiplication(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in);
 };
 
 
-///////////////////// TRANSFORM ////////////////////////
+///////////////////// Fast Fourier Transform ////////////////////////
 
 class FourierTransform
 {
 public:
 	vector <complex<double>> transform(vector<complex<double>>IN, int m);
-
 };
-
-
-
-/*
-vector <complex<double>> transform(vector<complex<double>>IN, int m)
-{
-	
-};*/
-
-///////////////////// IFFT function ////////////////////////
-/*vector<double> ifft(vector<complex<double>> input)
-{
-	Fft IF;
-	ComplexMult split;
-	
-	vector <double> re(input.size(),0);						// Vector for holding REAL data
-	vector <double> im(input.size(),0);						// Vector for holding IMAG data
-
-	split.ComplexVect2ReImVect(input, re, im);				// Split complex data into real and imaginary vector
-
-	IF.directTransform(im,re);								// Inverse fourier transformation
-
-	for (int i=0; i<re.size(); i++)
-	{
-		re[i] = re[i] / re.size();							// Normalization of real data
-		im[i] = im[i] / re.size();							// This will be zero in case of real time signal
-	}
-	
-	vector <double> Output;
-	Output = re;
-
-	return Output;
-};*/
-
-
-
 
 # endif // PROGRAM_INCLUDE_netxpto_H_

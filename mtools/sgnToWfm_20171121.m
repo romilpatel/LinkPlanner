@@ -4,9 +4,9 @@ function [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbo
 % [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate, samplingRateDecimate ]  = sgnToWfm( fname_sgn, nReadr, fname_wfm );
 %
 % Inputs
-% fname_sgn : Input filename of the signal you want to convert
-% nReadr    : Number of symbols you want to extract from the signal.
-% fname_wfm : Name that will be given to the waveform file.
+% fname_sgn : Input filename of the signal you want to convert (required).
+% nReadr    : Number of symbols to extract from the signal (optional).
+% fname_wfm : Name that will be given to the waveform file (optional).
 %
 % Outputs
 % A waveform file will be created in the current folder.
@@ -44,12 +44,11 @@ function [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbo
 if nargin == 1
     fname_wfm = [strtok(fname_sgn,'.') '.wfm'];
     nReadr = Inf;
-end
 if nargin == 2
     fname_wfm = [strtok(fname_sgn,'.') '.wfm'];
 end
 
-[ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname_sgn, nReadr );
+[ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal_20170930( fname_sgn, nReadr );
 
 %% DECIMATE START
 maximumSamplingRate   = 16e9;                % set the maximum sampling rate of the AWG
@@ -100,7 +99,7 @@ end
 if (samplingRate>maximumSamplingRate)
 warning('The sampling frequency was %dGHz and the signal was decimated to obtain a sampling frequency of %gGHz (< %gGHz).\n',samplingRate/1e9, samplingRateDecimate/1e9,maximumSamplingRate/1e9);
 end
-fprintf('\nThe decomation factor r = %d\n',r);
+fprintf('\nThe decimation factor r = %d\n',r);
 
 %% Uncomment this section to view the TO COMPARE ORIGINAL AND DECIMATED DATA
 % figure;
@@ -150,6 +149,10 @@ marker = false(sizeMark, 2);                          % Initializing markers (fa
 
 BuildTektronixAWG710xWFM(dataDecimate,marker,samplingRateDecimate,fname_wfm);
 
+end
+
+
+function BuildTektronixAWG710xWFM(Signal,Marker,ClockRate,Filename)
 % This function will build a WFM file for importing data into a Tektronix
 % Arbitrary Waveform Generator Model number AWG710 or AWG710B
 %
@@ -166,7 +169,7 @@ BuildTektronixAWG710xWFM(dataDecimate,marker,samplingRateDecimate,fname_wfm);
 %             data type
 % Filename  - Output filename
 
-function BuildTektronixAWG710xWFM(Signal,Marker,ClockRate,Filename)
+
 % perform checks on the Signal input
 if ~isfloat(Signal)                 
     error('The signal input must be floating point')

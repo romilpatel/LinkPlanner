@@ -5,6 +5,14 @@
 
 using namespace std;
 
+/////////////////////// Required Functions declaration //////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+vector<complex<double>> ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &v1_imag);
+vector<complex <double>> complexVectorMultiplication(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in);
+
+
+
+
 void HilbertTransform::initialize(void)
 {
 	outputSignals[0]->symbolPeriod = inputSignals[0]->symbolPeriod;
@@ -22,124 +30,80 @@ bool HilbertTransform::runBlock(void)
 
 	if (process <= 0) return false;
 
-	t_real S8;
+	t_real input;
 	vector<double> inputBufferTimeDomain(process);
 	vector <complex<double>> IN(process);
 	vector <complex<double>> inputSignalFreqencyDomain(process);
-	vector <complex<double>> hilbertTransformed(process);
-	complex<double> imaginary{ (0,-1) };
-	
-	for (int i = 0; i < process; i++)									// Get the Input signal as a vector of size "n"
-	{
-		inputSignals[0]->bufferGet(&S8);
-		inputBufferTimeDomain.at(i)=S8;
-	}
-	
-	/*Here we have to convert the vector of REAL value into COMPLEX value because our function acccepts only complex value*/
+	vector <complex<double>> complexOutputSignalTimeDomain(process);
+	vector <double> outputSignalTimeDomain(process);
 
 	ComplexMult C;
+	FourierTransform FT;
+	vector<double> c(process);
+	vector<double> d(process);
+	vector<complex<double>> hilbertTransformerFrequencyDomain(process);
+	vector<complex<double>> hilbertTransformedFrequencyDomain(process);
+	vector<complex<double>> hilbertTransformedTimeDomain(process);
 	vector<double> re(process);
-	vector<double> im(process);							// Imaginary part as "0"
+	vector<double> im(process);
 
+	///////////// Hilbert transformer in frequency domain ///////////////
 	for (int i = 0; i < process; i++)
 	{
-		re[i] = inputBufferTimeDomain.at(i);			// Real part
-	}
-
-	C.ReImVect2ComplexVect(re, im, IN);					// Time domain complex form signal
-	inputSignalFreqencyDomain = transform(IN,1);		// Frequency domain complex form signal
-
-	double zero{ 0 };
-
-	for (int i = 0; i < process; i++)
-	{
-		if (i < process/2)
+		if ((i>0) && (i<process / 2))
 		{
-			vector <double> a;
-			vector <double> b;
-			double c;
-			double d;
-			vector <double> ac;
-			vector <double> bd;
-			vector <double> bc;
-			vector <double> ad;
-			vector <double> re;
-			vector <double> im;
-
-			a.at(i) = inputSignalFreqencyDomain[i].real();
-			b.at(i) = inputSignalFreqencyDomain[i].imag();
-			c = imaginary.real();
-			d = imaginary.imag();
-
-			ac.at(i) = a.at(i)*c;	// ac
-			bd.at(i) = b.at(i)*d;	// bd
-			bc.at(i) = b.at(i)*c;	// bc
-			ad.at(i) = a.at(i)*d;	// ad
-
-			re.at(i) = ac.at(i) - bd.at(i);	// ac-bd REAL PART
-			im.at(i) = bc.at(i) + ad.at(i);	// bc+ad IMAG PART
-
-			for (int i = 0; i < re.size(); i++)
-			{
-				hilbertTransformed[i] = (re[i],im[i]);
-			}
+			c.at(i) = 0;
+			d.at(i) = -1;
 		}
 
-		if (i > process/2)
+		if (i >= process / 2)
 		{
-			vector <double> a;
-			vector <double> b;
-			double c;
-			double d;
-			vector <double> ac;
-			vector <double> bd;
-			vector <double> bc;
-			vector <double> ad;
-			vector <double> re;
-			vector <double> im;
-
-			a.at(i) = inputSignalFreqencyDomain[i].real();
-			b.at(i) = inputSignalFreqencyDomain[i].imag();
-			c = imaginary.real();
-			d = imaginary.imag();
-
-			ac.at(i) = a.at(i)*c;	// ac
-			bd.at(i) = b.at(i)*d;	// bd
-			bc.at(i) = b.at(i)*c;	// bc
-			ad.at(i) = a.at(i)*d;	// ad
-
-			re.at(i) = ac.at(i) - bd.at(i);	// ac-bd REAL PART
-			im.at(i) = bc.at(i) + ad.at(i);	// bc+ad IMAG PART
-
-			for (int i = 0; i < re.size(); i++)
-			{
-				hilbertTransformed[i] = (re[i], im[i]);
-			}
+			c.at(i) = 0;
+			d.at(i) = 1;
 		}
 
 		if (i == 0)
 		{
-			hilbertTransformed[i] = (zero, zero);
+			c.at(i) = 0;
+			d.at(i) = 0;
 		}
-
 	}
 
-	vector<complex<double>> hilbertTransformedTD(hilbertTransformed.size());
+	hilbertTransformerFrequencyDomain = C.ReImVect2ComplexVector(c, d);	// create complex vector from real and imag data vector of the hilbert transformer
+
+	///////////////////////////////////////////////////////////////////////
 
 	
-	hilbertTransformedTD = transform(hilbertTransformed, 1);
-
-
-
-	for (int i = 0; i < process; i++)									// put the data using bufferput
+	for (int i = 0; i < process; i++)					// Get the Input signal as a vector of size "n"
 	{
-		t_real S9;
+		inputSignals[0]->bufferGet(&input);
+		inputBufferTimeDomain.at(i) = input;
+	}
+						
+
+	for (int i = 0; i < process; i++)
+	{
+		re[i] = inputBufferTimeDomain.at(i);			// Real part of input
+		im[i] = 0;										// Imaginary part which is manipulated as "0"
 	}
 
+	C.ReImVect2ComplexVect(re, im, IN);					// Time domain complex form signal
 
+	inputSignalFreqencyDomain = FT.transform(IN, -1);	// Fast Fourier Transform (FFT) 
+
+	hilbertTransformedFrequencyDomain = C.complexVectorMultiplication(inputSignalFreqencyDomain, hilbertTransformerFrequencyDomain); // Multiplication of two complex vector
+
+	hilbertTransformedTimeDomain = FT.transform(hilbertTransformedFrequencyDomain, 1);	// Inverse Fast Fourier Transform (IFFT)
+
+
+
+	for (int i = 0; i < process; i++)					// Put the data using bufferput
+	{
+		t_real OUT;
+	    OUT = hilbertTransformedTimeDomain[i].real();
+		outputSignals[0]->bufferPut((t_real)(OUT));
+	}
+			
 	return true;
-	}
 
-
-
-
+}

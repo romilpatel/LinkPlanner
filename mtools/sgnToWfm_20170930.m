@@ -45,7 +45,7 @@ end
 if nargin == 2
     fname_wfm = [strtok(fname_sgn,'.') '.wfm'];
 end
-[ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname_sgn, nReadr );
+[ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal_20170930( fname_sgn, nReadr );
 samplingRate=1/samplingPeriod;
 if (~strcmp(type,'TimeContinuousAmplitudeContinuousReal'))
      msgbox('Problem with the signal file. Please check the matlab command window for more information.','Error','error');

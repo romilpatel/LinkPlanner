@@ -4,7 +4,7 @@ function [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbo
 % [ dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate, samplingRateDecimate ]  = sgnToWfm( fname_sgn, nReadr, fname_wfm );
 %
 % Inputs
-% fname_sgn : Input filename of the signal you want to convert (required).
+% fname_sgn : Input filenamclce of the signal you want to convert (required).
 % nReadr    : Number of symbols to extract from the signal (optional).
 % fname_wfm : Name that will be given to the waveform file (optional).
 %

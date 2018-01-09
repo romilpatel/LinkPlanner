@@ -5,13 +5,6 @@
 
 using namespace std;
 
-/////////////////////// Required Functions declaration //////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-vector<complex<double>> ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &v1_imag);
-vector<complex <double>> complexVectorMultiplication(vector<complex <double>> &v1_in, vector<complex <double>> &v2_in);
-
-
-
 
 void HilbertTransform::initialize(void)
 {
@@ -91,6 +84,7 @@ bool HilbertTransform::runBlock(void)
 
 	inputSignalFreqencyDomain = FT.transform(IN, -1);	// Fast Fourier Transform (FFT)
 
+
 	hilbertTransformedFrequencyDomain = C.complexVectorMultiplication(inputSignalFreqencyDomain, hilbertTransformerFrequencyDomain); // Multiplication of two complex vector
 
 	hilbertTransformedTimeDomain = FT.transform(hilbertTransformedFrequencyDomain, 1);	// Inverse Fast Fourier Transform (IFFT)
@@ -101,7 +95,7 @@ bool HilbertTransform::runBlock(void)
 	    OUT = hilbertTransformedTimeDomain[i].real();
 		outputSignals[0]->bufferPut((t_real)(OUT));
 	}
-			
+	
 	return true;
 
 }

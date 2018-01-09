@@ -10,6 +10,10 @@
 # include "hilbert_transform.h"
 # include "iq_modulator.h"
 # include "sink.h"
+# include "transform.h"
+
+
+
 
 int main() {
 
@@ -83,7 +87,9 @@ int main() {
 
 	Fork B8{ vector<Signal*> { &S6 }, vector<Signal*> { &S7,&S8 } };					    
 
-	HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };	
+	Transform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };
+
+	//HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };
 
 	//IqModulator B10{ vector<Signal*> {&S7, &S9}, vector<Signal*> { &S10 } };
 

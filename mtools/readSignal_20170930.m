@@ -1,4 +1,4 @@
-function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal( fname, nReadr )
+function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSignal_20170930( fname, nReadr )
 
 %READSIGNALDATA Reads signal data to "visualizer".
 %   [ data, samplingFrequency ] = READSIGNALDATA(fid, type, symbolPeriod, samplingPeriod)

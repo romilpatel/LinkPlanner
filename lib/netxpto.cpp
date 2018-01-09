@@ -1516,7 +1516,7 @@ vector <complex<double>> FourierTransform::transform(vector<complex<double>>IN, 
 		F.Radix2(re, im, m);
 	else										// More complicated algorithm for arbitrary sizes : Bluestein Algorithim
 		F.Bluestein(re, im, m);
-
+	
 	for (unsigned int i = 0; i<re.size(); i++)		    // Devide by the square root of "N"
 	{
 		re[i] = re[i] / sqrt(re.size());

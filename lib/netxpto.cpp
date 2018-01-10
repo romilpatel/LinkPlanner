@@ -598,7 +598,6 @@ void FD_Filter::overlapSaveZPRealIn(void) {
 
 bool FD_Filter::runBlock(void) {
 
-	
 	Fft fft;
 	ComplexMult CMult;
 
@@ -1358,7 +1357,8 @@ static size_t reverseBits(size_t x, unsigned int n)
 }
 
 
-void Fft::convolve(const vector<double> &x, const vector<double> &y, vector<double> &out) {
+void Fft::convolve(const vector<double> &x, const vector<double> &y, vector<double> &out) 
+{
 	if (x.size() != y.size() || x.size() != out.size())
 		throw "Mismatched lengths";
 	size_t n = x.size();
@@ -1367,7 +1367,8 @@ void Fft::convolve(const vector<double> &x, const vector<double> &y, vector<doub
 }
 
 
-void Fft::convolve(const vector<double> &xreal, const vector<double> &ximag, const vector<double> &yreal, const vector<double> &yimag, vector<double> &outreal, vector<double> &outimag) {
+void Fft::convolve(const vector<double> &xreal, const vector<double> &ximag, const vector<double> &yreal, const vector<double> &yimag, vector<double> &outreal, vector<double> &outimag) 
+{
 	if (xreal.size() != ximag.size() || xreal.size() != yreal.size() || yreal.size() != yimag.size() || xreal.size() != outreal.size() || outreal.size() != outimag.size())
 		throw "Mismatched lengths";
 
@@ -1379,7 +1380,8 @@ void Fft::convolve(const vector<double> &xreal, const vector<double> &ximag, con
 
 	directTransform(xr, xi);
 	directTransform(yr, yi);
-	for (size_t i = 0; i < n; i++) {
+	for (size_t i = 0; i < n; i++) 
+	{
 		double temp = xr[i] * yr[i] - xi[i] * yi[i];
 		xi[i] = xi[i] * yr[i] + xr[i] * yi[i];
 		xr[i] = temp;
@@ -1500,9 +1502,9 @@ vector<complex <double>> ComplexMult::complexVectorMultiplication(vector<complex
 
 vector <complex<double>> FourierTransform::transform(vector<complex<double>>IN, int m)
 {
-	Fft F;										// Various function for FT
+	Fft F;									// Various function for FT
 	ComplexMult C;					        // Complex data functionality like split, addition, multiplication etc.
-	size_t n = IN.size();						// Size of the vector
+	size_t n = IN.size();					// Size of the vector
 
 	vector <complex<double>> OUT(n);
 	vector<double> re(n, 0);

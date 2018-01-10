@@ -84,7 +84,6 @@ bool HilbertTransform::runBlock(void)
 
 	inputSignalFreqencyDomain = FT.transform(IN, -1);	// Fast Fourier Transform (FFT)
 
-
 	hilbertTransformedFrequencyDomain = C.complexVectorMultiplication(inputSignalFreqencyDomain, hilbertTransformerFrequencyDomain); // Multiplication of two complex vector
 
 	hilbertTransformedTimeDomain = FT.transform(hilbertTransformedFrequencyDomain, 1);	// Inverse Fast Fourier Transform (IFFT)
@@ -92,7 +91,7 @@ bool HilbertTransform::runBlock(void)
 	for (int i = 0; i < process; i++)					// Put the data using bufferput
 	{
 		t_real OUT;
-	    OUT = hilbertTransformedTimeDomain[i].real();
+	    OUT = inputSignalFreqencyDomain[i].real();
 		outputSignals[0]->bufferPut((t_real)(OUT));
 	}
 	

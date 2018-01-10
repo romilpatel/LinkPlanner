@@ -27,7 +27,7 @@ int main() {
 	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 } } };
 	//vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 },{ 4,0 },{ 5,0 },{ 6,0 },{ 7,0 },{ 8,0 },{ 9,0 },{ 10,0 },{ 11,0 },{ 12,0 },{ 13,0 },{ 14,0 },{ 15,0 } } };
 	int numberOfBits{ 1000 };				// For value of {-1}, it'll generate long bit sequence.
-	int numberOfSamplesPerSymbol{32};
+	int numberOfSamplesPerSymbol{16};
 	double rollOffFactor{ 0.3 };
 	int impulseResponseTimeLength{ 16 };
 	double rfFrequency{1.25E9};				// It depends on the bandwidth of the signal
@@ -87,9 +87,9 @@ int main() {
 
 	Fork B8{ vector<Signal*> { &S6 }, vector<Signal*> { &S7,&S8 } };					    
 
-	Transform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };
+	//Transform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };
 
-	//HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };
+	HilbertTransform B9{ vector<Signal*> {&S8}, vector<Signal*> { &S9 } };
 
 	//IqModulator B10{ vector<Signal*> {&S7, &S9}, vector<Signal*> { &S10 } };
 

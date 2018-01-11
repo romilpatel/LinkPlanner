@@ -30,7 +30,7 @@ bool Transform::runBlock(void)
 	vector<complex<double>> inputSignalFrequencyDomain(process);
 
 	ComplexMult C;
-	FourierTransform FT;
+	//FourierTransform FT;
 
 	for (int i = 0; i < process; i++)					// Get the Input signal as a vector of size "n"
 	{

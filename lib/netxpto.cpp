@@ -1152,12 +1152,6 @@ void Fft::transformRadix2(vector<double> &real, vector<double> &imag)
 
 
 
-
-
-
-
-
-
 void Fft::Radix2(vector<double> &real, vector<double> &imag, int s)
 {
 	// Compute levels = floor(log2(n))
@@ -1471,7 +1465,6 @@ void ComplexMult::ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &
 
 }
 
-
 vector<complex<double>> ComplexMult::ReImVect2ComplexVector(vector<double> &v1_real, vector<double> &v1_imag)
 {
 	vector<complex<double>> v_out(v1_real.size());
@@ -1499,7 +1492,7 @@ vector<complex <double>> ComplexMult::complexVectorMultiplication(vector<complex
 
 
 ////////////  Fast FourierTransform  /////////////// 
-
+/*
 vector <complex<double>> FourierTransform::transform(vector<complex<double>>IN, int m)
 {
 	Fft F;									// Various function for FT
@@ -1510,7 +1503,7 @@ vector <complex<double>> FourierTransform::transform(vector<complex<double>>IN, 
 	vector<double> re(n, 0);
 	vector<double> im(n, 0);
 
-	C.ComplexVect2ReImVect(IN, re, im);    // Here we have splitted real and imag data from IN.
+	C.ComplexVect2ReImVect(IN, re, im);			// Here we have splitted real and imag data from IN.
 
 	if (n == 0)
 		return OUT;
@@ -1519,7 +1512,7 @@ vector <complex<double>> FourierTransform::transform(vector<complex<double>>IN, 
 	else										// More complicated algorithm for arbitrary sizes : Bluestein Algorithim
 		F.Bluestein(re, im, m);
 	
-	for (unsigned int i = 0; i<re.size(); i++)		    // Devide by the square root of "N"
+	for (unsigned int i = 0; i<re.size(); i++)	// Devide by the square root of "N"
 	{
 		re[i] = re[i] / sqrt(re.size());
 		im[i] = im[i] / sqrt(re.size());
@@ -1529,4 +1522,189 @@ vector <complex<double>> FourierTransform::transform(vector<complex<double>>IN, 
 
 	return OUT;
 };
+
+*/
+vector<complex<double>> FftA::fft(vector<complex<double> > &vec)
+{
+	size_t n = vec.size();
+
+	if (n == 0)
+		return vec;
+	else if ((n & (n - 1)) == 0)  // Is power of 2
+		transformRadix2(vec);
+	else  // More complicated algorithm for arbitrary sizes
+		transformBluestein(vec);
+
+	return vec;
+}
+
+
+vector<complex<double>> FftA::ifft(vector<complex<double> > &vec)
+{
+	vector<complex<double>> OUT(vec.size());
+
+	std::transform(vec.cbegin(), vec.cend(), vec.begin(),
+		static_cast<complex<double>(*)(const complex<double> &)>(std::conj));
+	fft(vec);
+	std::transform(vec.cbegin(), vec.cend(), vec.begin(),
+		static_cast<complex<double>(*)(const complex<double> &)>(std::conj));
+
+	OUT = vec;
+	/*
+	for (int x = 0; x != OUT.size(); ++x)
+	{
+	OUT[x] = OUT[x].real() / OUT.size();			// Normalize
+	OUT[x] = OUT[x].imag() / OUT.size();
+	}*/
+
+
+	return OUT;
+}
+
+
+void FftA::transformRadix2(vector<complex<double> > &vec)
+{
+	// Length variables
+	size_t n = vec.size();
+	int levels = 0;  // Compute levels = floor(log2(n))
+	for (size_t temp = n; temp > 1U; temp >>= 1)
+		levels++;
+	if (static_cast<size_t>(1U) << levels != n)
+		throw "Length is not a power of 2";
+
+	// Trignometric table
+	vector<complex<double> > expTable(n / 2);
+	for (size_t i = 0; i < n / 2; i++)
+		expTable[i] = std::exp(complex<double>(0, -2 * M_PI * i / n));
+
+	// Bit-reversed addressing permutation
+	for (size_t i = 0; i < n; i++)
+	{
+		size_t j = reverseBits(i, levels);
+		if (j > i)
+			std::swap(vec[i], vec[j]);
+	}
+
+	// Cooley-Tukey decimation-in-time radix-2 FFT
+	for (size_t size = 2; size <= n; size *= 2)
+	{
+		size_t halfsize = size / 2;
+		size_t tablestep = n / size;
+		for (size_t i = 0; i < n; i += size)
+		{
+			for (size_t j = i, k = 0; j < i + halfsize; j++, k += tablestep)
+			{
+				complex<double> temp = vec[j + halfsize] * expTable[k];
+				vec[j + halfsize] = vec[j] - temp;
+				vec[j] += temp;
+			}
+		}
+		if (size == n)  // Prevent overflow in 'size *= 2'
+			break;
+	}
+}
+
+
+void FftA::transformBluestein(vector<complex<double> > &vec) {
+	// Find a power-of-2 convolution length m such that m >= n * 2 + 1
+	size_t n = vec.size();
+	size_t m = 1;
+	while (m / 2 <= n) {
+		if (m > SIZE_MAX / 2)
+			throw "Vector too large";
+		m *= 2;
+	}
+
+	// Trignometric table
+	vector<complex<double> > expTable(n);
+	for (size_t i = 0; i < n; i++)
+	{
+		unsigned long long temp = static_cast<unsigned long long>(i) * i;
+		temp %= static_cast<unsigned long long>(n) * 2;
+		double angle = M_PI * temp / n;
+		// Less accurate alternative if long long is unavailable: double angle = M_PI * i * i / n;
+		expTable[i] = std::exp(complex<double>(0, -angle));
+	}
+
+	// Temporary vectors and preprocessing
+	vector<complex<double> > av(m);
+	for (size_t i = 0; i < n; i++)
+		av[i] = vec[i] * expTable[i];
+	vector<complex<double> > bv(m);
+	bv[0] = expTable[0];
+	for (size_t i = 1; i < n; i++)
+		bv[i] = bv[m - i] = std::conj(expTable[i]);
+
+	// Convolution
+	vector<complex<double> > cv(m);
+	convolve(av, bv, cv);
+
+	// Postprocessing
+	for (size_t i = 0; i < n; i++)
+		vec[i] = cv[i] * expTable[i];
+}
+
+
+void FftA::convolve(
+	const vector<complex<double> > &xvec,
+	const vector<complex<double> > &yvec,
+	vector<complex<double> > &outvec)
+{
+	size_t n = xvec.size();
+	if (n != yvec.size() || n != outvec.size())
+		throw "Mismatched lengths";
+	vector<complex<double> > xv = xvec;
+	vector<complex<double> > yv = yvec;
+	fft(xv);
+	fft(yv);
+	for (size_t i = 0; i < n; i++)
+		xv[i] *= yv[i];
+	ifft(xv);
+	for (size_t i = 0; i < n; i++)  // Scaling (because this FFT implementation omits it)
+		outvec[i] = xv[i] / static_cast<double>(n);
+}
+
+
+static size_t reverseBits(size_t x, int n)
+{
+	size_t result = 0;
+	for (int i = 0; i < n; i++, x >>= 1)
+		result = (result << 1) | (x & 1U);
+	return result;
+}
+
+
+
+FftA FT;
+ComplexMult C;
+
+vector<complex<double>> FourierTransformA::transform(vector<complex<double> > &vec, int sign)
+{
+	vector<complex<double>> OUT(vec.size());
+	vector<double> temp_real(vec.size());
+	vector<double> temp_imag(vec.size());
+
+	if (sign == -1)
+	{
+		FT.fft(vec);
+		OUT = vec;
+	}
+
+	else
+
+	{
+		FT.ifft(vec);
+
+		for (int i = 0; i != vec.size(); ++i)
+		{
+			temp_real[i] = vec[i].real() / vec.size();
+			temp_imag[i] = vec[i].imag() / vec.size();
+		}
+
+		OUT = C.ReImVect2ComplexVector(temp_real, temp_imag);
+
+	}
+
+	return OUT;
+}
 

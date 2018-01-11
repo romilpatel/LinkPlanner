@@ -649,11 +649,38 @@ public:
 
 
 ///////////////////// Fast Fourier Transform ////////////////////////
-
+/*
 class FourierTransform
 {
 public:
 	vector <complex<double>> transform(vector<complex<double>>IN, int m);
 };
 
-# endif // PROGRAM_INCLUDE_netxpto_H_
+*/
+
+
+// PROGRAM_INCLUDE_netxpto_H_
+
+
+class FourierTransformA
+{
+public:
+	vector<complex<double>> transform(vector<complex<double> > &vec, int sign);
+};
+
+
+class FftA {
+
+public:
+
+	vector<complex<double>> fft(std::vector<std::complex<double> > &vec);
+	vector<complex<double>> ifft(std::vector<std::complex<double> > &vec);
+	void transformRadix2(std::vector<std::complex<double> > &vec);
+	void transformBluestein(std::vector<std::complex<double> > &vec);
+	void convolve(
+		const std::vector<std::complex<double> > &vecx,
+		const std::vector<std::complex<double> > &vecy,
+		std::vector<std::complex<double> > &vecout);
+};
+
+#endif

@@ -6,12 +6,12 @@
 	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
 		\textbf{Goal}           &:& Convert simulation signals into waveform files compatible with the laboratory's Arbitrary Waveform Generator\\
 		\textbf{Version}        &:& sgnToWfm\_20170930.m (Francisco Marques dos Santos)\\
-							    &:& sgnToWfm\_20171119.m (Romil Patel)
+							    &:& sgnToWfm\_20171121.m (Romil Patel)
 	\end{tabular}
 \end{tcolorbox}
 
 
-This section shows how to convert a simulation signal into an AWG compatible waveform file through the use of a matlab function called sgnToWfm. This allows the application of simulated signals into real world systems.
+This section shows how to convert a simulation signal into an AWG compatible waveform file through the use of a matlab function called sgnToWfm\_20170930. This allows the application of simulated signals into real world systems.
 \subsection{Generating a signal for the Tektronix AWG70002A}
 
 \section*{sgnToWfm\_20170930.m}
@@ -19,7 +19,7 @@ This section shows how to convert a simulation signal into an AWG compatible wav
 \subsection*{Structure of a function}
 %[dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate, samplingRateDecimate]  =  sgnToWfm\_20171121 (fname\_sgn, nReadr, fname\_wfm)
 
-[data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm(fname\_sgn, nReadr, fname\_wfm );
+[data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm\_20170930(fname\_sgn, nReadr, fname\_wfm );
 
 \subsection*{Inputs}
 
@@ -138,7 +138,7 @@ The AWG we will be using is the Tekatronix AWG70002A which has the following key
 After making sure this specifications are respected you can create your waveform using the function. When you load your waveform, the AWG will output it and repeat it constantly until you stop playing it.
 \bigskip
 
-\textbf{1. Using the function sgnToWfm}:
+\textbf{1. Using the function sgnToWfm\_20171121}:
 Start up Matlab and change your current folder to mtools and add the signals folder that you want to convert to the Matlab search path. Use the function accordingly, putting as the input parameter the signal file name you want to convert.
 \bigskip
 

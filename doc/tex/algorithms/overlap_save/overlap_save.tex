@@ -146,6 +146,54 @@ In both cases, the frequency response of the filter will be limited to the frequ
     \caption{Illustration of Overlap-save method.}
     \label{overlapSave}
 \end{figure}
+
+\newpage
+
+\tikzstyle{decision} = [diamond, draw, fill=white!20, 
+text width=9em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=white!20, 
+text width=25em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=white!20, node distance=3cm,
+minimum height=3em]
+
+\subsubsection{Flow chart of overlap and save method}
+\begin{center}
+	\begin{figure}[ht]
+		
+		\begin{center}
+			\begin{tikzpicture}[node distance = 2cm, auto]
+			%Place nodes
+			\node [block] (M) { Set M  = length of filter h[n]\\ Set L = length of data block\\Set N = L+M-1(length of FFT )};
+			\node [block, below of=M, node distance=2.2cm] (L) {Insert M-1 zero at the begining of $x(n)$};
+			\node [block, below of=L, node distance=2.5cm] (N) {Break the padded input signal into overlapping blocks $x_{m}(n)$ of the length N=L+M-1, where the overlap length is M-1.};
+			\node [block, below of=N, node distance=2.5cm] (ZPH) {Zero pad $h(n)$ to be a length of N = L+M-1};
+			\node [block, below of=ZPH, node distance=2.2cm] (DFT) {N-DFT of $h(n)$ to give $H[k]$ of k = 0,1,2...N-1 };
+\node [block, below of=DFT, node distance=3.4cm] (process) {Step 1 : N-DFT of $x_{m}(n)$ to give $X_{m}(k)$ where k = 0,1,2...N-1.\\
+step 2 : Perform $Y_{m}(k) = X_{m}(k) \cdot H[k] $.  \\ 
+step 3 : N-IDFT of $Y_{m}(k)$ to give $y_{m}(n)$. \\
+step 4 : Discard first M-1 points of output block $y_{m}(n)$, n = 0,1,2...N-1. };
+			\node [block, below of=process, node distance=3.5cm] (final) {Form $y(n)$ by appending the remaining L samples of each block $y_{m}(n)$. };
+
+
+			%% Draw edges
+			\path [line] (M) -- (L);
+			\path [line] (L) -- (N);
+			\path [line] (N) -- (ZPH);
+			\path [line] (ZPH) -- (DFT);
+			\path [line] (DFT) -- (process);
+			\path [line] (process) -- (final);
+			\end{tikzpicture}
+		\end{center}
+		\vspace{0.5cm}
+		\caption{Overlap and save method flow chart}
+		\label{Overlap_and_save }
+	\end{figure}
+\end{center}
+
+
+
+
  \begin{thebibliography}{1}
   \bibitem{notes} Blahut, R.E. {\em Fast Algorithms for Digital Signal Processing}, Addison-Wesley, Reading, MA,
 1985.
